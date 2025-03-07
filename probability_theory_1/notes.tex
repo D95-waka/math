@@ -1519,7 +1519,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 			0 & \text{else}
 		\end{cases}
 	\]
-	במקרה זה נסמן $X \sim U(S)$.
+	במקרה זה נסמן $X \sim \operatorname{U}(S)$.
 \end{definition}
 \begin{definition}[התפלגות גאומטרית]\label{geometric_distribution}
 	$X$ מתפלג גאומטרית עם פרמטר $p$ אם
@@ -1574,7 +1574,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 	\[
 		p_Z(2) = \PP(Z = 2) = \PP(Y = 2) + \PP(Y = 8) = \frac{1}{36} + \frac{5}{36} = \frac{1}{6}
 	\]
-	באופן כללי מתקיים מחישוב כזה ש־$p_Z(n) = \frac{1}{6}$ לכל $n \in [6]$, נסיק כי $Z \sim U([6])$.
+	באופן כללי מתקיים מחישוב כזה ש־$p_Z(n) = \frac{1}{6}$ לכל $n \in [6]$, נסיק כי $Z \sim \operatorname{U}([6])$.
 \end{example}
 \begin{definition}[הסתברות כמעט תמיד]
 	אם $A$ מאורע עם הסתברות $1$ אז אומרים שהוא מתרחש כמעט תמיד.
@@ -1652,7 +1652,7 @@ $p(\omega) = \frac{1}{{365}^k}$ לכל $\omega \in \Omega$.
 \end{definition*}
 גם דיברנו על סוגים שונים של התפלגות, לדוגמה
 \[
-	\forall i \in [6], p_X(i) = \frac{1}{6} \iff X \sim U([6])
+	\forall i \in [6], p_X(i) = \frac{1}{6} \iff X \sim \operatorname{U}([6])
 \]
 או באופן דומה
 \[
@@ -1693,7 +1693,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\end{align*}
 \end{proof}
 \begin{example}
-	נניח ש־$X \sim Ber(\frac{1}{2})$ וגם $Y \sim Ber(\frac{1}{2})$, ונרצה לחשב את $\PP(X = Y)$. \\*
+	נניח ש־$X \sim \operatorname{Ber}(\frac{1}{2})$ וגם $Y \sim \operatorname{Ber}(\frac{1}{2})$, ונרצה לחשב את $\PP(X = Y)$. \\*
 	אין לנו את היכולת לעשות זאת כי אין מספיק מידע.
 \end{example}
 \begin{definition}[וקטור מקרי]
@@ -1758,14 +1758,14 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{definition}
 \begin{exercise}
-	יהיו $X_1, X_2 Geo(p)$ בלתי־תלויים ונגדיר גם $Z = X_1 + X_2$.
+	יהיו $X_1, X_2 \operatorname{Geo}(p)$ בלתי־תלויים ונגדיר גם $Z = X_1 + X_2$.
 	\begin{enumerate}
 		\item חשבו את ההתפלגות המשותפת של $X_1$ ו־$Z$.
 		\item הראו ש־$X_1 \mid \{ Z = 1 \}$ מתפלג אחיד על $\{1, \dots, n - 1\}$.
 	\end{enumerate}
 \end{exercise}
 \begin{solution}
-	תחילה ניזכר שאם $W \sim Geo(p)$ אז $\supp(W) = \NN$ ו־$\PP(W = k) = {(1 - p)}^{k - 1} p$, שכן זוהי ההסתברות שלא הצלחנו $k - 1$ פעמים ובניסיון ה־$k$ הצלחנו, עבור איזושהי פעולה.
+	תחילה ניזכר שאם $W \sim \operatorname{Geo}(p)$ אז $\supp(W) = \NN$ ו־$\PP(W = k) = {(1 - p)}^{k - 1} p$, שכן זוהי ההסתברות שלא הצלחנו $k - 1$ פעמים ובניסיון ה־$k$ הצלחנו, עבור איזושהי פעולה.
 	\begin{enumerate}
 		\item אנו מגדירים $X = (X_1, Z)$ וקטור מקרי ואנו רוצים לחשב את ההתפלגות שלו, נחשב את התומך
 			\[
@@ -1820,8 +1820,8 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{exercise}
 \begin{solution}
 	נסמן $X$ תוצאת ההטלה הראשונה ו־$Y$ תוצאת ההטלה השנייה. \\*
-	מהנתונים נסיק כי $X \sim Ber(\frac{1}{2})$. אנו גם יודעים כי גם $Y$ הוא בהתפלגות ברנולי כלשהי. \\*
-	לבסוף אנו גם יודעים שמתקיים $Y \mid \{X = 0\} \sim Ber(\frac{1}{2})$ וגם ש־$Y \mid \{X = 1\} \sim Ber(p)$, לכן
+	מהנתונים נסיק כי $X \sim \operatorname{Ber}(\frac{1}{2})$. אנו גם יודעים כי גם $Y$ הוא בהתפלגות ברנולי כלשהי. \\*
+	לבסוף אנו גם יודעים שמתקיים $Y \mid \{X = 0\} \sim \operatorname{Ber}(\frac{1}{2})$ וגם ש־$Y \mid \{X = 1\} \sim \operatorname{Ber}(p)$, לכן
 	\[
 		\PP(Y = 1)
 		= \PP(Y = 1 \mid X = 0) \PP(X = 0) + \PP(Y = 1 \mid X = 1) \PP(X = 1)
@@ -1830,7 +1830,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{solution}
 \begin{exercise}
-	יהיו $X \sim Ber(p)$ ו־$Y \sim Ber(q)$ בלתי־תלויים. \\*
+	יהיו $X \sim \operatorname{Ber}(p)$ ו־$Y \sim \operatorname{Ber}(q)$ בלתי־תלויים. \\*
 	חשבו את ההתפלגות של $X \cdot Y$.
 \end{exercise}
 \begin{solution}
@@ -1845,7 +1845,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		= \PP(X = 1) \PP(Y = 1)
 		= pq
 	\]
-	ולכן $XY \sim Ber(pq)$.
+	ולכן $XY \sim \operatorname{Ber}(pq)$.
 \end{solution}
 
 \section{שיעור 10 --- 28.11.2024}
@@ -1863,11 +1863,11 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	אז $X \mid X \in S \overset{d}{=} Y \mid Y \in S$.
 \end{proposition}
 \begin{example}
-	נניח ש־$X, Y \sim U([6])$ ו־$S = [3, \infty)$ אז
+	נניח ש־$X, Y \sim \operatorname{U}([6])$ ו־$S = [3, \infty)$ אז
 	\[
-		X \mid X \in S \sim U(\{3, 4, 5, 6\}),
+		X \mid X \in S \sim \operatorname{U}(\{3, 4, 5, 6\}),
 		\qquad
-		Y \mid Y \in S \sim U(\{3, 4, 5, 6\})
+		Y \mid Y \in S \sim \operatorname{U}(\{3, 4, 5, 6\})
 	\]
 \end{example}
 \begin{definition}[אי־תלות משתנים מקריים]
@@ -1945,7 +1945,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{proof}
 \begin{example}
 	$X$ ו־$Y$ בלתי־תלויים אז $X^2, \frac{1}{Y}$ בלתי־תלויים, זאת שכן $\PP(X = 1, Y = 1) = \frac{1}{2} \ne \frac{1}{2} \cdot \frac{1}{2}$. \\*
-	בכיוון ההפוך אם $X = Y \sim Ber(\frac{1}{2})$ לא בלתי־תלויים אבל אם $f(x) = g(y) = 6$ גוררים ש־$f(X)$ ו־$g(Y)$ הם כמעט תמיד 6 ולכן בלתי־תלויים.
+	בכיוון ההפוך אם $X = Y \sim \operatorname{Ber}(\frac{1}{2})$ לא בלתי־תלויים אבל אם $f(x) = g(y) = 6$ גוררים ש־$f(X)$ ו־$g(Y)$ הם כמעט תמיד 6 ולכן בלתי־תלויים.
 \end{example}
 \begin{definition}[קבוצת משתנים מקריים בלתי־תלויה]
 	יהיו $X_1, \dots, X_n$ משתנים מקריים, אז הם יקראו בלתי־תלויים אם לכל $S_1, \dots, S_n \in \mathcal{F}_\RR$ המאורעות ${\{ X_i \in S_i \}}_{i \in [n]}$ הם בלתי־תלויים.
@@ -2022,7 +2022,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{proposition}
 נשאל את עצמנו אם מצב זה בכלל אפשרי, נראה טענה ללא הוכחה שעונה על שאלה זו.
 \begin{proposition}
-	קיימת סדרת משתנים מקריים כזאת שכולם $Ber(\frac{1}{2})$.
+	קיימת סדרת משתנים מקריים כזאת שכולם $\operatorname{Ber}(\frac{1}{2})$.
 \end{proposition}
 \begin{proposition}
 	סדרה כזו בהכרח לא מוגדרת על מרחב בדיד.
@@ -2039,8 +2039,8 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{התפלגות גאומטרית}
 ניזכר בהגדרה\ \ref{geometric_distribution}, אשר מדברת על ניסוי שאנו עושים שוב ושוב עד שאנו מצליחים.
 \begin{proposition}
-	אם $X_1, X_2, \dots$ משתנים מקריים בלתי־תלויים המתפלגים $Ber(p)$ עבור $0 < p < 1$, \\*
-	ונסמן $Y = \min \{ k \mid X_k = 1 \}$, אז $Y \sim Geo(p)$.
+	אם $X_1, X_2, \dots$ משתנים מקריים בלתי־תלויים המתפלגים $\operatorname{Ber}(p)$ עבור $0 < p < 1$, \\*
+	ונסמן $Y = \min \{ k \mid X_k = 1 \}$, אז $Y \sim \operatorname{Geo}(p)$.
 \end{proposition}
 נבחין כי $Y$ מייצג בחירת המופע הראשון של $1$ בהתפלגות ברנולי, נזכיר כי היא מייצגת הגרלה יחידה, לדוגמה הטלת מטבע בודד. נעבור להוכחה.
 \begin{proof}
@@ -2068,14 +2068,14 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	מה ההסתברות שהן קיבלו אותו מספר תוצאות עץ?
 \end{exercise}
 \begin{solution}
-	נגדיר $X_i \sim Ber(\frac{1}{2})$ ההטלה ה־$i$ של הראשונה, ו־$Y \sim Ber(\frac{1}{2})$ ההטלה ה־$i$ של השנייה, ונגדיר
+	נגדיר $X_i \sim \operatorname{Ber}(\frac{1}{2})$ ההטלה ה־$i$ של הראשונה, ו־$Y \sim \operatorname{Ber}(\frac{1}{2})$ ההטלה ה־$i$ של השנייה, ונגדיר
 	\[
 		X = \sum_{i = 1}^{n} X_i,
 		\qquad
 		Y = \sum_{i = 1}^{n} Y_i
 	\]
 	משתנים המייצגים את מספר הטלות העץ של כל אחת מהשתיים. \\*
-	אבל זאת דרך מורכבת לפתור את השאלה הזאת, נגדיר במקום זה $X, Y \sim Bin(n, \frac{1}{n})$, את ההוכחה לשקילות נראה בהרצאה הקרובה. \\*
+	אבל זאת דרך מורכבת לפתור את השאלה הזאת, נגדיר במקום זה $X, Y \sim \operatorname{Bin}(n, \frac{1}{n})$, את ההוכחה לשקילות נראה בהרצאה הקרובה. \\*
 	מהגדרה\ \ref{binominal_distribution} נוכל להסיק $\supp X = \{0, \dots, n\}$, ואנו מבקשים לחשב את $\PP(X = Y)$, נחשב על־ידי
 	\[
 		\PP(X = Y)
@@ -2086,7 +2086,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{solution}
 \begin{proposition}\label{binominal_distributions_summation_proposition}
-	יהיו $X \sim Bin(n, p)$ ו־$Y \sim Bin(m, p)$ בלתי־תלויים, אז $X + Y \sim Bin(n + m, p)$.
+	יהיו $X \sim \operatorname{Bin}(n, p)$ ו־$Y \sim \operatorname{Bin}(m, p)$ בלתי־תלויים, אז $X + Y \sim \operatorname{Bin}(n + m, p)$.
 \end{proposition}
 \begin{proof}
 	נבחין תחילה ש־$\supp X + Y = \{0, \dots, n + m\}$ וכן
@@ -2134,7 +2134,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \begin{proposition}
 	נניח $X \sim Pois(\lambda)$ ו־$Y$ משתנה מקרי המקיים
 	\[
-		\forall n \in \NN \cup \{0\},\ Y \mid \{X = n\} \sim Bin(n, p)
+		\forall n \in \NN \cup \{0\},\ Y \mid \{X = n\} \sim \operatorname{Bin}(n, p)
 	\]
 	אז $Y \sim Pois(\lambda p)$.
 \end{proposition}
@@ -2158,13 +2158,13 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 
 \subsection{התפלגות גאומטרית}
 \begin{proposition}
-	אם $X_i \sim Ber(p)$ אז $Y = \min{k \mid X_k = 1}$ אז $Y \sim Geo(p)$.
+	אם $X_i \sim \operatorname{Ber}(p)$ אז $Y = \min{k \mid X_k = 1}$ אז $Y \sim \operatorname{Geo}(p)$.
 \end{proposition}
 \begin{theorem}[תכונת חוסר הזיכרון]
 	$X$ משתנה מקרי הנתמך על $\NN$, ב־$\PP(X > 1) > 0$.
 	אז התנאים הבאים שקולים:
 	\begin{enumerate}
-		\item $X \sim Geo(p)$ עבור $0 < p < 1$ כלשהו.
+		\item $X \sim \operatorname{Geo}(p)$ עבור $0 < p < 1$ כלשהו.
 		\item לכל $l \in \NN$ מתקיים $X \overset{d}{=} X - l \mid X > l$. כלומר $\PP(X > l \mid X - l > 0) = \PP(X = k)$ לכל $l \in \NN$.
 		\item $X \overset{d}{=} X - 1 \mid X > 1$. כלומר לכל $S \in \mathcal{F}_\RR$ מתקיים $\PP(X \in S) = \PP(X - 1 \in S \mid X > 1)$.
 	\end{enumerate}
@@ -2173,7 +2173,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \begin{proposition}
 	אם $X$ משתנה מקרי שנתמך על $\NN$ אז התנאים הבאים שקולים:
 	\begin{enumerate}
-		\item $X \sim Geo(p)$
+		\item $X \sim \operatorname{Geo}(p)$
 		\item $\PP(X > n) = {(1 - p)}^n$
 	\end{enumerate}
 \end{proposition}
@@ -2210,7 +2210,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	$2 \implies 3$ מיידי.
 
 	$3 \implies 1$:
-	נסמן $p = \PP(X = 1)$ ונראה ש־$X \sim Geo(p)$ על־ידי כך שנראה $\forall n \in \NN,\ \PP(X < n) = {(1 - p)}^n$ והטענה. \\*
+	נסמן $p = \PP(X = 1)$ ונראה ש־$X \sim \operatorname{Geo}(p)$ על־ידי כך שנראה $\forall n \in \NN,\ \PP(X < n) = {(1 - p)}^n$ והטענה. \\*
 	נוכיח באינדוקציה. עבור $n = 1$ נובע $\PP(X > 1) = 1 - \PP(X = 1) = 1 - p$. \\*
 	נניח שהטענה נכונה ל־$n$ ונראה
 	\[
@@ -2226,7 +2226,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{התפלגות בינומית}
 נעבור לדבר על התפלגויות בינומיות כפי שהגדרנו בהגדרה\ \ref{binominal_distribution}.
 \begin{proposition}
-	אם $X_1, \dots, X_n$ משתנים מקריים בלתי תלויים מתפלגים $Ber(p)$, אז $Y = \sum_{i = 1}^n X_i$ מתפלג $Bin(n, p)$.
+	אם $X_1, \dots, X_n$ משתנים מקריים בלתי תלויים מתפלגים $\operatorname{Ber}(p)$, אז $Y = \sum_{i = 1}^n X_i$ מתפלג $\operatorname{Bin}(n, p)$.
 \end{proposition}
 \begin{proof}
 	\begin{align*}
@@ -2239,7 +2239,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{proof}
 ניזכר בטענה\ \ref{binominal_distributions_summation_proposition} ונוכיח אותה הפעם בדרך פורמלית ולא על־ידי אינטואיציה.
 \begin{proof}
-	נניח שיש $Z_1, \dots, Z_{n + m}$ משתנים מקריים בלתי־תלויים $Ber(p)$ כך שמתקיים
+	נניח שיש $Z_1, \dots, Z_{n + m}$ משתנים מקריים בלתי־תלויים $\operatorname{Ber}(p)$ כך שמתקיים
 	\[
 		X' = \sum_{i = 1}^n Z_i,
 		\qquad
@@ -2247,13 +2247,13 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 	אז $X' + Y' = \sum_{i = 1}^{n + m} Z_i$, לפי הטענה
 	\[
-		X' \sim Bin(n, p),
+		X' \sim \operatorname{Bin}(n, p),
 		\qquad
-		Y' \sim Bin(m, p)
+		Y' \sim \operatorname{Bin}(m, p)
 	\]
 	וכן
 	\[
-		X' + Y' \sim Bin(n + m, p)
+		X' + Y' \sim \operatorname{Bin}(n + m, p)
 	\]
 	לפי הטענה מההרצאה הקודמת $X'$ ו־$Y'$ בלתי־תלויים. \\*
 	אבל $X \overset{d}{=} X'$ ו־$Y \overset{d}{=} Y'$ ו־$X$ ו־$Y$ בלתי־תלויים וגם $X', Y'$ בלתי־תלויים, אז $(X', Y') \overset{d}{=} (X, Y)$.
@@ -2263,7 +2263,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{התפלגות פואסון}
 נעבור להתפלגות\ \ref{poasson_distribution} ונבחן אותה
 \begin{proposition}
-	נניח $\lambda > 0$ ונגדיר $X_n \sim Bin(n, \frac{\lambda}{n})$ עבור $n > \lambda$, \\*
+	נניח $\lambda > 0$ ונגדיר $X_n \sim \operatorname{Bin}(n, \frac{\lambda}{n})$ עבור $n > \lambda$, \\*
 	אז לכל $k \in \NN$ מתקיים
 	\[
 		\PP(X_n = k) \xrightarrow[n \to \infty]{} \PP(Y = k)
@@ -2293,7 +2293,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{proposition}
 הפעם אפשר יהיה להוכיחה על־ידי הטענה החדשה שראינו.
 \begin{example}
-	נניח ${\{X_n\}}_{n \in \NN}$ משתנים מקריים בלתי־תלויים $U([26])$ המייצגים את קבלת כל אחת מהאותיות באנגלית, אז
+	נניח ${\{X_n\}}_{n \in \NN}$ משתנים מקריים בלתי־תלויים $\operatorname{U}([26])$ המייצגים את קבלת כל אחת מהאותיות באנגלית, אז
 	\[
 		\PP(X_1 = 1, \dots, X_{1000} = 1) = \frac{1}{26^{1000}} = \PP(X_{1001} = 1, \dots, X_{2000} = 1)
 	\]
@@ -2354,13 +2354,13 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\end{align*}
 \end{proof}
 \begin{example}
-	נניח $X \sim Ber(p)$ אז
+	נניח $X \sim \operatorname{Ber}(p)$ אז
 	\[
 		\EE(X) = 0 \cdot \PP(X = 0) + 1 \cdot \PP(X = 1) = p
 	\]
 \end{example}
 \begin{example}
-	אם $X \sim U([n])$ אז
+	אם $X \sim \operatorname{U}([n])$ אז
 	\[
 		\EE(X) = \sum_{k = 1}^n k \cdot \PP(X = k)
 		= \frac{1}{n} \sum_{k = 1}^{n} k
@@ -2369,7 +2369,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 \begin{example}
-	אם $X \sim Bin(n, p)$ אז
+	אם $X \sim \operatorname{Bin}(n, p)$ אז
 	\[
 		\EE(X)
 		= \sum_{k = 0}^{n} k \binom{n}{k} p^k {(1 - p)}^{n - k}
@@ -2377,7 +2377,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 \begin{example}
-	נניח $X \sim Poi(\lambda)$, אז
+	נניח $X \sim \operatorname{Poi}(\lambda)$, אז
 	\[
 		\EE(X)
 		= \sum_{k = 0}^\infty k e^{-\lambda} \frac{\lambda^k}{k!}
@@ -2390,7 +2390,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{example}
 ולבסוף גם
 \begin{example}
-	נניח $X \sim Geo(p)$ ולכן
+	נניח $X \sim \operatorname{Geo}(p)$ ולכן
 	\[
 		\EE(X)
 		= \sum_{k = 1}^{\infty} k {(1 - p)}^{k - 1}
@@ -2399,7 +2399,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	את החישוב עצמו שמוכיח את הטענה הזאת נעשה בהמשך.
 \end{example}
 \begin{example}
-	נניח $X \sim Geo(\frac{1}{2})$ ונגדיר $Y = 2^X$. \\*
+	נניח $X \sim \operatorname{Geo}(\frac{1}{2})$ ונגדיר $Y = 2^X$. \\*
 	בהתאם $\PP(Y = 2) = \frac{1}{2}$ וכן $\PP(Y = 4) = \frac{1}{4}$ וכן הלאה, כך ש־$\PP(Y = 2^k) = \frac{1}{2^k}$.
 	נחשב את התוחלת:
 	\[
@@ -2451,7 +2451,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{proof}
 \begin{example}
 	נעבור לראות את החישוב של תוחלת להתפלגות בינומית:
-	נגדיר $X \sim Bin(n, p)$ ונגדיר $X_1, \dots, X_n$ משתנים מקריים $Ber(p)$, ויהי $X = \sum_{i = 1}^n X_i$, לכן $X \sim Bin(n, p)$ וכן
+	נגדיר $X \sim \operatorname{Bin}(n, p)$ ונגדיר $X_1, \dots, X_n$ משתנים מקריים $\operatorname{Ber}(p)$, ויהי $X = \sum_{i = 1}^n X_i$, לכן $X \sim \operatorname{Bin}(n, p)$ וכן
 	\[
 		\EE(X) = \sum_{i = 1}^n \EE(X_i) = np
 	\]
@@ -2510,7 +2510,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{proof}
 \begin{example}
-	נניח $X \sim Geo(p)$ ו־$A_1 = \{X = 1\}$ וכן $A_2 = \{X > 1\}$, אז $\{A_1, A_2\}$ הם אכן חלוקה של $\Omega$. \\*
+	נניח $X \sim \operatorname{Geo}(p)$ ו־$A_1 = \{X = 1\}$ וכן $A_2 = \{X > 1\}$, אז $\{A_1, A_2\}$ הם אכן חלוקה של $\Omega$. \\*
 	נחשב את התוחלת:
 	\[
 		\EE(X)
@@ -2530,7 +2530,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{שאלות ותכונות של תוחלות}
 באנגלית תוחלת היא Expectancy, מילה שמתארת בצורה יותר נאמנה את מושג התוחלת.
 \begin{example}
-	נניח ש־$X \sim Geo(p)$, ונחשב את התוחלת של $X$. \\*
+	נניח ש־$X \sim \operatorname{Geo}(p)$, ונחשב את התוחלת של $X$. \\*
 	יש להעריך את הטור $\sum_{n = 1}^\infty n \PP(X = n)$.
 	\[
 		\sum_{k = 1}^\infty k \PP(X = k)
@@ -2553,7 +2553,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 \begin{example}
-	אם $X \sim Bin(n, p)$ ואם נגדיר $Y \sim Bin(n - 1, p)$ אז
+	אם $X \sim \operatorname{Bin}(n, p)$ ואם נגדיר $Y \sim \operatorname{Bin}(n - 1, p)$ אז
 	\begin{align*}
 		\EE(X)
 		& = \sum_{k = 0}^{n} k \binom{n}{k} p^k {(1 - p)}^{n - k} \\
@@ -2586,13 +2586,13 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	מה תוחלת סכום ערכי הקובייה?
 \end{exercise}
 \begin{solution}
-	נגדיר $X$ משתנה מקרי שסוכם את מספר סיבובי המשחק, לכן $X \sim Geo(\frac{1}{6})$. \\*
+	נגדיר $X$ משתנה מקרי שסוכם את מספר סיבובי המשחק, לכן $X \sim \operatorname{Geo}(\frac{1}{6})$. \\*
 	נגדיר גם $Y_i$ להיות תוצאת ההטלה ה־$i$, אם היא התקיימה. \\*
 	בנוסף $Y = \sum_{i = 1}^{\infty} Y_i$, הערך המעניין אותנו, סכום הקובייה בסוף המשחק.
 	\[
 		Y_i \mid X = n
 		\sim \begin{cases}
-			U(2, \dots, 6) & i < n \\
+			\operatorname{U}(2, \dots, 6) & i < n \\
 			1 & i = n \\
 			0 & i > n
 		\end{cases}
@@ -2684,7 +2684,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 
 \subsection{שימושים של אי־שוויון מרקוב}
 \begin{example}
-	נניח ש־$X \sim Geo(\frac{1}{2})$, אז $\EE(X) = 2$, ובהתאם $\PP(X \ge 4) \le \frac{\EE(X)}{4} = \frac{2}{4} = \frac{1}{2}$. \\*
+	נניח ש־$X \sim \operatorname{Geo}(\frac{1}{2})$, אז $\EE(X) = 2$, ובהתאם $\PP(X \ge 4) \le \frac{\EE(X)}{4} = \frac{2}{4} = \frac{1}{2}$. \\*
 	נוכל לחשב את ההסתברות עצמה על־ידי $\PP(X \ge 4) = \sum_{k = 4}^{\infty} \PP(X = k) = \sum_{k = 4}^{\infty} \frac{1}{2^k} = \frac{1}{8}$. \\*
 	קיבלנו שהחסם שנובע מאי־שוויון ברקוב לא מאוד מועיל לנו.
 
@@ -2710,7 +2710,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	נחשב גם $\EE(X) = \sum_{i = 1}^{n} \EE(1_{A_i}) = \sum_{i = 1}^{n} \PP(A_i)$ ולכן $\PP(X \ge a) \le \frac{1}{a}$.
 \end{example}
 \begin{example}
-	נחזור לפרדוקס יום ההולדת, $X_i \sim U([n])$ בלתי־תלויים עבור $i \in [k]$, כאשר המשתנה המקרי מייצג את הסיכוי שלאדם ה־$i$ יש יום הולדת. \\*
+	נחזור לפרדוקס יום ההולדת, $X_i \sim \operatorname{U}([n])$ בלתי־תלויים עבור $i \in [k]$, כאשר המשתנה המקרי מייצג את הסיכוי שלאדם ה־$i$ יש יום הולדת. \\*
 	$X$ הוא מספר ימי ההולדת המשותפים,
 	\[
 		X = \sum_{1 \le i < j \le k} 1_{\{X_i = X_j\}}
@@ -2739,7 +2739,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	יהיו $A_1, \dots, A_N$ קבוצות, $|A_i| \ge n$ ו־$N < 2^{n - 1}$, אז קיימת קבוצה $B$ כך ש־$B \cap A_i \ne \emptyset$ ו־$\forall 1 \le i \le N, A_i \not\subseteq B$.
 
 	נגדיר $A = \bigcup_{i = 1}^N A_i$.
-	יהיו $X_a \sim Ber(\frac{1}{2})$ בלתי תלויים לכל $a \in A$ ונגדיר $B = \{ a \mid X_a = 1 \}$. \\*
+	יהיו $X_a \sim \operatorname{Ber}(\frac{1}{2})$ בלתי תלויים לכל $a \in A$ ונגדיר $B = \{ a \mid X_a = 1 \}$. \\*
 	נחשב את ההסתברות $\PP(A_i \subseteq B) = \PP(\forall a \in A_i, X_a = 1) = {(\frac{1}{2})}^{|A_i|} \le \frac{1}{2^n}$. \\*
 	מצד שני $\PP(A_i \cap B \ne \emptyset) = \PP(\forall a \in A_i, X_a = 0) = {(\frac{1}{2})}^{|A_i|} \le \frac{1}{2^n}$.
 	אז
@@ -2889,13 +2889,13 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	אם $X = c$ כמעט תמיד אז $\EE(X) = c$ ו־$\var(X) = 0$.
 \end{example}
 \begin{example}
-	נניח $X \sim Ber(p)$ ולכן $\var(X) = \EE(X^2) - {\EE(X)}^2 = p - p^2 = p(1 - p)$. \\*
-	אם $X \sim Ber(p)$ אז $1 - X \sim Ber(1 - p)$ ואז $\var(1 - X) = \var(-X) = {(-1)}^2 \var(X) = \var(X)$. \\*
+	נניח $X \sim \operatorname{Ber}(p)$ ולכן $\var(X) = \EE(X^2) - {\EE(X)}^2 = p - p^2 = p(1 - p)$. \\*
+	אם $X \sim \operatorname{Ber}(p)$ אז $1 - X \sim \operatorname{Ber}(1 - p)$ ואז $\var(1 - X) = \var(-X) = {(-1)}^2 \var(X) = \var(X)$. \\*
 	זאת אומרת, לא מפתיע שהשונות היא סימטרית במקרה זה עבור שני המשתנים.
 \end{example}
 \begin{example}
-	אם $X \sim Bin(n, p)$, אז נוכל להשתמש ישירות בהגדרת השונות, אבל נשתמש בעובדה שמשתנה בינומי הוא סכום של משתנים ברנולי,
-	כלומר $X_i \sim Ber(p)$ בלתי־תלויים עבור $1 \le i \le n$ אז אם $X = \sum_{i = 1}^{n} X_i$ גם $X \sim Bin(n, p)$, ולכן
+	אם $X \sim \operatorname{Bin}(n, p)$, אז נוכל להשתמש ישירות בהגדרת השונות, אבל נשתמש בעובדה שמשתנה בינומי הוא סכום של משתנים ברנולי,
+	כלומר $X_i \sim \operatorname{Ber}(p)$ בלתי־תלויים עבור $1 \le i \le n$ אז אם $X = \sum_{i = 1}^{n} X_i$ גם $X \sim \operatorname{Bin}(n, p)$, ולכן
 	\[
 		\var(X)
 		= \var(\sum_{i = 1}^{n} X_i)
@@ -2904,7 +2904,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 \begin{example}
-	נניח עתה $X \sim Poi(\lambda)$, ונחשב על־ידי ההגדרה השקולה והעובדה שאנו כבר יודעים ש־$\EE(X) = \lambda$:
+	נניח עתה $X \sim \operatorname{Poi}(\lambda)$, ונחשב על־ידי ההגדרה השקולה והעובדה שאנו כבר יודעים ש־$\EE(X) = \lambda$:
 	\begin{align*}
 		\EE(X^2)
 		& = \sum_{k = 0}^{\infty} k^2 \PP(X = k) \\
@@ -2926,7 +2926,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{exercise}
 \begin{solution}
 	נגדיר $\Omega = {\{0, 1\}}^{20}$ וכן $X = 1_{\{\omega_i = \omega_{i + 1} = 1\}}$, וגם $X = \sum X_i$, אנו רוצים לחשב את $\PP(X \le 1)$. \\*
-	נבחין כי $X_i \sim Ber(p^2)$, וכן $\EE(X) = \sum \EE(X_i)  = 19 p^2$, שכן $0 \le X \le 19$.
+	נבחין כי $X_i \sim \operatorname{Ber}(p^2)$, וכן $\EE(X) = \sum \EE(X_i)  = 19 p^2$, שכן $0 \le X \le 19$.
 	\[
 		\PP(X \le 1)
 		= \PP(19 - X \ge 18)
@@ -2938,14 +2938,14 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{שאלות נבחרות בנושא שונות}
 נתחיל ונבחין ששונות היא תבנית בי־לינארית (תבנית ריבועית), ובשל כך היא מקיימת את הטענה שהיא אי־שלילית, היא אדישה להזזות קבועות ויש לה כיול ריבועי,
 \begin{example}
-	אם $X \sim U([6])$ משתנה מקרי להטלת קובייה הוגנת, אז $\EE(X) = 3 \frac{1}{2}$ וכן
+	אם $X \sim \operatorname{U}([6])$ משתנה מקרי להטלת קובייה הוגנת, אז $\EE(X) = 3 \frac{1}{2}$ וכן
 	\[
 		\var(X) = \frac{6^2 - 1}{12} = \frac{35}{12} \approx 3
 	\]
 	זאת־אומרת שהשונות באמת מתכתבת עם המרחק של הערכים מהתוחלת.
 \end{example}
 \begin{exercise}
-	יהי $X \sim Geo(q)$, חשבו את $\var(X)$.
+	יהי $X \sim \operatorname{Geo}(q)$, חשבו את $\var(X)$.
 \end{exercise}
 \begin{solution}
 	אנו יודעים ש־$\EE(X) = \frac{1}{q}$. \\*
@@ -2989,7 +2989,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{exercise}
 \begin{solution}
 	נגדיר $X_i$ נקודת השבת במקום ה־$i$.
-	$X_i \sim Ber(\frac{1}{n})$ ו־$X = \sum X_i$.
+	$X_i \sim \operatorname{Ber}(\frac{1}{n})$ ו־$X = \sum X_i$.
 	בהתאם
 	\[
 		\EE(X) = n \frac{1}{n} = 1
@@ -3085,7 +3085,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \begin{example}
 	מטילים מטבע הוגן $n$ פעמים וסופרים את מספר ה־$HH$, נחשב את התוחלת ואת השונות.
 
-	נגדיר ${\{X_i\}}_{i = 1}^n$ משתנים מקריים $Ber(\frac{1}{2})$ בלתי־תלויים, ונגדיר $Y_i = X_i + X_{i + 1}$ עבור $i = 1, \dots, n - 1$.
+	נגדיר ${\{X_i\}}_{i = 1}^n$ משתנים מקריים $\operatorname{Ber}(\frac{1}{2})$ בלתי־תלויים, ונגדיר $Y_i = X_i + X_{i + 1}$ עבור $i = 1, \dots, n - 1$.
 	נגדיר גם $Y = \sum_{i = 1}^{n - 1} Y_i$.
 	\[
 		\EE(Y_i) = \EE(X_i) \EE(X_{i + 1}) = \frac{1}{4},
@@ -3135,7 +3135,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{proof}
 \begin{example}
 	מטילים מטבע הוגן $10^6$ פעמים.
-	$X$ מספר העצים ואנו רוצים לדעת מה ההסתברות ש־$495000 < X < 505000$. אנו יודעים ש־$X \sim Bin(10^6, \frac{1}{2})$.
+	$X$ מספר העצים ואנו רוצים לדעת מה ההסתברות ש־$495000 < X < 505000$. אנו יודעים ש־$X \sim \operatorname{Bin}(10^6, \frac{1}{2})$.
 	\begin{align*}
 		\PP(495000 < X < 505000)
 		& = 1 - \PP(X \le 495000 \lor X \ge 505000) \\
@@ -3205,7 +3205,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	יהי אספן קופונים אשר מקבל כל יום קופון כלשהו מבין מספר קופונים אפשריים, מה החסם שמעיד שהאספן השיג את כל הקופונים? 
 \end{exercise}
 \begin{solution}
-	נגדיר $X_1, \dots, X_m$ משתנים מקריים בלתי־תלויים המתפלגים אחיד $U([n])$, כלומר $m$ מספר סוגי הקופונים ו־$n$ מספר השליפות, ואנו רוצים לחסום את $\PP(\forall k \in [n], \exists i \in [m], X_i = k)$.
+	נגדיר $X_1, \dots, X_m$ משתנים מקריים בלתי־תלויים המתפלגים אחיד $\operatorname{U}([n])$, כלומר $m$ מספר סוגי הקופונים ו־$n$ מספר השליפות, ואנו רוצים לחסום את $\PP(\forall k \in [n], \exists i \in [m], X_i = k)$.
 	נבחן את המאורע המשלים, $\PP(\exists k \in [m], \forall i \in [n], X_i \ne k) = \PP(\bigcup_{k = 1}^n A_k)$ כאשר האיחוד איננו זר ו־$A_k = \forall i \in [m], X_i \ne k$, אפשר לחסום זאת עם חסם האיחוד,
 	\[
 		\PP(\bigcup_{k = 1}^n A_k)
@@ -3345,7 +3345,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\[
 		\PP(| \frac{X}{n} - q| \ge 0.1) < 0.05
 	\]
-	נניח ש־$X \sim Bin(n, q)$ (זוהי הנחה מסטטיסטיקה שלא נעסוק בה).
+	נניח ש־$X \sim \operatorname{Bin}(n, q)$ (זוהי הנחה מסטטיסטיקה שלא נעסוק בה).
 	לכן
 	\[
 		\EE(X) = nq,
@@ -3446,7 +3446,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 ההוכחה מאוד דומה להוכחה של אי־השוויון במקרה הרגיל.
 \begin{example}
 	מטילים מטבע הוגן $n$ פעמים ואנו רוצים לחסום את ההסתברות שקיבלנו יותר מ $\frac{3}{4}n$ עצים. \\
-	מגדירים $X_1, \dots, X_n \sim Ber(\frac{1}{2})$ וכן $X = \sum_{i = 1}^n X_i$ ולכן
+	מגדירים $X_1, \dots, X_n \sim \operatorname{Ber}(\frac{1}{2})$ וכן $X = \sum_{i = 1}^n X_i$ ולכן
 	\[
 		\PP(X \ge \frac{3}{4}n)
 		\le \PP(|X - \frac{n}{2}| \ge \frac{n}{4})
@@ -3560,21 +3560,21 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{proof}
 \begin{example}
-	נניח ש־$X \sim Ber(p)$ אז
+	נניח ש־$X \sim \operatorname{Ber}(p)$ אז
 	\[
 		M_X(t)
 		= \EE(e^{tX})
 		= (1 - p) e^{t \cdot 0} + p e^{t \cdot 1}
 		= 1 + p(e^t - 1)
 	\]
-	ועל־ידי הטענה האחרונה אם $X \sim Bin(n, p)$ אז
+	ועל־ידי הטענה האחרונה אם $X \sim \operatorname{Bin}(n, p)$ אז
 	\[
 		M_X(t)
 		= {(1 + p(e^t - 1))}^n
 	\]
 \end{example}
 \begin{example}
-	נניח ש־$X \sim Poi(\lambda)$ אז
+	נניח ש־$X \sim \operatorname{Poi}(\lambda)$ אז
 	\[
 		M_X(t)
 		= \EE(e^{tX})
@@ -3585,10 +3585,10 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 \begin{remark}
-	אם ניקח $X_n \sim Bin(n, \frac{\lambda}{n})$ אז $M_{X_n}(t) = {(1 + \frac{\lambda(e^t - 1)}{n})}^n \xrightarrow[n \to \infty]{} e^{\lambda(e^t - 1)} = M_X(t)$.
+	אם ניקח $X_n \sim \operatorname{Bin}(n, \frac{\lambda}{n})$ אז $M_{X_n}(t) = {(1 + \frac{\lambda(e^t - 1)}{n})}^n \xrightarrow[n \to \infty]{} e^{\lambda(e^t - 1)} = M_X(t)$.
 \end{remark}
 \begin{example}
-	נניח ש־$X \sim Geo(p)$ אז
+	נניח ש־$X \sim \operatorname{Geo}(p)$ אז
 	\[
 		M_X(t)
 		= \EE(e^{tX})
@@ -3647,7 +3647,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{פונקציה יוצרת מומנטים --- המשך}
 בהרצאה הקודמת ראינו את אי־שוויון הופדינג\ \ref{hofding_inequality_theorem}, אי־שוויון שימושי במיוחד עבור חסמים, עתה נראה את ההוכחה שלו ודוגמות נוספות.
 \begin{example}
-	אם $X_i \sim U(\{-1, 1\})$ מקיימים את תנאי \ \ref{hofding_inequality_theorem}. \\
+	אם $X_i \sim \operatorname{U}(\{-1, 1\})$ מקיימים את תנאי \ \ref{hofding_inequality_theorem}. \\
 	מאי־שוויון צ'בישב נקבל את החסם
 	\[
 		\PP(| \sum_{i = 1}^{n} X_i | \ge \lambda)
@@ -3731,7 +3731,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	כפי שרצינו להראות.
 \end{proof}
 \begin{example}
-	$X_i \sim U([6])$ עבור $i \in [100]$ ונרצה לחשב את ההסתברות שממוצע מאה ההטלות הוא לפחות 4.
+	$X_i \sim \operatorname{U}([6])$ עבור $i \in [100]$ ונרצה לחשב את ההסתברות שממוצע מאה ההטלות הוא לפחות 4.
 	\[
 		\PP(\frac{\sum_{i = 1}^{100} X_i}{100} \ge 4)
 	\]
@@ -3804,7 +3804,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{פונקציות יוצרות מומנטים}
 ניזכר כי המומנט ה־$k$ של $X$ הוא $\EE(X^k)$.
 \begin{example}
-	נניח ש־$X \sim Ber(p)$, אז $\forall t \in \RR$,
+	נניח ש־$X \sim \operatorname{Ber}(p)$, אז $\forall t \in \RR$,
 	\[
 		M_X(t)
 		= \EE(e^{tX})
@@ -3814,7 +3814,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 \begin{example}
-	נניח ש־$X \sim Bin(n, p)$, אז נשתמש בקשר להתפלגות ברנולי ונקבל
+	נניח ש־$X \sim \operatorname{Bin}(n, p)$, אז נשתמש בקשר להתפלגות ברנולי ונקבל
 	\[
 		M_X(t)
 		= \EE(e^{tX})
@@ -3854,7 +3854,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 
 \subsection{אי־שוויון צ'רנוף}
 \begin{example}
-	נניח ש־$X \sim Poi(\lambda)$ ואנו רוצים לחסום את $\PP(|X - \lambda| > \lambda)$. \\
+	נניח ש־$X \sim \operatorname{Poi}(\lambda)$ ואנו רוצים לחסום את $\PP(|X - \lambda| > \lambda)$. \\
 	נתחיל בחסימה על־ידי צ'בישב, נובע
 	\[
 		\PP(|X - \lambda| > \lambda)
@@ -3989,7 +3989,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\end{enumerate}
 \end{proof}
 \begin{example}
-	נניח ש־$X \sim Ber(p)$ ונבין את התנהגות $F_X$. \\
+	נניח ש־$X \sim \operatorname{Ber}(p)$ ונבין את התנהגות $F_X$. \\
 	כאשר $a < 0$ אז $F_X(a) = 0$, כאשר $0 \le a < 1$ אז $F_X(a) = 1 - p$ ולבסוף בשאר התחום $F_X(a) = 1$.
 \end{example}
 \begin{proposition}
@@ -4097,7 +4097,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{proof}
 נבחן עתה מספר התפלגויות חשובות.
 \begin{definition}[התפלגות רציפה אחידה]
-	$X$ מתפלג אחיד על $[a, b]$, ונסמן $X \sim Unif([a, b])$, אם
+	$X$ מתפלג אחיד על $[a, b]$, ונסמן $X \sim \operatorname{Unif}([a, b])$, אם
 	\[
 		f_X(s) = \begin{cases}
 			\frac{1}{b - a} & a \le s \le b \\
@@ -4106,7 +4106,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{definition}
 \begin{definition}[התפלגות מעריכית]
-	$X$ מתפלג מעריכית אם פרמטר $\lambda$, ונסמן $X \sim Exp(\lambda)$, אם
+	$X$ מתפלג מעריכית אם פרמטר $\lambda$, ונסמן $X \sim \operatorname{Exp}(\lambda)$, אם
 	\[
 		f_X(s) = \begin{cases}
 			\lambda e^{-\lambda s} & 0 \le s \\
@@ -4130,7 +4130,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{definition}
 כאשר ראינו באינפי 3 את ערך אינטגרל זה ובהתאם את ההצדקה להגדרה זו.
 \begin{example}
-	נניח ש־$X \sim Exp(\lambda)$, ואנו רוצים למצוא $a$ עבורו $\PP(X \le a) = \frac{1}{2}$, ערך זה נקרא גם חציון.
+	נניח ש־$X \sim \operatorname{Exp}(\lambda)$, ואנו רוצים למצוא $a$ עבורו $\PP(X \le a) = \frac{1}{2}$, ערך זה נקרא גם חציון.
 	\[
 		\int_{-\infty}^{\infty} f_X(s)\ ds
 		= \int_{0}^{\infty} \lambda e^{-\lambda s}\ ds
@@ -4142,7 +4142,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	ולכן $a = \frac{\ln 2}{\lambda}$.
 \end{example}
 \begin{example}
-	נניח ש־$X \sim Unif([0, 1])$ ואנו רוצים למצוא צפיפות של $Y = X^2$. \\
+	נניח ש־$X \sim \operatorname{Unif}([0, 1])$ ואנו רוצים למצוא צפיפות של $Y = X^2$. \\
 	נחשב את $F_Y$ ונגזור,
 	\[
 		F_Y(a)
@@ -4193,7 +4193,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 כל התכונות שראינו עד היום על תוחלות, שונות, שונות משותפת וכן הלאה שראינו למשתנים מקריים בדידים נכונים גם עברו המקרה הרציף.
 כולל אי־שוויון מרקוב, אי־שוויון צ'בישב, אי־שוויון הופדינג ואף צ'רנוף.
 \begin{example}
-	$X \sim Unif([0, 1])$, אז $f_X(s) = \begin{cases}
+	$X \sim \operatorname{Unif}([0, 1])$, אז $f_X(s) = \begin{cases}
 		1 & 0 \le s \le 1 \\
 		0 & \text{else}
 	\end{cases}$, ולכן
@@ -4379,7 +4379,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	אם $s < 0$ אז $F_X(s) = 0$ ואם $s > 2$ אז $F_X(s) = 1$.
 \end{solution}
 \begin{example}
-	נניח ש־$X \sim Exp(\lambda)$, אז
+	נניח ש־$X \sim \operatorname{Exp}(\lambda)$, אז
 	\[
 		F_X(t)
 		= \int_{-\infty}^{t} f_X(x)\ dx
@@ -4407,7 +4407,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 \begin{example}
-	נגדיר $Y = [x]$ וכן $X \sim Exp(\lambda)$, אז $\supp Y = \NN \cup \{ 0 \}$,
+	נגדיר $Y = [x]$ וכן $X \sim \operatorname{Exp}(\lambda)$, אז $\supp Y = \NN \cup \{ 0 \}$,
 	\[
 		\PP(Y = n)
 		= \PP([x] = n)
@@ -4415,12 +4415,12 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		= \int_{n}^{n + 1} \lambda e^{-\lambda t}\ dt
 		= e^{-\lambda n} - e^{-\lambda (n + 1)}
 		= e^{-\lambda n} (1 - e^{-\lambda}) - 1
-		\sim Geo(1 - e^{-\lambda})
+		\sim \operatorname{Geo}(1 - e^{-\lambda})
 	\]
 	משתנה מקרי גאומטרי ומשתנה מקרי מעריכי הם אם כך בעלי קשר, לא במקרה שניהם בעלי ההתפלגויות חסרות הזיכרון היחידות.
 \end{example}
 \begin{exercise}
-	נניח ש־$X \sim Exp(\lambda)$ ונגדיר $Z = \log X$, חשבו את ההתפלגות של $Z$.
+	נניח ש־$X \sim \operatorname{Exp}(\lambda)$ ונגדיר $Z = \log X$, חשבו את ההתפלגות של $Z$.
 \end{exercise}
 \begin{solution}
 	יהי $t \in \RR$, אז
@@ -4435,7 +4435,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	וכן נחשב את פונקציית הצפיפות, $ f_X(t) = F_X'(t) = e^{-\lambda e^t} \cdot \lambda e^t$.
 \end{solution}
 \begin{example}
-	נחשב את התוחלת של $X \sim Exp(\lambda)$,
+	נחשב את התוחלת של $X \sim \operatorname{Exp}(\lambda)$,
 	\[
 		\EE(X)
 		= \int_{-\infty}^{\infty} t f_X(t)\ dt
@@ -4462,7 +4462,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{אי־תלות  במשתנים מקריים רציפים}
 בשיעור הקודם דיברנו ואפיינו אי־תלות משתנים מקריים רציפים, נראה עתה דוגמה למקרים כאלה.
 \begin{example}
-	נניח ש־$X, Y \sim Exp(1)$ בלתי־תלויים ונרצה לחשב את $\PP(Y \ge 2X)$.
+	נניח ש־$X, Y \sim \operatorname{Exp}(1)$ בלתי־תלויים ונרצה לחשב את $\PP(Y \ge 2X)$.
 	נובע מההגדרה של התפלגות מעריכית,
 	\[
 		f_{X Y}(s, t)
@@ -4520,20 +4520,20 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\[
 		\PP(Z_n \le a) \xrightarrow[n \to \infty]{} \int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}} e^{-\frac{s^2}{2}}\ ds
 	\]
-	כלומר התפלגות זו שווה עבור $\PP(Z \le a)$ עבור $Z \sim N(0, 1)$
+	כלומר התפלגות זו שווה עבור $\PP(Z \le a)$ עבור $Z \sim \operatorname{N}(0, 1)$
 \end{theorem}
 הכוונה היא שהמשפט הוא המרכזי, לא הגבול.
 נראה את ההגדרה המלאה להתפלגות נורמלית,
 \begin{definition}[התפלגות נורמלית]
-	$Z \sim N(\mu, \sigma^2)$ אם הצפיפות שלו מקיימת
+	$Z \sim \operatorname{N}(\mu, \sigma^2)$ אם הצפיפות שלו מקיימת
 	\[
 		f_Z(s) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left(-\frac{{(s - \mu)}^2}{2\sigma^2}\right)
 	\]
-	כאשר $N(0, 1)$ נקראת ההתפלגות הנורמלית הסטנדרטית. \\
+	כאשר $\operatorname{N}(0, 1)$ נקראת ההתפלגות הנורמלית הסטנדרטית. \\
 	אם $\mu$ משתנה, אז נקבל הזזה של ההתפלגות, אם נשנה את $\sigma^2$ אז נשנה את השונות, הרדיוס, הריווח של ההתפלגות.
 \end{definition}
 \begin{example}
-	נניח ש־$a > 0$ וש־$b \in \RR$, נניח ש־$X \sim N(0, 1)$ ו־$Y = aX + b$, אנו יודעים שמתקיים
+	נניח ש־$a > 0$ וש־$b \in \RR$, נניח ש־$X \sim \operatorname{N}(0, 1)$ ו־$Y = aX + b$, אנו יודעים שמתקיים
 	\[
 		f_X(s)
 		= \frac{1}{\sqrt{2 \pi}} \exp(-\frac{s^2}{2})
@@ -4570,13 +4570,13 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{example}
 \begin{conclusion}
-	אם $Y \sim N(\mu, \sigma^2)$ אז $\EE(Y) = \mu$ ו־$\var(Y) = \sigma^2$.
+	אם $Y \sim \operatorname{N}(\mu, \sigma^2)$ אז $\EE(Y) = \mu$ ו־$\var(Y) = \sigma^2$.
 \end{conclusion}
 \begin{proposition}
-	אם $X_i \sim N(\mu_i, \sigma_i^2)$ עבור $i \in [2]$ כך שהם בלתי־תלויים, אז
+	אם $X_i \sim \operatorname{N}(\mu_i, \sigma_i^2)$ עבור $i \in [2]$ כך שהם בלתי־תלויים, אז
 	\[
 		X_1 + X_2
-		\sim N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)
+		\sim \operatorname{N}(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)
 	\]
 \end{proposition}
 ההוכחה מושארת כתרגיל ומופיעה בספר.
@@ -4591,8 +4591,8 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{definition}
 \begin{example}
-	נניח ש־$X_n \sim U([n])$ אז אם $Y_n = \frac{X_n}{n}$ אז $Y_n \xrightarrow{d} Z$ כאשר $Z \sim([0, 1])$. \\
-	נבחין שמההגדרה $Y_n \sim U(\{\frac{1}{n}, \frac{2}{n}, \dots, \frac{n}{n}\})$.
+	נניח ש־$X_n \sim \operatorname{U}([n])$ אז אם $Y_n = \frac{X_n}{n}$ אז $Y_n \xrightarrow{d} Z$ כאשר $Z \sim([0, 1])$. \\
+	נבחין שמההגדרה $Y_n \sim \operatorname{U}(\{\frac{1}{n}, \frac{2}{n}, \dots, \frac{n}{n}\})$.
 	נגדיר
 	\[
 		f_Z(s)
@@ -4621,7 +4621,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{example}
 נעבור לבחון את הקשר שבין התפלגות גאומטרית ומעריכית.
 \begin{example}
-	נניח ש־$X_n \sim Geo(\frac{\lambda}{n})$ עבור $\lambda > 0$.
+	נניח ש־$X_n \sim \operatorname{Geo}(\frac{\lambda}{n})$ עבור $\lambda > 0$.
 	עבור $a > 0$,
 	\begin{align*}
 		F_{Y_n}(a)
@@ -4635,7 +4635,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		& = 1 - {({(1 - \frac{\lambda}{n})}^n)}^{\lfloor a \rfloor} \\
 		& \to 1 - e^{-\lambda a}
 	\end{align*}
-	זאת אומרת ש־$F_Z(a) = 1 - e^{-\lambda a}$ ו־$Z \sim Exp(\lambda)$.
+	זאת אומרת ש־$F_Z(a) = 1 - e^{-\lambda a}$ ו־$Z \sim \operatorname{Exp}(\lambda)$.
 \end{example}
 
 \section{שיעור 23 --- 21.1.2025}
@@ -4650,7 +4650,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	אם $X_n$ משתנים מקריים בדידים הנתמכים על $\NN$, ו־$X$ גם נתמך על הטבעיים,
 	אז $X_n \xrightarrow{d} X$ אם ורק אם $\PP(X_n = k) \xrightarrow{n \to \infty} \PP(X = k)$ לכל $k \in \NN$.
 \end{proposition}
-הראינו שאם $X_n \sim Bin(n, \frac{\lambda}{n})$ ו־$X \sim Poi(\lambda)$ אז מתקיימת הטענה ו־$X_n \xrightarrow{d} X$.
+הראינו שאם $X_n \sim \operatorname{Bin}(n, \frac{\lambda}{n})$ ו־$X \sim \operatorname{Poi}(\lambda)$ אז מתקיימת הטענה ו־$X_n \xrightarrow{d} X$.
 \begin{proof}
 	נניח ש־$\supp X = \NN$.
 	עבור $k < a < k + 1$ צריך לבדוק שמתקיים $F_{X_k}(a) = \PP(X_n \le a) = \sum_{i = 1}^{k} \PP(X_n = i)$,
@@ -4675,7 +4675,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{proof}
 ניזכר במשפט\ \ref{central_limit_theorem} ונראה לו דוגמה.
 \begin{example}
-	נניח $X_n \sim U([\sigma])$ בלתי־תלויים ואנו רוצים להעריך את
+	נניח $X_n \sim \operatorname{U}([\sigma])$ בלתי־תלויים ואנו רוצים להעריך את
 	\[
 		\PP(3500 \le \sum_{i = 1}^{1000} X_i \le 3700)
 	\]
@@ -4693,10 +4693,10 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \begin{example}
 	נרצה לחשב את הגבול של $e^{-n} \sum_{k = 0}^{n} \frac{n^k}{k!}$.
 	נוכל כמובן להשתמש בטור טיילור ולנסות לחשב את הערך הזה ישירות, אך נראה דרך נוספת.
-	למעשה שאלה זו שקולה לחלוטין ל־$\PP(X \le n)$ עבור $X \sim Poi(n)$.
-	ניזכר שגם אם $X \sim Poi(\lambda_1)$ וכן $Y \sim Poi(\lambda_2)$ אז $X + Y \sim Poi(\lambda_1 + \lambda_2)$ אז נסיק שאם $X_i \sim Poi(1)$ עבור $1 \le i \le n$ נקבל
+	למעשה שאלה זו שקולה לחלוטין ל־$\PP(X \le n)$ עבור $X \sim \operatorname{Poi}(n)$.
+	ניזכר שגם אם $X \sim \operatorname{Poi}(\lambda_1)$ וכן $Y \sim \operatorname{Poi}(\lambda_2)$ אז $X + Y \sim \operatorname{Poi}(\lambda_1 + \lambda_2)$ אז נסיק שאם $X_i \sim \operatorname{Poi}(1)$ עבור $1 \le i \le n$ נקבל
 	\[
-		Poi(n) \sim \sum_{i = 1}^{n} X_i
+		\operatorname{Poi}(n) \sim \sum_{i = 1}^{n} X_i
 	\]
 	ולכן נוכל לנסח מחדש את השאלה כגבול $\PP(\sum_{i = 1}^{n} X_i \le n)$ עבור $X_i$ בלתי־תלויים המתפלגים פואסונית $1$.
 	נבחין שגם $\EE(X_i) = 1$ ולכן ערך זה שקול לערך
@@ -4789,7 +4789,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \section{תרגול 12 --- 23.1.2025}
 \subsection{צפיפות משותפת}
 \begin{exercise}
-	נניח ש־$X, Y \sim Exp(1)$ בלתי־תלויים (כלומר מתקיים $f_X \cdot f_Y = f_{X, Y}$ לכל פונקציות צפיפות שנבחר). \\
+	נניח ש־$X, Y \sim \operatorname{Exp}(1)$ בלתי־תלויים (כלומר מתקיים $f_X \cdot f_Y = f_{X, Y}$ לכל פונקציות צפיפות שנבחר). \\
 	חשבו את ההתפלגות והצפיפות של המשתנה המקרי $X - Y$.
 \end{exercise}
 \begin{solution}
@@ -4840,7 +4840,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\]
 \end{solution}
 \begin{exercise}
-	יהי $i \in [n]$ ונגדיר $X_i \sim Unif([0, i])$ ונגדיר $Y_i = X_i \cdot X_{i + 1}$, כאשר $Y = \sum Y_i$,
+	יהי $i \in [n]$ ונגדיר $X_i \sim \operatorname{Unif}([0, 1])$ ונגדיר $Y_i = X_i \cdot X_{i + 1}$, כאשר $Y = \sum Y_i$,
 	חשבו את $\EE(Y)$ ואת $\var(Y)$.
 \end{exercise}
 \begin{solution}
@@ -4974,7 +4974,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	אז $\PP(\limsup_{n \to \infty} B_{2n}) = 1$ או $\PP(\limsup_{n \to \infty} B_{2n + 1}) = 1$.
 \end{example}
 \begin{example}
-	נגדיר $X_n \sim Unif(\{-1, 1\})$ וכן $Y_n = \sum_{k = 1}^{n} X_k$.
+	נגדיר $X_n \sim \operatorname{Unif}(\{-1, 1\})$ וכן $Y_n = \sum_{k = 1}^{n} X_k$.
 	מצאנו בתרגיל שמתקיים $\PP(Y_{3n} = 0) \le e^{-cn}$ עבור איזשהו $c > 0$.
 	נסיק אם כך,
 	\[
@@ -5040,7 +5040,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \subsection{המשפט הגדול המרכזי}
 נדבר על התפלגות נורמלית סטנדרטית,\ \ref{standard_normal_distribution}, ונתחיל בסימון,
 \begin{notation}
-	אם $X \sim N(0, 1)$, אז נסמן $\Phi(t) = F_X(t)$.
+	אם $X \sim \operatorname{N}(0, 1)$, אז נסמן $\Phi(t) = F_X(t)$.
 \end{notation}
 נבהיר שמשפט הגבול המרכזי,\ \ref{central_limit_theorem}, הוא משפט מרכזי שמסביר למה התפלגות נורמלית מופיעה בכל כך הרבה מקומות.
 המשפט למעשה גורס שתקנון של התפלגויות ישאף להתנהג כמו התפלגות נורמלית.
@@ -5050,7 +5050,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	העריכו את ההסתברות שסכום הקוביות נמצא בטווח $I = [\frac{7}{2}n - \sqrt{n}, \frac{7}{2} + \sqrt{n}]$.
 \end{exercise}
 \begin{solution}
-	נגדיר $X_i \sim U([6])$ וכן $X = \sum X$, אז
+	נגדיר $X_i \sim \operatorname{U}([6])$ וכן $X = \sum X$, אז
 	\[
 		\EE(X_i) = \frac{7}{2},
 		\quad
@@ -5059,7 +5059,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	נגדיר $Y_i = \frac{X_i - \frac{7}{2}}{\sigma}$.
 	$Y_i$ עומדים בתנאי משפט הגבול המרכזי ולכן אם $n \to \infty$ אז
 	\[
-		\frac{\sum Y_i}{\sqrt{n}} \xrightarrow{d} N(0, 1)
+		\frac{\sum Y_i}{\sqrt{n}} \xrightarrow{d} \operatorname{N}(0, 1)
 	\]
 	אנו רוצים להעריך את $\PP(X \in I) = \PP(-\frac{\sqrt{n}}{\sigma} \le \sum Y_i \le \frac{\sqrt{n}}{\sigma})$.
 	ממשפט הגבול המרכזי נוכל להסיק,
@@ -5072,17 +5072,17 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \end{solution}
 נעבור לדוגמה שהופיעה במבחן של אמיר,
 \begin{exercise}
-	נניח ש־$X \sim Poi(10000)$,
+	נניח ש־$X \sim \operatorname{Poi}(10000)$,
 	תנו הערכה ל־$\PP(X \le 9800)$. \\
 	\textbf{רמז:} תנו הערכתכם בצורת אינטגרל.
 \end{exercise}
 \begin{solution}
-	נגדיר $X_i \sim Poi(1)$ אז אנו יודעים ש־$\sum_{i = 1}^{10000} X_i \overset{d}{=} X$.
+	נגדיר $X_i \sim \operatorname{Poi}(1)$ אז אנו יודעים ש־$\sum_{i = 1}^{10000} X_i \overset{d}{=} X$.
 	אנו יודעים גם ש־$\EE(X_i) = 1$ וכן ש־$\var(X_i) = 1$ ולכן נגדיר $Y_i = X_i - 1$.
 	מ־\ref{central_limit_theorem} וההנחה ש־$n = 10000$ מספיק גדול נסיק,
 	\[
 		\frac{\sum Y_i}{\sqrt{10000}}
-		\overset{d}{\approx} N(0, 1)
+		\overset{d}{\approx} \operatorname{N}(0, 1)
 	\]
 	לכן
 	\[
@@ -5105,8 +5105,8 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 כל התכנסות גוררת את הבאות אחריה, אך לא הפוך. נשתכנע בזה עכשיו. \\
 נסכם ונגיד שהתכנסות כמעט תמיד גוררת התכנסות בהסתברות גוררת התכנסות בהתפלגות.
 \begin{example}
-	נניח ש־$X_n \sim Ber(\frac{1}{2})$.
-	בוודאי שסדרה זו מתכנסת בהתפלגות ל־$Ber(\frac{1}{2})$.
+	נניח ש־$X_n \sim \operatorname{Ber}(\frac{1}{2})$.
+	בוודאי שסדרה זו מתכנסת בהתפלגות ל־$\operatorname{Ber}(\frac{1}{2})$.
 
 	נראה שהיא לא מתכנסת בהסתברות (הגרסה השנייה),
 	\[
@@ -5183,7 +5183,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	מהחוק החזק של המספרים הגדולים נובע $\frac{\sum{i = 1}^n X_i}{n} \xrightarrow{a.s.} \mu$. \\
 	החוק החלש גורר ש־$\frac{\sum_{i = 1}^{n} X_i}{n} \xrightarrow{P} \mu$. \\
 	משפט הגבול המרכזי גורר ש־$\frac{\left( \sum_{i = 1}^{n} X_i \right) - n\mu}{\sqrt{n} \sigma} \xrightarrow{d} Z$,
-	כאשר $Z \sim N(0, 1)$.
+	כאשר $Z \sim \operatorname{N}(0, 1)$.
 \end{example}
 \begin{theorem}[יחס סוגי ההתכנסות]
 	אם $X_n \xrightarrow{a.s.} X$ אז $X_n \xrightarrow{P} X$,
@@ -5218,7 +5218,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 \begin{example}
 	נראה שאכן לא בהכרח $X_n \xrightarrow{P} X$ מעיד ש־$X_n \xrightarrow{a.s.} X$.
 	גם כאן וגם בדוגמה הטובה יותר מהתרגול $X$ הוא קבוע.
-	תהי ${(Y_n)}_{n = 1}^\infty$ בלתי־תלויים כך ש־$Y_n \sim Geo(\frac{1}{2})$, ונסמן $X_n = \frac{Y_n}{\log_2 n}$, ונגדיר $X = 0$. \\
+	תהי ${(Y_n)}_{n = 1}^\infty$ בלתי־תלויים כך ש־$Y_n \sim \operatorname{Geo}(\frac{1}{2})$, ונסמן $X_n = \frac{Y_n}{\log_2 n}$, ונגדיר $X = 0$. \\
 	נראה ש־$X_n \xrightarrow{P} X$,
 	יהי $\epsilon > 0$,
 	\[
@@ -5281,7 +5281,7 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 נראה עתה דוגמה למקרה שיש התכנסות בהתפלגות אבל לא בהסתברות.
 הסיבה הטכנית היא שייתכן ש־$X_n$ ו־$X$ לא מוגדרים על אותו מרחב הסתברות.
 \begin{example}
-	נניח ש־$X_n, X$ כולם בלתי־תלויים ומתפלגים $Unif([0, 1])$, אז $X_n \xrightarrow{d} X$ שכן $F_{X_n}(t) = F_X(t)$ לכל $t$,
+	נניח ש־$X_n, X$ כולם בלתי־תלויים ומתפלגים $\operatorname{Unif}([0, 1])$, אז $X_n \xrightarrow{d} X$ שכן $F_{X_n}(t) = F_X(t)$ לכל $t$,
 	אבל $\PP(|X_n - X| > \frac{1}{4}) \ge \PP(X_n \le \frac{1}{2}, X \ge \frac{3}{4}) = \frac{1}{8} \not\to 0$.
 \end{example}
 \begin{proposition}
@@ -5343,20 +5343,20 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 	\end{enumerate}
 \end{proof}
 \begin{example}
-	נניח ש־${(X_n)}_{n = 1}^\infty$ בלתי־תלויים ומתפלגים $Unif([0, 1])$, נראה שמתקיים
+	נניח ש־${(X_n)}_{n = 1}^\infty$ בלתי־תלויים ומתפלגים $\operatorname{Unif}([0, 1])$, נראה שמתקיים
 	\[
 		{(X_1 \cdots X_n)}^{\frac{1}{n}}
 		\xrightarrow{a.s.} \frac{1}{e}
 	\]
 	נבחין כי ${(X_1 \cdots X_n)}^{\frac{1}{n}} = {(e^{\log X_1} \cdots e^{\log X_n})}^{\frac{1}{n}} = \exp(\frac{1}{n} \sum_{i = 1}^{n} \log X_i)$,
 	אם מתקיים $\frac{1}{n} \sum_{i = 1}^{n} \log X_i \xrightarrow{a.s.} -1$ אז מהטענה שהוכחנו עתה הטענה נובעת.
-	נוכיח ש־$-\log X_i \sim Exp(1)$,
+	נוכיח ש־$-\log X_i \sim \operatorname{Exp}(1)$,
 	\[
 		\PP(-\log X_i > t)
 		= \PP(X_i < e^{-t})
 		= e^{-t}
 	\]
-	זאת שכן $X_i \sim U([0, 1])$ ולכן,
+	זאת שכן $X_i \sim \operatorname{U}([0, 1])$ ולכן,
 	\[
 		\EE(\log X_i) = -1
 	\]
@@ -5375,15 +5375,15 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		\begin{tabular}{c | c c c c c c} % chktex 44
 			$X \sim$ & Parameters & $\supp X$ & $\PP(X = s)$ & $\EE(X)$ & $\var(X)$ & $M_X(t)$ \\
 			\hline % chktex 44
-			$U([n])$ & $n \in \NN$ & $[n]$ & $\frac{1}{n}$ & $\frac{n + 1}{2}$ & $\frac{n^2 - 1}{12}$ & $\frac{e^{nt} - e^{2t}}{n(1 - e^t)}$ \\
+			$\operatorname{U}([n])$ & $n \in \NN$ & $[n]$ & $\frac{1}{n}$ & $\frac{n + 1}{2}$ & $\frac{n^2 - 1}{12}$ & $\frac{e^{nt} - e^{2t}}{n(1 - e^t)}$ \\
 			\hline % chktex 44
-			$Ber(p)$ & $0 \le p \le 1$ & $\{0, 1\}$ & $\tiny\begin{cases} p & s = 1 \\ 1 - p & s = 0 \end{cases}$ & $p$ & $p(1 - p)$ & $p e^t + (1 - p)$ \\
+			$\operatorname{Ber}(p)$ & $0 \le p \le 1$ & $\{0, 1\}$ & $\tiny\begin{cases} p & s = 1 \\ 1 - p & s = 0 \end{cases}$ & $p$ & $p(1 - p)$ & $p e^t + (1 - p)$ \\
 			\hline % chktex 44
-			$Bin(n, p)$  & $n \in \NN, 0 \le p \le 1$ & $\NN \cup \{0\}$ & $\binom{n}{s} {(1 - p)}^{n - s} p^s$ & $np$ & $np(1 - p)$ & ${(pe^t + (1 - p))}^n$ \\
+			$\operatorname{Bin}(n, p)$  & $n \in \NN, 0 \le p \le 1$ & $\NN \cup \{0\}$ & $\binom{n}{s} {(1 - p)}^{n - s} p^s$ & $np$ & $np(1 - p)$ & ${(pe^t + (1 - p))}^n$ \\
 			\hline % chktex 44
-			$Geo(p)$ & $0 \le p \le 1$ & $\NN$ & ${(1 - p)}^{s - 1} p$ & $\frac{1}{p}$ & $\frac{1 - p}{p^2}$ & $\frac{p e^t}{1 - (1 - p) e^t}$ \\
+			$\operatorname{Geo}(p)$ & $0 \le p \le 1$ & $\NN$ & ${(1 - p)}^{s - 1} p$ & $\frac{1}{p}$ & $\frac{1 - p}{p^2}$ & $\frac{p e^t}{1 - (1 - p) e^t}$ \\
 			\hline % chktex 44
-			$Poi(\lambda)$ & $0 < \lambda$ & $\NN \cup \{0\}$ & $e^{-\lambda} \frac{\lambda^s}{s!}$ & $\lambda$ & $\lambda$ & $\exp(\lambda(e^t - 1))$ \\
+			$\operatorname{Poi}(\lambda)$ & $0 < \lambda$ & $\NN \cup \{0\}$ & $e^{-\lambda} \frac{\lambda^s}{s!}$ & $\lambda$ & $\lambda$ & $\exp(\lambda(e^t - 1))$ \\
 		\end{tabular}
 	\end{center}
 \end{otherlanguage}
@@ -5394,15 +5394,15 @@ $A$ מתרחש כמעט תמיד אם $\PP(A) = 1$, לכן אם $\PP(X = Y) = 1$
 		\begin{tabular}{c | c c c c c c c} % chktex 44
 			$X \sim$ & Parameters & $\supp X$ & $f_X(s)$ & $F_X(s)$ & $\EE(X)$ & $\var(X)$ & $M_X(t)$ \\
 			\hline % chktex 44
-			$Unif([a, b])$ & $a \le b$ & $s \in [a, b]$ & $\tiny\begin{cases} \frac{1}{b - a} & s \in [a, b] \\ 0 & \text{else} \end{cases}$ & $\tiny\begin{cases} 0
+			$\operatorname{Unif}([a, b])$ & $a \le b$ & $s \in [a, b]$ & $\tiny\begin{cases} \frac{1}{b - a} & s \in [a, b] \\ 0 & \text{else} \end{cases}$ & $\tiny\begin{cases} 0
 						   & s < a \\ \frac{s - a}{b - a} & a \le s < b \\ 1 & s > b \end{cases}$
 						   & $\frac{a + b}{2}$ & $\frac{{(b - a)}^2}{12}$ & $\tiny\begin{cases} \frac{e^{tb} - e^{ta}}{t(b - a)} & t \ne 0 \\ 1 & t = 0 \end{cases}$ \\
 			\hline % chktex 44
-			$Exp(\lambda)$ & $\lambda > 0$ & $0 \le s$ & $-\lambda e^{\lambda s}$ & $1 - e^{-\lambda}$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ & $\frac{\lambda}{\lambda - t}$ \\
+			$\operatorname{Exp}(\lambda)$ & $\lambda > 0$ & $0 \le s$ & $-\lambda e^{\lambda s}$ & $1 - e^{-\lambda}$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ & $\frac{\lambda}{\lambda - t}$ \\
 			\hline % chktex 44
-			$N(0, 1)$ & --- & $\RR$ & $\frac{1}{\sqrt{2 \pi}} \exp(-\frac{s^2}{2})$ & $\Phi(s)$ & $0$ & $1$ & --- \\
+			$\operatorname{N}(0, 1)$ & --- & $\RR$ & $\frac{1}{\sqrt{2 \pi}} \exp(-\frac{s^2}{2})$ & $\Phi(s)$ & $0$ & $1$ & --- \\
 			\hline % chktex 44
-			$N(\mu, \sigma^2)$ & $\sigma^2 \ge 0$ & $\RR$ & $\frac{1}{\sqrt{2 \pi \sigma^2}} \exp(-\frac{{(s - \mu)}^2}{2 \sigma^2})$ & $\Phi(\frac{s - \mu}{\sigma})$ & $\mu$ & $\sigma^2$ & ---
+			$\operatorname{N}(\mu, \sigma^2)$ & $\sigma^2 \ge 0$ & $\RR$ & $\frac{1}{\sqrt{2 \pi \sigma^2}} \exp(-\frac{{(s - \mu)}^2}{2 \sigma^2})$ & $\Phi(\frac{s - \mu}{\sigma})$ & $\mu$ & $\sigma^2$ & ---
 		\end{tabular}
 	\end{center}
 \end{otherlanguage}
