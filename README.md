@@ -6,8 +6,8 @@
 מבנה
 ----
 
-כלל קובצי ה־tex ברפו משתמשים בקובץ [article_base.tex](./article_base.tex) כקובץ הגדרה ראשוני.
-קובץ זה משתמש בקובץ [common.lua](./common.lua) לאתחול נוסף של קוד lua.
+כלל קובצי ה־tex ברפו משתמשים בקובץ<a href="./article_base.tex">article_base.tex</a>כקובץ הגדרה ראשוני.
+קובץ זה משתמש בקובץ<a href="./common.lua">common.lua</a>לאתחול נוסף של קוד lua.
 על כל קובץ tex להיות בתיקייה תחת התיקייה הראשית בלבד, אחרת הם יוגדרו בצורה לא תקינה.
 
 נשים לב כי כלל קובצי ה־tex הם בתקן lualatex, ולא יכולים להתקמפל בסוגים אחרים של latex.
@@ -50,31 +50,108 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
 רשימת הקורסים שכלולים בתואר.
 
 ### קורסים שסיימתי
-1. [מתמטיקה דיסקרטית](./discrete_mathematics) – 2022ג'
-2. [אלגברה לינארית 1](./linear_algebra_1) – 2023א'
-3. [אלגברה לינארית 2](./linear_algebra_2) – 2023ב'
-4. [חשבון אינפיניטסימלי 1](./calculus_1) – 2023ב'
-5. [חשבון אינפיניטסימלי 2](./calculus_2) – 2024ב'
-6. [חשבון אינפיניטסימלי 3](./calculus_3) – 2024ב'
-7. [מבנים אלגבריים 1](./algebraic_structures_1) – 2024ב'
-8. [תורת הקבוצות](./set_theory) – 2024ב'
-9. [תכנות בסיסי בפייתון](https://shnaton.huji.ac.il/index.php/NewSyl/76631) – 2025א'
-10. [תורת ההסתברות 1](./probability_theory_1) – 2025א'
-
-### קורסים בלמידה
-11. [פונקציות מרוכבות](https://shnaton.huji.ac.il/index.php/NewSyl/80519) – 2025א'
-12. [מבוא ללוגיקה](https://shnaton.huji.ac.il/index.php/NewSyl/80423) – 2025א'
-
-### קורסים שילמדו בעתיד
-- [אליזה על יריעות](https://shnaton.huji.ac.il/index.php/NewSyl/80416) – 2025ב'
-- [אליזה פונקציונלית](https://shnaton.huji.ac.il/index.php/NewSyl/80417) – 2025ב'
-- [מבנים אלגבריים 2](https://shnaton.huji.ac.il/index.php/NewSyl/80446/) – 2025ב'
-- [מבוא לטופולוגיה](https://shnaton.huji.ac.il/index.php/NewSyl/80516) – 2025ב'
-- [לוגיקה מתמטית 2](https://shnaton.huji.ac.il/index.php/NewSyl/80424) – 2025ב'
-- [תורת המספרים האלגבריים](https://shnaton.huji.ac.il/index.php/NewSyl/80756) – 2026א'
-- [תורת המודלים 1](https://shnaton.huji.ac.il/index.php/NewSyl/80616) – 2026א'
-- [תורת המידה](https://shnaton.huji.ac.il/index.php/NewSyl/80517) – 2026א'
-- [משוואות דיפרנציאליות](https://shnaton.huji.ac.il/index.php/NewSyl/80320) – 2026ב'
-- [כפיה ואי־תלות](https://shnaton.huji.ac.il/index.php/NewSyl/80579) – 2027ב'
+<table dir="rtl">
+    <tr>
+        <th>שם קורס</th>
+        <th>זמן</th>
+    </tr>
+    <tr>
+        <th colspan="2">הסתיימו</th>
+    </tr>
+    <tr>
+        <td><a href="./discrete_mathematics">מתמטיקה דיסקרטית</a></td>
+        <td>2022ג'</td>
+    </tr>
+    <tr>
+        <td><a href="./linear_algebra_1">אלגברה לינארית 1</a></td>
+        <td>2023א'</td>
+    </tr>
+    <tr>
+        <td><a href="./linear_algebra_2">אלגברה לינארית 2</a></td>
+        <td>2023ב'</td>
+    </tr>
+    <tr>
+        <td><a href="./calculus_1">חשבון אינפיניטסימלי 1</a></td>
+        <td>2023ב'</td>
+    </tr>
+    <tr>
+        <td><a href="./calculus_2">חשבון אינפיניטסימלי 2</a></td>
+        <td>2024ב'</td>
+    </tr>
+    <tr>
+        <td><a href="./calculus_3">חשבון אינפיניטסימלי 3</a></td>
+        <td>2024ב'</td>
+    </tr>
+    <tr>
+        <td><a href="./algebraic_structures_1">מבנים אלגבריים 1</a></td>
+        <td>2024ב'</td>
+    </tr>
+    <tr>
+        <td><a href="./set_theory">תורת הקבוצות</a></td>
+        <td>2024ב'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/76631">תכנות בסיסי בפייתון</a></td>
+        <td>2025א'</td>
+    </tr>
+    <tr>
+        <th colspan="2">בלמידה</th>
+    </tr>
+    <tr>
+        <td><a href="./probability_theory_1">תורת ההסתברות 1</a></td>
+        <td>2025א'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80519">פונקציות מרוכבות</a></td>
+        <td>2025א'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80423">מבוא ללוגיקה</a></td>
+        <td>2025א'</td>
+    </tr>
+    <tr>
+        <th colspan="2">עתידיים</th>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80416">אליזה על יריעות</a></td>
+        <td>2025ב'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80417">אליזה פונקציונלית</a></td>
+        <td>2025ב'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80446/">מבנים אלגבריים 2</a></td>
+        <td>2025ב'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80516">מבוא לטופולוגיה</a></td>
+        <td>2025ב'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80424">לוגיקה מתמטית 2</a></td>
+        <td>2025ב'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
+        <td>2026א'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80616">תורת המודלים 1</a></td>
+        <td>2026א'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80517">תורת המידה</a></td>
+        <td>2026א'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
+        <td>2026ב'</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80579">כפיה ואי־תלות</a></td>
+        <td>2027ב'</td>
+    </tr>
+</table>
 
 יש להוסיף קורס באנגלית וקורס אבני פינה.
