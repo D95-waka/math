@@ -139,7 +139,62 @@
 תהי מסילה רגולרית $\gamma : [a, b] \to U$ ותהי $\bar{\gamma}$ המסילה נורמלית שלה. \\
 נוכיח שכמות האורך המכוסה על־ידי $\bar{\gamma}$ בכל קטע היא האורך של הקטע, כלומר לכל $s_1 < s_2 \in [0, l(\gamma)]$ מתקיים $l(\bar{\gamma} \mid_{[s_1, s_2]}) = s_2 - s_1$.
 \begin{proof}
-	
+	נבדוק לפי הגדרה,
+	\[
+		l(\bar{\gamma}\mid_{[s_1, s_2]})
+		= \int_{\bar{\gamma}\mid_{[s_1, s_2]}} 1\ ds
+		\overset{(1)}{=} \int_{s_1}^{s_2} \lVert \bar{\gamma}(t) \rVert\ dt
+		= \int_{s_1}^{s_2} 1\ dt
+		= s_2 - s_1
+	\]
+	כאשר עלינו להצדיק את המעבר $(1)$, הוא נובע מקומפקטיות צמצום הפונקציה והגדרת אינטגרל של קבוצה קומפקטית לפי מאפיין, תוך בחירת המאפיין $1_{[s_1, s_2]}$.
+\end{proof}
+
+\question{}
+תהי $U \subseteq \RR^n$ קבוצה פתוחה ותהי מסילה גזירה ברציפות $\gamma : [a, b] \to U$.
+נניח גם כי $F : U \to \RR^n$ שדה וקטורי.
+
+\subquestion{}
+נראה שלכל $\epsilon > 0$ קיימת $\lambda > 0$ כך שאם $t, s \in [a, b]$ כך ש־$|t - s| < \lambda$ אז,
+\[
+	\lVert (\gamma(t) - \gamma(s)) \cdot F(\gamma(t)) - (t - s) \dot{\gamma}(t) \cdot F(\gamma(t)) \rVert
+	< \frac{\epsilon}{b - a} |t - s|
+\]
+\begin{proof}
+	נניח $t < s$ בלי הגבלת הכלליות, ולכן,
+	\begin{align*}
+		\lVert (\gamma(t) - \gamma(s)) \cdot F(\gamma(t)) - (t - s) \dot{\gamma}(t) \cdot F(\gamma(t)) \rVert
+		& = \left\lVert \left(\int_t^s \dot{\gamma}(x)\ dx\right) \cdot F(\gamma(t)) - \left(\int_t^s \dot{\gamma}(t)\ dx \right) \cdot F(\gamma(t)) \right\rVert \\
+		& = \left\lVert \left(\int_t^s \dot{\gamma}(x)\ dx - \int_t^s \dot{\gamma}(t)\ dx \right) \cdot F(\gamma(t)) \right\rVert \\
+		& = \left\lVert \left(\int_t^s \dot{\gamma}(x) - \dot{\gamma}(t)\ dx \right) \cdot F(\gamma(t)) \right\rVert \\
+		& \le \left\lVert \int_t^s \dot{\gamma}(x) - \dot{\gamma}(t)\ dx \right\rVert \cdot \left\lVert F(\gamma(t)) \right\rVert \\
+		& \le \int_t^s \left\lVert \dot{\gamma}(x) - \dot{\gamma}(t) \right\rVert\ dx \cdot \left\lVert F(\gamma(t)) \right\rVert \\
+		& = |t - s| \cdot \gamma(l) \cdot \left\lVert F(\gamma(t)) \right\rVert
+	\end{align*}
+	נגדיר $M = \sup_{t \in [a, b]} \lVert F(\gamma(t)) \rVert$ ונגדיר $\lambda = \frac{M}{b - a}$ ונקבל את המבוקש.
+\end{proof}
+
+\subquestion{}
+נסיק שסכום רימן,
+\[
+	S_\gamma(F, T, \{\tau_i\})
+	= \sum_{i = 1}^{n} F(\gamma(\tau_i)) \cdot (\gamma(t_i) - \gamma(t_{i - 1}))
+\]
+מתכנס ל־$\int_a^b \dot{\gamma}(t) \cdot F(\gamma(t))\ dt$ כאשר $\operatorname{Mesh}(\{t_i\}) \to 0$.
+\begin{proof}
+	נבחין כי האינטגרל הנתון הוא התכנסות טור רימן
+	\[
+		\int_a^b \dot{\gamma}(t) \cdot F(\gamma(t))\ dt
+		= \lim_{\operatorname{Mesh(t)} \to 0} S(\dot{\gamma}(t) \cdot F(\gamma(t)), [a, b], \{\tau_i\})
+	\]
+	נניח ש־$\operatorname{Mesh}(t) < \lambda$ ולכן תנאי הסעיף הקודם חלים ומתקיים,
+	\begin{align*}
+		& \lVert S(\dot{\gamma}(t) \cdot F(\gamma(t)), [a, b], \{\tau_i\}) - S_\gamma(F, T, \{\tau_i\}) \rVert \\
+		& = \left\lVert \sum_{i = 0}^{n - 1} (t_{i + 1} - t_i) \left( (\gamma(t_{i + 1}) - \gamma(t_i)) \cdot F(\gamma(t_{i + 1})) - (t_{i + 1} - t_i) \dot{\gamma}(t_{i + 1}) \cdot F(\gamma(t_{i + 1})) \right) \right\rVert \\
+		& \le (b - a) \sum_{i = 0}^{n - 1} \left\lVert (\gamma(t_{i + 1}) - \gamma(t_i)) \cdot F(\gamma(t_{i + 1})) - (t_{i + 1} - t_i) \dot{\gamma}(t_{i + 1}) \cdot F(\gamma(t_{i + 1})) \right\rVert \\
+		& < \frac{\epsilon}{b - a}
+	\end{align*}
+	לכן כאשר $\operatorname{Mesh}(t) \to 0$ אנו מקבלים $\lambda \to 0$ ובהתאם ההפרש שואף לאפס, והסכומים משתווים, כלומר סכום רימן הנתון אכן שואף לאינטגרל הנתון.
 \end{proof}
 
 \end{document}
