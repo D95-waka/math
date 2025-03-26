@@ -86,9 +86,6 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>2025א'</td>
     </tr>
     <tr>
-        <th colspan="2">בלמידה</th>
-    </tr>
-    <tr>
         <td><a href="./probability_theory_1">תורת ההסתברות 1</a></td>
         <td>2025א'</td>
     </tr>
@@ -101,7 +98,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>2025א'</td>
     </tr>
     <tr>
-        <th colspan="2">עתידיים</th>
+        <th colspan="2">בלמידה</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80416">אליזה על יריעות</a></td>
@@ -122,6 +119,9 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80424">לוגיקה מתמטית 2</a></td>
         <td>2025ב'</td>
+    </tr>
+    <tr>
+        <th colspan="2">עתידיים</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
