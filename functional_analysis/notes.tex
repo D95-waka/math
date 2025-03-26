@@ -1,0 +1,186 @@
+\input{../article_base.tex}
+\title{אנליזה פונקציונלית --- סיכום}
+\setcounter{secnumdepth}{2}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\tableofcontents
+
+\section{שיעור 1 --- 26.3.2025}
+\subsection{רקע}
+אנליזה פונקציונלית היא כמו אלגברה לינארית.
+בקורס זה נחקור מרחבים וקטוריים והעתקות עליהם, אבל על מרחבים מורכבים יותר והעתקות מורכבות יותר.
+נתחיל בשאלה,
+\begin{exercise}
+	יהי $(X, \rho)$ מרחב מטרי כלשהו, ונניח ש־$A \subseteq X$.
+	נניח גם ש־${(a_n)}_{n = 1}^\infty \subseteq A$. \\
+	מהם התנאים ההכרחיים על $A$ כך ש־$(a_n)$ תכלול תת־סדרת קושי?
+\end{exercise}
+נעבור לדוגמה וטענות מאינפי 1 לרענן את זכרוננו.
+\begin{example}
+	המרחב המטרי הכי אינטואיטיבי הוא $X = \RR$ ו־$\rho(x, y) = |x - y|$.
+\end{example}
+\begin{proposition}
+	תהי $A \subseteq \RR$ כך ש־$A$ חסומה, ותהי ${(a_n)}_{n = 1}^\infty \subseteq A$,
+	אז יש ל־$(a_n)$ תת־סדרת קושי.
+\end{proposition}
+\begin{proof}
+	$A \subseteq [-R, R]$ עבור $R \in \RR$.
+	נתחיל בהגדרה של $\Delta_0 = A$ ולכן יש אינסוף נקודות של הסדרה, וכן נבחין כי $|A_0| = 2R$.
+	נבחן את הקטעים החוצים את $\Delta_0$, הם $[-R, 0], [0, R]$, נבחר את זה מביניהם שמכיל אינסוף נקודות של $(a_n)$ להיות $\Delta_1$, וכך נמשיך ונגדיר סדרה $(\Delta_n)$.
+	נובע שהסדרה הנתונה היא סדרה יורדת, במובן ש־$\Delta_0 \supset \Delta_1 \supset \Delta_2 \supset \dots$, מתקיים גם $|\Delta_n| = \frac{|\Delta_0|}{2^n}$ לכל $n \in \NN$, ובכל $\Delta_n$ יש אינסוף נקודות של $(a_n)$.
+	נבחר $a_{n_1} \in \Delta_1$ וכך באופן כללי גם $a_{n_k} \in \Delta_k$, לכן נובע $|a_{n_k} - a_{n_l}| \le \frac{1}{2^k}$ עבור $l \ge k$.
+	לכן נובע שאכן ישנה תת־סדרת קושי בסדרה $(a_n)$.
+\end{proof}
+\begin{remark}
+	טענה זו נכונה גם כאשר מסתכלים על מרחב $(\RR^n, \rho)$ עבור $\rho(x, y) = \sqrt{\sum_{i = 1}^{n} {(x_i - y_i)}^2}$.
+\end{remark}
+\begin{definition}[מרחב נורמי]
+	יהי $V$ מרחב וקטורי מעל $\FF$ עבור $\FF \in \{ \RR, \CC \}$, ותהי פונקציה $\lVert \cdot \rVert : V \to \RR_{\ge0}$ המקיימת,
+	\begin{enumerate}
+		\item $x = 0_V \iff \lVert x \rVert = 0$
+		\item $\forall \alpha \in \FF, \lVert \alpha x \rVert = |\alpha| \cdot \lVert x \rVert$
+		\item $\forall x, y \in V, \lVert x + y \rVert = \lVert x \rVert + \lVert y \rVert$
+	\end{enumerate}
+	אז $(V, \lVert \cdot \rVert)$ יקרא מרחב נורמי עם נורמה $\lVert \cdot \rVert$.
+\end{definition}
+\begin{definition}[מרחב l2]
+	נגדיר את הקבוצה $l_2 = \{ x = (x_1, \dots) \mid \forall k \in \NN, x_k \in \RR, \sum_{i = 1}^{\infty} x_i^2 < \infty \}$.
+	נגדיר גם,
+	\[
+		\lVert x \rVert = {\left(\sum_{i = 1}^{\infty} x_i^2\right)}^{\frac{1}{2}}
+	\]
+	אז המרחב הנורמי $l_2$ הוא הקבוצה והנורמה הללו.
+\end{definition}
+נבחין כי עלינו להוכיח שזהו אכן מרחב נורמי לפי ההגדרה.
+\begin{theorem}[אי־שוויון קושי־שווארץ]
+	מתקיים,
+	\[
+		\sum_{i = 1}^{n} |x_i| \cdot |y_i|
+		\le {\left( \sum_{i = 1}^{n} x_i^2 \right)}^{\frac{1}{2}} \cdot {\left( \sum_{i = 1}^{n} y_i^2 \right)}^{\frac{1}{2}}
+	\]
+\end{theorem}
+\begin{notation}
+	נסמן $\langle x, y \rangle = \sum_{i = 1}^{n}  x_i y_i$.
+\end{notation}
+\begin{proof}
+	עבור $t \in \FF$ סקלר כלשהו,
+	\[
+		0
+		\le \langle x + ty, x + ty \rangle
+		= \langle x, x \rangle + 2t \langle x, y \rangle + \langle y, y \rangle t^2
+	\]
+	עובדה ידועה היא $At^2 + Bt + C \ge 0 \implies V^2 - 4AC \le 0$ ולכן,
+	\[
+		{\left( \sum_{i = 1}^{n} x_i y_i \right)}^2
+		\le {\left( \sum_{i = 1}^{n} x_i^2 \right)} \cdot {\left( \sum_{i = 1}^{n} y_i^2 \right)}
+	\]
+	ולכן,
+	\[
+		\left\lvert \sum_{i = 1}^{n} x_i y_i \right\rvert
+		\le {\left( \sum_{i = 1}^{n} x_i^2 \right)}^{1/2} \cdot {\left( \sum_{i = 1}^{n} y_i^2 \right)}^{1/2}
+	\]
+	ואם נגדיר $x_i' = |x_i$ וכן $y_i' = |y_i|$ אז מאי־השוויון הנתון נובע,
+	\[
+		\sum_{i = 1}^{n} |x_i'| \cdot |y_i'|
+		\le {\left( \sum_{i = 1}^{n} x_i^2 \right)}^{\frac{1}{2}} \cdot {\left( \sum_{i = 1}^{n} y_i^2 \right)}^{\frac{1}{2}}
+	\]
+\end{proof}
+נעבור להוכחת ההגדרה של $l_2$, כלומר ההוכחה שהנורמה שהגדרנו היא אכן נורמה.
+\begin{proof}
+	\begin{align*}
+		{\lVert x + y \rVert}^2
+		& = \sum_{i = 1}^{\infty} {(x_i + y_i)}^2 \\
+		& = \sum_{i = 1}^{\infty} x_i^2 + 2 \sum_{i = 1}^{\infty} x_i y_i + \sum_{i = 1}^{\infty} y_i^2 \\
+		& \le {\lVert x\rVert}^2 + 2 \lVert x \rVert \cdot \lVert y \rVert + {\lVert y \rVert}^2 \\
+		& = {(\lVert x \rVert + \lVert y \rVert)}^2 \\
+		& \implies \lVert x + y \rVert \le \lVert x \rVert + \lVert y \rVert
+	\end{align*}
+\end{proof}
+עתה משקיבלנו ש־$l_2$ הוא אכן מרחב נורמי, נוכל לדון בתכונותיו.
+\begin{example}
+	במרחב $(l_2, \lVert \cdot \rVert)$ נגדיר את שפת כדור היחידה במרחב,
+	\[
+		S = \{ x \in l_2 \mid \lVert x \rVert = 1 \}
+	\]
+	נבחין כי $S$ קבוצה חסומה ב־$l_2$.
+	נבחר ${(l_n)}_{n = 1}^\infty$ המוגדרת על־ידי $l_n = (0, \dots, 1, \dots)$ כאשר $l_n^n = 1, l_n^m = 0$ לכל $m \ne n$.
+	כמובן מתקיים $\lVert l_n \rVert = 1$ לכל $n \in \NN$, ולכן סדרת הנקודות חסומה ב־$S$.
+\end{example}
+\begin{proposition}
+	${(l_n)}_{n = 1}^\infty \subseteq l_2$ איינה כוללת תת־סדרת קושי.
+\end{proposition}
+\begin{proof}
+	נבחין כי $\lVert l_n - l_m \rVert = \sqrt{2}$ לכל $n \ne m$.
+\end{proof}
+\begin{notation}[כדור]
+	עבור מרחב מטרי $(X, \rho)$, נסמן $B_r(x) = \{ x \in X \mid \rho(x, x_0) < r \}$.
+\end{notation}
+\begin{definition}[קבוצה חסומה לחלוטין]
+	יהי מרחב מטרי $(X, \rho)$ מרחב מטרי ותהי $A \subseteq X$, אז נאמר ש־$A$ חסומה לחלוטין (Totally bounded) אם לכל $\epsilon > 0$ קיים מספר סופי של נקודות $\{ x_1, \dots, x_N \} \subseteq X$,
+	כך שמתקיים $A \subseteq \bigcup_{i = 1}^N B_\epsilon(x_i)$.
+\end{definition}
+מיד נראה שימוש בהגדרה זו במשפט, ובכך ניתן הצדקה להגדרה הלכאורה משונה הזאת.
+\begin{theorem}[שקילות לחסימות לחלוטין]\label{totally_bounded_set_equivalecy_theorem}
+	יהי מרחב מטרי $(X, \rho)$ ותהי $A \subseteq X$, אז התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item $A$ חסומה לחלוטין.
+		\item בכל סדרה של $A$ ניתן לבחור תת־סדרת קושי.
+	\end{enumerate}
+\end{theorem}
+משפט זה הוא משפט חשוב ומרכזי, ועל הקורא לשנן את הוכחתו. את ההוכחה אומנם נראה בהרצאות הבאות, אך נראה עתה שימושים למשפט זה.
+נעבור למשפט פחות חשוב ומרכזי,
+\begin{theorem}
+	נניח ש־$X = \RR^m$, וכן ש־$\rho(x, y) = \sqrt{\sum_{i = 1}^{m} {(x_i - y_i)}^2}$, אז אם $A \subseteq \RR^m$ חסומה, אז היא חסומה לחלוטין.
+\end{theorem}
+\begin{proof}
+	נחסום את $A$ על־ידי קובייה מספיק גדולה, נחלק את הקובייה לתת־קוביות מספיק קטנות (ההצדקה מגיעה מאינפי 3), ונוכל לחסום כל קובייה כזו בכדור.
+	נסמן $\{ x_i \} \subseteq \RR^m$ את מרכזי הקוביות ונקבל $A \subseteq \bigcup_{j = 1}^N B_\epsilon(x_j)$ מהגדרת החלוקה של הקובייה החוסמת.
+\end{proof}
+\begin{definition}
+	ב־$(l_2, \lVert \cdot \rVert)$ נגדיר את הקבוצה,
+	\[
+		\Pi = \{ x = (x_1, \dots) \in l_2 \mid \forall i \in \NN, |x_i| \le \frac{1}{2^{i - 1}} \}
+	\]
+	אם $x \in \Pi$ אז $\sum_{n = 1}^{\infty} x_n^2 < \infty$, ובהתאם בהכרח $\Pi \subseteq l_2$.
+\end{definition}
+\begin{theorem}
+	הקבוצה $\Pi$ חסומה לחלוטין.
+\end{theorem}
+\begin{proof}
+	תהי $(x_1, \dots) \in \Pi$, ונגדיר $x_n^* = (x_1, \dots, x_n, \dots, 0, 0, \dots)$.
+	נגדיר גם $\Pi^*_n = \{ x = (x_1, \dots, x_n, 0, \dots) \mid |x_n| \le \frac{1}{2^{n - 1}} \}$.
+	הקבוצה $\Pi_n^*$ חסומה לחלוטין, זאת שכן הקבוצה שקולה לקבוצה ב־$\RR^n$, ונבחין כי היא חסומה, ולכן ההוכחה שראינו קודם עודנה תקפה ובהתאם $\Pi_n^*$ חסומה לחלוטין. \\
+	נבחין כי
+	\[
+		{\lVert x - x_n^* \rVert}^2
+		= \sum_{i = n + 1}^{\infty} x_i^2
+		\le \sum_{i = n + 1}^{\infty} \frac{1}{2^{2i - 2}}
+		= \sum_{i = n + 1}^{\infty} \frac{4}{4^i}
+		= \frac{1}{4^n} \cdot \frac{1}{1 - \frac{1}{4}}
+		= \frac{1}{3 \cdot 4^{n - 1}}
+	\]
+	ולכן $\lVert x - x_n^* \rVert \le \frac{1}{2^{n - 1}}$.
+	יהי $\epsilon > 0$, אז $\Pi_n^*$ חסומה לחלוטין ולכן קיימים $y^1, \dots, y^n \in l_2$ כך שמתקיים,
+	\[
+		\Pi_n^* \subseteq \bigcup_{i = 1}^N B_\epsilon(y^i)
+	\]
+	נניח ש־$x_n^* \in B_\epsilon(y^i)$ ונוכל לבחור $n$ כך שמתקיים $\lVert x - x_n^* \rVert < \epsilon$, אז
+	\[
+		\lVert x - y^i \rVert
+		\le \lVert x - x_n^* \rVert + \lVert x_n^* - y^i \rVert
+		< 2 \epsilon
+	\]
+	נובע ש־$\Pi \subseteq \bigcup_{i = 1}^N B_{2\epsilon}(y^i)$.
+\end{proof}
+נבחין כי עתה ראינו שב־$l_2$ במרחב נורמי יש קבוצות חסומות, זהו אכן מרחב מעניין.
+
+\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
+
+\end{document}
