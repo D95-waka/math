@@ -1,0 +1,158 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 01 --- מבוא לטופולוגיה, 80516}
+% chktex-file 9
+% chktex-file 17
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+יהי $(X, \tau)$ מרחב טופולוגי ותהי $A \subseteq X$ תת־קבוצה כלשהי. \\
+נגדיר את טופולוגיית תת־המרחב על $X$ להיות $\tau \restriction A = \{ U \cap A \mid U \in \tau \}$.
+
+\subquestion{}
+נוכיח כי $\tau \restriction A$ היא טופולוגיה על $A$.
+\begin{proof}
+	נוכיח ישירות מהגדרת טופולוגיה. \\
+	נבחין כי $X \in \tau$ ולכן $A = X \cap A \in \tau \restriction A$, ובאופן דומה גם $\emptyset \in \tau \restriction A$. \\
+	נעבור לבדיקת סגירות על איחוד.
+	תהי $I$ קבוצת אינדקסים ונניח ש־${\{ X_\alpha \}}_{\alpha \in I} \subseteq \tau \restriction A$, נניח גם שלכל $\alpha \in I$ קיים $X_\alpha \subseteq X_\alpha'$ כך ש־$X_\alpha' \in \tau$ (קיימים מהגדרה), אז,
+	\[
+		\bigcup_{\alpha \in I} X_\alpha
+		= \bigcup_{\alpha \in I} X_\alpha' \cap A
+		= \left( \bigcup_{\alpha \in I} X_\alpha' \right) \cap A
+	\]
+	אבל $\tau$ טופולוגיה ולכן סגורה לאיחוד ובהתאם $\bigcup_{\alpha \in I} X_\alpha' = Y \in \tau$ ולכן $Y \cap A \in \tau \restriction A$. \\
+	נסיים ונבדוק סגירות סופית לחיתוכים, נניח ש־$X_i \in \tau \restriction A$ עבור $1 \le i \le n$ עבור $n \in \NN$ נתון.
+	נניח גם ש־$X_i \subseteq X_i' \in \tau$ לכל $i$ מהצדקה זהה לזו בחלק הקודם.
+	גם הפעם נובע,
+	\[
+		\bigcap_{i = 1}^n X_i
+		= \bigcap_{i = 1}^n X_i' \cap A
+		= \left( \bigcap_{i = 1}^n X_i' \right) \cap A
+		\in \tau \restriction A
+	\]
+	ומצאנו משיקולים זהים יש סגירות סופית לחיתוך, ובהתאם $\tau \restriction A$ אכן טופולוגיה.
+\end{proof}
+
+\subquestion{}
+נניח שקיימת מטריקה $\rho$ על $X$ כך ש־$\tau$ היא הטופולוגיה המושרית מ־$\rho$. \\
+תהי $A \subset X$, נוכיח ש־ $\tau \restriction A$ מושרית מ־$(A, \rho \restriction A^2)$ כמרחב מטרי.
+\begin{proof}
+	נבחין כי מתקיים,
+	\[
+		x \in \tau \restriction A
+		\iff \exists x' \in \tau, x = x' \cap A
+	\]
+	ונתון כי $\tau = \tau_\rho$, כלומר זוהי טופולוגיה מושרית ממטריקה $\rho$,
+	ולכן $x'$ קבוצה פתוחה ב־$(X, \rho)$, לכן לכל $p \in x'$ קיים $r > 0$ כך ש־$B_r(p) \subseteq x'$.
+	בהתאם לזה מתקיים גם $B_r(p) \cap A \subseteq x' \cap A = x$, אבל גם $B_r(p) \cap A = \{ z \in A \mid (\rho \restriction A^2)(p, z) < r \}$, כלומר הכדור נשאר פתוח ובהתאם $x$ קבוצה פתוחה במרחב המטרי המצומצם.
+	מצאנו אם כן ש־$x \in \tau \restriction A$ אם ורק אם $x$ פתוחה ב־$(A, \rho \restriction A^2)$ ולכן $\tau \restriction A = \tau_{\rho \restriction A^2}$.
+\end{proof}
+
+\question{}
+נמצא טופולוגיה על $\ZZ$ שבה אף נקודה אינה קבוצה פתוחה, אך הטופולוגיה המושרית על $\NN$ (בקורס זה ללא 0) היא הטופולוגיה הדיסקרטית.
+\begin{solution}
+	נגדיר את הבסיס $\Bb = \{-ZZ\} \cup \{ -\ZZ \cup \{ n \} \mid n \in \NN \}$, כלומר קבוצות מהצורה $\{ -1, -2, \dots \} \cup \{ n \}$ לכל $n$ טבעי, והקבוצה $\{-1, \dots\}$.
+	נוודא שזהו אכן בסיס, לכל $z \in \ZZ$ או ש־$z \in \NN$ ואז $-ZZ \cup {z} \in \Bb$ או ש־$z < 0$ ולכן בהכרח קיימים איברים מכילים.
+	בנוסף לכל $A, B \in \Bb$ מתקיים $A \ne B \implies A \cap B = -\ZZ$ ולכן נוכל לבחור כל איבר ב־$\Bb$ ולקבל שהתנאי השני לבסיס מתקיים.
+	נגדיר $\tau = \tau_\Bb$, כלומר הטופולוגיה המושרית מהבסיס $\Bb$.
+
+	נעבור לבדיקת תנאי התרגיל, אין אף נקודה שהיא קבוצה פתוחה, שכן כל איבר $x \in \tau_\Bb$ הוא איחוד של איברי $\Bb$, לכן בפרט $x \supseteq -\ZZ$ ואיננו יחידון. \\
+	מהצד השני נבחן את $\tau \restriction \NN$, הפעם $\{ n \} \in \tau \restriction \NN$ לכל $n \in \NN$ ישירות מבדיקת הבסיס, ולכן זוהי הטופולוגיה הדיסקרטית.
+\end{solution}
+
+\subquestion{}
+נמצא טופולוגיה על $\ZZ$ שבה אף נקודה אינה קבוצה פתוחה, אך לכל $n \ge 0$, הטופולוגיה המושרית על $[-n, n] \cap \ZZ$ היא הטופולוגיה הדיסקרטית.
+\begin{solution}
+	נגדיר את הבסיס $\Bb = \{ (\ZZ \setminus [-n, n]) \cup \{ k \} \mid n \in \NN, k \in \ZZ \cap [-n + 1, n - 1] \}$.
+	נבחין כי לכל $m \in \ZZ$ אכן אפשר לבחור $ n = m + 1, k = m$, וכן לכל $A, B \in \Bb$,
+	אם $m \in A \cap B$ אז או ש־$m$ גדול מ־$\max\{ n_A, n_B \}$ ונוכל לבחור קבוצה מתאימה, או ש־$k_A = k_B$ ו־$m = k_A$, אז נבחר $n = k + 1, k = k_A$.
+
+	עתה משהוכחנו שזהו אכן בסיס, נבחן את הטופולוגיה $\tau_\Bb$, ברור כי אין יחידונים בטופולוגיה זו, זאת שכן נוכל לבחור $n \in \NN$ גדול מספיק כך שיופיע באיבר לכל איבר ב־$\tau_\Bb$.
+	מן הצד השני, נקבע $n \in \NN$ ונבחן את $\tau_\Bb \restriction [-n, n]$, אז הקבוצות $((\ZZ \setminus [-n - 1, n + 1]) \cup \{k\}) \cap [-n, n] = \{ k \}$ נמצאת ב־$\tau_\Bb \restriction A$.
+\end{solution}
+
+\question{}
+\subquestion{}
+תהינה ${\{\tau_i\}}_{i \in I}$ טופולוגיות על קבוצה $X$. \\
+נוכיח כי גם $\bigcap_{i \in I} \tau_i$ היא טופולוגיה על $X$.
+\begin{proof}
+	נוכיח את הטענה ישירות מהגדרת טופולוגיה. \\
+	נבחין כי $\forall i \in I,\ X, \emptyset \in \tau_i$ מהגדרה, ולכן $X, \emptyset \in \bigcap_{i \in I} \tau_i$. \\
+	נעבור לסגירות לאיחוד, נניח ש־$J$ קבוצת אינדקסים, ונניח כי $X_j \in \bigcap_{i \in I} \tau_i$ לכל $j \in J$.
+	נניח גם ש־$X_j^i \in \tau_i$ כך ש־$X_j = \bigcap_{i \in I} \tau_i$, אז מתקיים,
+	\[
+		\bigcap_{j \in J} X_i
+		= \bigcup_{j \in J} \bigcap_{i \in I} X_j^i
+		= \bigcap_{i \in I} \bigcup_{j \in J} X_j^i
+	\]
+	אבל $\tau_i$ סגורה לאיחודים ולכן $\bigcup_{j \in J} X_j^i \in \tau_i$, ובהתאם קבוצה זו היא פתוחה ב־$\bigcap_{i \in I} \tau_i$. \\
+	סגירות סופית לחיתוך זהה.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $P$ היא אוסף כלשהו של תתי־קבוצות של $X$ אז קיימת טופולוגיה מינימלית $\tau$ כך ש־$P \subset \tau$.
+נקרא ל־$\tau$ טופולוגיה מינימלית המכילה את $P$.
+\begin{proof}
+	תהי $\Sigma = \{ \sigma \in \Pp(X) \mid P \subset \sigma, \sigma \text{ is a topology over } X \}$, נבחין כי זוהי אכן קבוצה מאקסיומת הפרדה (תכונות טופולוגיה הן מסדר ראשון), ולכן $\tau = \bigcap \Sigma$ טופולוגיה מסעיף א'.
+	כמובן ש־$\tau$ מינימלית ביחס ההכלה מבין איברי $\Sigma$ ישירות מהגדרה.
+\end{proof}
+
+\subquestion{}
+תהי $X = \{a, b, c\}$ ונגדיר $P = \{\{a\}, \{a, b\}, \{b, c\}\}$, נמצא את הטופולוגיה המינימלית המכילה את $P$.
+\begin{solution}
+	נניח ש־$\tau$ הטופולוגיה המקיימת זאת, אז בהכרח $P \subseteq \tau$, וכמובן $\emptyset, X \in \tau$.
+	אנו יודעים ש־$\tau$ סגורה לחיתוכים (בקבוצה סופית כל חיתוך הוא סופי), לכן גם $\{b\} \in \tau$, והסגירות לאיחודים לא מוסיפה איברים לקבוצה, ולכן סיימנו.
+\end{solution}
+
+\question{}
+יהיו $(X, \tau_X), (Y, \tau_Y)$ מרחבים טופולוגיים.
+
+\subquestion{}
+נגדיר טופולוגיה $\tau$ על $X \sqcup Y$ על־ידי $A \in \tau \iff \exists U \in \tau_X, V \in \tau_Y,\ A = U \sqcup V$. \\
+נראה ש־$\tau$ היא טופולוגיה על $X \sqcup Y$.
+\begin{proof}
+	נבחין כי $\emptyset \in \tau_X, \tau_Y \implies \emptyset \in \tau$ וכן $X \in \tau_X, Y \in \tau_Y$ ולכן $A \in \tau$. \\
+	נניח ש־$\{ X_i \} \subseteq \tau_X$ וש־$\{ Y_i \} \subseteq \tau_Y$ עבור $i \in I$ קבוצת אינדקסים כלשהי.
+	מתקיים $X_i \sqcup Y_i \in \tau$ לכל $i \in I$, וכן מתקיים,
+	\[
+		\bigcup_{i \in I} X_i \sqcup Y_i
+		= \left(\bigcup_{i \in I} X_i\right) \sqcup \left(\bigcup_{i \in I} Y_i\right)
+	\]
+	מתכונות איחוד זר, ונובע מהגדרת $\tau$ כי יש סגירות לאיחוד. \\
+	נניח ש־$U, U' \in \tau_X, V, V' \in \tau_Y$, אז $(U \cap U') \sqcup (V \cap V') = (U \sqcup V) \cap (U' \sqcup V')$ ולכן נובע ש־$\tau$ סגורה גם לחיתוכים סופיים.
+\end{proof}
+
+\subquestion{}
+נראה שהטופולוגיה $\tau$ המושרית על $X$ שווה ל־$\tau_X$ ושהטופולוגיה המושרית על $Y$ שווה ל־$\tau_Y$.
+\begin{proof}
+	מטעמי סימטריה מספיק להראות את נכונות הטענה על $X$ ו־$\tau_X$.
+	\[
+		U \in \tau_X
+		\iff \exists V \in \tau_Y,\ U \sqcup V \in \tau
+		\iff U \in \tau \restriction X
+	\]
+	כאשר הצעד הראשון נובע מהגדרת $\tau$ והצעד השני נובע מהגדרת הצמצום.
+\end{proof}
+
+\subquestion{}
+תהיינה $X, Y$ קבוצות, נראה שכל טופולוגיה על $X \sqcup Y$ מתקבלת מטופולוגיה על $X$ וטופולוגיה על $Y$ באופן שתואר בסעיף א'.
+\begin{proof}
+	נניח ש־$\tau \subseteq \Pp(X \sqcup Y)$, ונוכיח שהיא שקולה לטופולוגיה המופיעה בסעיף א' עבור איזושהן טופולוגיות $\tau_X, \tau_Y$. \\
+	נגדיר $\tau_X' = \tau \restriction X$, זהו צמצום של טופולוגיה ולכן בהכרח טופולוגיה, וכן $\tau_X'$ טופולוגיה מעל $X$, אבל אז מסעיף ב' נובע $\tau_X = \tau_X'$, נגדיר כך גם את $\tau_Y$ ומצאנו שאכן $\tau$ ניתנת לפירוק.
+\end{proof}
+
+\question{}
+נראה ששני האוספים הבאים של קבוצות הם בסיסים לטופולוגיה כלשהי על $\RR$,
+\[
+	\Bb_1 = \{ [a, b) \mid a, b \in \RR \},
+	\quad
+	\Bb_2 = \{ [a, b) \mid a, b \in \QQ \}
+\]
+\begin{proof}
+	TODO
+\end{proof}
+
+\end{document}
