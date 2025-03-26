@@ -185,6 +185,98 @@
 	כלומר $\prod_{\alpha \in I} = \{ f : I \to \bigcup_{\alpha \in I} X_\alpha \mid \forall \alpha \in I, f(x) \in X_\alpha \}$.
 \end{example}
 
+\section{שיעור 2 --- 25.3.2025}
+\subsection{טופולוגיה --- המשך}
+בשיעור הקודם דיברנו על מכפלה של טופולוגיות, אמרנו שאם $I$ קבוצת אינדקסים ולכל $\alpha \in I$ גם $(X_\alpha, \tau_\alpha)$ מרחב טופולוגי, אז נתבונן ב־$Z = \prod_{\alpha \in I} X_\alpha$ ונרצה להגדיר טופולוגיה על $Z$.
+\begin{remark}
+	מגדירים,
+	\[
+		\prod_{\alpha \in I} X_\alpha = \{ f : I \to \bigcup_{\alpha \in I} X_\alpha, \forall \alpha \in I, f(\alpha) \in X_\alpha \}
+	\]
+\end{remark}
+לאחר מכן נוכל להגדיר טופולוגיית מכפלה,
+\begin{definition}[טופולוגיית מכפלה]
+	נגדיר את הבסיס,
+	\[
+		\Bb_{\text{box}} = \{ \prod_{\alpha \in I} U_\alpha \mid \forall \alpha \in I, U_\alpha \subseteq X_\alpha, U_\alpha \in \tau_\alpha \}
+	\]
+	ואת הבסיס,
+	\[
+		\Bb_{\text{prod}}
+		= \{ \prod_{\alpha \in I} V_\alpha \mid \forall \alpha \in I, V_\alpha \in \tau_\alpha,
+			V_\alpha \subseteq X_\alpha, |\{ \beta \in I \mid V_\beta \ne X_\beta \}| < \infty, V_\alpha = X_\alpha \text{ for almost every } \alpha \}
+	\]
+	אלו הן מכפלות של טופולוגיות המהוות טופולוגיה.
+\end{definition}
+\begin{definition}[העתקות הטלה]
+	אז $Z = \prod_{\alpha \in I} X_\alpha$ אז ישנן הטלות $\forall \alpha \in I, \pi_\alpha : Z \to X_\alpha$ המוגדרת על־ידי $\pi_\alpha(f) = f(\alpha)$.
+\end{definition}
+אנו רוצים שכל ההטלות $\pi_\alpha$ תהינה רציפות.
+כדי שהן אכן יקיימו רציפות צריך שלכל $U_\alpha \in \tau_\alpha$ (קבוצה פתוחה ב־$X_\alpha$) יתקיים $\pi_\alpha^{-1}(U_\alpha) \in \tau$, כלומר המקור יהיה קבוצה פתוחה ב־$Z$.
+אבל נבחין כי $\pi_\alpha^{-1}(U_\alpha) = U_\alpha \times \prod_{\beta \ne \alpha} X_\beta$ אבל זהו לא בסיס,
+\[
+	C = \{ U_\alpha \times \prod_{\beta \ne \alpha} X_\beta \mid \pi_\alpha^{-1}(U_\alpha) \in \tau \}
+\]
+\begin{definition}[תת־בסיס לטופולוגיה]
+	תהי קבוצה $X$, קבוצה $C$ של תת־קבוצות של $X$ כך ש־$\bigcup C = X$. \\
+	נגדיר את הבסיס המושרה מתת־בסיס להיות $\Bb_C = \{ \bigcap A \mid A \subseteq C, |A| < \infty \}$,
+	כלומר אוסף החיתוכים הסופיים של איברי $C$ (הן קבוצות פתוחות) הוא בסיס.
+\end{definition}
+\begin{definition}[טופולוגיה חלשה]
+	אם $X$ קבוצה ו־$\tau_1, \tau_2$ טופולוגיות על $X$ אומרים ש־$\tau_1$ חלשה יותר מ־$\tau_2$ אם $\tau_1 \subseteq \tau_2$.
+\end{definition}
+\begin{example}
+	יהיו מרחבים מטריים $(X_i, \rho_i)$ לכל $i \in \NN$, ונגדיר $(X_i, \tau_i)$ מרחב טופולוגי מושרה מתאים לכל $i$.
+	נרצה להתבונן במכפלתם, $\prod_{i \in \NN} X_i$.
+	אז נוכל להתבונן ב־$(\prod X_i, \tau_{\text{prod}})$ שהגדרנו זה עתה.
+\end{example}
+\begin{definition}[מטריקת מכפלה]
+	בהינתן סדרת מרחבים מטריים $(X_i, \rho_i)$ עבור $i \in \NN$ מרצה למצוא מטריקה על $Z = \prod_{i \in \NN} X_i$.
+	לכל $x, y \in Z$ כאשר $x = (x_i), y = (y_i)$ אז נגדיר,
+	\[
+		\rho(x, y)
+		= \sum_{i = 1}^{\infty} \frac{1}{2^i} \frac{\rho_i(x_i, y_i)}{1 + \rho_i(x_i, y_i)}
+	\]
+\end{definition}
+ברור שפונקציה זו מוגדרת, וברור אף כי היא מקיימת את התכונה השנייה של מטריקות, אך לא ברור שהיא מקיימת את אי־שוויון המשולש, זהו תרגיל שמושאר לקורא.
+\begin{proposition}
+	הטופולוגיה המושרית על $Z = \prod_{i = 1}^\infty X_i$ עבור $(X_i, \tau_i)$ מרחבים טופולוגיים יחד עם מטריקת המכפלה שווה ל־$\Bb_{\text{prod}}$.
+\end{proposition}
+\begin{proof}
+	$(Z, \rho)$ מרחב מטרי, ו־$\Bb_\rho = \{ B(x, r) \mid x \in Z, r > 0 \}$ בסיס, אז נוכל להגדיר טופולוגיה $\tau_{\Bb_\rho} = \tau_\rho$.
+	כדי להראות ש־$\tau_\rho = \Bb_{\text{prod}}$ מספיק להראות שכל $B \in \Bb_\text{prod}$ שייכת ל־$\tau_\rho$ וכל $C \in \Bb_\rho$ שייכת ל־$\tau_\text{prod}$.
+	נוסיף ונבהיר שטופולוגיה נקבעת ביחידות על־ידי בסיס שלה, לכן מספיק להראות את שקילות הבסיסים.
+
+	נתחיל בתנאי הראשון, ונקבע $k \in \NN$ כלשהו. מספיק להראות שקבוצה מהצורה $U_k \times \prod_{i \ne k} X_i$ פתוחה ב־$\tau_\rho$ עבור $U_k \in \tau_k$ היא קבוצה פתוחה ב־$\tau_\rho$,
+	זאת שכן נוכל להרחיב הוכחה זו באופן סיסטמתי להיות על כל קבוצה סופית של קבוצות פתוחות.
+	יהי $x \in U_k \times \prod_{i \ne k} X_i$ ונסמן את ההטלה על מרחב זה $\pi_j : U_j \times \prod_{i \ne k} X_i \to U_j$, כלומר $\pi_j(x) = x_j$ לכל $j \in \NN$.
+	אנו יודעים ש־$x_k \in U_k$ וש־$U_k$ פתוחה ולכן ישנו $r > 0$ כך ש־$B_r(x_k) \subseteq U_k$ כדור פתוח ב־$X_k$. \\
+	קיים $s > 0$ כך שאם $t \ge 0$ ומתקיים $\frac{t}{1 + t} < s$ אז $t < r$, ולכן נבחן את הכדור ברדיוס $\frac{s}{2^k}$ סביב $x$ ב־$Z = \prod_{i \in \NN} X_i$ מרחב המכפלה כולו.
+	המטרה שלנו היא להראות שהכדור שעתה בחרנו מקיים את התנאי לבסיס.
+	נניח ש־$y = {(y_i)}_{i \in \NN} \in B_{\frac{s}{2^k}}(x)$, אז
+	\begin{align*}
+		& \frac{s}{2^k} > \rho(x, y)
+		= \sum_{i = 1}^{\infty} \frac{1}{2^i} \frac{\rho_i(x_i, y_i)}{1 + \rho_i(x_i, y_i)}
+		\ge \sum_{i = 1}^{\infty} \frac{1}{2^i} \frac{\rho_i(x_i, y_i)}{1 + \rho_i(x_i, y_i)} \\
+		& \implies s > \frac{\rho_i(x_i, y_i)}{1 + \rho_i(x_i, y_i)} \\
+		& \implies \rho_k(x_k, y_k) < r \\
+		& \implies y_k \in B_r(x_k) \subseteq U_k
+	\end{align*}
+
+	נעבור לתנאי השני, נתבונן בכדור הפתוח סביב $x \in Z$, $B_r(x)$, כאשור נחזור ונבהיר כי כדור זה מוגדר להיות,
+	\[
+		B_r(x)
+		= \left\{ y \in Z \mid \sum_{i = 1}^{\infty} \frac{1}{2^i} \frac{\rho_i(x_i, y_i)}{1 + \rho_i(x_i, y_i)} < r \right\}
+	\]
+	יהי $M \in \NN$ כך ש־$\sum_{i = M + 1}^{\infty} \frac{1}{2^i} \frac{\rho_i(x_i, y_i)}{1 + \rho_i(x_i, y_i)} < \frac{r}{2}$, כלומר נחסום את טור הזנב של המטריקה $\rho$.
+	תהי $V \subseteq Z$ המוגדרת על־ידי,
+	\[
+		V
+		= \left\{ (y_1, \dots, y_M) \in \prod_{i = 1}^M \mid \sum_{i = 1}^M \frac{1}{2^i} \frac{\rho_i(x_i, y_i)}{1 + \rho_i(x_i, y_i)} < \frac{r}{2} \right\}
+	\]
+	ואנו טוענים כי $V \times \prod_{i = M + 1}^\infty X_i \subseteq B_r(x)$.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
