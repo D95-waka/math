@@ -1,0 +1,71 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 1 Answer Sheet --- Logic Theory (2), 80424}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+Let us assume that $D$ is an ultrafilter on given set $X$.
+
+\subquestion{}
+Suppose that there is some $s \in D$ such that $|s| < \omega$, we will show that $D$ is principal.
+\begin{proof}
+	We will assume that $s$ is minimal in relation to cardinality in $D$, otherwise let us choose the minimal such $s$ by using the well ordering principle.
+	There is a unique such $s \in D$, otherwise $|s| = |s'|$ and $|s \cap s'| < |s|$, a contradiction to the minimality of the cardinality of $s$. \\
+	For every $x \in D$, there is some $y \in D$ such that $y \subseteq x \cap s$, but by $s$ minimality, $y = x \cap s$, hence $s \subseteq x$.
+	In the other direction, if $s \subseteq x$, then $x \in D$ by filter properties. \\
+	Therefore $D = \{ x \in \Pp(X) \mid s \subseteq x \}$, $D$ is a principle ultrafilter defined by $s$.
+\end{proof}
+
+\subquestion{}
+We will show that if $D \subseteq \Pp(I)$ is a principal ultrafilter, $\langle \Mm_i \mid i \in I \rangle$ is a sequence of $L$-structures, then $\Nn = \prod_{i \in I} \Mm_i / D \cong M_i$ for some $i \in I$.
+\begin{proof}
+	Let $s \subseteq I$ be the defining set for $D$, and let us fix $i \in s$.
+	Let $f : N \to M_i$ such that $f({[g]}_D) = g(i)$.
+	$f$ is well defined, as every for every $h, h' \in [h]$, it is follows that $h \restriction s = h' \restriction s$ by $D$'s definition as principle.
+
+	We will show that $f$ is an isomorphism between $\Nn$ and $\Mm_i$.
+	$L$-constants are being preserved directly from definition of ultra-products.
+	Assume $F \in \operatorname{Func}_{L, n}$, and $t_0, \dots, t_{n - 1} \in \operatorname{term}_L$, then,
+	\[
+		f(F^\Nn(t_0^\Nn, \dots, t_{n - 1}^\Nn))
+		= f([\{ F^{\Mm_j}(t_0^{\Mm_j}, \dots, t_{n - 1}^{\Mm_j}) \mid j \in I \}])
+		= F^{\Mm_i}(t_0^{\Mm_i}, \dots, t_{n - 1}^{\Mm_i})
+	\]
+	meaning $f$ preserves terms.
+	Let $R \in \operatorname{rel}_{L, n}$, and let $t_0, \dots, t_{n - 1} \in \operatorname{term}_L$, then,
+	\[
+		\Nn \models R(t_0, \dots, t_{n - 1})
+		\iff \{ j \in I \mid \langle t_0^{\Mm_j}, \dots, t_{n - 1}^{\Mm_j} \rangle \in R^{\Mm_j} \} \in D
+		\implies \langle t_0^{\Mm_j}, \dots, t_{n - 1}^{\Mm_j} \rangle \in R^{\Mm_i}
+	\]
+	We conclude that $f$ is indeed a structures isomorphism.
+\end{proof}
+
+\question{}
+We will show that if $F$ is a filter on a set $X$ such that if $s \in F$ then $s$ is infinite, then there is a non-principle ultrafilter extending $F$.
+\begin{proof}
+	Initially, we claim that there is no $x \in F$ such that $|x|, |x^C| \ge \omega$, when $x^C = X \setminus x$.
+	If there is one, then $\emptyset \subseteq x \cap x^C = \emptyset$ is in $F$, in contradiction to $F$ being a filter.
+	We define the ultrafilter $U = \{ x \subseteq X \mid |x| \ge \omega \}$, this is indeed an ultrafilter as noted in lecture.
+	it is sufficient to show that $F \subseteq U$.
+	Indeed, if $s \in F$ then $|s| \ge \omega$, implies that $s \in U$.
+
+	We found an ultrafilter extending $F$, it is required to prove that $U$ is not a principle ultrafilter as well.
+	We will assume otherwise, then it is follows that there is $S \subseteq X$ such that $\forall x, S \subseteq x \iff x \in U$.
+	Let $a \in S$ be an element, then $b = X \setminus \{a\}$ is a set such that $|b| \ge \omega$, implies that $b \in U$, a contradiction as $S \not\subseteq b$.
+\end{proof}
+
+\question{}
+\subquestion{}
+Let $\Nn = (\NN; R^\Nn)$ be graph such that $(a, b) \in R^\Nn \iff |b - a| = 1$.
+Let $D$ be a non-principle ultrafilter on $\NN$ (An example of one is the construction from exercise 2).
+Let $\Mm = \Nn^\NN / D$.
+We will prove that $\Mm$ is not path-connected.
+\begin{proof}
+	TODO
+\end{proof}
+
+\end{document}
