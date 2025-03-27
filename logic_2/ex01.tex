@@ -12,11 +12,11 @@ Let us assume that $D$ is an ultrafilter on given set $X$.
 \subquestion{}
 Suppose that there is some $s \in D$ such that $|s| < \omega$, we will show that $D$ is principal.
 \begin{proof}
-	We will assume that $s$ is minimal in relation to cardinality in $D$, otherwise let us choose the minimal such $s$ by using the well ordering principle.
+	We will assume that $s$ is minimal in relation to cardinality in $D$, otherwise let us choose the minimal such $s$ by using the well ordering principal.
 	There is a unique such $s \in D$, otherwise $|s| = |s'|$ and $|s \cap s'| < |s|$, a contradiction to the minimality of the cardinality of $s$. \\
 	For every $x \in D$, there is some $y \in D$ such that $y \subseteq x \cap s$, but by $s$ minimality, $y = x \cap s$, hence $s \subseteq x$.
 	In the other direction, if $s \subseteq x$, then $x \in D$ by filter properties. \\
-	Therefore $D = \{ x \in \Pp(X) \mid s \subseteq x \}$, $D$ is a principle ultrafilter defined by $s$.
+	Therefore $D = \{ x \in \Pp(X) \mid s \subseteq x \}$, $D$ is a principal ultrafilter defined by $s$.
 \end{proof}
 
 \subquestion{}
@@ -24,7 +24,7 @@ We will show that if $D \subseteq \Pp(I)$ is a principal ultrafilter, $\langle \
 \begin{proof}
 	Let $s \subseteq I$ be the defining set for $D$, and let us fix $i \in s$.
 	Let $f : N \to M_i$ such that $f({[g]}_D) = g(i)$.
-	$f$ is well defined, as every for every $h, h' \in [h]$, it is follows that $h \restriction s = h' \restriction s$ by $D$'s definition as principle.
+	$f$ is well defined, as every for every $h, h' \in [h]$, it is follows that $h \restriction s = h' \restriction s$ by $D$'s definition as principal.
 
 	We will show that $f$ is an isomorphism between $\Nn$ and $\Mm_i$.
 	$L$-constants are being preserved directly from definition of ultra-products.
@@ -45,7 +45,7 @@ We will show that if $D \subseteq \Pp(I)$ is a principal ultrafilter, $\langle \
 \end{proof}
 
 \question{}
-We will show that if $F$ is a filter on a set $X$ such that if $s \in F$ then $s$ is infinite, then there is a non-principle ultrafilter extending $F$.
+We will show that if $F$ is a filter on a set $X$ such that if $s \in F$ then $s$ is infinite, then there is a non-principal ultrafilter extending $F$.
 \begin{proof}
 	Initially, we claim that there is no $x \in F$ such that $|x|, |x^C| \ge \omega$, when $x^C = X \setminus x$.
 	If there is one, then $\emptyset \subseteq x \cap x^C = \emptyset$ is in $F$, in contradiction to $F$ being a filter.
@@ -53,7 +53,7 @@ We will show that if $F$ is a filter on a set $X$ such that if $s \in F$ then $s
 	it is sufficient to show that $F \subseteq U$.
 	Indeed, if $s \in F$ then $|s| \ge \omega$, implies that $s \in U$.
 
-	We found an ultrafilter extending $F$, it is required to prove that $U$ is not a principle ultrafilter as well.
+	We found an ultrafilter extending $F$, it is required to prove that $U$ is not a principal ultrafilter as well.
 	We will assume otherwise, then it is follows that there is $S \subseteq X$ such that $\forall x, S \subseteq x \iff x \in U$.
 	Let $a \in S$ be an element, then $b = X \setminus \{a\}$ is a set such that $|b| \ge \omega$, implies that $b \in U$, a contradiction as $S \not\subseteq b$.
 \end{proof}
@@ -61,11 +61,81 @@ We will show that if $F$ is a filter on a set $X$ such that if $s \in F$ then $s
 \question{}
 \subquestion{}
 Let $\Nn = (\NN; R^\Nn)$ be graph such that $(a, b) \in R^\Nn \iff |b - a| = 1$.
-Let $D$ be a non-principle ultrafilter on $\NN$ (An example of one is the construction from exercise 2).
+Let $D$ be a non-principal ultrafilter on $\NN$ (An example of one is the construction from exercise 2).
 Let $\Mm = \Nn^\NN / D$.
 We will prove that $\Mm$ is not path-connected.
 \begin{proof}
-	TODO
+	Let us define $a = [0], b = [id]$, in the sense that the constant valued function $f(n) = 0$, it derived that $f \in a$.
+	We claim that there is no finite path between $a, b \in N$.
+	We assume otherwise, and define $\langle [v_i] \mid i < n \rangle$ for some $n < \omega$, such that $([v_i], [v_{i + 1}]) \in R^\Nn$ for every $i < n$, and $[v_0] = a, [v_{n - 1}] = b$.
+	$D$ is non-principal then there is some $i < \omega$ such that $v_i(i)$ testifies to the relation, and by the last exercise $i$ is as large as we desire, then we assume $i > n$.
+	But $v_0(i) = 0, v_{n - 1}(i) = i$, and by the relation definition $v_j(i) = j$ for every $0 \le j \le n$, it is implies that $i = v_{n - 1}(i) < n < i$, a contradiction.
+	We conclude that $\Mm$ is not path-connected.
 \end{proof}
+
+\subquestion{}
+Let $\Rr = (\RR; +, \cdot, 0, 1, <)$.
+Let $D$ be a non-principal ultrafilter on $\NN$, and let $\Rr^* = \Rr^\NN / D$. \\
+We will show that in $\Rr^*$ there is an infinitesimal element, namely $\epsilon \in R^*$ such that $\forall n \in \NN, 0 < \epsilon < \frac{1}{n}$.
+\begin{proof}
+	Let $d \in D$ be an unbounded subset of $\NN$, and let $r : \NN \to \RR$ such that $(r \restriction d)(n) = \frac{1}{n + 1}$,
+	We define $\epsilon = {[r]}_{\Rr^*}$.
+	We observe that $1^{\Rr^*} = [\{ \langle n, 1 \rangle \mid n \in \NN \}]$ by definition, and it is follows that ${(\frac{1}{n})}^{\Rr^*} = [\{ \langle n, \frac{1}{n} \rangle \mid n \in \NN \}]$.
+	Let $m \in \NN$ be some number, we will show that $\Rr^* \models \epsilon < \frac{1}{n}$,
+	\[
+		\Rr^* \models \epsilon < \frac{1}{n}
+		\iff \{ n \in \NN \mid \RR \models \epsilon < \frac{1}{m} \} \in D
+		\impliedby \{ n \in d \mid \epsilon(n) = \frac{1}{m + 1} < \frac{1}{m} \} \in D
+	\]
+	and by $d$'s definition the statement indeed holds.
+	Lastly we will note that $\Rr^* \models 0 < \epsilon$, it is derived by the same method.
+\end{proof}
+
+\question{}
+We will define a filter $F$ on $X$ as $\sigma$-complete if and only if for every $\{ s_\alpha \mid \alpha < \omega \} \subseteq F$, $\bigcap_{\alpha < \omega} s_\alpha \in F$.
+
+\subquestion{}
+We will show that if $F$ if a $\sigma$-complete ultrafilter and $|X| = \omega$ then $F$ is principal.
+\begin{proof}
+	An answer using AC without necessity, \\
+	Let $\{ s_\alpha \mid \alpha < \omega \} \subseteq F$ be some collection, and let us define $t_0 = s_0$ and for every $\alpha < \omega$, $t_{\alpha + 1} = s_\alpha \cap t_\alpha$.
+	We also define $t_\omega = \bigcap_{\alpha < \omega} t_\alpha$, this is indeed a set, and $\in F$ in particular, due to $F$ being $\sigma$-complete.
+	The item $t_\omega$ is a supremum in relation of $\supseteq$ in the chain $\langle t_\alpha \mid \alpha < \omega \rangle$, and it follows that every chain has such supremum.
+	By Zorn's lemma we conclude that there is $s_m \in F$ which is maximal according to the relation $\supseteq$, then $\forall s \in F, s_m \subseteq s$.
+	If $s_m \subseteq s$ for any $s \subseteq X$, then by filters properties $s \in F$, concluding that $F = \{ s \subseteq X \mid s_m \subseteq s \}$.
+
+	We can also use the well-founded order of $\subseteq$ of $X$ and take a minimal of it, omitting the part of Choice axiom.
+
+	We can also assume that it is non-principal, therefore for every $x \in X$, $X \setminus \{x\} \in F$ (as it is an ultrafilter), then $\bigcap_{\alpha < \omega} X \setminus \{ x_\alpha \} = \emptyset \in F$, a contradiction.
+\end{proof}
+
+\subquestion{}
+We will provide an example of a $\sigma$-complete ultrafilter non-principal filter on an infinite set.
+\begin{solution}
+	Let $\mu < \kappa$ be cofinal cardinals such that $\omega_1 < \mu$.
+	We define $U = \{ \delta < \kappa \mid \mu < \delta \}$.
+	This is indeed an ultrafilter as concluded from the cofinality of $\mu$, and it is non-principal as derived from extension of question 2.
+	It is clear that $U$ is $\sigma$-complete, as $\omega_1$ intersections are preserving cofinality for $\mu$.
+\end{solution}
+
+\subquestion{}
+We will show that if $\Mm_i = (X_i, <_i)$ are nonempty well-ordered sets for $i \in I$ and $D$ is a $\sigma$-complete ultrafilter on $I$, then $\Nn = \prod_{i \in I} \Mm_i / D$ is well-ordered.
+\begin{proof}
+	Using Löwenheim–Skolem we can assume without loss of generality that $\Nn$ is a countable model.
+	Let $\{ [f_j] \in N \mid j < J \}$ be some collection, we will show that there if $[f] \in Y$ minimal in $<^\Nn$.
+	Let $f(i) = \min_{<^{\Mm_i}} \{ f_j(i) \mid j < J \}$, this definition holds as $<^{\Mm_i}$ is a well-order.
+	By $\sigma$-completeness we deduce that $\{ i < I \mid f_j(i) = f(i), j < J \} = \bigcap_{j < J} \{ i < I \mid f_j(i) = f(i) \}$,
+	implying that indeed $[f] \in N$, concluding our claim.
+\end{proof}
+
+\subquestion{}
+We will show that the statement of part c does not hold without the assumption that $D$ is $\sigma$-complete.
+\begin{solution}
+	Let $\Nn = {(\NN; <)}^{\NN} / D$ for the ultrafilter defined in question 2.
+	It is clear that $\Nn$ fulfills the requirements, and that $D$ is not $\sigma$-complete.
+	We will construct a set and show there is no minimum in it.
+	Let $s = \{ [f] : \NN \to \NN \mid \forall n \in \NN f(n) \le f(n + 1) \} \subseteq N$, and let $[f] \in s$, we choose the function $[g] \in s$ such that $f(n) = g(n)$ for $n > M \in \NN$, and $g(n) = f(M)$ otherwise.
+	Its follows that $[g] <^{\Nn} [f]$, therefore $f$ is not minimal, we conclude that indeed $s$ witnessing that $<^{\Nn}$ is not a well-order.
+\end{solution}
 
 \end{document}

@@ -175,7 +175,7 @@
 
 	\newcommand{\subquestion}[1][0]{
 		\ifthenelse{#1 = 0}{}{\setcounter{sub_question}{#1}}
-		\subsection{\alph{sub_question}}
+		\subsection{Part \alph{sub_question}}
 		\addtocounter{sub_question}{1}
 	}
 \else
