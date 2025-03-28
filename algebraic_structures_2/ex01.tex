@@ -1,0 +1,62 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 01 --- מבנים אלגבריים (2), 80446}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+תהי $L / K$ הרחבת שדות כך ש־$[L : K] = 7$.
+נראה שלכל איבר $\alpha \in L \setminus K$ מתקיים $K[\alpha] = L$.
+\begin{proof}
+	נבחין כי מהגדרה $K[\alpha] \subseteq L$, וכן כמובן $K \subseteq K[\alpha]$.
+	נוכל להניח גם ש־$K[\alpha]$ הוא שדה, זאת שכן $\alpha$ הפיך, ולכן מתקיים $[K : K[\alpha]] \cdot [K[\alpha] : L] = 7$.
+	נבחין כי $[K : K[\alpha]] > 1$, אחרת $\alpha \in K$, ולכן מראשוניות נסיק ש־$[K[\alpha] : L] = 1$, כלומר $K[\alpha] = L$.
+\end{proof}
+
+\question{}
+יהי $\FF$ שדה סופי,
+נראה שיש $p$ ראשוני ו־$n \in \NN$ כך ש־$|\FF| = p^n$.
+\begin{proof}
+	נגדיר $p = \operatorname{char} \FF$, אילו $p = 0$ אז $|\FF| = \infty$ בסתירה, לכן נסיק ש־$p \in \NN$.
+	נוכל אם כן להניח ש־$p$ ראשוני ומלמה מההרצאה נובע אף ש־$\FF_p \subseteq \FF$.
+	אילו קיים ראשוני $q \mid |\FF|$, אז קיים איבר בשדה מהסדר הזה, לכן נסיק ש־$q = p$ בלבד, ולכן $|\FF| = p^n$ עבור איזשהו $n \in \NN$.
+\end{proof}
+
+\question{}
+תהי $L / K$ הרחבת שדות ותהי $S = \{ s_i \mid 1 \le i \le m \} \subseteq L$.
+
+\subquestion{}
+נוכיח כי יש $K$־הומומורפיזם יחיד $\varphi : K[t_1, \dots, t_m] \to K[S]$ כך ש־$\varphi(t_i) = s_i$ לכל $i$.
+\begin{proof}
+	נניח כי $\varphi, \psi$ הומומורפיזמים המקיימים את הנתונים, אז $\forall i, \varphi(t_i) = \psi(t_i)$ מהגדרה.
+	שתי ההעתקות סגורות לחיבור ולכפל, לכן אם $p_1, p_2 \in K[S]$ כך ש־$\varphi(p_j) = \psi(p_j)$ אז $\varphi(\alpha p_1 + \beta p_2) = \psi(\alpha p_1 + \beta p_2)$.
+	לכן נותר שנבדוק הזדהות במונומים מתוקנים, כלומר איבר מהצורה $t_1^{\beta_1} \cdots t_m^{\beta_m}$,
+	\[
+		\varphi(t_1^{\beta_1} \cdots t_m^{\beta_m})
+		= \varphi(t_1^{\beta_1}) \cdots \varphi(t_m^{\beta_m})
+		= {\varphi(t_1)}^{\beta_1} \cdots {\varphi(t_m)}^{\beta_m}
+		= {\psi(t_1)}^{\beta_1} \cdots {\psi(t_m)}^{\beta_m}
+		= \psi(t_1^{\beta_1} \cdots t_m^{\beta_m})
+	\]
+	וקיבלנו כי אכן שתי ההעתקות מזדהות על כל התחום, כלומר $\varphi = \psi$.
+\end{proof}
+
+\subquestion{}
+נפריך את הטענה כי יש $K$־הומומורפיזם יחיד $\varphi : K(t_1, \dots, t_m) \to K(S)$ כך ש־$\varphi(t_i) = s_i$ לכל $i$.
+\begin{solution}
+	נבחן את $\varphi : \RR(x) \to K(\{ i \}) = \CC$ עבור $K = \RR, L = \CC$.
+	נניח שקיים $\varphi$ כזה, אז מתקיים $\varphi(x) = i$, ובהתאם נוכל להסיק בדומה לסעיף הקודם ש־$\varphi(f) = f(i)$ לכל פונקציה רציונלית $f \in \RR(x)$.
+	לבסוף נובע $\varphi(\frac{1}{x^2 + 1}) = \frac{1}{i^2 + 1} = \frac{1}{0}$, כלומר הפונקציה לא מוגדרת היטב, וזו סתירה להנחת הקיום שלה.
+\end{solution}
+
+\question{}
+יהי $\FF$ שדה ויהי $f \in \FF[x]$ פולינום מעל השדה.
+
+\subquestion{}
+נוכיח שאם $\deg f = 1$ אז $f$ ראשוני.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
