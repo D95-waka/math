@@ -78,11 +78,7 @@
 		\forall n, m \in \{ n_k \mid k > N \},\ \int_{-\pi}^{\pi} {(\sin(nt) - \sin(mt))}^2\ dt < \epsilon^2
 		\implies \int_{-\pi}^{\pi} \sin^2(nt) + \sin^2(mt) - 2\sin(nt)\sin(mt)\ dt < \epsilon^2
 	\]
-	אבל $2\sin(nt)\sin(mt)$ סימטרית ולכן לא משפיעה על האינטגרל, ונסיק,
-	\[
-		\int_{-\pi}^{\pi} \sin^2(nt)\ dt
-		\le \int_{-\pi}^{\pi} \sin^2(nt) + \sin^2(mt)\ dt < \epsilon^2
-	\]
+	אבל $\int_{-\pi}^{\pi} 2\sin(nt)\sin(mt)\ dt = \im 4 \int_0^{n\pi} \exp(it + i \frac{m}{n} t)\ dt \to 0$ ונסיק שעבור בחירת $k$ מספיק גדולה, מחובר זה זניח.
 	נחשב את האינטגרל $\int_{-\pi}^{\pi} \sin^2(nt)\ dt$,
 	\[
 		\int_{-\pi}^{\pi} \sin^2(nt)\ dt
@@ -91,6 +87,13 @@
 		= \frac{1}{2n} \cdot {\left[ t - \frac{1}{2} \sin(2t) \right]}_{t = -n\pi}^{t = n\pi}
 		= \frac{2n\pi}{2n}
 		= \pi
+	\]
+	לכן נסיק,
+	\[
+		\int_{-\pi}^{\pi} \sin^2(nt) + \sin^2(mt) - 2\sin(nt)\sin(mt)\ dt
+		= 2\pi - 2\int_{-\pi}^{\pi} \sin(nt)\sin(mt)\ dt
+		\to 2\pi
+		< \epsilon^2
 	\]
 	ולכן עבור בחירה $\epsilon = 1$ נקבל סתירה.
 	בהתאם נוכל להסיק שאין תת־סדרת קושי לסדרה שבחרנו, ובפרט ממשפט השקילות לחסימות בהחלט (או לחלופין וריאציה של שאלה 3) נובע שהסדרה לא חסומה לחלוטין.
