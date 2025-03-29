@@ -1,7 +1,7 @@
 \documentclass{article}
 
 % packages
-\usepackage{amsmath, amsthm, thmtools, amsfonts, amssymb, luacode, catchfile, tikzducks, hyperref, ifthen}
+\usepackage{amsmath, amsthm, thmtools, amsfonts, amssymb, luacode, catchfile, hyperref, ifthen}
 \ifcsname c@kobocompile\endcsname
 	\usepackage[a5paper, total={1072pt, 1448pt}, margin=10pt, includeheadfoot]{geometry} % set page margins
 \else
@@ -18,7 +18,6 @@
 	\babelprovide[main, import]{hebrew}
 	\babelprovide{rl}
 \fi
-%\babelfont{rm}{Libertinus Serif}
 \babelfont{rm}[Renderer=Harfbuzz]{Libertinus Serif}
 \babelfont{sf}{Libertinus Sans}
 \babelfont{tt}{Libertinus Mono}
@@ -50,8 +49,6 @@
 \DeclareMathOperator\cov{Cov}
 
 % commands
-%\renewcommand\qedsymbol{\textbf{מש''ל}}
-%\renewcommand\qedsymbol{\fbox{\emoji{lizard}}}
 \newcommand{\Aa}[0]{\mathcal{A}}
 \newcommand{\Bb}[0]{\mathcal{B}}
 \newcommand{\CC}[0]{\mathbb{C}}
@@ -83,9 +80,6 @@
 	\end{flalign*}
 }
 \newcommand{\maketitleprint}[0]{ \begin{center}
-	%\begin{tikzpicture}[scale=3]
-	%	\duck[graduate=gray!20!black, tassel=red!70!black]
-	%\end{tikzpicture}	
 	\includegraphics[width=6cm]{cover}
 \end{center}
 }
@@ -144,7 +138,6 @@
 	\newtheorem{lemma}[theorem]{למה}
 	\newtheorem{proposition}[theorem]{טענה}
 	\newtheorem*{proposition*}{טענה}
-	%\newtheorem{corollary}[theorem]{אין חלופה עברית}
 
 	\theoremstyle{c_definition}
 	\newtheorem{definition}[theorem]{הגדרה}
