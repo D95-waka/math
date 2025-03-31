@@ -38,7 +38,7 @@
 	\end{enumerate}
 \end{example}
 נראה את ההגדרה הפורמלית של רציפות,
-\begin{definition}[רציפות]
+\begin{definition}[רציפות]\label{function_continuous_definition}
 	תהי $f : X \to Y$ עבור $(X, d), (Y, \rho)$ מרחבים מטריים, אז נאמר ש־$f$ רציפה אם ורק אם לכל $\epsilon > 0$ קיים $\delta > 0$ כך שאם $d(x', x) < \delta$ אז $\rho(f(x'), f(x)) < \epsilon$.
 \end{definition}
 אבל יותר קל לדבר במונחים של קבוצות פתוחות.
@@ -69,7 +69,7 @@
 \begin{notation}
 	איברי $\tau$ יקראו קבוצות פתוחות.
 \end{notation}
-\begin{definition}
+\begin{definition}[קבוצה סגורה]
 	אם $(X, \tau)$ מרחב טופולוגי אז תת־קבוצה $A \subseteq X$ תיקרא סגורה אם $X \setminus A \in \tau$, כלומר המשלים של $A$ היא קבוצה פתוחה.
 \end{definition}
 \begin{example}
@@ -276,6 +276,228 @@
 	\]
 	ואנו טוענים כי $V \times \prod_{i = M + 1}^\infty X_i \subseteq B_r(x)$.
 \end{proof}
+
+\section{שיעור 3 --- 31.3.2025}
+\subsection{סגירות}
+בדיוק כמו במרחבים מטריים, גם במרחב טופולוגי נרצה לדון במניפולציות על קבוצות במרחב, נתחיל בהגדרת הקונספט של סגור של קבוצה במרחב טופולוגי.
+\begin{definition}[סגור של קבוצה במרחב טופולוגי]
+	יהי $(X, \tau)$ מרחב טופולוגי, ותהי קבוצה $A \subseteq X$ תת־קבוצה כשלהי.
+	נגדיר את הסגור של $A$ כקבוצה הסגורה הקטנה ביותר המכילה את $A$, כלומר,
+	\[
+		\overline{A}
+		= \bigcap_{X \setminus F \in \tau} F
+	\]
+\end{definition}
+בהתאם נקבל מספר תכונות ראשוניות ודומות לתכונות שראינו בעבר,
+\begin{lemma}
+	התכונות הבאות מתקיימות,
+	\begin{enumerate}
+		\item $\overline{A \cup B} = \overline{A} \cup \overline{B}$
+		\item $\overline{A \cap B} \subseteq \overline{A} \cap \overline{B}$, כאשר במקרה זה אין בהכרח שוויון.
+	\end{enumerate}
+\end{lemma}
+\begin{example}
+	נראה דוגמה למקרה בו בהכרח אין שוויון,
+	נגדיר $X = \RR$ וכן $A = \QQ, B = \RR \setminus \QQ$, אז מתקיים,
+	\[
+		\emptyset
+		= \overline{\emptyset}
+		= \overline{A \cap B}
+		\subsetneq \overline{A} \cap \overline{B}
+		= \RR \cap \RR
+		= \RR
+	\]
+\end{example}
+\begin{proposition}
+	אם $(X, \tau)$ מרחב טופולוגי ו־$A \subseteq X$, אז,
+	\[
+		x \in \overline{A}
+		\iff \forall U \in \tau, x \in U \rightarrow U \cap A \ne \emptyset
+	\]
+	כלומר נקודה נמצאת בסגור של $A$ אם ורק אם כל קבוצה פתוחה סביב הנקודה לא זרה ל־$A$.
+\end{proposition}
+\begin{proof}
+	נראה את שלילת הטענה, כלומר $x \notin \overline{A} \iff \exists U \in \tau, x \in U \land U \cap A = \emptyset$. \\
+	נניח ש־$x \notin \overline{A}$ ולכן $x \in X \setminus \overline{A}$ אבל $X \setminus \overline{A}$ פתוחה וזרה מהגדרתה ל־$A$. \\
+	בכיוון השני אם יש $U \ni x$ פתוחה כך ש־$U \cap A = \emptyset$ אז $F = X \setminus U$ סגורה ומכילה את $A$, בהתאם $\overline{A} \subseteq F$ ובהכרח $x \notin \overline{A}$.
+\end{proof}
+\begin{definition}[פנים ושפה]
+	נגדיר את הפנים של $A$ להיות, $A^\circ = \bigcup_{U \in \tau, U \subseteq A} U$. \\
+	כלומר הפנים הוא איחוד כל הקבוצות הפנימיות הפתוחות של $A$, ובשל הסגירות של הטופולוגיה לאיחוד, נקבל כך את הקבוצה הפתוחה הגדולה ביותר שחלקית ל־$A$.
+	נגדיר את השפה של $A$ להיות $\partial A = \overline{A} \setminus A^\circ$.
+\end{definition}
+נבחין בהגדרה של סביבה ונשתמש בהגדרה זו כדי להגדיר מונח חדש.
+\begin{definition}[סביבה של נקודה]
+	נאמר ש־$L \subseteq X$ היא סביבה של $x$ אם קיימת קבוצה פתוחה $U \in \tau$ כך ש־$x \in U \subseteq L$.
+\end{definition}
+\begin{definition}[נקודת הצטברות]
+	יהי $(X, \tau)$ מרחב טופולוגי, תהי $A \subseteq X$ תת־קבוצה כלשהי, ו־$x \in A$.
+	נאמר ש־$x$ היא נקודת הצטברות של $A$ אם כל סביבה של $x$ מכילה נקודה מ־$A$ שונה מ־$x$, כלומר,
+	\[
+		\forall U \in \tau, x \in U \implies \exists y \in (U \setminus \{ x \}) \cap A
+	\]
+	נסמן ב־$A'$ את קבוצת נקודות ההצטברות של $A$.
+\end{definition}
+נרצה להסתכל על נקודות הצטברות כנקודות שלא משנה כמה קרוב אנחנו מסתכלים אליהן, עדיין נוכל למצוא בסביבתן נקודות נוספות. במובן הזה ברור שהן נמצאות בקרבת נקודות בפנים, אך עלולות להיות גם נקודות לא פנימיות שמקיימות טענה כזו.
+\begin{proposition}
+	מתקיים $\overline{A} = A \cup A'$.
+\end{proposition}
+\begin{proof}
+	אם $x \in A \cup A'$ אז או $x \in A \subseteq \overline{A}$ או $x \in A'$.
+	ובכל סביבה של $x$ יש נקודה מ־$A$ שונה מ־$x$.
+	בפרט לאור הטענה ש־$\overline{A}$ היא אוסף כל הנקודות שבכל סביבה שלהן המכילה את $A$ בחיתוך לא ריק נובע ש־$A' \subseteq \overline{A}$, לכן נובע ש־$A \cup A' \subseteq \overline{A}$.
+
+	בכיוון השני נניח ש־$x \in \overline{A}$, אז לכל $U \in \tau$ כך ש־$x \in U$ מתקיים $U \cap A \ne \emptyset$.
+	אם $x \in A$ אז בוודאי ש־$x \in A \cup A'$.
+	אם $x \notin A$ אז לכל $U \in \tau$ כך ש־$x \in U$ מתקיים $U \cap A \ne \emptyset$.
+	מ־$x \notin A$ נובע גם ש־$U \setminus \{ x \} \cap A \ne \emptyset$ ולכן $x \in A'$.
+	אז מצאנו ש־$\overline{A} \subseteq A \cup A'$, ונובע משני החלקים ש־$\overline{A} = A \cup A'$.
+\end{proof}
+
+\subsection{השלמות לרציפות}
+ניזכר בהגדרה\ \ref{function_continuous_definition}, נרצה לדון בקונספט של רציפות באופן רחב יותר.
+בהינתן $(Y, \tau_Y)$ מרחב טופולוגי ו־$X$ קבוצה כלשהי, ופונקציה $f : X \to Y$, ניתן להגדיר טופולוגיה על $X$ כך ש־$f$ רציפה. \\
+הקבוצה $\{ f^{-1}(U) \mid U \in \tau_Y \}$ היא תת־בסיס, ואפשר להרחיבה לבסיס ולהגדיר עליו טופולוגיה מושרית מהבסיס על $X$.
+\begin{proposition}
+	$f$ רציפה עבור טופולוגיה זו, וזו הטופולוגיה החלשה ביותר על $X$ עבורה $f$ רציפה.
+\end{proposition}
+בכיוון השני, בהינתן מרחב טופולוגי $(X, \tau_X)$ וקבוצה כלשהי $Y$ יחד עם פונקציה $f : X \to Y$, נוכל להגדיר את $\{ U \subseteq Y \mid f^{-1}(U) \in \tau_X \}$ להיות תת־בסיס וממנו נוכל שוב לבנות בסיס וטופולוגיה על $Y$.
+באופן דומה $f$ רציפה ביחס לטופולוגיה זו וזו הטופולוגיה החזקה ביותר על $Y$ כך ש־$f$ רציפה.
+\begin{proposition}[שקילות לרציפות]
+	יהיו מרחבים טופולוגיים $(X, \tau_X), (X, \tau_Y)$ ותהי $f : X \to Y$, אז התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item $f$ רציפה לפי\ \ref{function_continuous_definition}
+		\item לכל קבוצה סגורה $F \subseteq Y$, $f^{-1}(F)$ סגורה ב־$X$ \\
+			הגדרה זו עוזרת לנו לדון בקבוצות סגורות במקום פתוחות
+		\item אם $\Bb$ בסיס לטופולוגיה של $Y$ אז לכל $B \in \Bb$ מתקיים ש־$f^{-1}(B)$ פתוחה ב־$X$ \\
+			הגדרה זו מאפשרת לנו לדון בבסיסים ובכך לפשט את העבודה עם טופולוגיות
+		\item לכל $x \in X$ ולכל סביבה $W \subseteq Y$ של $f(x)$ מתקיים ש־$f^{-1}(W)$ סביבה של $x$
+		\item קיים כיסוי פתוח ${\{U_\alpha\}}_{\alpha \in \Omega}$ של $X$, כלומר $\forall \alpha, U_\alpha \in \tau, X = \bigcup_{\alpha \in \Omega} U_\alpha$,
+			כך שלכל $\alpha \in \Omega$ מתקיים $f \mid_{U_\alpha} : U_\alpha \to Y$ רציפה.
+		\item קיים כיסוי סגור סופי $X = \bigcup_{i = 1}^n F_i$ עבור $F_i$ סגורות עבור $1 \le i \le n$, כך שכל $f \mid_{F_i} : F_i \to Y$ רציפה.
+		\item לכל $A \subseteq X$ מתקיים $f(\overline{A}) \subseteq \overline{f(A)}$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	$1 \iff 2$:
+	נובע ישירות מהגדרה של משלימים והגדרת הרציפות על קבוצות פתוחות.
+
+	$1 \iff 3$:
+	בכיוון הראשון כל איחוד קבוצות מהבסיס הוא קבוצה פתוחה, ונוכל כך להראות את נכונות הטענה.
+	לכיוון השני כל קבוצה היא איחוד של קבוצות מהבסיס, $U_\alpha$, ו־$f^{-1}(\bigcup U_\alpha) = \bigcup f^{-1}(U_\alpha)$.
+
+	$1 \implies 4$:
+	אם $x \in X$ וכן $f(x) \in W \subseteq Y$ סביבה של $f(x)$ אז קיימת $f(x) \in U \subseteq W$ כך ש־$U$ פתוחה, לכן נובע ש־$x \in f^{-1}(U) \subseteq f^{-1}(W)$ כאשר $f^{-1}(U)$ פתוחה.
+
+	$4 \implies 1$:
+	אם $U \subseteq Y$ פתוחה אז צריך להראות ש־$f^{-1}(U)$ פתוחה.
+	תהי $x \in f^{-1}(U)$, אז $U$ סביבה ל־$f(x)$ ולכן לפי ההנחה $f^{-1}(U)$ היא סביבה של $x$, כלומר קיימת $x \in V_x \subseteq f^{-1}(U)$ פתוחה, ונסיק ש־$f^{-1}(U) = \bigcup_{x \in f^{-1}(U)} V_x$ פתוחה.
+
+	$1 \implies 5$:
+	נוכל לבחור כיסוי טריוויאלי.
+
+	$5 \implies 1$:
+	נניח שיש כיסוי פתוח ${\{U_\alpha\}}_{\alpha \in \Omega}$ של $X$ כך ש־$f \mid_{U_\alpha} : U_\alpha \to Y$ רציפה לכל $\alpha \in \Omega$.
+	תהי $W \subseteq Y$ פתוחה, אז $f^{-1}(W) \subseteq \bigcup_{\alpha \in \Omega} f^{-1} \mid_{U_\alpha}(W)$.
+	מההנחה $U_\alpha \cap f^{-1}(W) = f^{-1} \mid_{U_k}(W)$ פתוחה ב־$U_\alpha$ ומשום ש־$U_\alpha$ פתוחה ב־$X$ נובע ש־$f^{-1} \mid_{U_\alpha}(W)$ פתוחה ב־$X$ ולכן $f^{-1}(W)$ פתוחה ב־$X$.
+
+	$1 \implies 6$:
+	נבחר את $X$ ככיסוי סגור של עצמה.
+
+	$6 \implies 1$:
+	נניח ש־$X = \bigcup_{i = 1}^n F_i$ כיסוי סגור סופי של $X$, ונניח גם שלכל $i$, $f \mid_{F_i} : F_i \to Y$ רציפה.
+	כעת ההוכחה דומה למהלך שעשינו ב־$5 \implies 1$, אבל כעת אפיון רציפות בעזרת $L$, ואיחוד סופי על סגורות הוא סגור.
+
+	$1 \implies 7$:
+	נתון כי $f$ רציפה, אנו רוצים להראות ש־$f(\overline{A}) = \overline{f(A)}$.
+	יהי $x \in \overline{A}$, נראה כי $f(x) \in \overline{f(A)}$,
+	נניח בשלילה ש־$f(x) \notin \overline{f(A)}$, אז יש סביבה פתוחה $f(x) \in U$ כך ש־$U \cap f(A) = \emptyset$.
+	$f$ רציפה ולכן $f^{-1}(U)$ פתוחה ב־$X$ וקיים $A \cap f^{-1}(U) = \emptyset$,
+	אבל $x \in f^{-1}(U)$ וקיבלנו $x \notin \overline{A}$.
+
+	$7 \implies 2$:
+	תהי $F \subseteq Y$ סגורה, אז,
+	\[
+		f(\overline{f^{-1}(F)})
+		\overset{\text{ההנחה}}{\subseteq}
+		\subseteq \overline{F}
+		\overset{\text{$F$ סגורה}}{=} F
+		\implies \overline{f^{-1}(F)}
+		\subseteq f^{-1}(F)
+	\]
+	מהגדרת סגור נוכל להסיק ש־$f^{-1}(F) \subseteq \overline{f^{-1}(F)}$, לכן,
+	\[
+		\overline{f^{-1}(F)}
+		= f^{-1}(F)
+	\]
+	ובפרט $f^{-1}(F)$ סגורה ב־$X$.
+\end{proof}
+נבחן תכונה מעניינת שלא תשרת אותנו רבות, אך כן מעלה שאלות,
+\begin{definition}[מרחב כוויץ]
+	יהי $X$ מרחב טופולוגי, נאמר ש־$X$ כוויץ (Contractible) אם יש פונקציה רציפה $f : I \times X \to X$ עבור $I = [0, 1]$ כך ש־$\forall x \in X, f(0, x) = x$ וקיימת נקודה $x_1 \in X$ כך ש־$\forall x \in X, f(1, x) = x_1$. \\
+	נסמן גם $f_t(t, x)$ כאשר $f_t : X \to X$, נקבל $f_0 = Id$ וכן $f_1$ הפונקציה הקבועה $x \mapsto x_1$.
+\end{definition}
+\begin{example}
+	נגדיר $X = I$ ואת $f : I \times I \to I$ המוגדרת על־ידי $f(t, x) = (1 - t)x$. \\
+	נגדיר $X = \RR$ ואת $f : I \times \RR \to \RR$ על־ידי $f(t, x) = (1 - t)x$ ונקבל שגם $\RR$ כוויצה בדיוק באותו האופן.
+\end{example}
+\begin{exercise}
+	הראו כי $S^1$ לא כוויץ.
+\end{exercise}
+נחזור לדבר על פונקציות רציפות.
+\begin{exercise}
+	נתבונן ב־$f : (\RR, \tau_\RR) \to (\RR^\NN, \tau)$ כך ש־$f(x)(i) = x$ לכל $i \in \NN$. \\
+	הראו ש־$f$ רציפה או לא רציפה כהעתקה כאשר $\tau$ טופולוגיית המכפלה, וכאשר $\tau$ טופולוגיית הקופסה.
+\end{exercise}
+\begin{solution}
+	נתבונן ב־$U = \prod_{n = 1}^\infty (-\frac{1}{n}, \frac{1}{n})$, זוהי קבוצה פתוחה, אך $f^{-1}(U) = 0$, וזו כמובן לא קבוצה פתוחה, לכן בטופולוגיית הקופסה היא לא רציפה, לכן בטופולוגיית הקופסה היא לא רציפה. \\
+	לעומת זאת בטופולוגיית המכפלה היא אכן רציפה.
+\end{solution}
+\begin{definition}[הומיאומורפיזם]
+	הומיאומורפיזם בין שני מרחבים טופולוגיים $X, Y$ היא העתקה $f : X \to Y$ כך ש־$f$ חד־חד ערכית ועל, $f$ רציפה ו־$f^{-1}$ רציפה אף היא. \\
+	$X$ ו־$Y$ יקראו הומיאומורפיות אם יש הומיאומורפיזם $f : X \to Y$ ביניהן.
+\end{definition}
+אנו נרצה להסתכל על הומיאומורפיזם כאיזומורפיזם של מרחבים טופולוגיים.
+\begin{example}
+	נגדיר $X = \RR, Y = (0, 1)$, ואת $f : \RR \to (0, 1)$ המוגדרת על־ידי $x \mapsto \frac{e^x}{e^x + 1}$, אז,
+	\[
+		f'(x)
+		= \frac{e^x(e^x + 1) - e^x e^x}{{(e^x + 1)}^2}
+		= \frac{e^x}{{(e^x + 1)}^2}
+		> 0
+	\]
+	ולכן $f$ גזירה, ואף חד־חד ערכית, לבסוף $f(x) \xrightarrow{x \to -\infty} 0, f(x) \xrightarrow{x \to \infty} 1$ ולכן היא גם על, ואכן המרחבים הומיאומורפים.
+\end{example}
+\begin{example}
+	נגדיר את $\eta = \{ z = x + iy \in \CC \mid x, y \in \RR, y > 0 \}$ ואת $D = \{ z \in \CC \mid |z| < 1 \}$.
+	נגדיר גם $\psi : \eta \to D$ על־ידי $z \mapsto \frac{z - i}{z + i}$. \\
+	ההוכחה כי זהו אכן הומיאומורפיזם מושארת לקורא.
+\end{example}
+נבחין כי הדוגמה האחרונה אינה אלא העתקת מביוס, העתקה קונפורמית ואנליטית.
+\begin{example}
+	נבחן את $S^1 = \{ z \in \CC \mid |z| = 1 \}$ ואת $J = [0, 2\pi]$, אנו טוענים כי אין הומיאומורפיזם בין שני המרחבים הללו. \\
+	נבחן את הפונקציה $t \mapsto e^{it}$ לדוגמה,
+	$[0, 2\pi] \to S^1$ לא חד־חד ערכית, מהצד השני $[0, 2\pi) \to S^1$ חד־חד ערכית ועל, אבל 
+
+	נניח שיש העתקה חד־חד ערכית $\alpha : J \to S^1$, ונוציא מ־$J$ נקודה יחידה, אז נקבל איחוד זר של שתי קבוצות זרות, אך מן הצד השני הוצאת נקודה יחידה מהמעגל משאיר אותו כקבוצה קשירה.
+	ההוכחה המלאה אומנם סבוכה יותר, אך הצבענו פה על הבדל מהותי בין שני המרחבים.
+\end{example}
+\begin{exercise}
+	הראו כי $\RR$ ו־$\RR^2$ לא הומיאומורפים. \\
+	האם גם $\RR^2$ ו־$\RR^3$ הומיאומורפים?
+\end{exercise}
+\begin{definition}[העתקה פתוחה וסגורה]
+	העתקה $f : X \to Y$ תיקרא העתקה פתוחה (סגורה) אם לכל $U \subseteq X$ פתוחה (סגורה) מתקיים $f(U) \subseteq Y$ פתוחה (סגורה) ב־$Y$.
+\end{definition}
+\begin{example}
+	$f : \RR \to \RR$ המוגדרת על־ידי $f(x) = x^2$ היא רציפה, סגורה ולא פתוחה.
+\end{example}
+\begin{example}
+	השיכון $(0, 1) \hookrightarrow \RR$ המוגדר על־ידי $x \mapsto x$ הוא רציף, תפוח אבל לא סגור.
+\end{example}
+\begin{example}
+	$\{ a, b \} \to \{ a, b \}$ המוגדרת טריוויאלית היא פתוחה, סגורה אך לא רציפה.
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
