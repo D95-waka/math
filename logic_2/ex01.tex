@@ -47,15 +47,14 @@ We will show that if $D \subseteq \Pp(I)$ is a principal ultrafilter, $\langle \
 \question{}
 We will show that if $F$ is a filter on a set $X$ such that if $s \in F$ then $s$ is infinite, then there is a non-principal ultrafilter extending $F$.
 \begin{proof}
-	Initially, we claim that there is no $x \in F$ such that $|x|, |x^C| \ge \omega$, when $x^C = X \setminus x$.
-	If there is one, then $\emptyset \subseteq x \cap x^C = \emptyset$ is in $F$, in contradiction to $F$ being a filter.
-	We define the ultrafilter $U = \{ x \subseteq X \mid |x| \ge \omega \}$, this is indeed an ultrafilter as noted in lecture.
-	it is sufficient to show that $F \subseteq U$.
-	Indeed, if $s \in F$ then $|s| \ge \omega$, implies that $s \in U$.
+	The statement that $F$ has not finite elements is of first-order then can be using to separate on the family of all extensions of $F$,
+	by Zorn's-lemma we get some ultrafilter $D$ such that $F \subseteq D$ and $\forall s \in D \implies |s| \ge \omega$.
 
-	We found an ultrafilter extending $F$, it is required to prove that $U$ is not a principal ultrafilter as well.
-	We will assume otherwise, then it is follows that there is $S \subseteq X$ such that $\forall x, S \subseteq x \iff x \in U$.
-	Let $a \in S$ be an element, then $b = X \setminus \{a\}$ is a set such that $|b| \ge \omega$, implies that $b \in U$, a contradiction as $S \not\subseteq b$.
+	We will prove that is $D$ is not principal by assuming it is in order to get contradiction.
+	We denote $s_0 \subseteq F$ as the generating element of $D$, meaning $s \in D \iff s_0 \subseteq s$.
+	We assume that $\emptyset \subsetneq s_1 \subsetneq s_0$, then $s_1 \not\supseteq s_0 \implies s_1 \notin D \iff X \setminus s_1 \in D \implies (X \setminus s_1) \cap s_0 \in D$.
+	But $s_0 \setminus s_1 \subsetneq s_0$, it follows that $s_0 \setminus s_1 \notin D$, then there is not such $s_1$, meaning that $s_0$ is a singleton.
+	Lastly, it derives that $|s_0| = 1 < \omega$, contradicting $D$'s definition.
 \end{proof}
 
 \question{}
