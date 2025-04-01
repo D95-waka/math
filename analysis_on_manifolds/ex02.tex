@@ -1,0 +1,155 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 02 --- אנליזה על יריעות, 80426}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+תהי $U$ קבוצה פתוחה וקשירה ב־$\RR^n$, בשאלה זו נוכיח ש־$U$ קשירה באופן חלק.
+
+\subquestion[2]
+נגדיר את היחס $\sim \subseteq U^2$ על־ידי $x \sim y$ אם ורק אם יש מסילה חלקה בין שתי הנקודות ב־$U$. \\
+נראה שזהו יחס שקילות.
+\begin{proof}
+	נראה שמתקיימים שלושת התנאים המגדירים יחס שקילות.
+	\begin{itemize}
+		\item \textbf{רפלקסיביות}:
+			יהי $x \in U$, אז המסילה $\gamma : [x, x] \to x$ היא מסילה חלקה באופן ריק, ולכן נוכל להסיק ש־$x \sim x$.
+		\item \textbf{סימטריה}:
+			יהיו $x, y \in U$ כך ש־$x \sim y$, ותהי $\gamma : [0, 1] \to U$ המעידה על כך.
+			נגדיר את המסילה $\mu : [0, 1] \to U$ כך ש־$\mu(t) = \gamma(1 - t)$.
+			נבחין כי $\mu(0) = y, \mu(1) = x$ וממשפט הרכבת פונקציות וחלקות $1 - t$ נוכל להסיק ש־$\mu$ חלקה, ובכך מעידה על $y \sim x$.
+		\item \textbf{טרנזיטיביות}:
+			נניח ש־$x \sim y, y \sim z$ וכן ש־$\gamma_1, \gamma_2 : [0, 1] \to U$ מעידות על כך בהתאמה.
+			נגדיר את הפונקציה $h : [0, 1] \to [0, 1]$ המוגדרת על־ידי,
+			\[
+				h(x) = \begin{cases}
+					e \exp(-\frac{1}{x^2}) & x \ne 0 \\
+					0 & \text{else}
+				\end{cases}
+			\]
+			בהרצאה ראינו כי היא חלקה וכן שהיא מתאפסת באפס, ונגדיר מסילה חדשה $\mu : [0, 2] \to U$ על־ידי,
+			\[
+				\mu(t)
+				= \begin{cases}
+					\gamma_1(1 - h(1 - t)) & t \in [0, 1] \\
+					\gamma_2(h(t - 1)) & \text{else}
+				\end{cases}
+			\]
+			מהגדרתה כהרכבת פונקציות חלקות היא חלקה, אך עלינו להצדיק את הטענה כי היא חלקה גם ב־$t = 1$.
+			אנו יודעים כי $\gamma_1(1) = \gamma_2(0) = y$ מהגדרתן, וכן ממשפט נגזרת הרכבת פונקציות אנו יודעים כי $\lim_{t \to 1^-} \mu(t) = 0 = \lim_{t \to 1^+} \mu(t)$ מבדיקה ישירה והטענות מההרצאה על $h$.
+	\end{itemize}
+	בהתאם מצאנו כי $\sim$ אכן יחס שקילות.
+\end{proof}
+
+\subquestion{}
+תהי $A = U / \sim$, נראה שכל $W \in A$ היא פתוחה.
+\begin{proof}
+	נתחיל ונבהיר ש־$A$ היא חלוקה של $U$ ולכן חלוקה של הנקודות בה לקבוצות, בהתאם $W \subseteq U$ קבוצה כלשהי, ונרצה להראות שהיא פתוחה.
+	תהי $x \in W$ נקודה כלשהי, ויהי $B(x, \epsilon) \subseteq U$ עבור $\epsilon > 0$ כלשהו, אנו יודעים כי קיים כדור כזה מפתיחות $U$ ב־$\RR^n$.
+	לכל $y \in B(x, \epsilon)$ נבנה $\gamma : [0, 1] \to U$ על־ידי $\gamma(t) = (1 - t)x + t y$, זוהי כמובן מסילה חלקה ומעידה על $x \sim y$.
+	לכן נוכל להסיק ש־$B(x, \epsilon) \subseteq W$, ובהתאם $W$ היא קבוצה פתוחה.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$A = \{ U \}$.
+\begin{proof}
+	נראה שכל $W \in A$ היא קבוצה סגורה.
+	תהי ${\{ x_i \}}_{i \in \NN} \subseteq W$ כך ש־$\lim_{i \to \infty} x_n = x$ עבור $x \in U$.
+	נוכל לבנות סדרת מסילות $\gamma_i : [0, 1] \to U$ המעידות על $x_i \sim x_{i + 1}$, ונגדיר $\mu_i : [0, 1] \to U$ על־ידי $\mu_i = \sum_{j = 1}^{i} \gamma_i$.
+	מטרנזיטיביות נסיק שקיימת $\mu_i$ חלקה, לכן ממשפט ויירשטראס להתכנסות במידה שווה גם $\mu = \lim_{i \to \infty} \mu_i$ מוגדרת וחלקה, ומקיימת $\mu(0) = x_1, \mu(1) = x$, לכן $x \in W$.
+	נסיק אם כך ש־$W$ היא פתוחה (סעיף קודם) וסגורה, ולכן $W \in \{ U, \emptyset \}$, אבל מהגרתה כמחלקת שקילות לא יתכן שהיא ריקה, לכן $W = U$.
+\end{proof}
+
+\question{}
+\subquestion{}
+תהינה $A, B \in \RR^n$.
+נראה שהמסילה הקצרה ביותר המחברת את $A, B$ היא מסילה ישרה.
+\begin{proof}
+	נתחיל בחישוב אורך המסילה הישרה בין הנקודות, נגדיר $\lambda : [0, 1] \to \RR^n$ על־ידי $\lambda(t) = (1 - t)A + t B$, ונחשב,
+	\[
+		\int_\lambda 1\ dl
+		= \int_0^1 \lVert B - A \rVert\ dl
+		= \lVert B - A \rVert
+	\]
+	תוצאה זו כמובן לא אמורה להפתיע אותנו, זאת שכן המסילה הישרה מתלכדת עם הגדרת הנורמה במרחב.
+
+	נניח ש־$\gamma : [0, 1] \to \RR^n$ מסילה כך ש־$\gamma(0) = A, \gamma(1) = B$, ונבחין כי מתקיים,
+	\[
+		\lVert A - B \rVert
+		= \left\lvert \int_0^1 \dot{\gamma}(t)\ dt \right\rvert
+		\le \int_0^1 \lVert \dot{\gamma}(t) \rVert\ dt
+		= \int_\gamma 1\ dl
+	\]
+	ישירות מאי־שוויון קושי־שוורץ והמשפט היסודי.
+\end{proof}
+
+\subquestion{}
+נראה שיש שוויון במהלך של הסעיף הקודם אם ורק אם $\gamma(t) \in \{ s B - (1 - s) A \mid s \in [0, 1] \}$ לכל $t \in [a, b]$.
+\begin{proof}
+	נניח שמתקיים שוויון, ונניח בשלילה שיש נקודה $x_0 \in \gamma([a, b])$ כך ש־$x_0 \notin \lambda([0, 1])$, ונניח גם ש־$\gamma(t_0) = x_0$,
+	\[
+		l(\gamma)
+		= \int_\gamma 1\ dl
+		= \int_0^{t_0} \lVert \dot{\gamma}(t) \rVert\ dt
+		+ \int_{t_0}^1 \lVert \dot{\gamma}(t) \rVert\ dt
+		\ge \lVert x_0 - A \rVert + \lVert B - x_0 \rVert
+		> \lVert B - A \rVert
+	\]
+	כאשר המעברים האחרונים מוצדקים על־ידי סעיף א' ואי־שוויון המשולש.
+	קיבלנו סתירה לטענה, לכן אין $x_0$ כזה, וקיבלנו $\im \gamma = \im \lambda$.
+
+	נניח שהתנאי השני מתקיים עבור $\gamma$, וניזכר כי היא חד־חד ערכית, ולכן קיים דיפאומורפיזם $\varphi$ כך ש־$\bar{\gamma} = \gamma \circ \varphi$, עבור המסילה באורך סטנדרטי, כלומר $\lVert \dot{\bar{\gamma}} \rVert = 1$.
+	נסיק שמתקיים $\bar{\gamma} = \lambda$, ונסיק מהחלק הראשון של ההוכחה של סעיף א' את המבוקש.
+\end{proof}
+
+\question{}
+יהי שדה וקטורי $\vec{F} : \RR^2 \setminus \{0\} \to \RR^2$ המוגדר על־ידי $\vec{F}(x, y) = \frac{(-y, x)}{r^2}$ עבור $r = \lVert (x, y) \rVert$.
+
+\subquestion{}
+נניח ש־$n \in \NN$ ותהי $\gamma : [0, 1] \to \RR^2$ המוגדרת על־ידי $\gamma(t) = (\cos(2\pi n t), \sin(2\pi n t))$. \\
+נראה ש־$\int_\gamma \vec{F}\ d\vec{\gamma} = 2\pi n$.
+\begin{proof}
+	נחשב,
+	\[
+		\int_\gamma \vec{F}\ d\vec{\gamma}
+		= \int_0^1 \vec{F}(t) \cdot \dot{\gamma}(t)\ dt
+		= 2\pi n \int_0^1 \frac{(-\sin(2\pi n t), \cos(2\pi n t))}{\cos^2(2\pi n t) + \sin^2(2\pi n t)} \cdot (-\sin(2\pi n t), \cos(2\pi n t))\ dt
+		= 2\pi n \int_0^1 1\ dt
+		= 2\pi n
+	\]
+	ונובע ישירות מהגדרה שהטענה נכונה.
+\end{proof}
+
+\subquestion{}
+נראה ש־$\vec{F}$ היא משמרת מקומית אבל לא משמרת.
+\begin{proof}
+	נבחין כי,
+	\[
+		\frac{\partial \vec{F}_x}{\partial y}
+		= \frac{\partial}{\partial y}\frac{-y}{x^2 + y^2}
+		= \frac{-x^2 + y^2}{{(x^2 + y^2)}^2}
+		= \frac{\partial}{\partial x}\frac{x}{x^2 + y^2}
+		= \frac{\partial \vec{F}_y}{\partial x}
+	\]
+	כלומר $\vec{F}$ מקיים את התנאי לשימור מקומי.
+	למרות זאת, בסעיף הקודם מצאנו שעבור $n = 1$ מתקיים $\int_\gamma \vec{F}\ d\vec{\gamma} \ne 0$, וזאת למרות ש־$\vec{F}(0) - \vec{F}(0) = 0$, כלומר $\vec{F}$ היא משמרת מקומית אבל לא משמרת.
+\end{proof}
+
+\subquestion{}
+תהי $\gamma : [0, 1] \to \RR^2$ מסילה סגורה גזירה ברציפות.
+נניח שקיימת קרן $R = \RR_{>0} \cdot v$ עבור $v \in \RR^2$ כך ש־$\gamma([0, 1]) \subseteq \RR^2 \setminus R$. \\
+נראה ש־$\int_\gamma \vec{F}\ d\vec{\gamma} = 0$.
+\begin{proof}
+	נגדיר $\vec{G} = \vec{F} \restriction \RR^2 \setminus R$.
+	התחום המדובר הוא פשוט קשר וכן $\vec{G}$ משמרת מקומית בתחום, לכן תנאי משפט התנאי המספיק לגרירת שימור משימור מקומי חל, ונובע כי $\vec{G}$ היא משמרת, בהתאם נובע,
+	\[
+		\int_\gamma \vec{G}\ d\vec{\gamma}
+		= \vec{G}(0) - \vec{G}(0)
+		= 0
+	\]
+	אבל בכל $x \in \gamma([0, 1])$ מתקיים $\vec{G}(x) = \vec{F}(x)$, ונוכל להסיק כי גם האינטגרלים שלהם מזדהים בתחום.
+\end{proof}
+
+\end{document}
