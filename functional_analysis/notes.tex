@@ -181,6 +181,110 @@
 \end{proof}
 נבחין כי עתה ראינו שב־$l_2$ במרחב נורמי יש קבוצות חסומות, זהו אכן מרחב מעניין.
 
+\section{שיעור 2 --- 2.4.2025}
+\subsection{חסימות לחלוטין}
+נראה את הוכחתם של שני משפטים שמומלץ לזכור.
+המשפט הראשון הוא משפט\ \ref{totally_bounded_set_equivalecy_theorem}, בקורס זה נקרא לו משפט האוסדורף, זאת למרות שזהו רק משפט חלקי למשפט המוכר כמשפט בשם זה.
+נעבור להוכחה.
+\begin{proof}
+	נניח ש־$(X, \rho)$ מרחב מטרי וש־$A \subseteq X$ חסומה לחלוטין, לכן ניתן לכסות את הקבוצה $A$ על־ידי מספר סופי של כדורים.
+	נניח ש־${\{ x_n \}}_{n = 1}^\infty \subseteq A$ ונבחר $\epsilon = 1$ התחלתי.
+	מכאן נסיק שקיים כדור $B_{\epsilon = 1}^1$ הכולל אינסוף נקודות בסדרה.
+	נגדיר $V^1 = A \cap B_{\epsilon = 1}^1$ ונסיק $\operatorname{diam}(V^1) = \sup_{x, y \in V^1} \rho(x, y) \le 2$.
+	אז $V^1$ כולל מספר אינסופי של נקודות של $\{ x_n \}$.
+	אין ספק ש־$V^1$ חסומה לחלוטין.
+	נפעל עכשיו באופן דומה על $B_{\epsilon = 1}^1$, הקבוצה $V^1$ חסומה לחלוטין ולכן ניתן לכסות אותה על־ידי מספר סופי של כדורים עבור $\epsilon = \frac{1}{2}$.
+	נבחר כדור שמכיל אינסוף נקודות של הסדרה ב־$V^1$, נסמנו $B_{\epsilon = \frac{1}{2}}^2$, ונגדיר גם $V^2 = V^1 \cap B_{\epsilon = \frac{1}{2}}^2$.
+	הפעם $\operatorname{diam}(V^2) \le 1$ ולכן $V^2$ חסומה לחלוטין וכוללת מספר אינסופי של נקודות של $\{ x_n \}$.
+	נחזור על תהליך זה אינסוף פעמים. \\
+	בכתוצאה מהתהליך נקבל $V^1 \supset V^2 \supset \dots \supset V^k \supset \dots$ וכן ש־$\operatorname{diam}(V^k) \le \frac{2}{k}$,
+	ואף ש־$V^k$ כולל אינסוף נקודות של $\{ x_n \}$.
+	נבחר $x_{n_1} \in V^1, x_{n_2} \in V^2, \dots$ ונקבל תת־סדרה ${\{ x_{n_k} \}}_{k = 1}^\infty \subseteq A$ כך ש־$\rho(x_{n_k}, x_{n_{k + l}}) \le \frac{2}{k} \to 0$, זאת שכן $x_{n_k}, x_{n_{k + l}} \in V^k$.
+	קיבלנו אם כן שתת־הסדרה היא קושי.
+
+	נעבור לכיוון השני, נניח שלכל סדרה יש תת־סדרת קושי ב־$A$.
+	נניח בשלילה כי $A$ אינה חסומה לחלוטין, לכן קיים $\epsilon > 0$ עבורו אין כיסוי סופי של כדורים.
+	מספיק להוכיח כי ישנה סדרה ${\{ x_n \}}_{n = 1}^\infty \subseteq A$ שאינה כוללת תת־סדרת קושי.
+	נבחר $x_1 \in A$.
+	לכן נוכל להסיק שקיימת $x_2 \in A$ כך ש־$\rho(x_1, x_2) \ge \epsilon$.
+	נמשיך כך להשתמש באי־החסימות עבור $\epsilon$ כדי לבנות סדרה של אינסוף נקודות כאלה, כלומר $\rho(x_n, x_m) \ge \epsilon$ לכל $n, m \in \NN$ כך ש־$n \ne m$.
+	לסדרה $\{ x_n \}$ אין תת־סדרת קושי, בסתירה להנחה.
+\end{proof}
+
+\subsection{מרחבים מטריים חשובים}
+\begin{definition}[מרחב הפונקציות הרציפות]
+	נגדיר את המרחב המטרי $(C[a, b], \lVert \cdot \rVert_\infty)$ עבור $C[a, b] = \{ f : [a, b] \to \RR \mid f \text{ is continuous} \}$ ו־$\lVert f \rVert = \max_{x \in [a, b]} |f(x)|$.
+	זהו מרחב נורמי.
+\end{definition}
+\begin{definition}[חסימות במידה אחידה]
+	נניח ש־$\Phi \subseteq C[a, b]$ ונניח שקיים $K > 0$ כך שמתקיים $|\varphi(x)| \le K$ לכל $x \in [a, b]$ ולכל $\varphi \in \Phi$, כאשר $K$ אינו תלוי ב־$x, \varphi$.
+	במקרה זה נאמר ש־$\Phi$ חסומה במידה אחידה.
+\end{definition}
+\begin{example}
+	נגדיר $\Phi = {\{ \sin(nx) \}}_{n = 1}^\infty$, וידוע כי $|\sin(nx)| \le 1$, אז $\Phi$ חסומה לחלוטין.
+\end{example}
+\begin{example}
+	נגדיר $f_n(x) = \frac{x^2}{x^2 + {(1 - nx)}^2}$ עבור $n \in \NN$, אז,
+	\[
+		\forall x \in [0, 1], n \in \NN,\ |f_n(x)| < 1
+	\]
+	ולכן נאמר ש־$\{ f_n \}$ חסומה במידה אחידה.
+\end{example}
+\begin{definition}[רציפות במידה אחידה]
+	באנגלית Eqicontinuous family of functions.
+	נניח ש־$\Phi \subseteq C[a, b]$ עבור כל $\epsilon > 0$ קיים $\delta = \delta(\epsilon)$ (כלומר ערך $\delta$ תלוי רק ב־$\epsilon$), כך שמתקיים,
+	\[
+		\forall x_1, x_2 \in [a, b], \varphi \in \Phi\ 
+		|x_1 - x_2| \le \delta(\epsilon)
+		\implies |\varphi(x_1) - \varphi(x_2)| \le \epsilon
+	\]
+	במקרה זה $\Phi$ נקראת רציפה במידה אחידה.
+\end{definition}
+\begin{example}
+	נחזור לדוגמה האחרונה שלנו, ונבדוק אם היא רציפה במידה אחידה,
+	\[
+		|f_n(\frac{1}{n}) - f_n(0)| = 1
+	\]
+	ולכן $\{ f_n \}$ אינה רציפה במידה אחידה.
+\end{example}
+\begin{proposition}
+	נניח ש־${\{ f_n \}}_{n = 1}^\infty \subseteq C[a, b]$.
+	נניח שקיים $K > 0$ כך ש־$|f_n(x)| \le K$ עבור כל $x \in [a, b], n \in \NN$.
+	נניח גם ש־$|f_n'(x)| \le K$.
+	אז הקבוצה $\{ f_n \}$ חסומה במידה אחידה וגם רציפה במידה אחידה.
+\end{proposition}
+\begin{proof}
+	\[
+		|f_n(x_1) - f_n(x_2)| \le |f'(y)| \cdot |x_1 - x_2| \le K |x_1 - x_2|
+	\]
+	ולכן ניתן לבחור $\delta(\epsilon) = \frac{\epsilon}{K}$, והוא לא תלוי בפונקציות או בערכי $n$.
+\end{proof}
+\begin{theorem}[משפט ארצלה]
+	נניח ש־$\Phi \subseteq (C[a, b], \lVert \cdot \rVert_\infty)$, אז התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item לכל סדרה ${\{ f_n \}}_{n = 1}^\infty \subseteq \Phi$ קיימת תת־סדרת קושי.
+			כלומר קיימת $\{ f_{n_k} \}$ כך ש־$\lVert f_{n_k} - f_{n_{k + l}} \rVert_\infty \xrightarrow{k \to \infty} 0$ עבור כל $l \in \NN$.
+		\item $\Phi$ חסומה במידה אחידה ורציפה במידה אחידה.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	בכיוון הראשון נניח שלכל סדרה יש תת־סדרת קושי.
+	ממשפט\ \ref{totally_bounded_set_equivalecy_theorem} נסיק ישירות ש־$\Phi$ חסומה לחלוטין.
+	נבחר $\epsilon > 0$ ולכן $\Phi \subseteq \bigcup_{i = 1}^N B_\epsilon(f_i)$.
+	תהי $\varphi \in \Phi$, אז קיים $1 \le i \le N$ כך ש־$\varphi \in B_\epsilon(f_i)$,
+	\[
+		\lVert \varphi \rVert_\infty
+		= \lVert \varphi - f_i + f_i \rVert_\infty
+		\le \lVert \varphi - f_i \rVert_\infty + \lVert f_i \rVert_\infty
+		\le \epsilon + \lVert f_i \rVert_\infty
+	\]
+	הפונקציות $f_1, \dots, f_N$ רציפות בקטע $[a, b]$, לכן,
+	\[
+		\forall x \in [a, b],\ |f_1(x)| \le K_1, \dots, |f_N(x) \le K_N
+	\]
+	ולכן נגדיר $K = \max\{ K_1, \dots, K_N \}$, לכן מתקיים $\lVert \varphi \rVert_\infty \le \epsilon + K$, נובע ש־$\Phi$ חסומה במידה אחידה.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
