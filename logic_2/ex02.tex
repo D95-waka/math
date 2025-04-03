@@ -1,0 +1,64 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 2 Answer Sheet --- Logic Theory (2), 80424}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+Let $F$ be a field and let $L_{F \operatorname{VS}}$ be the language of vector spaces over $F$,
+$L_{F \operatorname{VS}} = \{0, +\} \cup \{ \lambda_a \mid a \in F \}$, such that $\lambda_a$ resolved to scalar multiplication.
+We assume that $\Vv \subseteq \Uu$ are both infinite dimensional vector spaces over $F$, and will prove that $\Vv \prec \Uu$.
+\begin{proof}
+	Let us assume that $\psi(x_0, \dots, x_{n - 1})$ is a wff, as well $\varphi(x_0, \dots, x_n) = \exists x_n \psi(x_0, \dots, x_{n - 1})$.
+	Let $a_0, \dots, a_{n - 1} \in V$, we will show that if $\Uu \models \varphi(a_0, \dots, a_{n - 1})$ then there is $a_n \in V$ such that $\Uu \models \psi(a_0, \dots, a_n)$.
+	By the assumption that $\Uu \models \varphi(a_0, \dots, a_{n - 1})$ we assume that there is $b \in U$ such that $\Uu \models \psi(a_0, \dots, a_{n - 1}, b)$.
+	If $b \in V$, then the criteria is fulfilled, then let us assume that $b \notin V$.
+	Let $B_V$ be a basis for $\Vv$, it is clear that $b$ is linear-independent from $B_V$, otherwise it would follow that $b \in V$.
+	We choose some $c \in V$ such that $c \in V \setminus \Sp\{ a_0, \dots, a_{n - 1} \}$, there must be one by $\Vv$'s infinite dimension.
+	We construct two bases for $\Uu$, $B_U^1 \supset B_V \cup \{ b \}$, and the other one would be $B_U^2 \supset B_V \cup \{ c \}$.
+	Let $M : \Uu \to \Uu$ be an automorphism such that $M(a_i) = a_i$ for all $i < n$, and let $M(b) = c$.
+
+	We claim that $\Uu \models \psi(M(a_0), \dots, M(a_{n - 1}), M(b))$, as an automorphism is preserving any relation and function defined over its respective vector-space.
+	then $c \in M$, thus being a witness to out initial claim that there is $c \in \Vv$ such that $\Uu \models \psi(a_0, \dots, a_{n - 1}, c)$.
+	Tarski-Vaught tests requirements are all met, it follows that $\Vv \prec \Uu$.
+\end{proof}
+
+\question{}
+\subquestion{}
+We will show that if $\Mm \subseteq \Nn \subseteq \Kk$ and $\Mm \prec \Kk, \Nn \prec \Kk$, then $\Mm \prec \Nn$.
+\begin{proof}
+	Let $\varphi(x_0, \dots, x_{n - 1})$ be some wff, and $a_0, \dots, a_{n - 1} \in M$ then,
+	\[
+		\Mm \models \varphi(a_0, \dots, a_{n - 1}) \iff \Kk \models \varphi(a_0, \dots, a_{n - 1}) \iff \varphi(a_0, \dots, a_{n - 1})
+	\]
+	as $M \subseteq N$, hence $a_0, \dots, a_{n - 1} \in N$.
+	By the definition of sub-elementary embedding, $\Mm \prec \Nn$.
+\end{proof}
+
+\subquestion{}
+We will show that $\Mm = (\NN, <) \prec (\NN, <) + (\ZZ, <) = \Nn$, where addition of order models is defined as the disjoint union of the universes and the order is the lexicographic order.
+\begin{proof}
+	By the EF-games we showed that $\Mm \equiv \Nn$.
+	We intend to use Tarski-Vaught test, it followed that we assume that $\psi(x_0, \dots, x_n)$ is a wff over $L$,
+	and let $\varphi(x_0, \dots, x_{n - 1}) = \exists x_n \psi(x_0, \dots, x_n)$.
+	We assume that $a_0, \dots, a_{n - 1} \in \NN$ such that $\Nn \models \varphi(a_0, \dots, a_{n - 1})$.
+	We will prove that there is $a \in \Mm$ such that $\Nn \models \psi(a_0, \dots, a_{n - 1}, a)$.
+	From $\Mm \equiv \Nn$ it derives that if $\phi = \exists x_0 \dots \exists x_{n - 1} \varphi(x_0, \dots, x_{n - 1})$ then $\Mm \models \phi \iff \Nn \models \phi$.
+	But we assumed that $\Nn \models \varphi(a_0, \dots, a_{n - 1})$, it follows that $\Nn \models \phi$, then $\Mm \models \phi$ as well.
+	Let $b_0, \dots, b_n \in \NN$ such that $\Mm \models \psi(b_0, \dots, b_n)$, the witnesses to $\Mm \models \phi$.
+	It is sufficient to show that $b_i \mapsto a_i$ is an embedding of $\Mm$ into $\Mm$.
+	We can assume that there is such mapping, as otherwise, it would follow that $\Mm \not\models \phi$.
+	$\Mm \models \psi(a_0, \dots, a_{n - 1}, b)$ for $b$ such that the embeddings value at $b_n$, therefore $b \in N$ and $\Nn \models \psi(a_0, \dots, a_{n - 1}, b)$.
+	Then by Tarski-Vaught test we deduce $\Mm \prec \Nn$.
+\end{proof}
+
+\subquestion{}
+We will find an example for three models $\Mm \subseteq \Nn \subseteq \Kk$ such that $\Mm \prec \Nn, \Mm \prec \Kk$ but $\Nn \not\prec \Kk$.
+\begin{solution}
+	We define, $\Mm = (\NN, <), \Kk = (\NN, <) + (\ZZ, <)$ and $\Nn = (\NN, <) + (2\ZZ, <)$,
+	TODO
+\end{solution}
+
+\end{document}
