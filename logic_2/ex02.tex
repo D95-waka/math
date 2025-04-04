@@ -57,8 +57,54 @@ We will show that $\Mm = (\NN, <) \prec (\NN, <) + (\ZZ, <) = \Nn$, where additi
 \subquestion{}
 We will find an example for three models $\Mm \subseteq \Nn \subseteq \Kk$ such that $\Mm \prec \Nn, \Mm \prec \Kk$ but $\Nn \not\prec \Kk$.
 \begin{solution}
-	We define, $\Mm = (\NN, <), \Kk = (\NN, <) + (\ZZ, <)$ and $\Nn = (\NN, <) + (2\ZZ, <)$,
-	TODO
+	We define, $\Mm = (\NN, <), \Kk = (\NN, <) + (\ZZ, <)$ and $\Nn = (\NN, <) + (2\ZZ, <)$.
+	It is inferred directly by definition that $\Mm \subseteq \Nn \subseteq \Kk$ and by the last part, $\Mm \prec \Kk$.
+	We also note that $\exists x (\langle 2, 1\rangle < x < \langle 4, 1 \rangle)$ is a wff that holds in $\Nn$ but not in $\Kk$, implies that $\Nn \not\prec \Kk$.
+	Lastly, by the same proof of part b, it derives that $\Mm \prec \Nn$.
 \end{solution}
+
+\question{}
+\subquestion{}
+We assume that $\langle f_r \mid r \in \RR \rangle$ are functions $f_r : \NN \to \NN$ such that if $r \ne q$, then there is a $k \in \NN$, such $f_r(n) \ne f_q(n)$ for all $n \ge k$.
+Let $\Mm = (\NN, <, \langle f_r \mid r \in \RR \rangle)$ be structure in the language $\{ f_r \mid r \in \RR \}$.
+We will show that if $\Nn \succ \Mm$ and $\Nn \ne \Mm$ then $|N| \ge |\RR|$.
+\begin{proof}
+	Let $\varphi_{r, q}(k) = \forall n \ge k, f_r(n) \ne f_q(n)$.
+	For each $r, q \in \RR$, $\Mm \models \varphi_{r, q}(k)$ for some $k \in \NN$.
+	From $\Mm \prec \Nn$ it follows that $\Nn \models \varphi_{r, q}(k)$ for $k \in \NN$ as well, for every $r, q \in \RR$.
+	By the elementary embedding and the formula $\psi(x, y) = \forall z \ne x, y,\ \lnot (x < z < y)$ we can deduce that elements of $\Nn$ are not bounded by elements of $\Mm$.
+	$\Nn \ne \Mm$, then there is $\alpha \in N \setminus M$, and by the last statement it derives that $n < \alpha$ for every $n \in \NN$.
+	For every $r \in \RR$, $f_r(\alpha) \in N$, then by $\alpha$'s relation to the naturals we deduce that for every $r, q \in \RR$, $\Nn \models f_r(\alpha) \ne f_q(\alpha)$.
+	Finally, $\{ f_r(\alpha) \mid r \in \RR \} \subseteq N$, implying that $|N| \ge |\RR|$.
+\end{proof}
+
+\subquestion{}
+We will show that such a sequence of function exists.
+\begin{proof}
+	We define the ultrafilter $D \subseteq \Pp(\NN)$ by $X \in D \iff \exists n \in \NN, X = [n]$, that is $D$ is the collection of all finite beginnings of the natural numbers.
+	We then define $\Mm = \NN^\NN / D$, in this model every elements representative is a function $\NN \to \NN$ such that it fulfills the requirement of the last part.
+	Lastly, we use choice to map each such function to unique real number.
+\end{proof}
+
+\subquestion{}
+We will conclude that downwards Löwenheim-Skolem theorem does not hold without the restriction of $|L|$ in the cardinality inequality, $|N| \le |L| + |A| + \aleph_0$.
+\begin{proof}
+	If we were to take $\Nn = (\omega_1, <, \langle f_r \mid r \in \RR \rangle)$, a model like in the first part, and the set $A = \omega + 1$, then the model $\Mm$ derived from the theorem satisfies,
+	\[
+		\omega_1 = |N| \le |A| + \aleph_0 = \omega
+	\]
+	in contradiction to $\omega_1 > \omega$.
+\end{proof}
+
+\question{}
+Let us assume that $G$ is a simple group.
+We will show that if $H \prec G$ then $H$ is simple.
+\begin{proof}
+	$H$ is a group, as the formulas to represent existence of neutral element, as well the closure to operator and existence of inverted element are all first-order.
+	If a group is simple by the first isomorphism theorem for groups every $f : G \to G$ which is not trivial is bijective, meaning it is an automorphism, but we know that we can represent automorphisms by conjugation.
+	It follows that for every $g, g' \in G$, exists $l \in G$ such that $l g l^{-1} = g'$, or equivalently, $\psi = \forall g, g', \exists l,\ l g l^{-1} = g'$.
+	By the elementary embedding $H \models \psi$ as well, but then by $\psi$ there are not normal subgroups to $H$, as if there would be one, it would consist of $H$ and be trivial.
+	We conclude that $H$ is simple.
+\end{proof}
 
 \end{document}
