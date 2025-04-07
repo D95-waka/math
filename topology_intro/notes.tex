@@ -499,6 +499,164 @@
 	$\{ a, b \} \to \{ a, b \}$ המוגדרת טריוויאלית היא פתוחה, סגורה אך לא רציפה.
 \end{example}
 
+\section{שיעור 4 --- 7.4.2025}
+\subsection{אקסיומות ההפרדה}
+\begin{definition}[איברים ניתנים להרחבה]
+	נאמר ש־$U$ ו־$V$ מפרידות בין $x, y \in X$ מרחב טופולוגי, אם מתקיים $U \cap V = \emptyset$ וכן $x \in U, v \in V$.
+	אם קיימות כאלה, אז נאמר ש־$x, y$ ניתנות להפרדה. \\
+	באופן דומה נאמר ש־$A \subseteq X, x \in X$ ניתנות להפרדה אם קיימות $A \subseteq U, x \in V$ כאלה.
+\end{definition}
+\begin{definition}[מרחב T]
+	מרחב טופולוגי $X$ יקרא מרחב $T_i$ אם הוא מקיים את האקסיומה $T_i$ עבור $i \in \{0, 1, 2, 3, 4\}$.
+
+	נגדיר את האקסיומות $T_i$,
+	\begin{itemize}
+		\item $T_0$, לכל $x, y \in X$ יש קבוצה פתוחה שמכילה את אחת הנקודות אך לא את האחרת
+		\item $T_1$, לכל שתי נקודות $x, y \in X$ קיימת פתוחה המכילה את אחת הנקודות ולא את האחרת, וקבוצה פתוחה המכילה את הנקודה השנייה אך לא את הראשונה.
+			כלומר אם $x \ne y$ אז קיימת $U \in \tau$ כך ש־$x \in U, y \notin U$
+		\item $T_2$ (מרחב האוסדורף), אם לכל זוג נקודות $x \ne y \in X$ יש קבוצות פתוחות זרות $U, V \subseteq X$ כך ש־$x \in U, y \in V$,
+			כאשר משמעות היותן זרות היא ש־$U \cap V = \emptyset$
+		\item $T_3$, אם המרחב הוא $T_1$ וגם $X$ \textbf{רגולרי},
+			כלומר לכל $x \in X$ וקבוצה סגורה $x \notin A \subseteq X$, $x, A$ ניתנות להפרדה
+		\item $T_4$, אם המרחב הוא $T_1$ וכן $X$ \textbf{נורמלי},
+			כלומר שכל זוג תת־קבוצות סגורות $A, B \subseteq X$ ניתנות להפרדה
+	\end{itemize}
+\end{definition}
+\begin{remark}
+	$T_1$ מתקיים אם ורק אם כל $\{x\} \subseteq X$ קבוצה סגורה.
+\end{remark}
+\begin{proposition}[גרירת מרחבי T]
+	נבחין כי $T_4 \implies T_3 \implies T_2 \implies T_1 \implies T_0$, כלומר המספר מייצג סדר גרירה.
+\end{proposition}
+\begin{proposition}[שקילות למרחב נורמלי]
+	מרחב טופולוגי $X$ נורמלי אם ורק אם לכל קבוצה סגורה $A$ וקבוצה פתוחה $A \subseteq U$ קיימת קבוצה פתוחה $V$ כך ש־$A \subseteq V \subseteq \overline{V} \subseteq U$.
+\end{proposition}
+\begin{proof}
+	בכיוון הראשון נניח ש־$X$ נורמלי וכן ש־$A \subseteq U$ קבוצה סגורה המוכלת בקבוצה פתוחה.
+	$A, X \setminus U$ סגורות וזרות, ולכן יש קבוצות פתוחות $V, W$ כך ש־$A \subseteq V \subseteq X \setminus W \subseteq U, X \setminus U \subseteq W$ כך ש־$W \cap V = \emptyset$.
+	נובע ש־$A \subseteq V \subseteq \overline{V} \subseteq X \setminus W \subseteq U$.
+
+	בכיוון השני, נניח ש־$A, B \subseteq X$ קבוצות סגורות זרות ולכן $A \subseteq X \setminus B$, נסמן $U = X \setminus B$, אז קיימת קבוצה פתוחה $V$ כך שמתקיים,
+	\[
+		A \subseteq V \subseteq \overline{V} \subseteq X \setminus B
+	\]
+	ולכן $B \subseteq X \setminus \overline{V}$ ונובע גם ש־$V \cap (X \setminus \overline{V}) = \emptyset$.
+\end{proof}
+\begin{lemma}[הלמה של אוריסון]
+	יהי $X$ מרחב $T_4$, אז אם לכל זוג קבוצות סגורות זרות $C, D \subseteq X$, אז יש פונקציה רציפה $f : X \to [0, 1]$ כך ש־$f \mid_C = 1, f \mid_D = 0$.
+\end{lemma}
+\begin{proof}
+	
+\end{proof}
+\begin{proposition}
+	אם $X$ מרחב האוסדורף ($T_2$)  אם ורק אם $\Delta_X = \{ (x, y) \mid x, y \in X \} \subseteq X \times X$ תת־קבוצה סגורה בטופולוגיית המכפלה.
+\end{proposition}
+\begin{proof}
+	נניח ש־$X$ מרחב האוסדורף.
+	לכל $x \ne y$ יש $x \in U_{x, y}$ ו־$y \in V_{x, y}$ פתוחות זרות, כלומר $(U_{x, y} \cap V_{x, y}) \cap \Delta_X = \emptyset$.
+	נבחין כי
+	\[
+		X \times X \setminus \Delta_X = \bigcup_{x \ne y} (U_{x, y} \times V_{x, y})
+	\]
+	וזוהי קבוצה פתוחה.
+
+	בכיוון השני נניח ש־$\Delta_X$ סגורה, אז $X \times X \setminus \Delta_X$ פתוחה, אם $x \ne y$ אז $(x, y) \in (X \times X) \setminus \Delta_X$.
+	לכן לפי הגדרת טופולוגיית המכפלה יש $U, V$ פתוחות כך ש־$(x, y) \in U \times V \subseteq X^2 \setminus \Delta_X$ ואף ש־$U \cap V = \emptyset$.
+\end{proof}
+\begin{proposition}
+	עבור $i \in \{1, 2, 3\}$ אם $X$ הוא מרחב $T_i$ ו־$Y \subseteq X$, תת־מרחב אז גם $Y$ הוא מרחב $T_i$.
+\end{proposition}
+\begin{proof}
+	\begin{itemize}
+		\item עבור $T_1$ ההוכחה היא טריוויאלית.
+		\item עבור $T_2$ ההוכחה היא טריוויאלית.
+		\item עבור $T_3$, נזכור שמרחב כזה הוא $T_1$ וכן רגולרי, לכן מספיק שנראה שתת־המרחב הוא רגולרי גם כן.
+			יהי $y \in Y$ ויהי $A \subseteq Y$ סגורה כך ש־$y \notin A$.
+			לכן יש קבוצה סגורה $C \subseteq X$ כך ש־$A = C \cap Y$.
+			עוד אנו יודעים ש־$y \notin C$,
+			לכן קיימות $U, V$ פתוחות ב־$X$ מפרידות בין $y$ ל־$C$, $y \in U$ ו־$C \subseteq V$, וכן $U \cap V = \emptyset$,
+			אז $A \subseteq V \cap Y$ ו־$y \in U \cap Y$.
+
+			בכיוון השני נניח ש־$A, B \subseteq Y$ וש־$C, D \subseteq X$ סגורות,
+			אז $A = C \cap Y, B = D \cap Y$, אבל לא ברור מדוע אפשר לדרוש ש־$C, D$ זרות.
+	\end{itemize}
+\end{proof}
+\begin{remark}
+	טענה זו לא נכונה עבור $T_4$.
+\end{remark}
+Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכל למצוא דוגמות רבות למרחבים כאלה.
+\begin{proposition}
+	אם $X, Y$ מרחבים $T_i$ עבור $i \in \{1, 2, 3\}$ אז גם $X \times Y$ הוא מרחב $T_i$.
+\end{proposition}
+\begin{proof}
+	עבור $T_1$ הטענה ברורה, אנו רוצים להראות שלכל $x, y$,
+	\[
+		\{ (x, y) \}
+		= (X \times (Y \setminus \{y\})) \cup ((X \setminus \{x\}) \times Y)
+	\]
+	סגורה.
+
+	עבור $T_2$ הטענה קלה גם כן.
+
+	נוכיח עבור $T_3$.
+	נניח ש־$X, Y$ הם $T_3$, כלומר $T_1$ ורגולריים ועלינו להראות ש־$X \times Y$ רגולרי.
+	נניח ש־$A \subseteq X \times Y$ סגורה וכן ש־$(x, y) \notin A$.
+	נגדיר למה, ש־$Z$ מרחב רגולרי אם ורק אם לכל $z \in U \subseteq Z$ עבור $U$ פתוחה ויש $z \in V \subseteq \overline{V} \subseteq U$ פתוחה.
+	תוך שימוש בלמה, נסמן $W = (X \times Y) \setminus A$ פתוחה, $(x, y) \in W$, אז נובע שקיימות קבוצות פתוחות $x \in U_x \subseteq X$ ו־$y \in U_Y \subseteq Y$ כך ש־$(x, y) \in U_X \times U_Y \subseteq W$.
+	מרגולריות נסיק שיש $V_X, V_Y$ פתוחות כך ש־$x \in V_X \subseteq \overline{V}_X \subseteq U_X$ ו־$y \in V_Y \subseteq \overline{V}_Y \subseteq U_Y$ פתוחות.
+	אז מתקיים $(x, y) \in V_X \times V_Y \subseteq \overline{V_X \times V_Y} = \overline{V}_X \times \overline{V}_Y \subseteq U_X \times U_Y$.
+
+	נעבור להוכחת הלמה, לכיוון הראשון $z \in U \subseteq Z$, נסמן $C = Z \setminus U$ סגורה, $z \notin C$ ולכן סגורות זרות $V, W$ כך ש־$z \in V, C \subseteq W, Z \setminus W \subseteq U$.
+	אז $z \in V \subseteq \overline{V} \subseteq Z \setminus W \subseteq U$.
+
+	בכיוון השני של הלמה נניח ש־$C$ סגורה, $z \in Z, z \notin C$, אז יש $V$ פתוחה כך ש־$z \in V \subseteq \overline{V} \subseteq Z \setminus C$, וכן $C \subseteq U = Z \setminus \overline{V}$ כך ש־$U \cap V = \emptyset$.
+\end{proof}
+\begin{proposition}
+	אם $(X, \rho)$ מרחב מטרי, אז הוא מרחב $T_4$.
+\end{proposition}
+\begin{proof}
+	תת־קבוצה $E$ של $X$ ו־$x \in X$, נגדיר $\rho(x, E) = \inf\{ \rho(x, y) \mid y \in E \}$.
+	אם $E$ סגורה ו־$x \notin E$ אז $\rho(x, E) > 0$.
+	נניח ש־$A, B \subseteq X$ סגורות זרות, $\forall a \in A,\ \rho(a, B) > 0, \forall b \in B,\ \rho(b, A) > 0$,
+	אז $U = \bigcup_{a \in A} B_{\rho(a, B)}(a)$ ו־$V = \bigcup_{b \in B} B_{\rho(b, A)}(b)$ הן פתוחות וזרות.
+\end{proof}
+נעבור לדוגמות.
+\begin{example}
+	לא $T_0$, $\{x, y\}$ עם הטופולוגיה $\{X, \emptyset\}$.
+
+	עבור $T_1$ ולא $T_0$, $\{x, y\}$ עם הטופולוגיה $\{\emptyset, \{x\}, X\}$.
+
+	עבור $T_2$ ולא $T_1$ נגדיר $X = \NN$ והטופולוגיה המושרית מהבסיס של כל הקבוצות שמשלימן סופי.
+
+	עבור $T_2$ ולא $T_3$ נסמן $\RR_{\frac{1}{\NN}}$ את המרחב הבא, קבוצת הנקודות היא $\RR$, 
+	\[
+		\Bb
+		= \{ (a, b) \mid a < b, a, b \in \RR \}
+		\cup \left\{ (a, b) \setminus \left\{ \frac{1}{n} \mid n \in \NN \right\}, x, y \in \RR \right\}
+	\]
+	יש לוודא שזה אכן בסיס.
+	היא הטופולוגיה המכילה את הטופולוגיה הקגילה של $\RR$, היא עדינה יותר ומכילה האוסדורף ולכן האוסדורף.
+	נראה ש־$\RR_{\frac{1}{\NN}}$ לא $T_3$, נבחין כי $\{\frac{1}{n} \mid n \in \NN \}$ סגורה,
+	ונראה כי לא ניתן להפריד בינה לבין $0$.
+	נניח ש־$0 \in U$ ו־$K = \{ \frac{1}{n} \mid n \in \NN \}$ פתוחות זרות ונקבל סתירה.
+	אם $0 \in U$ פתוחה אז $U$ מכילה איבר בסיס,
+	לכן $U$ מכילה קבוצה מהצורה $(a_0, b_0) \setminus K$ עבור $a_0 < 0 < b_0$.
+	קיים $m \in \NN$ כך ש־$\frac{1}{m} < b_0$, ואז $(a_0, \frac{1}{m}) \setminus K \subseteq U$.
+	$\frac{1}{2m} \in K \subseteq V$ ולכן $(a_1, b_1) \subseteq V$ כאשר $a_1 < \frac{1}{2m} < b_1$.
+	$U \cap V \supseteq ((a_0, \frac{1}{m}) \setminus K) \cap (a_1, b_1) \ne \emptyset$, וקיבלנו סתירה.
+
+	עבור $T_3$ ולא $T_4$, נסמן את $\RR_L$, הטופולוגיה הנוצרת על $\RR$ עם הבסיס $L = \{ [a, b) \mid a < b, a, b \in \RR \}$.
+	אז $\RR_L$ הוא מרחב $T_4$ ולכן בפרט גם $T_3$.
+	אז $\RR_L \times \RR_L$ היא בהכרח $T_3$, אבל נרצה להוכיח ש־$\RR_L \times \RR_L$ היא לא $T_4$.
+	\begin{exercise}
+		מה הטופולוגיה המושרית על $L$ מ־$\RR_L^2$?
+	\end{exercise}
+	\begin{solution}
+		הטופולוגיה הדיסקרטית.
+	\end{solution}
+	נסיק שכל תת־קבוצה $A \subseteq L$ היא סגורה ב־$\RR_L^2$.
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
