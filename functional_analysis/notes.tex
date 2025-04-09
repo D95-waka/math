@@ -136,23 +136,21 @@
 \end{theorem}
 משפט זה הוא משפט חשוב ומרכזי, ועל הקורא לשנן את הוכחתו. את ההוכחה אומנם נראה בהרצאות הבאות, אך נראה עתה שימושים למשפט זה.
 נעבור למשפט פחות חשוב ומרכזי,
-\begin{theorem}
+\begin{theorem}[שקילות חסימות במרחבים האוקלידיים]
 	נניח ש־$X = \RR^m$, וכן ש־$\rho(x, y) = \sqrt{\sum_{i = 1}^{m} {(x_i - y_i)}^2}$, אז אם $A \subseteq \RR^m$ חסומה, אז היא חסומה לחלוטין.
 \end{theorem}
 \begin{proof}
 	נחסום את $A$ על־ידי קובייה מספיק גדולה, נחלק את הקובייה לתת־קוביות מספיק קטנות (ההצדקה מגיעה מאינפי 3), ונוכל לחסום כל קובייה כזו בכדור.
 	נסמן $\{ x_i \} \subseteq \RR^m$ את מרכזי הקוביות ונקבל $A \subseteq \bigcup_{j = 1}^N B_\epsilon(x_j)$ מהגדרת החלוקה של הקובייה החוסמת.
 \end{proof}
-\begin{definition}
+\begin{proposition}
 	ב־$(l_2, \lVert \cdot \rVert)$ נגדיר את הקבוצה,
 	\[
 		\Pi = \{ x = (x_1, \dots) \in l_2 \mid \forall i \in \NN, |x_i| \le \frac{1}{2^{i - 1}} \}
 	\]
-	אם $x \in \Pi$ אז $\sum_{n = 1}^{\infty} x_n^2 < \infty$, ובהתאם בהכרח $\Pi \subseteq l_2$.
-\end{definition}
-\begin{theorem}
+	אם $x \in \Pi$ אז $\sum_{n = 1}^{\infty} x_n^2 < \infty$, ובהתאם בהכרח $\Pi \subseteq l_2$. \\
 	הקבוצה $\Pi$ חסומה לחלוטין.
-\end{theorem}
+\end{proposition}
 \begin{proof}
 	תהי $(x_1, \dots) \in \Pi$, ונגדיר $x_n^* = (x_1, \dots, x_n, \dots, 0, 0, \dots)$.
 	נגדיר גם $\Pi^*_n = \{ x = (x_1, \dots, x_n, 0, \dots) \mid |x_n| \le \frac{1}{2^{n - 1}} \}$.
@@ -254,11 +252,13 @@
 	אז הקבוצה $\{ f_n \}$ חסומה במידה אחידה וגם רציפה במידה אחידה.
 \end{proposition}
 \begin{proof}
-	\[
-		|f_n(x_1) - f_n(x_2)| \le |f'(y)| \cdot |x_1 - x_2| \le K |x_1 - x_2|
-	\]
-	ולכן ניתן לבחור $\delta(\epsilon) = \frac{\epsilon}{K}$, והוא לא תלוי בפונקציות או בערכי $n$.
+	נבחין כי מתקיים, $|f_n(x_1) - f_n(x_2)| \le |f'(y)| \cdot |x_1 - x_2| \le K |x_1 - x_2|$. \\
+	לכן ניתן לבחור $\delta(\epsilon) = \frac{\epsilon}{K}$, והוא לא תלוי בפונקציות או בערכי $n$.
 \end{proof}
+
+\section{שיעור 3 --- 9.4.2025}
+
+\subsection{תכונות מרחבי פונקציות}
 \begin{theorem}[משפט ארצלה]
 	נניח ש־$\Phi \subseteq (C[a, b], \lVert \cdot \rVert_\infty)$, אז התנאים הבאים שקולים,
 	\begin{enumerate}
@@ -278,12 +278,162 @@
 		\le \lVert \varphi - f_i \rVert_\infty + \lVert f_i \rVert_\infty
 		\le \epsilon + \lVert f_i \rVert_\infty
 	\]
-	הפונקציות $f_1, \dots, f_N$ רציפות בקטע $[a, b]$, לכן,
+	מסדרות קושי נוכל להסיק שקיימים,
 	\[
-		\forall x \in [a, b],\ |f_1(x)| \le K_1, \dots, |f_N(x) \le K_N
+		\forall x \in [a, b],\ |f_1(x)| \le K_1, \dots, |f_N(x)| \le K_N
 	\]
 	ולכן נגדיר $K = \max\{ K_1, \dots, K_N \}$, לכן מתקיים $\lVert \varphi \rVert_\infty \le \epsilon + K$, נובע ש־$\Phi$ חסומה במידה אחידה.
+
+	נעבור להוכחת רציפות במידה שווה. \\
+	הפונקציות $f_1, \dots, f_N$ רציפות בקטע $[a, b]$, לכן רציפות בו במידה שווה, ונובע שקיימים $\delta_1(\epsilon), \ldots, \delta_N(\epsilon) > 0$ כך שמתקיים,
+	\[
+		\forall x, y \in [a, b],\ 
+		|x - y| \le \delta_i(\epsilon)
+		\implies |f_i(x) - f_i(y)| \le \epsilon
+	\]
+	נגדיר $\delta = \min\{ \delta_i \mid i \in \NN \}$.
+	קיים $i \in \{1, \ldots, N\}$ כך ש־$\varphi \in B_\epsilon(f_i)$, לכן,
+	\[
+		|\varphi(x) - \varphi(y)|
+		\le \overbrace{|\varphi(x) - f_i(x)|}^{\le \lVert \varphi - f_i\rVert_\infty} + \overbrace{|f_i(x) - f_i(y)|}^{\le \epsilon} + \overbrace{|f_i(y) - \varphi(y)|}^{\le \lVert \varphi - f_i\rVert_\infty}
+	\]
+	נניח גם ש־$|x - y| \le \delta(\epsilon)$ ולכן,
+	\[
+		\forall \epsilon > 0,\ \exists \delta = \delta(\epsilon),\ |x - y| \le \delta(\epsilon)
+		\implies |\varphi(x) - \varphi(y)| \le 3 \epsilon
+	\]
+	כלומר, מצאנו רציפות במידה שווה.
+
+	נעבור עתה לכיוון השני, נניח ש־$\Phi$ חסומה ורציפה במידה שווה.
+	יהי $\epsilon > 0$ ו־$\delta(\epsilon) > 0$ כך שמתקיים,
+	\[
+		|x - y| \le \delta(\epsilon)
+		\implies \forall \varphi \in \Phi,\ |\varphi(x) - \varphi(y)| \le \epsilon
+	\]
+	נגדיר את הסדרות כך ש־$y_{i + 1} - y_i \le \epsilon$ וכן סדרה כך ש־$x_{i + 1} - x_i \le \delta(\epsilon)$, ונגדיר גם $x_0 = a, x_n = b$ וכן $y_m = K, y_0 = -K$.
+	ברור כי אכן קיימות סדרות סופיות כאלה, ונבחן את הנקודות האלה כמשרות חלוקה על החלק המתאים במישור.
+	המטרה שלנו היא לחלק את הגרף של $\varphi$ תוך שימוש בתיבות שהגדרנו.
+	נגדיר את הפונקציה $\psi$ כך שהיא עוברת דרך נקודות בתיבות הללו כך שהיא מקרבת את גרף $\phi$ אך קטנה ממנה תמיד, כלומר נבחר את החיתוכים $\varphi(x_i)$ ואת הנקודות $y_i$ הגדולות ביותר שמתחת לנקודות אלה.
+	עתה נבדוק את $\lVert \varphi - \psi \rVert_\infty$ עבור $x \in [a, b]$,
+	\[
+		|\varphi(x) - \psi(x)|
+		\le |\varphi(x) - \varphi(x_i)| + |\varphi(x_i) - \psi(x_i)| + |\psi(x_i) - \psi(x)|
+		\le \epsilon + \epsilon + |\psi(x_i) - \psi(x_{i + 1})
+		\le 2 \epsilon + 3 \epsilon
+	\]
+	כלומר קיבלנו ש־$\lVert \varphi - \psi \rVert_\infty \le 5 \epsilon$, כלומר ניתן לחסום $\Psi \subseteq \bigcup_{\psi \in \Gamma} B_{5 \epsilon}(\psi)$ עבור $\Gamma$ קבוצת המצולעים שעוברים דרך הנקודות ברשת שהגדרנו,
+	כלומר זוהי קבוצה סופית.
 \end{proof}
+\begin{definition}[מרחב מטרי שלם]
+	מרחב מטרי $(X, \rho)$ יקרא שלם אם כל סדרת קושי מתכנסת לנקודה במרחב המטרי.
+\end{definition}
+\begin{theorem}[שלמות מרחב הפונקציות הרציפות]
+	המרחב $(C[a, b], \lVert \cdot \rVert_\infty)$ הוא מרחב מטרי שלם.
+\end{theorem}
+\begin{proof}
+	תהי סדרה ${\{ f_n \}}_{n = 1}^\infty \subseteq C[a, b]$ ונניח כי סדרה זו היא סדרת קושי.
+	כלומר
+	\[
+		\forall \epsilon > 0 \exists N = N(\epsilon) \in \NN,\ \forall n, m \ge N(\epsilon) \lVert f_n - f_m\rVert_\infty \le \epsilon
+	\]
+	נובע שלכל $x \in [a, b]$ גם $|f_n(x) - f_m(x)| \le \epsilon$, זאת מהגדרת הנורמה על מקסימום.
+	אם נבחר $x \in [a, b]$ אז ${\{ f_n(x) \}}_{n = 1}^\infty \subseteq \RR$, כלומר זוהי סדרת ממשיים ומשלמות הממשיים והעובדה כי זוהי סדרת קושי נסיק שקיים $\lim_{n \to \infty} f_n(x) = y_x$.
+	לכל $x$ נגדיר $f(x) = y_x$, כלומר נבנה פונקציה שמתקבלת מהנקודות הגבוליות של סדרת הפונקציות.
+	כאשר $m \to \infty$ מתקיים,
+	\[
+		\forall \epsilon > 0, \exists N = N(\epsilon),\ \forall x \in [a, b],\ |f_n(x) - f(x)| \le \epsilon
+	\]
+	ולכן,
+	\[
+		\forall \epsilon > 0,
+		\exists N = N(\epsilon),
+		\forall n \ge N(\epsilon), \forall x \in [a, b], \max |f_n(x) - f(x)| \le \epsilon
+	\]
+	אז נובע ש־$\lim_{n \to \infty} \lVert f - f_n \rVert_\infty = 0$ כפי שרצינו.
+\end{proof}
+ניזכר במשפט שאנו כבר יודעים
+\begin{theorem}[משפט ויירשטראס להתכנסות במידה שווה]
+	אז אם ${\{ f_n \}}_{n = 1}^\infty C[a, b]$, ו־$f_n \rightrightarrows f$ (כלומר הסדרה מתכנסת במידה שווה) אז $f$ רציפה.
+\end{theorem}
+ונראה משפט שקשור אליו וחשוב לא פחות.
+\begin{theorem}[שלמות l2]
+	המרחב המטרי $(l_2, \lVert \cdot \rVert)$, שנזכיר שמוגדר על־ידי,
+	\[
+		l_2 = \left\{ x \in \RR^\NN \middle| \sum_{i = 1}^\infty x_i^2 < \infty \right\},
+		\qquad \lVert x \rVert = {\left(\sum_{i = 1}^\infty x_i^2\right)}^{\frac{1}{2}}
+	\]
+	הוא מרחב מטרי שלם.
+\end{theorem}
+\begin{proof}
+	תהי סדרה ${\{ x^n \}}_{n = 1}^\infty \subseteq l_2$, ונניח שזוהי סדרת קושי.
+	אז אנו יודעים כי,
+	\[
+		\forall \epsilon > 0, \exists N = N(\epsilon),
+		\forall n, m \ge N(\epsilon), \lVert x^n - x^m \rVert^2 \le \epsilon
+		\implies \sum_{i = 1}^\infty {(x_i^n - x_i^m)}^2 \le \epsilon^2
+	\]
+	נשתמש בתנאי ההכרחי להתכנסות בהחלט של טורים ממשיים ונקבל שעובר כל $i \in \NN$ מתקיים,
+	\[
+		\forall \epsilon > 0, \exists N(\epsilon),\ 
+		{(x_i^n - x_i^m)}^2 \le \epsilon^2
+	\]
+	אם נקבע $i$ אז נקבל סדרה ${\{ x_i^n \}}_{n = 1}^\infty \subseteq \RR$ סדרת קושי, ונגדיר $x_i = \lim_{n \to \infty} x_i^n$.
+	נגדיר את הסדרה ${\{ x_i \}}_{i = 1}^\infty \subseteq \RR$.
+	נקבל שמתקיים ${(x_i^n - x_i)}^2 \le \epsilon^2$ לכל $n > N(\epsilon)$ ולכל $i \in \NN$.
+	נבחר $M$ כלשהו, אז מתקיים,
+	\[
+		\sum_{i = 1}^M {(x_i^n - x_i^m)}^2 \le \epsilon^2
+	\]
+	ונובע,
+	\[
+		\lim_{M \to \infty} \sum_{i = 1}^M {(x_i^n - x_i^m)}^2
+		= \sum_{i = 1}^M {(x_i^n - x_i)}^2
+		\le \epsilon^2
+	\]
+	אז מתקיים,
+	\[
+		\sum_{i = 1}^\infty {(x_i^n - x_i)}^2 \le \epsilon^2
+	\]
+	בהתאם מתקיים, $\lim_{n \to \infty} \lVert x^n - x\rVert^2 = 0$, נבדוק,
+	\[
+		\sum_{i = 1}^\infty x_i^2
+		= \sum_{i = 1}^\infty {(x_i - x_i^n + x_i^n)}^2
+		= 2 \sum_{i = 1}^\infty {(x_i - x_i^n)}^2 + 2 \sum_{i = 1}^\infty {(x_i^n)}^2
+		< \infty
+	\]
+	כלומר מצאנו סדרה גבולית והוכחנו שהיא במרחב שלנו.
+\end{proof}
+\begin{conclusion}
+	נניח ש־${\{ f_n \}}_{n = 1}^\infty \subseteq C[a, b]$ סדרה חסומה במידה שווה ורציפה במידה שווה,
+	אז קיימת תת־סדרה ${\{ f_{n_k} \}}_{k = 1}^\infty \subseteq \{ f_n \}$ שמתכנסת במידה שווה לפונקציה $f \in C[a, b]$.
+\end{conclusion}
+\begin{theorem}[אנלוגי למשפט ארצלה ל־l2]
+	נניח ש־$\Phi \subseteq l_2$, אז התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item $\Phi$ חסומה לחלוטין
+		\item \begin{enumerate}
+				\item קיים $K > 0$ כך ש־$\lVert \varphi \rVert \le K$ לכל $\varphi \in \Phi$, כלומר $\Phi$ חסומה
+				\item $\lim_{M \to \infty} \left( \sup_{x \in \Phi} \sum_{i = M}^\infty x_i^2 \right) = 0$
+		\end{enumerate}
+	\end{enumerate}
+\end{theorem}
+ננסה להבין את התנאי שהרגע הגדרנו,
+\begin{example}
+	נגדיר את $S \subseteq l_2$ על־ידי $S = \{ x \mid \lVert x \rVert = 1 \}$.
+	ב־$S$ נמצאות הסדרות $e_n = (0, \ldots, 0, 1, 0, \ldots)$ כאשר $e_n^n = 1$ בלבד.
+	בהתאם מתקיים $\sup_{x \in S} \sum_{i = M}^\infty x_i^2 = 1$, לכן התנאי השני לא מתקיים ובהתאם לא יתכן ש־$S$ חסומה לחלוטין.
+\end{example}
+\begin{example}
+	נגדיר את $H = \{ x \in l_2 \mid \forall n \in \NN, |x_n| \le \frac{1}{2^{n - 1}} \}$.
+	הפעם נקבל,
+	\[
+		\sum_{i = M}^\infty x_i^2
+		= \sum_{i = M}^\infty \frac{1}{4^{i - 1}}
+		= \frac{4}{4^M} \cdot \frac{1}{1 - \frac{1}{4}}
+		\xrightarrow{M \to \infty} 0
+	\]
+	ולכן התנאי השני עבור חסימות לחלוטין מתקיים.
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
