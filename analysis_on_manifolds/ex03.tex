@@ -113,7 +113,24 @@
 עבור $a, b > 0$ תהי $E_{a, b} = \{ {(x / a)}^2 + {(y / b)}^2 = 1 \} \subseteq \RR^2$ האליפסה עם הפרמטרים $a, b$.
 נשתמש במשפט גרין לתחומים פשוטים כדי להראות שמתקיים $\operatorname{Area}(E_{a, b}) = \pi a b$.
 \begin{solution}
-	TODO
+	נגדיר את שתי הפונקציות $f, g : [-a, a] \to \RR$ על־ידי,
+	\[
+		f(x) = b \sqrt{1 - {\left(\frac{x}{a}\right)}^2},
+		\quad
+		g(x) = -f(x)
+	\]
+	נבחין כי $\rng \gamma_f \cup \rng \gamma_g = \partial E_{a, b}$, כלומר תנאי משפט גרין חלים עבור פונקציות אלה, כאשר $f(\pm a) = g(\pm a)$ ולכן אין דרישת הגדרת ישרים חוסמים מוספים.
+	נעבור לחישוב השטח, נגדיר $\vec{F}(x, y) = (0, x)$ ונסיק ממשפט גרין שמתקיים.
+	נבחין כי $\gamma_f(t) = (t, b \sqrt{1 - \frac{t^2}{a^2}})$,
+	ולכן גם $\vec{F}(\gamma_f(t)) = (0, t)$.
+	מהצד השני מתקיים $\gamma_f'(t) = (1, \frac{-b t}{a^2 \sqrt{1 - \frac{t^2}{a^2}}})$
+	\begin{align*}
+		\operatorname{Area}(E_{a, b})
+		& = \int_{\gamma_f} \vec{F}\ dl - \int_{\gamma_g} \vec{F}\ dl \\
+		& = 2 \frac{b}{a^2} \cdot \int_{-a}^{a} \frac{-t^2}{\sqrt{1 - {\left(\frac{t}{a}\right)}^2}}\ dt \\
+		& = b {\left. t \sqrt{1 - \frac{t^2}{a^2}} - \arcsin\left(\frac{t}{a}\right) \right|}_{t = -a}^{t = a} \\
+		& = ab \pi \\
+	\end{align*}
 \end{solution}
 
 \end{document}
