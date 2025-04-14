@@ -1,0 +1,37 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 3 Answer Sheet --- Logic Theory (2), 80424}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+Let $T = \operatorname{Th}(\hat{\NN})$
+We will show that $T$ has $2^\omega$ non-isomorphic countable models.
+\begin{proof}
+	Let us define $P \subseteq \hat{\NN}$ the set of prime numbers.
+	We assume that $S \subseteq P$ is some set.
+	We enrich the language by a new constant symbol, $c$.
+	Let $T_S = T \cup \{ \exists x, (x \cdot p = c) \land \lnot (\exists y, y \cdot p = x) \mid p \in S \}$, namely extension of $T$ such that $c = \prod_{p \in S} p$.
+	$T_S$ is finitely satisfiable by $\hat{\NN}$ as for every finite $S$, $\prod_{p \in S} p \in \NN$, then by compactness $T_S$ is also satisfiable.
+	It follows that there is a model $\Mm_S \models T_S$ over $L \cup \{ c \}$, then it is also a model of $T$ by reduction of the language.
+	
+	Let $S \ne S'$ be subsets of $P$ and let $\Mm, \Nn$ be some of their respective models.
+	We will show that $\Mm \not\simeq \Nn$.
+	It is clear for $L \cup \{ c \}$-isomorphisms, as there is $p \in S \setminus S'$ (without loss of generality) such that $\Mm \models p \mid c$ but $\Nn \not\models p \mid c$.
+	By the last claim we can deduce that if there was such $L$-isomorphism, then for $c^\Mm$ there would be a contradiction, meaning there is no such isomorphism.
+
+	We know that $P \subseteq \NN$, and that this set is not finite, then $|P| = \omega$, it derives that there are $|2^P| = 2^\omega$ non-isomorphic models $\Mm_S \models T$.
+\end{proof}
+
+\question{}
+Let $F$ be an infinite field, and let $L_{F \operatorname{VS}}$ be the language of vector spaces over $F$.
+Let $V \subseteq U$ be two non-trivial vector spaces over $F$, we will show that $V \prec U$.
+\begin{proof}
+	Let $P$ be a disjoint unary relation symbol to $L_{F \operatorname{VS}}$, and let us define $L' = L_{F \operatorname{VS}} \cup \{ P \}$.
+	We extend $U$ to $L'$ by $P^U(x) \iff x \in V$.
+	For every $\psi(x_0, \ldots, x_{n - 1}) \in \operatorname{Th}(V)$, let $\varphi_{\psi} = \exists_{i < n} x_i (\bigwedge_{i < n} P(x_i) \rightarrow \exists x_n \psi(x_0, \ldots, x_{n - 1}))$
+\end{proof}
+
+\end{document}
