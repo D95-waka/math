@@ -29,9 +29,93 @@ We will show that $T$ has $2^\omega$ non-isomorphic countable models.
 Let $F$ be an infinite field, and let $L_{F \operatorname{VS}}$ be the language of vector spaces over $F$.
 Let $V \subseteq U$ be two non-trivial vector spaces over $F$, we will show that $V \prec U$.
 \begin{proof}
-	Let $P$ be a disjoint unary relation symbol to $L_{F \operatorname{VS}}$, and let us define $L' = L_{F \operatorname{VS}} \cup \{ P \}$.
-	We extend $U$ to $L'$ by $P^U(x) \iff x \in V$.
-	For every $\psi(x_0, \ldots, x_{n - 1}) \in \operatorname{Th}(V)$, let $\varphi_{\psi} = \exists_{i < n} x_i (\bigwedge_{i < n} P(x_i) \rightarrow \exists x_n \psi(x_0, \ldots, x_{n - 1}))$
+	Let $P$ be a $L_{F \operatorname{VS}}$-disjoint unary relation symbol to $L_{F \operatorname{VS}}$, and let us define $L' = L_{F \operatorname{VS}} \cup \{ P \}$.
+	We extend $U$ to $L'$ by $P^U(x) \iff x \in V$, namely $U'$.
+	For every $\psi(x_0, \ldots, x_{n - 1}) \in \operatorname{form}_{L \operatorname{VS}}$, let $\varphi_{\psi}(x_0, \ldots, x_{n - 1}) = \psi(x_0, \ldots, x_{n - 1}) \land P(x_0) \land \ldots \land P(x_{n - 1})$,
+	a formula such that $U' \models \psi \iff V \models \psi$.
+	It follows that there is a theory $T$ such that $U' \models T \iff V \prec U$, meaning that $T$ testifies to elementary substructure of $V$ in $U$.
+
+	Assuming that $|F| = \kappa$ we use upward Löwenheim–Skolem theorem to extend $U'$ to a model $U''$ such that $|U''| > \kappa$ and $U' \prec U''$.
+	We define $V'' = P^{U''}$, meaning that $V''$ is the extension of $V$.
+	We note that $|F| < |U''|, |V''|$, hence both spaces are infinite dimensional.
+	From question 1 of exercise 2 we infer that indeed $V'' \prec U''$, implying that $U'' \models T$, then $U' \models T$ as well, which lead us to the conclusion that $V \prec U$, as intended.
+\end{proof}
+
+\question{}
+Let $\Mm$ be the model $\langle \QQ(\pi); + \rangle$,
+we will show that the function $f_\pi : \QQ(\pi) \to \QQ(\pi)$ such that $f_\pi(u) = \pi u$ is not definable in $\Mm$.
+\begin{proof}
+	We will show that there is no formula $\varphi(x, y) \in \operatorname{form}_L$ such that $f_\pi$ is definable as the separation of $\varphi$ on $M$, meaning that $\varphi(x, y) \iff y = \pi \cdot x$.
+	We assume toward a contradiction that such a formula indeed exists.
+	Let $\Nn \succ \Mm$ be an elementary extension such that $|M| < |N|$, namely a model of larger cardinality, which derived from Löwenheim–Skolem theorem.
+	We fix some $e \in N \setminus M$, there is indeed one as $|N \setminus M| = |N|$.
+	Let $B = M \cup \{ e \}$ and $\Nn' = \Sp B$, the vector space over the field $\QQ$.
+	It directly follows that $M \subseteq N'$, as well the language enrichment $\Mm'$ of $\Mm$ to vector spaces over $\QQ$ fulfills $\Mm' \prec \Nn'$ by the last question.
+	We reduce the language to infer that $\Mm \prec \Nn'$ as well.
+	We assumed that $\Mm \models \forall x \exists y, \varphi(x, y)$ (the function condition over the formula $\varphi$), it follows that $\Nn' \models \forall x \exists y, \varphi(x, y)$ as well.
+	In particular, $\Nn' \models \exists y, \varphi(e, y)$, meaning that $y = \pi \cdot e$, but $e \notin M$ and is not closed to multiplication by $\pi$, which implies that $\pi \cdot e \notin \Nn'$,
+	a contradiction to the assumption that $\varphi$ exists.
+\end{proof}
+
+\question{}
+\subquestion{}
+We will show that PA proves that the addition is associative and commutative.
+\begin{proof}
+	we will prove that
+	\[
+		\operatorname{PA} \models \forall x, y (S(x + y) = S(x) + y)
+		\tag{C1}
+	\]
+	by induction over $y$.
+	For $y = 0$ it derives that $S(x + 0) = S(x) = S(x) + 0$ from axiom N3.
+	If $\operatorname{PA} \models \forall x, (S(x + n) = S(x) + n)$ then,
+	\begin{align*}
+		\forall x, (S(x + n) = S(x) + n)
+		& \iff \forall x, (S(S(x + n)) = S(x) + S(n)) \\
+		& \iff \forall x, (S(x + S(n)) = S(x) + S(n))
+	\end{align*}
+	Directly by axiom N4.
+
+	Let $\varphi(y) = \forall x, z (x + (y + z) = (x + y) + z)$, and $\psi = \forall y \psi(y)$ be the sentence that testifies to associativity, we will show that $\operatorname{PA} \models \psi$,
+	by showing that $\operatorname{Ind}(\varphi)$ holds.
+	$\operatorname{PA} \models \varphi(0)$ directly by the axioms N3 and N4.
+	Let us assume that $\varphi(n)$ holds, we will show that $\varphi(S(n))$ holds as well,
+	\begin{align*}
+		\operatorname{PA} \models \varphi(n)
+		& \iff \forall x, z (x + (n + z) = (x + n) + z) \\
+		& \overset{\text{N1}}{\iff} \forall x, z (S(x + (n + z)) = S((x + n) + z)) \\
+		& \overset{\text{N4, C1}}{\iff} \forall x, z (x + S(n + z) = S(x + n) + z) \\
+		& \iff \forall x, z (x + (S(n) + z) = (x + S(n)) + z) \\
+		& \iff \varphi(S(n))
+	\end{align*}
+	We conclude by induction axiom scheme that indeed $\operatorname{PA} \models \psi$.
+
+	Let $\varphi(x) = \forall y (x + y = y + x)$ and $\psi = \forall x, \varphi(x)$, sentence such that $\operatorname{PA} \models \psi$ if and only if PA is commutative.
+	We will show that $\operatorname{PA} \models \operatorname{Ind}(\varphi)$.
+	For $x = 0$, $0 + y = S(0 + y') = \cdots = S(S(\cdots S(0 + 0))) = y = y + 0$ by axioms N3 and N4.
+	Let us assume that $\varphi(n)$ holds, then,
+	\begin{align*}
+		\operatorname{PA} \models \varphi(n)
+		& \iff \forall y (n + y = y + n) \\
+		& \overset{\text{N1}}{\iff}  \forall y (S(n + y) = S(y + n)) \\
+		& \overset{\text{N4, C1}}{\iff}  \forall y ((S(n) + y) = y + S(n)) \\
+		& \iff \operatorname{PA} \models \varphi(S(n))
+	\end{align*}
+	It follows that $\operatorname{Ind}(\varphi)$ holds, meaning that $\operatorname{PA} \models \psi$.
+\end{proof}
+
+\subquestion{}
+We will show that PA proves that $(+, \cdot, \le)$ is a semi-ring, namely $+, \cdot$ are associative and commutative, $0, 1$ are neutral and $\le$ is linear order.
+\begin{proof}
+	associativity and commutativity of $+$ was shown in the first part, the proof for $\cdot$ is similar.
+	By N3 and N5 we infer that $0, 1$ are indeed neutral elements.
+	
+	We move to show $\le$ is a linear order.
+	From N9, $\le$ is reflexive.
+	To show transitivity we use induction, for the base N7 and for the step iterative usage of N8.
+	For linearity we use N9.
+	We also need to show that both $+$ and $\cdot$ are order-preserving for $\le$.
+	This statement is proven in induction over the added value to both sides of every inequality.
 \end{proof}
 
 \end{document}
