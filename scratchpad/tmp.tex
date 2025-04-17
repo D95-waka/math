@@ -2,10 +2,17 @@
 
 \begin{document}
 
-\[
-	\subseteq
-	\overline{}
-	\overset{}{=}
-\]
+\begin{align*}
+	& f : X \to Y
+	\iff f \subseteq X \times Y,
+	\forall x \in X \exists ! y \in Y, \langle x, y \rangle \in f \\
+	& f : X \hookrightarrow Y
+	\iff f : X \to Y, \forall x, x' \in X, \forall y \in Y, (\langle x, y \rangle \notin f \lor \langle x', y \rangle \notin f) \\
+	& f : X \twoheadrightarrow Y
+	\iff f : X \to Y, \forall y \in Y \exists x \in X, \langle x, y \rangle \in f \\
+	& f : X \leftrightarrow Y
+	\iff f : X \hookrightarrow Y \land f : \twoheadrightarrow Y
+	\iff f : X \to Y \land \{ \langle y, x \rangle \in Y \times X \mid \langle x, y \rangle \in f \} : Y \to X
+\end{align*}
 
 \end{document}
