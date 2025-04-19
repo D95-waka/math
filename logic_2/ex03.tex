@@ -11,7 +11,7 @@ Let $T = \operatorname{Th}(\hat{\NN})$
 We will show that $T$ has $2^\omega$ non-isomorphic countable models.
 \begin{proof}
 	Let us define $P \subseteq \hat{\NN}$ the set of prime numbers.
-	We assume that $S \subseteq P$ is some set.
+	We assume that $S \subseteq P$ is some infinite set.
 	We enrich the language by a new constant symbol, $c$.
 	Let $T_S = T \cup \{ \exists x, (x \cdot p = c) \land \lnot (\exists y, y \cdot p = x) \mid p \in S \}$, namely extension of $T$ such that $c = \prod_{p \in S} p$.
 	$T_S$ is finitely satisfiable by $\hat{\NN}$ as for every finite $S$, $\prod_{p \in S} p \in \NN$, then by compactness $T_S$ is also satisfiable.
@@ -20,7 +20,8 @@ We will show that $T$ has $2^\omega$ non-isomorphic countable models.
 	Let $S \ne S'$ be subsets of $P$ and let $\Mm, \Nn$ be some of their respective models.
 	We will show that $\Mm \not\simeq \Nn$.
 	It is clear for $L \cup \{ c \}$-isomorphisms, as there is $p \in S \setminus S'$ (without loss of generality) such that $\Mm \models p \mid c$ but $\Nn \not\models p \mid c$.
-	By the last claim we can deduce that if there was such $L$-isomorphism, then for $c^\Mm$ there would be a contradiction, meaning there is no such isomorphism.
+	Note that $p$ is definable, let us define $c' \in M$ as the element such that $c' = c^\Mm$.
+	If there was an $L$-isomorphism $f$ between $\Mm$ and $\Nn$, then $f(c')$ would not satisfy the formula $\varphi(x) = p \mid x$, in contradiction to $\Mm \models \varphi(c')$ and the fact that $f$ is a models isomorphism.
 
 	We know that $P \subseteq \NN$, and that this set is not finite, then $|P| = \omega$, it derives that there are $|2^P| = 2^\omega$ non-isomorphic models $\Mm_S \models T$.
 \end{proof}
