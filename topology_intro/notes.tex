@@ -501,35 +501,51 @@
 
 \section{שיעור 4 --- 7.4.2025}
 \subsection{אקסיומות ההפרדה}
-\begin{definition}[איברים ניתנים להרחבה]
-	נאמר ש־$U$ ו־$V$ מפרידות בין $x, y \in X$ מרחב טופולוגי, אם מתקיים $U \cap V = \emptyset$ וכן $x \in U, v \in V$.
-	אם קיימות כאלה, אז נאמר ש־$x, y$ ניתנות להפרדה. \\
-	באופן דומה נאמר ש־$A \subseteq X, x \in X$ ניתנות להפרדה אם קיימות $A \subseteq U, x \in V$ כאלה.
+מטרתנו היא לאפיין את הקונספט של הפרדה,
+כלומר מתי אנו יכולים לחסום חלקים שונים במרחב הטופולוגי בקבוצות פתוחות.
+במקרים המטריים אף ראינו בעבר כמה הפרד היא מועילה, היא פתח לדיון נרחב.
+\begin{definition}[איברים ניתנים להפרדה]
+	יהי $X$ מרחב טופולוגי ונניח ש־$x, y \in X$.
+	נאמר ש־$x, y$ ניתנים להפרדה אם קיימות קבוצות פתוחות $U, V \subseteq X$ כך שהקבוצות האלה זרות, וכן $x \in U, y \in V$. \\
+	עבור $x \in X, A \subseteq X$ נאמר שהקבוצה והאיבר ניתנים להפרדה אם $x \in U, A \subseteq V$ כאלה. \\
+	לבסוף נאמר ש־$A, B \subseteq X$ כך ש־$A \cap B = \emptyset$ ניתנות להפרדה אם $A \subseteq U, B \subseteq V$ פתוחות וזרות.
 \end{definition}
-\begin{definition}[מרחב T]
-	מרחב טופולוגי $X$ יקרא מרחב $T_i$ אם הוא מקיים את האקסיומה $T_i$ עבור $i \in \{0, 1, 2, 3, 4\}$.
-
-	נגדיר את האקסיומות $T_i$,
+עתה משהגדרנו את הקונספט הכללי של הפרדה, נגדיר באופן בהיר ועקבי סוגים שונים של ''רמת'' ההפרדה שמרחב טופולוגי מקיים.
+\begin{definition}[אקסיומות הפרדה]
+	מרחב טופולוגי $X$ יקרא מרחב $T_i$ אם הוא מקיים את האקסיומה $T_i$ עבור $i \in \{0, 1, 2, 3, 4\}$, עבור האקסיומות המוגדרות להלן.
 	\begin{itemize}
 		\item $T_0$, לכל $x, y \in X$ יש קבוצה פתוחה שמכילה את אחת הנקודות אך לא את האחרת
 		\item $T_1$, לכל שתי נקודות $x, y \in X$ קיימת פתוחה המכילה את אחת הנקודות ולא את האחרת, וקבוצה פתוחה המכילה את הנקודה השנייה אך לא את הראשונה.
 			כלומר אם $x \ne y$ אז קיימת $U \in \tau$ כך ש־$x \in U, y \notin U$
-		\item $T_2$ (מרחב האוסדורף), אם לכל זוג נקודות $x \ne y \in X$ יש קבוצות פתוחות זרות $U, V \subseteq X$ כך ש־$x \in U, y \in V$,
-			כאשר משמעות היותן זרות היא ש־$U \cap V = \emptyset$
+		\item $T_2$, אם לכל זוג נקודות $x \ne y \in X$ יש קבוצות פתוחות זרות $U, V \subseteq X$ כך ש־$x \in U, y \in V$.
+			אם $X$ מקיים את $T_2$ אז הוא יקרא מרחב האוסדורף.
+			בשפה שהגדרנו קודם, נאמר שבמרחב האוסדורף כל שתי נקודות ניתנות להפרדה
 		\item $T_3$, אם המרחב הוא $T_1$ וגם $X$ \textbf{רגולרי},
 			כלומר לכל $x \in X$ וקבוצה סגורה $x \notin A \subseteq X$, $x, A$ ניתנות להפרדה
 		\item $T_4$, אם המרחב הוא $T_1$ וכן $X$ \textbf{נורמלי},
 			כלומר שכל זוג תת־קבוצות סגורות $A, B \subseteq X$ ניתנות להפרדה
 	\end{itemize}
 \end{definition}
-\begin{remark}
+נעבור למספר טענות הנוגעות לסוגי ההפרדה השונים.
+\begin{proposition}
 	$T_1$ מתקיים אם ורק אם כל $\{x\} \subseteq X$ קבוצה סגורה.
-\end{remark}
-\begin{proposition}[גרירת מרחבי T]
-	נבחין כי $T_4 \implies T_3 \implies T_2 \implies T_1 \implies T_0$, כלומר המספר מייצג סדר גרירה.
 \end{proposition}
+\begin{proof}
+	נקבע נקודה $x \in X$, אז לכל $X \ni y \ne x$ קיימת קבוצה פתוחה $U_y \subseteq X$ כך ש־$x \notin U_y$.
+	מסגירות לאיחוד נקבל שגם $U = \bigcup_{y \in X, y \ne x} U_y$ היא קבוצה פתוחה.
+	לכן $U^C$ סגורה.
+	אבל מההגדרה שסיפקנו ל־$U$ נקבל ש־$U^C = \{ x \}$.
+\end{proof}
+\begin{proposition}[גרירת אקסיומות ההפרדה]
+	מתקיים $T_4 \implies T_3 \implies T_2 \implies T_1 \implies T_0$,
+	כלומר אם מרחב מטרי הוא $T_n$, אז הוא גם $T_i$ לכל $i < n$.
+\end{proposition}
+בעוד שלא נוכיח טענה זו, נבהיר כי היא נובעת ישירות מהגדרת ההפרדה.
+נבחין כי המספור הוא עתה לא ארעי כפי שאולי היינו שוגים לחשוב, אלא האקסיומות מסודרות לפי ''כוחן'' בהפרדת דברים במרחב.
+נמשיך ונראה טענה שתיצוק משמעות למרחבים נורמליים.
 \begin{proposition}[שקילות למרחב נורמלי]
-	מרחב טופולוגי $X$ נורמלי אם ורק אם לכל קבוצה סגורה $A$ וקבוצה פתוחה $A \subseteq U$ קיימת קבוצה פתוחה $V$ כך ש־$A \subseteq V \subseteq \overline{V} \subseteq U$.
+	מרחב טופולוגי $X$ נורמלי אם ורק אם לכל קבוצה סגורה $A$ וקבוצה פתוחה $A \subseteq U$ קיימת קבוצה פתוחה $V$ כך ש־$A \subseteq V \subseteq \overline{V} \subseteq U$. \\
+	כלומר לכל קבוצה סגורה וקבוצה פתוחה שמכילה אותה, יש קבוצה פתוחה ביניהן כך שגם הסגור שלה ביניהן.
 \end{proposition}
 \begin{proof}
 	בכיוון הראשון נניח ש־$X$ נורמלי וכן ש־$A \subseteq U$ קבוצה סגורה המוכלת בקבוצה פתוחה.
@@ -542,64 +558,50 @@
 	\]
 	ולכן $B \subseteq X \setminus \overline{V}$ ונובע גם ש־$V \cap (X \setminus \overline{V}) = \emptyset$.
 \end{proof}
-\begin{lemma}[הלמה של אוריסון]\label{orison_lemma}
-	יהי $X$ מרחב $T_4$, אז אם לכל זוג קבוצות סגורות זרות $C, D \subseteq X$, אז יש פונקציה רציפה $f : X \to [0, 1]$ כך ש־$f \mid_C = 1, f \mid_D = 0$.
-\end{lemma}
-\begin{proof}
-	
-\end{proof}
-\begin{proposition}
-	אם $X$ מרחב האוסדורף ($T_2$)  אם ורק אם $\Delta_X = \{ (x, y) \mid x, y \in X \} \subseteq X \times X$ תת־קבוצה סגורה בטופולוגיית המכפלה.
+\begin{proposition}[תנאי שקול למרחב האוסדורף]
+	$X$ מרחב האוסדורף, כלומר מרחב $T_2$,
+	אם ורק אם $\Delta_X = \{ (x, x) \mid x \in X \} \subseteq X \times X$ תת־קבוצה סגורה בטופולוגיית המכפלה.
 \end{proposition}
 \begin{proof}
 	נניח ש־$X$ מרחב האוסדורף.
 	לכל $x \ne y$ יש $x \in U_{x, y}$ ו־$y \in V_{x, y}$ פתוחות זרות, כלומר $(U_{x, y} \cap V_{x, y}) \cap \Delta_X = \emptyset$.
-	נבחין כי
+	נבחין כי,
 	\[
 		X \times X \setminus \Delta_X = \bigcup_{x \ne y} (U_{x, y} \times V_{x, y})
 	\]
-	וזוהי קבוצה פתוחה.
+	ובטופולוגיית המכפלה זוהי קבוצה פתוחה.
 
 	בכיוון השני נניח ש־$\Delta_X$ סגורה, אז $X \times X \setminus \Delta_X$ פתוחה, אם $x \ne y$ אז $(x, y) \in (X \times X) \setminus \Delta_X$.
 	לכן לפי הגדרת טופולוגיית המכפלה יש $U, V$ פתוחות כך ש־$(x, y) \in U \times V \subseteq X^2 \setminus \Delta_X$ ואף ש־$U \cap V = \emptyset$.
 \end{proof}
-\begin{proposition}
+\begin{proposition}[אקסיומות הפרדה בתתי־מרחבים]
 	עבור $i \in \{1, 2, 3\}$ אם $X$ הוא מרחב $T_i$ ו־$Y \subseteq X$, תת־מרחב אז גם $Y$ הוא מרחב $T_i$.
 \end{proposition}
 \begin{proof}
-	\begin{itemize}
-		\item עבור $T_1$ ההוכחה היא טריוויאלית.
-		\item עבור $T_2$ ההוכחה היא טריוויאלית.
-		\item עבור $T_3$, נזכור שמרחב כזה הוא $T_1$ וכן רגולרי, לכן מספיק שנראה שתת־המרחב הוא רגולרי גם כן.
-			יהי $y \in Y$ ויהי $A \subseteq Y$ סגורה כך ש־$y \notin A$.
-			לכן יש קבוצה סגורה $C \subseteq X$ כך ש־$A = C \cap Y$.
-			עוד אנו יודעים ש־$y \notin C$,
-			לכן קיימות $U, V$ פתוחות ב־$X$ מפרידות בין $y$ ל־$C$, $y \in U$ ו־$C \subseteq V$, וכן $U \cap V = \emptyset$,
-			אז $A \subseteq V \cap Y$ ו־$y \in U \cap Y$.
-
-			בכיוון השני נניח ש־$A, B \subseteq Y$ וש־$C, D \subseteq X$ סגורות,
-			אז $A = C \cap Y, B = D \cap Y$, אבל לא ברור מדוע אפשר לדרוש ש־$C, D$ זרות.
-	\end{itemize}
+	עבור $i \in \{1, 2\}$ הטענה נובעת ישירות מהגדרת אקסיומות ההפרדה $T_i$, לכן נעבור להוכחת הטענה עבור $T_3$. \\
+	נניח ש־$X$ הוא $T_3$, נזכור שמרחב כזה הוא $T_1$ וכן רגולרי, לכן מספיק שנראה שתת־המרחב הוא רגולרי גם כן.
+	יהי $y \in Y$ ויהי $A \subseteq Y$ סגורה כך ש־$y \notin A$.
+	לכן יש קבוצה סגורה $C \subseteq X$ כך ש־$A = C \cap Y$.
+	עוד אנו יודעים ש־$y \notin C$,
+	לכן קיימות $U, V$ פתוחות ב־$X$ מפרידות בין $y$ ל־$C$, $y \in U$ ו־$C \subseteq V$, וכן $U \cap V = \emptyset$,
+	אז $A \subseteq V \cap Y$ ו־$y \in U \cap Y$.
 \end{proof}
 \begin{remark}
 	טענה זו לא נכונה עבור $T_4$.
+	Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכל למצוא דוגמות רבות למרחבים כאלה.
 \end{remark}
-Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכל למצוא דוגמות רבות למרחבים כאלה.
-\begin{proposition}
+\begin{proposition}[אקסיומות הפרדה במרחבי מכפלה]
 	אם $X, Y$ מרחבים $T_i$ עבור $i \in \{1, 2, 3\}$ אז גם $X \times Y$ הוא מרחב $T_i$.
 \end{proposition}
 \begin{proof}
-	עבור $T_1$ הטענה ברורה, אנו רוצים להראות שלכל $x, y$,
+	עבור $T_1$ אם $(x, y) \in X \times Y$, אז נוכל להגדיר את הקבוצה,
 	\[
-		\{ (x, y) \}
-		= (X \times (Y \setminus \{y\})) \cup ((X \setminus \{x\}) \times Y)
+		(X \times (Y \setminus \{y\})) \cup ((X \setminus \{x\}) \times Y)
 	\]
-	סגורה.
+	זוהי קבוצה סגורה מהגדרת טופולוגיית המכפלה.
 
-	עבור $T_2$ הטענה קלה גם כן.
-
-	נוכיח עבור $T_3$.
-	נניח ש־$X, Y$ הם $T_3$, כלומר $T_1$ ורגולריים ועלינו להראות ש־$X \times Y$ רגולרי.
+	נעבור להוכחת הטענה עבור $T_3$.
+	נניח ש־$X, Y$ הם $T_3$, כלומר $T_1$ ורגולריים ועלינו להראות ש־$X \times Y$ רגולרי. \\
 	נניח ש־$A \subseteq X \times Y$ סגורה וכן ש־$(x, y) \notin A$.
 	נגדיר למה, ש־$Z$ מרחב רגולרי אם ורק אם לכל $z \in U \subseteq Z$ עבור $U$ פתוחה ויש $z \in V \subseteq \overline{V} \subseteq U$ פתוחה.
 	תוך שימוש בלמה, נסמן $W = (X \times Y) \setminus A$ פתוחה, $(x, y) \in W$, אז נובע שקיימות קבוצות פתוחות $x \in U_x \subseteq X$ ו־$y \in U_Y \subseteq Y$ כך ש־$(x, y) \in U_X \times U_Y \subseteq W$.
@@ -611,32 +613,45 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 
 	בכיוון השני של הלמה נניח ש־$C$ סגורה, $z \in Z, z \notin C$, אז יש $V$ פתוחה כך ש־$z \in V \subseteq \overline{V} \subseteq Z \setminus C$, וכן $C \subseteq U = Z \setminus \overline{V}$ כך ש־$U \cap V = \emptyset$.
 \end{proof}
-\begin{proposition}
+האפיון האחרון והחשוב שנראה עתה למרחבים המקיימים אקסיומות הפרדה הוא הקשר למרחבים מטריים.
+\begin{proposition}[הפרדה במרחבים מטריים]
 	אם $(X, \rho)$ מרחב מטרי, אז הוא מרחב $T_4$.
 \end{proposition}
 \begin{proof}
-	תת־קבוצה $E$ של $X$ ו־$x \in X$, נגדיר $\rho(x, E) = \inf\{ \rho(x, y) \mid y \in E \}$.
-	אם $E$ סגורה ו־$x \notin E$ אז $\rho(x, E) > 0$.
+	נניח ש־$E \subseteq X$ תת־קבוצה כלשהי ו־$x \in X$.
+	נרחיב את הגדרת המטריקה להגדרת הקוטר, כלומר נאמר שמתקיים,
+	\[
+		\rho(x, E) = \inf\{ \rho(x, y) \mid y \in E \}
+	\]
+	אם $E$ סגורה ו־$x \notin E$ אז $\rho(x, E) > 0$ כמסקנה מטענה מאינפי 3. \\
 	נניח ש־$A, B \subseteq X$ סגורות זרות, $\forall a \in A,\ \rho(a, B) > 0, \forall b \in B,\ \rho(b, A) > 0$,
 	אז $U = \bigcup_{a \in A} B_{\rho(a, B)}(a)$ ו־$V = \bigcup_{b \in B} B_{\rho(b, A)}(b)$ הן פתוחות וזרות.
 \end{proof}
+נעיר שהכיוון ההפוך נקרא מרחב מטריזבילי, ונעסוק בנושא זה בהמשך הקורס.
 נעבור לדוגמות.
 \begin{example}
-	לא $T_0$, $\{x, y\}$ עם הטופולוגיה $\{X, \emptyset\}$.
-
-	עבור $T_1$ ולא $T_0$, $\{x, y\}$ עם הטופולוגיה $\{\emptyset, \{x\}, X\}$.
-
-	עבור $T_2$ ולא $T_1$ נגדיר $X = \NN$ והטופולוגיה המושרית מהבסיס של כל הקבוצות שמשלימן סופי.
-
-	עבור $T_2$ ולא $T_3$ נסמן $\RR_{\frac{1}{\NN}}$ את המרחב הבא, קבוצת הנקודות היא $\RR$, 
+	אם $X = \{x, y\}$ עם הטופולוגיה $\{X, \emptyset\}$, אז $X$ הוא לא $T_0$ ולכן לא מקיים אף אקסיומת הפרדה.
+\end{example}
+\begin{example}
+	נגדיר $X = \{x, y\}$ עם הטופולוגיה $\{\emptyset, \{x\}, X\}$.
+	במקרה זה $X$ הוא מרחב $T_0$ אבל לא $T_1$.
+\end{example}
+\begin{example}
+	נגדיר $X = \NN$ והטופולוגיה המושרית מהבסיס של כל הקבוצות שמשלימן סופי, כלומר $\Bb = \{ A \subseteq X \mid |X \setminus A| < \omega \}$.
+	במקרה זה $X$ הוא מרחב $T_1$ אבל לא $T_2$.
+\end{example}
+\begin{example}
+	נראה מרחב שהוא $T_2$ אבל לא $T_3$. \\
+	נגדיר את המרחב הטופולוגי $\RR_{\frac{1}{\NN}}$ כמרחב מעל הקבוצה $\RR$, יחד עם הבסיס,
 	\[
 		\Bb
-		= \{ (a, b) \mid a < b, a, b \in \RR \}
-		\cup \left\{ (a, b) \setminus \left\{ \frac{1}{n} \mid n \in \NN \right\}, x, y \in \RR \right\}
+		= \{ (a, b) \in \RR^2 \mid a < b \}
+		\cup \left\{ (a, b) \setminus \left\{ \textstyle\frac{1}{n} \mid n \in \NN \right\} \mid x, y \in \RR, x < y \right\}
 	\]
-	יש לוודא שזה אכן בסיס.
-	היא הטופולוגיה המכילה את הטופולוגיה הקגילה של $\RR$, היא עדינה יותר ומכילה האוסדורף ולכן האוסדורף.
-	נראה ש־$\RR_{\frac{1}{\NN}}$ לא $T_3$, נבחין כי $\{\frac{1}{n} \mid n \in \NN \}$ סגורה,
+	ההוכחה ש־$\Bb$ מושארת לקורא. \\
+	נבחין כי זוהי טופולוגיה עדינה יותר של $\RR$, וזו האחרונה היא מרחב האוסדורף, לכן נוכל להסיק שגם $\RR_{\frac{1}{\NN}}$ מרחב האוסדורף. \\
+	נראה ש־$\RR_{\frac{1}{\NN}}$ לא $T_3$.
+	נבחין כי $\{\frac{1}{n} \mid n \in \NN \}$ סגורה,
 	ונראה כי לא ניתן להפריד בינה לבין $0$.
 	נניח ש־$0 \in U$ ו־$K = \{ \frac{1}{n} \mid n \in \NN \}$ פתוחות זרות ונקבל סתירה.
 	אם $0 \in U$ פתוחה אז $U$ מכילה איבר בסיס,
@@ -644,42 +659,31 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 	קיים $m \in \NN$ כך ש־$\frac{1}{m} < b_0$, ואז $(a_0, \frac{1}{m}) \setminus K \subseteq U$.
 	$\frac{1}{2m} \in K \subseteq V$ ולכן $(a_1, b_1) \subseteq V$ כאשר $a_1 < \frac{1}{2m} < b_1$.
 	$U \cap V \supseteq ((a_0, \frac{1}{m}) \setminus K) \cap (a_1, b_1) \ne \emptyset$, וקיבלנו סתירה.
-
-	עבור $T_3$ ולא $T_4$, נסמן את $\RR_L$, הטופולוגיה הנוצרת על $\RR$ עם הבסיס $L = \{ [a, b) \mid a < b, a, b \in \RR \}$.
+\end{example}
+\begin{example}
+	נראה דוגמה למרחב שהוא $T_3$ אבל לא $T_4$. \\
+	נסמן את $\RR_L$, הטופולוגיה הנוצרת על $\RR$ עם הבסיס $L = \{ [a, b) \mid a < b, a, b \in \RR \}$.
 	אז $\RR_L$ הוא מרחב $T_4$ ולכן בפרט גם $T_3$.
-	אז $\RR_L \times \RR_L$ היא בהכרח $T_3$, אבל נרצה להוכיח ש־$\RR_L \times \RR_L$ היא לא $T_4$.
-	\begin{exercise}
-		מה הטופולוגיה המושרית על $L$ מ־$\RR_L^2$?
-	\end{exercise}
-	\begin{solution}
-		הטופולוגיה הדיסקרטית.
-	\end{solution}
-	נסיק שכל תת־קבוצה $A \subseteq L$ היא סגורה ב־$\RR_L^2$.
+	אז $\RR_L \times \RR_L$ היא בהכרח $T_3$ מטענה שראינו קודם על מכפלות מרחבי הפרדה. \\
+	נרצה להראות ש־$\RR_L^2$ היא לא מרחב $T_4$.
+	נבחין כי הטופולוגיה המושרית על $L$ מ־$\RR_L^2$ היא הטופולוגיה הדיסקרטית, ולכן כל תת־קבוצה $A \subseteq L$ היא סגורה ב־$\RR_L^2$, בשיעור הבא נראה את המשך הסתירה ל־$T_4$.
 \end{example}
 
 \section{שיעור 5 --- 8.4.2025}
-
 \subsection{אקסיומות ההפרדה --- המשך}
-בשיעור הקודם דיברנו על הדוגמה הבאה, נמשיך לדון בה היום,
-\begin{example}
-	$\RR_L$ היא הקבוצה $\RR$ עם הבסיס לטופולוגיה $L = \{[a, b) \mid a, b \in \RR, a < b\}$, זוהי טופולוגיה עדינה יותר מהטופולוגיה הסטנדרטית על $\RR$.
-	$\RR_L$ היא $T_4$, וראינו גם כי $\RR_L^2$ היא $T_3$ אבל לא $T_4$.
-\end{example}
-בנוסף הגדרנו את הקבוצה $L = \{ (-x, x) \mid x \in \RR \} \subseteq \RR_L^2$, זוהי קבוצה סגורה, וכן הטופולוגיה המושרית מ־$\RR_L^2$ על $L$ היא הטופולוגיה הדיסקרטית על $L$.
-הסקנו גם שכל $A \subseteq L$ היא סגורה ב־$L$,
-כלומר לכל $A \subseteq L$ יש קבוצה $C_A \subseteq \RR_L^2$ סגורה כך ש־$A = L \cap C_A$.
-שתי האחרונות סגורות ב־$\RR_L^2$ ולכן גם $A$ סגורה ב־$\RR_L^2$.
-נניח ש־$\RR_L^2$ היא $T_4$, בפרט זהו מרחב נורמלי, ולכן כל שתי קבוצות סגורות זרות ניתנות להפרדה.
-בפרט לכל $A \subseteq L$ יש קבוצות פתוחות זרות $U_A, V_A \subseteq \RR_L^2$ כך ש־$A \subseteq U_A, L \setminus A \subseteq V_A$.
-נקבע לכל $A \subseteq L$ זוג קבוע כזה (וניצור מיפוי).
-נתבונן ב־$D = \{ (r, s) \mid r, s \in \QQ \} \subseteq \RR_L^2$, ונגדיר $\psi(A) = U_A \cap D$, כלומר $\psi : \Pp(L) \to \Pp(D)$.
-אם נבחר את $A = \emptyset$ אז גם $U_A = \emptyset$ ובהתאם $\psi(\emptyset) = \emptyset$, ולהפך אם $A = L$ אז $U_A = \RR_L^2, V_A = \emptyset$ ולכן $\psi(A) = \RR_L^2$.
-\begin{proposition}
-	$\psi$ חד־חד ערכית,
-	ולכן מקבלת סתירה.
-\end{proposition}
+נמשיך בהוכחת הסתירה עבור הדוגמה האחרונה מהשיעור הקודם.
 \begin{proof}
-	נוכיח חד־חד ערכיות,
+	בנוסף הגדרנו את הקבוצה $L = \{ (-x, x) \mid x \in \RR \} \subseteq \RR_L^2$, זוהי קבוצה סגורה, וכן הטופולוגיה המושרית מ־$\RR_L^2$ על $L$ היא הטופולוגיה הדיסקרטית על $L$.
+	הסקנו גם שכל $A \subseteq L$ היא סגורה ב־$L$,
+	כלומר לכל $A \subseteq L$ יש קבוצה $C_A \subseteq \RR_L^2$ סגורה כך ש־$A = L \cap C_A$.
+	שתי האחרונות סגורות ב־$\RR_L^2$ ולכן גם $A$ סגורה ב־$\RR_L^2$.
+	נניח ש־$\RR_L^2$ היא $T_4$, בפרט זהו מרחב נורמלי, ולכן כל שתי קבוצות סגורות זרות ניתנות להפרדה.
+	בפרט לכל $A \subseteq L$ יש קבוצות פתוחות זרות $U_A, V_A \subseteq \RR_L^2$ כך ש־$A \subseteq U_A, L \setminus A \subseteq V_A$.
+	נקבע לכל $A \subseteq L$ זוג קבוע כזה (וניצור מיפוי).
+	נתבונן ב־$D = \{ (r, s) \mid r, s \in \QQ \} \subseteq \RR_L^2$, ונגדיר $\psi(A) = U_A \cap D$, כלומר $\psi : \Pp(L) \to \Pp(D)$.
+	אם נבחר את $A = \emptyset$ אז גם $U_A = \emptyset$ ובהתאם $\psi(\emptyset) = \emptyset$, ולהפך אם $A = L$ אז $U_A = \RR_L^2, V_A = \emptyset$ ולכן $\psi(A) = \RR_L^2$. \\
+	$\psi$ חד־חד ערכית, ולכן מקבלת סתירה, ונותר לנו להוכיח שהיא אכן חד־חד ערכית.
+
 	נניח ש־$\emptyset \ne A \subsetneq L$, אז $\psi(A) \ne \emptyset$ כי $D$ צפופה ו־$U_A \ne \emptyset$.
 	גם $V_A \ne \emptyset$, שכן $L \setminus A \subseteq V_A$, ולכן נסיק ש־$V_A \cap D \ne \emptyset$.
 	עתה נניח ש־$\emptyset \ne A, B \subsetneq L$ כך ש־$A \ne B$, אז בלי הגבלת הכלליות יש $a \in A$ כך ש־$a \notin B$.
@@ -689,8 +693,12 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 	$D$ קבוצה בת־מניה ו־$L$ היא מהעוצמה של $\RR$.
 	יש לנו שיכון $\Pp(D) \hookrightarrow \RR$, אבל $|\RR| = |L|$, אז נוכל לבנות $\Pp(L) \hookrightarrow \Pp(D) \hookrightarrow L$ וזה בלתי אפשרי.
 \end{proof}
-נעבור להוכחת הלמה של אוריסון, למה\ \ref{orison_lemma}.
-\begin{proof}[הוכחת הלמה של אוריסון]
+נסיים עם למה משמעותית במיוחד במרחבי $T_4$.
+\begin{lemma}[הלמה של אוריסון]
+	אם $X$ מרחב טופולוגי $T_4$,
+	אז לכל זוג קבוצות סגורות זרות $C, D \subseteq X$, קיימת פונקציה רציפה $f : X \to [0, 1]$ כך ש־$f \mid_C = 1, f \mid_D = 0$.
+\end{lemma}
+\begin{proof}
 	נניח ש־$X$ מרחב $T_4$, ויהיו $C_0 = C$ וכן $V_1 = X \setminus D$, עבור הקבוצות הסגורות הזרות $C, D \subseteq X$.
 	נבחין כי $C_0$ סגורה ו־$V_1$ פתוחה, ולכן קיימות קבוצות $C_0 \subseteq V_{\frac{1}{2}} \subseteq C_{\frac{1}{2}} \subseteq V_1$.
 	שוב מדובר בקבוצה סגורה ובקבוצה פתוחה.
@@ -731,19 +739,31 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 
 \section{שיעור 6 --- 21.4.2025}
 \subsection{אקסיומות מנייה}
-ניזכר בהגדרה\ \ref{topology_basis_definition} וניעזר בו כדי להגדיר את ההגדרה הבאה,
-\begin{definition}
-	מרחב טופולוגי $X$ יקרא בן־מניה אם הוא מקיים את אקסיומת המנייה הראשונה, כלור אם לכל $X_0 \subseteq X$ יש בסיס בן־מניה משהו יש בסיס בן־מניה.
-	 אקסיומת המנייה השנייה, אם יש בסיס בן־מניה לטופולוגיה.
+ראינו עד כה מספר שימושים לבסיסים של טופולוגיה, הגדרה\ \ref{topology_basis_definition}.
+עתה נגדיר הגדרה משלימה לבסיס בהקשר מקומי.
+\begin{definition}[בסיס לטופולוגיה בנקודה]
+	אם $X$ מרחב טופולוגי ו־$x \in X$ נקודה כלשהי,
+	אז קבוצה של קבוצות פתוחות ${\{ U_i \}}_{i \in I}$ כך ש־$x \in U_i$ לכל $i \in I$,
+	תיקרא בסיס לטופולוגיה או בסיס לקבוצות פתוחות של $x$ אם לכל קבוצה פתוחה $x \in V$ קיים $i$ כך ש־$x \in U_i \subseteq V$.
 \end{definition}
-\begin{definition}
-	$X$ יקרא מרחב לינדולף, אם לכל כיסוי פתוח של $X$ יש כיסוי בן־מניה $X = \bigcup_{\beta \in U} V_{\beta}$ עבור $V_{\beta}$ פתוחות וכן $U$ בת־מניה.
+בהתאם נגדיר את ההגדרה המהותית הראשונה שעוסקת במנייה.
+\begin{definition}[אקסיומת המנייה הראשונה]
+	נאמר שמרחב $X$ מקיים את אקסיומת המנייה הראשונה אם לכל $x \in X$ קיים בסיס לפתוחות של $x$ כך שהבסיס בן־מנייה.
 \end{definition}
-\begin{definition}
+\begin{definition}[אקסיומת המנייה השנייה]
+	נאמר שמרחב $X$ מקיים את אקסיומת המנייה השנייה אם קיים בסיס בן־מניה ל־$X$.
+\end{definition}
+\begin{definition}[מרחב לינדולף]
+	$X$ יקרא מרחב לינדולף, אם לכל כיסוי פתוח של $X$ יש כיסוי בן־מניה. \\
+	כלומר אם $X = \bigcup_{\alpha \in I} U_{\alpha}$ כיסוי פתוח, אז קיימת $J \subseteq I$ כך ש־$X \subseteq \bigcup_{\alpha \in J} U_{\alpha}$.
+\end{definition}
+\begin{definition}[מרחב ספרבילי]
 	$X$ נקרא ספרבילי אם יש ב־$X$ תת־קבוצה צפופה בת־מניה.
 \end{definition}
+עתה משהגדרנו שפה לדבר בה על הקונספט של מנייה במרחבים טופולוגיים, נוכל לעבור למספר טענות.
 \begin{proposition}
-	מרחב רגולרי המקיים את אקסיומת המנייה השנייה הוא נורמלי.
+	מרחב רגולרי המקיים את אקסיומת המנייה השנייה הוא נורמלי. \\
+	בפרט מרחב $T_3$ המקיים את אקסיומת המנייה השנייה הוא $T_4$.
 \end{proposition}
 \begin{proof}
 	נניח ש־$X$ רגולרי המקיים את אקסיומת המנייה השנייה.
@@ -767,9 +787,11 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 	\]
 	וזו סתירה.
 \end{proof}
+נרצה לדון בקשר שבין מרחבים מטריים למרחבים טופולוגיים.
 \begin{definition}[מרחב מטריזבילי]
 	מרחב טופולוגי $X$ נקרא מטריזבילי אם קיימת מטריקה על $X$ שמשרה את הטופולוגיה.
 \end{definition}
+כבר ראינו שכל מטריקה משרה טופולוגיה שמקיימת את $T_4$, עתה נרצה להבין מתי בדיוק טופולוגיה אכן מושרית מאיזושהי מטריקה.
 \begin{remark}
 	תת־מרחב של מרחב מטריזבילי הוא מטריזבילי.
 \end{remark}
@@ -783,9 +805,7 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 		d(x, y)
 		= \sum_{n = 1}^\infty \frac{|x_n - y_n|}{2^n}
 	\]
-	ונחש העתקה $\psi : X \to {[0, 1]}^\NN$ כך ש־$\psi$ חד־חד ערכית היא משהו ומ־$X$ ל־$\psi(X)$.
-
-	$X \to {[0, 1]}^\NN \xrightarrow{\pi_k} [0, 1]$
+	ולבנות העתקה $\psi : X \to {[0, 1]}^\NN$ כך ש־$\psi$ חד־חד ערכית והפיכה מ־$X$ ל־$\psi(X)$.
 
 	לכל $x, y \in X$ כך ש־$x \ne y$ יש פתוחות זרות $U_{xy}, W_{xy} \subseteq \Bb$ כך ש־$x \in U_{xy}, y \in W_{xy}$.
 	ניתן למצוא קבוצות בסיס $x \in V_{xy} \subseteq \overline{V}_{xy} \subseteq U_{xy}$.
@@ -880,11 +900,11 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 \section{שיעור 7 --- 22.5.2025}
 \subsection{קשירות --- המשך}
 \begin{definition}[קשירות מקומית]
-	נאמר שהמרחב הטופולוגי $X$ הוא קשיר מקומית בנקודה $x \in X$ אם לכל סביבה $W$ של $x$ עש קבוצה פתוחה וקשירה $x \in U \subseteq W$.
+	נאמר שהמרחב הטופולוגי $X$ הוא קשיר מקומית בנקודה $x \in X$ אם לכל סביבה $W$ של $x$ יש קבוצה פתוחה וקשירה $x \in U \subseteq W$.
 	נאמר ש־$X$ קשיר מקומית אם $x$ קשיר מקומית לכל $x \in X$.
 \end{definition}
-\begin{definition}[מרכיב קשירות]
-	מרכיב הקשירות של $x$ במרחב הטופולוגי $X$ הוא תת־הקבוצה הקשירה המקסימלית אשר מכילה את $x$.
+\begin{definition}[רכיב קשירות]
+	רכיב הקשירות של $x$ במרחב הטופולוגי $X$ הוא תת־הקבוצה הקשירה המקסימלית אשר מכילה את $x$.
 \end{definition}
 \begin{remark}
 	אכן קיימת קבוצה כזו בשל הסגירות לאיחוד של הטופולוגיה, נבחר את $\bigcup_{x \in Z \subseteq X} Z$.
@@ -913,7 +933,7 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 	יהיו $p, q \in f(X)$, אז קיימות נקודות $p', q' \in X$ כך ש־$f(p') = p, f(q') = q$ וכן יש מסילה $\alpha : [0, 1] \to X$ כך ש־$\alpha(0) = p'$ ו־$\alpha(1) = q'$.
 	הרכבת פונקציות רציפות היא רציפה ולכן $f \circ \alpha$ מסילה המקשרת את $p$ ל־$q$.
 \end{proof}
-הטענה הבאה תיצור לנו קשר מהסוג הזה.
+עתה נראה את הקשר בין קשירות וקשירות מסילתית.
 \begin{proposition}
 	אם $X$ קשיר מסילתית אז $X$ קשיר.
 \end{proposition}
@@ -927,8 +947,6 @@ Counter examples in Topology של J. Arthur Seebach הוא ספר שבו נוכ�
 	נבחין כי $X = \{0\} \times [-1, 1] \cup G$.
 	סגור של קבוצה קשירה הוא קשיר ולכן סגור זה אכן קשיר.
 	מהצד השני הוא לא קשיר מסילתית, לא קיימת מסילה $\alpha : [0, 1] \to X$ כך ש־$\alpha(0) = (0, 0), \alpha(1) = (1, \sin 1)$.
-
-	\textbf{להשלים}.
 \end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
