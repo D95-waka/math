@@ -435,6 +435,179 @@
 	ולכן התנאי השני עבור חסימות לחלוטין מתקיים.
 \end{example}
 
+\section{ שיעור 4 --- 23.4.2025}
+\subsection{תכונות מרחבי סדרות}
+נסיים את הפרק הזה בתכונות חשובות במרחב $(l_2, \lVert \cdot \rVert)$ עליו דנו בשיעורים הקודמים.
+\begin{theorem}[משפט ארצלה ל־l2]
+	נניח ש־$K \subseteq l_2$, אז התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item $K$ חסומה לחלוטין
+		\item
+			\begin{enumerate}
+				\item הקבוצה $K$ חסומה במרחב המטרי $(l_2, \lVert \cdot \rVert)$, ו
+				\item $\lim_{M \to \infty} \sup_{x \in K} \sum_{j = M}^\infty x_j^2 = 0$
+			\end{enumerate}
+	\end{enumerate}
+\end{theorem}
+לפני שניגש להוכחת המשפט, נוכיח טענה כללית שתעזור לנו.
+\begin{proposition}
+	נניח ש־$(X, \rho)$ מרחב ממטרי כלשהו ונניח ש־$Q \subseteq X$ חסומה לחלוטין.
+	אז $Q$ היא חסומה ב־$(X, \rho)$.
+\end{proposition}
+\begin{proof}
+	תהי נקודה $x_0 \in X$, $Q$ חסומה לחלוטין ולכן $Q \subseteq \bigcup_{i = 1}^N B_{\epsilon}(x_i)$ עבור $N \in \NN$ ו־$x_1, \ldots, x_N \in X$. \\
+	נגדיר $R = \max\{ \rho(x_0, x_1), \ldots, \rho(x_0, x_N) \}$.
+	אם $q \in Q$ אז $q \in B_{\epsilon}(x_i)$ עבור איזשהו $i$, נובע שגם,
+	\[
+		\rho(q, x_0)
+		\le \rho(q, x_i) + \rho(x_i, x_0)
+		\le \epsilon + R
+	\] 
+	לכל $q \in Q$, נסיק שמתקיים $\rho(q, x_0) \le R + \epsilon$.
+\end{proof}
+נעבור להוכחת המשפט.
+\begin{proof}[הוכחת המשפט]
+	$1 \implies 2$, טענה $(a)$ נובעת מיד מהטענה שהוכחנו זה עתה.
+	נעבור להוכחת $(b)$.
+	יהי $\epsilon > 0$, $K$ קבוצה חסומה לחלוטין, ב־$l_2$ ולכן,
+	\[
+		K
+		\subseteq \bigcup_{i = 1}^N B_{\epsilon}(x^n)
+	\] 
+	נבחין כי,
+	\[
+		\sum_{j = 1}^\infty {(x_j^1)}^2 < \infty
+		, \ldots, 
+		\sum_{j = 1}^\infty {(x_j^N)}^2 < \infty
+	\] 
+	אז קיימים $M_1, \ldots, M_N$ התלויים ב־$\epsilon$ בלבד כך שמתקיים,
+	\[
+		\sum_{i = M_1}^\infty {(x_i^1)}^2 \le \epsilon
+		, \ldots, 
+		\sum_{i = M_N}^\infty {(x_i^N)}^2 \le \epsilon
+	\] 
+	עבור $x = (x_1, \ldots) \in K$ מתקיים $x \in B_{\epsilon}(x^n)$ וכן $\lVert x - x^n \rVert^2 \le \epsilon^2 \le 2 \epsilon$ ולכן,
+	\[
+		\sum_{i = M}^\infty x_i^2
+		= \sum_{i = M}^\infty {(x_i - x_i^n + x_i^n)}^2
+		\le 2 \sum_{i = M}^\infty {(x_i - x_i^n)}^2 + 2 \sum_{i = M}^\infty {(x_i^n)}^2
+	\]
+	אז,
+	\[
+		\forall \epsilon > 0,
+		\exists M,
+		\forall x \in K,
+		\ \sum_{i = M}^\infty x_i^2
+		\le 2 \epsilon^2 + 2 \epsilon
+	\] 
+	ולכן למעשה מצאנו שמתקיים,
+	\[
+		\lim_{M \to \infty} \sup_{x \in K} \sum_{i = M}^\infty x_i^2 = 0
+	\] 
+
+	$2 \implies 1$,
+	נניח ש־$K$ חסומה וכן שקיים הגבול (b).
+	יהי $\epsilon > 0$ ונבחר $M$ כך שמתקיים,
+	\[
+		\sup_{x \in K} \sum_{i = M}^\infty x_i^2
+		\le \epsilon^2
+	\] 
+	ולכן בפרט לכל $x \in K$, מתקיים $\sum_{i = M}^\infty x_i^2 \le \epsilon^2$
+	נגדיר $\pi_M : K \to \pi_M(K) \subseteq {(\RR^M)}^\circ$ על־ידי $\pi_M(x) = (x_1, \ldots, x_M, 0, \ldots)$.
+	אז $\pi_M(K)$ חסומה ב־$\RR^M$ ולכן $\pi_M(K)$ חסומה לחלוטין ב־$\RR^M$.
+	נעיר שבמקרה זה $\RR^M = \{ (x_1, \ldots, x_M, 0, \ldots) \}$. \\
+	נובע שקיימים $y^1, \ldots, y^N \in {(\RR^M)}^\circ$ כך שמתקיים,
+	\[
+		\pi_M(K)
+		\subseteq \bigcup_{n = 1}^N B_{\epsilon}(y^n)
+	\]
+	אז אם $x \in K$, מתקיים $\pi_M(x) \in B_{\epsilon}(y^n)$, נסיק,
+	\[
+		\lVert x - y^n \rVert^2
+		= \sum_{i = 1}^M {(x - y_i^n)}^2 + \sum_{i = M + 1}^\infty x_i^2 
+		\le \lVert \pi_M(x) - y^n \rVert^2 + \epsilon^2
+		\le 2 \epsilon^2
+	\]
+	בהתאם נובע ש־$K \subseteq \bigcup_{n = 1}^N B_{\sqrt{2} \epsilon}(y^n)$.
+\end{proof}
+
+\subsection{קירובים}
+בעולם של אנליזה פונקציונלית עלינו למצוא דרך לקרב פונקציות מורכבות על־ידי פונקציות פשוטות יותר, זאת כדי שנוכל לעבוד במרחבים ההרבה יותר מורכבים שבהם וקטור הוא פונקציה.
+עוד משהו שחשוב שנוכל לעשות הוא לקרב במידה שווה את הפונקציות, זאת שכן קירוב נקודתי לא מספר לנו מספיק על הפונקציות.
+\begin{theorem}[משפט הקירוב של ויירשטראס]
+	לכל $f \in C[0, 1]$ קיימת סדרת פולינומים ${(P_n)}_{n = 1}^\infty$ כך שמתקיים $P_n \rightrightarrows f$.
+\end{theorem}
+\begin{proof}
+	נתחיל ברידוד של הבעיה, נניח ש־$g(x) = f(x) - f(0) - x(f(1) - f(0))$, אז נובע ש־$f(x) = g(x) + f(0) + x(f(1) - f(0))$, אך החלק המוסף הוא פולינום, ולכן נוכל לבחון את הקירוב ל־$g$ בלבד.
+	נקבל שנוכל להניח ללא הגבלת הכלליות ש־$f(0) = f(1) = 0$. \\
+	נגדיר פונקציה חדשה,
+	\[
+		F(x)
+		= \begin{cases}
+			f(x) & x \in [0, 1] \\
+			0 & x \in \RR \setminus [0, 1]
+		\end{cases}
+	\] 
+	פונקציה זו מוגדרת על הממשיים והיא רציפה במידה שווה ב־$\RR$ בשל ההנחה שעשינו. \\
+	לכל $\epsilon > 0$ קיים $\delta > 0$ כך שאם $|x - y| \le 2 \delta$ אז $|F(x) - F(y)| \le \epsilon$ לכל $x, y \in \RR$.
+	בשלב הבא נגדיר את סדרת הפולינומים שלנו,
+	\[
+		P_n(x)
+		= \int_{-1}^{1} F(x + u) Q_n(u)\ du
+	\]
+	כאשר $Q_n(u) = C_n {(1 - u^2)}^n$ כאשר $C_n$ קבוע מנרמל כך שיתקיים $\int_{-1}^{1} Q_n(u)\ du = 1$. \\
+	נבחין כי $F(x + u) \ne 0$ כאשר $x + u \in [0, 1]$, או בהתאם כאשר $u \in [-x, 1 - x]$.
+	נשתמש בהגדרת התומך ונקבל שמתקיים,
+	\[
+		P_n(x)
+		= \int_{-x}^{1 - x} F(x + u) Q_n(u)\ du
+		= \int_0^1 F(t) Q_n(t - x)\ dt
+	\]
+	אבל $Q_n$ פולינום ונסיק שגם $P_n$ פולינום (מדוע?).
+	נבחין כי,
+	\begin{align*}
+		& |P_n(x) - F(x)| \\
+		& = \left\lvert \int_{-1}^{1} F(x + u) Q_n(u)\ du - \int_{-1}^{1} F(x) Q_n(u)\ du \right\rvert \\
+		& \le \int_{-1}^{1} |F(x + u) - F(x)| Q_n(u)\ du \\
+		& \le \int_{-1}^{-\delta} |F(x + u) - F(x)| Q_n(u)\ du + \int_{-\delta}^{\delta} |F(x + u) - F(x)| Q_n(u)\ du + \int_{\delta}^1 |F(x + u) - F(x)| Q_n(u)\ du
+	\end{align*}
+	נסמן את שלושת האינטגרלים הללו $I_1, I_2, I_3$ בהתאמה, ונבדוק,
+	\[
+		I_2
+		\le \epsilon \int_{-\delta}^{\delta} Q_n\ du
+		\le \epsilon \int_{-1}^{1} Q_n(u)\ du
+		\le \epsilon
+	\]
+	עבור $I_3$, אנו יודעים ש־$F$ חסומה ונסמן $|F(x)| \le M$ עבור $M > 0$ כלשהו, אז,
+	\[
+		I_3
+		\le 2M \int_{\delta}^{1} Q_n(u)\ du
+		= 2M C_n \int_{\delta}^{1} {(1 - u^2)}^n\ du
+		\le 2M C_n {(1 - \delta^2)}^n (1 - \delta)
+		\le 2M C_n {(1 - \delta^2)}^n
+	\]
+	נרצה להעריך את $C_n$,
+	\[
+		C_n \int_{-1}^{1} {(1 - u^2)}^n\ du = 1
+	\]
+	אז,
+	\[
+		\int_{-1}^{1} {(1 - u^2)}^n\ du
+		\ge \int_{-\frac{1}{\sqrt{n}}}^{\frac{1}{\sqrt{n}}} {(1 - u^2)}^n\ du
+		= 2 \int_0^{\frac{1}{\sqrt{n}}} {(1 - u^2)}^n\ du
+		\ge 2 \int_0^{\frac{1}{\sqrt{n}}} 1 - u^2\ du
+		= 2 {\left[ \frac{1}{\sqrt{n}} - n \frac{u^3}{3}\right]}_0^{\frac{1}{\sqrt{n}}}
+	\]
+	ולכן נסיק ש־$C_n \le \sqrt{n}$.
+	בהתאם נקבל חסם ל־$I_3$ ומטעמי סימטריה גם ל־$I_1$, ונוכל להסיק שלכל $\epsilon > 0$ קיים $\delta > 0$ כך שמתקיים,
+	\[
+		|F(x) - P_n(x)|
+		\le \epsilon + 4M \sqrt{n} {(1 - \delta^2)}^n
+		\xrightarrow{n \to \infty} 0
+	\]
+	כלומר קיים $M_0 > 0$ כל ש־$|F(x) - P_n(x)| \le 2 \epsilon$ לכל $x \in \RR, n > M_0$, ולכן $P_n \overset{\RR}{\rightrightarrows} f$ ובפרט $P_n \overset{[0, 1]}{\rightrightarrows} f$ כפי שרצינו.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
