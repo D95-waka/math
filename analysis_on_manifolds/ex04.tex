@@ -258,4 +258,36 @@
 	\]
 \end{solution}
 
+\question{}
+תהי $(\varphi, M \subseteq \RR^m)$ ו־$(\psi, N \subseteq \RR^n)$ שתי יריעות פרמטריות.
+תהינה $f : M \to \RR$ ו־$g : N \to \RR$ פונקציות רציפות.
+נגדיר $h : M \times N \to \RR$ על־ידי $h(x, y) = f(x) g(y)$.
+נראה שמתקיים,
+\[
+	\int_{M \times N} h\ d\vol_{n + m}
+	= \left( \int_M f\ d\vol_m \right) \cdot \left( \int_N f\ d\vol_n \right)
+\]
+\begin{proof}
+	נניח ש־$\dom \varphi = U_M, \dom \psi = U_N$.
+	נגדיר גם $\sigma : U_M \times U_N \to M \times N$ על־ידי $\sigma(x, y) = (\varphi(x), \psi(y))$.
+	נסיק ממכפלת מרחבים מטריים ש־$\sigma$ דיפאומורפיזם ולכן מתקיים, נניח ש־$\RR^{n + m} \ni u = (x, y)$ עבור $x \in \RR^m, y \in \RR^n$.
+	\[
+		\int_{M \times N} h\ d\vol_{n + m}
+		= \int_{U_M \times U_N} h(\sigma(u))\ V(D \sigma \mid_u)\ du
+		= \int_{U_M \times U_N} f(\varphi(x)) g(\psi(y))\ V(D \sigma \mid_{(x, y)})\ d(x, y)
+	\]
+	אילו $V(D \sigma) = V(D \varphi) \cdot V(D \psi)$ אז ממשפט פוביני של אינפי 3 נובע ישירות,
+	\begin{align*}
+		\int_{U_M \times U_N} f(\varphi(x)) g(\psi(y))\ V(D \sigma \mid_{(x, y)})\ d(x, y)
+		& = \int_{U_M} f(\varphi(x))\ V(D \varphi \mid_x)\ dx \cdot \int_{U_N} f(\phi(y))\ V(D \psi \mid_y)\ dy \\
+		& = \left( \int_M f\ d\vol_m \right) \cdot \left( \int_N f\ d\vol_n \right)
+	\end{align*}
+	מלינארית אנו יודעים שדטרמיננטת מטריצות בלוקים שווה למכפלת הדטרמיננטות של הבלוקים כמטריצות, לכן מספיק שנראה שאכן ${(D \sigma)}^t (D \sigma)$ מטריצת בלוקים.
+	למעשה, הגדרנו את $\sigma$ כך ש־$\sigma(x, 0) = (\varphi(x), 0)$ ולכן נוכל להסיק שאכן $\frac{\partial \sigma}{\partial y_i} = 0$ לכל $1 \le i \le m$, ונסיק שאכן,
+	\[
+		V(D \sigma) = V(D \varphi) \cdot V(D \psi)
+	\]
+	ונסיק שהשוויון אכן קיים.
+\end{proof}
+
 \end{document}
