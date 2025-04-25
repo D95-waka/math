@@ -33,17 +33,19 @@
 		V(D\varphi)
 		= \sqrt{{(D\varphi)}^t D \varphi}
 		= \sqrt{\begin{vmatrix}
-				1 + e^{{(x + y)}^2} & e^{{(x + y)}^2} \\
-				e^{{(x + y)}^2} & 1 + e^{{(x + y)}^2}
+				1 + e^{2 {(x + y)}} & e^{2 {(x + y)}} \\
+				e^{2 {(x + y)}} & 1 + e^{2 {(x + y)}}
 		\end{vmatrix}}
-		= \sqrt{1 + 2e^{{(x + y)}^2}}
+		= \sqrt{1 + 2e^{2 {(x + y)}}}
 	\]
 	ולכן נציב,
-	\[
-		\int_{(0, 1)} \int_{(0, 1)} \sqrt{2 e^{{(x + y)}^2} + 1} \cdot \sqrt{1 + 2 e^{{(x + y)}^2}}\ dx\ dy
-		= \int_{(0, 1)} \int_{(0, 1)} 2 e^{{(x + y)}^2} + 1\ dx\ dy
-	\]
-	ואין לי מושג איך לחשב את זה.
+	\begin{align*}
+		\int_{(0, 1)} \int_{(0, 1)} \sqrt{2 e^{2 {(x + y)}} + 1} \cdot \sqrt{1 + 2 e^{2 {(x + y)}}}\ dx\ dy
+		& = \int_{(0, 1)} \int_{(0, 1)} 2 e^{2x} e^{2y}\ dx\ dy + 1 \\
+		& = 2 \left( \int_{(0, 1)} e^{2x}\ dx \right) \left( \int_{(0, 1)} e^{2y}\ dy \right) + 1 \\
+		& = 1 + 4 \cdot {\left[ \frac{1}{2} e^{2x} \right]}_0^1 \\
+		& = 2 e^2 - 1
+	\end{align*}
 \end{solution}
 
 \question{}
