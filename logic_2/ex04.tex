@@ -1,0 +1,163 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 4 Answer Sheet --- Logic Theory (2), 80424}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+\subquestion{}
+Was solved in the last exercise.
+
+\subquestion{}
+We will show that Euclid's algorithm works in PA,
+meaning that we will show that PA proves that for all $0 < x, y$ there is some $z = \gcd(x, y)$, namely that for all $w$, $w \mid z \iff w \mid x, w \mid y$ and that $z + ax = by$ or $z + by = ax$ for some $a, b$.
+\begin{proof}
+	We define $\varphi(n) = n \ge x, y > 0 \rightarrow \exists z, z \mid x, z \mid y, \forall w ((w \mid x \land w \mid y) \rightarrow z \mid w)$, meaning that there is $\gcd$ for every two non-zero numbers there is $\gcd$.
+	We intend to prove the claim using induction over $n$.
+	For $y = 1$ we choose $z = 1$, indeed $z \mid x$ and $z \mid y$, and by axiom N7 and N4 we deduce that if $w \mid x, w \mid y$ then $w = 1$ and $z \mid w$.
+	We assume that $\varphi$ holds for $y' < y$ and will show that it holds for $y$ as well.
+	It is important to note that full induction is directly proven from induction axiom scheme by using formula iterating over $\varphi$.
+	$<$ is linear order, and by the definition of $\phi$, $\gcd(x, y) = \gcd(y, x)$, then without loss of generality either $x < y$ or $x = y$.
+	if $y = x < n$ then we assumed the claim holds, otherwise $x = y = n$.
+	In such case we choose $z = n$ as well, and prove similarly to the case $n = 1$ that it is indeed greatest common divisor.
+	It is remains to test $x < y = n$.
+	If $w \mid x, w \mid y$ then $w \mid y - x$, when $y - x$ is indeed defined by the last part.
+	Note that $y - x < n$ as $1 \le x$, then there is such $z$ for $x, y - x$, and therefore for $x, y$ as well.
+\end{proof}
+
+\subquestion{}
+We will conclude that if $p$ is a prime and $p \mid a \cdot b$ then either $p \mid a$ or $p \mid b$.
+\begin{proof}
+	If $p \mid a$ the claim holds, then we assume otherwise that $p \nmid a$ and will show $p \mid b$.
+	$\gcd(a, p) = 1$, as only $1, p \mid p$.
+	Then there is $k$ such that $1 + k a = l p$, it follows that $b + k \cdot ab = l p b$.
+	We denote by $-$ the subtraction in the sense that if $x < y$ there is $\alpha$ such that $x + \alpha = y$, and then $b = lb \cdot p - k \cdot a b$.
+	From the last part, this number is divided by $p$, implying that $p \mid b$.
+\end{proof}
+
+\question{}
+\subquestion{}
+We will show that $\Sigma_0^0$ is closed under boolean operations and bounded quantifiers.
+\begin{proof}
+	We redefined the boolean operations as the implication relation, and thus we will show that if $\varphi, \psi \in \Sigma_0^0$, then $\varphi \to \psi \in \Sigma_0^0$ as well.
+	By $\varphi, \psi \in \Sigma_0^0$ we infer that (without loss of generality) all quantifiers in these formulas are bounded, and $\varphi \to \psi$ does not introduce new quantifiers to the formula.
+	We can deduce that $\varphi \to \psi \in \Sigma_0^0$.
+
+	$\Sigma_0^0$ is closed under bounded quantifiers directly by definition.
+
+	It is important to note that the fully formalised proof would include induction over the structure of the formula.
+\end{proof}
+
+\subquestion{}
+We will show that for every $n > 0$, the class of $\Sigma_n^0$ formulas is closed under bounded quantifiers, existential quantifiers and disjunctions, conjunctions.
+\begin{proof}
+	For every formula $\varphi$ such that $v_0, v_1 \notin \operatorname{FV}(\varphi)$, $\forall v_0 \forall v_1 \varphi \iff \forall v_1 \forall v_0$, it can be shown using induction over the structure of the formula.
+	This statement holds even in the case one (or more) of the quantifiers is bounded (but not bounded by $v_0$ or $v_1$).
+	It holds for all quantifiers as well.
+
+	We will prove closeness under bounded quantifiers of $\Sigma_n^0, \Pi_n^0$ by induction over $n$.
+	For $n = 0$ it follows from part 1.
+	Let us assume the claim is true for $n$ and we will show it also true for $n + 1$.
+	Assuming $\exists x_0 \varphi \in \Sigma_n^0$ be a $\Sigma_n$ formula.
+	The formula $\forall v \le c_v \exists x_0 \varphi$ is equivalent by the last statement to $\exists x_0 \forall v \le c_v \varphi$ (when $c_v \ne x_0$) and by the induction hypothesis is $\Sigma_n^0$.
+
+	We move to show that $\Sigma_n^0$ is closed under existential quantifiers.
+	Let $\exists x \varphi \in \Sigma_n^0$.
+	Then $\exists x \varphi \equiv_{\text{tau}} \exists y \varphi_y^x$.
+	It follows that $\exists x \exists y \varphi \equiv \exists x \exists y \le x (\varphi \lor \varphi_{y, x}^{x, y})$,
+	as for every constants fulfilling this formula, their size comparison would not affect the formula.
+
+	Lastly we will show that if $\varphi, \psi \in \Sigma_n^0$ then $\varphi \land \psi, \varphi \lor \psi \in \Sigma_n^0$ as well.
+	Let us assume that $\varphi, \psi \in \Sigma_n$ without loss of generality.
+	By definition $\varphi = \exists v_0, \forall v_1, \ldots, \exists v_{n - 1} \varphi_0$ and $\psi = \exists v_0, \forall v_1, \ldots, \exists v_{n - 1} \psi_0$ for some $\varphi_0, \psi_0 \in \Sigma_0$.
+	By conjunction identities we can derive that $\varphi \land \psi \equiv \exists v_0, \forall v_1, \ldots, \exists v_{n - 1} \varphi_0 \land \psi_0$, it follows that $\varphi \land \psi \in \Sigma_n^0$.
+	Disjunction is similar.
+\end{proof}
+
+\subquestion{}
+We will show that for every $n > 0$, $\Pi_n^0$ is closed under bounded quantifiers, universal quantifiers, disjunctions and conjunctions.
+\begin{proof}
+	We showed closeness under bounded quantifiers, and the proof for closeness under disjunctions and conjunctions is the same, it is yet to be shown closeness under universal quantifiers.
+
+	For every $x, y$, there is a relation $x \le y$ or $l \le x$, then $\forall x \forall y \varphi$ holds if and only if $(\forall x \forall y \le x \varphi) \land (\forall y \forall x \le y \varphi)$.
+	In other words, there is finite set of conjuncted formulas such that they are equivalent to the quantifying over finite number of linearly-ordered variables.
+	By this claim we can deduce that $\Pi_n^0$ is closed under global quantifiers, as it is closed under conjunction.
+\end{proof}
+
+\subquestion{}
+We will show that the negation of a $\Sigma_n^0$-formula is $\Pi_n^0$-formula.
+\begin{proof}
+	Let $\varphi = \exists v_{n - 1} \forall v_{n - 2} \ldots \exists v_0 \varphi_0$ be a $\Sigma_0$-formula to testify that $\varphi' \in \Sigma_n^0$ for some such formula.
+	By De-Morgan rule for quantifiers it follows that,
+	\[
+		\lnot \varphi'
+		\equiv \lnot \varphi
+		\equiv \forall v_{n - 1} \lnot \ldots \varphi_0
+		\equiv \ldots \equiv \forall v_{n - 1} \ldots \forall v_0 (\lnot \varphi_0)
+		\in \Pi_n
+	\]
+	It is implied that $\lnot \varphi' \in \Pi_n^0$ as intended.
+\end{proof}
+
+\subquestion{}
+We will prove that every arithmetic relation is in $\Sigma_n^0$ or $\Pi_n^0$ for some $n$.
+\begin{proof}
+	We will prove by induction over the structure of the formula.
+
+	For atomic formulas, every such formula is quantifier-less and thus $\Sigma_0$ and therefore $\Sigma_0^0$ as well.
+	For negation of formulas, if $\varphi \in \Sigma_n^0$ or $\varphi \in \Pi_n^0$ then by the last part $\lnot \varphi \in \Pi_n^0$ or $\lnot \varphi \in \Sigma_n^0$.
+	By parts b and c the sets are both closed under conjunction, with the addition of completeness of $\{ \land, \lnot \}$ and the closeness to negation, it follows that the induction step for binary relations holds.
+	Let us assume that $\varphi \in \Sigma_n^0$, then $\exists v \varphi \in \Sigma_n^0$ by part b, and $\forall v \varphi \in \Pi_{n + 1}^0$ by definition of $\Pi_{n + 1}$.
+	For similar reasons if $\varphi \in \Pi_n^0$ then the formula is closed to quantifiers as well.
+
+	It derives that indeed for every $\varphi \in L_{\operatorname{PA}}$, either $\varphi \in \Sigma_n^0$ or $\varphi \in \Pi_n^0$ for some $n \in \NN$.
+\end{proof}
+
+\question{}
+Let $\operatorname{PA}'$ be a theory equivalent to PA except that the axiom scheme for induction only holds for parameter-less formulas (of the form $\varphi(v_0)$).
+We will show that $\operatorname{PA} \equiv \operatorname{PA}'$.
+\begin{proof}
+	$\operatorname{PA}' \subseteqq \operatorname{PA}$ is trivial, it is sufficient to show that $\operatorname{PA}' \models \operatorname{Ind}(\varphi(v_0, \ldots, v_{n - 1}))$ for every $n < \omega$ and such $\varphi$.
+
+	Let $\varphi(v_0, \ldots, v_{n - 1})$ be some formula and $\Nn \models \operatorname{PA}'$ a model such that if $\Nn \models \operatorname{PA}$ then $\Nn \models \operatorname{Ind}(\varphi)$.
+	Let $c_1, \ldots, c_{n - 1} \in N$ be new constants we introduce to the language, and define $c_i^\Nn = a_i$ for some $a_i \in N$ for $0 < i < n$.
+	Let $\psi(v_0) = \phi(v_0, c_1, \ldots, c_{n - 1})$, then $\Nn \models \operatorname{Ind}(\psi(v_0))$ by the axiom scheme of induction in $\operatorname{PA}'$.
+	From logic 1 we infer that indeed $\Nn \models \operatorname{Ind}(\varphi)$, for every such model and formula, meaning that $\operatorname{PA}' = \operatorname{PA}$.
+\end{proof}
+
+\question{}
+Let us assume that $\Mm \models \operatorname{PA}$.
+An element $e \in M$ is called \textit{standard} if $e = \underline{n}^\Mm$ for some $n \in \NN$.
+A model is called \textit{standard} if all its elements are standards.
+Otherwise $\Mm$ is called non-standard.
+
+\subquestion{}
+We assume that $\Mm \models \operatorname{PA}$ is non-standard, and that $\varphi(v)$ is a formula over $L_{\operatorname{PA}}$ with parameters from $\Mm$,
+such that $\Mm \models \varphi(\underline{k})$ for all $k \in \NN$.
+We will show that there is some non-standard element $e \in M$ such that $\Mm \models \varphi(e)$.
+\begin{proof}
+	It follows directly from the definition of $\Mm$ that both $\Mm \models \operatorname{Ind}(\varphi)$ and $\Mm \models \varphi(\underline{k})$ for all naturals.
+	It follows that $\Mm \vdash \forall v_0 \varphi(v_0)$, using specific language such that $\varphi$ is indeed a formula of the model, and then restriction of the language.
+	$\Mm$ is non-standard, then there is $e \in M$ that testifies to this fact, and by global quantifiers identities it is implied that $\Mm \models \varphi(e)$.
+\end{proof}
+
+\subquestion{}
+We assume that $\Mm$ is a non-standard model.
+We will show that the order on $\Mm$ is of the form $\langle \NN, < \rangle + C$ where $C$ is either empty or of the form of a dense sum, with no first and last elements, of $\ZZ$,
+meaning that $\langle \Mm; < \rangle \cong \langle \NN + Q \times \ZZ; < \rangle$ for some $Q \in \operatorname{DLO}$.
+\begin{proof}
+	From Ehrenfeucht–Fraïssé game we deduce that $\langle \NN, < \rangle \equiv \langle \NN + Z \times \ZZ \rangle$ for $Z$ finite order or well-order.
+	If $\langle M, <^\Mm \rangle$ is a well-order, then we can show using the previous statement that indeed it is equivalent to $\langle \NN, < \rangle$.
+	Let us assume that $\Mm$ is not a well-order, then the class of non-standard elements is not well-ordered and does not contain a minimum.
+	Let $e \in M$ be some non-standard element,
+	$e \ne 0$ implies that $0 < e$, and from axiom N8, $\underline{n}^\Mm < e$ for all $n \in \NN$.
+	Addition preserves the order, therefore $e + \underline{k} < e + e = 2 \cdot e$ for every $k \in \NN$.
+	It follows that the non-standard class does not contain either a maximum or a minimum.
+	Let $A$ be the equivalency class of non-standard elements such that $e \sim e' \iff \exists k \in \NN, e = e' + \underline{k} \lor e' = e + \underline{k}$.
+	We can extend the order of $\Mm$ over it. We claim that $A$ is dense.
+	It does not has minimum or maximum, and if $[e] < [e']$ then if $[b] < [e]$ then $[e] < [e + b] < [e']$ as a direct result from the last part and the size of $[b]$.
+\end{proof}
+
+\end{document}
