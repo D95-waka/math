@@ -45,80 +45,100 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <th>שם קורס</th>
         <th>זמן</th>
+        <th>משקל</th>
     </tr>
     <tr>
         <th colspan="2">הסתיימו</th>
+        <th>60</th>
     </tr>
     <tr>
         <td><a href="./discrete_mathematics">מתמטיקה דיסקרטית</a></td>
         <td>2022ג'</td>
+        <td>4</td>
     </tr>
     <tr>
         <td><a href="./linear_algebra_1">אלגברה לינארית 1</a></td>
         <td>2023א'</td>
+        <td>7</td>
     </tr>
     <tr>
         <td><a href="./linear_algebra_2">אלגברה לינארית 2</a></td>
         <td>2023ב'</td>
+        <td>5</td>
     </tr>
     <tr>
         <td><a href="./calculus_1">חשבון אינפיניטסימלי 1</a></td>
         <td>2023ב'</td>
+        <td>7</td>
     </tr>
     <tr>
         <td><a href="./calculus_2">חשבון אינפיניטסימלי 2</a></td>
         <td>2024ב'</td>
+        <td>7</td>
     </tr>
     <tr>
         <td><a href="./calculus_3">חשבון אינפיניטסימלי 3</a></td>
         <td>2024ב'</td>
+        <td>6</td>
     </tr>
     <tr>
         <td><a href="./algebraic_structures_1">מבנים אלגבריים 1</a></td>
         <td>2024ב'</td>
+        <td>6</td>
     </tr>
     <tr>
         <td><a href="./set_theory">תורת הקבוצות</a></td>
         <td>2024ב'</td>
+        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/76631">תכנות בסיסי בפייתון</a></td>
         <td>2025א'</td>
+        <td>2</td>
     </tr>
     <tr>
         <td><a href="./probability_theory_1">תורת ההסתברות 1</a></td>
         <td>2025א'</td>
+        <td>5</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80519">פונקציות מרוכבות</a></td>
         <td>2025א'</td>
+        <td>4</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80423">מבוא ללוגיקה</a></td>
         <td>2025א'</td>
+        <td>4</td>
     </tr>
     <tr>
         <th colspan="2">בלמידה</th>
+        <th>18</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80416">אליזה על יריעות</a></td>
         <td>2025ב'</td>
+        <td>4</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80417">אליזה פונקציונלית</a></td>
         <td>2025ב'</td>
+        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80446/">מבנים אלגבריים 2</a></td>
         <td>2025ב'</td>
+        <td>4</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80516">מבוא לטופולוגיה</a></td>
         <td>2025ב'</td>
+        <td>4</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80424">לוגיקה מתמטית 2</a></td>
         <td>2025ב'</td>
+        <td>3</td>
     </tr>
     <tr>
         <th colspan="2">עתידיים</th>
@@ -126,22 +146,45 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
         <td>2026א'</td>
+        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80616">תורת המודלים 1</a></td>
         <td>2026א'</td>
+        <td>2</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80517">תורת המידה</a></td>
         <td>2026א'</td>
+        <td>4</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
         <td>2026ב'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80421">תורת ההסתברות (2)</a></td>
+        <td>2026ב'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80699">אלגבראות בוליאניות</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <th colspan="2">לא בתוכנית</th>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80650">תורת הקבוצות האקסיומטית</a></td>
+        <td>2027א'</td>
+        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80579">כפיה ואי־תלות</a></td>
         <td>2027ב'</td>
+        <td>2</td>
     </tr>
 </table>
 
