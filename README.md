@@ -49,7 +49,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">הסתיימו</th>
-        <th>60</th>
+        <th>59</th>
     </tr>
     <tr>
         <td><a href="./discrete_mathematics">מתמטיקה דיסקרטית</a></td>
@@ -59,7 +59,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td><a href="./linear_algebra_1">אלגברה לינארית 1</a></td>
         <td>2023א'</td>
-        <td>7</td>
+        <td>6</td>
     </tr>
     <tr>
         <td><a href="./linear_algebra_2">אלגברה לינארית 2</a></td>
@@ -142,6 +142,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">עתידיים</th>
+        <th>19</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
@@ -174,7 +175,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>2</td>
     </tr>
     <tr>
-        <th colspan="2">לא בתוכנית</th>
+        <th colspan="3">לא בתוכנית</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80650">תורת הקבוצות האקסיומטית</a></td>
