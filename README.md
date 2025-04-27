@@ -189,4 +189,5 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
 </table>
 
-יש להוסיף קורס באנגלית וקורס אבני פינה.
+יש לעשות שני קורסים באנגלית ולהגיע לסך ניקוד כולל של 124 נקודות זכות.
+הסך הכולל הנוכחי הוא 96.
