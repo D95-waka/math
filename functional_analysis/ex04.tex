@@ -1,0 +1,140 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- אנליזה פונקציונלית, 80417}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+נראה שהקבוצה,
+\[
+	\Ff = \{ g_{a_0, \ldots, a_n} \mid n \in \NN, a_0, \ldots, a_n \in \QQ \}
+\]
+היא קבוצה צפופה ב־$C[0, 1]$ עם נורמת $\lVert \cdot \rVert_\infty$.
+\begin{proof}
+	תהי פונקציה $f \in C[0, 1]$.
+	נגדיר $f_n = g_{a_0, \ldots, a_n}$ כאשר $a_i = f(\frac{i}{n})$ לכל $0 \le i \le n$, לכל $n \in \NN$.
+	נקבל סדרת פונקציות המתכנסת נקודתית ל־$f$, זאת ישירות מהעובדה שניתן לבנות סדרת רציונליים לכל ממשי, ונוכל באותו אופן לקבל גם התכנסות במידה שווה.
+	נסיק אם כך ש־$f$ היא ערך גבולה של סדרת הפונקציות, ובהתאם $f \in \overline{\Ff}$ לכל $f \in C[0, 1]$, כלומר $C[0, 1] = \overline{\Ff}$ ובהתאם הקבוצה היא צפופה.
+\end{proof}
+
+\question{}
+נניח ש־$f : [a, b] \to \RR$ היא אינטגרבילית רימן.
+נראה שקיימים פולינומים $p_n$ כך שמתקיים,
+\[
+	\lim_{n \to \infty} \int_{a}^{b} {|f(x) - p_n(x)|}^2\ dx = 0
+\]
+\begin{proof}
+	נגדיר לכל $n \in \NN$ את $p_n$ כפולינום הקיים ממשפט הקירוב של ויירשטראס כך ש־$\lVert f - p_n \rVert_\infty < \frac{1}{n}$.
+	אנו יודעים כי $f$ אינטגרבילית וכן $p_n$ לכל $n$, ולכן גם הרכבת פונקציות רציפות עליהם אינטגרבילית, נבחר את החלוקה $\{ a + \frac{i}{k} (b - a) \mid 0 \le i \le k \}$ לכל $k \in \NN$ ונקבל שמתקיים,
+	\[
+		\int_{a}^{b} {|f(x) - p_n(x)|}^2\ dx
+		= \lim_{k \to \infty} \sum_{i = 1}^k {|f(x) - p_n(x)|}^2 \cdot (\frac{i}{n} - \frac{i - 1}{n}) (b - a)
+		\le \lim_{k \to \infty} \sum_{i = 1}^k \frac{1}{n} \cdot \frac{1}{k} (b - a)
+		= \lim_{k \to \infty} \frac{1}{n} (b - a)
+		= \frac{1}{n} (b - a)
+	\]
+	כלומר, השתמשנו בסכום רימן שמתכנס לערך האינטגרל (כנביעה מקיום האינטגרל) וקיבלנו חסם לערכו, עתה מתקיים,
+	\[
+		\lim_{n \to \infty} \int_{a}^{b} {|f(x) - p_n(x)|}^2\ dx
+		\le \lim_{n \to \infty} \frac{1}{n} (b - a)
+		= 0
+	\]
+	ובהתאם הסדרה $\{ p_n \}$ מקיימת את הטענה.
+\end{proof}
+
+\question{}
+נראה את הלמה של רימן־לבג,
+נראה שאם $f \in C[a, b]$ אז מתקיים,
+\[
+	\lim_{x \to \infty} \int_{a}^{b} f(t) \sin(xt)\ dt = 0
+\]
+\begin{proof}
+	נניח ש־$f$ פולינום ונסמן,
+	\[
+		f(t)
+		= \sum_{i = 0}^n a_i t^i
+	\]
+	אז עבור $x > 0$ מתקיים,
+	\[
+		\int_{a}^{b} f(t) \sin(xt)\ dt
+		= \sum_{i = 0}^n a_i \int_{a}^{b} t^i \sin(xt)\ dt
+	\]
+	נבחין גם כי,
+	\begin{align*}
+		\left\lvert \int_{a}^{b} t^i \sin(xt)\ dt \right\rvert
+		& = \left\lvert {\left[ -\frac{1}{x} t^i \cos(xt) \right]}_{t = a}^{t = b} + \frac{i}{x} \int_{a}^{b} t^{i - 1} \cos(xt)\ dt \right\rvert \\
+		& \le \frac{1}{x} \cdot \left( (b^i - a^i) + i \int_{a}^{b} |t^{i - 1} \cos(xt)|\ dt \right) \\
+		& \le \frac{1}{x} \cdot \left( (b^i - a^i) + i (i - 1) (b^{i - 2} - a^{i - 2}) \right)
+	\end{align*}
+	ולכן,
+	\[
+		\left\lvert \int_{a}^{b} f(t) \sin(xt)\ dt \right\rvert
+		\le \frac{1}{x} \sum_{i = 0}^n a_i \left( (b^i - a^i) + i (i - 1) (b^{i - 2} - a^{i - 2}) \right)
+		\xrightarrow{x \to \infty} 0
+	\]
+	כלומר מצאנו שהטענה נכונה עבור $f$ פולינום כלשהו.
+
+	נניח עתה כי $f \in C[a, b]$ פונקציה כלשהי, ויהיו ${\{ p_n \}}_{n = 1}^\infty \subseteq C[a, b]$ פולינומים כך ש־$p_n \rightrightarrows f$.
+	נסיק שלכל $x > 0$ גם $p_n \cdot \sin(xt) \rightrightarrows f \sin(xt)$, וידוע כי פעולת האינטגרל משמרת התכנסות במידה שווה, לכן נקבל שגם,
+	\[
+		\int_{a}^{b} p_n(t) \sin(xt)\ dt
+		\rightrightarrows \int_{a}^{b} f(t) \sin(xt)\ dt
+	\]
+	לכן,
+	\[
+		0 = \lim_{x \to \infty} \int_{a}^{b} p_n(t) \sin(xt)\ dt
+		\rightrightarrows \lim_{x \to \infty} \int_{a}^{b} f(t) \sin(xt)\ dt
+	\]
+	ונסיק שהטענה מתקיימת לכל $f \in C[a, b]$.
+\end{proof}
+
+\question{}
+\subquestion{}
+נראה שאם $f : [a, b] \to \RR$ אינה פולינום, ו־${\{ p_n \}}_{n = 1}^\infty$ סדרת פולינומים המתכנסת ל־$f$ במידה שווה ב־$[a, b]$, אז $\deg p_n \xrightarrow{n \to \infty} \infty$.
+\begin{proof}
+	אילו $P_M$ קבוצת הפולינומים מדרגה של עד $M$ ו־$\operatorname{dist}(f, P_M) = 0$, אז נובע שקיימת סדרת פולינומים ${\{ q_n \}}_{n = 1}^\infty \subseteq P_M$ כך ש־$q_n \rightrightarrows f$.
+	מגזירות כלל הפולינומים נסיק שגם $q_n' \rightrightarrows f'$ ונוכל לחזור על התהליך $M$ פעמים ולקבל ש־$f \in P_M$, בסתירה לעובדה ש־$f$ לא פולינום.
+	לכן נוכל להסיק שהמרחק מתקבל.
+
+	אילו גבול הדרגות לא מתכנס לאינסוף, אז נוכל לבחור תת־סדרה שבה הוא מתכנס למספר סופי ונבחר מספר זה שוב להיות $M$ ונקבל ש־$f$ פולינום בסתירה,
+	לכן נוכל להסיק ש־$\lim_{n \to \infty} \deg p_n = \infty$.
+\end{proof}
+
+\subquestion{}
+נגדיר $f : \RR \to \RR$ על־ידי $f(x) = \frac{1}{1 + x^2}$.
+נבחין כי הפונקציה $f$ אנליטית לכל $x \in \RR$.
+נוכיח שסדרת פולינומי טיילור של $f$ לא מתכנסת במידה שווה לפונקציה $f$ בקטע $[-1, 1]$ בפיתוח סביב $x_0 = 0$.
+\begin{proof}
+	נבחין כי $f$ היא הרכבה של $\frac{1}{1 + x}$ ושל $x^2$, ולכן נוכל להסיק שמתקיים,
+	\[
+		p_n(x) = \sum_{i = 0}^n {(-1)}^i x^{2i}
+	\]
+	כלומר $p_n$ פיתוח טיילור של $f$ לסדר $2n$.
+	נבחין כי $p_n(\pm 1) = \sum_{i = 0}^n {(-1)}^i = 1$ עבור $n$ אי־זוגי ו־$p_n(\pm 1) = 0$ עבור $n$ זוגי.
+	נסיק אם כך ש־$p_n$ לא מתכנסת נקודתית ב־$x = \pm 1$ ובפרט לא מתכנסת במידה שווה בקטע $[-1, 1]$.
+\end{proof}
+
+\subquestion{}
+נוכיח שלא ניתן לקרב את הפונקציה $f(x) = e^x$ במידה שווה בעזרת פולינומים על כל הישר.
+\begin{proof}
+	אנו יודעים כי מתקיים $\lim_{x \to \pm \infty} |p(x)| = \infty$ לכל פולינום $p$, ישירות מאריתמטיקה של גבולות.
+	נניח בשלילה כי $p_n \rightrightarrows f$ עבור איזושהי סדרה ${\{ p_n \}}_{n = 1}^\infty \subseteq C(\RR)$ של פולינומים.
+	נקבע $\epsilon = 1$ ויהי $N \in \NN$, אז מהטענה לעיל והעובדה ש־$\lim_{x \to -\infty} f(x) = 0$ נסיק שעבור $n = N + 1$ ו־$x < 0$ קטן מספיק, מתקיים $|f(x) - p_n(x)| < 1$.
+	כלומר מצאנו שמתקיימת השלילה להתכנסות במידה שווה, בסתירה להגדרת $\{ p_n \}$.
+\end{proof}
+
+\subquestion{}
+נוכיח שאם $f : \RR \to \RR$ חסומה ולא קבועה,
+אז לא ניתן לקרב אותה במידה שווה בעזרת פולינומים על כל הישר.
+\begin{proof}
+	אילו $f$ היא פולינום (לא קבוע) אז מטענה מהסעיף הקודם נובע ש־$\lim_{x \to \infty} |f(x)| = \infty$ בסתירה לחסימות.
+	נניח אם כך ש־$pN \rightrightarrows f$ עבור ${\{ p_n \}}_{n = 1}^\infty \subseteq C(\RR)$ סדרת פולינומים כבסעיף הקודם.
+	נקבע $\epsilon = \frac{M}{2}$ ונקבל שעבור כל $N \in \NN$ עבור בחירת $n = N + 1$ ובחירת $x$ כך ש־$|p_n(x)| > 2M$ (קיים מהגבול שזה עתה ציינו), מתקיים,
+	\[
+		|f(x) - p_n(x)| \ge |p_n(x)| - |f(x)| \ge 2M - M = M > \frac{M}{2} = \epsilon
+	\]
+	ולכן מצאנו שוב את השלילה להגדרת התכנסות במידה שווה ונסיק שלא קיימת סדרת פולינומים כזו.
+\end{proof}
+
+\end{document}
