@@ -949,6 +949,219 @@
 	מהצד השני הוא לא קשיר מסילתית, לא קיימת מסילה $\alpha : [0, 1] \to X$ כך ש־$\alpha(0) = (0, 0), \alpha(1) = (1, \sin 1)$.
 \end{example}
 
+\section{שיעור 8 --- 28.4.2025}
+
+\subsection{קשירות --- סגירת פינות}
+\begin{example}
+	נראה מרחב קשיר אך איננו קשיר מקומית.
+	זהו מרחב המסרק,
+	\[
+		( \{0\} \times [0, 1]) \cup \{ [0, 1] \times \{ 0 \} \} \bigcup_{n \in \NN} \{ \frac{1}{n} \} \times [0, 1]
+	\]
+\end{example}
+מן הצד השני ראינו גם כי קשירות לא גוררת קשירות מסילתית.
+\begin{example}
+	הצמצום של $\RR^2$ לגרף של $\sin \frac{1}{x}$ ב־$(0, 1]$,
+	\[
+		Y = (\{ 0 \} \times [0, 1]) \cup \{ (x, \sin \frac{1}{x}) \mid 0 < x \le 1 \}
+	\]
+	מרחב זה הוא קשיר שכן הוא צמצום של מרחב קשיר והגרף רציף כתמונה של פונקציה רציפה ממרחב קשיר (קטע).
+
+	נניח בשלילה ש־$Y$ קשיר מסילתית ולכן יש בפרט מסילה $\alpha : [0, 1] \to Y$ כך שמתקיים,
+	\[
+		\alpha(0) = (0, 0),
+		\qquad \alpha(1) = (1, \sin 1)
+	\]
+	נגדיר גם $\delta(t) = (\alpha_{1}(t), \alpha_{2}(t))$ ולכן $\alpha_{1}(0) = 0, \alpha_{1}(1) = 1$.
+	ממשפט ערך הביניים קיים $0 < t_1 < 1$ כך ש־$\alpha_{1}(t_1) = \frac{1}{\frac{\pi}{2}}$.
+	נמצא $0 < t_2 < t_1$ כך שמתקיים,
+	\[
+		\alpha(t_2) = (?, -1)
+	\]
+	ואז נוכל למצוא $0 < t_3 < t_2$ כך ש־$\alpha(t_3) = (?, 1)$.
+	נוכל לבנות ככה סדרה של נקודות כאלה ונקבל שלנקודות אלה יש גבול $(0, 0)$ ולכן מאפיון היינה לגבולות נקבל,
+	\[
+		\alpha(0)
+		= \lim_{n \to \infty} t_n
+		= \lim_{n \to \infty} {(-1)}^n
+	\]
+	אבל גבול זה לא קיים.
+\end{example}
+\begin{proposition}
+	אם $X$ קשיר וקשיר מסילתית מקומית אז $X$ קשיר מסילתית.
+\end{proposition}
+\begin{proof}
+	יהי $x_0 \in X$ ונתבונן במחלקת הקשירות המסילתית של $x_0$ ונסמנו $A$.
+	אנו יודעים ש־$x_0 \in A$ ולכן $A \ne \emptyset$ ואנו יודעים גם כי $A$ פתוחה,
+	זאת שכן לכל $a \in A$ עבור $a \in X$ אנו יודעים כי $A$ קשיר מסילתית ולכן בפרט ישנה סביבה של $a$ ב־$X$. \\
+	נטען גם כי $A$ סגורה,
+	הראינו שבמרחב קשיר מסילתית מקומית כל רכיב קשירות מסילתית הוא קבוצה פתוחה, אבל זה גורר שכל רכיב קשירות מסילתית הוא גם קבוצה סגורה כמשלים של איחוד קבוצות פתוחות, הן רכיבי הקשירות המסילתית האחרים. \\
+	אז $A \in \{X, \emptyset\}$ אבל $x_0 \in A$ ונסיק ש־$A = X$.
+\end{proof}
+
+\subsection{קומפקטיות}
+\begin{definition}[קומפקטיות]
+	מרחב טופולוגי $X$ יקרא קומפקטי אם לכל כיסוי פתוח של $X$ יש תת־כיסוי סופי. \\
+	המשמעות היא שלכל אוסף קבוצות פתוחות ${\{ U_{\alpha} \}}_{\alpha \in I}$ כך ש־$X = \bigcup_{\alpha \in I} U_{\alpha}$ אז קיים $I_{0} \subseteq I$ סופי כך ש־$X = \bigcup_{\alpha \in I_{0}} U_{\alpha}$. \\
+	תת־קבוצה $K \subseteq X$ תיקרא קומפקטית אם היא מרחב קומפקטי כתת־מרחב של $X$, זה נכון באופן דומה עבור כיסוי פתוח המכיל את $K$.
+\end{definition}
+נראה הגדרה שקולה בניסוח של קבוצות סגורות,
+\begin{definition}
+	$X$ מרחב טופולוגי קומפקטי אם ורק אם לכל אוסף ${\{ F_{\alpha} \}}_{\alpha \in I}$ של תתי־קבוצות סגורות ב־$X$ כך שיש להן את תכונת החיתוך הסופי,
+	כלומר ש־$\bigcap_{\alpha \in I_{0}} F_{\alpha} \ne \emptyset$ לכל $I_{0} \subseteq I$ סופית,
+	אם $F_{0}$ סגורה לכל $\alpha$ ו־$\emptyset = \bigcap_{\alpha \in I} F_{\alpha}$ אז יש $I_{0} \subseteq I$ סופית כך שמתקיים,
+	\[
+		\bigcap_{\alpha \in I_{0}} F_{\alpha} = \emptyset
+	\]
+\end{definition}
+\begin{remark}
+	ראינו בקורסים קודמים שתת־קבוצה $A \subseteq \RR^n$ היא קומפקטית אם ורק אם $A$ סגורה וחסומה.
+
+	עבור המקרה של $A \subseteq \RR$ נניח שמתקיים,
+	\[
+		A \subseteq \bigcup_{n \in \NN} (-n, n) = \RR
+	\]
+	ולכן קיים $I \subseteq \NN$ סופי כך ש־$A \subseteq \bigcup_{n \in I} (-n, n)$.
+	לכל $a, b \in A$ כך ש־$a \ne b$ אנו יודעים כי $\RR$ האוסדורף ולכן קיימות $a \in U_a$ ו־$b \in V_a$ וכן $U_a \cap V_a = \emptyset$.
+	אז $A \subseteq \bigcup_{a \in A} U_a$ ומקומפקטיות $A$ יש תת־כיסוי סופי כזה, כלומר $A \subseteq \bigcup_{i = 1}^N U_{a_n}$ וכן $b \in \bigcap_{i = 1}^N V_{a_i}$ ולכן,
+	\[
+		V \cap (\bigcup_{i = 1}^N U_{a_n}) = \emptyset
+	\]
+	ונובע ש־$V \cap A = \emptyset$ וכן $V \subseteq \RR \setminus A$ ולכן $\RR \setminus A$ פתוחה.
+	לכיוון ההפוך נראה טענה יותר כללית בהמשך.
+
+	הוכחנו כרגע טענה חזקה יותר, כל תת־קבוצה קומפקטית $A$ במרחב טופולוגי האוסדורף $X$ היא סגורה.
+\end{remark}
+\begin{remark}
+	קיימים מרחבים טופולוגיים עם תת־קבוצה קומפקטית שאינה סגורה.
+	לדוגמה $X = \{ a, b \}$ עם הטופולוגיה הטריוויאלית,
+	אז $A = \{ a \}$ היא קומפקטית אבל לא סגורה.
+\end{remark}
+\begin{proposition}
+	אם $X$ קומפקטית ו־$A \subseteq X$ סגורה אז $A$ קומפקטית.
+\end{proposition}
+\begin{proof}
+	נניח כי ${\{ U_{\alpha} \}}_{\alpha \in I}$ אוסף של פתוחות כך שהן מכסות את $A$, אז
+	\[
+		X = (X \setminus A) \cup \bigcup_{\alpha \in I} U_{\alpha}
+	\]
+	וקיבלנו כי יש למרחב תת־סיכוי סופי.
+	כלומר יש $I_{0} \subseteq I$ סופית כך שמתקיים,
+	\[
+		X = (X \setminus A) \cup \bigcup_{\alpha \in I_{0}} U_{\alpha}
+	\]
+	ולכן $A \subseteq \bigcup_{\alpha \in I_{0}} U_{\alpha}$.
+\end{proof}
+\begin{proposition}
+	תמונה רציפה של מרחב קומפקטי היא קומפקטית,
+	כלומר אם $X$ מרחב קומפקטי ו־$f : X \to Y$ פונקציה רציפה מ־$X$ למרחב טופולוגי $Y$ אז $f(X) \subseteq Y$ היא קומפקטית.
+\end{proposition}
+\begin{proof}
+	נניח ש־$f(X) \subseteq \bigcup_{\alpha \in I} U_{\alpha}$ אז $X \subseteq f^{-1}( \bigcup_{\alpha \in I} U_{\alpha}) = \bigcup_{\alpha \in I} f^{-1}(U_{\alpha})$,
+	ולכן יש תת־כיסוי סופי כזה, כלומר קיימת $I_{0} \subseteq I$ סופית כך ש־$X \subseteq \bigcup_{\alpha \in I_{0}} f^{-1}(U_{\alpha})$ ולכן $f(X) \subseteq \bigcup_{\alpha \in I_{0}} U_{\alpha}$.
+\end{proof}
+\begin{proposition}
+	אם $X$ מרחב האוסדורף קומפקטי אז $X$ מרחב רגולרי.
+\end{proposition}
+\begin{proof}
+	רגולריות מתקיימת אם ורק אם $T_0$ וגן אפשר להפריד בין כל קבוצה סגורה $A$ ונקודה $b \notin A$.
+
+	אז אם $A \subseteq X$ סגורה עבור $X$ קומפקטי אז נובע ש־$A$ קומפקטית, כל $a \in A$ כך ש־$a \ne b$ נובע שיש פתוחות $a \in U_a, b \in V_a$ עבור $U_a, V_a$ זרות.
+	אנו יודעים כי $A \subseteq \bigcup_{a \in A} U_a$ ולכן קיימות נקודות $a_1, \ldots, a_N \in A$ כך ש־$A  \subseteq \bigcup_{i = 1}^N U_{a_i} = U$,
+	וכן $b \in V = \bigcap_{i = 1}^N V_{a_i}$.
+	$U, V$ פתוחות זרות כך ש־$A \subseteq U$ ו־$b \in V$.
+\end{proof}
+\begin{conclusion}
+	אם $X$ מרחב טופולוגי קומפקטי ו־$Y$ מרחב טופולוגי האוסדורף, $f : X \to Y$ רציפה חד־חד ערכית ועל, אז $f$ היא הומיאומורפיזם.
+\end{conclusion}
+\begin{proof}
+	עלינו להראות רק ש־$f$ מקיימת ש־$f^{-1}$ רציפה, ונקבל שכלל התנאים להומיאומורפיזם חלים.
+	לכל תת־קבוצה סגורה $C \subseteq X$ עלינו להראות ש־${(f^{-1})}^{-1}(C) \subseteq Y$ סגורה.
+	$X$ קומפקטית ו־$C$ סגורה ולכן היא קומפקטית ולכן נובע ש־$f(C)$ קומפקטית אבל $Y$ האוסדורף ולכן $f(C)$ סגורה.
+\end{proof}
+\begin{proposition}
+	אם $X$ מרחב האוסדורף קומפקטי אז $X$ מרחב נורמלי.
+\end{proposition}
+\begin{proof}
+	נניח ש־$A, B \in X$ קתי קבוצות סגורות וזרות, אז לכל $b \in B$ מתקיים $b \notin A$ ולכן יש $b \in V_b$ ו־$A \subseteq U_b$ פתוחות זרות,
+	ו־$B \subseteq \bigcup_{b \in B} U_{b}$ קומפקטית כי היא סגורה במרחב קומפקטי ולכן $B \subseteq \bigcup_{i = 1}^n V_{b_i}$ כיסוי פתוח סופי, וכן $A \subseteq \bigcap_{i = 1}^n U_{b_i}$,
+	ושתי הקבוצות הללו מפרידות בין $A$ ל־$B$ ופתוחות.
+\end{proof}
+\begin{proposition}
+	$X$ מרחב טופולוגי קומפקטי ו־$f : X \to \RR$ רציפה, אז,
+	\begin{enumerate}
+		\item $f(X)$ חסומה (וסגורה)
+		\item יש ל־$f$ מקסימום ומינימום
+		\item נניח $X$ מטריזבילי ותהי $\rho$ המטריקה אז $f$ רציפה במידה שווה.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	נוכיח את הטענות,
+	\begin{enumerate}
+		\item ראינו ש־$f(X) \subseteq \RR$ קומפקטית ותת־קבוצה קומפקטית של $\RR$ היא סגורה וחסומה.
+		\item נניח ש־$M = \sup_{x \in X} f(x)$ מתקבל וסופי, נסמן גם $A = f(X)$, אז מההגדרה $M$ הוא הסופרימום של $A$ ולכן כל $x \in X$ מקיים ש־$f(x) \le M$ וגם לכל $\epsilon > 0$,
+			יש $a \in A$ כך ש־$M - \epsilon \le a = f(x)$.
+			נובע אם כך ש־$A \cap [M - \epsilon, M] \ne \emptyset$.
+			יש אוסף של תתי־קבוצות סגורות $F_{\epsilon_i} = A \cap [M - \epsilon_i, M]$ לכל $\epsilon_n > 0$ כך שלכל $n \in \NN$,
+			\[
+				\bigcup_{i = 1}^n F_{\epsilon_i}
+				= A \cap [M - \delta, M]
+			\]
+			עבור $\delta = \min\{ \epsilon_1, \ldots, \epsilon_n \}$.
+			נובע אם כך,
+			\[
+				A \cap \{ M \}
+				= \bigcap_{\epsilon > 0} (A \cap [M - \epsilon, M])
+				= \bigcap_{\epsilon > 0} F_{\epsilon} \ne \emptyset
+			\]
+			ולכן נסיק ש־$M \in A = f(X)$.
+		\item מושאר כתרגיל, אבל רמז הוא מספר לבג לכיסוי.
+	\end{enumerate}
+\end{proof}
+
+\subsection{קומפקטיות במרחבים מטריים}
+לא נגדיר אך ניזכר במספר הגדרות חשובות מעולם המרחבים המטריים, הן סדרות קושי, שלמות, חסימות לחלוטין.
+בהינתן שאנו מכירים את המונחים הללו, נעבור למשפט, אך לפני זה נגדיר מונח חדש שיעזור לנו בהוכחת משפט זה.
+\begin{definition}[התכנסות סדרה במרחב טופולוגי]
+	סדרה ${\{ x_n \}}_{n = 1}^\infty \subseteq X$ עבור מרחב טופולוגי $X$ מתכנסת ל־$x$ אם לכל סביבה פתוחה $x \in U$ מתקיים $x_n \in U$ לכמעט כל $n$, כלומר קיים $N \in \NN$ כך שלכל $n \ge N$ אז $x_n \in U$.
+\end{definition}
+\begin{definition}[מספר לבג]
+	יהי $X$ מרחב טופולוגי קומפקטי מטרי, ויהי ${\{ U_{\alpha} \}}_{\alpha \in I}$ כיסוי פתוח של $X$.
+	אז $\lambda > 0$ נקרא מספר לבג של הכיסוי אם לכל $x \in X$ קיים $\alpha \in I$ כך ש־$B_{\lambda}(x) \subseteq U_{\alpha}$.
+\end{definition}
+\begin{remark}
+	במקרה של מרחבים מטריים קומפקטיים, תמיד יש מספר לבג.
+	כדי לראות זאת, לכל $n \in \NN$ יש $x \in X$ כך ש־$U_{\alpha} \not\supseteq B_{\frac{1}{n}}(x)$ לכל $\alpha \in I$.
+	נגדיר $x_{n_k} \to y \in X$ מקומפקטיות סדרתית ונקבל סתירה.
+\end{remark}
+\begin{remark}
+	באופן כללי קומפקטיות לא גוררת קומפקטיות סדרתית וגם לא להיפך.
+\end{remark}
+\begin{example}
+	נראה דוגמה שמצביה שקומפקטיות סדרתית לא גוררת קומפקטיות.
+	נגדיר $I = [0, 1]$ וכן $X = {\{0, 1\}}^I$ עם טופולוגיית המכפלה.
+	$X$ קומפקטי כמקרה פרטי של משפט טיכונוף שנוכיח בהמשך.
+	נגדיר $Y = \{ x = {(x_i)}_{i \in I} \in X \mid |\{ \alpha \in I \mid x = 1\}| \le \aleph_0 \}$ כתת־מרחב של $X$ עם הטופולוגיה המושרית ממנו.
+	אנו טוענים כי $Y$ קומפקטי סדרתית אבל לא קומפקטי.
+
+	נראה ש־$Y$ לא קומפקטי, לכל $\alpha \in I$ נסמן $U_{\alpha} = \{ x \in X \mid x_{\alpha} = 0 \}$ פתוחה, וכן $Y \subseteq \bigcup_{\alpha \in I} U_{\alpha}$.
+	מצד שני, לכל $\alpha_1, \ldots, \alpha_n \in I$,
+	\[
+		Y \not\subseteq \bigcup_{i = 1}^n U_{\alpha_i}
+	\]
+
+	כדי להראות קומפקטיות סדרתית, לכל $y_n \in Y$, $J_n \subseteq [0, 1]$ בת־מניה מ־$y_n(\alpha) = 0$ לכל $\alpha \notin J$ עבור $J = \bigcup_{n = 1}^\infty J_n$ עבור $y_n \in {\{0, 1\}}^J$.
+\end{example}
+\begin{theorem}
+	יהי $X$ מרחב מטרי, אז התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item $X$ קומפקטי
+		\item $X$ קומפקטי סדרתית
+		\item $X$ שלם וחסום לחלוטין
+	\end{enumerate}
+\end{theorem}
+הסדר בו נוכיח את המשפט יהיה $1 \implies 2 \implies 3 \implies 2 \implies 1$.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
