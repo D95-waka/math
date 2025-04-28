@@ -115,7 +115,56 @@
 \subquestion{}
 $\alpha = \sqrt{13 + 6 \sqrt{2}}$.
 \begin{solution}
-	TODO
+	ננסה למצוא פולינום שיחסום את הערך.
+	\begin{align*}
+		x - \sqrt{13 + 6 \sqrt{2}} = 0
+		& \iff x^2 - 13 + 6 \sqrt{2} = 0 \\
+		& \iff x^2 - 26 x + 169 - 72 = 0 \\
+		& \iff x^2 - 26 x + 97 = 0
+	\end{align*}
+	ולכן $[\QQ(\alpha) : \QQ] \le 4$.
+	נבחין כי $\sqrt{2} \in \QQ(\alpha)$ ולכן $\QQ(\alpha) / \QQ(\sqrt{2})$, ולכן,
+	\[
+		[\QQ(\alpha) : \QQ]
+		= [\QQ(\alpha) : \QQ(\sqrt{2})] \cdot [\QQ(\sqrt{2}) : \QQ]
+		= 2 [\QQ(\alpha) : \QQ(\sqrt{2})]
+	\]
+	נבחן האם $\alpha \in \QQ(\sqrt{2})$, כלומר האם קיימים $a, b \in \QQ$ כך ש־$a + b \sqrt{2} = \alpha$,
+	\[
+		a^2 + 2b^2 + 2ab \sqrt{2} = 13 + 6 \sqrt{2}
+	\]
+	ולכן $a^2 + 2b^2 = 13$ וכן $ab = 3$, נסיק,
+	\[
+		a^2 + 2 \frac{9}{a^2} - 13 = 0
+		\iff a^4 - 13 a^2 + 18 = 0
+		\iff a^2 = \frac{13 \pm \sqrt{97}}{2}
+	\]
+	ונסיק שלא קיימים $a, b \in \QQ$ כאלה, ולכן $2 \ge [\QQ(\alpha) : \QQ(\sqrt{2})] \ne 1$, ולכן בהכרח,
+	\[
+		[\QQ(\alpha) : \QQ] = 4
+	\]
+\end{solution}
+
+\subquestion{}
+$\alpha = \sqrt{11 + 6 \sqrt{2}}$.
+\begin{solution}
+	גם הפעם $\sqrt{2} \in \QQ(\alpha)$, ונרצה לבדוק האם $\alpha \in \QQ(\sqrt{2})$, נקבל מתהליך דומה לסעיף הקודם כי,
+	\[
+		a^2 + 2 b^2 = 11
+		\qquad
+		ab = 3
+	\]
+	ולכן
+	\[
+		a^2 + \frac{18}{a^2} - 11 = 0
+		\iff a^2 = \frac{11 \pm \sqrt{121 - 72}}{2} = 2, 9
+	\]
+	ולכן $a = 3$ ונוכל להסיק שגם $b = 1$, כלומר $\alpha = 3 + \sqrt{2} \in \QQ(\sqrt{2})$ ולכן,
+	\[
+		[\QQ(\alpha) : \QQ]
+		= [\QQ(\alpha) : \QQ(\sqrt{2})] \cdot [\QQ(\sqrt{2}) : \QQ]
+		= 1 \cdot 2
+	\]
 \end{solution}
 
 \question{}
