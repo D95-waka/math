@@ -1,0 +1,185 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- אנליזה על יריעות, 80426}
+
+\DeclareMathOperator{\vol}{vol}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+\subquestion{}
+תהי ההעתקה הלינארית $T : \RR^3 \to \RR^4$ המוגדרת על־ידי,
+\[
+	T(x, y, z)
+	= (x + 3z, y + x + z, 2y + x, z)
+\]
+ויהי תת־המרחב $H = \{(x, y, z) \in \RR^3 \mid x = y \}$.
+נגדיר $S = T \restriction H$, נחשב את $V(S)$.
+\begin{solution}
+	נגזור ונקבל,
+	\[
+		D T
+		= \begin{pmatrix}
+			1 & 0 & 3 \\
+			1 & 1 & 1 \\
+			1 & 2 & 0 \\
+			0 & 0 & 1
+		\end{pmatrix}
+	\]
+	אבל במרחב $H$ מתקיים $x = y$ ולכן נובע,
+	\[
+		S(x, x, z)
+		= (x + 3z, 2x + z, 3x, z)
+	\]
+	כלומר קיבלנו כי $S : H \to \RR^4$ היא העתקה ממימד 2 למימד 4, ונסיק,
+	\[
+		D S
+		= \begin{pmatrix}
+			1 & 3 \\
+			2 & 1 \\
+			3 & 0 \\
+			0 & 1
+		\end{pmatrix}
+	.\]
+	ולכן נובע שמתקיים,
+	\[
+		V(S) = \sqrt{\begin{vmatrix}
+				14 & 5 \\
+				5 & 11
+		\end{vmatrix}}
+		= \sqrt{129}
+	\]
+\end{solution}
+
+\subquestion{}
+עבור $i \in \{1, 2, 3\}$ יהיו $U_i$ מרחבי וקטוריים ממימד $k$, ותהינה ההעתקות $T : U_1 \to U_2, S : U_2 \to U_3$.
+נראה שמתקיים
+\[
+	V(ST) = V(S) V(T)
+\]
+\begin{proof}
+	\[
+		V(ST)
+		= \sqrt{|{(ST)}^t ST|}
+		= \sqrt{|T^t S^t ST|}
+		= \sqrt{|T^t| \cdot |S^t S| \cdot |T|}
+		= \sqrt{|T^t|} V(S) \sqrt{|T|}
+		= V(S) V(T)
+	\]
+	כאשר השתמשנו בכפליות הדטרמיננטה, בחילופיות הכפל, וכן באפיון שחלוף כפל.
+\end{proof}
+
+\question{}
+\subquestion{}
+תהי $(X, \varphi : U \to \RR^n)$ יריעה פרמטרית $k$־מימדית כך ש־$U \subseteq \RR^k$ וכן $X \subseteq \RR^n$ עבור $n \ge k$ כלשהם. \\
+נניח ש־$k$ השורות הראשונות של $D \varphi \mid_u$ בלתי תלויות לינארית.
+נראה שקיימת קבוצה פתוחה $V \subseteq U$, דיפאומורפיזם $\psi : W \to V$, עבור $W \subseteq \RR^k$ פתוחה, ופונקציה חלקה $h : W \to \RR^{n - k}$, כך שמתקיים,
+\[
+	\forall w \in W,\ 
+	(w, h(w)) = (\varphi \circ \psi)(w)
+\]
+\begin{proof}
+	נגדיר $\varphi = (\varphi_1, \varphi_2)$ עבור $\varphi_1 : \RR^k \to \RR^k$ ו־$\varphi_2 : \RR^k \to \RR^{n - k}$.
+	נתון כי $k$ השורות הראשונות של $D \varphi$ בלתי תלויות לינארית, כלומר $\varphi_1$ בעלת נגזרת ממימד $k$, ובהתאם היא הפיכה בכל נקודה ודיפאומורפיזם ממשפט הפונקציה ההפוכה.
+	נגדיר את $\psi$ להיות פונקציה הפוכה של $\varphi_1$ בסביבה פתוחה ב־$X$, נסמנה $W$, ונסמן את תמונתה ב־$V$.
+	נגדיר את הפונקציה $h : W \to \RR^{n - k}$ כפונקציה המקיימת,
+	\[
+		\forall w \in W,\ 
+		(w, h(w)) = (\varphi \circ \psi)(w)
+	\]
+	קיימת כזו כצמצום מקומי של $\varphi_2$.
+	עלינו להראות ש־$h$ היא חלקה, אך זה נובע מהפעלה חוזרת ונשנית של משפט הפונקציה ההפוכה (ובהתאם, צמצום ראשוני של $W, V$ בהתאם) בדומה להוכחה עבור מסילות.
+\end{proof}
+
+\subquestion{}
+תהי $(X, \varphi : U \to \RR^k)$ יריעה פרמטרית $k$־מימדית רגולרית ב־$u \in U$.
+נראה שקיימים $V, W, \psi, h$ כבסעיף הקודם, ו־$A \in O_n(\RR)$ (כלומר $A$ העתקה אורתוגונלית) כך שמתקיים,
+\[
+	\forall w \in W,\ 
+	(w, h(w)) = A \varphi(\psi(w))
+\]
+\begin{proof}
+	נתון כי $\dim(D\varphi \mid_u) = k$ כהגדרת הרגולריות בנקודה, ואנו רוצים למצוא העתקה כך ש־$A D\varphi \mid_u$ תהיה מטריצה ש־$k$ השורות הראשונות שלה בלתי־תלויות לינארית.
+	נוכל לבחור אם כך את $A$ כך שתזיז את $k$ השורות שמובטח שבלתי־תלויות מהרגולריות לשורות הראשונות, ונקבל ש־$A \varphi$ תקיים את תנאי הסעיף הקודם, כמבוקש.
+\end{proof}
+
+\question{}
+\subquestion{}
+תהי יריעה פרמטרית $n$־מימדית $(X, \varphi)$ עבור $\varphi : U \to \RR^{n + 1}$ כך ש־$U \subseteq \RR^n$, כך שמתקיים,
+\[
+	\varphi(x_1, \ldots, x_n)
+	= (x_1, \ldots, x_n, u(x_1, \ldots, x_n))
+.\]
+עבור $u : U \to \RR$ פונקציה חלקה כלשהי.
+\begin{solution}
+	היא אכן קיימת.
+\end{solution}
+
+\subquestion{}
+נראה ש־$(X, \varphi)$ היא רגולרית.
+\begin{proof}
+	מתקיים,
+	\[
+		D\varphi
+		= \begin{pmatrix}
+			1 & 0 & \cdots & 0 \\
+			0 & 1 & \cdots & 0 \\
+			\vdots & \cdots & \ddots & \vdots \\
+			0 & \cdots & 0 & 1 \\
+			\frac{\partial u}{d x_1} & \frac{\partial u}{d x_2} & \cdots & \frac{\partial u}{d x_n}
+		\end{pmatrix}
+	\]
+	כלומר מטריצת היחידה ולאחריה $\nabla u$.
+	לכל $x \in U$ נקבל ש־$\dim D\varphi \mid_x = n$, זאת שכן עמודות המטריצה בלתי־תלויות לינארית (ואף קנוניות).
+	נסיק אם כך ש־$(X, \varphi)$ רגולרית בכל נקודה ולכן רגולרית.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\vol_k(X)
+	= \int_U \sqrt{1 + {|\nabla u|}^2}\ dx
+\]
+\begin{proof}
+	נתחיל בחישוב $V(D\varphi \mid_x)$,
+	\[
+		V(D \varphi \mid_x)
+		= \sqrt{\det\left(\begin{pmatrix}
+				u_1 u_1 & \cdots & u_1 u_n \\
+				\vdots & \ddots & \vdots \\
+				u_n u_1 & \cdots & u_n u_n
+		\end{pmatrix} + I_n\right)}
+		= \sqrt{\det\left({(\nabla u)}^2 + I_n\right)}
+	.\]
+	TODO Continue this
+\end{proof}
+
+\subquestion{}
+תהי נקודה $x \in U$, נראה שמתקיים $T_x(X) = \{v \in \RR^{n + 1} \mid \langle v, g(x) \rangle = 0 \}$, כאשר,
+\[
+	g(x)
+	= \frac{1}{\sqrt{1 + {|\nabla u|}^2}} \left( \frac{-\partial u}{\partial x_1}, \ldots, \frac{-\partial u}{\partial x_n}, 1 \right)
+\]
+\begin{proof}
+	מהגדרה,
+	\[
+		T_x(X)
+		= \im(D \varphi \mid_x)
+		= \{ D \varphi \mid_x(v) \mid v \in \RR^n \}
+		= \{ (v_1, \ldots, v_n, \langle \nabla u, v \rangle) \mid v \in \RR^n \}
+		= \{ v \in \RR^{n + 1} \mid v_{n + 1} = \langle \nabla v, f(x) \rangle \}
+	\]
+	עבור $f(x) = \left( \frac{-\partial u}{\partial x_1}, \ldots, \frac{-\partial u}{\partial x_n}, 0 \right)$.
+	בהעברת אגפים נקבל,
+	\[
+		T_x(X)
+		= \{ v \in \RR^{n + 1} \mid 0 = \langle \nabla v, g(x) \rangle \}
+	\]
+	עבור $g(x) = \left( \frac{-\partial u}{\partial x_1}, \ldots, \frac{-\partial u}{\partial x_n}, 1 \right)$, כאשר נוכל לכפוך בסקלר $\frac{1}{\sqrt{1 + {|\nabla u|}^2}}$ בשל לינאריות המכפלה הפנימית.
+\end{proof}
+
+\subquestion{}
+TODO
+
+\end{document}
