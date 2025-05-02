@@ -1,0 +1,135 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 03 --- מבנים אלגבריים (2), 80446}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+תהי $L / F$ הרחבת שדות ויהיו $g, h \in F[x]$.
+נראה ש־$\gcd_{L[x]}(g, h) = \gcd_{F[x]}(g, h)$, כלומר נראה ש־$\gcd$ נשמר תחת הרחבת שדות.
+\begin{proof}
+	נניח ש־$f = \gcd_{F[x]}(g, h)$.
+	נניח גם ש־$\overline{f} = \gcd_{L[x]}(g, h)$.
+	כל פולינום $l \in F[x]$ הוא בפרט פולינום גם ב־$L[x]$ ולכן אם $l \mid g, h$ אז $\overline{f} \mid l$, אז בפרט גם $\overline{f} \mid f$ במקרה של $l = f$.
+
+	המעלה של $\overline{f}$ קטנה משל $f$, אחרת ניקח את החיסור שלהם כשהם מתוקנים ונקבל פולינום קטן יותר שמחלק את $g, h$.
+	נניח ש־$f = q \overline{f} + r$.
+	אם $q, r \in F[x]$ אז $\overline{f} \in F[x]$ ונסיק ש־$f = \overline{f}$.
+	נניח אם כך אחרת, אילו $q \in F[x]$ אבל $r \notin F[x]$ אז נקבל ש־$r = q \overline{f} - f \in F[x]$ וקיבלנו סתירה.
+	נניח ש־$q \notin F[x]$.
+
+	יהי $\alpha x^i$ מונום המרכיב את $q$ המעיד על $l \notin F[x]$, כלומר $\alpha \in L \setminus F$, ונניח גם כי זהו המונום הגדול ביותר המעיד על־כך, דהינו אם קיים $\beta x^j$ כך שגם $\beta \notin F$ ו־$j > i$, אז נבחר אותם במקום.
+	לכל $a \in F$, אנו יודעים ש־$a + \alpha, a \cdot \alpha \notin F$, כהיסק מסגירות הכפל לפעולות אלה.
+	נניח בלי הגבלת הכלליות ש־$f, \overline{f}$ מתוקנים שניהם.
+	נבחין כי הדרגה של $r$ קטנה מזו של $q \cdot \overline{f}$, וכן נבחין ש־$\alpha x^i x^n$ עבור $n = \deg \overline{f}$ הוא מונום של $q \overline{f}$, ומהגדרת $r$ אין לו איברים מסדר $i + n$.
+	נקבל אם כך ש־$q \cdot \overline{f} \notin F[x]$ וגם ש־$q \overline{f} + r \notin F[x]$, אבל זו סתירה כי $q \overline{f} + r = f \in F[x]$.
+	
+	קיבלנו ש־$q, r \in F[x]$ ולכן בפרט $f = \overline{f}$.
+\end{proof}
+
+\question{}
+יהי $F$ שדה.
+
+\subquestion{}
+יהי $c \in F$ ויהיו $g, h \in F[x]$.
+
+\subsubsection{i}
+נראה ש־${(g + h)}' = g' + h'$.
+\begin{proof}
+	נניח ש־$g = \sum_{i = 0}^n \alpha_i x^i$ וכן ש־$h = \sum_{i = 0}^n \beta_i x^i$, עבור $\alpha_i, \beta_i \in F$, $n \in \NN$.
+	נבחין כי אם דרגות הפולינומים לא שוות, אז $\alpha_i = 0$ או $\beta_i = 0$ החל מ־$i$ כלשהו, אך אין משמעות לעובדה זו בחישוב.
+	עתה נבדוק את הזהות,
+	\[
+		(g + h)'
+		= \sum_{i = 1}^n i (\alpha_i + \beta_i) x^{i - 1}
+		= \sum_{i = 1}^n i \alpha_i x^{i - 1} + \sum_{i = 1}^n i \beta_i x^{i - 1}
+		= g' + h'
+	\]
+	ולכן הזהות אכן חלה.
+\end{proof}
+
+\subsubsection{ii}
+נראה ש־$(c \cdot g)' = c \cdot g'$.
+\begin{proof}
+	נבדוק,
+	\[
+		(c \cdot g)'
+		= \left( c \cdot \sum_{i = 0}^n \alpha_i x^i \right)'
+		= \left( \sum_{i = 0}^n c \alpha_i x^i \right)'
+		= \sum_{i = 1}^n i c \alpha_i x^{i - 1}
+		= c \sum_{i = 1}^n i \alpha_i x^{i - 1}
+		= c \cdot g'
+	\]
+	וקיבלנו שאכן הזהות מתקיימת.
+\end{proof}
+
+\subsubsection{iii}
+נראה שמתקיים, $(g \cdot h)' = g' \cdot h + g \cdot h'$.
+\begin{proof}
+	\begin{align*}
+		(g \cdot h)'
+		& = \left( g \cdot \sum_{i = 0}^n \beta_i x^i \right)' \\
+		& = \left( \sum_{i = 0}^n g \cdot \beta_i x^i \right)' \\
+		& = \sum_{i = 0}^n \beta_i (g \cdot x^i)' \\
+		& = \sum_{i = 0}^n \beta_i \sum_{j = 1}^n \alpha_j (i + j) x^{i + j - 1} \\
+		& = \sum_{i = 0}^n \beta_i \left( i x^{i - 1} \sum_{j = 1}^n \alpha_j x^j + x^i \sum_{j = 1}^n \alpha_j j x^{j - 1} \right) \\
+		& = \sum_{i = 0}^n \beta_i \left( i x^{i - 1} g + x^i g' \right) \\
+		& = g \sum_{i = 0}^n \beta_i i x^{i - 1} + g' \sum_{i = 0}^n \beta_i x^i \\
+		& = g h' + g' h
+	\end{align*}
+\end{proof}
+
+\subquestion{}
+נוכיח את המקרה הפרטי לכלל לופיטל,
+אם $a \in F$ שורש של $g \in F[x]$ כך ש־$g(x) = h(x) \cdot (x - a)$, אז $g'(a) = h(a)$.
+\begin{proof}
+	מתקיים,
+	\[
+		g'(x)
+		= h'(x) (x - a) + h(x)
+	\]
+	מהזהויות שמצאנו בסעיף הקודם.
+	נציב ונקבל,
+	\[
+		g'(a)
+		= h'(a) (a - a) + h(a)
+		= h(a)
+	\]
+	ומצאנו כי אכן מתקיים השוויון שרצינו להראות.
+\end{proof}
+
+\question{}
+בכל סעיף נגדיר פולינום ונבדוק אם הוא ספרבילי מעל $\QQ$, נמצא שורשים מריבוי גדול מאחד.
+
+\subquestion{}
+נגדיר $f(x) = x^3 - 3x + 2$.
+\begin{solution}
+	נבחין כי $f(x) = {(x - 1)}^2 (x + 2)$ מחלוקת פולינומים והעובדה ש־$f(1) = 0$.
+	לכן נסיק שהפולינום הוא לא ספרבילי וש־$1$ שורש כפול.
+\end{solution}
+
+\subquestion{}
+נגדיר $f(x) = x^3 - 7x + 6$.
+\begin{solution}
+	עלינו לבדוק את $x = \pm 1, \pm 2, \pm 3$,
+	נקבל מחישוב ש־$f(2) = 0$, ומחילוק פולינומים נקבל,
+	\[
+		f(x)
+		= (x - 1) (x - 2) (x + 3)
+	\]
+	ולכן הפולינום הוא ספרבילי.
+\end{solution}
+
+\subquestion{}
+נגדיר $f(x) = x^4 - 4x^3 + 6x^2 - 4x + 1$.
+\begin{solution}
+	הפעם עלינו לבדוק את $x = \pm 1$ בלבד, ונקבל $f(1) = 0$.
+	מחלוקת פולינומים נקבל $f(x) = (x - 1)(x^3 - 3x^2 + 3x - 1) = {(x - 1)}^4$.
+	נסיק אם כך שהפולינום לא ספרבילי והריבוי של $x = 1$ הוא $4$.
+\end{solution}
+
+\question{}
+
+
+\end{document}
