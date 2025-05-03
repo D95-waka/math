@@ -130,6 +130,91 @@
 \end{solution}
 
 \question{}
+בכל סעיף נגדיר הרחבת שדות, ונבדוק אם היא נורמלית.
 
+\subquestion{}
+נבחן את $L = \QQ(\sqrt{2}, \sqrt{3}) / \QQ$.
+\begin{solution}
+	יהי $\sigma \in \aut_{\QQ}(\overline{\QQ})$, אנו רוצים להראות ש־$\sigma(L) = L$.
+	לכל $q \in \QQ$ מהגדרה $\sigma(q) = q \in L$.
+	עבור $q = \sqrt{2}$ נבחין כי $\sigma(q) \in \{ \pm q \} \subseteq L$ וכך גם עבור $q = \sqrt{3}$, ונסיק כי לכל $q \in L$ גם $\sigma(q) \in L$.
+	קיבלנו אם כך ש־$\sigma$ משמר את $L$, ולכן ממשפט השקילות לנורמליות נסיק ש־$L / \QQ$ הרחבת שדות נורמלית.
+
+	נוכל להשתמש גם בתנאי השלישי של המשפט, יהי $\alpha \in L$ ונרצה להראות ש־$f_{\QQ, \alpha}$ מתפצל לחלוטין ב־$L$.
+	עבור $\alpha \in \QQ$ נקבל גורם לינארי, ולכן הפיצול טריוויאלי.
+	עבור $\alpha = \sqrt{2}$ נקבל את $f_{\QQ, \alpha}(x) = x^2 + 2$, ופולינום זה אכן מפצל לחלוטין ל־$(x + \sqrt{2})(x - \sqrt{2})$.
+	באופן דומה נסיק שהטענה נכונה עבור $q = \sqrt{3}$, ועבור צירופים לינאריים שלהם, ונקבל משקילות שאכן ההרחבה נורמלית.
+\end{solution}
+
+\subquestion{}
+נבדוק את $L = \QQ(\sqrt[3]{2}) / \QQ$.
+\begin{solution}
+	נגדיר $\omega = e^{\frac{2\pi i}{3}} = -\frac{1}{2} + \frac{\sqrt{3}}{2} i$, נבחין כי $\omega^3 = 1$.
+	עתה נגדיר את $\sigma : L \hookrightarrow \overline{\QQ}$ כ־$\QQ$־שיכון כך ש־$\sigma(\sqrt[3]{2}) = \omega \sqrt[3]{2}$.
+	נבחין כי $f_{\QQ, \sqrt[3]{2}}(\omega \sqrt[3]{2}) = 0$ ולכן $\omega \in \overline{\QQ}$ ויש הצדקה להגדרה זו. \\
+	עלינו להראות שזהו אכן $\QQ$־שיכון.
+	עבור $q \in \QQ$, מוגדר ש־$\sigma(q) = q$, וכמו־כן $\sigma(\sqrt[3]{2}) = \omega \sqrt[3]{2}$ ו־$\sigma(\sqrt[3]{2^2}) = \omega^2 \sqrt[3]{2^2}$,
+	נסיק שאכן $\sigma$ שיכון כפי שרצינו, ונבחין גם ש־$\sigma(L) = \QQ(\omega \sqrt[3]{2})$. \\
+	נגדיר עתה שיכון נוסף, הוא $\id$ עצמו, הוא בבירור שיכון של $L \hookrightarrow \overline{\QQ}$, אבל $\id(L) = L \ne \QQ(\omega \sqrt[3]{2})$.
+	נסיק אם כך שלא מתקיימת ההגדרה של נורמליות.
+\end{solution}
+
+\subquestion{}
+נבדוק את $L = \QQ(\sqrt[3]{2}, \omega \sqrt[3]{2}) / \QQ(\omega) = K$, עבור $\omega$ שהוגדר בסעיף הקודם.
+\begin{solution}
+	יהי $\sigma \in \aut_K(\overline{L})$ ונרצה להראות ש־$\sigma(L) = L$.
+	עבור $q \in \QQ$ ועבור $\omega$ הטענה נובעת מהגדרת $\aut_K$.
+	נבחין כי גם $\sigma(\sqrt[3]{2} \omega) = \sigma(\sqrt[3]{2}) \cdot \sigma(\omega) = \sigma(\sqrt[3]{2}) \cdot \omega$ ולכן רק $\sigma(\sqrt[3]{2})$ קובע האם $\sigma(L) = L$.
+	נבחין כי $\sigma(\sqrt[3]{2}) \in \{ \sqrt[3]{2}, \omega \sqrt[3]{2}, \omega^2 \sqrt[3]{2} \} \subseteq L$, ולכן נוכל להסיק שאכן $\sigma(L) = L$.
+	נסיק ממשפט השקילות לנורמליות שאכן $L / K$ הרחבת שדות נורמלית.
+\end{solution}
+
+\question{}
+יהיו $a, b, c \in \QQ$ כך שלא $a = b = c = 0$.
+נמצא נוסחה מפורשת ל־$x, y, z \in \QQ$ כך שמתקיים,
+\[
+	{(a + b \cdot \sqrt[3]{5} + c \cdot \sqrt[3]{5^2})}^{-1}
+	= x + y \cdot \sqrt[3]{5} + z \cdot \sqrt[3]{5^2}
+\]
+\begin{solution}
+	נגדיר את $\omega$ של השאלה הקודמת, שורש היחידה הפרימיטיבי מסדר 3.
+	נגדיר,
+	\[
+		S
+		= (a + b \cdot \omega \sqrt[3]{5} + c \cdot \omega^2 \sqrt[3]{5^2}) \cdot (a + b \cdot \omega^2 \sqrt[3]{5} + c \cdot \omega \sqrt[3]{5^2})
+	\]
+	נבחין כי $\omega^2 = \overline{\omega}$, וכן $\omega + \omega^2 = 2 \re \omega = -1$, נובע,
+	\begin{align*}
+		S & = a^2 + b^2 \cdot \sqrt[3]{5^2} + 5 c^2 \sqrt[3]{5}
+		+ a b \cdot \omega^2 \sqrt[3]{5} + a c \cdot \omega \sqrt[3]{5^2}
+		+ a b \cdot \omega \sqrt[3]{5} + 5 b c \cdot \omega^2
+		+ a c \cdot \omega^2 \sqrt[3]{5^2} + 5 b c \cdot \omega \\
+		& = a^2 + b^2 \cdot \sqrt[3]{5^2} + 5 c^2 \sqrt[3]{5}
+		- a b \sqrt[3]{5} - a c \sqrt[3]{5^2} - 5 b c
+	\end{align*}
+	ולכן נסיק $S \in \QQ(\sqrt[3]{5})$.
+	נגדיר גם $\alpha = (a + b \sqrt[3]{5} + c \sqrt[3]{5})$, ומחישוב ישיר מתקיים,
+	\begin{align*}
+		S \cdot \alpha
+		= a^3 + 5 b^2 + 25 c^2 + 0
+	\end{align*}
+	דהינו $S \cdot \alpha \in \QQ$, ולכן נוכל לבחור $\frac{S}{S \cdot \alpha}$ ונקבל,
+	\[
+		\frac{S}{S \cdot \alpha}
+		\cdot (a + b \cdot \sqrt[3]{5} + c \cdot \sqrt[3]{5^2})
+		= 1
+		\iff
+		\frac{S}{S \cdot \alpha}
+		= {(a + b \cdot \sqrt[3]{5} + c \cdot \sqrt[3]{5^2})}^{-1}
+	\]
+	ונוכל להסיק,
+	\[
+		x = \frac{1}{a^3 + 5 b^2 + 25 c^2} (a^2 - 5 b c),
+		\qquad
+		y = \frac{1}{a^3 + 5 b^2 + 25 c^2} (5 c^2 - a b),
+		\qquad
+		z = \frac{1}{a^3 + 5 b^2 + 25 c^2} (b^2 - a c)
+	\]
+\end{solution}
 
 \end{document}
