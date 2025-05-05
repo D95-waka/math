@@ -10,7 +10,7 @@
 
 \begin{document}
 \maketitle
-\maketitleprint{}
+\maketitleprint[purple]
 
 \tableofcontents
 
@@ -1247,6 +1247,147 @@
 	לכן $X_2 = \bigcup_{b \in X_2} V_b$ ו־$X_2$ קומפקטית ולכן ישנם $b_1, \ldots, b_k \in X_2$ כך ש־$X_2 = \bigcup_{i = 1}^k V_{b_i}$.
 	נגדיר גם $U = \bigcap_{i = 1}^k U_{b_i} \subseteq X_1$, מתקיים $U \times X_2 = U \times \bigcup_{i = 1}^k V_{b_i} \subseteq \bigcup_{i = 1}^k U_{b_i} \times  V_{b_i}$,
 	אך זו האחרונה ניתנת לכיסוי סופי, ולכן קיבלנו ש־$U \times X_2$ ניתנת לכיסוי סופי, ו־$a \in U$, וזו סתירה לבחירת $a$ מהטענה הקודמת.
+\end{proof}
+
+\section{שיעור 10 --- 5.5.2025}
+\subsection{קומפקטיות --- משפט טיכונוף}
+ניזכר בכמה הגדרות שמגיעות אליהו מתורת הקבוצות.
+\begin{definition}[קבוצה סדורה]
+	סדר על קבוצה, או קבוצה סדורה, הוא הזוג הסדור $(X, \le)$, כאשר $X$ קבוצה ו־$\le \subseteq X^2$ יחס דו־מקומי רפלקסיבי, אנטי־סימטרי וטרנזיטיבי.
+\end{definition}
+\begin{definition}[סדר טוב]
+	סדר טוב הוא סדר קווי, כלומר יש יחס לפחות לאחד הכיוונים בין כל שני איברים בקבוצה,
+	וכן שלכל תת־קבוצה של $X$ יש מינימלי ביחס הסדר.
+\end{definition}
+עיקרון הסדר הטוב מעיד שלכל קבוצה יש סדר טוב כלשהו שמוגדר עליה, והוא שקול לאקסיומת הבחירה.
+
+בשיעור הקודם הוכחנו את משפט טיכונוף למקרה הסופי, עתה נראה את ההוכחה עבור המקרה הכללי.
+נבחין כי משפט טיכונוף שקול לאקסיומת הבחירה (ולעיקרון הסדר הטוב), ולכן במהלך ההוכחה נהיה מחויבים להשתמש באקסיומה.
+\begin{proof}
+	נניח בשלילה ש־$Y = \prod_{\alpha \in I} X_{\alpha}$ אינה קומפקטית,
+	כלומר יש כיסוי פתוח שאין לו תת־כיסוי סופי, נסמן את הכיסוי הזה $\Ff$.
+	נבנה באינדוקציה לכל $\gamma \in I$ איזשהו $a_{\gamma} \in X_{\gamma}$ כך שאם $U$ בסיס טופולוגי ל־$Y$,
+	המכילה תת־הקבוצה,
+	\[
+		\prod_{\alpha \le \gamma} \{ X_{\alpha} \} \times \left( \prod_{\gamma < \alpha} X_{\alpha}\right)
+		\tag{1}
+	\]
+	או את,
+	\[
+		\prod_{\alpha < \gamma} \{ a_{\alpha} \} \times \prod_{\gamma \le \alpha} X_{\alpha}
+		\tag{2}
+	\]
+	אז $U$ אינה ניתנת לכיסוי על־ידי אוסף סופי של $\Ff$.
+	נבנה את $a_{\gamma}$ באינדוקציה טרנספיניטית (אינדוקציה על סודרים).
+	נניח שהגדרנו את $a_{\alpha}$ לכל $\alpha < \gamma$,
+	אז מתקיים שלכל בסיס שמכילה את $\prod_{\alpha < \gamma} \{ X_{\alpha} \} \times \prod_{\gamma \le \alpha} X_{\alpha}$ אינה ניתנת לכיסוי על־ידי תת־אוסף סופי מ־$\Ff$ (ונבהיר, זו הנחת האינדוקציה).
+	זה הזמן להעיר שבעולם של סודרים, יהיו סודרים עוקבים, אלו שמתקבלים מהוספת $1$ לאיבר קיים כלשהו, ויש איברים גבוליים, עליהם נסתכל כאיברים אינסופיים, גבול בראי החיבור של איברים אחרים.
+	כדי להתמודד עם הקושי הזה ולהשתמש באינדוקציה טרנספיניטית, מסתכלים על איברים גבוליים אלה או כאיברים מינימליים בקבוצה המתאימה להם, או כסופרימום של קבוצת האיברים הקטנים מהם, כך נוכל לאפיין את המספרים הללו משני הכיוונים.
+
+	אנחנו רוצים לבחור $a_{\gamma} \in X_{\gamma}$ כך שיתקיים שכל קבוצת בסיס המקיימת את $(1)$,
+	ניתנת לכיסוי על־ידי תת־אוסף סופי של $\Ff$ ואז מצאנו $a_{\gamma}$ כנדרש.
+	או שלכל $a_{\gamma} \in X_{\gamma}$ יש קבוצת בסיס $W_{a_{\gamma}} \supseteq \prod_{\alpha \le \gamma} \{ a_{\gamma} \} \times \prod_{\alpha > \gamma} X_{\alpha}$ ויש ל־$W_{a_{\gamma}}$ תת־כיסוי סופי על ידי איברי $\Ff$.
+	כלומר או שיש קבוצה כפי שרצינו או שמתקיימת שלילת הטענה.
+	נבחין כי,
+	\[
+		a_{\gamma} \in \pi{\gamma}(W_{a_{\gamma}})
+	\]
+	קבוצה פתוחה, אז מתקיים,
+	\[
+		X_{\gamma} = \bigcup_{\alpha_{\gamma} \in X_{\gamma}} \pi_{\gamma}(W_{a_{\gamma}})
+	\]
+	אז יש תת־כיסוי סופי,
+	\[
+		X_{\gamma} = \bigcup_{i = 1}^k \pi_{\gamma}(W_{a_{\gamma}^i})
+	\]
+	לכן לקבוצה $\bigcup_{i = 1}^k W_{a_{\gamma}^i}$ יש תת־כיסוי סופי על־ידי איברי $\Ff$.
+	נגדיר,
+	\[
+		V_i
+		= \left( \prod_{j = 1}^k \pi_{\gamma^<}(W_{a_{\gamma}^i}) \right) \times \pi_{\gamma}(W_{a_{\gamma}^i}) \times \prod_{\alpha > \gamma} X_{\alpha}
+	\]
+	כאשר $\pi_{\gamma^<} : Y \to \prod_{\alpha < \gamma} X_{\alpha}$.
+	אז,
+	\[
+		\bigcup_{i = 1}^k V_i
+		= \left( \bigcap_{j = 1}^k \pi_{\gamma^<}(W_{a_{\gamma}^j}) \right) \times \left( \bigcup \pi_{\gamma}(W_{a_{\gamma}^i}) \right) \times \prod_{\alpha > \gamma} X_{\gamma}
+	\]
+	ולכן,
+	\[
+		\bigcup_{i = 1}^k V_i
+		= \left( \bigcap_{j = 1}^k \pi_{\gamma^<}(W_{a_{\gamma}^i}) \right) \times \left(\prod_{\alpha \ge \gamma} X_{\alpha} \right)
+	\]
+	וקיבלנו סתירה כי הנחנו שהקבוצה הזו לא ניתנת לכיסוי סופי בעזרת איברי $\Ff$, ובכל זאת מצאנו כיסוי סופי כזה.
+
+	לכן באינדוקציה טרנספיניטית מקבלים $a_{\gamma} \in X_{\gamma}$ לכל $\gamma \in I$ כך ש־$(1)$ מתקיים,
+	\[
+		Y = \prod_{\alpha \in I} X_{\alpha} \ni f = {( a_{\gamma} )}_{\gamma \in I}
+	\]
+	ולכן יש איבר בסיס $f \in W \subseteq L$ כאשר $W = \prod_{\alpha \in I} S_{\alpha}$, ולכמעט כל $\alpha$, $S_{\alpha} = X_{\alpha}$ וכל $S_{\alpha}$ פתוחה.
+	יש $\gamma_0 \in I$ כך שלכל $\alpha > \gamma_0$ מתקיים $S_{\alpha} = X_{\alpha}$ ולכן קיבלנו איבר בסיס,
+	\[
+		\prod_{\alpha \le \gamma_0} \{ a_{\alpha} \} \times \prod_{\alpha > \gamma_0} X_{\alpha} \subseteq L
+	\]
+	וסתירה.
+\end{proof}
+אנו כבר יודעים כי אנו יכולים לראות קומפקטיות גם כך שאם $Z$ קומפקטי אז לכל $L$ אוסף סופי של קבוצות סגורות ב־$Z$ עם תכונת החיתוך הסופי, יש חיתוך לא טריוויאלי.
+\begin{definition}[תכונת החיתוך הסופי]
+	נאמר שלאוסף $L$ של תתי־קבוצות של קבוצה $Z$ יש את תכונת החיתוך הסופי, אם לכל תת־קבוצה סופית של $L$ יש חיתוך לא טריוויאלי.
+\end{definition}
+יהיה נוח להסתכל על אפיון אחר,
+\begin{proposition}[שקילות לקומפקטיות]
+	מרחב טופולוגי $Z$ הוא קומפקטי אם לכל אוסף $L$ של תתי־קבוצות $Z$ עם תכונת החיתוך הסופי, מתקיים ש־$\bigcap_{A \in L} \overline{A} \ne \emptyset$.
+\end{proposition}
+נעבור למספר טענות לקראת משפט שנראה בהמשך.
+\begin{proposition}
+	אם לאוסף קבוצות $L \subseteq \prod_{\alpha \in I} X_{\alpha}$ יש את תכונת החיתוך הסופי, אז גם ל־$L_{\beta} = \{ \pi_{\beta}(A) \mid A \in L \}$ יש את תכונת החיתוך הסופי ביחס ל־$X_{\beta}$.
+\end{proposition}
+אומנם לא נוכיח טענה זו, אבל נשים לב שהיא נובעת באופן ישיר מהאפיון הנוסף לקומפקטיות ושימוש בקבוצות הסגורות המושרות מהסגור שהגדרנו על $L$.
+\begin{proposition}
+	אם $L$ אוסף תתי־קבוצות של $Y$ המקיים את תכונת החיתוך הסופי, אז $L$ מוכל באוסף תתי־הקבוצות של $Y$ עם תכונת החיתוך הסופי, כך שהאוסף מקסימלי.
+\end{proposition}
+\begin{proof}
+	נסתכל באוסף $\Omega$ של כל תתי־הקבוצות $L \subseteq C \subseteq \Pp(Y)$,
+	$\Omega = \{ C_{\alpha} \}$, המקיימות את תכונת החיתוך הסופי,
+	זו קבוצה לא ריקה סדורה חלקית על־ידי הכלה, ולכן מהלמה של צורן נובע שאכן יש איבר מקסימלי כזה.
+\end{proof}
+נראה טענה כללית נוספת ובעלת חשיבות.
+\begin{proposition}\label{maximal_collection_of_closed_cap_proposition}
+	אם $M$ אוסף מקסימלי של תתי־קבוצות של איזושהי קבוצה $R$ שיש לו את תכונת החיתוך הסופי,
+	\begin{enumerate}
+		\item לכל $m \in \NN$ ולכל $A_1, \ldots, A_m \in M$, גם $\bigcap_{i = 1}^n A_i \in M$
+		\item אם $B \subseteq R$ ולכל $A \in M$, אם $A \cap B \ne \emptyset$ אז $B \in M$
+	\end{enumerate}
+\end{proposition}
+גם כאן, ההוכחה היא ברורה ונובעת מהמקסימליות, ומושארת כתרגיל לקורא. \\
+נעבור להוכחה נוספת למשפט טיכונוף, תוך שימוש בטענות שראינו זה עתה.
+\begin{proof}
+	$Y = \prod_{\alpha \in I} X_{\alpha}$ כאשר $X_{\alpha}$ קומפקטי לכל $\alpha \in I$, ונניח ש־$L \subseteq \Pp(Y)$ עם תכונת החיתוך הסופי.
+	יש $L \subseteq M \subseteq \Pp(Y)$ מקסימלי עם תכונת החיתוך הסופי.
+
+	לכל $\alpha$ נגדיר $M_{\alpha} = \{ \pi_{\alpha}(A) \mid A \in M \}$. \\
+	ל־$M_{\alpha} \subseteq \Pp(X_{\alpha})$ יש את תכונת החיתוך הסופי.
+	נובע ש־$X_{\alpha}$ קומפקטי ו־$\bigcap_{A \in M_{\alpha}} \overline{A} \ne \emptyset$.
+	נבחר לכל $\alpha$ את $y_{\alpha} \in \bigcap_{A \in M_{\alpha}} \overline{A}$.
+
+	אנו נוכיח כי הנקודה $y = {( y_{\alpha} )}_{\alpha \in I} \in \prod_{\alpha \in I} X_{\alpha} = Y$ מקיימת,
+	\[
+		y \in \bigcap_{B \in M} \overline{B}
+		\subseteq \bigcap_{A \in L} \overline{A}
+	\]
+
+	תהי $B \in M$ ונראה ש־$y \in \overline{B}$.
+	כלומר, כל פתוחה שמכילה את $y$ חותכת את $B$.
+	מספיק להראות שכל קבוצת בסיס $y \in W \subseteq Y$ שמקיימת $W \cap B \ne \emptyset$. 
+	כל קבוצת בסיס $W$ היא חיתוך של מספר סופי של קבוצות $V_{\beta} = Z_{\beta} \times \prod_{\alpha \ne \beta} X_{\alpha}$ עבור $Z_{\beta} \subseteq X_{\beta}$ פתוחה.
+	מטענה\ \ref{maximal_collection_of_closed_cap_proposition} נובע שמספיק להוכיח שכל $V_{\beta}$ כזו כך ש־$y \in V_{\beta}$ ($y_{\beta} \in Z_{\beta}$) חותכת כל קבוצה $D$ באוסף $M$.
+	אבל $M$ מקסימלי ולכן אם $V_{\beta} \cap D \ne \emptyset$ לכל $D \in M$ גם $V_{\beta} \in M$.
+	נובע ש־$W \in M$ כי היא חיתוך של מספר סופי של $Z_{\beta}$, אך אלה ב־$M$.
+	נסיק ש־$W$ חותך כל איבר ב־$M$.
+
+	$y_{\beta} \in Z_{\beta}$ עבור $Z_{\beta}$ פתוחה, ולכן $y_{\beta} \in \bigcap_{A \in M_{\beta}} \overline{A}$ וכן $A = \pi_{\beta}(D), D \in M$.
+	נובע שלכל $D \in M$, גם $y_{\beta} \in \pi_{\beta}(D)$, אז גם $Z_{\beta} \cap \pi_{\beta}(D) \ni y_{\beta}$, בפרט חיתוך זה לא ריק.
+	לכן גם $y \in \pi_{\beta}^{-1}(Z_{\beta}) = V_{\beta} \cap D$, וחיתוך זה לא ריק, כפי שרצינו להראות.
 \end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
