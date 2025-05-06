@@ -1006,7 +1006,7 @@
 	תת־קבוצה $K \subseteq X$ תיקרא קומפקטית אם היא מרחב קומפקטי כתת־מרחב של $X$, זה נכון באופן דומה עבור כיסוי פתוח המכיל את $K$.
 \end{definition}
 נראה הגדרה שקולה בניסוח של קבוצות סגורות,
-\begin{definition}
+\begin{definition}[שקילות לקומפקטיות]
 	$X$ מרחב טופולוגי קומפקטי אם ורק אם לכל אוסף ${\{ F_{\alpha} \}}_{\alpha \in I}$ של תתי־קבוצות סגורות ב־$X$ כך שיש להן את תכונת החיתוך הסופי,
 	כלומר ש־$\bigcap_{\alpha \in I_{0}} F_{\alpha} \ne \emptyset$ לכל $I_{0} \subseteq I$ סופית,
 	אם $F_{0}$ סגורה לכל $\alpha$ ו־$\emptyset = \bigcap_{\alpha \in I} F_{\alpha}$ אז יש $I_{0} \subseteq I$ סופית כך שמתקיים,
@@ -1152,7 +1152,7 @@
 
 	כדי להראות קומפקטיות סדרתית, לכל $y_n \in Y$, $J_n \subseteq [0, 1]$ בת־מניה מ־$y_n(\alpha) = 0$ לכל $\alpha \notin J$ עבור $J = \bigcup_{n = 1}^\infty J_n$ עבור $y_n \in {\{0, 1\}}^J$.
 \end{example}
-\begin{theorem}
+\begin{theorem}[שקילות לקומפקטיות במרחבים מטריים]
 	יהי $X$ מרחב מטרי, אז התנאים הבאים שקולים,
 	\begin{enumerate}
 		\item $X$ קומפקטי
@@ -1389,6 +1389,92 @@
 	נובע שלכל $D \in M$, גם $y_{\beta} \in \pi_{\beta}(D)$, אז גם $Z_{\beta} \cap \pi_{\beta}(D) \ni y_{\beta}$, בפרט חיתוך זה לא ריק.
 	לכן גם $y \in \pi_{\beta}^{-1}(Z_{\beta}) = V_{\beta} \cap D$, וחיתוך זה לא ריק, כפי שרצינו להראות.
 \end{proof}
+
+\section{שיעור 11 --- 6.5.2025}
+
+בהינתן מרחב טופולוגי $X$ האם יש מרחב קומפקטי שמכיל את $X$?
+נענה על שאלה זו בהרצאה הקרובה.
+נתחיל בהגדרת הרעיון באופן פורמלי.
+\begin{definition}[קומפקטיזציה]
+	קומפקטיזציה $Y$ של $X$ היא מרחב קומפקטי $Y$ כך ש־$X \subseteq Y$ וגם $Y = \overline{X}$.
+\end{definition}
+ועתה משיש לנו טרמינולוגיה מתאימה, נוסיף הגדרה שתעזור לנו.
+\begin{definition}
+	מרחב טופולוגי $X$ נקרא קומפקטי מקומית אם לכל נקודה $x \in X$ יש סביבה קומפקטית,
+	כלומר קיימת $x \in C \subseteq X$ קומפקטית וקיימת $x \in W \subseteq C$ פתוחה ב־$X$.
+\end{definition}
+\begin{example}
+	נגדיר את $X = (0, 1)$, ונרצה למצוא קומפקטיזציה של $X$.
+	יש שני מרחבים המהווים קומפקטיזציה ל־$X$, הם $S^1$ ו־$[0, 1]$.
+\end{example}
+\begin{theorem}
+	אם $X$ מרחב טופולוגי קומפקטי מקומית והאוסדורף,
+	אז המרחב $\hat{X} = Y = X \cup \{ \infty \}$ (עבור $\infty \notin X$ נקודה חדשה כלשהי),
+	עם הטופולוגיה,
+	\[
+		\hat{\tau}
+		= \tau \cup \{ Y \setminus K \mid K \subseteq X, K \text{ is compact} \}
+	\]
+	הוא מרחב קומפקטי והאוסדורף.
+\end{theorem}
+\begin{proof}
+	נראה תחילה ש־$\hat{\tau}$ טופולוגיה, כלומר סגורה לאיחודים וסגורה לחיתוך סופי.
+	נניח ש־${\{ V_{\alpha} \}}_{\alpha \in I} \subseteq \hat{\tau}$, אז קבוצה זו שקולה ל־$\{ V_{\alpha} \mid V_{\alpha} = T \setminus K_{\alpha} \} \cup \{ V_{\alpha} \mid V_{\alpha} \in \tau \}$,
+	כאשר $K_{\alpha} \subseteq X$ קומפקטית. נסמן את זו הראשונה $\Omega$ ואת זו השנייה $\Lambda$.
+	נבחין כי,
+	\[
+		\bigcup_{\alpha \in I} V_{\alpha}
+		= \bigcup_{V \in \Lambda} V \cup \bigcup_{V \in \Omega} V
+		= U \cup \bigcup_{U \in \Omega} U
+	\]
+	אבל מההגדרה קיימת $J \subseteq I$ כך שמתקיים,
+	\[
+		\bigcup_{\alpha \in J} (Y \setminus K_{\alpha})
+		= Y \setminus \bigcap_{\alpha \in J} K_{\alpha}
+	\]
+	זאת שכן $X$ האוסדורף וכל $K_{\alpha}$ היא סגורה, לכן גם $\bigcap K_{\alpha}$ סגורה ולכן קומפקטית כמוכלת ב־$K_{\alpha_0}$.
+	נובע ש־$V \cup \bigcup_{U \in \Omega} U = V \cup (Y \setminus K)$ עבור $K$ קומפקטית. \\
+	$\hat{\tau}$ סגורה לחיתוכים סופיים, כנביעה מהשלמה לאיחודים.
+
+	$\hat{\tau}$ משרה את $\tau$ על $X$,
+	תת־קבוצה $A \subseteq X$ היא פתוחה בטופולוגיה המושרית על $X$ מ־$\hat{\tau}$ אם יש פתוחה $V \in \hat{\tau}$ כך ש־$A = X \cap V$.
+	אם $V \in \tau$ אז בוודאי $A X \cap V = V \in \tau$.
+	אם $V = Y \setminus K$ אז,
+	\[
+		A
+		= X \cap V
+		= X \cap (Y \setminus K)
+		= X \setminus K
+		\in \tau
+	\]
+	כי $K$ סגורה, זאת שכן $K$ קומפקטית ו־$X$ האוסדורף.
+
+	$(Y, \hat{\tau})$ מרחב האוסדורף כי אם $y, y' \in Y$ ו־$y, y' \ne \infty$, כלומר $y, y' \in X$,
+	אז קיימות פתוחות $U, W \in \tau \subseteq \hat{\tau}$ המפרידות את $y, y'$, כלומר $y \in U, y' \in W, U \cap W = \emptyset$.
+	אם $y' = \infty$ ו־$y \in X$, $X$ קומפקטית מקומית ולכן יש $y \in W \subseteq C$ קומפקטית ב־$X$.
+	לכן $y \in W, Y \setminus C$ והן פתוחות ב־$\hat{\tau}$.
+
+	נראה ש־$(Y, \hat{\tau})$ קומפקטית.
+	נניח ש־$\{ V_{\alpha} \} = L$ כיסוי פתוח של $Y$.
+	יש $\infty \in V_{\alpha_0} = Y \setminus K$, ולכן $\{ V_{\alpha} \cap X \mid V_{\alpha} \in L \}$ כיסוי פתוח של $K \subseteq X$.
+	$\{ V_{\alpha} \cap X \mid V_{\alpha} \in L \}$ כיסוי פתוח של $K$ שכן $K$ קומפקטית,
+	לכן יש $\alpha_1, \ldots, \alpha_N$ כך שמתקיים,
+	\[
+		K \subseteq \bigcup_{i = 1}^N (V_{\alpha_i} \cap X)
+	\]
+	ונסיק ש־$Y = \bigcup_{i = 1}^N V_{\alpha_i}$.
+\end{proof}
+מצאנו קומפקטיזציה על־ידי הוספת נקודה יחידה.
+\begin{remark}
+	אם $X$ אינו קומפקטי אז $Y = \overline{X}$,
+	אחרת $\overline{X} = X$ בלבד, ו־$\infty$ נקודה מבודדת.
+\end{remark}
+המטרה שלנו עתה היא להראות שאם $X$ מרחב האוסדורף קומפקטי מקומי אז יש מרחב קומפקטי, נסמן $\check{X}$, ב־$\check{X}$ כך ש־$z : X \hookrightarrow \check{X}$,
+ו־$z : X \to z(X)$ הומיאומורפיזם, ו־$\overline{z(X)} = \check{X}$,
+וכן שכל פונקציה רציפה וחסומה של $X$ ניתנת להרחבה לפונקציה רציפה של $\check{X}$.
+נגדיר $F = C(X, [0, 1])$, אוסף כל הפונקציות הרציפות מ־$X$ ל־$[0, 1]$.
+נגדיר $z : X \to {[0, 1]}^F$, עם טופולוגיית המכפלה, אז נקבל שלכל $x \in X$ ולכל $f \in F$, מתקיים $z(x)(f) = f(x)$.
+הסגור של התמונה $z(X)$ תסומן ב־$\check{X}$ וזוהי קומפקטיזציה של $X$.
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
