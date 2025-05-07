@@ -608,6 +608,183 @@
 	כלומר קיים $M_0 > 0$ כל ש־$|F(x) - P_n(x)| \le 2 \epsilon$ לכל $x \in \RR, n > M_0$, ולכן $P_n \overset{\RR}{\rightrightarrows} f$ ובפרט $P_n \overset{[0, 1]}{\rightrightarrows} f$ כפי שרצינו.
 \end{proof}
 
+\section{שיעור 5 --- 7.5.2025}
+\subsection{קירובים במרחבים מטריים}
+ראינו את משפט ויירשטראס לקירוב פונקציות ב־$C([a, b])$.
+נניח עתה ש־$(X, \rho)$ מרחב מטרי כלשהו, ונניח ש־$K \subseteq X$, \\
+נבחן את $C(K) = \{ f : K \to \RR \mid f \text{ is continuous} \}$. \\
+נגדיר את הנורמה $\lVert f \rVert_\infty = \sup_{x \in K} |f(x)|$, ואנו יודעים כי $(C(K), \lVert \cdot \rVert_\infty)$ הוא מרחב נורמי.
+המטרה שלנו היא למצוא גרסה כללית יותר של משפט ויירשטראס, הוא משפט סטון־ויירשטראס, כך שתהי $A \subseteq C(K)$ הצפופה ב־$C(K)$.
+לשם כך ננסה להכליל את הקונספט של פולינומים.
+\begin{definition}[אלגברה]
+	נניח ש־$A \subseteq C(K)$ עבור $K \subseteq X$ במרחב המטרי $(X, \rho)$.
+	אם התנאים הבאים מתקיימים,
+	\begin{enumerate}
+		\item אם $f, g \in A$ אז $f + g \in A$
+		\item אם $f, g \in A$ אז $f g \in A$
+		\item אם $f \in A$ ו־$\alpha \in \RR$ אז $\alpha f \in A$
+	\end{enumerate}
+	אז נאמר ש־$A$ היא אלגברה.
+\end{definition}
+\begin{definition}[הפרדת נקודות]
+	נניח ש־$A \subseteq C(K)$ אלגברה,
+	אם עבור כל $x, y \in K$ כך ש־$x \ne y$ קיימת פונקציה $f \in A$ כך ש־$f(x) \ne f(y)$ אז נאמר ש־$A$ מפרידה נקודות ב־$K$.
+\end{definition}
+\begin{definition}[אלגברה שאינה מתאפסת באף נקודה]
+	נניח ש־$A \subseteq C(K)$,
+	אם עבור כל $x \in K$ קיימת פונקציה $f \in A$ כך ש־$f(x) \ne 0$, אז נאמר ש־$A$ אינה מתאפסת באף נקודה.
+\end{definition}
+עתה נראה מספר דוגמות להגדרות אלה.
+\begin{example}
+	$A = C(K)$ עבור $K \subseteq \RR$, נבחין כי זוהי אכן אלגברה, כנביעה מהסגירות של מרחב הפונקציות לאלגברה.
+	\begin{enumerate}
+		\item $A$ מפרידה נקודות,
+			זאת שכל לכל $x$ נוכל לבחור את $f(x) = x$
+		\item $A$ אינה מתאפסת באף נקודה,
+			ההוכחה לזה היא בחירת $f(x) = c$ עבור $c \ne 0$ כלשהו.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	הפעם נגדיר את $A = P$ מרחב הפולינומים,
+	הפעם גם $A$ מפרידה בין נקודות ואינה מתאפסת באף נקודה.
+\end{example}
+נעבור לדוגמה נגדית.
+\begin{example}
+	נגדיר $A \subseteq C[-1, 1]$ כך שמתקיים,
+	\[
+		A_{\text{even}}
+		= \{ f \in C[-1, 1] \mid f \text{ is continuous}, \forall x \in [-1, 1], f(x) = f(-x) \}
+	\]
+	קבוצת הפונקציות הזוגיות.
+	זוהי בבירור אלגברה, שכן מכפלת פונקציות זוגיות היא זוגית וכך גם חיבורן.
+	אבל $A_{\text{even}}$ לא מפרידה בין נקודות.
+\end{example}
+\begin{definition}[קבוצה קומפקטית]
+	נניח ש־$(X, \rho)$ מרחב מטרי, ותהי $K \subseteq X$.
+	נאמר ש־$K$ קומפקטית אם לכל כיסוי פתוח של $K$ יש תת־כיסוי סופי. \\
+	כלומר אם $K \subseteq \bigcup_{\alpha \in I} U_{\alpha}$ עבור קבוצת אינדקסים כלשהי $I$ של קבוצות פתוחות $U_{\alpha}$,
+	במקרה זה קיימים $\alpha_1, \ldots, \alpha_N \in I$ כך שמתקיים $K \subseteq \bigcup_{i = 1}^N U_{\alpha_i}$.
+\end{definition}
+משפט חשוב שמגיע אלינו מטופולוגיה ולא נוכיח במסגרת קורס זה הוא המשפט הבא.
+\begin{theorem}[הגדרות שקולות של קומפקטיות]
+	יהי $(X, \rho)$ מרחב מטרי ויהי $K \subseteq X$, אז התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item $K$ קומפקטית
+		\item $K$ קומפקטי סדרתית,
+			כלומר כל סדרה ב־$K$ מכילה תת־סדרה מתכנסת לנקודה בקבוצה $K$
+		\item $K$ שלמה, דהינו חסומה לחלוטין וחסומה
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}[סטון־ויירשטראס]\label{stone_weistrass_theorem}
+	נניח ש־$(X, \rho)$ מרחב מטרי,
+	$K \subseteq X$ קבוצה קומפקטית המשרה $C(K) = \{ f : K \to \RR \mid f \text{ is continuous} \}$. \\
+	נגדיר גם $\lVert f \rVert_\infty = \sup_{x \in K} |f(x)|$.
+	במרחב הנורמי $(C(K), \lVert \cdot \rVert_\infty)$. \\
+	נניח גם ש־$A \subseteq C(K)$ אלגברה מפרידה בין נקודות ושאינה מתאפסת באף נקודה,
+	אז $\overline{A} = C(K)$.
+\end{theorem}
+לפני שניגש להוכחת המשפט, נגדיר ונוכיח מספר למות.
+\begin{lemma}
+	נניח ש־$A \subseteq C(K)$ ונניח ש־$A$ אלגברה מפרידה בין נקודות שאינה מתאפסת באף נקודה. \\
+	נניח ש־$x, y \in K$ כך ש־$x \ne y$, וכן ש־$c_1, c_2 \in \RR$. \\
+	אז קיימת $f \in A$ כך ש־$f(x) = c_1, f(y) = c_2$.
+\end{lemma}
+\begin{proof}
+	קיימות $g, h_1, h_2 \in A$ כך שמתקיים,
+	\[
+		g(x) \ne g(y),
+		\quad h_1(x) \ne 0,
+		\quad h_2(y) \ne 0
+	\]
+	נגדיר את הפונקציות $u(t) = h_2(t) (g(t) - g(y)) \in A$ וכן $v(t) = h(t) (g(t) - g(y)) \in A$, כאשר השייכות ל־$A$ נובעת מהיותה אלגברה.
+	מתקיים,
+	\[
+		u(x) = 0,
+		\quad u(y) \ne 0,
+		\quad v(x) \ne 0,
+		\quad v(y) = 0
+	\]
+	נגדיר עתה,
+	\[
+		f(t) = c_1 \frac{v(t)}{v(x)} + c_2 \frac{u(t)}{u(y)}
+	\]
+	אז מתקיים $f(x) = c_1, f(y) = c_2$.
+\end{proof}
+נסמן למה זו ב־$(*)$.
+\begin{proof}[הוכחת משפט\ \ref{stone_weistrass_theorem}]
+	בשלב הראשון יהי $\epsilon > 0$, תהי $f \in C(K)$ ונניח ש־$x \in K$.
+	נרצה לבנות פונקציה $g_x$ כך שמתקיים,
+	\begin{itemize}
+		\item $g_x \in \overline{A}$
+		\item $g_x(x) = f(x)$
+		\item $g_x(t) > f(t) - \epsilon$ לכל $t \in K$
+	\end{itemize}
+	עבור כל $y \in K$ קיימת $(*)$ פונקציה $h_y \in A$ כך ש־$h_y(y) = f(y)$ ו־$h_y(x) = f(x)$. \\
+	נגדיר את הקבוצה,
+	\[
+		J_y
+		= \{ t \in K \mid h_y(t) > f(t) - \epsilon \}
+	\]
+	אנו יודעים כי $h_y(y) = f(y) > f(y) - \epsilon$ ולכן $y \in J_y$.
+	הקבוצה $J_y$ היא פתוחה מהגדרתה ב־$K$, נוכל לראות זאת מהטופולוגיה המושרית על $K$ מ־$X$.
+	נבחין כי הקבוצות $J_y$ מכסות את $K$, כלומר,
+	\[
+		K
+		= \bigcup_{y \in K} J_y
+	\]
+	כיסוי פתוח של $K$, אבל מקומפקטיות $K$ והאפיון השקול לקומפקטיות במרחבים מטריים נובע שיש תת־כיסוי סופי ל־$K$.
+	נסמן,
+	\[
+		K = \bigcup_{i = 1}^n J_{y_i}
+	\]
+	עבור $y_i \in K$ לכל $1 \le i \le n$, כאשר $n \in \NN$. \\
+	נגדיר $g_x = \max\{ h_{y_1}, \ldots, h_{y_n} \}$ בנורמה $\lVert \cdot \rVert_\infty$.
+	נובע ש־$g_x \in \overline{A}$ מ־$(\#)$.
+	נבחין גם כי $h_{y_1}(x) = \cdots = h_{y_n}(x)$ ולכן נוכל להסיק שבפרט $g_x(x) = f(x)$.
+	לכל $t \in K$ אנו יודעים כי $t \in J_{y_i}$ עבור איזשהו $i$, ולכן,
+	\[
+		g_x(t)
+		\ge h_{y_i}(t)
+		> f(t) - \epsilon
+	\]
+	כאשר קיים $i$ כזה מהעובדה שיש כיסוי סופי.
+
+	בשלב השני נרצה למצוא $\varphi \in \overline{A}$ כך שיתקיים,
+	\[
+		\lVert \varphi - f \rVert_\infty < \epsilon
+	\]
+	נגדיר $\hat{J}_x = \{ t \in K \mid g_x(t) < f(t) + \epsilon \}$.
+	אבל,
+	\[
+		g_x(x)
+		= f(x)
+		< f(x) + \epsilon
+	\]
+	ולכן $x \in \hat{J}_x$.
+	נוכל שוב להגדיר $K = \bigcup_{x \in K} \hat{J}_x$ ושוב קיימים $x_1, \ldots, x_n$ כך שמתקיים,
+	\[
+		J
+		= \bigcup_{i = 1}^n \hat{J}_{x_i}
+	\]
+	ונגדיר $\varphi = \min\{ g_{x_1}, \ldots, g_{x_n} \}$.
+	נעיר כי עלינו להראות ש־$\varphi \in \overline{A}$.
+	לכל $t \in K$ קיים $i$ כך ש־$t \in \hat{J}_{x_i}$, ונשים לב שמתקיים,
+	\[
+		g_{x_i}(t)
+		< f(t) + \epsilon
+	\]
+	ולכן בפרט $\varphi(t) \le g_{x_i}(t) < f(t) + \epsilon$.
+	וכן, $\varphi(t) = g_{x_i}(t) > f(t) - \epsilon$.
+	נסיק שמתקיים,
+	\[
+		f(t) - \epsilon
+		< \varphi(t)
+		< f(t) + \epsilon
+	\]
+	לכל $t \in K$.
+	נובע ש־$|\varphi(t) - f(t)| \le 2 \epsilon$ לכל $t \in K$, ולכן גם $\sup |\varphi(t) - f(t)| \le 2 \epsilon$ לכל $\epsilon > 0$.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
