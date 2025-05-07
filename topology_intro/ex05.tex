@@ -1,0 +1,56 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- מבוא לטופולוגיה, 80516}
+% chktex-file 9
+% chktex-file 17
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\question{}
+יהי $X$ מרחב טופולוגי ותהי $A \subseteq X$ קשירה.
+נראה שכל $B$ המקיימת $A \subseteq B \subseteq \overline{A}$ היא קשירה.
+\begin{proof}
+	נניח בשלילה ש־$B$ לא קשירה, ויהיו $B \subseteq B_0 \uplus B_1$ קבוצות פתוחות זרות המעידות על כך.
+	בלי הגבלת הכלליות נניח ש־$A \subseteq B_0$ (לא יתכן שגם $A \cap B_1 \ne \emptyset$).
+	$B_1$ פתוחה ולכן $B_1^C$ סגורה ובפרט $\overline{A} \setminus B_1$ קבוצה סגורה המכילה את $A$, אבל $\overline{A}$ מינימלית בהכלתה את $A$,
+	לכן נובע $\overline{A} = \overline{A} \setminus B_1$, כלומר $B_1 \cap \overline{A} = \emptyset$.
+	נסיק אם כן ש־$B_1 = \emptyset$ בלבד, אבל $B_0, B_1$ לא ריקות מהגדרת הקשירות, ולכן קיבלנו סתירה.
+\end{proof}
+
+\question[3]
+ניזכר ונגדיר שמרחב מטרי חסום אם הוא מוכל בכדור.
+
+\subquestion{}
+יהי $(X, \rho)$ מרחב מטרי קומפקטי,
+נראה שהוא חסום.
+\begin{proof}
+	יהי $\epsilon > 0$ ונגדיר $U_x = B(x, \epsilon)$ לכל $x \in X$.
+	אז $\bigcup_{x \in X} U_x = X$ הוא כיסוי פתוח, ולכן מקומפקטיות יש תת־כיסוי סופי $X = \bigcup_{i = 1}^n U_x$ עבור $x_1, \ldots, x_n \in X$ ו־$n \in \NN$.
+	נגדיר $d = \sup_{i \le n} \rho(x_1, x_i)$ ונבחן את $B(x_1, r + \epsilon)$.
+	כל נקודה $x \in X$ מקיימת $x \in B(x_i, \epsilon)$ עבור איזשהו $i$, וכן $\rho(x_1, x) \le \rho(x_1, x_i) + \rho(x_i, x) \le r + \epsilon$ ולכן $x \in B(x_1, r + \epsilon)$, כלומר כדור זה חוסם את $X$.
+\end{proof}
+
+\subquestion{}
+נמצא דוגמה למרחב מטרי חסום שאינו קומפקטי.
+\begin{solution}
+	נתחיל בהבחנה שאנו יודעים, במרחבים מטריים קומפקטיות שקולה לקומפקטיות סדרתית, לכן מספיק שנמצא מרחב מטרי חסום ולא קומפקטי סדרתי.
+	נגדיר $X = (0, 1)$ יחד עם המטריקה הסטנדרטית $\rho(x, y) = |x - y|$, ונבחין כי $X = B(\frac{1}{2}, \frac{1}{2})$.
+	נגדיר ${\{ x_n \}}_{n = 1}^\infty \subseteq X$ על־ידי $x_n = \frac{1}{n}$,
+	ב־$\RR$ נקבל ש־$\lim_{n \to \infty} x_n = 0$, לכן $\{ x_n \}$ לא מתכנסת ב־$X$, ואילו יש לה תת־סדרה מתכנסת, אז היא מתכנסת ל־$0$ ולכן לא מתכנסת ב־$X$ גם, כלומר הסדרה מעידה על אי־קומפקטיות סדרתית.
+	נסיק אם כך ש־$(X, \rho)$ הוא מרחב מטרי חסום אך לא קומפקטי.
+\end{solution}
+
+\question{}
+נראה שאם $X$ אינסופית אז טופולוגיית המשלים בן־המנייה,
+כלומר $A \subseteq X$ פתוחה אם ורק אם $|X \setminus A| \le \omega$,
+היא לא קומפקטית.
+\begin{proof}
+	נסמן $|X| = \kappa$ ונגדיר $f : \kappa \to X$ כדי להימנע משימוש בבחירה.
+	%וידוע ש־$\kappa \ge \omega$ מהגדרת $\omega$ כסודר אינסופי מינימלי.
+	%לכן נובע ש־$\kappa = \kappa \cdot \omega$, כלומר קיימת $\omega$ חלוקה של $X$, נסמן $\langle X_n \mid n < \omega \rangle$.
+	%עתה נגדיר 
+	נגדיר $X_0 = X$, ולכל $n$ גם $X_{n + 1} = X_n \setminus f(n)$, נבחין כי $X \setminus X_n = f '' n$ ובפרט קבוצה פתוחה.
+\end{proof}
+
+\end{document}
