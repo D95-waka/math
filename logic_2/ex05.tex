@@ -1,0 +1,53 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 5 Answer Sheet --- Logic Theory (2), 80424}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+\subquestion{}
+Suppose that $\varphi(z, y, t_0, \ldots, t_{n - 1})$ is a formula in the language of $L_{\operatorname{PA}}$.
+We will show that,
+\[
+	\operatorname{PA} \vdash \forall z \forall t_0 \ldots \forall t_{n - 1} (\forall x \le z \exists y \varphi \leftrightarrow \exists w \forall x \le z \exists y \le w \varphi)
+\]
+\begin{proof}
+	Let us fix $z, t_0, \ldots, t_{n - 1}$, then is suffice to show that $\operatorname{PA} \vdash \forall x \le z \exists y \varphi \leftrightarrow \exists w \forall x \le z \exists y \le w \varphi$.
+	We assume toward a contradiction that the formula does not hold, then $\forall x \le z \exists y \varphi$ as well $\lnot \exists w \forall x \le z \exists y \le w \varphi$ holds as well.
+	The latter is equivalent to $\forall w \exists x \le z \forall y \le w (\lnot \varphi)$.
+	We fix $w$ and it derives that $\exists x \le z \forall y \le w (\lnot \varphi)$ holds.
+	Let us fix such $x$ as well (such that it is disjoint from previous fixations according to KE).
+	From $\forall x \le z \exists y \varphi$ we can derive that for our fixed $x$ the statement holds, meaning that $\exists y \varphi$, and $\forall y \le w (\lnot \varphi)$.
+	We finally fix some $y$ and then $\varphi$ holds, but $w$ can be arbitrarily fixed, we assume that $y \le w$ and it follows that $\lnot \varphi$, a contradiction.
+\end{proof}
+
+\subquestion{}
+Suppose that $\psi(y_0, y_1, t_0, \ldots, t_{n - 1})$ is some formula in the language $L_{\operatorname{PA}}$.
+We will show that,
+\[
+	\operatorname{PA}
+	\vdash \forall t_0 \ldots \forall t_{n - 1} (\exists y_0 \exists y_1 \psi \leftrightarrow \exists w \exists y_0 \le w \exists y_1 \le w \psi)
+\]
+\begin{proof}
+	The proof is very similar to part a,
+	Let $t_0, \ldots, t_{n - 1}$ be some values, and let us assume toward a contradiction that $\exists y_0 \exists y_1 \psi$,
+	and that $\lnot \exists w \exists y_0 \le w \exists y_1 \le w \psi \equiv \forall w \forall y_0 \le w \forall y_1 \le w (\lnot \psi)$ hold.
+	We fix $y_0, y_1$ such that $\psi$ holds, and fix some $w \ge \sup\{ y_0, y_1 \}$, hence $\lnot \psi$ is derived by the second formula, resulting in a contradiction.
+\end{proof}
+
+\question{}
+We define $\Sigma_n(\operatorname{PA})$ as the set of formulas $\psi(x_0, \ldots, x_{n - 1})$, for any $n < \omega$, such that for some $\Sigma_n$ formula $\psi'(x_0, \ldots, x_{n - 1})$,
+\[
+	\operatorname{PA}
+	\vdash \forall x_0, \ldots, \forall x_{n - 1} (\psi \leftrightarrow \psi')
+\]
+
+\subquestion{}
+We will show that the class of $\Sigma_0 (\operatorname{PA})$ formulas in PA are closed under boolean operations and bounded quantifiers.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
