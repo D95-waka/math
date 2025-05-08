@@ -38,16 +38,108 @@ We will show that,
 \end{proof}
 
 \question{}
-We define $\Sigma_n(\operatorname{PA})$ as the set of formulas $\psi(x_0, \ldots, x_{n - 1})$, for any $n < \omega$, such that for some $\Sigma_n$ formula $\psi'(x_0, \ldots, x_{n - 1})$,
+We define $\Sigma_n(\operatorname{PA})$ as the set of formulas $\psi(x_0, \ldots, x_{n - 1})$, such that for some $\Sigma_n$ formula $\psi'(x_0, \ldots, x_{n - 1})$,
 \[
 	\operatorname{PA}
 	\vdash \forall x_0, \ldots, \forall x_{n - 1} (\psi \leftrightarrow \psi')
 \]
 
 \subquestion{}
-We will show that the class of $\Sigma_0 (\operatorname{PA})$ formulas in PA are closed under boolean operations and bounded quantifiers.
+We will show that the class of $\Sigma_0 (\operatorname{PA})$ formulas in PA is closed under boolean operations and bounded quantifiers.
 \begin{proof}
-	
+	Let $\psi, \varphi \in \Sigma_0(\operatorname{PA})$ be some formulas.
+	There exist $\varphi', \psi'$ such that,
+	\[
+		\operatorname{PA}
+		\vdash \forall x_0, \ldots, \forall x_{n - 1} (\psi \leftrightarrow \psi'),
+		\forall x_0, \ldots, \forall x_{n - 1} (\varphi \leftrightarrow \varphi')
+	\]
+	Then it follows that,
+	\[
+		\operatorname{PA}
+		\vdash \forall x_0, \ldots, \forall x_{n - 1} ((\psi \leftrightarrow \psi') \land (\varphi \leftrightarrow \varphi'))
+	\]
+	Therefore by an identity from the previous course,
+	\[
+		\operatorname{PA}
+		\vdash \forall x_0, \ldots, \forall x_{n - 1} ((\psi \land \varphi) \leftrightarrow (\psi' \land \varphi'))
+	\]
+	Namely, $\varphi \land \psi \in \Sigma_n(\operatorname{PA})$.
+
+	By another identity it also derives that,
+	\[
+		\varphi \leftrightarrow \varphi' \equiv (\lnot \varphi) \leftrightarrow (\lnot \varphi')
+	\]
+	We deduce that $\Sigma_n(\operatorname{PA})$ is closed under boolean operations.
+
+	We use the fact that $\Sigma_0$ is closed under bounded quantifiers and deduce immediately that $\Sigma_0(\operatorname{PA})$ is closed under bounded quantifiers as well.
 \end{proof}
+
+\subquestion{}
+We will show that for some $n > 0$, the class of $\Sigma_n (\operatorname{PA})$ formulas are closed under bounded quantifiers, existential quantifiers, disjunctions and conjunctions.
+\begin{proof}
+	Let $\varphi \in \Sigma_n(\operatorname{PA})$, and suppose $\varphi' \in \Sigma_n$ testifies to that.
+	$\forall v \le w \varphi' \in \Sigma_n^0$, then by the last exercise we deduce that there is $\psi \in \Sigma_n$ such that $\forall v \le w \varphi \equiv \forall v \le w \varphi' \equiv \psi$.
+	$\varphi$ testifies to $\forall v \le w \varphi \in \Sigma_n(\operatorname{PA})$.
+	The proof is identical for bounded existential quantifier.
+
+	We will show that the class in closed under existential quantifiers.
+	Suppose that $\varphi \in \Sigma_n(\operatorname{PA})$, and let this be testified by $\varphi' \in \Sigma_n$.
+	There is $\phi \in \Pi_{n - 1}$ such that $\varphi' = \exists v \phi$.
+	We define $\psi = \exists u \varphi$, then by the second part of the last question,
+	\[
+		\operatorname{PA}
+		\vdash \forall t_0 \ldots \forall t_{n - 1} (\exists u \exists v \varphi \leftrightarrow \exists w \exists v \le w \exists u \le w \varphi)
+	\]
+	Then $\psi \in \Sigma_n(\operatorname{PA})$.
+
+	We claim that $\Sigma_n(\operatorname{PA})$ is also closed under disjunction and conjunction,
+	as the proof is the same as the case of $n = 0$.
+\end{proof}
+
+\subquestion{}
+We will show that for $n > 0$, the class $\Pi_n(\operatorname{PA})$ is closed under bounded quantifiers, universal quantifiers, disjunctions and conjunctions.
+\begin{proof}
+	The proof for closeness under bounded quantifiers, as well disjunctions and conjunctions is the same as of the above, we move to show closeness under universal quantifiers.
+	Let $\varphi \in \Pi_n(\operatorname{PA})$ and $\varphi' \in \Pi_n$ be the formula to testify that.
+	We define $\psi = \forall v \varphi$, note that $\psi \equiv \forall v \varphi'$.
+	$\varphi' = \forall u \phi$ for some $\phi \in \Sigma_{n - 1}$.
+	Using part a of question 1 we deduce that $\forall u \psi \equiv \forall w \forall v \le w \forall u \le w \phi$, it is implied that indeed $\psi \in \Pi_n(\operatorname{PA})$.
+\end{proof}
+
+\subquestion{}
+We will show that the negation of a $\Sigma_n(\operatorname{PA})$ formula is $\Pi_n(\operatorname{PA})$.
+\begin{proof}
+	In the previous exercise we had shown that the negation of $\Sigma_n^0$ formula is a $\Pi_n^0$ formula and vice versa.
+	We also know that every $\Sigma_n$ formula is in particular a $\Sigma_n^0$ formula.
+	Let $\varphi \in \Sigma_n(\operatorname{PA})$ and $\varphi' \in \Sigma_n$ be formulas such that,
+	\[
+		\operatorname{PA} \vdash \forall x_0, \ldots, \forall x_{n - 1} (\varphi \leftrightarrow \varphi')
+	\]
+	It follows that,
+	\[
+		\operatorname{PA} \vdash \forall x_0, \ldots, \forall x_{n - 1} ((\lnot \varphi) \leftrightarrow (\lnot \varphi'))
+	\]
+	But by the statement above, $\lnot \varphi' \in \Pi_n^0$ and there is $\varphi'' \in \Pi_n$ such that $\varphi' \equiv \lnot \varphi''$,
+	which implies that,
+	\[
+		\operatorname{PA} \vdash \forall x_0, \ldots, \forall x_{n - 1} ((\lnot \varphi) \leftrightarrow \varphi'')
+	\]
+	We deduce that indeed $\varphi \in \Pi_n(\operatorname{PA})$.
+\end{proof}
+
+\subquestion{}
+We will show that every formula is in $\Sigma_n(\operatorname{PA})$ or in $\Pi_n(\operatorname{PA})$ for some $n \in \NN$.
+\begin{proof}
+	Similarly to the last exercise, we will prove the claim by induction over the structure of the formula.
+	For any atomic formula the claim holds for $n = 0$ from part a.
+	For negation we have shown in the last part that there is closeness, and in parts b and c we had shown closeness for conjunctions.
+
+	Lastly, for universal quantifiers we either use definition under $\Sigma_n(\operatorname{PA})$, and question 1 part a for formulas from $\Pi_n(\operatorname{PA})$.
+	We handle existential quantifiers similarly.
+\end{proof}
+
+\question{}
+TODO
 
 \end{document}
