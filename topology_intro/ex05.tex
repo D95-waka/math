@@ -47,10 +47,69 @@
 היא לא קומפקטית.
 \begin{proof}
 	נסמן $|X| = \kappa$ ונגדיר $f : \kappa \to X$ כדי להימנע משימוש בבחירה.
-	%וידוע ש־$\kappa \ge \omega$ מהגדרת $\omega$ כסודר אינסופי מינימלי.
-	%לכן נובע ש־$\kappa = \kappa \cdot \omega$, כלומר קיימת $\omega$ חלוקה של $X$, נסמן $\langle X_n \mid n < \omega \rangle$.
-	%עתה נגדיר 
-	נגדיר $X_0 = X$, ולכל $n$ גם $X_{n + 1} = X_n \setminus f(n)$, נבחין כי $X \setminus X_n = f '' n$ ובפרט קבוצה פתוחה.
+	וידוע ש־$\kappa \ge \omega$ מהגדרת $\omega$ כסודר אינסופי מינימלי.
+	לכן נוכל להסיק גם ש־$\kappa = \kappa + \omega$, כלומר קיימת תת־קבוצה $Y \subseteq X$ כך ש־$|X \setminus Y| = \omega$ וכן $|Y| = \kappa$.
+	נגדיר $f : \omega \to X \setminus Y$ העתקה חד־חד ערכית ועל,
+	ונגדיר $U_n = Y \cup \{ f(n) \}$ לכל $n < \omega$.
+	נבחין כי $|X \setminus U_n| = |(X \setminus Y) \setminus \{ f(n) \}| = |X \setminus Y| = \omega$ ולכן $U_n$ קבוצה פתוחה לכל $n < \omega$.
+	נובע אם כך,
+	\[
+		\bigcup_{n < \omega} U_n
+		= \bigcup_{n < \omega} Y \cup \{ f(n) \}
+		= Y \cup \bigcup_{n < \omega} \{ f(n) \}
+		= Y \cup f(\NN)
+		= X
+	\]
+	כלומר זהו כיסוי פתוח של $X$.
+	לכל תת־קבוצה סופית $I \subseteq \omega$ נבחר $m = S(\sup I)$ ונקבל $f(m) \notin \bigcup_{n \in I} U_n$, כלומר מצאנו איבר שלא נמצא בתת־כיסוי סופי המושרה מ־$I$ לכל $I$ שנבחר.
+	נסיק ש־$X$ לא קומפקטית.
+\end{proof}
+
+\question{}
+יהי $X$ מרחב טופולוגי קומפקטי ותהי ${\{ x_n \}}_{n = 0}^\infty \subseteq X$ סדרה,
+נסמן $A_N = \{ x_n \mid N \le n \in \NN \}$.
+נראה ש־$\bigcap_{N = 0}^\infty \overline{A_N} \ne \emptyset$.
+\begin{proof}
+	מהתנאי השקול לקומפקטיות, לכל אוסף קבוצות סגורות של $X$ אשר מקיים את תכונת החיתוך הסופי, יש חיתוך לא ריק.
+	נרצה אם כך להראות שתכונת החיתוך הסופי חלה.
+	נניח ש־$I \subseteq \NN$ כך ש־$|I| < \omega$.
+	נגדיר $M = \sup I$, מסופיות נובע ש־$M$ מתקבל, וכן מהגדרת $A_N$ נקבל שלכל $N \in I$ גם $N \le M$ ולכן $x_M \in A_N$.
+	נובע ש־$x_M \in \bigcap_{i \in I} \overline{A_i}$, כלומר החיתוך שלהם לא ריק, ובהתאם תכונת החיתוך הסופי אכן נשמרת.
+	נסיק אם כך שגם $\bigcap_{N = 0}^\infty \overline{A_N} \ne \emptyset$.
+\end{proof}
+
+\question{}
+תהי קבוצה $S$ לא ריקה, ו־$D \subseteq \Pp(S)$ משפחת קבוצות המקיימת את תכונת החיתוך הסופי.
+נוכיח שקיים מסנן $\langle D \rangle$ כך ש־$D \subseteq \langle D \rangle$ וכך שאם $F$ מסנן המקיים $D \subseteq F$, אז גם $\langle D \rangle \subseteq F$.
+\begin{proof}
+	נתחיל בהוכחה עבור המקרה $D = \emptyset$.
+	במקרה זה נגדיר $\langle D \rangle = \{ S \}$, ונבחין כי אוסף זה מקיים $S \in \langle D \rangle, \emptyset \notin \langle D \rangle$, וכן מקיים באופן ריק סגירות לחיתוך ולקבוצות מכילות.
+	כל מסנן $D \subseteq F \subseteq \Pp(S)$ מקיים $S \in F$ ולכן $\langle D \rangle \subseteq F$ ולכן סיימנו.
+
+	נניח ש־$D \ne \emptyset$.
+	נגדיר את הקבוצה $\langle D \rangle$ כסגירות לחיתוך ולהוספת איברים מעל $D$.
+	כלומר נגדיר $D \subseteq \langle D \rangle$ וכן לכל $A, B \in \langle D \rangle$ גם $A \cap B \in \langle D \rangle$ וכן לכל $\langle D \rangle \ni A \subseteq B \subseteq S$ גם $B \in \langle D \rangle$.
+	נראה ש־$\langle D \rangle$ מסנן.
+	ידוע ש־$D$ לא ריקה ולכן קיים $A \in D$, אבל $A \subseteq S$ ולכן $S \in \langle D \rangle$.
+	אם $\emptyset \in D$ אז $D$ לא מקיימת את תכונת החיתוך הסופי, לכן נסיק ש־$\emptyset \notin D$, וכן לכל $A, B \in D$ ידוע ש־$A \cap B \ne \emptyset$, ואף לכל $A \in \langle D \rangle$ לא מתקיים $A \subsetneq \emptyset$,
+	לכן נוכל להסיק ש־$\emptyset \notin \langle D \rangle$.
+	הקבוצה $\langle D \rangle$ סגורה לחיתוך סופי מהגדרתה ככזו, וכן סגורה ללקיחת קבוצות מכילות גם מהגדרה, לכן נסיק ש־$\langle D \rangle$ אכן מסנן. \\
+	נניח ש־$D \subseteq F$ מסנן כלשהו מעל $S$.
+	לכל $A, B \in D$ גם $A, B \in F$ ולכן $A \cap B \in F$, וכן לכל $A \in D$ ו־$A \subseteq B$ גם $B \in F$, ולכן לכל $A \in \langle D \rangle$ נסיק ש־$A \in F$, כלומר $\langle D \rangle \subseteq F$.
+\end{proof}
+
+\question{}
+תהי קבוצה $S$ ויהי $F \subseteq \Pp(S)$ מסנן על $S$.
+יהיו $R$ קבוצה נוספת ו־$f : S \to R$ פונקציה כלשהי.
+נגדיר $f_* F = \{ A \subseteq R \mid f^{-1}(A) \in F \}$, ונוכיח כי זהו מסנן מעל $R$.
+\begin{proof}
+	$f^{-1}(R) = S \in F$ מהגדרת $f$, לכן נובע ש־$R \in f_* F$.
+	נבחין גם כי $\emptyset \notin F$ ולכן $f^{-1}(\emptyset) = \emptyset \notin f_* F$. \\
+	נניח ש־$A, B \in f_* F$, אז $f^{-1}(A) \cap f^{-1}(B) \in F$ מהגדרת $F$.
+	יהי $s \in f^{-1}(A) \cap f^{-1}(B)$, אז $f(s) \in A, B$ ונובע שבפרט גם $f(s) \in A \cap B$.
+	נקבל אם כך ש־$s \in f^{-1}(f(s)) \subseteq f^{-1}(A \cap B)$, ולכן $f^{-1}(A) \cap f^{-1}(B) \subseteq f^{-1}(A \cap B)$ ולכן $f^{-1}(A \cap B) \in F$ ו־$A \cap B \in f_* F$. \\
+	נניח ש־$A \in f_* F$, בהתאם $f^{-1}(A) \in F$, ונניח ש־$A \subseteq B$, אז גם $f^{-1}(A) \subseteq f^{-1}(B) \in F$ ולכן $B \in f_* F$. \\
+	מצאנו אם כן ש־$f_* F$ מסנן מעל $R$.
 \end{proof}
 
 \end{document}
