@@ -1,5 +1,5 @@
 \input{../article_base.tex}
-\title{פתרון מטלה 03 --- מבנים אלגבריים (2), 80446}
+\title{פתרון מטלה 04 --- מבנים אלגבריים (2), 80446}
 
 \begin{document}
 \maketitle
@@ -193,10 +193,10 @@
 		- a b \sqrt[3]{5} - a c \sqrt[3]{5^2} - 5 b c
 	\end{align*}
 	ולכן נסיק $S \in \QQ(\sqrt[3]{5})$.
-	נגדיר גם $\alpha = (a + b \sqrt[3]{5} + c \sqrt[3]{5})$, ומחישוב ישיר מתקיים,
+	נגדיר גם $\alpha = (a + b \sqrt[3]{5} + c \sqrt[3]{5^2})$, ומחישוב ישיר מתקיים,
 	\begin{align*}
 		S \cdot \alpha
-		= a^3 + 5 b^2 + 25 c^2 + 0
+		= a^3 + 5 b^3 + 25 c^3 - 15 a b c
 	\end{align*}
 	דהינו $S \cdot \alpha \in \QQ$, ולכן נוכל לבחור $\frac{S}{S \cdot \alpha}$ ונקבל,
 	\[
@@ -209,11 +209,9 @@
 	\]
 	ונוכל להסיק,
 	\[
-		x = \frac{1}{a^3 + 5 b^2 + 25 c^2} (a^2 - 5 b c),
-		\qquad
-		y = \frac{1}{a^3 + 5 b^2 + 25 c^2} (5 c^2 - a b),
-		\qquad
-		z = \frac{1}{a^3 + 5 b^2 + 25 c^2} (b^2 - a c)
+		x = \frac{1}{a^3 + 5 b^3 + 25 c^3 - 15 a b c} (a^2 - 5 b c),
+		y = \frac{1}{a^3 + 5 b^3 + 25 c^3 - 15 a b c} (5 c^2 - a b),
+		z = \frac{1}{a^3 + 5 b^3 + 25 c^3 - 15 a b c} (b^2 - a c)
 	\]
 \end{solution}
 
