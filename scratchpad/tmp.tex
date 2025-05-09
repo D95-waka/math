@@ -1,10 +1,38 @@
 \input{../article_base.tex}
 
+\usepackage{sectsty, xcolor}
+
+\definecolor{teal}{RGB}{0, 128, 128}
+\definecolor{yellow}{RGB}{252, 241, 188}
+
+\newcommand\maincolor{teal}
+
+\allsectionsfont{\color{\maincolor}}
+
+\newtheoremstyle{c2_plain}
+	{3pt}	% Space above
+	{3pt}	% Space below
+	{\itshape}% Body font
+	{}	% Indent amount
+	{\bfseries}	% Theorem head font
+	{}	% Punctuation after theorem head
+	{.5em}	% Space after theorem head
+	{\color{\maincolor}\thmname{#1}\thmnumber{ #2}\thmnote{ \text{(#3)}}}	% head content
+
+\theoremstyle{c2_plain}
+\newtheorem{theorem2}{משפט}[section]
+
+
 \begin{document}
 
-שלום
-\[
-	f(x) = x^2
-\]
+\section{A}
+\subsection{B}
+פתיחה כלשהי
+
+\subsubsection{C}
+טקסט לדוגמה
+\begin{theorem2}[שם המשפט]
+	משפט כלשהו
+\end{theorem2}
 
 \end{document}
