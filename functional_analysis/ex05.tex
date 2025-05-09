@@ -1,0 +1,45 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- אנליזה פונקציונלית, 80417}
+
+\begin{document}
+\maketitle
+\maketitleprint[teal]
+
+\question{}
+יהי $T : C[0, 1] \to \RR$ פונקציונל מתמטי (כלומר העתקה לינארית) רציף ונניח שלכל $k \in \NN \cup \{ 0 \}$ מתקיים,
+\[
+	T(x^k)
+	= \frac{1}{k + 1}
+\]
+נראה שלכל $f \in C[0, 1]$ מתקיים,
+\[
+	T(f)
+	= \int_{0}^{1} f(x)\ dx
+\]
+\begin{proof}
+	ממשפט הקירוב של ויירשטראס אנחנו יודעים שקיימים ${\{ p_n \}}_{n = 1}^\infty \subseteq C[0, 1]$ סדרת פולינומים המתכנסים במידה שווה ל־$f$. \\
+	אנו גם יודעים שאופרטורים לינאריים משמרים התכנסות במידה שווה, ולכן $T(p_n) \rightrightarrows T(f)$.
+	אילו נניח ש־$p_n(x) = \sum_{i = 0}^N \alpha_n^i x^i$ אז נובע,
+	\[
+		T(p_n)
+		= \sum_{i = 0}^N \alpha_n^i \cdot \frac{1}{k + 1}
+		= \int_{0}^{1} \alpha_n^i \cdot x^i
+	\]
+	ולכן נובע ש־$T(p_n) = \int_{0}^{1} p_n(x)\ dx$ לכל $n \in \NN$.
+	אבל אינטגרל משמר התכנסות במידה שווה ונובע,
+	\[
+		T(f)
+		= \lim_{n \to \infty} T(p_n)
+		= \lim_{n \to \infty} \int_{0}^{1} p_n(x)\ dx
+		= \int_{0}^{1} f(x)\ dx
+	\]
+	ונסיק שהטענה אכן מתקיימת.
+\end{proof}
+
+\question{}
+נראה שאוסף הפולינומים צפוף במרחב $C^k[0, 1]$ בנורמה על $C^k$.
+\begin{proof}
+	נרצה להשתמש במשפט סטון־ויירשטראס.
+\end{proof}
+
+\end{document}
