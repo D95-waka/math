@@ -37,9 +37,71 @@
 \end{proof}
 
 \question{}
-נראה שאוסף הפולינומים צפוף במרחב $C^k[0, 1]$ בנורמה על $C^k$.
+עבור $k \in \NN$,
+נראה שאוסף הפולינומים צפוף במרחב $C^k[0, 1]$ בנורמה על $C^k$ המוגדרת על־ידי,
+\[
+	\lVert f \rVert_k
+	= \sum_{j = 0}^k \lVert f^{(j)} - p_n^{(j)} \rVert_\infty
+\]
 \begin{proof}
-	נרצה להשתמש במשפט סטון־ויירשטראס.
+	נוכיח את הטענה באינדוקציה על $k$.
+	עבור $k = 0$ הטענה מתלכדת עם משפט הקירוב של ויירשטראס ולכן סיימנו.
+
+	נניח שהטענה נכונה עבור $k - 1$ ונבדוק את הטענה עבור $k$. \\
+	נגדיר ${\{ p_n \}}_{n = 1}^\infty \subseteq C^k[0, 1]$ סדרת פולינומים כך ש־$p_n \rightrightarrows f^{(k)}$.
+	נגדיר את הסדרה ${\{ p_n^1 \}}_{n = 1}^\infty \subseteq C^k[0, 1]$ על־ידי,
+	\[
+		p_n^1(x) = f^{(k - 1)}(0) + \int_{0}^{x} p(x)\ dx
+	\]
+	אנו יודעים כי לכל פולינום אינסוף קדומות וכי אף הן פולינומים, וכן ש־$\frac{d}{dx} p_n^1 = p_n$ לכל $n \in \NN$.
+	מטענה מתרגול 4 נובע,
+	\[
+		p_n^1
+		\rightrightarrows f^{(k - 1)}(0) + \int_0^x f^{(k)}(x)\ dx
+		= f^{(k - 1)}(x) + f^{k - 1}(0) - f^{k - 1}(0)
+		= f^{(k - 1)}(x)
+	\]
+	אבל מהנחת האינדוקציה נובע ש־$p_n^i \rightrightarrows f^{(i)}$ לכל $0 \le i < k$ וסיימנו.
+\end{proof}
+
+\question{}
+במרחב $C[0, 1]$ עם נורמת $\lVert \cdot \rVert_\infty$ נגדיר $W = \Sp\{ x, x^2, \ldots \}$ ו־$D = \{ f \in C[0, 1] \mid f(0) = 0 \}$. \\
+נראה ש־$\overline{W} = D$.
+\begin{proof}
+	תהי סדרת פולינומים מתכנסת במידה שווה ${\{ p_n \}}_{n = 1}^\infty \subseteq W$, ונסמן $p_n \rightrightarrows f$, אז $\lim_{n \to \infty} p_n(0) = f(0)$.
+	אבל אנו יודעים כי $x \mid p_n$ לכל $n \in \NN$ מהגדרת $W$ ולכן $p_n(0) = 0$ בלבד, ונסיק $f(0) = 0$, כלומר $f \in D$, ונקבל $\overline{W} \subseteq D$.
+
+	ממשפט הקירוב של ויירשטראס אנו יודעים כבר כי קבוצת הפולינומים צפופה ב־$C[0, 1]$.
+	תהי $f \in D$ ותהי ${\{ p_n \}}_{n = 1}^\infty \subseteq C[0, 1]$ סדרת פולינומים כך ש־$p_n \rightrightarrows f$ ממשפט הקירוב.
+	נגדיר גם את סדרת הפונקציות ${\{ g_n \}}_{n = 1}^\infty \subseteq C[0, 1]$ על־ידי $g_n(x) = p_n(0)$.
+	אנו יודעים ש־$p_n(0) \to f(0) = 0$ ולכן הסדרה $\{ g_n \}$ מתכנסת במידה שווה, ובהתאם גם $\{ p_n - g_n \}$ היא סדרת פולינומים מתכנסת במידה שווה.
+	נסיק ש־$p_n - g_n \rightrightarrows f$, ונשאר להראות ש־$\{ p_n - g_n \} \subseteq D$.
+	יהי $n \in \NN$ ונניח ש־$p_n(x) = \sum_{n = 0}^N \alpha_i^n x^n$, אז $g_n(x) = \alpha_0^n$ ובהתאם $(p_n - g_n)(x) = \sum_{i = 1}^N \alpha_i^n x^n$ ולכן $p_n \in W$.
+	כלומר $f \in \overline{W}$.
+
+	מצאנו אם כך ש־$\overline{W} = D$.
+\end{proof}
+
+\question{}
+יהי $(K, \rho)$ מרחב מטרי קומפקטי.
+נראה ש־$\operatorname{Lip}(K)$ צפופה ב־$C(K)$.
+\begin{proof}
+	נזכיר כי,
+	\[
+		\operatorname{Lip}(K)
+		= \{ f \in C(K, \RR) \mid \exists L > 0, \forall x, y \in X, |f(x) - f(y)| \le L \cdot \rho(x, y) \}
+	\]
+	וראינו בתרגול כי זוהי אלגברה של פונקציות רציפות, אנו נראה כי היא אף מפרידה נקודות ולא מתאפסת ב־$K$.
+
+	נניח ש־$x, y \in K$ וכן ש־$x \ne y$, ונרצה להראות שקיימת $f \in \operatorname{Lip}(K)$ כך ש־$f(x) \ne f(y)$.
+	נגדיר $f(t) = \rho(t, x)$ לכל $t \in K$.
+	באינפי 3 ראינו כי פונקציה זו רציפה, וכמובן מהגדרתה היא $1$־ליפשיצית, כלומר $f \in \operatorname{Lip}(K)$.
+	אבל מהגדרת המטריקה $f(x) = \rho(x, x) = 0$ אבל $x \ne y \iff \rho(x, y) \ne 0 \iff f(y) \ne 0$, ולכן $f$ מפרידה את $x, y$.
+
+	נראה כי $\operatorname{Lip}(K)$ לא מתאפסת ב־$K$.
+	נגדיר את $f(x) = 1$, זוהי פונקציה קבועה ולכן $0$־ליפשיצית, אבל לכל $x \in K$ גם $f(x) \ne 0$, ולכן מעידה ש־$\operatorname{Lip}(K)$ לא מתאפסת ב־$K$.
+
+	נסיק ממשפט סטון־ויירשטראס כי $\operatorname{Lip}(K)$ צפופה ב־$C(K)$.
 \end{proof}
 
 \end{document}
