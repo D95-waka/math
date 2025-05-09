@@ -140,6 +140,83 @@ We will show that every formula is in $\Sigma_n(\operatorname{PA})$ or in $\Pi_n
 \end{proof}
 
 \question{}
-TODO
+\subquestion{}
+We will show that PA proves that $\forall x \exists y > 0 (\forall 0 < z \le x (z \mid y))$.
+\begin{proof}
+	Let us notate $\varphi(x) = \exists y > 0 (\forall 0 < z \le x (z \mid y))$, We want to prove that $\forall x \varphi$ by induction over $x$.
+	For $x = 0$ we will arbitrarily set $y = 1$, and the formula holds as there is not $0 < z \le 0$.
+
+	Let us assume that $\operatorname{PA} \models \varphi(x)$ for some $x = \underline{n}$, we will show that $\varphi(x + 1)$ as well.
+	There is $y$ such that it satisfies the formula $\varphi(x)$, then we define $y' = y \cdot (x + 1)$.
+	Let $0 < z \le x + 1$, then if $z < x + 1$ by the induction hypothesis $z \mid y$ and in particular $z \mid y \cdot (x + 1) = y'$.
+	If $z = x + 1$ then $z \mid x + 1$ and in particular $z \mid y'$ as well.
+	Then $y'$ satisfies $\varphi(x + 1)$, and the induction step is concluded.
+\end{proof}
+
+\subquestion{}
+We will show that PA proves that for all $x$, if $y$ satisfies $\varphi$ of the last part,
+and $x' < x'' \le x$ then $\alpha = (x' + 1) \cdot y + 1$ and $\beta = (x'' + 1) \cdot y + 1$ are co-primes ($\gcd(\alpha, \beta) = 1$).
+\begin{proof}
+	$\alpha, \beta$ are co-primes in PA if and only if $\operatorname{PA} \vdash \forall n ((n \mid \alpha \land n \mid \beta) \rightarrow n = 1)$.
+	By KE we assume otherwise, and let $n > 1$ be a number that divides both $\alpha$ and $\beta$.
+	Then $n \mid \beta - \alpha = (x'' - x') \cdot y$.
+	$x'' - x' < x$ and by part a it is implied that $n \mid y$.
+	We infer that $n \mid y \cdot (x' + 1)$ as well, and by the assumption in contradiction also $n \mid (x' + 1) \cdot y + 1$, then $n \mid \alpha - (x' + 1) \cdot y = 1$.
+	We conclude that $n = 1$, but $n \ne 1$, a contradiction.
+\end{proof}
+
+\subquestion{}
+We will prove that for every formula $\psi(x, y_0, \ldots, y_{n - 1})$, PA proves that for all $y_0, \ldots, y_{n - 1}$ and all $w, k, m$ such that $m$ satisfies $\varphi(k)$,
+meaning that $\forall 0 < z \le k (z \mid m)$, and $w \le k$, then there is $n$ such that,
+\begin{enumerate}
+	\item If $x < w$ then $\psi(x, y_0, \ldots, y_{n - 1})$ if and only if $(x + 1) \cdot m + 1 \mid n$
+	\item If $p$ is a prime and $p \mid n$ then there is $x < w$ such that $\psi(x, y_0, \ldots, y_{n - 1})$ and $p \mid (x + 1) \cdot m + 1$.
+\end{enumerate}
+\begin{proof}
+	We will prove the claim by induction over $w$.
+
+	For the basis we set $w = 0$.
+	In this case there is not $x < 0$, then the first statement is vacuously true.
+	We fix $n = 1$ and thus the second statement is also vacuously true.
+
+	Let us assume that the statement holds for $w$, such that $n_0$ satisfies both of the claims, and let us examine $w + 1$.
+	If we would choose $n_0$ for $w + 1$, then the first statement holds for any $x < w$, and it remains to examine $x = w$.
+	$(w + 1) \cdot m + 1 \nmid n_0$ by the induction hypothesis, then if $\lnot \psi(w, y_0, \ldots, y_{n - 1})$ we can choose $n = n_0$.
+	If $\psi(w, y_0, \ldots, y_{n - 1})$ then we choose $n = n_0 \cdot (w + 1) \cdot m + 1$.
+
+	For the second statement, let $p \mid n$ for the $n$ we found above.
+	By the second part of the question, there is some unique $x < w + 1$ such that $p \mid (x + 1) \cdot m + 1 \mid n$.
+	By the induction hypothesis $(x + 1) \cdot m + 1 \mid n_0 \mid n$ then $\psi(x, y_0, \ldots, y_{n - 1})$ is true, concluding the statement.
+\end{proof}
+
+\question{}
+\subquestion{}
+We will show that there is a coded empty set, namely exist $n, m, k$ such that $\lnot FS(x, n, m, k)$ for all $x$.
+\begin{proof}
+	By the last question it is suffice to fix $n = 0$, as the formula to represent the empty set if $\psi(x) = \perp$.
+	We also choose $k = 1$.
+\end{proof}
+
+\subquestion{}
+We will show that there are coded singletons, for all $y$ there are $n, m, k$ such that for all $x$, $FS(x, m, n, k) \iff x = y$.
+\begin{proof}
+	We define $\psi(x, y) = x = y$, as well $k > y$ some fixed value, then by question 3 part c, there is $n$ such that $\psi(x, y)$ is and only if $x < k \land x = y $, or more simply, $x = y$.
+\end{proof}
+
+\subquestion{}
+We will show that PA proves that there are coded unions for coded finite sets.
+For all $n_1, m_1, k_1$ and $n_2, m_2, k_2$ there are $n, m, k$ such that for all $x$, $FS(x, m, n, k) \iff FS(x, m_1, n_1, k_1) \lor FS(x, m_2, n_2, k_2)$.
+\begin{proof}
+	We define $k = \max\{k_1, k_2\}$, as well $m = k! $ and $n = n_1 \cdot n_2$.
+	It follows that $FS(x, m, n, k) \iff (x + 1) \cdot m + 1 \mid n = n_1 \cdot n_2 \iff (x + 1) \cdot m + 1 \mid n_1 \lor (x + 1) \cdot m + 1 \mid n_2 \iff FS(x, m_1, n_1, k_1) \lor FS(x, m_2, n_2, k_2)$.
+\end{proof}
+
+\subquestion{}
+We will show that PA proves that there are coded intersections for coded finite sets.
+For all $n_1, m_1, k_1$ and $n_2, m_2, k_2$ there are $n, m, k$ such that for all $x$, $FS(x, m, n, k) \iff FS(x, m_1, n_1, k_1) \land FS(x, m_2, n_2, k_2)$.
+\begin{proof}
+	We define $k = \min\{k_1, k_2\}$ as well $m = k! $ and $n = \gcd(n_1, n_2)$.
+	The proof is almost identical to that of the last part.
+\end{proof}
 
 \end{document}
