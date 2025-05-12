@@ -1476,6 +1476,125 @@
 נגדיר $z : X \to {[0, 1]}^F$, עם טופולוגיית המכפלה, אז נקבל שלכל $x \in X$ ולכל $f \in F$, מתקיים $z(x)(f) = f(x)$.
 הסגור של התמונה $z(X)$ תסומן ב־$\check{X}$ וזוהי קומפקטיזציה של $X$.
 
+\section{שיעור 12 --- 12.5.2025}
+\subsection{קומפקטיזציה}
+נמשיך עם המשפט שדנו בו בשיעור הקודם.
+\begin{theorem}[סטון־צ'ק]
+	אם $X$ מרחב טופולוגי האוסדורף קומפקטי מקומית אז קיים מרחב טופולוגי קומפקטי האוסדורף $Y$ כך שקיים שיכון $f : X \hookrightarrow Y$ כך ש־$\overline{f(X)} = Y$,
+	וכל פונקציה רציפה וחסומה על $X$ ניתנת להרחבה לפונקציה רציפה על $Y$ כך שההרחבה יחידה.
+\end{theorem}
+\begin{proof}
+	נבחן את $F = C(X, [0, 1])$ אוסף הפונקציות הרציפות $X \to [0, 1]$.
+	נתבונן במרחב המכפלה ${[0, 1]}^F$.
+	ממשפט טיכונוף זהו מרחב קומפקטי וכמו־כן הוא האוסדורף.
+	נגדיר העתקה $\iota : X \to {[0, 1]}^F$ על־ידי $\iota(x)(f) = f(x)$ לכל $f \in F, x \in X$.
+	נגדיר גם $Y = \overline{\iota(X)}$. \\
+	$Y$ קומפקטית כי היא תת־קבוצה סגורה של מרחב קומפקטי, וכן $Y$ היא האוסדורף כתת־מרחב של מרחב האוסדורף. \\
+	$X \hookrightarrow Y$ שיכון אם ורק אם היא העתקה חד־חד ערכית כך ש־$X \to \iota(X)$ הומיאומורפיזם, אז נבדוק. \\
+	עבור חד־חד ערכיות תהינה $x_1, x_2 \in X$ כך ש־$x_1 \ne x_2$.
+	אנו טוענים כי קיימת $f \in F$ כך ש־$f(x_1) \ne f(x_2)$.
+	בהינתן טענה זו נסיק ש־$\iota(x_1)(f) \ne \iota(x_2)(f)$ ולכן $\iota(x_1) \ne \iota(x_2)$.
+
+	יש $U_1, U_2$ פתוחות ב־$X$ כך ש־$x_1 \in U_1, x_2 \in U_2$ וגם $U_1 \cap U_2 = \emptyset$ מהאוסדורף.
+	ניזכר בלמה של אוריסון, עבור מרחב קומפקטי והאוסדורף.
+	נבנה פונקציה רציפה על $C_1 \cup C_2$ קבוצות סגורות קומפקטיות סביב $U_1, U_2$, כך שמהלמה של אוריסון יתקיים $f(C_1) = 0, f(C_2) = 1$.
+
+	נותר להראות ש־$\iota : X \to \iota(X)$ היא הומיאומורפיזם.
+	כלומר צריך להראות שכל קבוצה פתוחה $W \subseteq X$ מקיימת ש־$\iota(W) \subseteq \iota(X)$ היא פתוחה, וגם להראות ש־$\iota$ רציפה. \\
+	נניח ש־$W \subseteq X$ פתוחה ולא ריקה, אנו רוצים להראות ש־$\iota(W)$ פתוחה.
+	תהי $x \in W$, אז $\iota(x) \in \iota(W)$.
+	נובע מ־$x \in W$ שיש $f \in F$ כך ש־$f(x) = 0$ וכן ש־$f \restriction X \setminus U = 1$ עבור $U \supseteq W$.
+
+	נמשיך ונטען כי $V = \pi_f^{-1}([0, 1])$ היא פתוחה כך ש־$\iota(x) \in V \cap \iota(X) \subseteq \iota(W)$.
+	נבהיר כי $\pi_f : {[0, 1]}^F \to [0, 1]$.
+
+	תהי $g : X \to \RR$ רציפה ונרצה להרחיבה ל־$Y$.
+	אנו יודעים כי $X$ קומפקטית ולכן $g$ חסומה ונסמן $M > 0$ כך ש־$|g(x)| \le M$ לכל $x \in X$.
+	נגדיר גם $f(x) = \frac{1}{M} g(x) + \frac{1}{2}$.
+	נתבונן בפונקציה $s : {[0, 1]}^F \to \RR$ המוגדרת על־ידי $s(h) = M(h(f) - \frac{1}{2})$, אז קל לראות לכל $x \in X$ מתקיים $s(\iota(x)) = g(x)$ ולכן $s \restriction Y$ הרחבה רציפה של $g$.
+
+	אם $\tilde{F} = \{ f : X \to \RR \mid f \text{ is bounded and continuous}$ אז נבחן את $\prod_{f \in \tilde{F}} [a_f, b_f]$ עבור $a_f = \inf\{ f(x) \mid x \in X \}, b_f = \sup\{ f(x) \mid x \in X \}$.
+\end{proof}
+\begin{notation}
+	נסמן את המרחב $Y$ שבנינו ב־$\beta(X)$.
+\end{notation}
+\begin{theorem}
+	יהי $X$ מרחב קומפקטי מקומית האוסדורף, $C$ קומפקטי והאוסדורף.
+	אז כל פונקציה רציפה $\varphi : X \to C$ ניתנת להרחבה רציפה $\hat{\varphi} : \beta(X) \to C$.
+\end{theorem}
+\begin{proof}
+	קיימת קבוצת אינדקסים $J$ כך שיש שיכון $X \to C \hookrightarrow {[0, 1]}^J$.
+	לכל $j \in J$ יש פונקציה $g_j = \pi_j \circ \varphi : X \to [0, 1]$.
+	אז ניתן להרחיב את $g_j$ ל־$\hat{g}_j : \beta(X) \to [0, 1]$ באופן רציף.
+	נסמן $\tilde{g} : \beta(X) \to {[0, 1]}^J$ הפונקציה הרציפה כך ש־$\tilde{g} \restriction X = g$.
+	אז $\tilde{g}(\beta(X)) \subseteq C$ שכן $\beta(X) = \overline{X}$ כאשר בוחנים את $X$ כתת־קבוצה של $\beta(X)$.
+	אנו מסיקים ש־$\tilde{g}(\overline{X}) \subseteq \overline{\tilde{g}(X)} \subseteq \overline{C} = C$.
+\end{proof}
+\begin{proposition}
+	נניח ש־$X$ מרחב האוסדורף קומפקטי מקומית ו־$Y_1, Y_2$ קומפקטיות האוסדורף עם שיכונים $X \hookrightarrow Y_i$ צפופים כך שכל פונקציה רציפה וחסומה מ־$X$ ל־$\RR$ ניתנת להרחבה רציפה של $Y_i$,
+	אז $Y_1, Y_2$ הומיאומורפים.
+\end{proposition}
+
+\begin{definition}[קבוצה דלילה]
+	יהי $X$ מרחב טופולוגי.
+	קבוצה $A \subseteq X$ תיקרא \textbf{דלילה} אם ${(\overline{A})}^\circ = \emptyset$, כלומר לסגור שלה יש פנים ריק.
+\end{definition}
+\begin{example}
+	$\ZZ \subseteq \RR$ (קבוצות קנטור הסטנדרטיות ב־$\RR$ הן דלילות). \\
+	מהצד השני $\QQ \subseteq \RR$ לא דלילה.
+\end{example}
+\begin{definition}[קטגוריה ראשונה ושנייה]
+	קבוצה תיקרא מהקטגוריה הראשונה אם היא איחוד בן־מניה של קבוצות דלילות, \\
+	אחרת נאמר שהיא מהקטגוריה השנייה.
+\end{definition}
+\begin{theorem}[בייר]
+	יהי $X$ מרחב קומפקטי האוסדורף או מרחב מטרי שלם, \\
+	אז לכל אוסף בן־מניה ${\{ A_n \}}_{n = 1}^\infty$ של קבוצות דלילות מתקיים שלאיחוד $\bigcup_{n = 1}^\infty A_n$ יש פנים ריק.
+\end{theorem}
+\begin{remark}
+	המשפט שקול לטענה שאם ${\{ U_n \}}_{n = 1}^\infty$ הן קבוצות פתוחות וצפופות אז $\bigcap_{n = 1}^\infty U_n$ צפופה.
+\end{remark}
+\begin{proof}
+	המשפט הוא למעשה שני משפטים על שני תנאים שונים, אנו נוכיח את המקרה של מרחב קומפקטי האוסדורף, והמקרה השני מושאר כתרגיל ומשתמש בעקרונות דומים. \\
+	נניח ש־$X$ מרחב קומפקטי האוסדורף ונניח ש־${\{ A_n \}}_{n = 1}^\infty \subseteq X$ קבוצות דלילות.
+	בלי הגבלת הכלליות נניח ש־$A_n$ סגורות, אחרת נבחר את $\overline{A}_n$ לכל $n \in \NN$.
+	נוכיח ש־$\bigcup_{n = 1}^\infty A_n$ בעלת פנים ריק.
+	תהי $U \subseteq X$ קבוצה פתוחה לא ריקה ונראה ש־$U \not\subseteq \bigcup_{n = 1}^\infty A_n$.
+	נבנה סדרת קבוצות פתוחות ${\{ V_n \}}_{n = 1}^\infty \subseteq X$ באופן הבא:
+	$X$ קומפקטי והאוסדורף ולכן נורמלי, $A_1$ דלילה וסגורה ונגדיר $U_1 = U \cap (X \setminus A_1)$ קבוצה פתוחה.
+	נובע ש־$a_1 \in V_1 \subseteq \overline{V}_1 \subseteq U_1$ עבור $a_1 \in X$ ו־$V_1$ פתוחה.
+	אז $\overline{V}_1 \cap A_1 = \emptyset$ ואנו יודעים כי $A_2$ דלילה, אז $U_2 = V_1 \cap (X \setminus A_2) \ne \emptyset$ פתוחה.
+	אז קיימת $a_2 \in V_2$ נקודה וקבוצה פתוחה כך ש־$a_2 \in V_2 \subseteq \overline{V}_2 \subseteq V_1$.
+	נבחין כי $\overline{V}_2 \cap A_2 = \emptyset$.
+	נמשיך כך ונבנה סדרת קבוצות פתוחות,
+	\[
+		a_n \in V_n \subseteq \overline{V}_n \subseteq U_{n - 1}
+	\]
+	ו־$\overline{V}_n \cap A_n = \emptyset$.
+	האוסף $\{ \overline{V}_n \}$ הוא אוסף קבוצות סגורות המקיימות שכל מספר סופי מביניהן לא ריק ולכן,
+	\[
+		\bigcap_{n = 1}^\infty \overline{V}_n \ne \emptyset
+	\]
+	ויהי $b \in \bigcap \overline{V}_n$.
+	נסיק ש־$b \notin \bigcup_{n = 1}^\infty A_n$, אבל $b \in U$ ונקבל שאכן $U \not\subseteq \bigcup_{n = 1}^\infty A_n$.
+\end{proof}
+\begin{definition}[מרחב מושלם]
+	מרחב $X$ נקרא מושלם אם כל נקודה $x \in X$ היא נקודת הצטברות $X \setminus \{ x \}$.
+\end{definition}
+\begin{conclusion}
+	נניח ש־$X$ מרחב קומפקטי האוסדורף מושלם, אז $X$ לא בן־מניה.
+\end{conclusion}
+\begin{definition}[תכונת בייר]
+	נאמר שמרחב $X$ הוא מרחב בייר אם מתקיים שלאיחוד בן־מניה של קבוצות דלילות אין פנים.
+\end{definition}
+\begin{exercise}
+	נניח ש־$X$ מרחב בייר ו־$Y$ מרחב מטרי, ונניח ש־$f_n : X \to Y$ היא סדרת פונקציות רציפות על $X$ כך שלכל $x_0 \in X$ מתקיים ${\{ f_n(x_0) \}}_{n = 1}^\infty$ מתכנסת ל־$f(x_0)$,
+	אז $f$ רציפה בקבוצה צפופה של נקודות.
+\end{exercise}
+נראה רמז לתרגיל;
+יהי $\epsilon > 0$, ונגדיר $B_n(\epsilon) = \{ x \in X \mid \forall m, n \in \NN,\ d(f_n(x), f_m(x)) \le \epsilon \}$
+אז לכל $\epsilon > 0$ מתקיים $X = \bigcup_{N = 1}^\infty B_N(\epsilon)$, זוהי קבוצה סגורה עם פנים, ולכן לאיזושהי קבוצה באיחוד אמור להיות פנים.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
