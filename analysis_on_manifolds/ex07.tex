@@ -1,0 +1,164 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 07 --- אנליזה על יריעות, 80426}
+
+\DeclareMathOperator{\vol}{vol}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+ניזכר כי $TM$ הוא האגד המשיק של היריעה $M$.
+תהי $\pi : TM \to M$ ההעתקה $(x, v) \mapsto x$, ונגדיר $s : M \to TM$ על־ידי $s(x) = (x, 0)$.
+תהי $f : M \to N$ חלקה, אז נקבל ש־$df : TM \to TN$ העתקה המוגדרת על־ידי $df(x, v) = (f(x), Df |_x(v))$.
+
+\subquestion{}
+נראה ש־$\pi, s$ חלקות.
+\begin{proof}
+	נבחין כי שתי הפונקציות הן לינאריות ולכן בפרט חלקות, אבל נוכיח את הטענה ישירות מהגדרה.
+
+	נניח ש־$M^k \subseteq \RR^m$.
+	אז $TM \subseteq \RR^{m + k}$.
+	תהי $(p, v) \in TM$ ונבחן את $\overline{\pi} : \RR^{m + k} \to \RR^m$ הרחבה רציפה של $\pi : TM \to M$.
+	כלומר, נגדיר ש־$\overline{\pi} \restriction TM = \pi$, וכן $\overline{\pi}(x, u) = x$, זוהי העתקה לינארית $\RR^{m + k} \to \RR^m$, כלומר העתקה לינארית אוקלידית, ולכן היא חלקה.
+
+	נבצע תהליך דומה ל־$s$, נגדיר $\overline{s} : \RR^m \to \RR^{m + k}$ על־ידי $\overline{s}(x) = (x, 0)$, אז בבירור $\overline{s} \restriction M = s$, ו־$\overline{s}$ חלקה ומעידה על $s$ כהעתקה חלקה.
+\end{proof}
+
+\subquestion{}
+נראה ש־$df$ היא חלקה.
+\begin{proof}
+	נניח ש־$N^l \subseteq \RR^n$. אז $f \subseteq {(\RR^n)}^{\RR^m}$ וכן $D f |_x : T_x(M) \to T_{f(x)}(N)$, כלומר $Df |_x \subseteq {(\RR^l)}^{\RR^k}$, לכל $x \in M$. \\
+	הפעם נרצה לבנות את ההרחבה כך שקיימת פונקציה חלקה $\overline{df} : U \to \RR^{n + l}$ כך ש־$U \subseteq \RR^{m + k}$ פתוחה, וכן ש־$\overline{df} \restriction TM = df$.
+	נניח ש־$(p, v) \in TM$ ונרצה להראות ש־$df$ חלקה ב־$(x, v)$.
+	ידוע כי $f$ חלקה ולכן קיימת $\overline{f} : U_0 \to \RR^n$ חלקה, עבור $p \in U_0 \subseteq \RR^m$ פתוחה.
+	לכל $x \in U_0$ נבחין כי $D \overline{f} |_x$ היא העתקה לינארית ולכן חלקה אף היא.
+	נגדיר אם כך את $\overline{df}(x, v) = (\overline{f}(x), D \overline{f}|_x(v))$ ונקבל שזו העתקה חלקה, אבל $\overline{df} \restriction TM = df$ ישירות מהגדרת הנגזרת על יריעה, ולכן פונקציה זו מעידה כי $df$ בעצמה חלקה.
+\end{proof}
+
+\question{}
+ניזכר כי,
+\[
+	\operatorname{SL}_n(\RR)
+	= \{ A \in M_n(\RR) \mid \det(A) = 1 \}
+\]
+היא קבוצת ההעתקות הלינאריות $\RR^n \to \RR^n$ ההפיכות והאורתוגונליות.
+
+\subquestion{}
+נראה ש־$\operatorname{SL}_n(\RR)$ היא יריעה.
+\begin{proof}
+	נגדיר $f : \operatorname{GL}_n(\RR) \to \RR$ על־ידי $f(A) = \det(A)$.
+	\begin{align*}
+		D f |_{I_n}(B)
+		& = \lim_{h \to 0} \frac{f(I_n + h B) - f(I_n)}{h} \\
+		& = \lim_{h \to 0} \frac{\det(I_n + h B) - \det(I_n)}{h} \\
+		& = \lim_{h \to 0} \frac{(1 + h B_{1, 1}) \det(I_{n - 1} + h B_{i > 1, j > 1}) + h(\ldots) - 1}{h} \\
+		& = \lim_{h \to 0} \frac{(1 + h B_{1, 1}) \cdots (1 + h B_{n, n}) - 1}{h} + o(h) \\
+		& = \lim_{h \to 0} \frac{1 + h \tr(B) - 1}{h} + o(h) \\
+		& = \tr(B)
+	\end{align*}
+	נבחין כי $D f |_{I_n}$ היא על, נוכל לבחור $\diag(r, 1, \ldots, 1)$ לכל $r \in \RR$, ולכן $I_n$ נקודה רגולרית.
+	זה לא מוכיח כלום.
+\end{proof}
+
+\subquestion{}
+נחשב את $\dim \operatorname{SL}_n(\RR)$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\question[4]
+נגדיר $M_a^2 = \{ (x, y, z, w) \in \RR^4 \mid x^2 + y^2 = 1, z^2 + w^2 = {(x + a)}^2 \}$.
+
+\subquestion{}
+נראה ש־$M_3^2$ היא יריעה.
+\begin{proof}
+	נגדיר את הפונקציה $g : \RR^4 \to \RR^2$ על־ידי,
+	\[
+		g(x, y, z, w)
+		= (x^2 + y^2, z^2 + w^2 - {(x + a)}^2)
+	\]
+	אז נקבל ש־$g^{-1}(\{ (1, 0) \}) = M_a^2$.
+	ממשפט הפונקציה הסתומה ליריעות מספיק שנוכיח ש־$(1, 0)$ ערך רגולרי של $f$.
+	נגזור את הפונקציה,
+	\[
+		D g |_{(x, y, z, w)}
+		= \begin{pmatrix}
+			2x & 2y & 0 & 0 \\
+			-2(x + a) & 0 & 2z & 2w
+		\end{pmatrix}
+	\]
+	ונקבל כי לכל הצבת ערך יש לפחות שתי שורות בלתי תלויות־לינארית, כלומר הנקודה רגולרית לכל נקודה, \\
+	ובפרט אם $(x, y, z, w) \in f^{-1}(\{ (1, 0) \})$.
+	נסיק ממשפט הפונקציה הסתומה שאכן $M_3^2$ יריעה.
+\end{proof}
+
+\subquestion{}
+נראה ש־$M_0^2$ איננה יריעה.
+\begin{proof}
+	נניח בשלילה ש־$M_0^2$ יריעה, ונגדיר,
+	\[
+		f : M \to S^1,
+		\qquad
+		f(x, y, z, w) = (x, y)
+	\]
+	זוהי העתקה חלקה כהעתקת צמצום ולכל $q \in S^1$ ערך רגולרי גם $f^{-1}(q)$ יריעה.
+	אבל מהגדרת $f$ נקבל שכל ערך ב־$S^1$ היא רגולרית, זאת שכן,
+	\[
+		D f \mid_{(x, y, z, w)}
+		= \begin{pmatrix}
+			1 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0
+		\end{pmatrix} 
+	\]
+	ולכן בפרט $f^{-1}(\{(0, 1)\})$ יריעה, ממימד 2.
+	אבל,
+	\[
+		f(x, y, z, w) = (0, 1)
+		\iff x^2 + y^2 = 1, w^2 + z^2 = x^2, x = 0, y = 1
+		\iff x = 0, y = 1, z = 0, w = 0
+	\]
+	כלומר זוהי יריעה ממימד 0, בסתירה למשפט הפונקציה הסתומה.
+\end{proof}
+
+\question{}
+נגדיר את העתקת הופ כ־$h : S^3(1) \to S^2(\frac{1}{2})$ המוגדרת על־ידי,
+\[
+	h(z, w)
+	= (z \overline{w}, \frac{1}{2} ({|z|}^2 - {|w|}^2))
+\]
+נראה כי אכן תמונתה היא ב־$S^2(\frac{1}{2})$ ושכל $q \in S^2(\frac{1}{2})$ היא ערך רגולרי של $h$.
+\begin{proof}
+	נבחין כי $\frac{1}{2} ({|z|}^2 - {|w|}^2) \in \RR$ וכן ש־$z \overline{w} \in \CC$ ולכן $h$ משוכנת ב־$\RR^3$.
+	עוד נבחין כי,
+	\[
+		{|h(z, w)|}^2
+		= z \overline{w} w \overline{z} + \frac{1}{4} {|z|}^4 - \frac{1}{2} {|zw|}^2 + \frac{1}{4} {|w|}^4
+		= \frac{1}{4} {|z|}^4 + \frac{1}{2} {|zw|}^2 + \frac{1}{4} {|w|}^4
+		= {\left(\frac{1}{2} ({|z|}^2 + {|w|}^2)\right)}^2
+		= {\left(\frac{1}{2} \cdot 1\right)}^2
+	\]
+	ונובע שתמונת $h$ היא ב־$S^2(\frac{1}{2})$ בלבד.
+
+	נעבור לבדיקת רגולריות.
+	נגזור את איברי המספרים המרוכבים,
+	\[
+		D h |_{(z, w)}
+		= D h |_{(z_r, z_i, w_r, w_i)}
+		= \begin{pmatrix}
+			w_r & - w_i & z_r & -z_i \\
+			w_i & w_r & z_i & z_r \\
+			\frac{1}{2} z_r & \frac{1}{2} z_i & \frac{1}{2} w_r & \frac{1}{2} w_i
+		\end{pmatrix} 
+		= \begin{pmatrix}
+			\overline{w} & \overline{z} \\
+			i \overline{w} & i \overline{z} \\
+			\frac{1}{2} z & \frac{1}{2} w
+		\end{pmatrix} 
+	\]
+	והנקודה $(z, w)$ רגולרית אם ההעתקה היא על $\RR^2 \simeq \CC \simeq T_{h(z, w)}(S^2(\frac{1}{2}))$.
+	אבל נבחין כי עמודותיה בלתי־תלויות לינארית עבור כל $(z, w) \ne 0$, וכן $0 \notin S^3(1)$, ולכן נסיק שהיא רגולרית בכל נקודה.
+	נובע אם כך שלכל $q \in S^2(\frac{1}{2})$ אכן כל מקורותיה רגולריים וכן היא ערך רגולרי.
+\end{proof}
+
+\end{document}
