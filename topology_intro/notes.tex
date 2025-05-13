@@ -1595,6 +1595,101 @@
 יהי $\epsilon > 0$, ונגדיר $B_n(\epsilon) = \{ x \in X \mid \forall m, n \in \NN,\ d(f_n(x), f_m(x)) \le \epsilon \}$
 אז לכל $\epsilon > 0$ מתקיים $X = \bigcup_{N = 1}^\infty B_N(\epsilon)$, זוהי קבוצה סגורה עם פנים, ולכן לאיזושהי קבוצה באיחוד אמור להיות פנים.
 
+\section{שיעור 13 --- 13.5.2025}
+
+\subsection{השלמות לקומפקטיזציה}
+$X$ מרחב בייר (לאיחוד בן־מניה של דלילות יש פנים ריק).
+נניח ש־$Y$ מרחב מטרי וגם ש־$f_n : X \to Y$ רציפות ויש $f : X \to Y$ כלשהי, ונניח שלכל $x \in X$ גם $\lim_{n \to \infty} f_n(x) = f(x)$.
+אז $\{ x \in X \mid f \text{ is continuous at } x \}$ צפופה ב־$X$.
+\begin{proof}
+	תת־קבוצה פתוחה של מרחב בייר היא מרחב בייר (ביחס לטופולוגיה המושרית עליה),
+	נגדיר גם,
+	\[
+		\forall \epsilon > 0, N \in \NN,\ 
+		B_N(\epsilon) = \{ x \in X \mid \forall n, m \ge N,\ |f_n(x) - f_m(x)| \le \epsilon \}
+	\]
+	אז $\bigcup_{N = 1}^\infty B_N(\epsilon) = X$ וכן נובע ש־$U(\epsilon) = \bigcup_{N = 1}^\infty B_N^\circ$ פתוחה וצפופה.
+	$f$ רציפה ב־$\bigcap_{k = 1}^\infty U(\frac{1}{k})$ צפופה כי $X$ מרחב בייר. \\
+	סוף ההוכחה מושאר כתרגיל.
+\end{proof}
+
+\subsection{משחק מזור}
+עתה נדון במשחק מזור (Mazur).
+\begin{definition}[משחק מזור]
+	אנו מניחים כי יש לנו שני שחקנים, א' וב'.
+	נניח גם כי קיימת $A \subseteq [0, 1] = I_0$.
+	כל שחקן בתורו בוחר קטע סגור $I_n \subseteq I_{n - 1}$.
+	שחקן א' יבחר את $I_1 \subseteq I_0$ וב' יבחר $I_1 \subseteq I_2$ וכן הלאה.
+	נגדיר ששחקן א' מנצח אם ורק אם $A \cap \bigcap_{n = 1}^\infty I_n \ne \emptyset$.
+\end{definition}
+\begin{exercise}
+	האם יש אסטרטגיית ניצחון?
+	אם יש, מה התנאים שלה ולמי?
+\end{exercise}
+
+\subsection{נושא חדש}
+נחזור עתה למרחבי מנייה.
+נניח ש־$X$ מרחב טופולוגי ו־$R \subseteq X \times X$ יחס שקילות על $X$.
+\begin{notation}
+	נסמן מחלקות שקילות של $R$ ב־$X$ על־ידי,
+	\[
+		[x] = {[x]}_R = \{ y \in X \mid (x, y) \in R \}
+	\]
+	וכן נסמן,
+	\[
+		X / R
+		= \{ [x] \mid x \in X \}
+	\]
+	וכן $\pi : X \to X / R$ על־ידי $\pi(x) = [x]$.
+\end{notation}
+אנו רוצים למצאו טופולוגיה על $X / R$ החזקה ביותר כך ש־$\pi$ היא רציפה.
+נגדיר $L \subseteq X / R$ להיות פתוחה אם ורק אם $\pi^{-1}(L) \subseteq X$ פתוחה.
+באופן דומה נוכל להגדיר בצורה כזו טופולוגיה בהינתן פונקציה $f : X \to Y$ שהיא על $Y$.
+\begin{example}
+	בהינתן $X = [0, 1]$ נוכל להגדיר $R = \{ (0, 1) \}$ ונקבל ש־$[0] = \{0, 1\}$ ובהתאם $X / R$ יתנהג למעשה כמו מעגל.
+\end{example}
+\begin{example}
+	עבור $X = \RR$ נוכל להגדיר $x \sim x + n$ לכל $n \in \ZZ$, ובמקרה זה נקבל שקילות למעגל שוב.
+	נהוג לסמן גם $\RR / \ZZ$ עבור $\RR / \sim$.
+\end{example}
+\begin{definition}[אוקלידיות מקומית]
+	מרחב טופולוגי $X$ יקרא אוקלידי מקומית (ממימד $n$) אם לכל $x \in X$ יש סביבה פתוחה $x \in U \subseteq X$ כך שמתקיים,
+	\begin{itemize}
+		\item $U$ הומיאומורפית לכדור היחידה הפתוח ב־$\RR^n$
+		\item $U$ הומיאומורפית ל־$\RR^n$
+		\item $U$ הומיאומורפית לקבוצה פתוחה ב־$\RR^n$
+	\end{itemize}
+	כאשר התנאים הללו שקולים.
+\end{definition}
+\begin{definition}[יריעה טופולוגית]
+	מרחב טופולוגי $X$ יקרא יריעה טופולוגית (ממימד $n$) אם מתקיימות התכונות הבאות,
+	\begin{enumerate}
+		\item $X$ אוקלידי מקומית ממימד $n$
+		\item $X$ האוסדורף
+		\item $X$ מרחב מנייה שנייה
+	\end{enumerate}
+\end{definition}
+נראה מספר דוגמות ליריעות.
+\begin{example}
+	כל תת־קבוצה פתוחה של $\RR^n$ היא יריעה טופולוגית ממימד $n$.
+\end{example}
+\begin{example}
+	נבחין כי $\TT^2 = \RR^2 / \ZZ^2$, הוא למעשה שפת הריבוע, היא לא יריעה.
+\end{example}
+\begin{example}
+	בקבוק קליין הוא יריעה.
+\end{example}
+\begin{example}
+	גרף של פונקציה רציפה $f : U \to \RR$ עבור $U \subseteq \RR^n$, הוא יריעה, כלומר,
+	\[
+		\{ (x, f(x)) \in \RR^{n + 1} \mid x \in U \}
+	\]
+	היא יריעה טופולוגית.
+\end{example}
+נבחין כי עבור $n = 1$ יש רק סוג אחד של יריעה קומפקטית, המעגל.
+עבור $n = 2$ יש לנו את הספירה, את הטורוס, מתומן הקסם ואת בקבוק קליין.
+בהרצאות הבאות ניכנס לתחום הטופולוגיה האלגברית, ונפתח כלים לאפיון של מרחבים כאלה.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
