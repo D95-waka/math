@@ -17,10 +17,16 @@ We will show that,
 	Let us fix $z, t_0, \ldots, t_{n - 1}$, then is suffice to show that $\operatorname{PA} \vdash \forall x \le z \exists y \varphi \leftrightarrow \exists w \forall x \le z \exists y \le w \varphi$.
 	We assume toward a contradiction that the formula does not hold, then $\forall x \le z \exists y \varphi$ as well $\lnot \exists w \forall x \le z \exists y \le w \varphi$ holds as well.
 	The latter is equivalent to $\forall w \exists x \le z \forall y \le w (\lnot \varphi)$.
-	We fix $w$ and it derives that $\exists x \le z \forall y \le w (\lnot \varphi)$ holds.
-	Let us fix such $x$ as well (such that it is disjoint from previous fixations according to KE).
-	From $\forall x \le z \exists y \varphi$ we can derive that for our fixed $x$ the statement holds, meaning that $\exists y \varphi$, and $\forall y \le w (\lnot \varphi)$.
-	We finally fix some $y$ and then $\varphi$ holds, but $w$ can be arbitrarily fixed, we assume that $y \le w$ and it follows that $\lnot \varphi$, a contradiction.
+
+	We want to show that there is an upper bound to $y$ in the formula $\forall x \le z \exists y \varphi$.
+	This will be proven using induction over $z$.
+	For the case $z = 0$ there is only the case $x = 0$ and the $y$ that fulfills $\exists y \varphi$ for $x = 0$ is an upper bound.
+	We assume that $m$ is an upper bound, meaning that $\forall x \le z \exists y \le m \varphi$ and check the case for $\forall x \le z + 1 \exists y \varphi$.
+	There is $y$ witnessing the case $x = z + 1$, and either $m \le y$ or $y \le m$, we define $m' = \max\{y, m\}$ and it follows that it is an upper bound for the case $z + 1$.
+
+	Back to the initial claim, there is $m$ by the induction above such that it is a bound for $y$ in the formula $\forall x \le z \exists y \varphi$.
+	We fix $w = m$ and it derives that $\exists x \le z \forall y \le w (\lnot \varphi)$ holds, and we fix such $x \le z$, then $\forall \le w (\lnot \varphi)$.
+	But by the first formula $\exists y \le w \varphi$ in contradiction to this claim.
 \end{proof}
 
 \subquestion{}
@@ -146,7 +152,7 @@ We will show that PA proves that $\forall x \exists y > 0 (\forall 0 < z \le x (
 	Let us notate $\varphi(x) = \exists y > 0 (\forall 0 < z \le x (z \mid y))$, We want to prove that $\forall x \varphi$ by induction over $x$.
 	For $x = 0$ we will arbitrarily set $y = 1$, and the formula holds as there is not $0 < z \le 0$.
 
-	Let us assume that $\operatorname{PA} \models \varphi(x)$ for some $x = \underline{n}$, we will show that $\varphi(x + 1)$ as well.
+	Let us assume that $\operatorname{PA} \models \varphi(x)$ for some $x$, we will show that $\varphi(x + 1)$ as well.
 	There is $y$ such that it satisfies the formula $\varphi(x)$, then we define $y' = y \cdot (x + 1)$.
 	Let $0 < z \le x + 1$, then if $z < x + 1$ by the induction hypothesis $z \mid y$ and in particular $z \mid y \cdot (x + 1) = y'$.
 	If $z = x + 1$ then $z \mid x + 1$ and in particular $z \mid y'$ as well.
@@ -193,14 +199,15 @@ meaning that $\forall 0 < z \le k (z \mid m)$, and $w \le k$, then there is $n$ 
 \subquestion{}
 We will show that there is a coded empty set, namely exist $n, m, k$ such that $\lnot FS(x, n, m, k)$ for all $x$.
 \begin{proof}
-	By the last question it is suffice to fix $n = 0$, as the formula to represent the empty set if $\psi(x) = \perp$.
+	By the last question it is suffice to fix $n = 0$, as the formula to represent the empty set if $\psi(x) = \perp$ (or some other sentence like $0 = 1$).
 	We also choose $k = 1$.
 \end{proof}
 
 \subquestion{}
 We will show that there are coded singletons, for all $y$ there are $n, m, k$ such that for all $x$, $FS(x, m, n, k) \iff x = y$.
 \begin{proof}
-	We define $\psi(x, y) = x = y$, as well $k > y$ some fixed value, then by question 3 part c, there is $n$ such that $\psi(x, y)$ is and only if $x < k \land x = y $, or more simply, $x = y$.
+	We define $\psi(x, y) = x = y$, as well $k > y$ some fixed value, then by question 3 part c, when $y$ is playing the role of $y_0$ of 3c,
+	there is $n$ such that $\psi(x, y)$ is and only if $x < k \land x = y $, or more simply, $x = y$.
 \end{proof}
 
 \subquestion{}
@@ -209,6 +216,8 @@ For all $n_1, m_1, k_1$ and $n_2, m_2, k_2$ there are $n, m, k$ such that for al
 \begin{proof}
 	We define $k = \max\{k_1, k_2\}$, as well $m = k! $ and $n = n_1 \cdot n_2$.
 	It follows that $FS(x, m, n, k) \iff (x + 1) \cdot m + 1 \mid n = n_1 \cdot n_2 \iff (x + 1) \cdot m + 1 \mid n_1 \lor (x + 1) \cdot m + 1 \mid n_2 \iff FS(x, m_1, n_1, k_1) \lor FS(x, m_2, n_2, k_2)$.
+
+	We could also define $\psi(x) = FS(x, m_1, n_1, k_1) \lor FS(x, m_2, n_2, k_2)$ directly and use question 3 part c.
 \end{proof}
 
 \subquestion{}
@@ -217,6 +226,8 @@ For all $n_1, m_1, k_1$ and $n_2, m_2, k_2$ there are $n, m, k$ such that for al
 \begin{proof}
 	We define $k = \min\{k_1, k_2\}$ as well $m = k! $ and $n = \gcd(n_1, n_2)$.
 	The proof is almost identical to that of the last part.
+
+	We could also define $\psi(x) = FS(x, m_1, n_1, k_1) \land FS(x, m_2, n_2, k_2)$ directly and use question 3 part c.
 \end{proof}
 
 \end{document}
