@@ -711,6 +711,56 @@
 	אז מתקיים $f(x) = c_1, f(y) = c_2$.
 \end{proof}
 נסמן למה זו ב־$(*)$.
+\begin{lemma}
+	אם $A$ אלגברה אז גם $\overline{A}$ אלגברה,
+	וכן $|f| \in \overline{A}$ לכל $f \in A$.
+\end{lemma}
+\begin{proof}
+	נניח ש־$f, g \in \overline{A}$, נראה כי גם $f + g, f \cdot g, \alpha f \in \overline{A}$.
+	קיימות סדרות ${\{ f_n \}}_{n = 1}^\infty \subseteq A$ ו־${\{ g_n \}}_{n = 1}^\infty \subseteq A$ כך ש־$f_n \rightrightarrows f, g_n \rightrightarrows g$.
+	אז,
+	\[
+		\lVert f + g - f_n - g_n \rVert_\infty
+		\le \lVert f - f_n \rVert_\infty + \lVert g - g_n \rVert_\infty \to 0
+	\]
+	ולכן $f + g \in \overline{A}$.
+	נבחין כי גם,
+	\[
+		\lVert f \cdot g - f_n \cdot g_n \rVert_\infty
+		= \lVert f \cdot g - f_n \cdot g + f \cdot g_n - f_n \cdot g_n \rVert_\infty
+		\le \lVert f \rVert_\infty \cdot \lVert g - g_n \rVert_\infty + \lVert g_n \rVert_\infty \cdot \lVert f - f_n \rVert_\infty
+		\to 0
+	\]
+	וכן $f \cdot g \in \overline{A}$ בהתאם.
+
+	נבחין כי $\{ |f(t)| \mid t \in K \}$ היא קבוצה חסומה ב־$\RR$, ולכן $f(t) \in [-d, d] \subseteq \RR$ לכל $t \in K$ ועבור $d > 0$.
+	נקבע $\epsilon > 0$, אז קיים $p_n$ כך שמתקיים,
+	\[
+		\forall x \in [-d, d],
+		|g(x) - p_n(x)| < \epsilon
+	\]
+	נסיק ש־$|g(f(t)) - p_n(f(t))| < \epsilon$ שכן $|g(f(t))| < |f(t)|, p_n(f(t)) \in \overline{A}$, ונובע ש־$|f| \in \overline{A}$.
+\end{proof}
+\begin{lemma}
+	נניח ש־$A$ אלגברה.
+	אם $f_1, \ldots, f_n \in A$ אז נראה ש־$\varphi, \psi$ המוגדרות על־ידי,
+	\[
+		\varphi(t) = \max\{ f_1(t), \ldots, f_n(t) \},
+		\qquad
+		\psi(t) = \min\{ f_1(t), \ldots, f_n(t) \}
+	\]
+	אז $\varphi, \psi \in \overline{A}$.
+\end{lemma}
+\begin{proof}
+	נוכיח עבור $n = 2$, וההרחבה היא באינדוקציה.
+	\[
+		\varphi(t) = \max\{ f_1(t), f_2(t) \} = \frac{1}{2}(|f_1 + f_2| + |f_1 - f_2|),
+		\quad
+		\psi(t) = \min\{ f_1(t), f_2(t) \} = \frac{1}{2}(|f_1 + f_2| - |f_1 - f_2|)
+	\]
+	ומהלמה האחרונה נובע שאכן $\varphi, \psi \in \overline{A}$ כפי שרצינו.
+\end{proof}
+נסמן למה זו ב־$(\#)$.
 \begin{proof}[הוכחת משפט\ \ref{stone_weistrass_theorem}]
 	בשלב הראשון יהי $\epsilon > 0$, תהי $f \in C(K)$ ונניח ש־$x \in K$.
 	נרצה לבנות פונקציה $g_x$ כך שמתקיים,
@@ -766,8 +816,7 @@
 		J
 		= \bigcup_{i = 1}^n \hat{J}_{x_i}
 	\]
-	ונגדיר $\varphi = \min\{ g_{x_1}, \ldots, g_{x_n} \}$.
-	נעיר כי עלינו להראות ש־$\varphi \in \overline{A}$.
+	ונגדיר $\varphi(t) = \min\{ g_{x_1}(t), \ldots, g_{x_n}(t) \}$ לכל $t \in K$, מ־$(\#)$ נובע שאכן $\varphi \in \overline{A}$.
 	לכל $t \in K$ קיים $i$ כך ש־$t \in \hat{J}_{x_i}$, ונשים לב שמתקיים,
 	\[
 		g_{x_i}(t)
@@ -783,6 +832,196 @@
 	\]
 	לכל $t \in K$.
 	נובע ש־$|\varphi(t) - f(t)| \le 2 \epsilon$ לכל $t \in K$, ולכן גם $\sup |\varphi(t) - f(t)| \le 2 \epsilon$ לכל $\epsilon > 0$.
+\end{proof}
+
+\section{שיעור 6 --- 14.5.2025}
+\subsection{מבוא לטורי פורייה}
+עד כה יכולנו להשתמש בטורי טיילור, היתרון בהם הוא שהם מתנהגים בצורה מאוד טבעית, ובקשר לפונקציה.
+החיסרון העיקרי הוא שטור טיילור הוא מקומי בלבד, ובהרבה מקרים לא נוכל להשתמש בו, בטח ובטח שלא בקירוב טוב.
+בפרק הקודם הצלחנו למצוא מערכת קירוב יותר מוצלחת מבחינת חישוב, אך כזו שלא מצביעה מפורשות על הפונקציות המקרבות.
+ננסה לשפר את המצב הזה.
+ניזכר בהגדרות מלינארית.
+\begin{definition}[מרחב מכפלה פנימית]
+	נניח ש־$V$ מרחב וקטורי מעל $\CC$, ותהי פונקציה $\langle \cdot, \cdot \rangle : V \times V \to \CC$,
+	כך שמתקיימים התנאים,
+	\begin{enumerate}
+		\item $\forall x, y \in V, \overline{\langle x, y \rangle} = \langle y, x \rangle$
+		\item $\forall x, y \in V, \alpha \in \RR,\ \langle x, \alpha y \rangle = d \langle x, y \rangle$
+		\item $\langle x, y + z \rangle = \langle x, y \rangle + \langle x, z \rangle$
+		\item $\langle x, x \rangle \ge 0$ ואם $\langle x, x \rangle = 0$ אז $x = 0_V$
+	\end{enumerate}
+\end{definition}
+\begin{theorem}
+	$(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית,
+	ונגדיר,
+	\[
+		\lVert x \rVert
+		= \sqrt{\langle x, x \rangle}
+	\]
+	אז $(V, \lVert \cdot \rVert)$ מרחב נורמי.
+\end{theorem}
+\begin{proof}
+	נראה שזוהי אכן נורמה,
+	\begin{enumerate}
+		\item $\lVert \alpha x \rVert = |\alpha| \cdot \lVert x \rVert$ ישירות מהגדרה
+		\item $\lVert x \rVert = 0$ אם ורק אם $x = 0_V$ משיקולים דומים
+		\item \[
+				{\lVert x + y \rVert}^2 
+				= \langle x + y, x + y \rangle 
+				= \langle x, x \rangle + \langle x, y \rangle + \langle y, x \rangle + \langle y, y \rangle 
+				= {\lVert x \rVert}^2 + {\lVert y \rVert}^2 + 2 \re \langle x, y \rangle
+			\]
+		\item עבור $t \in \RR$,
+			\[
+				0 \le \langle x + ty, x + ty \rangle
+				= {\lVert x \rVert}^2 + t^2 {\lVert y \rVert}^2 + 2t (\re \langle x, y \rangle)
+			\]
+			ואז,
+			\[
+				D 
+				= B^2 - 4AC 
+				= 4 {(\re \langle x, y \rangle)}^2 - 4 {\lVert y \rVert}^2 {\lVert x \rVert}^2 \le {\lVert x \rVert}^2 + {\lVert y \rVert}^2 + 2 \lVert x \rVert \cdot \lVert y \rVert 
+				= {(\lVert x \rVert + \lVert y \rVert)}^2
+			\]
+			ונסיק את אי־שוויון המשולש.
+	\end{enumerate}
+\end{proof}
+\begin{definition}[סדרה אורתוגונלית במרחב מכפלה פנימית]
+	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית.
+	תהי ${\{ v_n \}}_{n = 1}^\infty \subseteq V$ כך שמתקיים,
+	\begin{enumerate}
+		\item $k \ne l \implies \langle v_k, v_l \rangle = 0$
+		\item $v_n \ne 0$ לכל $n \in \NN$
+	\end{enumerate}
+	אז נקרא ל־$\{ v_n \}$ סדרה אורתוגונלית.
+\end{definition}
+\begin{remark}
+	ההגדרה האחרונה ניתנת לצמצום למקרה של סדרות סופיות.
+\end{remark}
+\begin{theorem}[הפיתגורי]
+	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית,
+	ונניח ש־${\{ v_n \}}_{n = 1}^N$ סדרה אורתונורמלית סופית, \\
+	כלומר אורתוגונלית ו־$\langle v_n, v_n \rangle = 1$ לכל $1 \le n \le N$.
+	אז,
+	\[
+		{\lVert x \rVert}^2
+		= \left( \sum_{n = 1}^N {|\langle x, v_n \rangle|}^2 \right) + {\lVert x - \sum_{n = 1}^N {|\langle v_n, x \rangle|}^2 \rVert}^2
+	\]
+\end{theorem}
+\begin{proof}
+	\[
+		x = \overbrace{\left( \sum_{n = 1}^N \langle v_n, x \rangle v_n \right)}^{u = } + \overbrace{\left( x - \sum_{n = 1}^N \langle v_n, x \rangle v_n \right)}^{v = }
+	\]
+	ולכן גם,
+	\[
+		\langle u, v \rangle
+		= \langle \sum_{n = 1}^N \langle v_n, x \rangle v_n, x - \sum_{n = 1}^N \langle v_n, x \rangle v_n \rangle
+		= \sum_{n = 1}^N \langle x, v_n \rangle \langle v_n, x \rangle - \sum_{n = 1}^N \langle x, v_n \rangle \langle v_n, x \rangle
+		= 0
+	\]
+	ולכן $\langle x, x \rangle = \langle u, u \rangle + \langle v, v \rangle$.
+\end{proof}
+\begin{conclusion}[אי־שוויון בסל]
+	לכל $x \in V$,
+	\[
+		{\lVert x \rVert}^2
+		\ge \sum_{n = 1}^N {|\langle x, v_n \rangle}^2
+	\]
+	בפרט גם,
+	\[
+		{\lVert x \rVert}^2
+		\ge \sum_{n = 1}^\infty {|\langle x, v_n \rangle}^2
+	\]
+	לסדרות אורתונורמליות אינסופיות.
+\end{conclusion}
+\begin{conclusion}[אי־שוויון שוורץ]
+	מתקיים $|\langle x, y \rangle| \le \lVert x \rVert \cdot \lVert y \rVert$ לכל $y \ne 0_V$.
+\end{conclusion}
+\begin{proof}
+	נגדיר $v_1 = \frac{y}{\lVert y \rVert}$, אז,
+	\[
+		{\lVert x \rVert}^2
+		\ge {|\langle x, v_1 \rangle|}^2
+		= {|\langle x, \frac{y}{\lVert y \rVert} \rangle|}^2
+		= \frac{{|\langle x, y \rangle|}^2}{{\lVert y \rVert}^2}
+	\]
+	ונסיק ש־$\lVert x \rVert \cdot \langle y \rangle \ge |\langle x, y \rangle|$
+\end{proof}
+\begin{theorem}
+	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית ו־${\{ v_n \}}_{n = 1}^\infty \subseteq V$ סדרה אורתוגונלית.
+	יהי $v \in V$, אז מתקיים,
+	\[
+		v = \sum_{n = 1}^\infty \alpha_n v_n
+	\]
+	עבור $\alpha_n = \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$ לכל $n \in \NN$.
+\end{theorem}
+\begin{proof}
+	נניח שאכן $v = \sum_{n = 1}^\infty \alpha_n v_n$, אז $\lim_{N \to \infty} \lVert v - \sum_{n = 1}^N \alpha_n v_n \rVert = 0$.
+	אז,
+	\[
+		\left\lvert \langle v_k, v \rangle - \langle v_k, \sum_{n = 1}^N \alpha_n v_n \rangle \right\rvert
+		= \left\lvert \langle v_k, v - \sum_{n = 1}^N \alpha_n v_n \rangle \right\rvert
+		\le \lVert v_k \rVert \cdot \left\lvert v - \sum_{n = 1}^N \alpha_n v_n \right\rvert \xrightarrow{N \to \infty} 0
+	\]
+	ובהתאם עבור $k \in \NN$ נוכל להסיק,
+	\[
+		\left\lvert \langle v_k, v \rangle - \langle v_k, \sum_{n = 1}^N \alpha_n v_n \rangle \right\rvert
+		= | \langle v_k, v \rangle - \alpha_k \langle v_k, v_k \rangle|
+		= 0
+	\]
+	ולכן $\alpha_k = \frac{\langle v_k, v \rangle}{{\lVert v_k \rVert}^2}$.
+\end{proof}
+\begin{definition}[טור פורייה לפי מערכת אורתוגונלית במרחב מכפלה פנימית]
+	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית כלשהו מעל $\CC$. \\
+	נניח גם ש־${\{ v_n \}}_{n = 1}^\infty \subseteq V$ סדרה אורתוגונלית במרחב $(V, \langle \cdot, \cdot \rangle)$.
+	יהי $v \in V$, אז,
+	\[
+		\sum_{n = 1}^\infty \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2} v_n
+	\]
+	נקרא טור פורייה עבור $v$.
+	למקדמים $\frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$ נקרא מקדמי פורייה.
+\end{definition}
+\begin{remark}
+	זוהי רק הגדרה, עדיין לא דנו בהתכנסות טורים אלה, או בערכם.
+\end{remark}
+נעבור למשפט שאת הוכחתו מומלץ להכיר.
+\begin{theorem}[תכונת הקירוב האופטימלי של טורי פורייה]
+	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית.
+	נניח ש־${\{ v_n \}}_{n = 1}^\infty \subseteq V$ סדרה אורתוגונלית.
+	יהי $N \in \NN$ ו־$v \in V$. \\
+	במקרה זה,
+	\[
+		\min_{\alpha_i \in \CC, i \le N} \left\lVert v - \sum_{n = 1}^N \alpha_n v_n \right\rVert
+		= \left\lVert v - \sum_{n = 1}^\infty \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2} v_n \right\rVert
+	\]
+	כלומר בחירת מקדמי פורייה מניבה את הקירוב הטוב ביותר ל־$v$.
+\end{theorem}
+\begin{proof}
+	\[
+		\langle v - \sum_{n = 1}^N \alpha_n v_n, v - \sum_{n = 1}^N \alpha_n v_n \rangle
+		= {\lVert v \rVert}^2 - \sum_{n = 1}^N \overline{\alpha_n} \langle v_n, v \rangle - \sum_{n = 1}^N \alpha_n \langle v, v_n \rangle + \sum_{n = }^N {| \alpha_n |}^2 + {\lVert v_n \rVert}^2
+	\]
+	נגדיר את $x_n = \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$ להיות מקדם פורייה, אז,
+	\[
+		{\lVert v - \sum_{n = 1}^N \alpha_n v_n \rVert}^2
+		= {\lVert v \rVert}^2 - \sum_{n = 1}^N (\overline{\alpha_n} x_n + \alpha_n \overline{x_n} - {| \alpha_n |}^2) \cdot {\lVert v_n \rVert}^2
+	\]
+	וגם,
+	\[
+		(\alpha_n - x_n)(\overline{\alpha_n} - \overline{x_n})
+		= {|\alpha_n|}^2 - x_n \overline{\alpha_n} - \overline{x_n} \alpha_n  + {|x_n|}^2
+	\]
+	ולכן,
+	\[
+		{\lVert v - \sum_{n = 1}^N \alpha_n v_n \rVert}^2
+		= {\lVert v \rVert}^2 + \sum_{n = 1}^N \left( {|\alpha_n - x_n|}^2 - {|x_n|}^2 \right) {\lVert v_n \rVert}^2
+	\]
+	עתה נובע,
+	\[
+		\min_{\alpha_1, \ldots, \alpha_N \in \CC} {\lVert v - \sum_{n = 1}^N \alpha_n v_n \rVert}^2
+		= {\lVert v \rVert}^2 - \sum_{n = 1}^N {|x_n|}^2 {\lVert v_n \rVert}^2
+	\]
+	ונקבל מינימום כאשר $\alpha_n = x_n = \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$.
 \end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
