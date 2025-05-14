@@ -47,7 +47,9 @@
 \subquestion{}
 נראה ש־$\operatorname{SL}_n(\RR)$ היא יריעה.
 \begin{proof}
+	צריך להראות ש־$\operatorname{GL}_n(\RR)$ פתוחה ב־$M_n(\RR)$.
 	נגדיר $f : \operatorname{GL}_n(\RR) \to \RR$ על־ידי $f(A) = \det(A)$.
+	נשים לב כי מתקיים,
 	\begin{align*}
 		D f |_{I_n}(B)
 		& = \lim_{h \to 0} \frac{f(I_n + h B) - f(I_n)}{h} \\
@@ -57,14 +59,29 @@
 		& = \lim_{h \to 0} \frac{1 + h \tr(B) - 1}{h} + o(h) \\
 		& = \tr(B)
 	\end{align*}
-	נבחין כי $D f |_{I_n}$ היא על, נוכל לבחור $\diag(r, 1, \ldots, 1)$ לכל $r \in \RR$, ולכן $I_n$ נקודה רגולרית.
-	זה לא מוכיח כלום.
+	נבחין כי $\det(A + h B) = \det(A) \cdot \det(I_n + h A^{-1} B)$ עבור כל $A \in \operatorname{GL}_n(\RR)$, ונוכל להסיק מהתוצאה האחרונה כי,
+	\[
+		D f |_{A}
+		= \det(A) \cdot \tr(A^{-1} B)
+	\]
+	לכן לכל $A$ כזו נוכל להסיק שהנגזרת על, נראה זאת על־ידי בחירת $B = A \cdot \diag(\frac{r}{\det(A)}, 1, \ldots, 1)$ לכל $r \in \RR$.
+	נוכל להסיק אם כך שכל מטריצה הפיכה היא נקודה רגולרית של ההעתקה, ובפרט $1$ ערך רגולרי, זאת שכן אם $\det(A) \ne 0$ אז היא הפיכה, בפרט במקרה $\det(A) = 1$.
+	נבחין גם כי $\operatorname{SL}_n(\RR) = f^{-1}(\{1\})$ ולכן ממשפט הפונקציה הסתומה ליריעות נקבל שזו אכן יריעה.
 \end{proof}
 
 \subquestion{}
 נחשב את $\dim \operatorname{SL}_n(\RR)$.
 \begin{solution}
-	TODO
+	נבחין כי $\dim \operatorname{GL}_n(\RR) = n^2$ וכן $\dim \RR = 1$ ולכן מהמשפט שהשתמשנו בו זה עתה נובע ש־$\dim \operatorname{SL}_n(\RR) = n^2 - 1$.
+\end{solution}
+
+\subquestion{}
+נבדוק אם $\operatorname{SL}_n(\RR)$ קומפקטית.
+\begin{solution}
+	%אנחנו יודעים ש־$f$ פונקציה רציפה, ואנו יודעים גם כי $\{ 1 \}$ הוא קבוצה סגורה ב־$\RR$, מתנאי שקול לרציפות טופולוגית נסיק שגם $\operatorname{SL}_n(\RR)$. \\
+	נגדיר את המטריצה $A_r = \diag(r, \frac{1}{r}, 1, \ldots, 1)$, זוהי מטריצה אלכסונית והפיכה לכל $r \in \RR \setminus \{ 0 \}$.
+	נבחין כי $\lVert A_r \rVert_\infty = |r|$ ולכן לכל $r > 0$ נוכל למצוא מטריצה $A_{r + 1} \in \operatorname{SL}_n(\RR)$ לא חסומה ב־$B_r(0)$.
+	נסיק ש־$\operatorname{SL}_n(\RR)$ לא קומפקטית.
 \end{solution}
 
 \question[4]
