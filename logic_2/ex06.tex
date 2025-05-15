@@ -1,0 +1,90 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 6 Answer Sheet --- Logic Theory (2), 80424}
+
+\DeclareMathOperator{\PA}{PA}
+\DeclareMathOperator{\Coll}{Coll}
+\DeclareMathOperator{\Ind}{Ind}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+\begin{notation}[Closure over induction scheme]
+	Suppose that $\Gamma$ is some collection of formulas over $L_{\PA}$,
+	then we define $I \Gamma = \{ \Ind(\varphi) \mid \varphi \in \Gamma \}$.
+\end{notation}
+\begin{notation}[Collection formula]
+	Suppose that $\varphi(z, y, t_0, \ldots, t_{n - 1})$ is some formula in $L_{\PA}$,
+	then we define $\Coll(\varphi) = \forall z \forall t_0 \ldots \forall t_{n - 1} (\forall x \le z \exists y\ \varphi \leftrightarrow \exists w \forall x \le z \exists y \le w\ \varphi)$.
+\end{notation}
+In the previous exercise we proved that $\PA \vdash \Coll(\varphi)$ for any $\varphi$.
+Let $\Coll = \{ \Coll(\varphi) \mid \varphi \in \operatorname{form}_{L_{\PA}} \}$.
+Let $Q \subseteq \PA$ be the first 9 axioms without the induction scheme, and let $\PA_0 = Q \cup I \Sigma_0 \cup \Coll$.
+We will show that $\PA_0 \vdash I \Sigma_1$.
+\begin{proof}
+	Let $\psi \in I \Sigma_1$, meaning that $\psi = \Ind(\exists x\ \varphi(x, y, z))$ for some $\varphi \in \Sigma_0$, for localized version of $\Sigma_0$.
+	Let us assume that $\Mm \models \PA_0$ is some model such that $c = z^\Mm$ for some $z$ such that $\Mm \models \exists x\ \varphi(x, 0, c)$ and $\Mm \models (\exists x\ \varphi(x, y, c)) \to (\exists x\ \varphi(x, y + 1, c))$.
+	There exists such a model as this sentence is satisfiable. \\
+	We intend to show that $\Mm \models \forall y \exists x\ \varphi(x, y, c)$.
+	We fix some $b \in M$, and want to show that $\Mm \models \exists x \varphi(x, b, c)$.
+	We use $\Coll(\varphi(x, y \le b, c))$ to fix some $d$ such that for all $b' \le b$, if $\Mm \models \exists x\ \varphi(x, b', c)$ then $\Mm \models \exists x \le d\ \varphi(x, b', c)$.
+	Note that this is an $I \Sigma_0$ formula, thus by our assumptions about $\Mm$ it holds, and it follows that $\exists x \varphi(x, b, c)$ holds as well.
+\end{proof}
+
+\question[3]
+\subquestion{}
+We will show that full recursion functions are definable.
+\begin{proof}
+	Let us assume that $G$ is some primitive-recursion function, and we define $F(n) = G(\# \langle F(i) \mid i < n \rangle)$ (the sequence is coded).
+	We will show that $F$ is primitive recursion definable by showing it is $\Sigma_0^1$. \\
+	Note that when given a finite sequence, a function to append value to the sequence is primitive-recursive.
+	This is true as the length function is primitive-recursive, as the singleton and union, enabling us to code the pair $\langle i, x \rangle$ for some given $x$ numeral.
+	Let $\eta : \NN^2 \to \NN$ be such function, meaning that $\eta(\# \langle a_i \mid i < n \rangle, a_{i + 1}) = \#\langle a_i \mid i < n + 1 \rangle$. \\
+	Lastly we define $H(x) = \eta(x, G(x))$ and use the induction scheme over it to define $F$.
+\end{proof}
+
+\subquestion{}
+We will show that the relation $P(x)$ such that $P(x)$ if and only if $x$ is a prime, is primitive-recursive.
+\begin{proof}
+	$P(x) \iff \forall y,\ y \mid x \to y = 1 \lor y = x$.
+	This is clearly a $\Sigma_0$ formula, thus implies that $P$ is $\Delta_1^0$ and a primitive-recursion relation.
+\end{proof}
+
+\subquestion{}
+We will show that the function $n \mapsto p_n$ where $p_n$ it the $n$-th prime, is primitive-recursion function.
+\begin{proof}
+	By primes definition and the order of the primes as sub-order of the elements,
+	\[
+		F(n + 1) = y
+		\iff \exists p_n < y < p_n^2,\ P(y) \land \forall p_n < x < y, \lnot P(y)
+	\]
+	But this is full recursion using a primitive-recursion relation, then we deduce that $F$ is indeed primitive-recursive.
+\end{proof}
+
+\question{}
+We define the base $b$-concatenation as the function such that for every $x, y, b \in \NN$, $x *_b y$ is the representation of the digits of $x$ followed by these of $y$ in base $b$.
+We will show that the function $(x, y, b) \mapsto x *_b y$ is primitive-recursive.
+\begin{proof}
+	We define the operation $/$ as the no-residue division, meaning that if $y = x \cdot b + c$ for $c < b$, then $y / b = x$.
+	This is a primitive-recursive as it is a $\Sigma_1^0$ function.
+	%Let $\%$ be the residue operation, meaning that $y \% b = x$.
+
+	We define the least nullifier function as the function such that $\lambda_b(x)$ is finite product of $b$, that its the minimal value such that $x / \lambda_b(x) = 0$.
+	For example, $\lambda_2(7) = 2^3 = 8$.
+	We also define $0 \mapsto 1$.
+	The recursive definition is 
+	\[
+		\lambda_b(x)
+		= \begin{cases}
+			1 & x = 0 \\
+			b \cdot \lambda(x / b) & x > 0
+		\end{cases}
+	\]
+	This is a primitive-recursive function by question 3.
+
+	Directly from definition of base-$b$ representation of a number we deduce that $x \cdot \lambda_b(y) + y$ is the concatenation.
+\end{proof}
+
+\end{document}
