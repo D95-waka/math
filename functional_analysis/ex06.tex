@@ -1,0 +1,177 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 06 --- אנליזה פונקציונלית, 80417}
+
+\begin{document}
+\maketitle
+\maketitleprint[teal]
+
+\question{}
+יהי $1 \le p < \infty$ ונגדיר את המרחב $l^p$ להיות מרחב הסדרות הממשיות ${\{ x_n \}}_{n = 1}^\infty \subseteq \RR$ כך שמתקיים $\sum_{n = 1}^\infty {| x_n |}^p < \infty$.
+נגדיר גם $\lVert x \rVert_p = {\left(\sum_{n = 1}^\infty {| x_n |}^p \right)}^{1/p}$, ראינו בקורסים קודמים כי זוהי נורמה על $l^p$.
+
+\subquestion{}
+נראה שאם $p \ne 2$ אז $\lVert \cdot \rVert_p$ אינה מושרית ממכפלה פנימית על $l^p$.
+\begin{proof}
+	נניח שקיימת מכפלה פנימית כך ש־$\sqrt{\langle x, x \rangle} = \lVert x \rVert_p$ לכל $x \in l^p$, אז נובע משאלה 4,
+	\[
+		2(\lVert x \rVert_p^2 + \lVert y \rVert_p^2)
+		= \lVert x + y \rVert_p^2 + \lVert x - y \rVert_p^2
+	\]
+	ואילו נבחר $x_n = q^n$ אז,
+	\[
+		\lVert x \rVert_p^2
+		= {\left(\sum_{n = 1}^\infty q^{np} \right)}^{2/p}
+		= {\left( \frac{q^p}{1 - q^p} \right)}^{2/p}
+		= \frac{q^2}{{(1 - q^p)}^{2/p}}
+	\]
+	בפרט עבור $q = \frac{1}{2}, \frac{1}{3}$,
+	\[
+		\lVert x + y \rVert_p^2
+		= \frac{{(\frac{2}{3})}^2}{{(1 - {(\frac{2}{3})}^p)}^{2/p}},
+		\qquad
+		\lVert x - y \rVert_p^2
+		= \frac{{(\frac{1}{6})}^2}{{(1 - {(\frac{1}{6})}^p)}^{2/p}}
+	.\]
+	ולכן,
+	\begin{align*}
+		& 2 \cdot \left(\frac{{(\frac{1}{3})}^2}{{(1 - {(\frac{1}{3})}^p)}^{2/p}} + \frac{{(\frac{1}{2})}^2}{{(1 - {(\frac{1}{2})}^p)}^{2/p}}\right)
+		= \frac{{(\frac{2}{3})}^2}{{(1 - {(\frac{2}{3})}^p)}^{2/p}} + \frac{{(\frac{1}{6})}^2}{{(1 - {(\frac{1}{6})}^p)}^{2/p}} \\
+		& \frac{9}{{(3^p - 1)}^{2/p}} + \frac{4}{{(2^p - 1)}^{2/p}} = \frac{18}{{(3^p - 2^p)}^{2/p}} + \frac{18}{{(6^p - 1)}^{2 / p}}
+	\end{align*}
+	ומבדיקה ישירה נקבל שרק $p = 2$ מקיים את הטענה, לכל ערך אחר מתקבלים באופן ישיר מספרים לא רציונליים ובפרט לא מתקבל פתרון של המשוואה.
+	אבל הנחנו ש־$p \ne 2$ ולכן נסיק שאכן לא מתקיים חוק המקבילית, ואין מכפלה פנימית המשרה את הנורמה.
+
+	נוכל לפתור בדרך נוספת.
+	נגדיר $x = (1, 0, \ldots)$ וכן $y = (0, 1, 0, \ldots)$.
+	במקרה זה $\lVert x \rVert_p^2 = \lVert y \rVert_p^2 = 1$ וכן $\lVert x + y \rVert_p^2 = \lVert x - y \rVert_p^2 = 2^{\frac{2}{p}}$.
+	מכלל המקבילית נובע,
+	\[
+		2 (\lVert x \rVert_p^2 + \lVert y \rVert_p^2)
+		= \lVert x + y \rVert_p^2 + \lVert x - y \rVert_p^2
+		\iff 2 = 2^{\frac{2}{p}}
+		\iff p = 2
+	\]
+	ונסיק שכלל המקבילית מתקיים אם ורק אם $p = 2$, לכן עבור $p \ne 2$ בהכרח הנורמה לא מושרית ממכפלה פנימית.
+\end{proof}
+
+\subquestion{}
+נוכיח שנורמת $\infty$ על המרחב $C[a, b]$ לא מושרית ממכפלה פנימית.
+\begin{proof}
+	ללא הגבלת הכלליות נוכל לבחון את $C[0, 1]$, זאת שכן עבור ההוכחה שנציג אפשר להגדיר מתיחות של הפונקציות.
+	נגדיר $f(x) = x, g(x) = 1 - x$ ונקבל $\lVert f \rVert_\infty^2 = \lVert g \rVert_\infty^2 = 1$.
+	בנוסף גם $f + g = 1, f - g = 2x - 1$ ומתקיים $\lVert f + g \rVert_\infty^2 = \lVert f - g \rVert_\infty^2 = 1$.
+	נסיק ישירות סתירה לכלל המקבילית.
+\end{proof}
+
+\question{}
+יהי $(H, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית ויהיו $x \in H$ וכן ${\{ x_n \}}_{n = 1}^\infty \subseteq H$.
+
+\subquestion{}
+נראה כי אם $\lVert x_k \rVert \to \lVert x \rVert$ וגם $\langle x, x_k \rangle \to \langle x, x \rangle$ אז $x_k \to x$.
+\begin{proof}
+	מתקיים,
+	\begin{align*}
+		\lVert x - x_k \rVert
+		& = \langle x - x_k, x - x_k \rangle \\
+		& = \langle x - x_k, x \rangle + \langle x - x_k, -x_k \rangle \\
+		& = \overline{\langle x, x - x_k \rangle} + \overline{\langle -x_k, x - x_k \rangle} \\
+		& = \overline{\langle x, x \rangle} + \overline{\langle x, -x_k \rangle} - \overline{\langle x_k, x \rangle} - \overline{\langle x_k, -x_k \rangle} \\
+		& = \lVert x \rVert^2 - \langle x_k, x \rangle - \overline{\langle x_k, x \rangle} + \lVert x_k \rVert^2 \\
+		& \xrightarrow{k \to \infty} \lVert x \rVert^2 - \langle x, x \rangle - \langle x, x \rangle + \lVert x \rVert^2 \\
+		& = 0
+	\end{align*}
+	ולכן נסיק ש־$x_k \to x$.
+\end{proof}
+
+\subquestion{}
+תהי ${\{ e_k \}}_{k = 1}^\infty \subseteq H$ מערכת אורתונורמלית,
+נראה שהסדרה $y_k = \langle e_k, x \rangle \cdot e_k$ מתכנסת.
+\begin{proof}
+	מאי־שוויון בסל נובע,
+	\[
+		\lVert x \rVert
+		\ge \sum_{k = 1}^\infty {|\langle e_k, x \rangle|}^2
+	\]
+	ולכן מהתנאי ההכרחי להתכנסות בהחלט של טורים ממשיים נובע,
+	\[
+		{|\langle e_k, x \rangle|}^2
+		\to 0
+		\implies \langle e_k, x \rangle \to 0
+	\]
+	נסיק אם כן ש־$\lVert y_k \rVert = |\langle e_k, x \rangle| \to 0$.
+	נבחין גם כי $\langle y_k, 0 \rangle = 0$ לכל $k \in \NN$ ישירות מהומוגניות מכפלה פנימית, ולכן תנאי סעיף א' חלים ו־$y_k \to 0$.
+\end{proof}
+
+\question{}
+נוכיח כי הבסיס הסטנדרטי הוא מערכת אורתונורמלית שלמה ב־$l^2$.
+\begin{proof}
+	נסמן ${\{ e^k \}} \subseteq l^2$ הבסיס הסטנדרטי, כלומר $e_n^k = 1 \iff n = k$ ו־$e_n^k = 0$ אחרת. \\
+	לכל $k \ne m$ מתקיים,
+	\[
+		\langle e^k, e^m \rangle
+		= \sum_{n = 1}^\infty \overline{e_n^k} e_n^m
+		= 0
+	\]
+	בנוסף מאותה סיבה בדיוק $\langle e^k, e^k \rangle = 1$ לכל $k \in \NN$.
+	ונסיק כי זה אכן בסיס אורתונורמלי.
+
+	נראה ש־$\overline{\Sp\{ e^k \mid k \in \NN \}} = l^2$ ונסיק משקילות שהבסיס שלם.
+	נניח ש־$x \in l^2$ סדרה כלשהי, ונרצה לבנות סדרה ${\{ a^k \}} \subseteq \Sp\{ e^k \}$ כך ש־$a^k \to x$.
+	נגדיר,
+	\[
+		a_n^k
+		= \begin{cases}
+			x_n & n \le k \\
+			0 & n > k
+		\end{cases}
+	\]
+	כלומר $a^k = \sum_{n = 1}^n x_n e^n$, לכן $a^k \in \Sp\{ e^k \}$ לכל $k \in \NN$.
+	כמובן גם $a_n^k \to x$ שכן $\lVert x - a^k \rVert^2 = \sum_{n = k}^\infty x_n^k$.
+	נסיק שאכן הבסיס אורתונורמלי ושלם.
+\end{proof}
+
+\question{}
+יהי $(H, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית.
+
+\subquestion{}
+נראה כי נורמה המושרית ממכפלה פנימית מקיימת את חוק המקבילית, כלומר שלכל $x, y \in H$,
+\[
+	2( \lVert x \rVert^2 + \lVert y \rVert^2) = {\lVert x + y \rVert}^2 + {\lVert x - y \rVert}^2
+\]
+\begin{proof}
+	יהיו $x, y \in H$, אז,
+	\[
+		2( \lVert x \rVert^2 + \lVert y \rVert^2) 
+		= 2 \langle x, x \rangle + 2 \langle y, y \rangle
+	\]
+	וכן,
+	\begin{align*}
+		{\lVert x + y \rVert}^2 + {\lVert x - y \rVert}^2
+		& = \langle x + y, x + y \rangle - \langle x - y, x - y \rangle \\
+		& = \langle x + y, x \rangle + \langle x + y, y \rangle + \langle x - y, x \rangle - \langle x - y, y \rangle \\
+		& = \overline{\langle x, x + y \rangle} + \overline{\langle y, x + y \rangle} + \overline{\langle x, x - y \rangle} - \overline{\langle y, x - y \rangle} \\
+		& = \overline{\langle x, x \rangle} + \overline{\langle y, x \rangle} + \overline{\langle x, x \rangle} - \overline{\langle y, x \rangle}
+		+ \overline{\langle x, y \rangle} + \overline{\langle y, y \rangle} - \overline{\langle x, y \rangle} + \overline{\langle y, y \rangle} \\
+		& = 2 \langle x, x \rangle + 2 \langle y, y \rangle
+	\end{align*}
+	כפי שרצינו להראות.
+\end{proof}
+
+\subquestion{}
+נניח ש־$H$ מרחב מכפלה פנימית ממשי, אנו נראה כי לכל $x, y \in H$,
+\[
+	\langle x, y \rangle
+	= \frac{\lVert x + y \rVert^2 - \lVert x - y \rVert^2}{4}
+\]
+\begin{proof}
+	זהו מרחב ממשי ולכן $\langle x, y \rangle = \langle y, x \rangle$, לכן,
+	\[
+		\lVert x + y \rVert^2 - \lVert x - y \rVert^2
+		= {\lVert x \rVert}^2 + {\lVert y \rVert}^2 + 2 \langle x, y \rangle
+		- ({\lVert x \rVert}^2 + {\lVert y \rVert}^2 - 2 \langle x, y \rangle)
+		= 4 \cdot \langle x, y \rangle
+	\]
+	והנוסחה נובעת ישירות.
+\end{proof}
+
+\end{document}
