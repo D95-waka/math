@@ -1399,7 +1399,7 @@
 	קומפקטיזציה $Y$ של $X$ היא מרחב קומפקטי $Y$ כך ש־$X \subseteq Y$ וגם $Y = \overline{X}$.
 \end{definition}
 ועתה משיש לנו טרמינולוגיה מתאימה, נוסיף הגדרה שתעזור לנו.
-\begin{definition}
+\begin{definition}[מרחב טופולוגי קומפקטי מקומית]
 	מרחב טופולוגי $X$ נקרא קומפקטי מקומית אם לכל נקודה $x \in X$ יש סביבה קומפקטית,
 	כלומר קיימת $x \in C \subseteq X$ קומפקטית וקיימת $x \in W \subseteq C$ פתוחה ב־$X$.
 \end{definition}
@@ -1407,7 +1407,7 @@
 	נגדיר את $X = (0, 1)$, ונרצה למצוא קומפקטיזציה של $X$.
 	יש שני מרחבים המהווים קומפקטיזציה ל־$X$, הם $S^1$ ו־$[0, 1]$.
 \end{example}
-\begin{theorem}
+\begin{theorem}[תנאי מרחב קומפקטי מקומית לקומפקטיות]
 	אם $X$ מרחב טופולוגי קומפקטי מקומית והאוסדורף,
 	אז המרחב $\hat{X} = Y = X \cup \{ \infty \}$ (עבור $\infty \notin X$ נקודה חדשה כלשהי),
 	עם הטופולוגיה,
@@ -1518,7 +1518,7 @@
 \begin{notation}
 	נסמן את המרחב $Y$ שבנינו ב־$\beta(X)$.
 \end{notation}
-\begin{theorem}
+\begin{theorem}[הרחבה רציפה לפונקציות במרחבים קומפקטיים מקומית]
 	יהי $X$ מרחב קומפקטי מקומית האוסדורף, $C$ קומפקטי והאוסדורף.
 	אז כל פונקציה רציפה $\varphi : X \to C$ ניתנת להרחבה רציפה $\hat{\varphi} : \beta(X) \to C$.
 \end{theorem}
@@ -1627,7 +1627,7 @@ $X$ מרחב בייר (לאיחוד בן־מניה של דלילות יש פני
 	אם יש, מה התנאים שלה ולמי?
 \end{exercise}
 
-\subsection{נושא חדש}
+\subsection{מבוא לטופולוגיה אלגברית}
 נחזור עתה למרחבי מנייה.
 נניח ש־$X$ מרחב טופולוגי ו־$R \subseteq X \times X$ יחס שקילות על $X$.
 \begin{notation}
@@ -1689,6 +1689,197 @@ $X$ מרחב בייר (לאיחוד בן־מניה של דלילות יש פני
 נבחין כי עבור $n = 1$ יש רק סוג אחד של יריעה קומפקטית, המעגל.
 עבור $n = 2$ יש לנו את הספירה, את הטורוס, מתומן הקסם ואת בקבוק קליין.
 בהרצאות הבאות ניכנס לתחום הטופולוגיה האלגברית, ונפתח כלים לאפיון של מרחבים כאלה.
+
+\section{שיעור 14 --- 19.5.2025}
+\subsection{מבוא לטופולוגיה אלגברית --- החבורה היסודית}
+המטרה שלנו היא להיות מסוגלים לענות על השאלה הבאה,
+\begin{exercise}
+	איך מבדילים בין מרחבים טופולוגיים?
+	כלומר, נניח שנתונים $X, Y$ מרחבים טופולוגיים, ואנו רוצים לענות על השאלה האם הם הומיאומורפיים.
+\end{exercise}
+בעולם של אלגברה לינארית לדוגמה אפיינו בצורה מדויקת שקילות של מרחבים לינאריים, פה המצב מורכב ומסועף יותר, ונצטרך להבין לעומק האובייקטים שאנו דנים בהם כדי שנוכל לאפיין אותם.
+\begin{exercise}
+	האם $S^2$ הספירה הדו־מימדית ו־$T^2$ הטורוס הדו־מימדי הם הומיאומורפיים?
+\end{exercise}
+\begin{solution}
+	כל מסילה סגורה ב־$S^2$ ניתן לכווץ לנקודה, אבל לא כל מסילה סגורה בטורוס ניתן לכווץ באותו האופן.
+\end{solution}
+נתחיל בהגדרות.
+\begin{definition}[הומוטופיה]
+	יהיו $X, Y$ מרחבים טופולוגיים ו־$f_0, f_1 : X \to Y$ העתקות רציפות.
+	אז הומוטופיה מ־$f_0$ ל־$f_1$ היא העתקה רציפה $H : [0, 1] \times X \to Y$ כך שמתקיים,
+	\[
+		\forall x \in X,\ 
+		H(0, x) = f_0(x),
+		H(1, x) = f_1(x)
+	\]
+	לפעמים נכתוב גם $H_s(x) = H(s, x)$.
+\end{definition}
+\begin{example}
+	בהרצאות קודמות הגדרנו שמרחב כוויץ אם יש הומוטופיה מהעתקת הזהות $f_0(x) = x$ להעתקה קבועה $f_1(x) = x_0$ עבור $x_0 \in X$ כלשהו.
+\end{example}
+\begin{notation}
+	הגדרנו מסילה על־ידי $\gamma : [0, 1] \to X$, ובהינתן $p, q \in X$ אז נסמן,
+	\[
+		\Omega(X, p, q) = \{ \gamma : [0, 1] \to X \mid \gamma(0) = p, \gamma(1) = q, \gamma \text{ is continuous path} \}
+	\]
+	מרחב כל המסילות הרציפות מ־$p$ ל־$q$.
+\end{notation}
+\begin{definition}[מסילות הומוטופיות]
+	תהינה שתי מסילות $\gamma_0, \gamma_1 \in \Omega(X, p, q)$ הן הומוטופיות אם יש הומוטופיה ביניהן,
+	כלומר אם קיימת $H : [0, 1] \times [0, 1] \to X$ כך ש־$H$ רציפה ולכל $t \in [0, 1]$,
+	\[
+		H(0, t) = \gamma_0(t),
+		\quad
+		H(1, t) = \gamma_1(t),
+		\quad
+		\forall s \in [0, 1],\ H(s, 0) = p = \gamma_0(0) = \gamma_1(0), H(s, 1) = q = \gamma_0(1) = \gamma_1(1)
+	\]
+\end{definition}
+הרעיון הוא שיש לנו דרך ''להעביר'' כל מסילה בין הנקודות באופן רציף מאחת לשנייה.
+הרעיון לא זר למי שלמד אנליזה על יריעות, שם השתמשנו בכלי דומה לזה כדי לאפיין קשר בין מסילות, ראינו שאם כל שתי מסילות הומוטופיות בשדה משמר מקומית, אז הוא משמר.
+\begin{proposition}
+	היחס $\sim$ על $\Omega(X, p, q)$, המוגדר על־ידי $\gamma_0 \sim \gamma_1$ אם ורק אם קיימת הומוטופיה ביניהן,
+	הוא יחס שקילות.
+\end{proposition}
+\begin{proof}
+	\textbf{רפלקסיביות},
+	בהינתן $\gamma \in \Omega(X, p, q)$ נבחר $H(s, t) = \gamma(t)$.
+
+	\textbf{סימטריה},
+	נניח ש־$\gamma_0 \sim \gamma_1$, ותהי $H$ הומוטופיה המעידה על כך.
+	נגדיר $G(s, t) = H(1 - s, t)$, אז זו הומוטופיה המעידה על $\gamma_1 \sim \gamma_0$.
+
+	\textbf{טרנזיטיביות},
+	נניח ש־$\gamma_0 \sim \gamma_1, \gamma_1 \sim \gamma_2$, ונניח ש־$H, G$ מעידות על כך בהתאמה.
+	נרצה להגדיר הומוטופיה מ־$\gamma_0$ ל־$\gamma_2$, נגדיר על־ידי,
+	\[
+		F(s, t)
+		= \begin{cases}
+			H(2s, t) & s \in [0, \frac{1}{2}] \\
+			G(2s - 1, t) & \text{otherwise}
+		\end{cases}
+	\]
+	עלינו לבדוק שאכן $F$ מוגדרת היטב, כלומר לבדוק את המקרה $s = \frac{1}{2}$, ולהראות ש־$F$ רציפה.
+	נובע ש־$F$ הומוטופיה מלמת ההדבקה, אותה נגדיר ונוכיח עתה.
+\end{proof}
+\begin{lemma}[למת הדבקה]
+	נניח ש־$Y$ מרחב טופולוגי ונניח ש־$A \cup B = Y$ עבור קבוצות סגורות.
+	תהי $f : Y \to Z$ פונקציה כך ש־$f \restriction A$ רציפה וכן $f \restriction B$ רציפה.
+	אז נובע ש־$f$ רציפה.
+\end{lemma}
+\begin{proof}
+	צריך לבדוק שלכל סגורה $C \subseteq Z$ מתקיים $f^{-1}(C)$ סגורה גם כן.
+	אבל,
+	\[
+		f^{-1}(C)
+		(f^{-1}(C) \cap A) \cup (f^{-1}(C) \cap B)
+		= {(f \restriction A)}^{-1}(C) \cup {(f \restriction B)}^{-1}(C)
+	\]
+	ולכן הטענה נובעת ישירות.
+\end{proof}
+\begin{definition}[החבורה היסודית של מרחב טופולוגי]
+	באנגלית Fundamental group,
+	נסמן $\pi_1(X, p, q) = \Omega(X, p, q) / \sim$. \\
+	אם $p = q$ אז נסמן גם $\Omega(X, p) = \Omega(x, p, p)$ ובהתאם גם $\pi_1(X, p) = \Omega(x, p) / \sim$. \\
+	נגדיר $\pi_1(X, p)$ החבורה היסודית של המרחב המנוקב $(X, p)$.
+\end{definition}
+נשים לב כי זוהי הגדרה אפריורית, כלומר לא הראינו בשום צורה שזוהי אכן חבורה, וכרגע זהו רק שם.
+אנו רוצים עתה להראות שזו אכן חבורה ושהגדרה זו תלויה בטופולוגיה שלנו בלבד.
+\begin{example}
+	נתבונן במרחב $\RR^2$ וב־$p, q \in \RR^2$.
+	כל זוג מסילות מ־$p$ ל־$q$ הן הומוטופיות, זאת שכן לכל $\gamma_0, \gamma_1$ נוכל להגדיר,
+	\[
+		H(s, t)
+		= \gamma_1(t) \cdot s + \gamma_0(t) \cdot (1 - s)
+	\]
+	נקבל ש־$H : [0, 1] \times [0, 1] \to \RR^2$,
+	זוהי אכן הומוטופיה כהרכבת פונקציות רציפות, ולכן $p \sim q$.
+	נסיק גם ש־$\pi_1(\RR^2, p) = \RR^2$.
+\end{example}
+נראה דוגמה למרחב בו לא כל המסילות הומוטופיות.
+\begin{example}
+	נבחן הפעם את $X = \CC \setminus \{ 0 \}$.
+	נגדיר $\gamma_0(t) = e^{\pi i t}$ ו־$\gamma_1(t) = 1 + e^{\pi i - \pi i t}$,
+	ולמרות שאין לנו עדיין את היכולת להוכיח זאת, אלו הן מסילות לא הומוטופיות.
+	מי שלמד את הקורס פונקציות מרוכבות כבר יודע שמהגרסה המורחבת למשפט האינטגרל של קושי נובע שהאינטגרל המסילתי של שתי המסילות שונה, ובהמשך נראה טיעון שדומה לטיעון זה עבור הוכחת אי־השקילות.
+\end{example}
+ניזכר בהגדרת החבורה,
+\begin{definition}[חבורה]
+	חבורה $(G, \cdot)$ היא זוג הכולל קבוצה ופעולה $\cdot : G^2 \to G$ כך שמתקיים,
+	\begin{enumerate}
+		\item \textbf{אסוציאטיביות}, לכל $a, b, c \in G$ מתקיים $a \cdot (b \cdot c) = (a \cdot b) \cdot c$
+		\item \textbf{קיום איבר ניטרלי}, קיים $e \in G$ כך ש־$e \cdot g = g \cdot e = g$ לכל $g \in G$
+		\item \textbf{קיום הופכי}, לכל $g \in G$ קיים $h \in G$ כך ש־$g \cdot h = h \cdot g = e$ עבור $e$ האיבר הנייטרלי
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	האיבר ההופכי של $g \in G$ הוא יחיד.
+\end{remark}
+\begin{definition}[שרשור של מסילות]
+	נניח ש־$X$ מרחב טופולוגי ו־$a, b, c \in X$.
+	נניח גם ש־$\alpha \in \Omega(X, a, b), \beta \in \Omega(X, b, c)$.
+	אז נגדיר מסילה המסומנת $\alpha * \beta$ כך ש־$\alpha * \beta \in \Omega(X, a, c)$ כך ש־$\alpha * \beta : [0, 1] \to X$ מוגדרת על־ידי,
+	\[
+		(\alpha * \beta)(t)
+		= \begin{cases}
+			\alpha(2t) & 0 \le t \le \frac{1}{2} \\
+			\beta(st - 1) & \text{otherwise}
+		\end{cases}
+	\]
+	נבחין כי $\alpha * \beta$ מוגדרת היטב מלמת ההדבקה.
+\end{definition}
+\begin{remark}
+	נניח ש־$x_0, x_1, x_2, x_3 \in X$ ותהינה $\alpha \in \Omega(X, x_0, x_1), \beta \in \Omega(X, x_1, x_2), \gamma \in \Omega(X, x_2, x_3)$.
+	אז $\alpha * (\beta * \gamma), (\alpha * \beta) * \gamma \in \Omega(X, x_0, x_3)$ מסילות לאו דווקה שוות.
+\end{remark}
+\begin{proposition}
+	נניח ש־$\alpha \sim \alpha' \in \Omega(X, a, b)$ וכן ש־$\beta \sim \beta' \in \Omega(X, b, c)$.
+	אז $\alpha * \beta \sim \alpha' * \beta'$.
+\end{proposition}
+את ההוכחה לא נראה, אבל היא נובעת ישירות מהגדרת מחלקות השקילות.
+\begin{conclusion}
+	אפשר להגדיר את פעולת השרשור על מחלקות הומוטופיה, כלומר הפעולה מוגדרת היטב על מחלקות שקילות. \\
+	נסמן במקרה זה $[\alpha] * [\beta] = [\alpha * \beta]$ עבור נציגים כלשהם.
+\end{conclusion}
+\begin{proposition}
+	לכל $[\alpha] \in \pi_1(X, x_0, x_1)$, $[\beta] \in \pi(X, x_1, x_2)$ ו־$\gamma \in \pi_1(X, x_2, x_3)$ מתקיים,
+	\[
+		([\alpha] * [\beta]) * [\gamma]
+		= [\alpha] * ([\beta] * [\gamma])
+	\]
+\end{proposition}
+\begin{definition}[רפרמטריזציה של מסילה]
+	תהי $\alpha : [0, 1] \to X$ מסילה.
+	מסילה $\beta : [0, 1] \to X$ תיקרא רפרמטריזציה של $\alpha$ אם קיימת פונקציה רציפה $\psi : [0, 1] \to [0, 1]$ כך ש־$\psi(0) = 0, \psi(1) = 1$ ו־$\beta = \alpha \circ \psi$.
+\end{definition}
+\begin{proposition}
+	אם $\beta$ רפרמטריזציה של $\alpha$ אז $\alpha \sim \beta$ (שקול ל־$[\alpha] = [\beta]$).
+\end{proposition}
+\begin{proof}
+	$\psi$ היא רפרמטריזציה על המכפלה $\iota : [0, 1] \to [0, 1]$, כאשר $\iota(t) = t$, ומתקיים $\psi = \iota \circ \psi$.
+	אז $\psi \in \Omega([0, 1], 0, 1)$.
+	כל שתי מסילות עם אותן נקודות קצה בקבוצה קמורה הן הומוטופיה.
+	אם כך $\alpha, \beta : [0, 1] \to A$ עבור $A$ קבוצה קמורה, ונגדיר,
+	\[
+		H(s, t)
+		= s \beta(t) + (1 - s) \alpha(t) \in A
+	\]
+	אז מבדיקה ישירה נסיק שאכן $H$ היא הומוטופיה ולכן מעידה על $\alpha \sim \beta$.
+\end{proof}
+\begin{conclusion}
+	$\pi_1(X, x_0)$ היא חבורה יחד עם פעולת השרשור.
+\end{conclusion}
+\begin{proof}
+	הפעולה $*$ שהגדרנו על $\pi_1(X, x_0)$ מקיימת שלכל $u, v, w \in \pi_1(X, x_0)$ מתקיים $u (v w) = (u v) w$, כלומר אסוציאטיביות. \\
+	המסילה הקבועה $c_{x_0}(t) = x_0$ לכל $t \in [0, 1]$ היא איבר ניטרלי ביחס לפעולה, כלומר נגדיר $e = [c_{x_0}]$ ונבחין כי לכל $\gamma \in \Omega(X, x_0)$ מתקיים $e * \gamma = \gamma * e = \gamma$. \\
+	בהינתן מסילה $\alpha \in \Omega(X, x_0, x_1)$ נגדיר מסילה $\overline{\alpha} \in \Omega(\Omega, x_1, x_0)$ על־ידי $\overline{\alpha}(t) = \alpha(1 - t)$, ולכן $\alpha * \overline{\alpha} = c_{x_0}$.
+	כלומר לכל $u \in \pi_1(X, x_0)$ קיים $v \in \pi_1(X, x_0)$ כך ש־$u * v = v * u = e$.
+\end{proof}
+נסיים בטענה המושארת כתרגיל לקורא.
+\begin{proposition}
+	אם $X$ מרחב כוויץ אז $\pi_1(X, x_0)$ היא החבורה הטריוויאלית.
+\end{proposition}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
