@@ -1881,6 +1881,87 @@ $X$ מרחב בייר (לאיחוד בן־מניה של דלילות יש פני
 	אם $X$ מרחב כוויץ אז $\pi_1(X, x_0)$ היא החבורה הטריוויאלית.
 \end{proposition}
 
+\section{שיעור 15 --- 20.5.2025}
+\subsection{החבורה היסודית}
+\begin{proposition}
+	נניח ש־$X$ מרחב טופולוגי, ו־$x_0, x_1 \in X$ נקודות כך שיש מסילה $\alpha \in \Omega(X, x_0, x_1)$,
+	אז החבורות $\pi_1(X, x_0)$ ו־$\pi_1(X, x_1)$ איזומורפיות.
+\end{proposition}
+\begin{proof}
+	נגדיר העתקה $f_{\alpha} : \Omega(X, x_0) \to \Omega(X, x_1)$ על־ידי,
+	\[
+		f_{\alpha}(\gamma)
+		= \overline{\alpha} * \gamma * \alpha 
+	\]
+	לכל $\gamma \in \Omega(X, x_0)$ וכאשר $\overline{\alpha}$ המסילה ההפוכה ל־$\gamma$.
+	נראה שהעתקה זו משרה העתקה בין החבורות, ואז נראה שההעתקה הזו היא הומומורפיזם, ולבסוף נראה שאף איזומורפיזם. \\
+	כדי להראות ש־$f_{\alpha}$ משרה העתקה $\hat{f}_{\alpha} : \pi_1(X, x_0) \to \pi_1(X, x_1)$, מספיק להראות שאם $\gamma, \gamma' \in \Omega(X, x_0)$ מסילות הומוטופיות אז גם $f_{\alpha}(\gamma) \sim f_{\alpha}(\gamma')$.
+	למעשה אנו כבר יודעים זאת ישירות מהעובדה ש־$\pi_1(X, x_0)$ חבורה, ולכן נוכל להגדיר $\hat{f}_{\alpha}([\gamma]) = [\overline{\alpha} * \gamma * \alpha]$.
+	אם $[\gamma_1], [\gamma_2] \in \pi_1(X, x_0)$ אז,
+	\[
+		\hat{f}_{\alpha}([\gamma_1] [\gamma_2])
+		= \hat{f}_{\alpha}([\gamma_1 * \gamma_2])
+		= [\overline{\alpha} * \gamma_1 * \gamma_2 * \alpha]
+	\]
+	ומהצד השני,
+	\[
+		\hat{f}_{\alpha}([\gamma_1]) \hat{f}_{\alpha}([\gamma_2])
+		= [\overline{\alpha} * \gamma_1 * \alpha] \cdot [ \overline{\alpha} * \gamma_2 * \alpha]
+		= [\overline{\alpha} * \gamma_1 * \alpha * \overline{\alpha} * \gamma_2 * \alpha]
+		= [\overline{\alpha} * \gamma_1 * \gamma_2 * \alpha] 
+	\]
+	ונסיק כי זהו הומומורפיזם. \\
+	נעבור לבדיקת איזומורפיזם.
+	נניח ש־$e = \hat{f}_{\alpha}([\gamma])$ איבר היחידה ב־$\pi_1(X, x_0)$.
+	נגדיר $\hat{g}_{\alpha} : \pi_1(X, x_1) \to \pi_1(X, x_1)$ ונראה ש־$\hat{g}_{\alpha} \circ \hat{f}_{\alpha} = \id_{\pi_1(X, x_0)}$,
+	וגם ש־$\hat{f}_{\alpha} \circ \hat{g}_{\alpha} = \id_{\pi_1(X, x_1)}$.
+	נניח ש־$[\beta] \in \pi_1(X, x_1)$ וכן $\hat{g}_{\alpha}(\beta) = [\alpha * \beta * \overline{\alpha}]$.
+	לכל $[\gamma] \in \pi_1(X, x_0)$ נובע,
+	\[
+		(\hat{g}_{\alpha} \circ \hat{f}_{\alpha})(\gamma)
+		= \hat{g}_{\alpha}(\hat{f}_{\alpha})(\gamma)
+		= \hat{g}_{\alpha}([\overline{\alpha} * \gamma * \alpha])
+		= [\alpha * \overline{\alpha} * \gamma * \alpha * \overline{\alpha}]
+		= [\gamma]
+	\]
+	ולכן נסיק שאכן $\hat{g}_{\alpha} \circ \hat{f}_{\alpha} = \id_{\pi_1(X, x_0)}$ ובאופן דומה נסיק שאכן $\hat{f}_{\alpha}$ איזומורפיזם.
+\end{proof}
+נדבר שוב על כוויצות.
+\begin{remark}
+	אם $X$ מרחב כוויץ אז $\pi_1(X, x_0)$ טריוויאלית.
+\end{remark}
+\begin{definition}[מרחב פשוט קשר]
+	נאמר ש־$X$ פשוט קשר אם $X$ קשיר מסילתית ו־$\pi_1(X, x_0) = \{ e \}$ ל־$x_0 \in X$.
+\end{definition}
+\begin{definition}
+	יהי $X$ מרחב טופולוגי ו־$Y \subseteq X$ תת־מרחב.
+	נאמר ש־$Y$ הוא נסג עיוות (Deformation retract) של $X$ אם יש $H : [0, 1] \times X \to X$ כך ש־$H(0, x) = x$ לכל $x \in X$ וכן,
+	$H(s, y) = y$ לכל $y \in Y, s \in [0, 1]$ וש־$H(1, x) \in Y$ לכל $x \in X$.
+\end{definition}
+הגדרה זו היא בעצם הרעיון שאנו יכולים לצמצם באופן רציף את המרחב שלנו.
+\begin{example}
+	אם $Y = \{ y_0 \}$ ו־$Y$ נסג עיוות של $X$ אז $X$ כוויץ.
+\end{example}
+\begin{exercise}
+	האם $X$ כוויץ אז יש נסג עיוות מ־$X$ ל־$x_0 \in X$?
+\end{exercise}
+\begin{solution}
+	תהי $H : [0, 1] \times X \to X$ ההעתקה של הכיווץ.
+	נניח ש־$\alpha : [0, 1] \to X$ על־ידי $\alpha(t) = H(t, x_0)$.
+	תהי $\gamma \in \Omega(X, x_0)$ ונרצה לבנות הומוטופיה עם $\gamma$ ל־$\alpha * \overline{\alpha}$.
+	נגדיר את ההעתקה,
+	\[
+		G(s, t)
+		= \begin{cases}
+			\alpha(2t) & 0 \le t \le \frac{s}{2} \\
+			H(s, \gamma(\frac{t - \frac{s}{2}}{1 - s})) & \frac{s}{2} \le t \le 1 - \frac{s}{2}, s < 1 \\
+			\alpha(2 - 2t) & \frac{s}{2} \le t \le 1
+		\end{cases}
+	\]
+	אנו טוענים כי $G$ היא העתקה רציפה, ובמקרה זה $G$ מגדירה הומוטופיה בין $\gamma$ ל־$\alpha * \overline{\alpha} \sim c_{x_0}$.
+	כדי להראות זאת נשתמש בעובדה ש־$[0, 1]$ קומפקטי והתמונה רציפה ולכן קומפקטית גם כן.
+\end{solution}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
