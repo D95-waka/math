@@ -1,0 +1,107 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 08 --- אנליזה על יריעות, 80426}
+
+\DeclareMathOperator{\vol}{vol}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+תהינה $\varphi_1, \ldots, \varphi_k \in C^\infty(\RR^n)$ ו־$p \in \RR^n$ כך ש־$\varphi_1(p) = \cdots = \varphi_k(p) = 0$ וכן $\{ \nabla \varphi_1(p), \ldots, \nabla \varphi_n(p) \}$ בלתי תלויה־לינארית.
+
+\subquestion{}
+נראה שקיימת סביבה $U$ של $p$ כך שהקבוצה,
+\[
+	M
+	= \{ x \in U \mid \varphi_1(x) = \cdots = \varphi_k(x) = 0 \}
+\]
+היא יריעה $(n - k)$־מימדית,
+ונחשב את $T_p M$ ב־$p$.
+\begin{proof}
+	נגדיר פונקציה $f : \RR^n \to \RR^k$ על־ידי $f(x) = (\varphi_1(x), \ldots, \varphi_k(x))$.
+	$f$ חלקה ישירות מהגדרתה והנתון אודות $\varphi_i$ לכל $i \le n$.
+	אנו יודעים ש־$\dim D f \mid_p = k$ ולכן היא רגולרית וממשפט התמונה ההפוכה $f^{-1}(0)$ היא יריעה.
+	נבחין כי זוהי היריעה $N = \{ x \in U \mid \varphi_1(x) = \cdots = \varphi_k(x) \}$, ונוכל לצמצם אותה עם סביבה פתוחה כלשהי $p \in U$ כך ש־$N \cap U$ לא טריוויאלי ולקבל $M$ כזו.
+	נעיר כי ישירות מהמשפט זוהי יריעה $(n - k)$־מימדית.
+\end{proof}
+נעבור לחישוב $T_p M$.
+אנו יודעים ממשפט התמונה ההפוכה שמתקיים,
+\[
+	T_p M
+	= \ker df_p
+	= \{ x \in \RR^n \mid (\nabla \varphi_1(p), \ldots, \nabla \varphi_k(p)) \cdot x = 0 \}
+	= \RR^n \setminus \Sp\{ \varphi_1(p), \ldots, \varphi_k(p) \}
+\]
+
+\subquestion{}
+תהי $f : \RR^n \to \RR$ העתקה חלקה כך ש־$f(x) \ge f(p)$ לכל $x \in M$.
+נראה ש־$\nabla f(p) \perp T_p M$.
+\begin{proof}
+	נבחין כי $D_u f \ge 0$ לכל $u$ וקטור כיוון ב־$M$, ולכן נובע בפרט ש־$D_u f = 0$ עבור $u \in T_p M$ ישירות מהגדרה, כלומר נובע ש־$\nabla f(p) \perp T_p M$ כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נראה שהמשלים האורתוגונלי של $T_p M$ הוא $\Sp\{ \nabla \varphi_1(p), \ldots, \nabla \varphi_k(p) \}$.
+\begin{proof}
+	%מתברר שהסעיף טיפשי ממשפט התמונה ההפוכה, מוכיחים מהאפיון מהאפיון של המרחב המשיק כאוסף נגזרות של מסילות בנקודה, ו־$T_p M = \ker df_p$.
+	ישירות כמסקנה ממשפט התמונה ההפוכה ואורתוגונליות תמונה וגרעין העתקה לינארית,
+	\[
+		T_p M
+		= \ker\{ \nabla \varphi_1(p), \ldots, \varphi_k(p) \}
+		\perp \Sp\{ \nabla \varphi_1(p), \ldots, \varphi_k(p) \}
+	\]
+	והטענה נובעת ישירות.
+\end{proof}
+
+\subquestion{}
+נסיק את נוסחת כופלי לגרנז'.
+\begin{proof}
+	נבחין כי אם $x$ מינימום מקומי של $f$ אז היא במשלים האורתוגונלי של $T_p M$ ולכן בלתי תלויה־לינארית בה.
+\end{proof}
+
+\question{}
+נראה שכל יריעה היא תמונה הפוכה של העתקה רגולרית,
+ונסיק שחיתוך רוחבי של תת־יריעות הוא יריעה.
+
+\subquestion{}
+תהי $N$ יריעה ונניח ש־$Z \subseteq N$ תת־יריעה של $N$.
+נראה שלכל $p \in Z$ קיימת סביבה פתוחה $p \in U \subseteq N$ ו־$f : U \to \RR^l$ חלקה כך ש־$U \cap Z = f^{-1}(\{ 0 \})$ כאשר $l = \dim N - \dim Z$.
+\begin{proof}
+	נתחיל בהוכחת הטענה עבור המקרה $N = \RR^n$ ו־$Z^k \subseteq \RR^n$.
+	תהי נקודה $p \in M$ ותהי $\alpha : V \to Z$ פרמטריזציה מקומית כך ש־$V \subseteq \RR^k$ פתוחה.
+	מקיום הופכי משמאל לפרמטרזיציה מקומית נסיק שקיימת $\beta : W \to \RR^k$ העתקה חלקה, כאשר $p \in W \subseteq \RR^n$ קבוצה פתוחה.
+	מתקיים $\beta \circ \alpha = \id$.
+	נגדיר $f(x) = \beta(x) - x$ ונקבל ש־$f(x) = 0 \iff x \in \alpha(W \cap Z)$, כלומר $f^{-1}(\{ 0 \}) = W \cap Z$.
+
+	נעבור למקרה הכללי, נניח ש־$Z^k \subseteq N^h \subseteq \RR^n$ יריעה ותת־יריעה.
+	נניח ש־$p \in Z$ ולכן בפרט $p \in N$ וקיימת פרמטריזציה $\alpha : V \to N$ כך ש־$V \subseteq \RR^h$ פתוחה.
+	נבחן את $Z_0 = \alpha^{-1}(Z \cap \alpha(V))$, זוהי יריעה $k$־מימדית ב־$\RR^h$ ולכן מקיימת את תנאי החלק הראשון, וקיימת $f : U \to \RR^{h - k}$ כך ש־$U \subseteq \RR^h$.
+	נובע אם כך ש־$f \circ \alpha : V \to \RR^{h - k}$ העתקה חלקה המקיימת את הטענה, היא חלקה ולכן קיימת לה הרחבה $\tilde{f} : \tilde{V} \to \RR^{h - k}$ חלקה כך ש־$\tilde{V} \subseteq \RR^n$.
+	נוכל להגדיר אותה כך ש־$x \notin V \implies \tilde{f}(x) \ne 0$, ונקבל ש־$\tilde{f}$ מקיימת את הטענה.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $X, Y$ הן תת־יריעות רוחביות של $N$ אז $X \cap Y$ יריעה ממימד $\dim Y + \dim X - \dim N$.
+\begin{proof}
+	אילו היריעות זרות אז $X \cap Y$ היא יריעה באופן מנוון, ולכן היא $0$־מימדית, ומרוחביות אכן $\dim Y + \dim X = \dim N$.
+
+	נניח ש־$X \cap Y \ne \emptyset$.
+	נגדיר $f : X \to N$ חלקה על־ידי שיכון.
+	נבחין כי $f^{1}(Y) \ne \emptyset$, ולכן $f^{-1}(Y) = X \cap Y$ היא יריעה $(\dim Y + \dim X - \dim N)$־מימדית ממשפט מהתרגול.
+\end{proof}
+
+\question{}
+\subquestion{}
+נניח ש־$f : \RR^n \to \RR$ העתקה חלקה ונניח ש־$a \in \RR$ ערך רגולרי של $f$ כך ש־$f^{-1}(\{ a \}) \ne \emptyset$.
+נראה ש־$M = \{ x \in \RR^n \mid f(x) \ge a \}$ היא יריעה $n$־מימדית עם השפה $f^{-1}(\{ a \})$.
+\begin{proof}
+	נבחין כי $\{ x \in \RR^n \mid f(x) > a \}$ היא יריעה $n$־מימדית כמקור של קבוצה פתוחה של פונקציה חלקה (בפרט רציפה).
+	לכן מספיק שנראה שלכל $p \in f^{-1}(\{ a \})$ יש פרמטריזציה מקומית (עם שפה) ונוכל להסיק ש־$M$ היא יריעה $n$־מימדית. \\
+	תהי $p$ כזו, אז $p$ היא נקודה רגולרית של $f$ מהגדרת ערך רגולרי, כלומר $D f |_p$ הוא על $\RR^n$.
+	אז ניקח את ההעתקה לא יודע
+
+	נעיר כי בהוכחה התבססנו על הטענה כי כל יריעה ללא שפה היא יריעה עם שפה.
+\end{proof}
+
+\end{document}
