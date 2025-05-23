@@ -1,0 +1,188 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 07 --- אנליזה פונקציונלית, 80417}
+
+\begin{document}
+\maketitle
+\maketitleprint[teal]
+
+\question{}
+עבור מטריצה $A \in M_n(\CC)$ נגדיר $A^* = \overline{A^t}$.
+על המרחב $M_n(\CC)$ נגדיר את ההעתקה $\langle A, B \rangle = \tr(A^* B)$.
+
+\subquestion{}
+נראה כי $(M_n(\CC), \langle \cdot, \cdot \rangle)$ הוא מרחב מכפלה פנימית.
+\begin{proof}
+	נבדוק את ארבעת התנאים שמגדירים מכפלה פנימית.
+	\begin{enumerate}
+		\item סימטריה בהצמדה,
+			\[
+				\langle A, B \rangle
+				= \tr(A^* B)
+				= \tr(\overline{A^t} B)
+				= \tr(B^t \overline{A})
+				= \overline{\tr(\overline{B^t} \overline{\overline{A}})}
+				= \overline{\langle B, A \rangle}
+			\]
+			כאשר השתמשנו בתכונות של העקבה ושל הצמדה.
+		\item הומוגניות באיבר השני,
+			\[
+				\langle A, \alpha B \rangle
+				= \tr(A^* \alpha B)
+				= \tr(\alpha A^* B)
+				= \alpha \langle A, B \rangle
+			\]
+			כאשר השתמשנו בהומוגניות מכפלת מטריצות.
+		\item לינאריות באיבר השני,
+			\[
+				\langle A, B + C \rangle
+				= \tr(A^* (B + C))
+				= \tr(A^* B + A^* C)
+				= \tr(A^* B) + \tr(A^* C)
+				= \langle A, B \rangle + \langle A, C \rangle
+			\]
+			כנביעה מלינאריות העקבה ומפילוג כפל מטריצות.
+		\item אי־שליליות,
+			\[
+				\langle A, A \rangle
+				= \tr(A^* A)
+				= \sum_{l = 1}^n \sum_{k = 1}^n \overline{a_{l, k}} a_{l, k}
+				= \sum_{l = 1}^n \sum_{k = 1}^n {\lVert a_{l, k} \rVert}^2
+				\ge 0
+			\]
+			ואם $\langle A, A \rangle = 0$ אז $\lVert a_{l, k} \rVert = 0 \iff a_{l, k} = 0$ לכל $l, k$ ונסיק $A = 0$.
+	\end{enumerate}
+	אז בהתאם $\langle \cdot, \cdot \rangle$ היא מכפלה פנימית ונובע שהמרחב הוא אכן מרחב מכפלה פנימית.
+\end{proof}
+
+\subquestion{}
+נסיק כי אם $A, B$ מטריצות מרוכבות מאותו סדר אז ${| \tr(A^* B) |}^2 \le \tr(A^* A) \cdot \tr(B^* B)$.
+\begin{proof}
+	נגדיר $\lVert A \rVert = \sqrt{\langle A, A \rangle}$, ולכן מאי־שוויון קושי־שוורץ מתקיים,
+	\[
+		| \langle A, B \rangle |
+		\le \lVert A \rVert \cdot \lVert B \rVert
+	\]
+	כלומר,
+	\[
+		|\tr(A^* B)|
+		\le \sqrt{\tr(A^* A) \cdot \tr(B^* B)}
+	\]
+	ולכן גם, ${| \tr(A^* B) |}^2 \le \tr(A^* A) \cdot \tr(B^* B)$.
+\end{proof}
+
+\question{}
+יהי $H$ מרחב מכפלה פנימית ותהי ${\{ e_n \}}_{n = 1}^\infty$ מערכת אורתונורמלית ב־$H$.
+נסמן $M = \Sp \{ e_n \}$.
+נוכיח כי $x \in \overline{M}$ אם ורק אם,
+\[
+	x
+	= \sum_{n = 1}^\infty \langle e_n, x \rangle e_n
+\]
+\begin{proof}
+	נניח ש־$x \in \overline{M}$.
+	לכן קיימת סדרה ${\{ x_n \}}_{n = 1}^\infty \subseteq M$ כך ש־$x_n \to x$.
+	לכל $n \in \NN$ קיים $N \in \NN$ ו־$\alpha_i^n$ עבור $1 \le i \le N$ כך שמתקיים,
+	\[
+		x_n
+		= \sum_{i = 1}^N \alpha_i^n e_i
+	\]
+	אבל מתכונת הקירוב האופטימלי של טורי פורייה נובע,
+	\[
+		\left\lVert x - \sum_{i = 1}^N \langle x, e_i \rangle e_i \right\rVert
+		\le \lVert x - x_n \rVert
+	\]
+	ולכן נסיק מכלל הסנדוויץ',
+	\[
+		x = \sum_{n = 1}^\infty \langle e_n, x \rangle e_n
+	\]
+
+	נניח עתה כי,
+	\[
+		x = \sum_{n = 1}^\infty \langle e_n, x \rangle e_n
+	\]
+	ונראה ש־$x \in \overline{M}$.
+	נגדיר סדרה ${\{ x_n \}}_{n = 1}^\infty \subseteq H$ על־ידי,
+	\[
+		x_n = \sum_{i = 1}^n \langle e_i, x \rangle e_i
+	\]
+	אז מהגדרה $x_n \to x$ אבל גם $x_n \in M$ ולכן $x \in \overline{M}$.
+\end{proof}
+
+\question{}
+יהי $[a, b] \subseteq \RR$ קטע.
+נראה שלא קיימת מערכת אורתוגונלית של פונקציות רציפות חיוביות למרחב $C[a, b]$ עם המכפלה הפנימית.
+\[
+	\langle f, g \rangle
+	= \int_{a}^{b} f(x) g(x)\ dx
+\]
+כלומר אם ${\{ f_n \}}_{n = 1}^\infty \subseteq C[a, b]$ מערכת אורתוגונלית,
+אז קיים $n \in \NN$ ו־$x \in [a, b]$ כך ש־$f_n(x) = 0$.
+\begin{proof}
+	אילו $f, g$ רציפות וחיוביות אז ממונוטוניות האינטגרל,
+	\[
+		\langle f, g \rangle
+		= \int_{a}^{b} f(x) g(x)\ dx
+		\le \int_{a}^{b} f(c) g(c)\ dx
+		= f(c) g(c) (b - a)
+		> 0
+	\]
+	עבור $c$ הנקודה בה $f \cdot g$ מקבלת מינימום (חיובי) ב־$[a, b]$.
+	בפרט $\langle f, g \rangle \ne 0$ תמיד, ולא יכולה להיות סדרת פונקציות אורתוגונליות כאלה.
+\end{proof}
+
+\question{}
+יהי $[a, b] \subseteq \RR$ קטע.
+בתרגול הגדרנו מערכת אורתוגונלית של פולינומים ${\{ p_n \}}_{n = 1}^\infty \subseteq C[a, b]$,
+מצאנו גם כי שורשי $p_n$ ממשיים לכל $n \in \NN$.
+
+\subquestion{}
+נראה שלכל $n$, לפולינום $p_n$ יש $n$ שורשים פשוטים, כלומר שהריבוי שלהם הוא $1$.
+\begin{proof}
+	נסמן $p_n = \prod_{k = 1}^n {(x - \alpha_k)}^{\beta_k}$ עבור $\alpha_k$ ממשיים.
+	אם כל השורשים פשוטים סיימנו, לכן נניח אחרת. \\
+	קיים $l \le k$ כך ש־$\beta_l > 1$, אז נגדיר,
+	\[
+		q_n(x)
+		= {(x - \alpha_l)}^{\beta_l - 2} \prod_{\substack{k = 1 \\ k \ne l}}^n (x - \alpha_k)
+	\]
+	כלומר זהו הפולינום $p_n$ לאחר שחולק ב־${(x - \alpha_l)}^2$, זהו אכן פולינום שכן $\beta_l \ge 2$. \\
+	$q_n$ צמצום של $p_n$ ולכן $\deg q_n < \deg p_n$ ונסיק $\langle q_n, p_n \rangle = 0$.
+	מהצד השני,
+	\[
+		q_n(x) p_n(x)
+		= {(x - \alpha_l)}^{2\beta_l - 2} \prod_{\substack{k = 1 \\ k \ne l}}^n {(x - \alpha_k)}^2
+	\]
+	כל הגורמים בפולינום הם ריבועיים, ונסיק,
+	\[
+		\langle p_n, q_n \rangle
+		= \int_{a}^{b} p_n(x) q_n(x)\ dx
+		> 0
+	\]
+	בסתירה ל־$\langle p_n, q_n \rangle = 0$, ולכן $\beta_l = 1$ בלבד.
+\end{proof}
+
+\subquestion{}
+נראה שלכל $n \in \NN$ כל השורשים של $p_n$ שייכים ל־$(a, b)$.
+\begin{proof}
+	נניח ש־$\alpha_k$ השורשים של $p_n$ עבור $1 \le k \le n$.
+	נוכיח את הטענה באינדוקציה על $n$.
+	עבור $n = 0$ הטענה נכונה באופן טריוויאלי.
+	עתה נניח שעבור $n$ כלשהו $\alpha_k \in (a, b)$ לכל $1 \le k < n$.
+	נניח בשלילה ש־$\alpha_n \notin (a, b)$, וללא הגבלת הכלליות נגדיר שגם $\alpha_n > b$, לכן $x - \alpha_n$ חיובי לחלוטין ב־$[a, b]$.
+	נגדיר,
+	\[
+		q_n(x)
+		= \prod_{k = 1}^{n - 1} (x - \alpha_k)
+	\]
+	ולכן,
+	\[
+		\langle p_n, q_n \rangle
+		= \int_{a}^{b} p_n(x) q_n(x)\ dx
+		= \int_{a}^{b} (x - \alpha_n) \prod_{k = 1}^{n - 1} {(x - \alpha_k)}^2
+		> 0
+	\]
+	זאת שכן הפונקציה רציפה ואי־שלילית, ובעלת ערכים חיוביים.
+	אבל $\deg q_n < \deg p_n$ ולכן גם $\langle p_n, q_n \rangle = 0$ וקיבלנו סתירה, לכן $\alpha_n \in (a, b)$.
+\end{proof}
+
+\end{document}
