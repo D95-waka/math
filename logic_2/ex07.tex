@@ -1,0 +1,68 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 7 Answer Sheet --- Logic Theory (2), 80424}
+
+\DeclareMathOperator{\PA}{PA}
+\DeclareMathOperator{\Coll}{Coll}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Sat}{Sat}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+For any $\Gamma \subseteq \operatorname{form}_{L_{\PA}}$ let $I \Gamma$ be the induction scheme over $\Gamma$. \\
+For $\varphi(z, y, t_0, \ldots, t_{n - 1}) \in \operatorname{form}_{L_{\PA}}$ we define
+\[
+	\Coll(\varphi) = \forall z \forall t_0 \ldots \forall t_{n - 1} (\forall x \le z \exists y \varphi \leftrightarrow \exists w \forall x \le z \exists y \le w \varphi)
+\]
+By the last exercise, $\PA \vdash \Coll(\varphi)$ for any such $\varphi$. \\
+Let $\Coll = \{ \Coll(\varphi) \mid \varphi \in \operatorname{form}_{L_{\PA}} \}$, $Q$ be the first 9 axioms of $\PA$, and $\PA_0 = Q \cup I \Sigma_0 \cup \Coll$. \\
+We will show that $\PA_0 \vdash \PA$.
+\begin{proof}
+	For $Q \subseteq \PA$ we assumed that $\PA_0 \vdash Q$, then it is sufficient to show that $\PA_0 \vdash \Ind(\varphi)$ for any $\varphi \in \operatorname{form}_{L_{\PA}}$. \\
+	If $\varphi \in \Sigma_0$ then $\PA_0 \vdash \Ind(\varphi) \ni I \Sigma_0$. \\
+	In the previous exercises we have shown that for any $\varphi$ there is $n$ such that $\varphi \in \Sigma_n^0$, and that there is $\psi \in \Sigma_n$, for which, $\PA \vdash (\varphi \leftrightarrow \psi)$.
+	We will prove in induction that $\PA_0 \vdash (\varphi \leftrightarrow \psi)$ as well, and that $\PA_0 \vdash \Ind(\varphi)$ in such case.
+	The case of $n = 0$ was proven in the last exercise. \\
+	Let us assume that $\varphi \in \Sigma_n(\PA)$ and $\psi \in \Sigma_n$ such that $\PA \vdash (\varphi \leftrightarrow \psi)$ and $\psi = \exists v \phi$ for $\phi \in \Pi_{n - 1}$.
+	By the induction hypothesis $\psi$ fulfills the claim, meaning that $\PA_0 \vdash \Ind(\psi)$.
+	We will show that $\PA_0 \vdash (\varphi \leftrightarrow \psi)$ and that $\PA_0 \vdash \Ind(\varphi)$. \\
+	As for the first part, by $\Coll(\phi)$ and negation we infer that $\PA_0 \vdash (\varphi \leftrightarrow \psi)$ as intended, and it is left to show that $\PA_0 \vdash \Ind(\psi)$.
+	The proof is the same as of question 1 of exercise 6. \\
+	Let $\Mm \models \PA_0$ be some model and we assume that $\exists x \phi(x, y, z)$ satisfies the induction condition, meaning that $\Mm \models \phi(x, 0, c)$ for some $c \in M$;
+	as well,
+	\[
+		\Mm \models \forall y (\exists x \varphi(x, y, c)) \to (\exists x \varphi(x, S(y), c))
+	\]
+	We want to show that $\Mm \models \forall y \exists x \varphi(x, y, c)$. 
+
+	Let $b \in M$ be some arbitrary element, we want to show that,
+	\[ \label{eq:1}
+		\Mm \models \exists x \varphi(x, b, c)
+		\tag{1}
+	\]
+	thus proving the last statement.
+	By using $\Coll \subseteq \PA_0$ we infer that
+	\[ \label{eq:2}
+		\Mm \models \forall b' \le b \exists x \varphi(x, b', c)
+		\tag{2}
+	\]
+	if and only if exists $d \in M$ such that,
+	\[ \label{eq:3}
+		\Mm
+		\models \forall b' \le b\ \exists x \le d\ \varphi(x, b', c)
+		\tag{3}
+	\]
+	In the set-theoretical sense, let $X = \{ x \mid \Mm \models \exists b' \le b,\ \varphi(x, b', c) \}$, this is a finite set as the order induced on $M$ by $\le^\Mm$ is a well-order.
+	Let us select $d = \sup_{\le^\Mm} X$, this $d$ fulfills (\ref{eq:3}), thus also proving (\ref{eq:2}), but as $b \in M$ is arbitrarily chosen, (\ref{eq:1}) holds as well, completing our proof.
+\end{proof}
+
+\question[3]
+We will show that $\Sat_0$ is primitive-recursive.
+\begin{proof}
+	In the lectures we saw that $\Sat_0$ is total recursive.
+\end{proof}
+
+\end{document}
