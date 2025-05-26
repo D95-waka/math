@@ -433,7 +433,7 @@
 	ובפרט $f^{-1}(F)$ סגורה ב־$X$.
 \end{proof}
 נבחן תכונה מעניינת שלא תשרת אותנו רבות, אך כן מעלה שאלות,
-\begin{definition}[מרחב כוויץ]
+\begin{definition}[מרחב כוויץ]\label{definition:contractable_space}
 	יהי $X$ מרחב טופולוגי, נאמר ש־$X$ כוויץ (Contractible) אם יש פונקציה רציפה $f : I \times X \to X$ עבור $I = [0, 1]$ כך ש־$\forall x \in X, f(0, x) = x$ וקיימת נקודה $x_1 \in X$ כך ש־$\forall x \in X, f(1, x) = x_1$. \\
 	נסמן גם $f_t(t, x)$ כאשר $f_t : X \to X$, נקבל $f_0 = Id$ וכן $f_1$ הפונקציה הקבועה $x \mapsto x_1$.
 \end{definition}
@@ -1926,14 +1926,14 @@ $X$ מרחב בייר (לאיחוד בן־מניה של דלילות יש פני
 	\]
 	ולכן נסיק שאכן $\hat{g}_{\alpha} \circ \hat{f}_{\alpha} = \id_{\pi_1(X, x_0)}$ ובאופן דומה נסיק שאכן $\hat{f}_{\alpha}$ איזומורפיזם.
 \end{proof}
-נדבר שוב על כוויצות.
+ניזכר בהגדרה\ \ref{definition:contractable_space}, המדברת על כוויצות.
 \begin{remark}
 	אם $X$ מרחב כוויץ אז $\pi_1(X, x_0)$ טריוויאלית.
 \end{remark}
 \begin{definition}[מרחב פשוט קשר]
 	נאמר ש־$X$ פשוט קשר אם $X$ קשיר מסילתית ו־$\pi_1(X, x_0) = \{ e \}$ ל־$x_0 \in X$.
 \end{definition}
-\begin{definition}
+\begin{definition}[נסג עיוות]
 	יהי $X$ מרחב טופולוגי ו־$Y \subseteq X$ תת־מרחב.
 	נאמר ש־$Y$ הוא נסג עיוות (Deformation retract) של $X$ אם יש $H : [0, 1] \times X \to X$ כך ש־$H(0, x) = x$ לכל $x \in X$ וכן,
 	$H(s, y) = y$ לכל $y \in Y, s \in [0, 1]$ וש־$H(1, x) \in Y$ לכל $x \in X$.
@@ -1961,6 +1961,91 @@ $X$ מרחב בייר (לאיחוד בן־מניה של דלילות יש פני
 	אנו טוענים כי $G$ היא העתקה רציפה, ובמקרה זה $G$ מגדירה הומוטופיה בין $\gamma$ ל־$\alpha * \overline{\alpha} \sim c_{x_0}$.
 	כדי להראות זאת נשתמש בעובדה ש־$[0, 1]$ קומפקטי והתמונה רציפה ולכן קומפקטית גם כן.
 \end{solution}
+
+\section{שיעור 16 --- 26.5.2025}
+\subsection{חבורה יסודית וכוויצות}
+נמשיך ונדון בבעיה שהצגנו בפעם הקודמת.
+$X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מכל המרחב לנקודה הזו.
+מהצד השני מרחב הוא נסג עיוות אם מתקיים מצב דומה עם תת־מרחב.
+הפעם נאמר שכל מרחב שהוא נסג עיוות לנקודה גורר שהוא כוויץ לנקודה, אבל גם נראה דוגמה נגדית למצב ההפוך.
+\begin{theorem}
+	אם $X$ כוויץ אז $X$ פשוט קשר.
+\end{theorem}
+\begin{proof}
+	תהי $F : I \times X \to X$ של הכיווץ. \\
+	נראה ש־$X$ קשיר מסילתית.
+	לכל זוג נקודות $x, y \in X$, נתבונן בשרשור $\alpha_x * \beta_y$ שתי מסילות המקיימות $\alpha_x(t) = F(t, x)$ ו־$\beta_y(s) = F(1 - s, y)$.
+	השרשור שלהן כמובן מעיד על קשירות מסילתית של $x, y$. \\
+	נמשיך ונצרה להראות ש־$1 = |\pi_1(X, x_0)|$.
+	תהי $\gamma \in \Omega(X, x_0)$ ונבחן את $\alpha = \alpha_{x_0}$ המסילה שהגדרנו קודם לכן.
+	נגדיר,
+	\[
+		G(s, t)
+		= \begin{cases}
+			\alpha(t) & 0 \le t \le \frac{s}{2} \\
+			F(s, \gamma(\frac{t - \frac{s}{2}}{1 - s})) & \frac{s}{2} \le t \le 1 - \frac{s}{2}, s < 1 \\
+			\alpha(2 - 2t) & 1 - \frac{s}{2} \le t \le 1
+		\end{cases}
+	\]
+	העתקה זו מעבירה את המסילה ל־$\alpha$ ולכן מוכיחה שיש רכיב יחיד בחבורה היסודית של המרחב, אבל עלינו להראות שהיא בכלל רציפה.
+	בבירור היא כבר רציפה בשלושת תחומיה בנפרד, זאת כהרכבת העתקות רציפות.
+	נותר לנו לבדוק את שתי הנקודות שמחברות את הקטעים הללו.
+	אם $s < 1$ וגם $t = \frac{s}{2}$ או $t = 1 - \frac{s}{2}$ אז הרציפות נובעת מלמת ההדבקה.
+	נותר עלינו לבדוק את $s = 1$.
+	נקבע קבוצה פתוחה כלשהי $G(1, t) \in U \subseteq X$ ונראה שיש קבוצה פתוחה $(1, t) \in L \subseteq I \times I$ ומתקיים $\forall (p, q) \in L,\ G(p, q) \in U$.
+	אם $t < \frac{1}{2}$ אז יש סביבה פתוחה $(1, t) \in L' \subseteq I \times I$ שבה $G(p, q) = \alpha(2q)$ ו־$\alpha$ רציפה לכן יש סביבה פתוחה דומה.
+	אם $t > \frac{1}{2}$ אז נוכל לפעול באופן דומה עם $\alpha(2 - 2q)$. \\
+	אם $t = \frac{1}{2}$ ו־$G(1, \frac{1}{2}) = z$ אז המסילה $\gamma$ רציפה והקטע $[0, 1]$ קומפקטי ולכן $\gamma([0, 1])$ קבוצה קומפקטית ב־$X$.
+	$F : I \times X \to X$ רציפה ולכן הצמצום $F \mid_{I \times \gamma([0, 1])}$ היא בעצמה פונקציה רציפה.
+	$F(1, x) = z$ לכל $x$.
+	לכל $x \in \gamma(I)$ יש סביבה פתוחה $(1, x) \in V_x \subseteq [0, 1] \times X$ כך שלכל $(p, y) \in V_x$ מקיימת,
+	\[
+		F(1, y) \in U
+	\]
+	בלי הגבלת הכלליות $V_x = (r_x, 1] \times W_x$ כאשר $r_x < 1$ ו־$x \in W_x \subseteq X$ פתוחה.
+	אז ${\{ W_x \}}_{x \in \gamma(I)}$ כיסוי פתוח של $\gamma(I)$ קומפקטית ולכן יש תת־כיסוי סופי ${\{ W_{x_i} \}}_{i = 1}^n$.
+	קיים $0 \le r < 1$ כך שלכל $x \in \gamma(I)$ ולכל $r < p \le 1$,
+	\[
+		F(p, x) \in U
+	\]
+	ונובע שלכל $(p, q) \in I \times I$ כך ש־$r < p < 1$ ו־$\frac{p}{2} < q < 1 - \frac{p}{2}$ גם $G(p, q) \in U$.
+\end{proof}
+
+\subsection{מרחבי כיסוי והעתקות כיסוי}
+\begin{definition}[העתקת כיסוי]
+	יהיו $B, E$ מרחבים טופולוגיים,
+	העתקה $p : E \to B$ תיקרא העתקת כיסוי אם היא רציפה,
+	ולכל נקודה $b \in B$ יש סביבה פתוחה $b \in U \subseteq B$ כך ש־$p^{-1}(U)$ ניתן להצגה כאיחוד זר של קבוצות פתוחות $V_{\alpha} \subseteq E$ עבור $\alpha \in \Omega$,
+	\[
+		p^{-1}(U)
+		= \biguplus_{\alpha \in \Omega} V_{\alpha}
+	\]
+	כך שלכל $\alpha \in \Omega$, $p \mid_{V_{\alpha}} : V_{\alpha} \to U$ היא הומיאומורפיזם. \\
+	נאמר ש־$U$ מכוסה בצורה אחידה על־ידי $p$. \\
+	למרחב $E$ נקרא מרחב כיסוי של $B$.
+\end{definition}
+\begin{proposition}
+	כל העתקת כיסוי היא העתקה פתוחה.
+\end{proposition}
+\begin{proof}
+	תהי קבוצה פתוחה $W \subseteq E$, נרצה להראות שגם $p(W) \subseteq B$ פתוחה.
+	תהי $x \in p(W)$ ותהי $y \in W$ כך ש־$p(y) = x$.
+	$y \in V_{\alpha_0}$ כלשהו וכן $p |_{V_{\alpha_0}} : V_{\alpha_0} \to U$ הומיאומורפיזם.
+	אז $p |_{V_{\alpha_0}}(W \cap V_{\alpha_0})$ פתוחה.
+\end{proof}
+נעבור לדוגמות.
+\begin{example}
+	$\id_B : B \to B$ העתקת הזהות, היא העתקת כיסוי.
+\end{example}
+\begin{example}
+	$p : B \times \{ 1, 2, \ldots, n \} \to B$ העתקת הצמצום, גם היא העתקת כיסוי.
+\end{example}
+\begin{example}
+	העתקת הישר למעגל, $t \mapsto e^{2 \pi i t}$ (או לחלופין $t \mapsto (\cos(2\pi t), \sin(2\pi t))$), אף היא העתקת כיסוי.
+\end{example}
+\begin{example}
+	נבחן את $p : \CC \to \CC \setminus \{ 0 \}$ המוגדרת על־ידי $z \mapsto e^z$, וגם זו העתקת כיסוי.
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
