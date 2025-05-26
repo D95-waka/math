@@ -62,7 +62,41 @@ We will show that $\PA_0 \vdash \PA$.
 \question[3]
 We will show that $\Sat_0$ is primitive-recursive.
 \begin{proof}
-	In the lectures we saw that $\Sat_0$ is total recursive.
+	In the lectures we saw that $\Sat_0$ is total recursive. \\
+	It follows that $\Sat_0$ is a $\Sigma_1^0$ formula, meaning that it is equivalent to some $\Sigma_0$ formula, $\varphi$.
+	By the presented proof, we also know that $\varphi(x, y) = \exists z \psi(x, y, z)$ for $x$ code for a $\sigma_0$-formula,
+	$y$ a finite-support assignment and $z$ an inference sequence to represent the formula and the assignment.
+	We will bound $z$, showing that $\varphi$ is indeed $\Sigma_0$.
+	The sequence $z$ fulfills, $z = \# \langle (f_i, s_i, \epsilon_i) \mid i < n \rangle$ for some $n \in \NN$, and it is derived by definition that $z \le \# (f, s, \epsilon)$ for some such values.
+	Let us choose $s = \# \sigma, f = \# x$ and fixing some arbitrary large enough $\epsilon \ge \TT, \FF$.
+	As both $x$ and $\sigma$ are variables and the fact that they bind each element of the sequence (by 7.3 and 7.4) we infer that they are indeed a bound to $\psi$.
+\end{proof}
+
+\question{}
+Let $t$ be a term and $\sigma$ some finite-supported assignment. \\
+We will prove that $t^{\hat{\NN}}(\sigma) \le K^{\lceil t \rceil + 1}$ for $K = \max\{ \sigma(v_i) \mid i \in \NN \} + 2$.
+\begin{proof}
+	We will prove the claim by induction over the structure of the term.
+	Note that the proof is equivalent the case of trees and sequences, then we shall use trees without diverge from past assumptions.
+
+	For $t = 0$ (the only constant), $\lceil t \rceil = 1$ and $K \ge 1$, then $0^{\hat{\NN}}(\sigma) = 0^{\hat{\NN}} = 0 \le 1 \le K^1$. \\
+	For $t = v_i$ for some variable $v_i$ ($i \in \NN$), then $t^{\hat{\NN}}(\sigma) = \sigma(v_i)$.
+	From the other side, $K \ge \sigma(v_i)$ as a maximum value, and $\lceil t \rceil + 1 \ge 2$, then $\sigma(v_i) \le {\sigma(v_i)}^{2} \le K^2$.
+
+	Let us move to the induction step, we assume that the claim holds for $s_0, s_1 \in \operatorname{term}_{\PA}$ and for some assignment $\sigma$.
+	Either $t = S(s_0), t = s_0 + s_1$ or $t = s_0 \cdot s_1$. \\
+	For $t = S(s_0)$ we get $t^{\hat{\NN}}(\sigma) = S(s_0^{\hat{\NN}}(\sigma)) \le K^{\lceil s_0 \rceil + 1} + 1$ by the induction hypothesis.
+	By our definition of numbering also $\lceil s_0 \rceil \cdot 13 \le \lceil t \rceil$, in particular $K^{\lceil s_0 \rceil + 1} + 1 \le K^{\lceil t \rceil + 1}$. \\
+	The remaining cases are similar, we will prove it for $t = s_0 + s_1$,
+	\[
+		t^{\hat{\NN}}(\sigma) = s_0^{\hat{\NN}}(\sigma) + s_0^{\hat{\NN}}(\sigma) \le K^{\lceil s_0 \rceil + 1} + K^{\lceil s_1 \rceil + 1}
+	\]
+	We assume without loss of generality that $\lceil s_0 \rceil \le \lceil s_1 \rceil$, then,
+	\[
+		K^{\lceil s_0 \rceil + 1} + K^{\lceil s_1 \rceil + 1}
+		\le 2K^{\lceil s_1 \rceil + 1}
+	\]
+	By our definition of Gödel numbering $\lceil t \rceil \ge 13^{\lceil s_0 \rceil} \lceil s_1 \rceil$, then the claim follows almost immediately.
 \end{proof}
 
 \end{document}
