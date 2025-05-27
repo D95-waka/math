@@ -63,13 +63,20 @@ We will show that $\PA_0 \vdash \PA$.
 We will show that $\Sat_0$ is primitive-recursive.
 \begin{proof}
 	In the lectures we saw that $\Sat_0$ is total recursive. \\
-	It follows that $\Sat_0$ is a $\Sigma_1^0$ formula, meaning that it is equivalent to some $\Sigma_0$ formula, $\varphi$.
-	By the presented proof, we also know that $\varphi(x, y) = \exists z \psi(x, y, z)$ for $x$ code for a $\sigma_0$-formula,
+	It follows that $\Sat_0$ is a $\Sigma_1^0$ formula, meaning that it is equivalent to some $\Sigma_1$ formula, $\varphi$.
+	By the presented proof, we also know that $\varphi(x, y) = \exists z \psi(x, y, z)$ for $x$ code for a $\Sigma_0$-formula,
 	$y$ a finite-support assignment and $z$ an inference sequence to represent the formula and the assignment.
 	We will bound $z$, showing that $\varphi$ is indeed $\Sigma_0$.
+
 	The sequence $z$ fulfills, $z = \# \langle (f_i, s_i, \epsilon_i) \mid i < n \rangle$ for some $n \in \NN$, and it is derived by definition that $z \le \# (f, s, \epsilon)$ for some such values.
 	Let us choose $s = \# \sigma, f = \# x$ and fixing some arbitrary large enough $\epsilon \ge \TT, \FF$.
 	As both $x$ and $\sigma$ are variables and the fact that they bind each element of the sequence (by 7.3 and 7.4) we infer that they are indeed a bound to $\psi$.
+
+	The previous statement is not true at all, as the process of evaluation of the formula and the assignment produce larger finite numbers.
+	We will show that there is a bound such that it is dependant on only $x$ and $y$, using induction over the structure of the formula.
+	For atomic formulas it is sufficient to choose $\# \sigma(v_i)$ for the maximal such $t \in x$, there are up to two such values and it follows that it is $\Sigma_0$ to take their maximum.
+	For unary and binary relations we choose maximal value in similar way, the proof that it is maximum is trivial by the choice of the bound.
+	It is remaining to show that there is a bound for bounded universal quantifier, but for this we choose the bound of the quantifier (up to choosing its value in $\sigma$ as a variable).
 \end{proof}
 
 \question{}
