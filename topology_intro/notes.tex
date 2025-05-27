@@ -2047,6 +2047,43 @@ $X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מ
 	נבחן את $p : \CC \to \CC \setminus \{ 0 \}$ המוגדרת על־ידי $z \mapsto e^z$, וגם זו העתקת כיסוי.
 \end{example}
 
+\section{שיעור 17 --- 27.5.2025}
+\subsection{מרחבי כיסוי}
+נעסוק היום בהרמות במרחבי כיסוי.
+\begin{theorem}[הרמה של מסילות]
+	נניח ש־$p : E \to B$ העתקת כיסוי ו־$\gamma : I \to B$ מסילה רציפה. \\
+	נסמן $\gamma(0) = b_0$, אז לכל $e_0 \in p^{-1}(b_0)$ יש מסילה רציפה ויחידה $\tilde{\gamma} : I \to E$ כך ש־$p \circ \tilde{\gamma} = \gamma$ ו־$\tilde{\gamma}(0) = e_0$.
+\end{theorem}
+\begin{proof}
+	לכל נקודה $b \in B$ יש סביבה פתוחה $U_b$ אשר מכוסה באופן אחיד על־ידי $p$,
+	\[
+		p^{-1}(U_b)
+		= \biguplus V_{\alpha}^b
+	\]
+	נניח ש־$\gamma : I \to B$, ו־$\{ \gamma^{-1}(U_b) \mid b \in B \}$ כיסוי פתוח של $I$.
+	יהי $\lambda$ מספר לבג של הכיסוי, כלומר לכל $t \in I$ הקטע $(t - \lambda, t + \lambda) \subseteq p^{-1}(U_b)$ עבור איזשהו $b \in B$.
+	אנחנו נבנה את ההרמה $\tilde{\gamma}$ באופן אינדוקטיבי.
+	נניח שהגדרנו כבר פונקציה רציפה $\tilde{\gamma} : [0, t_j] \to E$ כך שמתקיים $\tilde{\gamma}(0) = e_0$ ו־$(p \circ \tilde{\gamma})(t) = \gamma(t)$.
+	אם $j = n$ אז סיימנו, אחרת נשים לב שמכיוון ש־$t_{j + 1} - t_j > \lambda$ אז נובע שיש $b \in B$ כך שמתקיים,
+	\[
+		\gamma([t_j, t_{j + 1}]) \subseteq U_b
+	\]
+	ולכן $p^{-1}(U_b) = \biguplus V_{\alpha}^b$ כך ש־$p |_{V_{\alpha}^b} : V_{\alpha}^b \to U_b$ הומיאומורפיזם.
+	קיים $\alpha_0$ יחיד כך ש־$\tilde{\gamma}(t_j) \in V_{\alpha_0}^b$ כי $\gamma(t_j) \in U_b$ ולכן נגדיר,
+	\[
+		\tilde{\gamma}(t)
+		= {(p |_{V_{\alpha}^b})}^{-1}(\gamma(t))
+	\]
+	לכל $t_j \le t \le t_{j + 1}$. \\
+	קל לראות שהתהליך מסתיים לאחר מספר סופי של חזרות, כאשר נגיע ל־$j = n$,
+	מלמת ההדבקה אם $\tilde{\gamma}$ היא מסילה רציפה ו־$p \circ \tilde{\gamma} = \gamma$, וזוהי מסילה יחידה.
+\end{proof}
+\begin{theorem}
+	תהי $p : E \to B$ העתקת כיסוי ונניח ש־$p(e_0) = b_0$.
+	נניח ש־$F : I \times I \to B$ רציפה, אז יש הרמה יחידה $\tilde{F} : I \times I \to E$ כך ש־$\tilde{F}(0, 0) = e_0$.
+	אם $F$ היא הומוטופיה של מסילות אז גם $\tilde{F}$ היא הומוטופיה של מסילות.
+\end{theorem}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
