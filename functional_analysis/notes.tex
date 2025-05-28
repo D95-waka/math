@@ -851,7 +851,7 @@
 		\item $\langle x, x \rangle \ge 0$ ואם $\langle x, x \rangle = 0$ אז $x = 0_V$
 	\end{enumerate}
 \end{definition}
-\begin{theorem}
+\begin{theorem}[מרחב נורמי מושרה ממרחב מכפלה פנימית]
 	$(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית,
 	ונגדיר,
 	\[
@@ -947,7 +947,7 @@
 	\]
 	ונסיק ש־$\lVert x \rVert \cdot \langle y \rangle \ge |\langle x, y \rangle|$
 \end{proof}
-\begin{theorem}
+\begin{theorem}[התכנסות טור פורייה]
 	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית ו־${\{ v_n \}}_{n = 1}^\infty \subseteq V$ סדרה אורתוגונלית.
 	יהי $v \in V$, אז מתקיים,
 	\[
@@ -1023,6 +1023,225 @@
 	\]
 	ונקבל מינימום כאשר $\alpha_n = x_n = \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$.
 \end{proof}
+
+\section{שיעור 7 --- 28.5.2025}
+
+\subsection{מערכות שלמות במרחבי מכפלה פנימית}
+נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית ו־${\{ v_n \}}_{n = 1}^{\infty} \subseteq V$ מערכת אורתוגונלית.
+לכל $v \in V$ ראינו שמתקיים,
+\[
+	v
+	\sim \sum_{n = 1}^\infty \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2} v_n
+\]
+כלומר, אנו יכולים לקרב את $v$ עם טור פורייה.
+אותנו מעניין אם זהו רק קירוב, או שתמיד טור זה מתכנס ל־$v$.
+היום נראה את התשובה לתהייה זו.
+\begin{definition}[מערכת שלמה במרחב מכפלה פנימית]
+	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית ותהי מערכת אורתוגונלית ${\{ v_n \}}_{n = 1}^\infty \subseteq V$.
+	אם לכל $v \in V$ ולכל $\epsilon > 0$ קיימים $N \in \NN$ ו־$\alpha_1, \ldots, \alpha_N \in \CC$ כך שמתקיים,
+	\[
+		\left\lVert v - \sum_{i = 1}^N \alpha_i v_i \right\rVert \le \epsilon
+	\]
+	אז נאמר ש־$\{ v_n \}$ היא \textbf{מערכת שלמה} במרחב $(V, \langle \cdot, \cdot \rangle)$.
+\end{definition}
+\begin{theorem}[תנאים שקולים למערכת שלמה]
+	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית ותהי מערכת אורתונורמלית ${\{ e_n \}}_{n = 1}^\infty \subseteq V$.
+	אז התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item $\{ e_n \}$ מערכת שלמה ב־$V$
+		\item לכל $v \in V$ מתקיים,
+			\[
+				{\lVert v \rVert}^2
+				= \sum_{n = 1}^\infty {|\langle e_n, v \rangle|}^2
+			\]
+		\item מתקיים,
+			\[
+				v
+				= \sum_{n = 1}^\infty \langle e_n, v \rangle e_n
+			\]
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$1 \implies 2$,
+	נבחר $v \in V$ ויהי $\epsilon > 0$.
+	אז מהנחת השלמות על $\{ e_n \}$ יש $N \in \NN$ ומקדמים $\alpha_n \in \CC$ ל־$n \le N$ כך שמתקיים,
+	\[
+		{\left\lVert v - \sum_{n = 1}^N \alpha_n e_n \right\rVert}^2
+		\le \epsilon^2
+	\]
+	אז מתקיים מהגדרה,
+	\[
+		\left\langle v - \sum_{n = 1}^N \alpha_n e_n, v - \sum_{n = 1}^N \alpha_n e_n \right\rangle	
+		= {\lVert v \rVert}^2 - \sum_{n = 1}^N \overline{\alpha_n} \langle e_n, v \rangle - \sum_{n = 1}^N \alpha_n \langle v, e_n \rangle + \sum_{n = 1}^N {| \alpha_n |}^2
+		= (*)
+	\]
+	נסמן לכל $n$, $x_n = \langle e_n, v \rangle$, ולכן,
+	\[
+		(*)
+		= {\lVert v \rVert}^2 + \sum_{n = 1}^N {| x_n - \alpha_n |}^2 - \sum_{n = 1}^N {| x_n |}^2
+	\]
+	נשים לב כי גם,
+	\[
+		\left\langle \sum_{n = 1}^N \alpha_n e_n, \sum_{m = 1}^N \alpha_m e_m \right\rangle
+		= \sum_{n = 1}^N \sum_{m = 1}^N \langle \alpha_n e_n, \alpha_m e_m \rangle
+		= \sum_{n = 1}^N \sum_{m = 1}^N \overline{\alpha_n} \alpha_m \langle e_n, e_m \rangle
+		= \sum_{n = 1}^N \overline{\alpha_n} \alpha_m
+	\]
+	נובע,
+	\[
+		{\lVert v \rVert}^2 - \sum_{n = 1}^N {| x_n |}^2
+		\le {\left\lVert v - \sum_{n = 1}^N \alpha_n e_n \right\rVert}^2
+		\le \epsilon^2
+	\]
+	אבל מהצד השני,
+	\[
+		{\lVert v \rVert}^2 - \sum_{n = 1}^N {| x_n |}^2
+		\ge {\lVert v \rVert}^2 - \sum_{n = 1}^\infty {| x_n |}^2
+	\]
+	ולכן,
+	\[
+		0
+		{\lVert v \rVert}^2 - \sum_{n = 1}^N {| x_n |}^2
+		\le \epsilon^2
+	\]
+	מאי־שוויון בסל.
+	נוכל להסיק,
+	\[
+		{\lVert v \rVert}^2 = \sum_{n = 1}^\infty {| x_n |}^2
+		= \sum_{n = 1}^\infty {|\langle e_n, v \rangle|}^2
+	\]
+
+	$2 \implies 3$,
+	\[
+		\langle v - \sum_{n = 1}^N x_n e_n, v - \sum_{n = 1}^N x_n e_n \rangle
+		= {\lVert v \rVert}^2 - \sum_{n = 1}^N {| x_n |}^2
+	\]
+	ולכן,
+	\[
+		{\left\lVert v - \sum_{n = 1}^N \langle e_n, v \rangle e_n \right\rVert}^2
+		= {\lVert v \rVert}^2 - \sum_{n = 1}^N {| \langle e_n, v \rangle |}^2
+	\]
+	מאי־שוויון פרסיבל, ולכן נובע,
+	\[
+		\lim_{N \to \infty} \left\lVert v - \sum_{n = 1}^N \langle e_n, v \rangle e_n \right\rVert
+		= 0
+	\]
+	ובפרט,
+	\[
+		v = \sum_{n = 1}^\infty \langle e_n, v \rangle e_n
+	\]
+	נובע אם כך ש־$\{ e_n \}$ מערכת שלמה ובכך נקבל גם $3 \implies 1$.
+\end{proof}
+\begin{definition}[מרחב מכפלה פנימית C]
+	נגדיר את מרחב המכפלה הפנימית $(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$ על־ידי,
+	\[
+		\tilde{C}[-\pi, \pi]
+		= \{ f : [-\pi, \pi] \to \RR \mid f \in C[-\pi, \pi], f(-\pi) = f(\pi) \}
+	\]
+	יחד עם המכפלה הפנימית,
+	\[
+		\langle f, g \rangle
+		= \int_{-\pi}^{\pi} f(x) g(x)\ dx
+	\]
+\end{definition}
+\begin{exercise}
+	הוכיחו כי זוהי אכן מכפלה פנימית.
+\end{exercise}
+המטרה שלנו היא למצוא מערכות שלמות במרחב הזה.
+\begin{definition}[מערכת אורתונורמלית במרחב C]
+	נגדיר את המערכת,
+	\[
+		e_0 = \frac{1}{\sqrt{2 \pi}},
+		e_1 = \frac{1}{\sqrt{\pi}} \cos x,
+		e_2 = \frac{1}{\sqrt{\pi}} \sin x,
+		\ldots,
+		e_{2n - 1} = \frac{1}{\sqrt{\pi}} \cos(nx),
+		e_{2n} = \frac{1}{\sqrt{\pi}} \sin(nx),
+		\ldots
+	\]
+	אנו יודעים כי זוהי אכן מערכת אורתונורמלית.
+\end{definition}
+\begin{theorem}[שלמות מערכת במרחב C]
+	המערכת ${\{ e_n \}}_{n = 0}^\infty \subseteq \tilde{C}[-\pi, \pi]$ היא מערכת אורתונורמלית שלמה במרחב $(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$.
+\end{theorem}
+\begin{proof}
+	נגדיר,
+	\[
+		A
+		= \left\{ T_n(x) \mid N \in \NN, a_i, b_i \in \RR,\ T_n(x) = a_0 + \sum_{k = 1}^N a_k \cos(kx) + \sum_{k = 1}^N b_k \sin(kx) \right\}
+	\]
+	פונקציות אלה נקראות פולינומים טריגונומטריים.
+	אנו רוצים להראות שקבוצה זו היא אלגברה.
+	$A$ אינה מתאפסת באף נקודה, זאת שכן נוכל לבחור פונקציה קבועה לא אפס.
+
+	בנוסף $A$ מפרידה נקודות.
+	נשים לב כי $\sin x \in A$ מעידה על ההפרדה הזו.
+	אנו יכולים להסתכל על המרחב שבחרנו מחדש כקבוצת הפונקציות מעל $S = \{ e^{i \theta} \mid \theta \in [-\pi, \pi] \}$, זאת מהגדרתה.
+	אם $x_1 \ne x_2$ אז $\sin(x_1) \ne \sin(x_2)$.
+	זוהי קבוצה סגורה וקומפקטית ב־$\RR^2$, ולכן נוכל לקבל באופן דומה שהיא משרה הפרדת נקודות ב־$A$. \\
+	בהתאם נובע ש־$\overline{A} = C[S]$.
+
+	יהי $\epsilon > 0$ ותהי $f \in \tilde{C}[-\pi, \pi]$, אז $f \in C[S]$ וקיים פולינום טריגונומטרי $T_N$ כך שמתקיים,
+	\[
+		\max_{x \in [-\pi, \pi]} |f(x) - T_N(x)| < \epsilon
+	\]
+	לכן גם,
+	\[
+		{\lVert f - T_n \rVert}^2
+		= \int_{-\pi}^{\pi} {(f(x) - T_n(x))}^2\ dx
+		\le \epsilon^2 \cdot 2 \pi
+	\]
+	אבל $T_n$ היא צירוף לינארי סופי של וקטורים מהמערכת $\{ e_n \}$.
+\end{proof}
+\begin{definition}[טור פורייה במרחב C]
+	נגדיר את טורי פורייה עבור המרחב $(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$ עם המערכת ${\{ e_n \}}$, על־ידי,
+	\[
+		f
+		\sim \sum_{n = 0}^\infty \langle e_n, f \rangle e_n
+		= \langle e_0, f \rangle e_0 + \sum_{n = 1}^\infty \langle e_{2n - 1}, f \rangle e_{2n - 1} + \sum_{n = 1}^\infty \langle e_{2n}, f \rangle e_{2n}
+	\]
+\end{definition}
+\begin{remark}
+	באופן מפורש $e_0 = \frac{1}{\sqrt{2 \pi}}$ וכן,
+	\[
+		\langle e_0, f \rangle = \frac{1}{\sqrt{2 \pi}} \int_{-\pi}^{\pi} f(t)\ dt
+	\]
+	ולכן,
+	\[
+		(\langle e_0, f \rangle e_0)(x)
+		= a_0(x)
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(t)\ dt
+	\]
+	באופן דומה $e_{2n - 1} = \frac{1}{\sqrt{\pi}} \cos(nt)$ ולכן,
+	\[
+		\langle e_{2n - 1}, f \rangle
+		= \frac{1}{\sqrt{\pi}} \int_{-\pi}^{\pi} f(t) \cos(nt)\ dt
+	\]
+	ובהתאם,
+	\[
+		(\langle e_{2n - 1}, f \rangle e_{2n - 1})(x)
+		= \frac{1}{\pi} \cos(nx) \int_{-\pi}^{\pi} f(t) \cos(nt)\ dt
+	\]
+	ונסמן $a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(nt)\ dt$
+	ולבסוף גם,
+	\[
+		\langle e_{2n}, f \rangle e_{2n}
+		= \frac{1}{\pi} \sin(nx) \int_{-\pi}^{\pi} f(t) \sin(nt)\ dt
+	\]
+	ונסמן $b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(nt)\ dt$
+	ולכן,
+	\[
+		f \sim \frac{a_0}{2} + \sum_{n = 1}^\infty a_n \cos(nx) + b_n \sin(nx)
+	\]
+\end{remark}
+\begin{conclusion}
+	מתקיים,
+	\[
+		\lim_{N \to \infty} 
+		\int_{-\pi}^{\pi} {\left\lvert f(t) - \frac{a_0}{2} - \sum_{n = 1}^N a_n \cos(nt) - \sum_{n = 1}^N b_n \sin(nt) \right\rvert}^2\ dt
+		= 0
+	\]
+\end{conclusion}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
