@@ -1,0 +1,184 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 08 --- אנליזה פונקציונלית, 80417}
+
+\DeclareMathOperator\sgn{sgn}
+
+\begin{document}
+\maketitle
+\maketitleprint[teal]
+
+\question[2]
+נחשב את מקדמי טור פורייה של הפונקציה האינטגרבילית,
+\[
+	f(x)
+	= \sgn(x) \cdot \frac{\pi - |x|}{2}
+\]
+עבור,
+\[
+	\sgn(x)
+	= \begin{cases}
+		-1 & x < 0 \\
+		0 & x = 0 \\
+		1 & x > 0
+	\end{cases}
+\]
+\begin{solution}
+	נבחין כי הפונקציה $f$ היא אי־זוגית, לכן $a_n = 0$ לכל $n \in \NN \cup \{ 0 \}$.
+	מספיק שנחשב את $b_n$ אם כך,
+	\begin{align*}
+		b_n
+		& = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin(nx)\ dx \\
+		& = \frac{2}{\pi} \int_{0}^{\pi} f(x) \cdot \sin(nx)\ dx \\
+		& = \frac{1}{\pi} \int_{0}^{\pi} \sgn(x) (\pi - |x|) \cdot \sin(nx)\ dx \\
+		& = \frac{1}{\pi} \int_{0}^{\pi} (\pi - x) \sin(nx)\ dx \\
+		& = \frac{1}{\pi} \left( \pi \int_{0}^{\pi} \sin(nx)\ dx - \int_{0}^{\pi} x \sin(nx)\ dx \right) \\
+		& = {\left[ -\frac{1}{n} \cos(nx) \right]}_{x = 0}^{x = \pi} - \frac{1}{\pi} {\left[ -x \cdot \frac{1}{n} \cos(nx) \right]}_{x = 0}^{x = \pi} - \frac{1}{n \pi} \int_{0}^{\pi} \cos(nx)\ dx  \\
+		& = \mp \frac{1}{n} + \frac{1}{n} \pm \frac{1}{n} - \frac{1}{n^2 \pi} {\left[ \sin(nx) \right]}_{x = 0}^{x = \pi} \\
+		& = \frac{1}{n}
+	\end{align*}
+	ולכן,
+	\[
+		\sum_{n = 1}^\infty \frac{1}{n} \sin(nx)
+	\]
+	טור פורייה של $f$.
+\end{solution}
+
+\question{}
+נגדיר טור ונחשב את סכומו על־ידי שימוש בזהות פרסבל.
+
+\subquestion{}
+\[
+	\sum_{n = 1}^\infty \frac{1}{n^2}
+\]
+ונסיק את ערך הטור $\sum_{n = 1}^\infty \frac{1}{{(2n - 1)}^2}$.
+\begin{solution}
+	נגדיר את הפונקציה $f(x) = x$,
+	אז מאי־זוגיות $a_n = 0$ לכל $n$, ונחשב את $b_n$,
+	\[
+		b_n
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} x \sin(nx)\ dx
+		= \frac{2}{\pi} \int_{0}^{\pi} x \sin(nx)\ dx
+		= \mp \frac{2}{\pi n}
+	\]
+	ולכן משוויון פרסבל,
+	\[
+		\frac{\pi}{4} \cdot \frac{1}{\pi} \int_{-\pi}^{\pi} f^2(x)\ dx
+		= 0 + \sum_{n = 1}^\infty 0 + \frac{1}{n^2}
+		= \sum_{n = 1}^\infty \frac{1}{n^2}
+	\]
+	אבל,
+	\[
+		\frac{\pi}{4} \int_{-\pi}^{\pi} f^2(x)\ dx
+		= \frac{\pi}{4} \int_{-\pi}^{\pi} x^2\ dx
+		= \frac{2 \pi}{12} \pi^3
+		= \frac{\pi^2}{6}
+	\]
+
+	נבחין כי,
+	\[
+		\frac{\pi^2}{24}
+		= \sum_{n = 1}^\infty \frac{1}{4n^2}
+		= \sum_{n = 1}^\infty \frac{1}{{(2n)}^2}
+	\]
+	ולכן,
+	\[
+		\sum_{n = 1}^\infty \frac{1}{{(2n - 1)}^2}
+		= \sum_{n = 1}^\infty \frac{1}{n^2} - \sum_{n = 1}^\infty \frac{1}{{(2n)}^2}
+		= \frac{\pi^2}{6} - \frac{\pi^2}{24}
+		= \frac{\pi^2}{8}
+	\]
+\end{solution}
+
+\subquestion{}
+נחשב את הטור,
+\[
+	\sum_{n = 1}^\infty \frac{1}{{(2n - 1)}^4}
+\]
+\begin{solution}
+	נגדיר $f(x) = |x|$.
+	זוהי פונקציה זוגית ולכן $b_n = 0$ לכל $n$.
+	נחשב את $a_n$,
+	\[
+		a_n
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} |x| \cos(nx)\ dx
+		= \frac{2}{\pi} \int_{0}^{\pi} x \cos(nx)\ dx
+		= \frac{2}{\pi n^2} ({(-1)}^n - 1)
+	\]
+	וכן,
+	\[
+		a_0
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\ dx
+		= \frac{1}{\pi} \int_{0}^{\pi} 2x\ dx
+		= \pi
+	\]
+	ומשוויון פרסבל,
+	\[
+		\int_{-\pi}^{\pi} f^2(x)\ dx
+		= \frac{\pi^3}{2} + \sum_{n = 1}^\infty \frac{4}{\pi n^4} |{(-1)}^n - 1|
+	\]
+	כלומר,
+	\[
+		\sum_{n = 1}^\infty \frac{1}{{(2n - 1)}^4}
+		= \sum_{n = 1}^\infty \frac{1}{n^4} |{(-1)}^n - 1|
+		= \frac{\pi}{4} \int_{-\pi}^{\pi} f^2(x)\ dx - \frac{\pi^4}{8}
+		= \frac{\pi^4}{6} - \frac{\pi^4}{8}
+		= \frac{\pi^4}{24}
+	\]
+\end{solution}
+
+\question{}
+נוכיח את מבחן $M$ של ויירשטראס.
+נניח ש־$I \subseteq \RR$ קטע, ${\{ f_n \}}_{n = 1}^\infty \subseteq C(I)$ ו־${\{ M_n \}}_{n = 1}^\infty \subseteq \RR$ סדרת חסמים כך שלכל $n \in \NN$ מתקיים $\lVert f_n \rVert_\infty < M_n$.
+נראה שהתכנסות הטור $\sum_{n = 1}^\infty M_n$ גוררת שהפונקציה $f$ המוגדרת על־ידי,
+\[
+	f(x)
+	= \sum_{n = 1}^\infty f_n(x)
+\]
+מוגדרת היטב ב־$I$, רציפה והטור מתכנס אליה במידה שווה.
+\begin{proof}
+	לכל $N \in \NN$ מתקיים,
+	\[
+		\sum_{n = 1}^N f_n(x)
+		< \sum_{n = 1}^N M_n
+	\]
+	ישירות מהנתונים ולכל $x \in I$, לכן ממבחן הסנדוויץ' לגבולות ממשיים נקבל ש־$f$ מוגדרת בכל $I$ ושההתכנסות היא במידה שווה (שכן לא הייתה תלות ב־$x$). \\
+	נותר להראות ש־$f$ רציפה.
+	יהי $\varepsilon > 0$, אז,
+	\[
+		|f(x) - f(y)|
+		\le \left\lvert f(x) - \sum_{n = 1}^N f_n(x) \right\rvert + \left\lvert \sum_{n = 1}^N f_n(x) - \sum_{n = 1}^N f_n(y) \right\rvert + \left\lvert \sum_{n = 1}^N f_n(y) - f(y) \right\rvert
+	\]
+	מהתכנסות במידה שווה קיים $N \in \NN$ (נבחר מקסימלי) כך שמתקיים,
+	\[
+		\left\lvert f(x) - \sum_{n = 1}^N f_n(x) \right\rvert
+		\le \frac{\varepsilon}{3},
+		\qquad
+		\left\lvert f(y) - \sum_{n = 1}^N f_n(y) \right\rvert
+		\le \frac{\varepsilon}{3}
+	\]
+	וכן מרציפות $f_n$ לכל $n \le N$ קיים $\delta > 0$ כך שלכל $|x - y| < \delta$ מתקיים,
+	\[
+		\left\lvert \sum_{n = 1}^N f_n(x) - \sum_{n = 1}^N f_n(y) \right\rvert
+		\le \frac{\varepsilon}{3}
+	\]
+	ולכן $|f(x) - f(y)| \le \varepsilon$ ומצאנו כי $f$ רציפה במידה שווה ובפרט רציפה.
+\end{proof}
+
+\question{}
+תהי $f \in \tilde{C}[-\pi, \pi]$ כך ש־$f' \in \tilde{C}[-\pi, \pi]$.
+נסמן ב־$a_n^f, b_n^f$ את מקדמי טור פורייה של $f$ וב־$a_n', b_n'$ את מקדמי טור פורייה של $f'$.
+
+\subquestion{}
+נראה שלכל $n \in \NN$ מתקיים,
+\[
+	a_n^f
+	= - \frac{1}{n} b_n',
+	\qquad
+	b_n^f
+	= - \frac{1}{n} a_n'
+\]
+\begin{proof}
+	TODO
+\end{proof}
+
+\end{document}
