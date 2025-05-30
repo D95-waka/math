@@ -1242,6 +1242,51 @@
 		= 0
 	\]
 \end{conclusion}
+\begin{proof}
+	${\{ e_n \}}_{n = 1}^\infty$ מערכת שלמה ב־$(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$,
+	לכן,
+	\[
+		f = \sum_{n = 0}^\infty \langle e_n, f \rangle e_n
+	\]
+	כלומר,
+	\[
+		{\lVert f - \sum_{n = 0}^{2N} \langle e_n, f \rangle e_n \rVert}^2
+		\xrightarrow{N \to \infty} 0
+	\]
+	אבל,
+	\[
+		f - \sum_{n = 0}^{2N} \langle e_n, f \rangle e_n
+		= \int_{-\pi}^{\pi} {\left\lvert f(t) - \frac{a_0}{2} - \sum_{n = 1}^N a_n \cos(nt) - \sum_{n = 1}^N b_n \sin(nt) \right\rvert}^2\ dt
+	\]
+	כפי שרצינו.
+\end{proof}
+\begin{conclusion}[שוויון פרסבל]
+	אם $f \in \tilde{C}[-\pi, \pi]$ אז,
+	\[
+		\frac{1}{\pi} \int_{-\pi}^{\pi} f^2(t)\ dt
+		= \frac{{|a_0|}^2}{2} + \sum_{n = 1}^\infty ({| a_n |}^2 + {| b_n |}^2)
+	\]
+\end{conclusion}
+\begin{proof}
+	אם $v = \sum_{n = 0}^\infty \langle e_n, v \rangle e_n$ אז גם,
+	\[
+		{\lVert v \rVert}^2
+		= \sum_{n = 0}^\infty {| \langle e_n, v \rangle |}^2
+	.\]
+	בפרט במרחב $(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$ מתקיים,
+	\begin{align*}
+		& \langle e_0, f \rangle
+		= \frac{1}{\sqrt{2 \pi}} \int_{-\pi}^{\pi} f(t)\ dt
+		= \frac{\sqrt{\pi}}{\sqrt{2}} a_0 \\
+		& \langle e_{2n - 1}, f \rangle
+		= \frac{1}{\sqrt{\pi}} \int_{-\pi}^{\pi} f(t) \cos(n t)\ dt
+		= \sqrt{\pi} a_n \\
+		& \langle e_{2n}, f \rangle
+		= \frac{1}{\sqrt{\pi}} \int_{-\pi}^{\pi} f(t) \sin(n t)\ dt
+		= \sqrt{\pi} b_n
+	\end{align*}
+	וכן ${\lVert f \rVert}^2 = \int_{-\pi}^{\pi} f^2(t)\ dt$, והמסקנה נובעת.
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
