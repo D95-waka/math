@@ -58,7 +58,138 @@
 נראה שקיים $\delta > 0$ כך ש־$y(t) \in \HH^k$ עבור $t \in [0, \delta]$,
 ובפרט ש־$\tilde{\alpha}(y(t)) = \alpha(y(t)) \in M$.
 \begin{proof}
-	אנו נראה שהקורדינטה האחרונה של $y'(0)$ שלילית.
+	אנו נראה שהקורדינטה האחרונה של $y'(0)$ חיובית.
+	נפעיל תהליך גרם־שמידט על $X(q)$ ונקבל,
+	\[
+		X(q)
+		= \langle X(q), \nu(q) \rangle \nu(q) + Y(q)
+	\]
+	כאשר $Y(q) \in T_q \partial M$ מאורתוגונליות הנורמל החיצוני והמשיק לשפה.
+	בהתאם הקורדינטה האחרונה של $d Y(q)$ אפס כווקטור בנגזרת השפה, $\langle X(q), \nu(q) \rangle$ ערך שלילי ו־$\nu(q)$ שלילי בקורדינטה האחרונה, ולכן $X(q)$ חיובי בקורדינטה האחרונה.
+
+	עתה נסיק כי קיים $\delta > 0$ כך ש־$y(t) \in \HH^k$, זאת שכן הוא נע מעלה בקורדינטה האחרונה ומוגדר בכל אלו שאינן האחרונות.
+	בפרט $\tilde{\alpha}(y(t)) = \alpha(y(t))$, שכן מהנתון ההרחבה היא עבור ערכים שליליים.
+\end{proof}
+
+\question{}
+\subquestion{}
+תהי $M^k \subseteq \RR^n$ יריעה קומפקטית עם שפה.
+נניח ש־$f, g : M \to \RR$ רציפות וש־$c \in \RR$.
+נראה שמתקיים,
+\[
+	\int_M (\alpha f + g)\ d\vol_k
+	\alpha \int_M f\ d\vol_k + \int_M g\ d\vol_k
+\]
+\begin{proof}
+	נניח ש־${\{ \alpha_i : U_i \to W_i \}}_{i = 1}^N$ פרמטריזציות מקומיות המכסות את $M$, כלומר $M = \bigcup_{i = 1}^N W_i$.
+	נניח גם ש־${\{ \varphi_i : M \to W_i \}}_{i = 1}^N$ חלוקת יחידה עבור $\{ W_i \}$.
+	אז מהגדרת האינטגרל,
+	\[
+		\int_M (c f + g)\ d\vol_k
+		= \sum_{i = 1}^N \int_{U_i} \varphi_i(\alpha_i(x)) (c f + g)(\alpha_i(x)) V(D \alpha_i |_x)\ dx
+	\]
+	נבחין כי זהו אינטגרל רב משתני רגיל ולכן לינארי מתכונות האינטגרל, כלומר,
+	\begin{multline*}
+		\sum_{i = 1}^N \int_{U_i} \varphi_i(\alpha_i(x)) (c f + g)(\alpha_i(x)) V(D \alpha_i |_x)\ dx \\
+		= \sum_{i = 1}^N \left( c \int_{U_i} \varphi_i(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_x)\ dx + \int_{U_i} \varphi_i(\alpha_i(x)) g(\alpha_i(x)) V(D \alpha_i |_x)\ dx \right)
+	\end{multline*}
+	אבל גם סכומים סופיים הם לינאריים ונסיק,
+	\begin{multline*}
+		\sum_{i = 1}^N \left( c \int_{U_i} \varphi_i(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_x)\ dx + \int_{U_i} \varphi_i(\alpha_i(x)) g(\alpha_i(x)) V(D \alpha_i |_x)\ dx \right) \\
+		= \left( c \sum_{i = 1}^N \int_{U_i} \varphi_i(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_x)\ dx \right) + \sum_{i = 1}^N \left( \int_{U_i} \varphi_i(\alpha_i(x)) g(\alpha_i(x)) V(D \alpha_i |_x)\ dx \right)
+	\end{multline*}
+	והביטוי האחרון איננו אלא,
+	\[
+		\alpha \int_M f\ d\vol_k + \int_M g\ d\vol_k
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+משפט פוביני,
+נניח ש־$M^m$ ו־$N^n$ יריעות, ונניח כי $f, g : M \times N \to \RR$ פונקציה רציפה,
+אז,
+\[
+	\int_{M \times N} f\ d\vol_{m + n}
+	= \int_{M} \left( \int_N f\ d\vol_n \right)\ d\vol_m
+	= \int_{N} \left( \int_M f\ d\vol_m \right)\ d\vol_n
+\]
+\begin{proof}
+	נניח ש־${\{ \alpha_i : U_i \to W_i \}}_{i = 1}^k$ פרמטריזציות מקומיות המכסות את $M \times N$, כלומר $M \times N = \bigcup_{i = 1}^k W_i$. \\
+	נניח גם ש־${\{ \varphi_i : M \times N \to W_i \}}_{i = 1}^k$ חלוקת יחידה עבור $\{ W_i \}$.
+	נניח כי $U_i = U_i^M \times U_i^N$ עבור $U_i^M \subseteq \HH^m, U_i^N \subseteq \HH^n$ לכל $i \le k$. \\
+	נסמן פירוק דומה ל־$W_i$, וכן עבור $\alpha_i, \varphi_i$ לכל $i$. \\
+	מהגדרה,
+	\begin{align*}
+		\int_{M \times N} f\ d\vol_{m + n}
+		& = \sum_{i = 1}^k \int_{U_i} \varphi_i(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_x)\ dx \\
+		& = \sum_{i = 1}^k \int_{U_i^M \times U_i^N} \varphi_i(\alpha_i(x, y)) f(\alpha_i(x, y)) V(D \alpha_i |_{(x, y)})\ d(x, y)
+	\end{align*}
+	כאשר $x \in \RR^m, y \in \RR^n$ בביטוי האחרון.
+	זהו סכום סופי של אינטגרלים רב־משתניים ולכן משפט פוביני חל בהם, נראה את אחת הגרסות כדי לחסוך בנייר,
+	\begin{align*}
+		& \sum_{i = 1}^k \int_{U_i^M \times U_i^N} \varphi_i(\alpha_i(x, y)) f(\alpha_i(x, y)) V(D \alpha_i |_{(x, y)})\ dx\ dy \\
+		\overset{(1)}{=}  & \sum_{i = 1}^k \int_{U_i^M} \left( \int_{U_i^N} \varphi_i(\alpha_i(x, y)) f(\alpha_i(x, y)) V(D \alpha_i |_{(x, y)})\ dy \right)\ dx \\
+		\overset{(2)}{=}  & \sum_{i = 1}^k \int_{U_i^M} \left( \sum_{j = 1}^k \int_{U_i^N} \varphi_i^M(\alpha_i^M(x)) \varphi_j^N(\alpha_j^N(y)) f(\alpha_i(x, y)) V(D \alpha_i |_{(x, y)})\ dy \right)\ dx \\
+		\overset{(3)}{=}  & \sum_{i = 1}^k \int_{U_i^M} \left( \varphi_i^M(\alpha_i^M(x)) \sum_{j = 1}^k \int_{U_i^N} \varphi_j^N(\alpha_j^N(y)) f(\alpha_i(x, y)) V(D \alpha_i^N |_{y})\ dy \right)V(D \alpha_i^M |_{(x)})\ dx \\
+		= & \sum_{i = 1}^k \int_{U_i^M} \left( \varphi_i^M(\alpha_i^M(x)) \int_{N} f(x, y)\ d\vol_n \right) V(D \alpha_i^M |_{(x)})\ dx \\
+		= & \int_{M} \left( \int_{N} f\ d\vol_n \right)\ d\vol_m
+	\end{align*}
+	כאשר,
+	\begin{enumerate}
+		\item משפט פוביני לאינטגרלים רב־משתניים
+		\item הוספת סכום ומציין יחידה
+		\item כפליות דטרמיננטת בלוקים
+	\end{enumerate}
+\end{proof}
+
+\question{}
+תהי $M^k$ יריעה קומפקטית ונניח ש־$M_1^k, M_2^k$ שתי יריעות קומפקטיות עם שפה המקיימות,
+\[
+	M_1 \cup M_2 = M,
+	\quad
+	M_1 \cap M_2
+	= \partial M_1
+	= \partial M_2
+	= \Gamma
+\]
+נניח ש־$f : M \to \RR$ רציפה,
+אנו נראה כי,
+\[
+	\int_M f\ d\vol_k
+	= \int_{M_1} f\ d\vol_k
+	+ \int_{M_2} f\ d\vol_k
+\]
+\begin{proof}
+	נניח ש־${\{ \alpha_i : U_i \to W_i \}}_{i = 1}^l$ פרמטריזציות מקומיות של $M$ המכסות אותה.
+	נניח גם כי כל פרמטריזציה מושרית מנקודה ב־$\Gamma$ או זרה ל־$\Gamma$.
+	מותר לנו להניח כך שכן נוכל לקחת כיסוי פתוח מפרמטריזציות של $\Gamma$ (היא קומפקטית) והרחבת הכיסוי לכל $M$ ושימוש בחיתוכים סופיים.
+	נניח ש־${\{ \varphi_i : M \to W_i \}}_{i = 1}^l$ כיסוי יחידה הכפוף ל־$\{ W_i \}$.
+	מההנחה הנוספת נוכל גם להניח בלי הגבלת הכלליות כי קיימים $l_1 < l_2 < l$ כך ש־$W_i \subseteq M_1$ עבור $1 \le i \le l_1$,
+	$W_i \subseteq M_2$ עבור $l_1 < i \le l_2$ ולכל $l_2 < i \le l$ ש־$\alpha_i$ מושרית מנקודה ב־$\Gamma$.
+
+	ממשפט מהתרגול לכל $l_2 < i \le l$, הפרמטריזציה $\alpha_i$ מקיימת,
+	\[
+		\alpha_i(\HH^k \cap U_i) \subseteq M_1,
+		\qquad
+		\alpha_i((-\HH^k) \cap U_i) \subseteq M_2
+	\]
+	ונסמן את שתי הפרמטריזציות המקומיות המושרות הללו $\alpha_i^1, \alpha_i^2$ בהתאמה. \\
+	נגדיר גם פירוק של $\varphi_i$ ל־$\varphi_i^1, \varphi_i^2$ על־ידי מכפלה במציין $1_{M_1}$ ובמציין $1_{M_2}$ בהתאמה.
+	עתה אנו מוכנים ויכולים לבחון את האינטגרל,
+	\begin{align*}
+		& \int_M f\ d\vol_k \\
+		= & \sum_{i = 1}^l \int_{U_i} \varphi_i(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_{x})\ dx \\
+		= & \sum_{i = 1}^{l_1} \int_{U_i} \varphi_i(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_{x})\ dx \\
+		  & + \sum_{i = l_1 + 1}^{l_2} \int_{U_i} \varphi_i(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_{x})\ dx \\
+		  & + \sum_{i = l_2 + 1}^{l} \int_{U_i} \varphi_i^1(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_{x})\ dx \\
+		  & + \sum_{i = l_2 + 1}^{l} \int_{U_i} \varphi_i^2(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_{x})\ dx \\
+		= & \sum_{1 \le i \le l_1, l_2 < i \le l} \int_{U_i} \varphi_i^1(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_{x})\ dx \\
+		  & + \sum_{l_1 < i \le l} \int_{U_i} \varphi_i^2(\alpha_i(x)) f(\alpha_i(x)) V(D \alpha_i |_{x})\ dx \\
+		= & \sum_{1 \le i \le l_1, l_2 < i \le l} \int_{U_i^1} \varphi_i^1(\alpha_i^1(x)) f(\alpha_i^1(x)) V(D \alpha_i^1 |_{x})\ dx \\
+		  & + \sum_{l_1 < i \le l} \int_{U_i^2} \varphi_i^2(\alpha_i^2(x)) f(\alpha_i^2(x)) V(D \alpha_i^2 |_{x})\ dx \\
+		= & \int_{M_1} f\ d\vol_k + \int_{M_2} f\ d\vol_k
+	.\end{align*}
 \end{proof}
 
 \end{document}
