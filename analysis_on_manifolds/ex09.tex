@@ -1,0 +1,64 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 09 --- אנליזה על יריעות, 80426}
+% chktex-file 17
+% chktex-file 9
+
+\DeclareMathOperator{\vol}{vol}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+תהי $M^k \subseteq \RR^n$ יריעה עם שפה.
+נסמן $M^\circ = M \setminus \partial M$.
+
+\subquestion{}
+נראה ש־$M^\circ$ היא צפופה ב־$M$.
+\begin{proof}
+	$M^\circ$ צפופה ב־$M$ אם ורק אם כל נקודה ב־$M$ היא ערך גבולי של סדרה ב־$M \setminus \partial M$.
+	עבור נקודות ב־$M$ הטענה נכונה באופן טריוויאלי, לכן מספיק שנמצא סדרה ${\{ x_n \}}_{n = 1}^\infty \subseteq M^\circ$ המתכנסת ל־$x \in \partial M$ לכל $x$ כזה.
+	נניח ש־$x \in \partial M$ ונניח ש־$\alpha : U \to M$ פרמטריזציה מקומית של $x$, כלומר $p \in U \subseteq \HH^k$ כאשר $p = \alpha^{-1}(x)$.
+	פרמטריזציה משמרת שפה, כלומר $y \in \partial U \iff \alpha(y) \in \partial M$, אבל $U$ פתוחה ולכן קיים $\epsilon > 0$ כך ש־$B(p, \epsilon) \cap \HH^k \subseteq U$.
+	נבחר נקודה $x_1 \in B(p, \epsilon) \cap U \cap {(\HH^k)}^\circ$ וכן נקודה $x_n \in B(p, \frac{\epsilon}{n}) \cap U \cap {(\HH^k)}^\circ$ לכל $n \in \NN$.
+	נקבל סדרה כך ש־$x_n \to x$ וכן $x_n \in M^\circ$ לכל $n \in \NN$, כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נראה שאם $k = n$ אז $M^\circ$ היא קבוצה פתוחה ב־$\RR^n$.
+\begin{proof}
+	ראינו בהרצאה ש־$M^\circ$ היא יריעה ללא שפה ממימד $k = n$, וכן ראינו שיריעות $M^n \subseteq \RR^n$ הן קבוצות פתוחות ב־$\RR^n$.
+
+	הטענה נובעת באופן ישיר מקיום פרמטריזציה מקומית.
+	אם $x \in M^\circ$ אז קיימת פרמטריזציה $\alpha : U \to M^\circ$ כך ש־$U \subseteq \RR^n$ פתוחה, ו־$\alpha$ הומיאומורפיזם ולכן בפרט פתוחה ו־$\alpha(U) \subseteq M$ פתוחה במובן המטרי.
+	נסיים את ההוכחה עם סגירות פתוחות לאיחוד ואיחוד כלל הסביבות הפתוחות לכל נקודה ב־$M^\circ$.
+\end{proof}
+
+\subquestion{}
+נראה שאם $U \subseteq M$ קבוצה פתוחה ב־$\RR^n$ אז $U \subseteq M^\circ$.
+\begin{proof}
+	נתון כי $U \subseteq M$ ו־$\deg U = n$ ולכן $\deg M = n$.
+	לכל נקודה $x \in U$ יש פרמטריזציה מקומית וכמו בסעיף הקודם היא פתוחה ולכן מעידה ש־$x \in M^\circ$ כקבוצה פתוחה (הנחה שמותר לעשות בשל תוצאת הסעיף הקודם).
+\end{proof}
+
+\subquestion{}
+נסיק שאם $M$ תת־קבוצה סגורה של $\RR^n$ ו־$\dim M = n$ אז ההגדרות של שפה ופנים של יריעות ושל קבוצות מזדהות.
+\begin{proof}
+	נוכל להסיק ישירות מהסעיף הקודם שפנים של יריעה וקבוצה מזדהים כאשר $\dim M = n$.
+	ביתר פירוט, אם $U \subseteq M$ פתוחה אז בפרט $U \subseteq M^\circ$ ולכן $M^\circ$ תת־קבוצה פתוחה מקסימלית של $M$, כלומר היא עומדת בהגדרה המטרית המדויקת של פנים.
+	נקבל על־ידי חיסור קבוצות והעובדה ש־$M = \overline{M}$ ש־$\partial M = \overline{M} \setminus M^\circ$, כלומר גם השפה מזדהה עם ההגדרה המטרית.
+\end{proof}
+
+\question{}
+תהי $M^k \subseteq \mathbb{R}^n$ יריעה עם שפה,
+נניח ש־$q \in \partial M$ ותהי פרמטריזציה $\alpha : V \to W$ כך ש־$V \subseteq \HH^k$ פתוחה ו־$q \in W \subseteq M$.
+נניח גם ש־$\tilde{\alpha} : \tilde{V} \to \tilde{W}$ הרחבה חלקה שלה, כלומר $\tilde{V} \subseteq \RR^k$ ו־$\dim \tilde{W} = k$. \\
+נניח ש־$y : [0, \varepsilon) \to \tilde{V}$ היא מסילה חלקה כך ש־$y(0) = y_0 = \alpha^{-1}(q)$, וש־$d \tilde{\alpha}_{y_0}(y'(0)) = X(q)$ מקיימת $\langle X(q), \nu(q) \rangle < 0$,
+כאשר $\nu$ הנורמל החיצוני של $M$. \\
+נראה שקיים $\delta > 0$ כך ש־$y(t) \in \HH^k$ עבור $t \in [0, \delta]$,
+ובפרט ש־$\tilde{\alpha}(y(t)) = \alpha(y(t)) \in M$.
+\begin{proof}
+	אנו נראה שהקורדינטה האחרונה של $y'(0)$ שלילית.
+\end{proof}
+
+\end{document}
