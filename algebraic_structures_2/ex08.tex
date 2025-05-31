@@ -1,0 +1,154 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 08 --- מבנים אלגבריים (2), 80446}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+יהי שדה $K$ כך ש־$p\text{-rank}$ של השדה הוא 1, כלומר $[K : K^p] = p^1$.
+
+\subquestion{}
+נראה שלכל $n \in \NN$ יש ל־$K$ בדיוק הרחבה אחת $L / K$ שהיא בלתי־ספרבילית לחלוטין מדרגה $p^n$,
+וש־$L = K(a^{1 / p^n})$ עבור כל $a \in K \setminus K^p$.
+\begin{proof}
+	מתכונות $p \text{-rank}$ מתקיים,
+	\[
+		[K^{1 / p^n} : K]
+		=
+		[K^{1 / p^n} : K^{1 / p^{n - 1}}]
+		\cdots
+		[K^{1 / p} : K]
+		= {[K : K^p]}^n
+		= p^n
+	\]
+	ולכן נוכל להגדיר $L = K^{1 / p^n}$ ולקבל הרחבה מסדר $p^n$ לש $K$.
+	נראה כי היא בלתי בלתי־ספרבילית לחלוטין.
+	ממשפט מההרצאה מספיק שנוכיח $L \subseteq K^{1 / p^\infty}$, אבל זה ידוע מהגדרת $K^{1 / p^\infty}$ ולכן $L$ הרחבה בלתי־ספרבילית לחלוטין.
+
+	נניח ש־$L_0 / K$ הרחבה בלתי־ספרבילית לחלוטין מסדר $p^n$, נראה ש־$L_0 = L$. \\
+	בלתי־ספרביליות לחלוטין שקולה ל־$L_0 \subseteq K^{1 / p^\infty}$, ו־$[L_0 : K] = p^n$ מאלץ $L_0 \subseteq K^{1 / p^n} \cap K^{1 / p^\infty}$ ולכן $L_0 = L$ בלבד.
+
+	נניח ש־$a \in K \setminus K^p$ איבר שאיננו שורש $p$.
+	אז $[K(a^{1 / p^n}) : K] = p^n$ בלבד, ולכן מיחידות $K(a^{1 / p^n}) = L$.
+\end{proof}
+
+\subquestion{}
+נוכיח שלכל הרחבה סופית $L / K$ יש שדה ביניים $L / L_i / K$ כך ש־$L_i / K$ בלתי־ספרבילית לחלוטין ו־$L / L_i$ ספרבילית.
+\begin{proof}
+	אנו יודעים כי $[L : K] = p^m$ עבור $m \in \NN$, וכן נבחר $n \le m$ המספר הגדול ביותר כך ש־$L / K^{1 / p^n} / K$, ונסמן $L_i = K^{1 / p^n}$.
+	מהסעיף הקודם ברור כי $L_i / K$ בלתי־ספרבילית לחלוטין, ולכן נותר לבדוק את $L / L_i$.
+	ישירות מהגדרת $L_i$ אנו יודעים כי אין $\alpha \in L_i$ כך ש־$\alpha$ בלתי־ספרבילי, אחרת מלכתחילה $\alpha \in L_i$, ולכן ${[L : L_i]}_i = 1$ ונובע ש־$L / L_i$ ספרבילי.
+\end{proof}
+
+\question{}
+נמצא שדה ביניים של ההרחבה $\QQ(\xi_7) / \QQ$ מדרגה $2$ מעל $\QQ$.
+
+\subquestion{}
+נמצא תת־חבורה מאינדקס $2$ של $\gal(\QQ(\xi_7) / \QQ) \simeq \ZZ / 6\ZZ$,
+ונמצא במפורש אוטומורפיזם $\sigma$ שיוצר אותה.
+\begin{solution}
+	נגדיר $H = \langle 2 \rangle \le \ZZ / 6\ZZ$, זוהי תת־חבורה מאינדקס $2$.
+	היא מתאימה לאוטומורפיזם $\sigma \in \gal(\QQ(\xi_7) / \QQ)$ המוגדר על־ידי,
+	\[
+		\sigma(\xi_7)
+		= \xi_7^2
+	\]
+\end{solution}
+
+\subquestion{}
+נחשב את $z = \sum_{h \in H} h(\xi_7)$ ונראה ש־$h(z) = z$ לכל $h \in H$.
+\begin{proof}
+	אנו יודעים ש־$\xi_7 \mapsto \xi_7^n$ ל־$n \in {(\ZZ / 7\ZZ)}^\times$ ולכן,
+	\[
+		z
+		= \sum_{h \in H} h(\xi_7)
+		= \sum_{n = 1}^6 \xi_7^n
+		= -1 + \sum_{n = 0}^6 \xi_7^n
+		= -1 + \frac{\xi_7^7 - 1}{\xi_7 - 1}
+		= -1
+	\]
+	בפרט $z \in \QQ$ ו־$h(z) = z$ לכל $h \in \gal(\QQ(\xi_7) / \QQ)$.
+
+	TODO
+\end{proof}
+
+\subquestion{}
+נסיק ש־$z \in {\QQ(\xi_7)}^H$ וש־$[\QQ(z) : \QQ] \le 2$.
+\begin{proof}
+	TODO
+\end{proof}
+
+\question{}
+יהי $K$ שדה, ו־$f \in K[x]$ אי־פריק וספרבילי.
+נניח גם כי $L$ שדה פיצול של $f$ מעל $K$.
+
+\subquestion{}
+נראה שאם כל שדה ביניים $L / E / K$ הוא נורמלי אז כל שורש של $f$ יוצר את $L$ מעל $K$.
+\begin{proof}
+	יהי $\alpha$ שורש של $f$, אז $L / K(\alpha) / K$ הרחבה נורמלית, ו־$f_{\alpha, K}$ מתפצל לחלוטין בשדה זה.
+	אבל $f = f_{\alpha, K}$ ישירות מהגדרה, כלומר $K(\alpha) = L$ בלבד.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $\gal(L / K)$ אבלית אז כל שורש של $f$ יוצר את $L$ מעל $K$.
+\begin{proof}
+	בחבורה אבלית כל תת־חבורה היא תת־חבורה נורמלית של החבורה, לכן אם $N \le \gal(L / K)$ אז $N \trianglelefteq \gal(L / K)$ ו־$L^N / K$ הרחבה נורמלית של $K$.
+	מהסעיף הקודם נסיק ישירות שכל שורש של $f$ יוצר את $L$ מעל $K$.
+\end{proof}
+
+\question{}
+נסמן $f(x) = x^4 - 7x^2 + 7 \in \QQ[x]$, ונניח כי $L / \QQ$ שדה פיצול של $f$.
+
+\subquestion{}
+נסמן,
+\[
+	\beta_1
+	= \frac{7 + \sqrt{21}}{2},
+	\quad
+	\beta_2
+	= \frac{7 - \sqrt{21}}{2}
+\]
+השורשים של $y^2 - 7y + 7 = 0$.
+
+\subquestion{}
+נראה ש־$\QQ(\beta_1, \beta_2) = \QQ(\beta_1)$ וש־$[\QQ(\sqrt{\beta_1}, \sqrt{\beta_2}) : \QQ(\beta_1)] = 4$.
+\begin{proof}
+	מתקיים,
+	\[
+		\beta_2
+		= 7 - \beta_1
+	\]
+	ו־$7 \in \QQ$ לכן $\beta_2 \in \QQ(\beta_1)$ ובהתאם $\QQ(\beta_1, \beta_2) = \QQ(\beta_1)$ ובפרט $\QQ(\beta_1) = \QQ(\beta_2)$.
+
+	כהיסק ישיר גם,
+	\[
+		[\QQ(\sqrt{\beta_1}, \sqrt{\beta_2}) : \QQ(\beta_1)]
+		= [\QQ(\sqrt{\beta_1}, \sqrt{\beta_2}) : \QQ(\sqrt{\beta_1})]
+		\cdot [\QQ(\sqrt{\beta_1}) : \QQ(\beta_1)]
+		= 2 \cdot 2
+	\]
+	כמסקנה ממטלה 5 שאלה 3 סעיף ב'.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$L = \QQ(\sqrt{\beta_1}, \sqrt{\beta_2})$ מדרגה 8 מעל $\QQ$.
+\begin{proof}
+	אנו יודעים כי $[\QQ(\beta_1) : \QQ] = 2$ כשורש של פולינום אי־פריק ב־$\QQ$ מסדר 2, ולכן,
+	\[
+		[L : \QQ]
+		= [L : \QQ(\beta_1)] \cdot [\QQ(\beta_1) : \QQ]
+		= 4 \cdot 2
+	\]
+	וקיבלנו כי הדרגה היא $8$.
+\end{proof}
+
+\subquestion{}
+נמצא את טיפוס האיזומורפיזם של $\gal(L / \QQ)$.
+\begin{solution}
+	אנו יודעים כי $|\gal(L / \QQ)| = 8$. \\
+	אנו גם יודעים כי כל אוטומורפיזם $\sigma \in \gal(L / \QQ)$ נקבע ביחידות על־ידי המיפוי שלו ל־$\beta_1, \sqrt{\beta_1}, \sqrt{\beta_2}$, ושמיפוי זה בלתי תלוי,
+	לכן נסיק ש־$\gal(L / \QQ) \simeq \HH$, חבורת הקוונטרניונים.
+\end{solution}
+
+\end{document}
