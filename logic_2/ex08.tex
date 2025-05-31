@@ -1,0 +1,55 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 8 Answer Sheet --- Logic Theory (2), 80424}
+
+\DeclareMathOperator{\PA}{PA}
+\DeclareMathOperator{\Coll}{Coll}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Sat}{Sat}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question[2]
+We will show that the universal recursive function $U : \NN^2 \rightharpoonup \NN$ is not total,
+and that there is no total recursive function $U'$ containing it.
+\begin{proof}
+	We defined the universal function over the domain of coded $\Sigma_1$-formulas, and directly by past constructions the number $1$ does not codify such a formula.
+	Let us assume towards a contradiction that there is $U' \supseteq U$ total universal function.
+	% Then there is $e \in \dom U' \setminus \dom U$ such that there is some recursive function $f : \NN \to \NN$ such that $U'(e, x) = f(x)$ for all $x \in \NN$.
+	% But $f$ is $\Sigma_1$-formulas, and such formulas can be coded, let us assume that $e'$ corresponds to $f$, meaning that $U(e', x) = U'(e', x) = f(x) = U'(e, x)$.
+	% We should deal with not total $f$ and show that it cannot be completed into total recursive function because this has just worked.
+
+	The idea is to take some recursive non-total function $f : \NN \rightharpoonup \NN$ that cannot be extended into total recursive function.
+	Let us define,
+	\[
+		\varphi(x, y) = x \le \underline{6} \land x = y
+	\]
+	It corresponds to the function $f(x) = x$ for $x \le 6$.
+	To ensure that it is indeed recursive, note that $\varphi \equiv \exists y, x = y \land x \le \underline{6}$, which is $\Sigma_1$ and indeed recursive.
+	Let $e$ be the code for $f$ in $\dom U'$ (note that it does not has to codify $f$ in $\dom U$).
+	Then $U'(e, x) = f(x) = x$ for all $x \le 6$, but $U'$ is total and defined for every $x$.
+	In particular $U'(e, 7) = f(7) = y'$, but there is no $y'$ such that $\varphi(7, y')$ holds.
+
+	We can also see that,
+	\[
+		\{0, \ldots, 6\}
+		= \dom f
+		\ne \{ x \in \NN \mid \langle e, x \rangle \in \dom U' \}
+		= \NN
+	\]
+	In contradiction to the definition of universal recursive functions.
+\end{proof}
+
+\question{}
+For every $l \in \NN$ we define $b_l : \NN \to \NN$ by $b_0(n) = 2n$, $b_{l + 1}(n) = b_l^{n + 1}(1)$ in the sense of composition.
+Let $B(l, n) = b_l(n)$, such that $B(0, n) = 2n, B(l + 1, 0) = B(l, 1)$ and $B(l + 1, n + 1) = B(l, B(l + 1, n))$.
+
+\subquestion{}
+We will show that for any $l \in \NN$, $b_l$ is primitive-recursive.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
