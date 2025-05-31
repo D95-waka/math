@@ -59,25 +59,46 @@
 \subquestion{}
 נחשב את $z = \sum_{h \in H} h(\xi_7)$ ונראה ש־$h(z) = z$ לכל $h \in H$.
 \begin{proof}
-	אנו יודעים ש־$\xi_7 \mapsto \xi_7^n$ ל־$n \in {(\ZZ / 7\ZZ)}^\times$ ולכן,
+	אנו יודעים ש־$\xi_7 \mapsto \xi_7^n$ ל־$n \in H = \{1, 2, 4\}$ ולכן,
 	\[
 		z
 		= \sum_{h \in H} h(\xi_7)
-		= \sum_{n = 1}^6 \xi_7^n
-		= -1 + \sum_{n = 0}^6 \xi_7^n
-		= -1 + \frac{\xi_7^7 - 1}{\xi_7 - 1}
-		= -1
+		= \sum_{n \in H} \xi_7^n
+		= \xi_7 + \xi_7^2 + \xi_7^4
 	\]
-	בפרט $z \in \QQ$ ו־$h(z) = z$ לכל $h \in \gal(\QQ(\xi_7) / \QQ)$.
-
-	TODO
+	נניח ש־$h \in H$ כך ש־$\xi_7 \mapsto \xi_7^n$, אז מתקיים,
+	\[
+		h(z)
+		= h(\xi_7) + h(\xi_7^2) + h(\xi_7^4)
+		= \xi_7^n + \xi_7^{2n} + \xi_7^{4n}
+	\]
+	מהצבה ישירה של $n = 1, 2, 4$ נקבל כי $h(z) = z$.
 \end{proof}
 
 \subquestion{}
 נסיק ש־$z \in {\QQ(\xi_7)}^H$ וש־$[\QQ(z) : \QQ] \le 2$.
 \begin{proof}
-	TODO
+	מצאנו כי $z$ נקודת שבת של כל $h \in H$ ולכן $z \in {\QQ(\xi_7)}^H$ מהגדרה. \\
+	נסיק ש־$\gal(\QQ(\xi_7) / {\QQ(\xi_7)}^H) \simeq H$ וכן ש־$[\QQ(\xi_7) : {\QQ(\xi_7)}^H] = |H| = 3$, ולכן מפירוק מגדל הרחבות גם $[{\QQ(\xi_7)}^H : \QQ] = 2$.
 \end{proof}
+
+\subquestion{}
+נמצא $d \in \ZZ$ כך ש־$\QQ(z) = \QQ(\sqrt{d})$.
+\begin{solution}
+	\begin{align*}
+		z^2 + b z + c = 0
+		& \iff \xi_7^2 + \xi_7^4 + \xi_7^1 + 2(\xi_7^3 + \xi_7^5 + \xi_7^6) + (\xi + \xi_7^2 + \xi_7^4) b + c = 0 \\
+		& \iff z + 2(-z - 1) + z b + c = 0 \\
+		& \iff (b - 1) z + (c - 2) = 0
+	\end{align*}
+	כלומר $f(x) = x^2 + x + 2$ מקיים $f(z) = 0$ ו־$\deg f = 2$ ולכן $f_{z, \QQ} = f$.
+	בהתאם,
+	\[
+		f(\zeta) = 0
+		\iff \zeta = \frac{-1 \pm \sqrt{1 - 8}}{2}
+	\]
+	ונקבל $\zeta \in \QQ(\sqrt{-7})$ וזו הרחבה ריבועית ולכן עבור $d = -7$ נקבל $\QQ(z) = \QQ(\sqrt{d})$.
+\end{solution}
 
 \question{}
 יהי $K$ שדה, ו־$f \in K[x]$ אי־פריק וספרבילי.
