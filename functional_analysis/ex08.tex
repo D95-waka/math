@@ -178,7 +178,70 @@
 	= - \frac{1}{n} a_n'
 \]
 \begin{proof}
-	TODO
+	על־ידי אינטגרציה בחלקים,
+	\[
+		a_n^f
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(nx)\ dx
+		= \frac{1}{n \pi} {\left[ f(x) \sin(nx) \right]}_{x = -\pi}^{x = \pi} - \frac{1}{n \pi} \int_{-\pi}^{\pi} f'(x) \sin(nx)\ dx
+	\]
+	אבל $f'$ שווה בקצוות ו־$\sin$ אי־זוגית ולכן,
+	\[
+		a_n^f
+		= - \frac{1}{n \pi} \int_{-\pi}^{\pi} f'(x) \sin(nx)\ dx
+		= - \frac{1}{n} b_n'
+	\]
+	ההוכחה עבור $a_n^f$ זהה.
+\end{proof}
+
+\subquestion{}
+ידוע כי ${( a_n' )}_{n = 1}^\infty, {( b_n )}_{n = 1}^\infty \in l^2$ ונסיק ש־${( a_n^f )}_{n = 1}^\infty, {( b_n^f )}_{n = 1}^\infty \in l^1$ ובפרט שטור פורייה של $f$ מתכנס במידה שווה.
+\begin{proof}
+	אנו יודעים כי הטור,
+	\[
+		\sum_{n = 1}^\infty {(a_n')}^2
+	\]
+	מתכנס, אבל מסעיף א',
+	\[
+		\sum_{n = 1}^\infty {(a_n')}^2
+		= \sum_{n = 1}^\infty {(n b_n^f)}^2
+	\]
+	ממבחן ההשוואה,
+	\[
+		\frac{|b_n^f|}{{(n b_n^f)}^2}
+		\xrightarrow{n \to \infty} 0
+	\]
+	ולכן גם,
+	\[
+		\sum_{n = 1}^\infty | b_n^f |
+	\]
+	הוא טור מתכנס, כלומר הטור $\sum_{n = 1}^\infty b_n^f$ מתכנס בהחלט.
+	נוכל להראות באופן זהה שגם $\sum_{n = 1}^\infty a_n^f$ מתכנס בהחלט.
+	נשים לב שישירות ממבחן $M$ של ויירשטראס יחד עם התכנסות טורי המקדמים נובע שטור פורייה של $f$ מתכנס במידה שווה.
+\end{proof}
+
+\subquestion{}
+נסיק שהטור של $f$ מתכנס ל־$f$ במידה שווה.
+\begin{proof}
+	ראינו כבר כי הטור מתכנס במידה שווה, אבל עלינו להראות שהוא מתכנס ל־$f$.
+	ב־$\lVert \cdot \lVert_2$ אנו כבר יודעים כי הטור מתכנס ל־$f$, כלומר,
+	\[
+		\left\lVert f(x) - \sum_{n = 1}^N a_n \cos(nx) + b_n \sin(nx) \right\rVert_2
+		= \int_{-\pi}^{\pi} {\left\lvert f(x) - \sum_{n = 1}^N a_n \cos(nx) + b_n \sin(nx) \right\rvert}^2\ dx
+		\xrightarrow{N \to \infty} 0
+	\]
+	אבל מתקיים,
+	\begin{align*}
+		& \int_{-\pi}^{\pi} {\left\lvert f(x) - \sum_{n = 1}^N a_n \cos(nx) + b_n \sin(nx) \right\rvert}^2\ dx \\
+		= & \int_{-\pi}^{\pi} {\left\lvert f(x) + \sum_{n = 1}^N a_n \cos(nx) + b_n \sin(nx) \right\rvert} \cdot {\left\lvert f(x) - \sum_{n = 1}^N a_n \cos(nx) + b_n \sin(nx) \right\rvert}\ dx \\
+		\le & \int_{-\pi}^{\pi} {\left\lvert \max\{ f(x) \} + \sum_{n = 1}^N a_n + b_n \right\rvert} \cdot {\left\lvert f(x) - \sum_{n = 1}^N a_n \cos(nx) + b_n \sin(nx) \right\rvert}\ dx \\
+		= & {\left\lvert \max\{ f(x) \} + \sum_{n = 1}^N a_n + b_n \right\rvert} \cdot \int_{-\pi}^{\pi} {\left\lvert f(x) - \sum_{n = 1}^N a_n \cos(nx) + b_n \sin(nx) \right\rvert}\ dx \\
+	\end{align*}
+	ומהתכנסות במידה שווה של הטור נובע ישירות,
+	\[
+		\sup \left\lvert f(x) - \sum_{n = 1}^\infty a_n \cos(nx) + b_n \sin(nx) \right\rvert
+		\xrightarrow{N \to \infty} 0
+	\]
+	כפי שרצינו.
 \end{proof}
 
 \end{document}
