@@ -1288,6 +1288,234 @@
 	וכן ${\lVert f \rVert}^2 = \int_{-\pi}^{\pi} f^2(t)\ dt$, והמסקנה נובעת.
 \end{proof}
 
-\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
+\section{שיעור 8 --- 4.6.2025}
+
+\subsection{התכנסות נקודתית של טורי פורייה}
+נתחיל בשאלה שתנחה אותנו,
+\begin{exercise}
+	תהי $f : [-\pi, \pi] \to \RR$ כך ש־$f(-\pi) = f(\pi)$.
+	נניח ש־$f$ אינטגרבילית רימן בתחומה.
+	\[
+		a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t)\ dt,
+		\quad
+		a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(nt)\ dt,
+		\quad
+		b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(nt)\ dt
+	\]
+	ונגדיר את טור פורייה,
+	\[
+		\frac{a_0}{2} + \sum_{n = 1}^\infty a_n \cos(nt) + b_n \sin(nt)
+	\]
+	האם טור פורייה מתכנס לפונקציה $f$?
+\end{exercise}
+נתחיל לחקור את השאלה הזו.
+\begin{lemma}[הלמה של רימן]
+	תהי $f : [-\pi, \pi] \to \RR$ אינטגרבילית רימן בכל תחומה. \\
+	אז מתקיים,
+	\[
+		\lim_{w \to \infty} \int_{-\pi}^{\pi} f(t) \cos(w t)\ dt = 0,
+		\quad
+		\lim_{w \to \infty} \int_{-\pi}^{\pi} f(t) \sin(w t)\ dt = 0
+	\]
+\end{lemma}
+\begin{proof}
+	יהי $\varepsilon > 0$, אז מאינטגרביליות $f$ רימן קיימת חלוקה $-\pi = t_0 < \cdots < t_n = \pi$ כך שמתקיים,
+	\[
+		\sum_{i = 1}^n (M_i - m_i) (t_i - t_{i - 1})
+		< \varepsilon
+	\]
+	כאשר,
+	\[
+		M_i = \sup_{t \in [t_{i - 1}, t_i]} |f(t)|,
+		\quad
+		m_i = \inf_{t \in [t_{i - 1}, t_i]} |f(t)|
+	\]
+	בהתאם,
+	\begin{align*}
+		\left\lvert \int_{-\pi}^{\pi} f(t) \sin(wt)\ dt \right\rvert
+		& = \left\lvert \sum_{i = 1}^n \int_{t_{i - 1}}^{t_i} f(t) \sin(wt)\ dt \right\rvert \\
+		& = \left\lvert \sum_{i = 1}^n \int_{t_{i - 1}}^{t_i} (f(t) - m_i) \sin(wt)\ dt + \sum_{i = 1}^n \int_{t_{i - 1}}^{t_i} m_i \sin(wt)\ dt \right\rvert \\
+		& \le \sum_{i = 1}^n \int_{t_{i - 1}}^{t_i} |f(t) - m_i| \cdot |\sin(wt)|\ dt + \sum_{i = 1}^n \int_{t_{i - 1}}^{t_i} m_i \cdot |\sin(wt)|\ dt  \\
+		& \le \sum_{i = 1}^n (M_i - m_i) (t_i - t_{i - 1}) + \sum_{i = 1}^n m_i \cdot \frac{2}{w} \\
+		& \le \varepsilon + \frac{2}{w} \sum_{i = 1}^n m_i \\
+		& \le 2\varepsilon
+	\end{align*}
+	כאשר השתמשנו באינטגרל של $\sin$ כדי לחשב את הטענה, ובאינטגרביליות כדי לחסום.
+\end{proof}
+\begin{conclusion}
+	עבור ${\{ a_n \}}_{n = 1}^\infty, {\{ b_n \}}_{n = 1}^\infty$ מקדמי פורייה של פונקציה אינטגרבילית רימן, מתקיים,
+	\[
+		\lim_{n \to \infty} a_n
+		= \lim_{n \to \infty} b_n
+		= 0
+	\]
+\end{conclusion}
+\begin{theorem}[נוסחת דיריכלה]
+	תהי $f : [-\pi, \pi] \to \RR$ כך ש־$f(-\pi) = f(\pi)$ ו־$f$ אינטגרבילית,
+	נסמן גם,
+	\[
+		S_N(x)
+		= \frac{a_0}{2} + \sum_{n = 1}^N a_n \cos(n x) + \sum_{n = 1}^N a_n \sin(n x)
+	\]
+	אז מתקיים,
+	\[
+		S_N(x)
+		= \frac{1}{\pi} \int_{0}^{\pi} (f(x + u) - f(x - u)) D_N(u)\ du
+	\]
+	כאשר,
+	\[
+		D_N(u)
+		= \frac{\sin( (N + \frac{1}{2})u)}{2 \sin(\frac{u}{2})}
+	\]
+	נקרא גרעין דיריכלה.
+\end{theorem}
+\begin{proof}
+	ישירות מהגדרה מתקיים,
+	\[
+		S_N(x)
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \left( \frac{1}{2} + \sum_{i = 1}^N \cos(nt) \cos(nx) + \sin(nt) \sin(nx) \right)
+	\]
+	וכן,
+	\[
+		\cos(nt) \cos(nx) + \sin(nt) \sin(nx)
+		= \cos(n(t - x))
+	\]
+	נסמן $\alpha = t - x$ ונקבל,
+	\[
+		\frac{1}{2} + \sum_{n = 1}^N \cos(n \alpha)
+		= \frac{\sin((N + \frac{1}{2}) \alpha)}{2 \sin(\frac{\alpha}{2})}
+	\]
+	אז נובע,
+	\[
+		S_N(x)
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \frac{\sin((N + \frac{1}{2}) (t - x))}{2 \sin(\frac{t - x}{2})}\ dt
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) D_N(t - x)\ dt
+	\]
+	גרעין דיריכלה הוא זוגי ישירות מהגדרתו, כלומר $D_N(u) = D_N(-u)$ ובפרט $D_N(x - t) = D_N(t - x)$.
+	נשתמש בהחלפת משתנה על־ידי,
+	\[
+		t - x = v,
+		\quad
+		dv = -dt
+	\]
+	כאשר $v \in [x + \pi, x - \pi]$,
+	\[
+		S_N(x)
+		= \frac{1}{\pi} \int_{x - \pi}^{x + \pi} f(x - v) D_N(v)\ dv
+	\]
+	אבל $f$ פונקציה מחזורית עם מחזור $2 \pi$ ולכן נובע שמתקיים,
+	\[
+		S_N(x)
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x - v) D_N(v)\ dv
+	\]
+	נחליף שוב משתנים על־ידי,
+	\[
+		u = -v,
+		\quad
+		du = -dv
+	\]
+	ונקבל,
+	\begin{align*}
+		S_N(x)
+		& = \frac{1}{\pi} \int_{-\pi}^{0} f(x - v) D_N(v)\ dv + \frac{1}{\pi} \int_{0}^{\pi} f(x - v) D_N(v)\ dv \\
+		& = \frac{1}{\pi} \int_{0}^{\pi} f(x + v) D_N(v)\ dv + \frac{1}{\pi} \int_{0}^{\pi} f(x - v) D_N(v)\ dv \\
+		& = \frac{2}{\pi} \int_{0}^{\pi} (f(x + u) + f(x - u)) D_N(u)\ du
+	\end{align*}
+\end{proof}
+\begin{theorem}[עיקרון המקומיות]
+	אם $f : \RR \to \RR$ כך ש־$f(x + 2 \pi) = f(x)$ לכל $x \in \RR$ ו־$f$ אינטגרבילית רימן בקטע $[-\pi, \pi]$.
+	נסמן,
+	\[
+		S_N(x)
+		= \frac{a_0}{2} + \sum_{n = 1}^N a_n \cos(nx) + b_n \sin(nx)
+	\]
+	אז עבור כל $0 < \delta \le \pi$, מתקיים לכל $x_0 \in \RR$,
+	\[
+		\lim_{N \to \infty} S_N(x_0) - \frac{1}{\pi} \int_{0}^{\delta} (f(x_0 + u) + f(x_0 - u)) D_N(u)\ du = 0
+	\]
+\end{theorem}
+\begin{proof}
+	מצאנו כי,
+	\begin{align*}
+		S_N(x_0) - \frac{1}{\pi} \int_{0}^{\delta} (f(x_0 + u) + f(x_0 - u)) D_N(u)\ du
+		& = \int_{\delta}^{\pi} (f(x_0 + u) + f(x_0 - u)) \cdot \frac{\sin((N + \frac{1}{2}) u)}{2 \sin(\frac{u}{2})}\ du \\
+		& = \int_{\delta}^{\pi} \varphi(u) \sin((N + \frac{1}{2}) u)\ du
+	\end{align*}
+	עבור $\varphi(u) = \frac{f(x_0 + u) + f(x_0 - u)}{2 \sin \frac{u}{2}}$.
+	נבחין כי $\varphi$ אינטגרבילית רימן לפי הלמה של רימן ואף נובע,
+	\[
+		\lim_{N \to \infty} \int_{\delta}^{\pi} \varphi(u) \sin((N + \frac{1}{2}) u)\ du
+		= 0
+	\]
+	והטענה נובעת.
+\end{proof}
+\begin{theorem}[התכנסות נקודתית של טורי פורייה]
+	נניח ש־$f : \RR \to \RR$ מחזורית עם מחור $2 \pi$ ובאינטגרבילית רימן.
+	תהי $x_0 \in \RR$, אז $f$ מקיימת ב־$x_0$ את תנאי ליפשיץ,
+	כלומר קיים $c > 0$ כך שמתקיים,
+	\[
+		|f(x_0 + u) - f(x_0 + 0)| \le C u,
+		\quad
+		|f(x_0 - u) - f(x_0 - 0)| \le C u
+	\]
+	לכל $u \in (0, \delta)$.
+	כאשר גם $f(x_0 + 0) = \lim_{v \to 0} f(x_0 + v)$ וכן $f(x_0 - 0) = \lim_{v \to 0} f(x_0 - v)$.
+	מתקיים,
+	\[
+		\lim_{N \to \infty} S_N(x_0)
+		= \frac{1}{2}(f(x_0 + 0) + f(x_0 - 0))
+	\]
+\end{theorem}
+\begin{proof}
+	\[
+		\lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} \frac{\sin((N + \frac{1}{2}) x)}{2 \sin \frac{x}{2}}\ dx
+		= \frac{1}{2}
+	\]
+	נבחר $f(t) = \frac{1}{2}$ ונקבל,
+	\[
+		a_0
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(t)\ dt
+		= 1
+	\]
+	וכן,
+	\[
+		a_n
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} \frac{1}{2} \cos(nt)\ dt
+		= 0
+	\]
+	וכך גם נובע $b_n = 0$.
+	ונסיק,
+	\[
+		S_N(x_0)
+		= \frac{1}{\pi} \int_{0}^{\pi} (f(x_0 + u) + f(x_0 - u)) D_N(u)\ du
+		= \frac{1}{\pi} \int_{0}^{\pi} D_N(u)\ du
+	\]
+
+	צריך להוכיח שמתקיים,
+	\[
+		\lim_{N \to \infty} S_N(x_0) - \frac{1}{2}(f(x_0 + 0) + f(x_0 - 0))
+		= 0
+	\]
+	נבדוק,
+	\[
+		S_N(x_0)
+		= \frac{1}{\pi} \int_{0}^{\pi} \frac{\sin((N + \frac{1}{2}) u)}{2 \sin \frac{u}{2}} (f(x_0 + u) + f(x_0 - u))\ du
+	\]
+	בפרט מתקיים,
+	\[
+		S_N(x_0)
+		= \lim_{N \to \infty} \int_{0}^{\pi} (f(x_0 + u) - f(x_0 + 0) + f(x_0 - u) - f(x_) - 0) \frac{\sin((N + \frac{1}{2}) u)}{2 \sin \frac{u}{2}}\ du
+	\]
+	אבל ביטוי זה מתכנס לאפס ולכן לכל $0 < \varepsilon < \delta$ הפונקציה $\varphi$ היא אינטגרבילית.
+	מספיק להוכיח ש־$\varphi$ חסומה בקטע $[0, \varepsilon]$.
+	\[
+		|\varphi(u)|
+		\le \frac{|f(x_0 + u) - f(x_0 + 0)| + |f(x_0 - u) - f(x_0 - 0)|}{2 \sin \frac{u}{2}}
+		\le \tilde{C} \frac{u}{\pi \sin \frac{u}{2}}
+		\le \frac{\tilde{C}}{\pi}
+	\]
+\end{proof}
+
+\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
