@@ -1,0 +1,62 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Exercise 9 Answer Sheet --- Logic Theory (2), 80424}
+
+\DeclareMathOperator{\PA}{PA}
+\DeclareMathOperator{\Coll}{Coll}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Sat}{Sat}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+\subquestion{}
+We will show that the set,
+\[
+	H
+	= \{ e \in \NN \mid (e, 0) \in \dom U \}
+\]
+is recursively-enumerable but not recursive.
+\begin{proof}
+	$H$ is $\Sigma_1^0$ by the definition of $U$, implies that it is recursively-enumerable, then it is sufficient to show that it is not recursive.
+	Let $f : \NN \to \NN$ be the function defined by,
+	\[
+		f(x) = x
+	.\]
+	This is indeed a recursive function (even primitive-recursive), and for every $e \in D$, when $D = \{ e \in \NN \mid (e, e) \in \dom U \}$, we get $f(e) = e \in H$, as $e$ witnessing bound larger than $0$.
+	It follows that $f$ is a recursive reduction of $D$ to $H$ and implies that $H$ is not recursive.
+\end{proof}
+
+\subquestion{}
+We will conclude that $H^C = \NN \setminus H$ is not recursively-enumerable.
+\begin{proof}
+	$H$ is a relation, meaning that if it were to be $\Pi_1^0$ it would be $\Delta_1^0$ and recursive.
+	If $H^C$ is recursivel y-enumerable then $H^C = \{ e \in \NN \mid (e, 0) \in \dom(\lnot U) \}$ is $\Sigma_1^0$, and implying by negation that $H = \lnot H^C$ (in the sense of relations) is $\Pi_1^0$.
+	But $H$ is recursively-enumerable and $\Sigma_1^0$, meaning that it is indeed $\Delta_1^0$, in contradiction to its being not recursive.
+\end{proof}
+
+\subquestion{}
+Let us define the set,
+\[
+	T = \{ e \in \NN \mid \{ x \mid (e, x) \in \dom U \} = \NN \}
+\]
+We will show that $T$ is not recursively-enumerable.
+\begin{proof}
+	We assume in contradiction that $T$ is recursively-enumerable. \\
+	By the equivalence to recursively-enumerable functions proposition we can assume that there is a function $f : \NN \to \NN$ such that $f$ is primitive-recursive and $T = \{ f(x) \mid x \in \NN \}$.
+	Let us define $g : \NN^2 \to \NN$ by,
+	\[
+		g(n, x) = U(f(n), x) + 1
+	\]
+	$g$ is indeed total recursive function as $U$ is recursive and $f$ is total such that $U(f(n), \cdot)$ is total recursive function.
+	Then by Kleene's recursion theorem there is $e \in \NN$ such that,
+	\[
+		U(e, x)
+		= g(e, x)
+		= U(f(e), x) + 1
+	.\]
+\end{proof}
+
+\end{document}
