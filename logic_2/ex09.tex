@@ -33,7 +33,7 @@ is recursively-enumerable but not recursive.
 We will conclude that $H^C = \NN \setminus H$ is not recursively-enumerable.
 \begin{proof}
 	$H$ is a relation, meaning that if it were to be $\Pi_1^0$ it would be $\Delta_1^0$ and recursive.
-	If $H^C$ is recursivel y-enumerable then $H^C = \{ e \in \NN \mid (e, 0) \in \dom(\lnot U) \}$ is $\Sigma_1^0$, and implying by negation that $H = \lnot H^C$ (in the sense of relations) is $\Pi_1^0$.
+	If $H^C$ is recursively-enumerable then $H^C = \{ e \in \NN \mid (e, 0) \in \dom(\lnot U) \}$ is $\Sigma_1^0$, and implying by negation that $H = \lnot H^C$ (in the sense of relations) is $\Pi_1^0$.
 	But $H$ is recursively-enumerable and $\Sigma_1^0$, meaning that it is indeed $\Delta_1^0$, in contradiction to its being not recursive.
 \end{proof}
 
@@ -51,12 +51,72 @@ We will show that $T$ is not recursively-enumerable.
 		g(n, x) = U(f(n), x) + 1
 	\]
 	$g$ is indeed total recursive function as $U$ is recursive and $f$ is total such that $U(f(n), \cdot)$ is total recursive function.
-	Then by Kleene's recursion theorem there is $e \in \NN$ such that,
+	$h(x) = g(x, x) + 1 = U(f(x), x) + 1$ is a total recursive function.
+	This means that $\# h \in T$, and there is $m \in \NN$ such that $f(m) = \# h$.
 	\[
-		U(e, x)
-		= g(e, x)
-		= U(f(e), x) + 1
-	.\]
+		h(m)
+		= U(f(m), m) + 1
+		= U(\# h, m) + 1
+		= h(m) + 1
+	\]
+	This is contradiction by diagonalization.
 \end{proof}
+
+\subquestion{}
+We will show that $T^C = \NN \setminus T$ is not recursively-enumerable.
+\begin{proof}
+	$f : H^C \to T^C$ recursive and $f^{-1}(T^C) = H^C$ is recursively-enumerable by the contradiction assumption.
+	We want to show that $f(e) \in T^C$ for any $e \in H^C$.
+
+	Any $e \in H^C$ represents recursive function such that it is not defined in $0$, in particular it is not total (as $0$ witnessing that).
+	We conclude that $e \in T^C$, and that $H^C \subseteq T^C$.
+	We assume in contradiction that $T^C$ is recursively-enumerable, then there is recursive and total $f : \NN \to \NN$ such that $T^C = \{ f(n) \mid n \in \NN \}$.
+	We define $f : \NN \to \NN$ by,
+	\[
+		f(x)
+		= \begin{cases}
+			x & x \in H^C \\
+			\# c_{U(x, 0)} & x \in H
+		\end{cases}
+	.\]
+	TODO
+\end{proof}
+
+\question{}
+We will show that any infinite recursively-enumerable set contains an infinite recursive subset.
+\begin{proof}
+	Let $X$ be some recursively-enumerable set.
+	Let $f : \NN \to \NN$ be a total primitive-recursive function such that $X = f(\NN)$.
+	We saw that $\max$ is primitive-recursive, then,
+	\[
+		g(x) = \max \{ f(n) \mid n < x \}
+	\]
+	is primitive-recursive as well.
+	Note that $f$ is unbounded, therefore $g$ is unbounded as well.
+	We define $h : \NN \to \{ 0, 1\}$ by,
+	\[
+		h(x)
+		= \begin{cases}
+			1 & g(x) = f(x) \\
+			0 & \text{otherwise}
+		\end{cases}
+	\]
+	This is primitive-recursive function as the cases operation is primitive, and $h = \chi_Y$ for $Y \subseteq X$ recursive as we wanted.
+\end{proof}
+
+\question{}
+We define the sets $A, B \subseteq \NN$ as recursively-separated if there is some recursive set $C \subseteq \NN$ such that $A \subseteq C$ and $B \cap C = \emptyset$. \\
+We will find an example of two disjoint recursively-enumerable subsets of $\NN$ which cannot be recursively-separated.
+\begin{solution}
+	Is this a topology problem?
+	This example will show that $\NN$ with the topology induced by recursiveness is not normal.
+
+	Let $f : \NN \to \NN$ be the function such that $f(\NN) = H$ from the first question.
+	We define $A = \{ f(2n) \mid n \in \NN \}$ and $B = \{ f(2n + 1) \mid n \in \NN \}$, these are clearly recursively-enumerable but not recursive.
+	We also see that $A \cap B = \emptyset$ directly by definition.
+
+	Let us assume in contradiction that there is a recursive $C \subseteq \NN$ such that $A \subseteq C$ and $B \cap C = \emptyset$.
+	But the set of recursive functions $R$ is recursive and the reduction of recursive function is recursive, then $R \cap C = A$ is recursive, in contradiction to question 1.
+\end{solution}
 
 \end{document}
