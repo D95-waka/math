@@ -1,0 +1,142 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- אנליזה על יריעות, 80426}
+% chktex-file 17
+% chktex-file 9
+
+\DeclareMathOperator{\vol}{vol}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+תהי $M \subseteq \RR^n$ יריעה קומפקטית, ונניח ש־$f : M \to \RR$ חלקה.
+יהי $\xi : M \to \RR^n$ שדה וקטורי.
+
+\subquestion{}
+נראה שקיימת סביבה פתוחה $U \subseteq \RR^n$ של $M$ והעתקה חלקה $\tilde{f} : U \to \RR$ כך ש־$\tilde{f} |_{M} = f$.
+\begin{proof}
+	לכל $x \in M$ קיימת פרמטריזציה מקומית של $M$, כלומר $\alpha_x : U_x \to M$ חלקה, ויש לה הרחבה חלקה לקבוצה פתוחה $x \in V_x \subseteq \RR^n$.
+	מהפיכות משמאל נסיק שגם $f |_{U_x}$ ניתנת להרחבה, ונסמן $g_x$ כהרחבה זו.
+	$M$ קומפקטית ו־$M \subseteq \bigcup_{x \in M} U_x$ ולכן קיים תת־כיסוי סופי $M \subseteq \bigcup_{i = 1}^N U_x$.
+	זוהי משפחת קבוצות פתוחות חסומה ולכן יש לה חלוקת יחידה ${\{ h_i \}}_{i = 1}^N$, ונגדיר את הפונקציה $\tilde{f} : U \to \RR$ עבור $U = \bigcup_{i = 1}^N U_{x_i}$ על־ידי,
+	\[
+		\tilde{f}(x)
+		= \sum_{i = 1}^N h_i(x) g_{x_i}(x)
+	\]
+	ונקבל ש־$\tilde{f} |_M = f$ ישירות מהגדרתה מחלוקת היחידה והשוויון בסביבות המקומיות.
+\end{proof}
+
+\subquestion{}
+נסיק שקיימת סביבה פתוחה $U \subseteq \RR^n$ של $M$ ושדה וקטורי $\tilde{\xi} : U \to \RR^n$ כך ש־$\tilde{\xi} |_M = \xi$.
+\begin{proof}
+	נבחין כי קיים פירוק $\xi(x) = (\xi_1(x), \ldots, \xi_n(x))$ כך ש־$\xi_i : M \to \RR$ חלקה לכל $1 \le i \le n$.
+	מהסעיף הקודם נובע שקיימת סביבה פתוחה $U_i$ כך ש־$\xi_i$ ניתנת להרחבה חלקה ל־$U_i$.
+	עתה נבחר $U = \bigcap_{i = 1}^n U_i$ ונקבל קבוצה פתוחה ב־$\RR^n$ כך ש־$\xi$ ניתנת להרחבה קורדינטה קורדינטה בה לפונקציה $\tilde{\xi} : U \to \RR^n$. \\
+	נבחין כי טענה זו נכונה רק עבור מימד סופי.
+\end{proof}
+
+\subquestion{}
+נראה שקיימות הרחבות $F : \RR^n \to \RR, X : \RR^n \to \RR^n$ המרחיבות את $f, \xi$ בהתאמה.
+\begin{proof}
+	בסעיף א' הגדרנו חלוקת יחידה של קבוצה פתוחה $M \subseteq U$.
+	עתה נגדיר חלוקת יחידה של $\RR^n$ על־ידי הרחבת חלוקת היחידה שהגדרנו בסעיף א', יחד עם הקבוצה $W = \RR^n \setminus C$ עבור $C \subseteq U$ סגורה כך ש־$M \subsetneq C$.
+	נגדיר את הפונקציה $F$ על־ידי,
+	\[
+		F(x)
+		= \left( \sum_{i = 1}^N \tilde{f} |_{U_i}(x) \alpha_i(x) \right) + \alpha_W(x) \cdot 0
+	\]
+	ונקבל פונקציה חלקה כך שהיא מתאפסת מחוץ לסביבה של $U$.
+	התהליך עבור $X$ זהה.
+\end{proof}
+
+\question{}
+\subquestion{}
+יהיו $0 < a < b < \pi$,
+ונגדיר את היריעה $N_{a, b} = S^{n - 1} \times [a, b] \subseteq \RR^{n + 1}$. \\
+נראה ש־$\varphi : N_{a, b} \to S^n$ הנתונה על־ידי $\varphi(x, y) = (x \sin y, \cos y)$ דיפאומורפיזם על תמונתה, כאשר $x \in \RR^{n - 2}, y \in \RR$.
+\begin{proof}
+	מתקיים,
+	\[
+		{\lVert \varphi(x, y) \rVert}^2
+		= {\lVert (x \sin y, \cos y) \rVert}^2
+		= {\lVert x \rVert}^2 \sin^2 y + \cos^2 y
+		= 1
+	\]
+	ישירות מהעובדה כי $x \in S^{n - 2}$.
+	לכן $\varphi(x, y) \in S^n$ והפונקציה מוגדרת היטב.
+	זוהי גם פונקציה חלקה כהרכבת חלקות, ונותר לבדוק חד־חד ערכיות, ממשפט הפונקציה ההפוכה נסיק דיפאומורפיזם לתמונה. \\
+	נניח ש־$x \ne x', y \ne y'$, אם $\cos y \ne \cos y'$ אז סיימנו, אחרת $y = y' = \frac{\pi}{2}$ בלבד (ישירות מתחום ההגדרה).
+	במקרה זה נקבל $\sin y = \sin y' = 1$ ולכן $x \sin y \ne x' \sin y'$ וקיבלנו חד־חד ערכיות.
+	אם גם $x = -x'$
+\end{proof}
+
+\subquestion{}
+נסמן $M_{a, b} = \varphi(N_{a, b})$.
+נראה שאם $f : S^n \to \RR$ רציפה אז,
+\[
+	\int_{M_{a, b}} f(x)\ dx
+	= \int_{a}^{b} {(\sin y)}^{n - 1} \int_{S^{n - 1}} f(x \sin y, \cos y)\ d\vol_{n - 1}(x)\ dy
+\]
+\begin{proof}
+	ישירות מהגדרת אינטגרל, שימוש ב־$\varphi$ ומשפט פוביני נקבל,
+	\[
+		\int_{M_{a, b}} f(x)\ dx
+		= \int_{a}^{b} \int_{S^{n - 1}} f(x \sin y, \cos y) V(D \varphi |_{(x, y)})\ d\vol_{n - 1}(x)\ dy
+	\]
+	ולכן מספיק שנראה ש־$V(D \varphi |_{(x, y)}) = {(\sin y)}^{n - 1}$.
+	נובע ישירות מחישוב.
+\end{proof}
+
+\subquestion{}
+נסמן $N = S^{n - 1} \times (0, \pi)$ ונגדיר $\varphi : N \to S^n$ כמקודם.
+נראה ש־$S^n \setminus \varphi(N)$ ממידה 0.
+\begin{proof}
+	נבחין ש־$\varphi(S^{n - 1} \times [0, \pi]) = S^n$ (אילו היינו מרחיבים את ההגדרה) וכן,
+	\[
+		L
+		= \varphi(S^{n - 1} \times \{0, \pi\})
+		= \varphi(S^{n - 1} \times \{ 0 \})
+		= \{ (x \sin 0, \cos 0) \mid x \in S^{n - 2} \}
+		= S^{n - 2} \times \{ 0 \}
+	\]
+	כלומר $S^n \setminus \varphi(N) = L$ עבור $L$ יריעה ממימד $n - 1$, ובפרט קבוצה ממידה 0.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $f : S^n \to \RR$ רציפה אז,
+\[
+	\int_{M_{a, b}} f(x)\ dx
+	= \int_{a}^{b} {(\sin y)}^{n - 1} \int_{S^{n - 1}} f(x \sin y, \cos y)\ d\vol_{n - 1}(x)\ dy
+\]
+\begin{proof}
+	מתקבל באופן זהה לחלוטין לסעיף ב'.
+\end{proof}
+
+\question[4]
+\subquestion{}
+תהי $M^k \subseteq \RR^n$ יריעה קומפקטית עם שפה.
+נניח ש־$x \in \RR^n \setminus M$ נקודה ו־$p \in M$ כך שמתקיים,
+\[
+	\lVert p - x \rVert
+	= \min_{q \in M} \lVert q - x \rVert
+\]
+נראה ש־$p - x$ היא אנכית ל־$T_p M$.
+\begin{proof}
+	אנו רוצים להראות שלכל $v \in T_p M$ מתקיים $\langle v, p - x \rangle = 0$.
+	באופן שקול נרצה להראות שלכל מסילה $\gamma : (-\delta, \delta) \to M$ כך ש־$\gamma(0) = p$ מתקיים $\langle \gamma'(0), v - x \rangle = 0$.
+	נניח שקיימת מסילה כזו כך שמתקבל ערך שונה מאפס.
+	אז מהגדרת מכפלה פנימית קיים $0 < \varepsilon < \delta$ (בלי הגבלת הכלליות) כך ש־$\langle \gamma(\varepsilon), v - x \rangle < \langle \gamma(0), v - x \rangle$, וזו סתירה להגדרת $\gamma(0) = p$.
+\end{proof}
+
+\subquestion{}
+נמצא דוגמה ליריעה עם שפה $M^k \subseteq \RR^n$ כך שהטענה שהוכחנו זה עתה לא חלה בה.
+\begin{solution}
+	נבחר את חצי הספירה $\HH^n \cap S^{n + 1}$ ואת הנקודה $x = (1, 0, \ldots, -\epsilon)$ נקודה קרובה מאוד לקוטב.
+	בבירור עבור המישור המשיק המורחב נקבל ש־$p - x$ נמצאת במישור המשיק, אבל אם נבחן את המישור המשיק עם התייחסות למשיק חד־צדדי בשפה נקבל שאכן יש אנכיות.
+\end{solution}
+
+\subquestion{}
+
+
+\end{document}
