@@ -1,0 +1,56 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 09 --- אנליזה פונקציונלית, 80417}
+
+\DeclareMathOperator\sgn{sgn}
+
+\begin{document}
+\maketitle
+\maketitleprint[teal]
+
+\question{}
+תהינה $f, g : \RR \to \RR$ אינטגרביליות רימן ומחזוריות, ונניח ש־$x_0 \in [-\pi, \pi]$.
+נניח גם ש־$f \equiv g$ בסביבה של $x_0$.
+נסמן $S_N^f, S_N^g$ סכום פורייה מסדר $N$ של $f, g$. \\
+נראה ש־$\lim_{N \to \infty} S_N^f(x_0) = L$ אם ורק אם $\lim_{N \to \infty} S_N^g(x_0) = L$.
+\begin{proof}
+	נניח ש־$\lim_{N \to \infty} S_N^f(x_0) = L$.
+	נבחין כי $h = f - g$ מקיימת $h \equiv 0$ בסביבת $x_0$.
+	בפרט הגבול שלה ב־$x_0$ הוא $0$ בלבד.
+	בנוסף,
+	\[
+		|h(x_0 + u) - h(x_0)|
+		= 0 \le u
+	\]
+	ונקבל שתנאי ליפשיץ חל, ובהתאם,
+	\[
+		\lim_{N \to \infty} S_N^{f - g}(x_0)
+		= h(x_0)
+		= 0
+	\]
+	אבל אנו יודעים כי $S_N^{f - g} = S_N^f - S_N^g$ מתכונות ולכן למעשה קיבלנו,
+	\[
+		\lim_{N \to \infty} S_N^f(x_0) - S_N^g(x_0)
+		= 0
+	\]
+	ולכן מההנחה נובע ש־$\lim_{N \to \infty} S_N^g(x_0) = L$ גם כן. \\
+	מטעמי סימטריה ההוכחה עבור הכיוון השני זהה.
+\end{proof}
+
+\question{}
+נוכיח שקיים קבוע $C > 0$ כך שלכל $N > 1$ מתקיים,
+\[
+	\int_{-\pi}^{\pi} | D_N(u) |\ du
+	\ge C \ln(N - 1)
+\]
+\begin{proof}
+	\begin{align*}
+		\int_{-\pi}^{\pi} | D_N(u) |\ du
+		& = \int_{-\pi}^{\pi} \left\lvert \frac{\sin((N + \frac{1}{2}) u)}{2 \sin \frac{u}{2}} \right\rvert\ du \\
+		& = \int_{0}^{\pi} \frac{|\sin((N + \frac{1}{2}) u)|}{2 \sin \frac{u}{2}}\ du - \int_{-\pi}^{0} \frac{|\sin((N + \frac{1}{2}) u)|}{2 \sin \frac{u}{2}}\ du \\
+		& = \int_{0}^{\pi} \frac{|\sin((N + \frac{1}{2}) u)|}{\sin \frac{u}{2}}\ du \\
+		& \le \int_{0}^{\pi} \frac{(N + \frac{1}{2}) u}{\sin \frac{u}{2}}\ du \\
+		& = (N + \frac{1}{2}) \int_{0}^{\pi} \frac{u}{\sin \frac{u}{2}}\ du \\
+	.\end{align*}
+\end{proof}
+
+\end{document}
