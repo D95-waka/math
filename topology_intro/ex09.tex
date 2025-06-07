@@ -1,0 +1,176 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 09 --- מבוא לטופולוגיה, 80516}
+% chktex-file 9
+% chktex-file 17
+
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.18}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\question{}
+יהי $Y$ מרחב טופולוגי.
+נראה ש־$Y$ קשיר מסילתית אם ורק אם לכל מרחב $X$ ולכל שתי פונקציות קבועות $f, g : X \to Y$ מתקיים $f \sim g$, כלומר הפונקציות הומוטופיות.
+\begin{proof}
+	נניח שהמרחב $Y$ קשיר מסילתית ונניח ש־$f, g$ פונקציות קבועות כלשהן.
+	נניח ש־$f = c_a, g = c_b$ עבור $a, b \in Y$, ולכן קיימת מסילה $\gamma : I \to Y$ רציפה כך ש־$\gamma(0) = a, \gamma(1) = b$ עבור $I = [0, 1]$.
+	נגדיר $h : I \times X \to Y$ על־ידי $h(t, x) = \gamma(t)$, ונבחין תחילה כי זו אכן פונקציה רציפה.
+	מתקיים גם $h(0) = c_a = f$ ו־$h(1) = c_b = g$ מהגדרה, ולכן זוהי הומוטופיה המעידה $f \sim g$.
+
+	נניח שכל שתי פונקציות קבועות כנתון הן הומוטופיות.
+	נניח ש־$a, b \in Y$ שתי נקודות כלשהן, אז קיימת $h : I \times X \to Y$ המעידה על הומוטופיה $c_a \sim c_b$.
+	נגדיר $\gamma : I \to Y$ על־ידי $\gamma(t) = h(t, x)$ עבור $x \in X$ קבוע כלשהו.
+	הפונקציה $\gamma$ רציפה, וכן $\gamma(0) = h(0, x) = c_a(x) = a$ ובאופן דומה $\gamma(1) = b$ ונסיק כי זוהי מסילה רציפה ולכן $a, b$ קשירות מסילתית לכל $a, b \in Y$.
+\end{proof}
+
+\question{}
+יהיו $f, g : S^n \to S^n$ פונקציות רציפות מספירת היחידה כך ש־$|f(x) - g(x)| < 2$ לכל $x \in S^n$. \\
+נראה ש־$f \sim g$.
+\begin{proof}
+	נבחין כי לכל $x \in S^n$ נתון ש־$f(x) \ne -g(x)$.
+	נגדיר $\gamma_0^x(t) = f(x) (1 - t) + g(x) t$, לכל $x$ קיימת מסילה יחידה כזאת.
+	נבחין כי $\gamma_0^x(t) \ne 0$ לכל $t \in I$, אחרת בהכרח נוכל לבדוק ולקבל $f(x) = -g(x)$ בסתירה לנתון.
+	נגדיר אם כך את המסילה $\gamma^x(t) = \frac{\gamma_0^x(t)}{\lVert \gamma_0^x(t) \rVert}$ ונקבל מסילה רציפה $\gamma^x : I \to S^n$ המעידה על קשירות מסילתית.
+	ישירות מהגדרת המסילה (והיותה קאנונית על $S^n$) נסיק שההעתקה $h : I \times S^n \to S^n$ המוגדרת על־ידי,
+	\[
+		h(t, x)
+		= \gamma^x(t)
+	\]
+	היא העתקה רציפה, וכן,
+	\[
+		h(0, x)
+		= \gamma^x(t)
+		= \frac{\gamma_0^x(0)}{\lVert \gamma_0^x(0) \rVert}
+		= \frac{f(x)}{\lVert f(x) \rVert}
+		= f(x)
+	\]
+	זאת שכן $f(x) \in S^1$ ובהכרח $\lVert f(x) \rVert = 1$ בהתאם.
+	נוכל להראות באופן זהה שגם $h(1, x) = g(x)$ לכל $x \in S^n$.
+\end{proof}
+
+\question{}
+יהיו $\beta_1, \beta_2, \gamma_1, \gamma_2 : I \to X$ מסילות רציפות במרחב הטופולוגי $X$. \\
+נראה שאם מתקיים $\beta_1 * \gamma_1 \sim_p \beta_2 * \gamma_2$ וגם $\gamma_1 \sim_p \gamma_2$ אז $\beta_1 \sim_p \beta_2$. \\
+$\sim_p$ משמעו הומוטופיה מסילתית.
+\begin{proof}
+	נניח ש־$h, k : I \times I \to X$ הומוטופיות המעידות על הנתון בהתאמה.
+	נבחר $k^{-1}$ המוגדרת על־ידי היפוך המסילות $\gamma_1, \gamma_2$, ונבחן את ההומוטופיה המסילתית $l = h * k^{-1}$ המעידה על $\beta_1 * \gamma_1 * \gamma_1^{-1} \sim_p \beta_2 * \gamma_2 * \gamma_2^{-1}$.
+	נקבל $l(0, t) = h(0, t) = \beta_1(t)$ ובאופן דומה גם $l(1, t) = \beta_2(t)$.
+	מתקיים גם,
+	\[
+		l(s, 0)
+		= (h * k^{-1})(s, 0)
+		= h(s, 0)
+		= \beta_1(0)
+	\]
+	ומהצד השני גם,
+	\[
+		l(s, 1)
+		= k^{-1}(s, 1)
+		= k(s, 0)
+		= \gamma_1(0)
+		= \beta_1(1)
+	\]
+	ונבחין כי $\beta_1(0) = \beta_2(0), \beta_1(1) = \beta_2(1)$ משוויונות אלה ומההומוטופיה.
+\end{proof}
+
+\question{}
+נסמן $E = \RR_{> 0} \times \RR$ ו־$B = \RR^2 \setminus \{ 0 \}$.
+נגדיר את ההעתקה $p : E \to B$ על־ידי,
+\[
+	p(r, \theta) = (r \cos \theta, r \sin \theta)
+\]
+
+\subquestion{}
+נוכיח ש־$p$ העתקת כיסוי.
+\begin{proof}
+	נבחין כי $p$ רציפה כרציפה קורדינטה קורדינטה. \\
+	תהי נקודה $(x, y) \in B$.
+	נגדיר $r = \sqrt{x^2 + y^2}$ וכן $\theta = \Arg (x, y)$ עבור $\Arg$ הענף הראשי של הארגומנט.
+	קיים $\delta > 0$ כך ש־$B((x, y), \delta) \subseteq B$ וכן $U_0 = \{ (\lVert (x', y') \rVert, \Arg(x', y')) \in E \mid (x', y') \in B((x, y), \delta) \}$ קבוצה פתוחה,
+	זאת שכן $p(U) = B((x, y), \delta)$ בדיוק.
+	נבחין כי גם $U_n = \{ (r, \theta + 2 \pi n) \mid (r, \theta) \in U_0 \}$ היא קבוצה פתוחה $U_n \subseteq E$ כך ש־$p(U_n) = B((x, y), \delta)$.
+	ישירות מהגדרת $e^{it}$ נסיק כי גם,
+	\[
+		p^{-1}(B((x, y), \delta))
+		= \bigcup_{n \in \ZZ} U_z
+	\]
+	וקיבלנו כי $p$ היא אכן העתקת כיסוי.
+\end{proof}
+
+\subquestion{}
+בכל תת־סעיף נשרטט מסילה מוגדרת ב־$B$ ואת אחת ההרמות שלה ל־$E$.
+
+\subsubsection{i}
+\[
+	f : I \to B,
+	\quad
+	f(t) = (0, 2 - t)
+.\]
+\begin{solution}
+	נצייר את $f(B) \subseteq B$,
+	\begin{otherlanguage}{english}
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[ymin=-1,ymax=3,xmin=-1,xmax=1,samples=300]
+					\addplot[domain=0:1,blue] (0,{2 - x});
+					\addplot[mark=*,mark=o] coordinates {(0,0)};
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{otherlanguage}
+	ונעבור להרמה של $f$ כך ש־$\tilde{f}(0) = (2, \frac{\pi}{2})$.
+	מתקיים $p(\tilde{f}(0)) = (0, 2)$ כפי שרצינו ונבחין כי,
+	\[
+		\tilde{f}(t)
+		= (2 - t, \frac{\pi}{2})
+	\]
+	מחישוב ישיר של ההפיכה ל־$p$.
+	נעבור לשרטוט.
+	\begin{otherlanguage}{english}
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[ymin=0,ymax=3,xmin=-pi,xmax=pi,samples=300]
+				\addplot[domain=0:1,red] ({2 - x}, {pi/2});
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{otherlanguage}
+\end{solution}
+
+\subsection{ii}
+נגדיר,
+\[
+	g : I \to B,
+	\quad
+	g(t)
+	= ((1 + t) \cos(2 \pi t), (1 + t) \sin(2 \pi t))
+	= p(1 + t, 2 \pi t)
+\]
+\begin{solution}
+	נשרטט את $g(I) \subseteq B$,
+	\begin{otherlanguage}{english}
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[ymin=-3,ymax=3,xmin=-3,xmax=3,samples=300,trig format plots=rad,unit vector ratio=1 1]
+					\addplot[domain=0:1,blue] ({(1 + x) * cos(2 * pi * x)},{(1 + x) * sin(2 * pi * x)});
+					\addplot[mark=*,mark=o] coordinates {(0,0)};
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{otherlanguage}
+	המסילה מוגדרת באופן ישיר על־ידי המסילה $\tilde{g}(t) = (1 + t, 2 \pi + 2 \pi t)$ ולכן נבחר הרמה זו,
+	\begin{otherlanguage}{english}
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[samples=300,trig format plots=rad,unit vector ratio=1 1]
+					\addplot[domain=0:1,red] ({1 + x},{2 * pi * (1 + x)});
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{otherlanguage}
+\end{solution}
+
+\end{document}
