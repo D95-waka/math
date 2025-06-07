@@ -137,6 +137,83 @@
 \end{solution}
 
 \subquestion{}
+במטלה קודמת ראינו כי אם $M = \partial U$ יריעה חלקה המהווה שפה עבור קבוצה פתוחה, קיים $\varepsilon > 0$ כך ש־$\varphi(t, p) = t \nu(p) + p$ דיפאומורפיזם. \\
+עתה נראה כי לכל $0 < \delta < \varepsilon$ מתקיים,
+\[
+	\varphi([-\delta, 0] \times M)
+	= \{ x \in \overline{U} \mid \operatorname{dist}(x, M) \le \delta \}
+\]
+\begin{proof}
+	יהי $0 < \delta < \varepsilon$, ותהי $p \in M$, כלומר $p \in \partial U$ ובפרט $p \in \overline{U}$.
+	אז נובע ישירות ש־$p \in \varphi([-\delta, 0] \times M)$, ועתה נגדיר,
+	\[
+		x = \varphi(-\delta, p) = p - \delta \nu(p)
+	\]
+	אז מתקיים מהגדרת המרחק,
+	\[
+		\operatorname{dist}(x, M)
+		\le \operatorname{dist}(x, p)
+		= \langle x, p \rangle
+		= \lVert \delta \nu(p) \rVert
+		= \delta \cdot 1
+	\]
+	ולכן בפרט $x \in \varphi([-\delta, 0] \times M)$ וסיימנו על־ידי בחירת $\delta' < \delta$.
+\end{proof}
 
+\subquestion{}
+נארה ש־$V(D \varphi |_{(0, x)}) = 1$ לכל $x \in M$.
+\begin{proof}
+	נניח בלי הגבלת הכלליות שאנו עובדים בבסיס כך שרק המימדים הראשונים תלויים במישור המשיק של $M$ ב־$x$.
+	במקרה זה,
+	\[
+		D \varphi |_{(t, x)}
+		I_n + \begin{pmatrix}
+			t I_k &  \\
+			 & 0
+		\end{pmatrix} 
+	\]
+	ולכן בפרט $D \varphi |_{(0, x)} = I_n$ לכל $x$, ומפה הטענה נובעת ישירות.
+\end{proof}
+
+\subquestion{}
+נסיק שמתקיים,
+\[
+	\vol_{n - 1}(M)
+	= \lim_{\delta \to 0} \frac{1}{\delta} \vol_n(N_{\delta})
+	= - \frac{d}{d \delta} |_{\delta = 0} \vol_n(N_{\delta})
+\]
+\begin{proof}
+	
+	\[
+		\vol_{n - 1}(M)
+		= \sum_{i = 1}^N \int_{U_i} \varphi_i(\alpha_i(x)) \cdot 1 \cdot D(V 1)\ dx
+		= \sum_{i = 1}^N \int_{U_i} \varphi_i(\alpha_i(x))\ dx
+	\]
+	מהצד השני,
+	\[
+		\frac{1}{\delta} \vol_n(N_{\delta})
+		= \sum_{i = 1}^N \int_{U_i} \varphi_i(\varphi([-\delta, 0] \times \alpha_i(x)))\ dx 
+		= \sum_{i = 1}^N \int_{U_i} \delta \varphi_i(\alpha_i(x))\ dx 
+	\]
+	מפוביני ולכן,
+	\[
+		\lim_{\delta \to 0} \frac{1}{\delta} \vol_n(N_{\delta})
+		= \sum_{i = 1}^N \int_{U_i} \varphi_i(\alpha_i(x))\ dx
+	\]
+	וזאת הנגזרת ישירות מההגדרה.
+\end{proof}
+
+\subquestion{}
+נראה שהטענה שמצאנו זה עתה מתקיימת עבור מעגלים וספירות.
+\begin{solution}
+	עבור מעגל $s = 2 \pi$ מצד אחד, ומהצד השני,
+	\[
+		- \frac{d}{d \delta} |_{\delta = 0} \vol_n(N_{\delta})
+		= - \frac{d}{d \delta} |_{\delta = 0} (\pi - \pi \delta^2)
+		= 2 \pi \delta |_{\delta = 0}
+		= 2 \pi
+	\]
+	והחישוב לספירה דומה.
+\end{solution}
 
 \end{document}
