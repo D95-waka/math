@@ -48,9 +48,95 @@
 		& = \int_{-\pi}^{\pi} \left\lvert \frac{\sin((N + \frac{1}{2}) u)}{2 \sin \frac{u}{2}} \right\rvert\ du \\
 		& = \int_{0}^{\pi} \frac{|\sin((N + \frac{1}{2}) u)|}{2 \sin \frac{u}{2}}\ du - \int_{-\pi}^{0} \frac{|\sin((N + \frac{1}{2}) u)|}{2 \sin \frac{u}{2}}\ du \\
 		& = \int_{0}^{\pi} \frac{|\sin((N + \frac{1}{2}) u)|}{\sin \frac{u}{2}}\ du \\
-		& \le \int_{0}^{\pi} \frac{(N + \frac{1}{2}) u}{\sin \frac{u}{2}}\ du \\
-		& = (N + \frac{1}{2}) \int_{0}^{\pi} \frac{u}{\sin \frac{u}{2}}\ du \\
-	.\end{align*}
+		& \ge \int_{0}^{\pi} \frac{|\sin((N + \frac{1}{2}) u)|}{\frac{u}{2}}\ du \\
+		& \ge \int_{0}^{\frac{\pi}{N + \frac{1}{2}}} \frac{1}{\frac{u}{2}}\ du \\
+		& \ge 2 \ln(N + 1)
+	\end{align*}
+\end{proof}
+
+\question{}
+\subquestion{}
+נראה ש־$A = \Sp {\{ e^{in x} \}}_{n \in \ZZ}$ היא אלגברה ב־$C([-\pi, \pi], \CC)$ שלא מתאפסת באף נקודה ומפרידה נקודות, ואף סגורה להצמדה. \\
+נסיק ש־$A$ צפופה ב־$\tilde{C}([-\pi, \pi], \CC)$ בנורמה $\lVert \cdot \rVert_\infty$.
+\begin{proof}
+	תחילה נראה ש־$A$ אלגברה.
+	עבור חיבור הטענה טריוויאלית, עבור כפל,
+	\[
+		e^{i n x} \cdot e^{i m x}
+		= e^{i (n + m) x}
+	\]
+	והטענה נובעת גם, ועבור סגירות לכפל בסקלר נובע מהגדרת $\Sp$.
+
+	נראה ש־$A$ לא מתאפסת.
+	נבחר $f(x) = 1$ על־ידי שימוש ב־$n = 0$.
+
+	נראה ש־$A$ מפרידה נקודות.
+	מספיק שנבחר $f(x) = e^{i x}$ ונקבל שמלבד $\pm \pi$ הפונקציה היא חד־חד ערכית ועל.
+
+	מתקיים גם,
+	\[
+		\overline{e^{i n x}}
+		= \cos(n x) - i \sin(n x)
+		= \cos(- n x) + i \sin (- n x)
+		= e^{-i n x}
+	\]
+	ולכן $A$ סגורה גם להצמדה.
+
+	כל תנאי משפט סטון־ויירשטראס המרוכב חלים ולכן $A$ צפופה.
+\end{proof}
+
+\subquestion{}
+נסיק שהקבוצה $A$ היא מערכת אורתוגונלית שלמה ב־$\tilde{C}([-\pi, \pi], \CC)$ יחד עם המכפלה הפנימית,
+\[
+	\langle f, g \rangle
+	= \int_{-\pi}^{\pi} \overline{f}(x) g(x)\ dx 
+\]
+\begin{proof}
+	לכל $n \ne m$,
+	\[
+		\langle e^{i n x}, e^{i m x} \rangle
+		= \int_{-\pi}^{\pi} e^{-i n x} e^{i m x}\ dx
+		= \int_{-\pi}^{\pi} e^{i (m - n) x}
+		= 0
+	\]
+	ממשפט קושי למסילות סגורות ורציפות במישור המרוכב נסיק ישירות את הערך הסופי $0$.
+	אם כך הסדרה היוצרת את $A$ היא מערכת אורתוגונלית ומאופטימליות טורי פורייה ותנאים שקולים למערכות שלמות נקבל ש־$A$ מערכת שלמה.
+\end{proof}
+
+\subquestion{}
+עבור $f \in C([-\pi, \pi], \CC)$ נגדיר לכל $n \in \ZZ$ את מקדם פורייה ביחס למערכת המגדירה את $A$ על־ידי,
+\[
+	c_n
+	= \frac{1}{2 \pi} \int_{-\pi}^{\pi} f(x) e^{-i n x}\ dx
+\]
+נסיק שאם $f$ ממשית אז מתקיים,
+\[
+	\frac{a_0}{2} = c_0,
+	\quad
+	\forall n > 0,\ a_n = c_n + c_{-n},
+	\quad
+	\forall n > 0,\ b_n = i(c_n - c_{-n})
+\]
+\begin{proof}
+	ישירות מהגדרה נקבל,
+	\begin{align*}
+		a_n
+		& = \frac{1}{2 \pi} \int_{-\pi}^{\pi} 2 f(x) \cos(nx)\ dx \\
+		& = \frac{1}{2 \pi} \int_{-\pi}^{\pi} f(x) \cos(nx) + i f(x) \sin(nx) - i f(x) \sin(nx) + f(x) \cos(nx)\ dx \\
+		& = \frac{1}{2 \pi} \int_{-\pi}^{\pi} f(x) \cos(nx) + i f(x) \sin(nx) + i f(x) \sin(-nx) + f(x) \cos(-nx)\ dx \\
+		& = c_n + c_{-n}
+	\end{align*}
+	ישירות מהגדרה.
+	נבחין כי נובע ישירות גם $\frac{a_0}{2} = c_0$ משוויון זה.
+	עבור המקרה של $b_n$,
+	\begin{align*}
+		b_n
+		& = \frac{1}{2 \pi} \int_{-\pi}^{\pi} 2 f(x) \sin(nx)\ dx \\
+		& = \frac{1}{2 \pi} i \int_{-\pi}^{\pi} i 2 f(x) \sin(-nx) + f(x) \cos(nx) - f(x) \cos(nx)\ dx \\
+		& = \frac{1}{2 \pi} i \int_{-\pi}^{\pi} i f(x) \sin(nx) + f(x) \cos(nx) - i f(x) \sin(-nx) - f(x) \cos(-nx)\ dx \\
+		& = i(c_n - c_{-n})
+	\end{align*}
+	וקיבלנו כי השוויון נכון.
 \end{proof}
 
 \end{document}
