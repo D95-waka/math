@@ -1,0 +1,214 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 09 --- מבנים אלגבריים (2), 80446}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+תהי $L / K$ הרחבה סופית.
+לכל $\alpha \in L$ נגדיר את הפונקציה $M_{\alpha} : L \to L$ על־ידי,
+\[
+	M_{\alpha}(x) = \alpha \cdot x
+\]
+בתרגול הגדרנו את הפונקציה $\tr_{L / K} : L \to K$ על־ידי,
+\[
+	\tr_{L / K}(\alpha)
+	= \tr(M_{\alpha})
+\]
+ובאופן דומה את $N_{L / K} : L \to K$ על־ידי $N_{L / K}(\alpha) = \det(M_{\alpha})$.
+
+יהי $\alpha \in L$ עם הפולינום המינימלי $f(x) = x^d + c_1 x^{d - 1} + \cdots + c_d$. \\
+נראה בסעיפים הבאים כי,
+\[
+	\tr_{L / K}(\alpha)
+	= \frac{[L : K]}{d},
+	\qquad
+	N_{L / K}(\alpha)
+	= c_d^{[L : K] / d}
+\]
+
+\subquestion{}
+נגדיר את הבסיס,
+\[
+	C
+	= (1, x, \ldots, x^{d - 1})
+\]
+בסיס ל־$K(\alpha) / K$.
+
+אם $B = (b_1, \ldots, b_t)$ בסיס ל־$L / K(\alpha)$ אז גם,
+\[
+	D
+	= {( x^i \cdot b_j )}_{0 \le i < d, 1 \le j \le t}
+\]
+בסיס ל־$L / K$.
+
+\subquestion{}
+תהי $T : K(\alpha) \to K(\alpha)$ העתקה לינארית של כפל ב־$\alpha$. \\
+נראה שמתקיים,
+\[
+	{[T]}_C
+	= \begin{pmatrix}
+		0 & \cdots & 0 & -c_d \\
+		1 & 0 & \cdots & -c_{d - 1} \\
+		  & \ddots & \ddots & \vdots \\
+		0 & \cdots & 1 & -c_1
+	\end{pmatrix}
+\]
+\begin{proof}
+	נבחין כי $\alpha = x$ כווקטור מעל המרחב $K(\alpha)$.
+	עבור $n < d$ מתקיים,
+	\[
+		T(c_n)
+		= T x^n
+		= \alpha x^n
+		= x \cdot x^n
+		= x^{n + 1}
+	\]
+	ונבחין במקרה המיוחד $n = d - 1$,
+	\[
+		x^d
+		= -(c_1 x^{d - 1} + \cdots + c_d)
+	\]
+	ישירות מהגדרת השדה, נכתוב את המטריצה על־פי ערכי הווקטורים שמצאנו ונקבל,
+	\[
+		{[T]}_C
+		= \begin{pmatrix}
+			0 & \cdots & 0 & -c_d \\
+			1 & 0 & \cdots & -c_{d - 1} \\
+			  & \ddots & \ddots & \vdots \\
+			0 & \cdots & 1 & -c_1
+		\end{pmatrix} 
+	\]
+	בדיוק כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נראה שעבור הבסיס $D$ מתקיים,
+\[
+	{[ M_{\alpha} ]}_D
+	= \diag({[T]}_C, \ldots, {[T]}_C)
+\]
+ונסיק את הטענה.
+\begin{proof}
+	יהי $0 \le i < d$ ו־$1 \le j \le t$, אז,
+	\[
+		M_{\alpha} x^i b_j
+		= \alpha \cdot x^i \cdot b_j
+		= x^{i + 1} b_j
+	\]
+	ויחד עם הסעיף הקודם נקבל ישירות את המסקנה המבוקשת.
+
+	עתה נוכל לחשב ישירות ונקבל,
+	\[
+		\tr_{L / K}(\alpha)
+		= [L : K(\alpha)] \cdot (-c_1)
+		= - \frac{[L : K]}{d} c_1
+	\]
+	ובאופן דומה מחוקי דטרמיננטות,
+	\[
+		N_{L / K}(\alpha)
+		= {(\det {[T]}_C)}^{[L : K] / d}
+		= -c_d^{[L : K] / d}
+	\]
+\end{proof}
+
+\subquestion{}
+נסיק שאם $\alpha_1, \ldots, \alpha_d$ הם הצמודים של $\alpha$ ב־$\overline{K}$ אז,
+\[
+	\tr_{L / K}(\alpha) = \frac{[L : K]}{d} \sum_{i = 1}^d \alpha_i
+\]
+וכן,
+\[
+	N_{N / K}(\alpha)
+	= {\left(\prod_{i = 1}^d \alpha_i\right)}^{[L : K] / d}
+\]
+\begin{proof}
+	מתקיים,
+	\[
+		f(x) = \prod_{i = 1}^d (x - \alpha_i)
+	\]
+	ולכן,
+	\[
+		c_1
+		= \sum_{i = 1}^d \alpha_i
+	\]
+	מחישוב שנעשה במטלות קודמות, נסיק את החלק של הטענה ישירות ממסקנת הסעיף הקודם.
+
+	מאותה שאלה ממטלות קודמות גם,
+	\[
+		c_d
+		= \prod_{i = 1}^d \alpha_i
+	\]
+	והחלק השני של הטענה נובע.
+\end{proof}
+
+\question{}
+יהי $F$ שדה ונניח ש־$L = F(t_1, \ldots, t_n)$ עם הפעולה של $S_n$ המוגדרת על־ידי,
+\[
+	\sigma \cdot P
+	= P(t_{\sigma(1)}, \ldots, t_{\sigma(n)})
+\]
+נסמן ב־$s_1, \ldots, s_n$ את הפולינומים הסימטריים האלמנטריים ב־$t_1, \ldots, t_n$,
+כלומר הפולינומים המקיימים,
+\[
+	\prod_{i = 1}^n (x - t_i)
+	= x^n - s_1 x^{n - 1} + \cdots + {(-1)}^n s_n
+\]
+בכל סעיף נגדיר איבר $P \in L^{S_n}$ ונבטא אותו באמצעות הפולינומים הסימטריים האלמנטריים.
+
+\subquestion{}
+נגדיר $P = t_1^3 + \cdots + t_n^3$.
+\begin{solution}
+	נסמן,
+	\[
+		Q = \sum_{\substack{1 \le i, j \le n \\ i \ne j}} t_i^2 t_j
+	\]
+	מחישוב ישיר מתקיים,
+	\[
+		s_1^3
+		= P + s_3 + Q
+		\iff P = s_1^3 - s_3 - Q
+	\]
+	ונבחין כי גם מתקיים,
+	\[
+		s_1 s_2
+		= s_3 + Q
+	\]
+	ולכן,
+	\[
+		Q = s_1 s_2 - s_3
+	\]
+	ובהתאם גם,
+	\[
+		P
+		= s_1^3 - s_1 s_2
+	\]
+\end{solution}
+
+\subquestion{}
+נגדיר את הפולינום,
+\[
+	P
+	= \sum_{\substack{1 \le i, j \le n \\ i \ne j}} t_i^2 t_j
+\]
+\begin{solution}
+	בהתאם לסעיף הקודם,
+	\[
+		P = s_1 s_2 - s_3
+	\]
+\end{solution}
+
+\subquestion{}
+עבור $n = 3$ נגדיר,
+\[
+	P = {((t_1 - t_2) (t_1 - t_3) (t_2 - t_3))}^2
+\]
+\begin{solution}
+	\[
+		4 s_3
+		+ (t_1^2 t_2 - t_1^2 t_3 - t_2^2 t_1 + t_2^2 t_3 + t_3^2 t_1 - t_3^2 t_2)
+	.\]
+\end{solution}
+
+\end{document}
