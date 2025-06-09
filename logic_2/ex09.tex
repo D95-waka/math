@@ -65,21 +65,29 @@ We will show that $T$ is not recursively-enumerable.
 \subquestion{}
 We will show that $T^C = \NN \setminus T$ is not recursively-enumerable.
 \begin{proof}
-	$f : H^C \to T^C$ recursive and $f^{-1}(T^C) = H^C$ is recursively-enumerable by the contradiction assumption.
-	We want to show that $f(e) \in T^C$ for any $e \in H^C$.
-
-	Any $e \in H^C$ represents recursive function such that it is not defined in $0$, in particular it is not total (as $0$ witnessing that).
-	We conclude that $e \in T^C$, and that $H^C \subseteq T^C$.
-	We assume in contradiction that $T^C$ is recursively-enumerable, then there is recursive and total $f : \NN \to \NN$ such that $T^C = \{ f(n) \mid n \in \NN \}$.
-	We define $f : \NN \to \NN$ by,
+	We will find a function that maps the code of a recursive function to the code of a constant function to return the value at zero of the initial function.
+	In other words, we want a function $g$ such that,
 	\[
-		f(x)
-		= \begin{cases}
-			x & x \in H^C \\
-			\# c_{U(x, 0)} & x \in H
-		\end{cases}
-	.\]
-	TODO
+		U(g(e), x)
+		= U(e, 0)
+	\]
+	Let us define,
+	\[
+		F(e, x)
+		= U(e, 0)
+	\]
+	By the fixed point theorem there exists $g$ recursive such that,
+	\[
+		U(g(e), x)
+		= F(e, x)
+		= U(e, 0)
+	\]
+	Then $g$ is exactly the function we wanted.
+
+	For any $e \in H$ we get some total recursive function code, and in particular $g(e) \in T$.
+	For $e \notin H \iff e \in H^C$ it follows that $g(e)$ is not defined for any $x \in \NN$, in particular $g(e) \in T^C$.
+	We conclude that $g^{-1}(T^C) = H^C$, if we assume in contradiction that $T^C$ is recursively-enumerable then by the pre-image theorem it follows that $H^C$ is recursively-enumerable,
+	a contradiction to the previous parts conclusion.
 \end{proof}
 
 \question{}
