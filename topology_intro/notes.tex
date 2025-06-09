@@ -2086,6 +2086,7 @@ $X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מ
 
 \section{שיעור 18 --- 3.6.2025}
 
+\subsection{הרמות}
 דיברנו עד כה על החבורה היסודית של מרחב טופולוגי קשיר מסילתית.
 לאחר מכן דיברנו על מרחבי כיסוי.
 ראינו כי אם $p : E \to B$ העתקת כיסוי, וכן $f : [0, 1] \to B$ מסילה כך ש־$b_0 \in B$ ו־$f(0) = b_0$, ו־$e_0 \in p^{-1}(b_0)$,
@@ -2119,6 +2120,161 @@ $X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מ
 		\tilde{F} |_{I \times \{ 1 \}} = \tilde{g}
 	\]
 	ו־$\tilde{F}$ היא הומוטופיה בין $\tilde{f}$ ל־$\tilde{g}$ ולכן בפרט $\tilde{f}(1) = \tilde{g}(1)$.
+\end{proof}
+
+\section{שיעור 19 --- 9.6.2025}
+
+\subsection{בין מרחבי כיסוי להומוטופיה}
+נמשיך ישירות מתוצאות השיעור הקודם ונבחין במספר מסקנות.
+\begin{conclusion}
+	אם $p : E \to B$ העתקת כיסוי,
+	אז לכל זוג מסילות $\alpha, \beta \in \Omega(B, b, c)$, אם הן הומוטופיות אז,
+	לכל זוג הרמות $\tilde{\alpha}, \tilde{\beta}$ ל־$E$ כך ש־$\tilde{\alpha}(0) = \tilde{\beta}(0)$ מתקיים גם $\tilde{\alpha}(1) = \tilde{\beta}(1)$. \\
+	בפרט מתקבלת ההעתקה $\Phi : \pi_1(B, b_0) \to p^{-1}(\{ b_0 \}) = p^{-1}(b_0)$.
+\end{conclusion}
+בתרגול ראינו כי אם $E$ פשוט־קשר אז,
+\[
+	\Phi : \pi_1(B, b_0) \to p^{-1}(b_0)
+\]
+היא חד־חד ערכית ועל.
+השתמשנו בזה כדי להוכיח ש־$\pi_1(\RR P^n) \simeq \ZZ / n\ZZ$ עבור $n \ge 2$.
+עתה נסתכל על $\RR P^3$.
+נגדיר את $SO(3) = \{ A \in M_3(\RR) \mid \det(A) = 1, A^T A = I \}$.
+חבורת הסיבובים של $\RR^3$.
+אנו טוענים כי $\RR P^3 \simeq SO(3)$.
+\begin{theorem}
+	נניח ש־$p : (E, e_0) \to (B, b_0)$ העתקת כיסוי, נניח ש־$E$ קשיר מסילתית,
+	ונסמן,
+	\[
+		G = \pi_1(B, b_0),
+		\quad
+		H = p_*(\pi_1(E, e_0))
+	\]
+	כאשר $H \le G$ ו־$p_*([\gamma]) = [ p \circ \gamma ]$.
+	אז במקרה זה מתקיים,
+	\begin{enumerate}
+		\item $p_* : \pi_1(E, e_0) \to p_1(BB, b_0)$ היא חד־חד ערכית
+		\item יש התאמה חד־חד ערכית ועל בין $p^{-1}(b_0)$ לבין $H \backslash G = \{ H g \mid g \in G \}$.
+		\item למסילה סגורה $f \in \Omega(B, b_0)$ מגדירה איבר $[f] \in H$ אם ורק אם ההרמה $\tilde{f} : [0, 1] \to E$ כך ש־$\tilde{f}(0) = e_0$ מסתיימת ב־$e_0$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\textbf{1.}
+	$p_*$ הוא הומומורפיזם של חבורות ולכן כדי להוכיח ש־$p_*$ חד־חד ערכית די להראות ש־$\ker p_*$ טריוויאלי.
+	נניח ש־$\tilde{\gamma} \in \Omega(E, e_0)$ כך שמתקיים,
+	\[
+		p_*([\tilde{\gamma}])
+		= 1 \in \pi_1(B, b_0)
+	\]
+	לכן $[p \circ \tilde{\gamma}] = 1$.
+	המסילה $\gamma = p \circ \tilde{\gamma}$ הומוטופית למסילה הקבועה $t \mapsto b_0$.
+	נרים את ההומוטופיה להומוטופיה ב־$E$ מהמסילה $t \mapsto e_0$ למסילה $\tilde{\gamma}$ וסיימנו.
+
+	נתבונן בשני איברים,
+	\[
+		[f], [g] \in \pi_1(B, b_0)
+	\]
+	אנו רוצים להראות כי,
+	\[
+		H[f] = H[g]
+		\iff \Phi([f]) = \Phi([g])
+	\]
+	נסמן את ההרמות $\tilde{f}, \tilde{g}$ כך ש־$\tilde{f}(0) = \tilde{g}(0) = e_0$ ולכן,
+	\[
+		H[f] = H[g]
+		\iff \tilde{f}(1) = \tilde{g}(1)
+	\]
+	נניח ש־$[f] \in H [g]$, אז,
+	\[
+		f \sim h * g
+	\]
+	עבור $[h] \in H$,
+	כלומר קיימת מסילה סגורה $\tilde{h} \in \Omega(E, e_0)$ כך ש־$h = p \circ \tilde{h}$.
+	נובע ש־$\tilde{f}(1) = \tilde{g}(1)$. \\
+	בכיוון השני נניח ש־$\tilde{f}(1) = \tilde{g}(1)$.
+	נסמן $\tilde{h} = \tilde{f} * \tilde{g}$ עבור $p \circ \tilde{h} = h$ כאשר $[h] \in H$.
+	אז,
+	\[
+		\tilde{h} * \tilde{g}
+		= \tilde{f} * \overline{\tilde{g}} * \tilde{g} \sim \tilde{f}
+		\implies [h] [g] = [f],
+		[f] \in H [g]
+	\]
+	אז $[\tilde{f}] \in H[\tilde{g}]$.
+\end{proof}
+\begin{theorem}
+	$\pi_1(S^1, 1) \simeq \ZZ$.
+\end{theorem}
+\begin{proof}
+	ראינו כבר שמ־$p : \RR \to S^1$ המוגדרת על־ידי $p(t) = e^{2 \pi i t}$ היא העתקת כיסוי.
+	בנוסף $\RR$ פשוט קשר, ולכן נובע שיש העתקה חד־חד ערכית ועל בין $\pi_1(S^1, 1)$ ל־$p^{-1}(1) = \ZZ$. \\
+	נניח ש־$[f], [g] \in \pi_1(S^1, 1)$.
+	אז,
+	\[
+		\Phi([f]) = n,
+		\quad
+		\Phi([g]) = m
+	.\]
+	כאשר $\tilde{f} : [0, 1] \to \RR$ הרמה של $f$ כך ש־$\tilde{f}(0) = 0$ ובאופן דומה $\tilde{g}$ הרמה של $g$.
+	אז $\tilde{f}(1) = n, \tilde{g}(1) = m$.
+	נתבונן ב־$[f * g] = [f] * [g]$.
+	אם $l = f * g$ אז נבחן את $\tilde{l}$ כך ש־$\tilde{l}(0) = 0$ ונחשב את $\tilde{l}(1)$. \\
+	נגדיר,
+	\[
+		T_n(\tilde{g}) : [0, 1] \to \RR,
+		\qquad
+		T_n(\tilde{g})(t) = \tilde{g}(t) + n
+	\]
+	אז $T_n(\tilde{g})$ הרמה של $g$ ל־$\RR$ כך ש־$T_n(\tilde{g})(0) = n$ ו־$\tilde{g}(0) + n = 0 + n = n$.
+	נוכל לבנות את השרשור $\tilde{f} * T_n(\tilde{g})$ וקל לראות שזו הרמה ל־$\RR$ המתיחה ב־$0$ על המסילה $l$.
+	לכן,
+	\[
+		\Phi([f] [g])
+		= \Phi([f * g])
+		= (\tilde{f} * T_n(\tilde{g}))(1)
+		= m + n
+	\]
+\end{proof}
+\begin{definition}[רטרקציה]
+	יהי $X$ מרחב טופולוגי ו־$Y \subseteq X$ תת־מרחב.
+	\textbf{רטרקציה} מ־$X$ ל־$Y$ היא העתקה רציפה $\rho : X \to Y$ כך ש־$\rho |_Y = \id_Y$.
+\end{definition}
+\begin{proposition}
+	אם יש רטרקציה מ־$X$ ל־$Y$ אז העתקת השיכון $\iota_Y : Y \to X$ משרה הומומורפיזם חד־חד ערכי,
+	\[
+		\iota_{Y_*} : \pi_1(Y, y_0) \to \pi_1(X, y_0)
+	\]
+\end{proposition}
+\begin{proof}
+	נניח ש־$U, V, W$ מרחבים טופולוגיים וכן ש־$f, g$ העתקות רציפות $U \to V \to W$.
+	\[
+		f_* : \pi_1(U, u_0) \to \pi_1(V, v_0),
+		\qquad
+		g_* : \pi_1(V, v_0) \to \pi_1(W, w_0)
+	\]
+	אז $g \circ f : U \to W$ ומתקיים,
+	\[
+		{(g \circ f)}_* : \pi(U, u_0) \to \pi_1(W, w_0)
+	\]
+	כך ש־${(g \circ f)}_* = g_* \circ f_*$.
+
+	יש $\rho : X \to Y$ ו־$\iota_Y : Y \hookrightarrow X$ אז $Y \to X \to Y$ ונקבל,
+	\[
+		\id_{\pi_1(Y, y_0)}
+		= {(\rho \circ \iota_Y)}_*
+		= {(\rho \circ \iota_Y)}_*
+		= \rho_* \circ {(\iota_Y)}_*
+	\]
+\end{proof}
+\begin{conclusion}[משפט נקודת השבת של בראואר]
+	לכל העתקה רציפה $f : D \to D$ עבור $D = \overline{B}(0, 1) \subseteq \RR^2$ יש נקודת שבת.
+\end{conclusion}
+\begin{proof}
+	$S^1 \hookrightarrow D$ וכן $\ZZ = \pi_1(S^1, 1)$, אבל גם $\pi_1(D, 1) = 1$ טריוויאלית.
+	אין שיכון של $\ZZ$ בחבורה הטריוויאלית ולכן אין רטרקציה מעיגול הסגור לשפה שלו.
+
+	נניח ש־$f : D \to D$ העתקה שאין לה נקודות שבת ונבנה רטרקציה.
+	לכל $x \in D$ נגדיר $\rho(x)$ להיות נקודת החיתוך של קרן מ־$f(x)$ ל־$x$, כלומר ש־$f(x) + t(x - f(x)) = 0$ עבור $t > 0$.
 \end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
