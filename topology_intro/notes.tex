@@ -2277,6 +2277,98 @@ $X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מ
 	לכל $x \in D$ נגדיר $\rho(x)$ להיות נקודת החיתוך של קרן מ־$f(x)$ ל־$x$, כלומר ש־$f(x) + t(x - f(x)) = 0$ עבור $t > 0$.
 \end{proof}
 
+\section{שיעור 20 --- 10.6.2025}
+ננסח שוב את המשפט שראינו אתמול,
+\begin{theorem*}
+	נניח ש־$p : (E, e_0) \to (B, b_0)$ העתקת כיסוי,
+	אז,
+	\begin{enumerate}
+		\item $p_* : \pi_1(E, e_0) \to \pi_1(B, b_0)$ שיכון
+		\item ההעתקה $\Phi : \pi_1(B, b_0) \to p^{-1}(b_0)$ משרה העתקה חד־חד ערכית,
+			\[
+				\overline{\Phi} : p_*(\pi_1(E, e_0)) \backslash \pi_1(B, b_0) \to p^{-1}(b_0) 
+			\]
+		\item אם $E$ קשיר מסילתית אז $\Phi$ היא על
+	\end{enumerate}
+\end{theorem*}
+\begin{remark}
+	נניח ש־$X$ מרחב טופולוגי ו־$Y \subseteq X$ תת־מרחב.
+	נסג עיוות מ־$X$ ל־$Y$ הוא העתקה $D : I \times X \to Y$ כך שמתקיים,
+	\[
+		\forall x \in X,\ 
+		D(1, x) \in Y,
+		\quad
+		D(0, x) = x,
+		\quad
+		\forall y \in Y,\ D(s, y) = y
+	\]
+	בפרט $\rho : X \to Y$ המוגדרת על־ידי $\rho(x) = D(1, x)$ היא רטרקציה.
+	לכן העתקת השיכון $\iota_Y : Y \hookrightarrow X$ משרה הומומורפיזם חד־חד ערכי,
+	\[
+		\iota_{Y *} : \pi_1(Y, y_0) \to \pi_1(X, x_0)
+	\]
+\end{remark}
+\begin{lemma}
+	אם $f, g : (X, x_0) \to (Y, y_0)$ העתקות רציפות,
+	ויש הומוטופיה ביניהן,
+	\[
+		H : I \times X \to Y
+	\]
+	רציפה,
+	אז מתקיים $f_* = g_*$, כאשר,
+	\[
+		f_*, g_* : \pi_1(X, x_0) \to \pi_1(Y, y_0)
+	\]
+\end{lemma}
+\begin{theorem}
+	אם $Y \subseteq X$ נסג עיוות,
+	אז,
+	\[
+		{(\iota_Y)}_* : \pi_1(Y, y_0) \to \pi_1(X, y_0)
+	\]
+	איזומורפיזם.
+\end{theorem}
+\begin{proof}
+	אנו כבר יודעים כי ${(\iota_Y)}_*$ הומומורפיזם של חבורות והיא חד־חד ערכית כי יש רטרקציה מ־$X$ על $Y$.
+	נותר להראות שהיא על.
+	תהי $[\gamma] \in \pi_1(X, y_0)$.
+	נניח גם ש־$D : I \times X \to Y$ נסג עיוות ונגדיר,
+	\[
+		L : I \times I \to X,
+		\quad
+		L(s, t) = D(s, \gamma(t))
+	\]
+	ולכן,
+	\[
+		L(0, t) = D(0, \gamma(t)) = \gamma(t)
+	\]
+	ונסיק ש־$L(1, t)$ מסילה ב־$Y$ וש־$L$ הומוטופיה.
+\end{proof}
+\begin{proposition}
+	$\pi_1(\RR^2 \setminus \{ (0, 0) \}) = \ZZ$.
+\end{proposition}
+\begin{proof}
+	קיים $S^1 \hookrightarrow \RR^2 \setminus \{(0, 0)\}$,
+	ונגדיר,
+	\[
+		D(t, x)
+		= x + t(\frac{x}{\lVert x \rVert} - x)
+	\]
+	וקיבלנו את הטענה.
+\end{proof}
+\begin{definition}[שקילות הומוטופית]
+	נאמר ש־$X, Y$ שקולים הומוטופית אם יש העתקות $f : X \to Y$ ו־$g : Y \to X$ רציפות כך ש־$g \circ f \sim \id_X$ ו־$f \circ g \sim \id_Y$,
+	כאשר נאמר ש־$f \sim g$ הומוטופיות, אם יש הומוטופיה ביניהן.
+	במקרה זה נאמר גם ש־$f$ שקילות הומוטופית וש־$g^{-1}$ הופכית הומוטופית של $f$.
+\end{definition}
+\begin{exercise}
+	הוכיחו כי זהו אכן יחס שקילות.
+\end{exercise}
+\begin{theorem}
+	אם $X, Y$ שקולים הומוטופית ו־$f : X \to Y$ העתקת שקילות הומוטופית,
+	אז $f_* : \pi_1(X, x_0) \to \pi_1(Y, y_0)$ כאשר $y_0 = f(x_0)$ היא איזומורפיזם.
+\end{theorem}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 
 \end{document}
