@@ -116,15 +116,22 @@ We will show that any infinite recursively-enumerable set contains an infinite r
 We define the sets $A, B \subseteq \NN$ as recursively-separated if there is some recursive set $C \subseteq \NN$ such that $A \subseteq C$ and $B \cap C = \emptyset$. \\
 We will find an example of two disjoint recursively-enumerable subsets of $\NN$ which cannot be recursively-separated.
 \begin{solution}
-	Is this a topology problem?
-	This example will show that $\NN$ with the topology induced by recursiveness is not normal.
-
 	Let $f : \NN \to \NN$ be the function such that $f(\NN) = H$ from the first question.
 	We define $A = \{ f(2n) \mid n \in \NN \}$ and $B = \{ f(2n + 1) \mid n \in \NN \}$, these are clearly recursively-enumerable but not recursive.
 	We also see that $A \cap B = \emptyset$ directly by definition.
 
 	Let us assume in contradiction that there is a recursive $C \subseteq \NN$ such that $A \subseteq C$ and $B \cap C = \emptyset$.
 	But the set of recursive functions $R$ is recursive and the reduction of recursive function is recursive, then $R \cap C = A$ is recursive, in contradiction to question 1.
+
+	Note that $f$ might not be injective, meaning that $A \cap B$ might not be null.
+	To solve this, we define new recursive function, $g : \NN \to \NN$ by,
+	\[
+		g(n)
+		= \min\{ f(k) \mid i > n, f(k) > g(n - 1) \}
+	\]
+	This function is recursive directly as the minimization of recursive function $f$.
+	We also derive from $|\im f| = \omega$ that $g$ is total and that $\im g \subseteq \im f$.
+	In particular, using $g$ instead of $f$ we get $A \cap B = \emptyset$ as wished.
 \end{solution}
 
 \end{document}
