@@ -1516,6 +1516,321 @@
 	\]
 \end{proof}
 
+\section{שיעור 9 --- 11.6.2025}
+
+\subsection{התכנסויות טורי פורייה --- המשך}
+\begin{theorem}[פייר]
+	נניח ש־$f : \RR \to \RR$ היא פונקציה $2 \pi$־מחזורית ואינטגרבילית רימן.
+	נסמן גם,
+	\[
+		S_n(x)
+		= \frac{a_0}{2} + \sum_{k = 1}^n a_k \cos(n x) + b_k \sin(n x)
+	\]
+	עבור,
+	\[
+		a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t)\ dt,
+		\quad
+		a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(n t)\ dt,
+		\quad
+		a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(n t)\ dt
+	\]
+	נגדיר,
+	\[
+		\sigma_N(x)
+		= \frac{S_0(x) + \cdots + S_N(x)}{N + 1}
+	\]
+	אז מתקיים,
+	\begin{enumerate}
+		\item אם $f$ רציפה ב־$x_0$ אז $\lim_{N \to \infty} S_N(x_0) = f(x_0)$
+		\item אם $f$ רציפה בכל $\RR$ אז $\sigma_N \rightrightarrows f$ כאשר $N \to \infty$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\[
+		S_n(x)
+		= \frac{1}{\pi} \int_{0}^{\pi} (f(x + u) + f(x - u)) D_n(u)\ du
+	\]
+	עבור,
+	\[
+		D_n(u)
+		= \frac{\sin(n + \frac{1}{2}) u}{2 \sin \frac{u}{2}}
+		= \frac{1}{2} + \cos(u) + \cdots + \cos(\nu )
+	\]
+	גרעין דיריכלה.
+	אז מתקיים,
+	\[
+		\int_{0}^{\pi} f(x - u) D_n(u)\ du
+		= \int_{-\pi}^{0} f(x + u) D_n(u)\ du
+	\]
+	ולכן נקבל,
+	\[
+		S_n(x)
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x + u) D_n(u)\ du
+	\]
+
+	עתה נשתמש בנוסחה זו ונבדוק את הממוצע,
+	\[
+		\sigma_N(x)
+		= \frac{1}{N + 1} \sum_{n = 0}^N S_n(x)
+		= \frac{1}{N + 1} \int_{-\pi}^{\pi} f(x) \left(\sum_{n = 1}^N D_n(u)\right)\ du
+	\]
+	ונסמן את הביטוי בסוגריים כ־$I_N(u)$, נחקור אותו,
+	\[
+		I_N(u)
+		= \frac{1}{2 \sin^2 \frac{u}{2}} \sum_{n = 0}^N \sin(n + \frac{1}{2}) u
+		= \frac{1}{2 \sin^2 \frac{u}{2}}\left( \sin \frac{u}{2} + \cdots + \sin (N + \frac{1}{2}) u\right)
+	\]
+	ניזכר כי,
+	\[
+		\cos(\alpha + \beta) = \cos \alpha \cos \beta - \sin \alpha \sin \beta,
+		\quad
+		\cos(\alpha - \beta)=  \cos \alpha \cos \beta + \sin \alpha \sin \beta
+	\]
+	ולכן נוכל להסיק,
+	\[
+		\sin \alpha \sin \beta = \frac{1}{2}(\cos(\alpha - \beta) - \cos(\alpha + \beta))
+	\]
+	לכן,
+	\begin{align*}
+		I_N(u)
+		& = \frac{1}{2 \sin^2 \frac{u}{2}} \left(\frac{1}{2} - \frac{1}{2} \cos u + \frac{1}{2} \cos u - \frac{1}{2} \cos 2u + \cdots + \frac{1}{2} \cos(N u) - \frac{1}{2} \cos((N + 1) u)\right) \\
+		& = \frac{1}{2 \sin^2 \frac{u}{2}}\left(\frac{1}{2} - \frac{1}{2} \cos((N + 1) u)\right) \\
+		& = \frac{\sin^2 \frac{(N + 1) u}{2}}{2 \sin^2 \frac{u}{2}}
+	\end{align*}
+	ונחזור לממוצע,
+	\[
+		\sigma_N(x)
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x + u) K_N(u)\ du
+	\]
+	עבור,
+	\[
+		K_N(u)
+		= \frac{\sin^2 \frac{(N + 1) u}{2}}{\sin^2 \frac{u}{2}}
+	\]
+	כאשר $K_N$ נקרא גם גרעין פייר.
+	זהו גרעין שימושי ביותר, שכן הוא אי־שלילי, חסום, ושואף לאפס במרחק מהמרכז.
+	נעבור לחישוב האינטגרל,
+	\begin{align*}
+		\frac{1}{\pi} \int_{-\pi}^{\pi} K_N(u)\ du
+		& = \frac{1}{\pi(N + 1)} \int_{-\pi}^{\pi} I_N(u)\ du \\
+		& = \frac{1}{\pi(N + 1)} \sum_{n = 0}^N \int_{-\pi}^{\pi} D_n(u)\ du \\
+		& = \frac{1}{\pi(N + 1)} \sum_{n = 0}^N \int_{-\pi}^{\pi} (\frac{1}{2} + \cos u + \cdots + \cos(n u))\ du \\
+		& = \frac{1}{\pi(N + 1)} \sum_{n = 0}^N \pi \\
+		& = 1
+	\end{align*}
+	קיבלנו,
+	\[
+		f(x)
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) K_N(u)\ du,
+		\quad
+		\sigma_N(x) - f(x)
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} (f(x + u) - f(x)) K_N(u)\ du
+	\]
+
+	עתה נעבור לשימוש בנוסחות אלה.
+	\begin{multline*}
+		|\sigma_N(x) - f(x)|
+		\le \frac{1}{\pi} \int_{-\pi}^{-\delta} |f(x + u) - f(x)| K_N(u)\ du \\
+		+ \frac{1}{\pi} \int_{-\delta}^{\delta} |f(x + u) - f(x)| K_N(u)\ du + \frac{1}{\pi} \int_{\delta}^{\pi} |f(x + u) - f(x)| K_N(u)\ du
+	\end{multline*}
+	נקרא לאינטגרלים אלה בהתאמה $I_1, I_2, I_3$.
+	עבור $I_3$, נבחין כי $|f(x)| \le M$ לכל $x$ שכן $f$ אינטגרבילית ומחזורית, לכן,
+	\[
+		I_3
+		\le \frac{2 M}{\pi} \int_{\delta}^{\pi} K_N(u)\ du
+		\le \frac{M}{\pi(N + 1)} \int_{\delta}^{\pi} \frac{du}{\sin^2 \frac{u}{2}}
+	\]
+	אבל נבחין כי $\sin \frac{u}{2} \ge \frac{u}{\pi} \ge \frac{\delta}{\pi}$ ולכן,
+	\[
+		I_3
+		\le \frac{M}{\pi (N + 1)} \frac{\pi^2}{\delta^2}(\pi - \delta)
+	\]
+	באופן דומה נוכל להסיק,
+	\[
+		I_1 + I_3
+		\le \frac{2 M}{\pi (N + 1)} \cdot \frac{\pi^3}{\delta^2}
+	\]
+
+	לבסוף, נעבור להוכחת הטענה. \\
+	\textbf{1}
+	יהי $x \in \RR$ כך ש־$f$ רציפה ב־$x$.
+		יהי $\varepsilon > 0$, אז קיים $\delta = \delta(x, \varepsilon)$ כך שמתקיים,
+		\[
+			|u|
+			\le \delta
+			\implies |f(x + u) - f(x)| \le \varepsilon
+		\]
+		אז נבחר עבור האינטגרל מקודם את $\delta$ זו, ולכן נקבל עבור $I_2$,
+		\[
+			I_2
+			\le \frac{\varepsilon}{\pi} \int_{-\delta}^{\delta} K_N(u)\ du
+			\le \varepsilon \frac{1}{\pi} \int_{-\pi}^{\pi} K_N(u)\ du
+			\le \varepsilon
+		\]
+		כלומר,
+		\[
+			|\sigma_N(x) - f(x)|
+			\le \varepsilon + \frac{A}{(N + 1) \delta^2}
+		\]
+		עבור $A$ לא תלויה ב־$\varepsilon$ ולכן,
+		\[
+			\lim_{N \to \infty} |\sigma_N(x) - f(x)|
+			\le \varepsilon
+		\]
+		ובפרט הגבול מתכנס לאפס.
+
+		\textbf{2}
+		נניח ש־$f : \RR \to \RR$ פונקציה $2 \pi$־מחזורית ורציפה בכל תחומה, ונראה התכנסות במידה שווה.
+		$f$ רציפה במידה שווה ב־$\RR$.
+		יהי $\varepsilon > 0$, אז קיים $\delta = \delta(\varepsilon)$ כך שמתקיים,
+		\[
+			|N| \le \delta
+			\implies \forall x \in \RR,\ |f(x + u) - f(x)| \le \varepsilon
+		\]
+		אז מתקיים,
+		\[
+			|\sigma_N(x) - f(x)|
+			\le \frac{A}{(N + 1) \delta^2} + \frac{1}{\pi} \int_{-\delta}^{\delta} |f(x + u) - f(x)| K_N(u)\ du
+			\le \frac{A}{(N + 1) \delta^2} + \varepsilon
+		\]
+		ישירות מהרציפות במידה שווה.
+		בהתאם,
+		\[
+			\sup_{x \in \RR} |\sigma_N(x) - f(x)|
+			\le \frac{A}{(N + 1) \delta^2} + \varepsilon
+		\]
+		ונסיק שוב,
+		\[
+			\lim_{N \to \infty} \sup_{x \in \RR} |\sigma_N(x) - f(x)|
+			\le 0
+		\]
+		כלומר $\sigma_N \rightrightarrows f$.
+\end{proof}
+
+\subsection{מרחקים}
+\begin{definition}[מרחק במרחב מכפלה פנימית]
+	נניח ש־$V$ מרחב וקטורי מעל $\CC$ או מעל $\RR$.
+	נניח בנוסף ש־$\lVert \cdot \rVert$ נורמה, ויהי $\emptyset \ne U \subseteq V$.
+	לכל $\varphi \in V$ נגדיר את המרחק,
+	\[
+		\dist(\varphi, U)
+		= \inf_{u \in U} \lVert \varphi - u \rVert
+	\]
+\end{definition}
+\begin{exercise}
+	האם קיים $u_0 \in U$ כך שמתקיים,
+	\[
+		\dist(\varphi, U)
+		= \lVert \varphi - u_0 \rVert
+	\]
+	כלומר האם המרחק תמיד מתקבל?
+\end{exercise}
+מתברר שהתשובה היא שקיים כזה, אבל רק במרחבים סוף־מימדיים.
+\begin{example}
+	נגדיר $V = C[0, 1]$ וכן,
+	\[
+		\lVert f \rVert_\infty
+		= \sup_{x \in [0, 1]} |f(x)|
+	\]
+	ונבחר,
+	\[
+		U = \{ f \in C[0, 1] \mid \int_{0}^{1} f(x)\ dx = 0, f(1) = 0 \}
+	\]
+	ונבחר עבור הפונקציה שלנו,
+	\[
+		\varphi(x) = 1 - x
+	\]
+	מתקיים $\int_{0}^{1} \varphi(x)\ dx \ne 0$ ולכן $\varphi \notin U$ אבל $\varphi \in C[0, 1]$.
+
+	נראה ש־$U$ סגורה ב־$V$.
+	נניח ש־${\{ \varphi_n \}}_{n = 1}^\infty \subseteq U$ סדרה מתכנסת, כלומר $\varphi_n \rightrightarrows \varphi^0$, ונרצה להראות ש־$\varphi^0 \in U$.
+	לכל $n \in \NN$, $\varphi_n(1) = 0$ ולכן גם $\varphi^0(1) = 0$.
+	מהתכנסות במידה שווה נוכל גם להסיק,
+	\[
+		\int_{0}^{1} \varphi^0(x)\ dx
+		= \int_{0}^{1} \lim_{n \to \infty} \varphi_n(x)\ dx
+		= \lim_{n \to \infty} \int_{0}^{1} \varphi_n(x)\ dx
+		= 0
+	\]
+	ולכן $\varphi^0 \in U$ ו־$U$ אכן סגורה.
+
+	עתה נחשב את מרחק $\varphi$ מ־$U$.
+	נניח כי $g \in U$, אז,
+	\[
+		\lVert \varphi - g \rVert
+		= \sup_{x \in [0, 1]} |\varphi(x) - g(x)|
+		\ge \int_{0}^{1} |\varphi(x) - g(x)|\ dx
+		\ge \left\lvert \int_{0}^{1} \varphi(x) - g(x)\ dx \right\rvert
+		= \left\lvert \int_{0}^{1} \varphi(x)\ dx \right\rvert
+		= \frac{1}{2}
+	\]
+	כלומר, $\dist(\varphi, U) \ge \frac{1}{2}$. \\
+	נבחר $g_n(x) = \frac{1}{2} - x + \frac{x^n}{2} + \frac{x - 1}{n + 1}$.
+	אז $g_n(1) = \frac{1}{2} - 1 + \frac{1}{2} + 0 = 0$, וכן,
+	\[
+		\int_{0}^{1} g_n(x)
+		= \frac{1}{2} - \frac{1}{2} + \frac{1}{2(n + 1)} + \frac{1}{2(n + 1)} - \frac{1}{n + 1}
+		= 0
+	\]
+	ולכן $g_n \in U$ לכל $n \in \NN$.
+	אבל,
+	\[
+		|\varphi(x) - g_n(x)|
+		= \left\lvert \frac{1}{2} - \frac{x^n}{2} - \frac{x - 1}{n + 1} \right\rvert
+	\]
+	וכן,
+	\[
+		\lVert \varphi - g_n \rVert
+		= \max_{x \in [0, 1]} |\varphi(x) - g_n(x)| \to \frac{1}{2}
+	\]
+	כלומר, $\dist(\varphi, U) \ge \frac{1}{2}$ בהכרח, ונסיק ש־$\dist(\varphi, U) = \frac{1}{2}$ בלבד.
+
+	עתה נראה שלא קיימת פונקציה $g \in U$ כך ש־$\dist(\varphi, U) = \lVert \varphi - g \rVert = \frac{1}{2}$.
+	נניח בשלילה שקיימת $g$ כזו.
+	מתקיים $\lVert \varphi - g \rVert_\infty = \frac{1}{2}$.
+	מהגדרת $U$ אנו יודעים כי,
+	\[
+		\int_{0}^{1} g(x)\ dx = 0,
+		\quad
+		g(1) = 0
+	\]
+	נגדיר פונקציה חדשה $\psi(x) = \varphi(x) - g(x)$, לכן,
+	\[
+		\lVert \psi \rVert_\infty
+		= \lVert \varphi - g \rVert_\infty
+		= \frac{1}{2}
+	\]
+	אבל,
+	\[
+		\int_{0}^{1} \psi(x)\ dx
+		= \int_{0}^{1} (\varphi(x) - g(x))\ dx
+		= \int_{0}^{1} \varphi(x)\ dx
+		= \frac{1}{2}
+	\]
+	אז,
+	\[
+		\int_{0}^{1} \psi(x)\ dx
+		= \frac{1}{2}
+		= \lVert \psi \rVert_\infty
+		= \int_{0}^{1} \lVert \psi \rVert_\infty\ dx
+	\]
+	אז $\int_{0}^{1} \lVert \psi \rVert_\infty - \psi(x) = 0$ ונובע,
+	\[
+		\psi(x)
+		= \lVert \psi \rVert_\infty
+		= \frac{1}{2}
+		\implies \psi(1) = \frac{1}{2}
+	\]
+	אבל אנו יודעים כי,
+	\[
+		\psi(1)
+		= \varphi(1) - g(1)
+		= 0
+	\]
+	וזו סתירה,
+	לכן לא קיימת פונקציה $g$ כזו.
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
