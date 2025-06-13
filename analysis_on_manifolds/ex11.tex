@@ -1,0 +1,221 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 11 --- אנליזה על יריעות, 80426}
+% chktex-file 17
+% chktex-file 9
+
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Div}{div}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+תהי $M^k \subseteq \RR^n$ יריעה ו־$f : M \to \RR$ פונקציה חלקה ו־$X : M \to \RR^n$ שדה וקטורי חלק.
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\nabla f(p)
+	= \sum_{i = 1}^l df_p(E_i) E_i
+\]
+כאשר ${\{ E_i \}}_{i = 1}^l$ הוא איזשהו בסיס אורתונורמלי ל־$T_p(M)$, כאשר $\dim T_p(M) = l \le k$.
+\begin{proof}
+	מהגדרה,
+	\[
+		\nabla f(p)
+		= \sum_{i = 1}^k df_p(e_i) e_i
+	\]
+	עבור ${\{ e_i \}}_{i = 1}^k$ הבסיס הסטנדרטי ל־$\RR^k$.
+	נניח שמתקיים,
+	\[
+		E_i = \sum_{j = 1}^k \alpha_j^i e_j
+	\]
+	לכל $i$.
+	ישירות מהגדרת נגזרת והעובדה ש־$\alpha_i^j = 0$ לכל $l < i \le k$ ולכל $j$,
+	\[
+		\sum_{i = 1}^l df_p(E_i) E_i
+		= \sum_{i = 1}^l \sum_{j = 1}^k df_p(\alpha_j^i e_j) \alpha_j^i e_j
+		= \sum_{j = 1}^k \sum_{i = 1}^l df_p(\alpha_j^i e_j) \alpha_j^i e_j
+		= \sum_{j = 1}^k df_p(e_j) e_j
+	\]
+	כאשר המעבר האחרון נובע מהנתון כי $\{ E_i \}$ בסיס אורתונורמלי.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\Div_M(f X)
+	= f \Div_M X + \langle \nabla f, X \rangle
+\]
+\begin{proof}
+	ניזכר בהגדרה,
+	\[
+		\Div_M(f(p) X(p))
+		= \sum_{i = 1}^k \langle D_{e_i} f X |_p, e_i \rangle
+		= \sum_{i = 1}^k \langle f_{e_i}(p) X(p) + f(p) D_{e_i} X |_p, e_i \rangle
+	\]
+	מהרחבה לדיפרנציאל של מכפלת פונקציות מקורסים קודמים.
+	תוך שימוש בסעיף הקודם ובלי הגבלת הכלליות נוכל להניח שהבסיס פורש את $T_p M$ ולכן,
+	\[
+		\sum_{i = 1}^k \langle f_{e_i}(p) X(p) + f(p) D_{e_i} X |_p, e_i \rangle
+		= \sum_{i = 1}^k \langle f_{e_i}(p) X(p), e_i \rangle + \langle f(p) D_{e_i} X |_p, e_i \rangle
+		= \sum_{i = 1}^k f_{e_i}(p) \langle X(p), e_i \rangle + f(p) \langle D_{e_i} X |_p, e_i \rangle
+	\]
+	אבל ישירות מהגדרת ייצוג לפי בסיסים אורתונורמליים נקבל,
+	\[
+		\Div_M(f(p) X(p))
+		= f(p) \Div_M X(p) + \langle \nabla f(p), X(p) \rangle
+	\]
+	וקיבלנו את המבוקש.
+\end{proof}
+
+\subquestion{}
+תהי $N^{k - 1} \subseteq M$ תת־יריעה.
+יהי $p \in N$, ונגדיר $\nu \in T_p M$ איזשהו וקטור יחידה נורמלי ל־$T_p N$.
+נראה שמתקיים,
+\[
+	\Div_N X(p)
+	= \Div_M X(p) - \langle D X_p(\nu), \nu \rangle
+\]
+\begin{proof}
+	נניח בלי הגבלת הכלליות ש־$\nu = e_k$, מותר לנו להניח כך מסעיף א' (אחרת נבנה בסיס אורתונורמלי של $T_p N$ ונרחיב אותו עם $\nu$).
+	מתקיים,
+	\[
+		\Div_M X(p)
+		= \sum_{i = 1}^k \langle D_{e_i} X |_p, e_i \rangle
+		= \sum_{i = 1}^{k - 1} \langle D_{e_i} X |_p, e_i \rangle + \langle D_{e_k} X |_p, e_k \rangle 
+		= \Div_N X(p) + \langle D_{\nu} X |_p, \nu \rangle 
+	\]
+	ומעשה זוהי הטענה עצמה.
+\end{proof}
+
+\question{}
+\subquestion{}
+יהי השדה הווקטורי $Y : S^1 \to \RR^2$ המוגדר על־ידי $Y(x) = x$.
+נחשב את $\Div_{S^1} Y$ ישירות ובאמצעות הסעיף הקודם.
+\begin{solution}
+	\textbf{ישירות},
+	מתקיים,
+	\[
+		Y(\cos \alpha, \sin \alpha)
+		= (\cos \alpha, \sin \alpha),
+		\quad
+		D Y |_{(\cos \alpha, \sin \alpha)}
+		= \begin{pmatrix}
+			-\sin \alpha & 0 \\
+			0 & \cos \alpha
+		\end{pmatrix}
+	\]
+	ולכן,
+	\[
+		\Div_{S^1} Y(p)
+		= \sum_{i = 1}^2 \langle D_{e_i} Y |_p, e_i \rangle
+		= -\sin \alpha + \cos \alpha
+	.\]
+
+	\textbf{שאלה 1},
+	היריעה $S^1$ היא חד־מימדית ולכן מספיק שנמצא $\nu \perp T_p S^1$, כמובן שאם,
+	\[
+		p = (\cos \alpha, \sin \alpha)
+	\]
+	אז,
+	\[
+		\nu
+		= (-\sin \alpha, \cos \alpha)
+	\]
+	הוא וקטור נורמלי כזה, ולכן,
+	\[
+		\Div_{S^1} Y(p)
+		= 0 + \langle D X_p(\nu), \nu \rangle
+		= -\sin \alpha + \cos \alpha
+	\]
+\end{solution}
+
+\subquestion{}
+ניזכר בדיפאומורפיזם $\varphi : S^{n - 1} \times (0, \pi) \to S^n \setminus \{(0, \ldots, \pm 1)\}$ המוגדר על־ידי,
+\[
+	\varphi(x, y)
+	= (x \sin y, \cos y)
+\]
+ונגדיר שדה וקטורי $X : S^n \setminus \{(0, \ldots, \pm 1)\} \to \RR^{n + 1}$ על־ידי,
+\[
+	(X \circ \varphi)(x, y)
+	= (- x \sin y \cos y, \sin^2 y)
+\]
+נחשב את $\Div_{S^n} X$.
+\begin{solution}
+	השאלה לא מוגדרת היטב
+\end{solution}
+
+\question{}
+\subquestion{}
+תהי $U \subseteq \RR^n$ פתוחה ויהי $X : U \to \RR^n$ שדה וקטורי חלק.
+נגדיר $p \in U$ ו־$\varphi_t^X(p) : I_{\max}^{p, X} \to U$ הזרימה שלה.
+נגדיר $Y = -X$ ו־$\varphi_t^Y(p) : I_{\max}^{p, Y} \to U$ הזרימה המתאימה.
+נראה כי $I_{\max}^{p, Y} = - I_{\max}^{p, X}$ וכן שמתקיים,
+\[
+	\varphi_t^Y(p)
+	= \varphi_{-t}^X(p)
+\]
+\begin{proof}
+	אילו נניח בשלילה ש־$I_{\max}^{p, Y} < - I_{\max}^{p, X}$ שונים (בלי הגבלת הכלליות),
+	אז נקבל ש־$\varphi_{-\delta}^Y(p)$ ניתנת להרחבה.
+	טענה זו נכונה לשני הכיוונים ולכן נקבל,
+	\[
+		I_{\max}^{p, Y} \le - I_{\max}^{p, X},
+		\quad
+		I_{\max}^{p, Y} \ge - I_{\max}^{p, X}
+	\]
+	ובהתאם שוויון בלבד.
+	החלק השני נובע ישירות מהצבה $t_0$ ו־$-t_0$ נקבל את הטענה ממשפט 11.6 בסיכום הקורס.
+\end{proof}
+
+\subquestion{}
+יהי $X : \RR \to \RR$ שדה וקטורי המוגדר על־ידי $X(x) = x^2$.
+נראה שמתקיים,
+\[
+	\varphi_t(p) = \frac{p}{1 - pt}
+\]
+ונסיק ש־$I_{\max}^p \ne \RR$ כל תנאי ש־$p \ne 0$.
+\begin{proof}
+	תהי $p \in \RR$ כלשהי, אז $X(p) = p^2$ ולכן $\varphi_0(p) = p$ ו־$\frac{d}{dt} \varphi_t(p)|_{t = 0} = p^2$.
+	מתקיים,
+	\[
+		\frac{d}{dt} \frac{p}{1 - pt}
+		= p \cdot (-p) \cdot (-1) \cdot \frac{1}{{(1 - pt)}^2}
+		= {(\varphi_t(p))}^2
+		= X(\varphi_t(p))
+	\]
+	כלומר התנאי מתקיים ולכן זוהי אכן הזרימה.
+	ממשפט היחידות זוהי גם ההרחבה היחידה.
+
+	במקרה $p = 0$ נקבל $\varphi_t(0) = 0$ ולכן $I_{\max}^0 = \RR$.
+	אחרת, $\varphi_{\frac{1}{p}}(p)$ לא מוגדר, ולכן בפרט $I_{\max}^p \subseteq (-\frac{1}{p}, \frac{1}{p})$.
+\end{proof}
+
+\question{}
+תהי $M^k \subseteq \RR^n$ יריעה קומפקטית עם שפה, ו־$X : \RR^n \to \RR^n$ שדה וקטורי כך שלכל $p \in M$ מתקיים $X(p) \in T_p(M)$,
+ולכל $q \in \partial M$, מתקיים $\langle X(q), \nu(q) \rangle < 0$.
+תהי $p \in M$ ותהי ההעתקה $t \mapsto \varphi_t(p)$ עבור $t \in (-\varepsilon, \varepsilon)$ הזרימה של $X$ המתחילה ב־$p$.
+
+\subquestion{}
+נראה ש־$\varphi_t(p) \in M$ או שעבור,
+\[
+	s_0
+	= \sup\{ t \in (-\varepsilon, 0] \mid \varphi_t(p) \notin M \}
+\]
+מתקיים $\varphi_{s_0}(p) \in \partial M$.
+\begin{proof}
+	עבור $t \in [0, \varepsilon)$ הטענה נובעת ישירות ממשפט שהוכח בהרצאה.
+	לכל $s_0 < t$ נקבל ממקומיות ומשאלה 2 שגם מתקיים $\varphi_t(p) \in M$, ולכן נותר לבדוק את $t = s_0$.
+	אנו יודעים כי לכל $t < s_0$ מתקיים $\varphi_t(p) \notin M$ וכן מתקיים $\varphi_{s_0}(p) \in M$ מקומפקטיות, ולכן מהגדרה שקולה לשפת יריעה נקבל $s_0 \in \partial M$.
+\end{proof}
+
+\subquestion{}
+נראה שלכל $t \in (0, \varepsilon)$ מתקיים $\varphi_t(p) \in M \setminus \partial M$.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
