@@ -999,7 +999,7 @@
 \begin{proof}
 	\[
 		\langle v - \sum_{n = 1}^N \alpha_n v_n, v - \sum_{n = 1}^N \alpha_n v_n \rangle
-		= {\lVert v \rVert}^2 - \sum_{n = 1}^N \overline{\alpha_n} \langle v_n, v \rangle - \sum_{n = 1}^N \alpha_n \langle v, v_n \rangle + \sum_{n = }^N {| \alpha_n |}^2 + {\lVert v_n \rVert}^2
+		= {\lVert v \rVert}^2 - \sum_{n = 1}^N \overline{\alpha_n} \langle v_n, v \rangle - \sum_{n = 1}^N \alpha_n \langle v, v_n \rangle + \sum_{n = }^N {| \alpha_n |}^2 \cdot {\lVert v_n \rVert}^2
 	\]
 	נגדיר את $x_n = \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$ להיות מקדם פורייה, אז,
 	\[
@@ -1605,7 +1605,7 @@
 	עבור,
 	\[
 		K_N(u)
-		= \frac{\sin^2 \frac{(N + 1) u}{2}}{\sin^2 \frac{u}{2}}
+		= \frac{1}{N} \frac{\sin^2 \frac{(N + 1) u}{2}}{\sin^2 \frac{u}{2}}
 	\]
 	כאשר $K_N$ נקרא גם גרעין פייר.
 	זהו גרעין שימושי ביותר, שכן הוא אי־שלילי, חסום, ושואף לאפס במרחק מהמרכז.
