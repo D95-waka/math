@@ -1,0 +1,115 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- אנליזה פונקציונלית, 80417}
+
+\DeclareMathOperator\sgn{sgn}
+
+\begin{document}
+\maketitle
+\maketitleprint[teal]
+
+\question{}
+לכל $f, g : \RR \to \RR$ פונקציות אינטגרביליות ו־$2 \pi$־מחזוריות נגדיר,
+\[
+	(f * g)(x)
+	= \int_{-\pi}^{\pi} f(x - u) g(u)\ du
+\]
+
+\subquestion{}
+נראה שאם $g \in \tilde{C}[-\pi, \pi]$ אז $f * g \in C[-\pi, \pi]$.
+\begin{proof}
+	מהנתון $g$ רציפה, $2 \pi$־מחזורית ובפרט אינטגרבילית רימן.
+	עוד נתון כי $f$ אינטגרבילית, לאו דווקה רציפה, אך מחזורית.
+	נבחין כי $f(x - u) g(u)$ היא פונקציה אינטגרבילית ומתקיים,
+	\[
+		(f * g)(x)
+		= \int_{-\pi}^{\pi} f(x - u) g(u)\ du
+	\]
+	היא פונקציה רציפה בכל נקודה, ואילו היא לא רציפה בנקודה, אז זוהי נקודת אי־רציפות מסדר שני ובפרט גם ל־$|f|$ בהכרח שואפת לאינסוף באחד מהקצוות של הנקודה הזו.
+	אבל במקרה זה היא לא אינטגרבילית רימן.
+\end{proof}
+
+\subquestion{}
+נראה שאם $g \in \tilde{C}^1[-\pi, \pi]$ אז $f * g \in C^1[-\pi, \pi]$,
+וכן שלכל $x \in [-\pi, \pi]$ מתקיים,
+\[
+	(f * g)'(x)
+	= (f * g')(x)
+\]
+\begin{proof}
+	אם $F(x) = \int_{-\pi}^{x} f(u)\ du$,
+	\[
+		\int_{-\pi}^{\pi} f(x - u) g(u)\ du
+		= \left. -F(x - u) g(u) \right\lvert_{u = -\pi}^{u = \pi} - \int_{-\pi}^{\pi} -F(x - u) g'(u)\ du
+		= 0 + \int_{-\pi}^{\pi} F(x - u) g'(u)\ du
+	\]
+	כלומר,
+	\[
+		(f * g)(x)
+		= \int_{-\pi}^{\pi} F(x - u) g'(u)\ du
+		= (F * g')(x)
+		= (g' * F)(x)
+	\]
+	$F$ רציפה כקדומה ו־$g'$ רציפה שכן $g \in C^1[-\pi, \pi]$.
+	לכן,
+	\begin{align*}
+		(f * g)'(x)
+		& = \lim_{h \to 0} \frac{1}{h} ((f * g)(x + h) - (f * g)(x)) \\
+		& = \lim_{h \to 0} \frac{1}{h} \int_{-\pi}^{\pi} f(x - u) g(u) - f(x - u - h) g(u + h)\ du \\
+		& = \lim_{h \to 0} \frac{1}{h} \int_{-\pi}^{\pi} f(x - u) g(u) - f(x - u - h) g(u) + f(x - u - h)( g(u) - g(u + h))\ du \\
+		& = \lim_{h \to 0} \frac{1}{h} \int_{-\pi}^{\pi} (f(x - u) - f(x - u - h)) g(u) + f(x - u - h)( g(u) - g(u + h))\ du \\
+		& = \lim_{h \to 0} \frac{1}{h} ((f(x - u) - f(x - u - h)) * g(u)) + \int_{-\pi}^{\pi} f(x - u) g'(u)\ du \\
+		& = \lim_{h \to 0} \frac{1}{h} ((F(x - u) - F(x - u - h)) * g'(u)) + (f * g')(x) \\
+		& = (f * g')(x)
+	\end{align*}
+	והטענה נובעת ממחזוריות ומגזירות הפונקציה הקדומה של $f$.
+\end{proof}
+
+\question{}
+\subquestion{}
+תהי ${\{ x_n \}}_{n = 1}^\infty \subseteq \RR$ כך שלכל $n$ מתקיים,
+\[
+	|x_{n + 1} - x_n| \le \frac{C}{n}
+\]
+ובנוסף הסדרה $y_m = \frac{1}{m} \sum_{n = 1}^m x_n$ המתכנסת ל־$A \in \RR$.
+נראה שגם הסדרה $x_n$ מתכנסת ל־$A$.
+\begin{proof}
+	נניח בלי הגבלת הכלליות ש־$C = 1, A = 0$, זאת שכן חלוקה בקבוע וחיסור בקבוע לא משפיעים על התכנסות.
+	נניח בשלילה ש־$x_n$ לא מתכנסת ל־$0$, לכן קיים $\delta > 0$ כך שקיימת תת־סדרה ${\{ x_{n_k} \}}_{k = 1}^\infty \subseteq \RR$ כך ש־$x_{n_k} \ge \delta$ לכל $k$ (בלי הגבלת הכלליות).
+	מהנחת השלילה על ההתכנסות לכל $k$ יש אינסוף ערכי $n > n_k$ כך ש־$x_n > \frac{\delta}{2}$, ולכן נוכל להסיק מהצפיפות שלהם ועבור $n_k$ גדול מספיק יחד עם,
+	\[
+		|x_{n + m} - x_n| \le \frac{m}{n}
+	\]
+	שבהכרח $x_n > \frac{\delta}{2}$ תמיד, כלומר אם נבחר $\epsilon = \frac{1}{n}$ עבור $n$ זה נקבל ש־$y_{n_k}$ חסומה על־ידי $\frac{\delta}{2}$ אבל $x_n > \frac{\delta}{2}$ ואף $x_{n_k} > \delta$.
+	נסיק אם כך ש־$y_n \frac{\delta}{2}$ עבור $n$ גדול מספיק, וזו סתירה.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $f$ אינטגרבילית רימן בקטע $[-\pi, \pi]$ אז קיים $C > 0$ כך שלכל $n$,
+מקדמי פורייה של $f$ מקיימים,
+\[
+	|a_n|, |b_n|
+	\le \frac{C}{n}
+\]
+ויש $x_0 \in [-\pi, \pi]$ כך שמתקיים $K_M * f(x_0) \to A$ אז גם $D_n * f(x_0) \to A$.
+\begin{proof}
+	TODO
+\end{proof}
+
+\question{}
+\subquestion{}
+נראה שאם $V$ סוף־מימדי ו־$U \subseteq V$ סגורה,
+אז לכל $v \in V$ קיים $u \in U$ כך ש־$\dist(U, v) = \lVert u - v \rVert$.
+\begin{proof}
+	מהנתון לכל $\epsilon > 0$ קיים $u_{\epsilon} \in U$ כך ש־$\dist(U, v) \le \lVert v - u_{\epsilon} \rVert$.
+	בפרט עבור $\epsilon = \frac{1}{n}$ נקבל $u_n = u_{\frac{1}{n}}$ איבר המקיים זאת, ולכן ${\{ u_n \}}_{n = 1}^\infty \subseteq U$ סדרה כך ש־$\lVert v - u_n \rVert \to \dist(U, v)$.
+	נבחר $U' = U \cap \overline{B}(v, 2 \dist(U, v))$, אז $u_n \in U'$ לכמעט כל $n$, וזו קבוצה סגורה וחסומה, לכן היא קומפקטית ויש לה תת־סדרה מתכנסת $u_{n_k}$, הנקודה הגבולית שלה $u$ מקיימת $u \in U' \subseteq U$,
+	ובנוסף $\lVert u - v \rVert \le \dist(U, v) + \frac{1}{n}$ לכל $n \in \NN$, לכן בפרט $\lVert u - v \rVert = \dist(U, v)$ ונובע שהמרחק אכן מתקבל.
+\end{proof}
+
+\subquestion{}
+במרחב $(\RR^2, \lVert \cdot \rVert_\infty)$ נמצא דוגמה לקבוצה $U \subseteq \RR^2$ סגורה וקמורה ולאיבר $v \in \RR^2$ כך שקיימים אינסוף $u \in U$ המקיימים $\lVert u - v \rVert_\infty = \dist(U, v)$.
+\begin{solution}
+	נבחר את הדיסק $U = \overline{A}_1^2(0)$ ואת הנקודה $v = 0$, אז $\dist(U, v) = 1$ וכן $\lVert v - u \rVert_\infty = 1$ לכל $u \in \partial B(0, 1)$.
+\end{solution}
+
+\end{document}
