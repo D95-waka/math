@@ -1831,6 +1831,238 @@
 	לכן לא קיימת פונקציה $g$ כזו.
 \end{example}
 
+\section{שיעור 12 --- 18.6.2025}
+\subsection{מרחקים}
+\begin{definition}[קבוצה קמורה]
+	יהי $(V, \lVert \cdot \rVert)$ מרחב נורמי, ו־$U \subseteq V$.
+	נאמר ש־$U$ קמורה אם לכל $f, g \in U$ מתקיים,
+	\[
+		\forall t \in [0, 1],\ t f + (1 - t) g \in U
+	\]
+\end{definition}
+\begin{example}
+	אם $U$ תת־מרחב של $V$ אז היא בפרט קמורה.
+\end{example}
+\begin{example}
+	לכל $f \in V$ הכדור,
+	\[
+		U
+		= B(f, r)
+		= \{ \varphi \in V \mid \lVert f - \varphi \rVert < r \}
+	\]
+	הוא קבוצה קמורה.
+
+	נראה טענה זו.
+	אם $\varphi, \psi \in B(f, r)$ אז,
+	\[
+		\lVert t \varphi + (1 - t) \psi - f \rVert
+		= \lVert t \varphi + (1 - t) \psi - t f - (1 - t) f \rVert
+		\le \lVert t (\varphi - f) \rVert + \lVert (1 - t) (\psi - f) \rVert
+		\le tr + (1 - t) r
+		= r
+	\]
+	ולכן נובע $t \varphi + (1 - t) \psi \in B(r, f)$.
+\end{example}
+נראה למה טכנית קצרה שתעזור לנו.
+\begin{lemma}
+	נניח כי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית, אז לכל $\varphi, \psi \in V$ מתקיים,
+	\[
+		{\lVert \varphi + \psi \rVert}^2 + {\lVert \varphi - \psi \rVert}^2
+		= 2 {\lVert \varphi \rVert}^2 + 2 {\lVert \psi \rVert}^2
+	\]
+\end{lemma}
+\begin{proof}
+	מהגדרת הנורמה המושרית ממכפלה פנימית,
+	\[
+		\langle \varphi + \psi, \varphi + \psi \rangle + \langle \varphi - \psi, \varphi - \psi \rangle
+		= 2 \langle \varphi, \varphi \rangle + 2 \langle \psi, \psi \rangle
+	\]
+	ישירות מחוקי מכפלה פנימית.
+\end{proof}
+\begin{theorem}[תנאי מספיק לקבלת מרחק במרחבים שלמים]
+	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית, כך שאם $\lVert v \rVert = {(\langle v, v \rangle)}^{1 / 2}$ אז $(V, \lVert \cdot \rVert)$ מרחב שלם.
+	נניח גם ש־$U \subseteq V$ קבוצה לא ריקה, קמורה וסגורה. \\
+	אז לכל $f \in V$ קיים ויחיד $g \in U$ כך שמתקיים,
+	\[
+		\dist(f, U)
+		= \lVert f - g \rVert
+	\]
+	כלומר המרחק מתקבל.
+\end{theorem}
+\begin{proof}
+	נניח כי קיימת סדרה ${\{ g_n \}}_{n = 1}^\infty \subseteq U$ כך שמתקיים,
+	\[
+		\dist(f, U)
+		= \lim_{n \to \infty} \lVert g_n - f \rVert
+	\]
+	קיימת סדרה כזו שכן לכל $\varepsilon > 0$ קיימת $g_{\varepsilon} \in U$ כך ש־$\dist(f, U) \le \lVert f - g_{\varepsilon} \rVert \le \dist(f, U) + \varepsilon$. \\
+	נראה כי $\{ g_n \}$ היא סדרת קושי במרחב הנורמי שהגדרנו.
+	מהלמה שראינו קודם,
+	\begin{align*}
+		{\lVert g_i - g_j \rVert}^2
+		& = {\lVert (f - g_i) - (f - g_j) \rVert}^2 \\
+		& = 2 {\lVert f - g_i \rVert}^2 + 2 {\lVert f - g_j \rVert}^2 - {\lVert 2f - g_i - g_j \rVert}^2 \\
+		& = 2 {\lVert f - g_i \rVert}^2 + 2 {\lVert f - g_j \rVert}^2 - 4 {\lVert f - \frac{g_i - g_j}{2} \rVert}^2
+	\end{align*}
+	נשים לב כי $\frac{g_i + g_j}{2} \in U$, זאת שכן $U$ קמורה,
+	לכן מתקיים,
+	\[
+		\lVert f - \frac{g_i - g_j}{2} \rVert
+		\ge \dist(f, U)
+	\]
+	ולכן,
+	\[
+		{\lVert g_i - g_j \rVert}^2
+		\le 2 {\lVert f - g_i \rVert}^2 + 2 {\lVert f - g_j \rVert}^2 - 4 {(\dist(f, U))}^2
+	\]
+	ומהגדרת $\{ g_n \}$ נוכל להסיק שהיא סדרת קושי. \\
+	אנו יודעים כי $(V, \lVert \cdot \rVert)$ שלם ולכן קיים $g_0 \in V$ כך שמתקיים,
+	\[
+		\lim_{n \to \infty} g_n = g_0
+	\]
+	אבל $U$ סגורה ולכן $g_0 \in U$.
+\end{proof}
+עתה משהוכחנו את המשפט, נוכל להגדיר באופן סיסטמטי את המרחק המתקבל.
+\begin{definition}[הטלה אורתוגונלית למרחב הילברט]
+	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב הילברט, כלומר שכמרחב נורמי מושרה הוא שלם.
+	נניח גם ש־$\emptyset \ne U \subseteq V$ סגורה וקמורה. \\
+	נגדיר $P_U : V \to U$ על־ידי $P_U(f) = g$ עבור $\dist(f, U) = g$.
+\end{definition}
+\begin{remark}
+	מתקיים,
+	\[
+		f \in U
+		\iff P_U(f) = f
+	\]
+	זאת שכן אם $P_U(f) = f$ אז $f \in U$ לפי ההגדרה של $P_U$.
+	מהצד השני אם $f \in U$ ו־$P_U(f) = g$ אז $\lVert f - g \rVert = 0$ ובפרט $f = g$.
+\end{remark}
+\begin{remark}
+	ההטלה האורתוגונלית היא אידמפוטנטית, כלומר,
+	\[
+		P_U \circ P_U
+		= P_U
+	\]
+	זאת שכן $P_U(f) \in U$ וכהיסק מההערה הקודמת.
+\end{remark}
+\begin{example}
+	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב הילברט כלשהו,
+	ונניח,
+	\[
+		U
+		= \{ g \in V \mid \lVert g \rVert \le 1 \}
+	\]
+	אז מתקיים,
+	\[
+		P_U(f)
+		= \begin{cases}
+			f & \lVert f \rVert \le 1 \\
+			\frac{f}{\lVert f \rVert} & \lVert f \rVert > 1
+		\end{cases}
+	\]
+\end{example}
+\begin{proof}
+	אם $\lVert f \rVert \le 1$ אז $f \in U$ ולכן $P_U(f) = f$. \\
+	נניח אם כך ש־$\lVert f \rVert > 1$.
+	מתקיים,
+	\[
+		\lVert f - \frac{f}{\lVert f \rVert} \rVert
+		= \lVert (1 - \frac{1}{\lVert f \rVert}) f \rVert
+		= (1 - \frac{1}{\lVert f \rVert}) \lVert f \rVert
+		= \lVert f \rVert - 1
+	\]
+	לכל $g \in U$ מתקיים $\lVert g \rVert \le 1$, אז,
+	\[
+		\lVert f - g \rVert
+		\ge \lVert f \rVert - \lVert g \rVert
+		\ge \lVert f \rVert - 1
+	\]
+	ישירות מאי־שוויון המשולש, ולכן נקבל את הטענה.
+\end{proof}
+\begin{theorem}[תכונות ההטלה האורתוגונלית בתתי־מרחב]
+	נניח ש־$V$ מרחב הילברט, ו־$U \subseteq V$ תת־מרחב.
+	לכל $f \in V$ מתקיים,
+	\begin{enumerate}
+		\item $\forall g \in U,\ \langle f - P_U(f), g \rangle = 0$
+		\item אם $h \in U$ ומתקיים $\langle f - h, g \rangle = 0$ לכל $g \in U$, אז מתקיים $h = P_U(f)$
+		\item ההעתקה $P_U : V \to U$ היא לינארית
+		\item $\lVert P_U(f) \rVert \le \lVert f \rVert$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\textbf{1}
+	מהגדרת ההטלה האורתוגונלית נסיק,
+	\[
+		{\lVert f - P_U(f) \rVert}^2
+		\le {\lVert f - P_U(f) + t g \rVert}^2
+	\]
+	לכל $g$, ולכל $t \in \CC$.
+	\[
+		{\lVert f - P_U(f) + t g \rVert}^2
+		= \langle f - P_U(f) + t g, f - P_U(f) + t g \rangle
+		= {\lVert f - P_U(f) \rVert}^2 + \overline{t} \langle g, f - P_U(f) \rangle + t \langle f - P_U(f), g \rangle + {|t|}^2 {\lVert g \rVert}^2
+	\]
+	נבחר $t = - \langle g, f - P_U(f) \rangle \cdot \alpha$ עבור $\alpha > 0$ ונקבל,
+	\[
+		\alpha {\left\lvert \langle g, f - P_U(f) \right\rvert}^2
+		\le 2 {\left\lvert \langle g, f - P_U(f) \right\rvert}^2 {\lVert g \rVert}^2
+	\]
+	לכל $\alpha > 0$, כאשר אי־שוויון זה יכול להתקיים רק כאשר $\langle g, f - P_U(f) \rangle = 0$.
+
+	\textbf{2}
+	נשים לב כי אם $h \in U$ ומתקיים $\langle f - h, g \rangle = 0$ לכל $g \in U$ אז גם $\langle f - h \rangle = 0$.
+	בהתאם,
+	\[
+		{\lVert f - h \rVert}^2
+		\le {\lVert f - h \rVert}^2 + {\lVert h - g \rVert}^2
+		= {\lVert f - g \rVert}^2
+	\]
+	לכל $g \in U$, שכן $\langle f - h, g - h \rangle = 0$.
+	אז ${\lVert f - h \rVert}^2 \le {\lVert f - g \rVert}^2$ ומההגדרה של $P_U$ נוכל להסיק ש־$h = P_U(f)$ בלבד.
+
+	\textbf{3}
+	נניח ש־$f_1, f_2 \in V$, אז מהטענה הראשונה מתקיים,
+	\[
+		\langle f_i - P_U(f_i), g \rangle = 0
+	\]
+	לכל $i \in \{1, 2\}$ ולכל $g \in U$.
+	נובע,
+	\[
+		\langle f_1 + f_2 - (P_U(f_1) + P_U(f_2)), g \rangle = 0
+	\]
+	ומהטענה השנייה נקבל $P_U(f_1) + P_U(f_2) = P_U(f_1 + f_2)$. \\
+	אם $\langle f - P_U(f), g \rangle = 0$ אז גם $\langle \alpha f - \alpha P_U(f), g \rangle = 0$ לכל $\alpha \in \CC$, ומהטענה השנייה נסיק $\alpha P_U(f) = P_U(\alpha f)$.
+
+	\textbf{4}
+	\[
+		0
+		\le \langle f - P_U(f), f - P_U(f) \rangle
+		= \langle f - P_U(f), f \rangle - \langle f - P_U(f), P_U(f)
+		= \langle f - P_U(f), f \rangle - \langle f - 0
+	\]
+	כאשר השוויון האחרון נובע מהטענה הראשונה.
+	בהתאם נובע ש־$\langle P_U(f), f \rangle \le {\lVert f \rVert}^2$.
+	\[
+		\langle P_U(f), f \rangle
+		= \langle P_U(f), f - P_U(f) \rangle + \lVert P_U(f), P_U(f) \rVert
+		= 0 + \lVert P_U(f), P_U(f) \rVert
+	\]
+	ונקבל,
+	\[
+		\lVert P_U(f) \rVert \le \lVert f \rVert
+	\]
+	לכל $f \in V$.
+\end{proof}
+נסיים בהגדרה שתשמש אותנו בדיון על הטלות אורתוגונליות בהמשך.
+\begin{definition}[תת־מרחב אורתוגונלי]
+	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית, ויהי תת־מרחב $U \subseteq V$.
+	אז נגדיר את תת־המרחב האורתוגונלי,
+	\[
+		U^\perp
+		= \{ g \in V \mid \forall u \in U,\ \langle g, u \rangle = 0 \}
+	\]
+\end{definition}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
