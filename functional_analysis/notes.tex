@@ -1920,7 +1920,8 @@
 	\[
 		\lim_{n \to \infty} g_n = g_0
 	\]
-	אבל $U$ סגורה ולכן $g_0 \in U$.
+	אבל $U$ סגורה ולכן $g_0 \in U$. \\
+	נותר להראות יחידות, אותה נראה בתרגול.
 \end{proof}
 עתה משהוכחנו את המשפט, נוכל להגדיר באופן סיסטמטי את המרחק המתקבל.
 \begin{definition}[הטלה אורתוגונלית למרחב הילברט]
@@ -2002,10 +2003,20 @@
 		= \langle f - P_U(f) + t g, f - P_U(f) + t g \rangle
 		= {\lVert f - P_U(f) \rVert}^2 + \overline{t} \langle g, f - P_U(f) \rangle + t \langle f - P_U(f), g \rangle + {|t|}^2 {\lVert g \rVert}^2
 	\]
+	בפרט מתקיים,
+	\[
+		0 \le {\lVert f - P_U(f) \rVert}^2 + \overline{t} \langle g, f - P_U(f) \rangle + t \langle f - P_U(f), g \rangle + {|t|}^2 {\lVert g \rVert}^2
+		\implies
+		0 \le \overline{t} \langle g, f - P_U(f) \rangle + t \langle f - P_U(f), g \rangle + {|t|}^2 {\lVert g \rVert}^2
+	\]
 	נבחר $t = - \langle g, f - P_U(f) \rangle \cdot \alpha$ עבור $\alpha > 0$ ונקבל,
 	\[
-		\alpha {\left\lvert \langle g, f - P_U(f) \right\rvert}^2
-		\le 2 {\left\lvert \langle g, f - P_U(f) \right\rvert}^2 {\lVert g \rVert}^2
+		0 \le -2 {\langle g, f - P_U(f) \rangle}^2 \alpha^2 + {|\langle g, f - P_U(f) \rangle|}^2 \alpha^2 {\lVert g \rVert}^2
+	\]
+	כלומר,
+	\[
+		2 {\left\lvert \langle g, f - P_U(f) \rangle \right\rvert}^2 {\lVert g \rVert}^2
+		\le \alpha {\left\lvert \langle g, f - P_U(f) \rangle \right\rvert}^2
 	\]
 	לכל $\alpha > 0$, כאשר אי־שוויון זה יכול להתקיים רק כאשר $\langle g, f - P_U(f) \rangle = 0$.
 
