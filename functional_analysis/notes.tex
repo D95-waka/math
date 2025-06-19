@@ -1880,7 +1880,8 @@
 	ישירות מחוקי מכפלה פנימית.
 \end{proof}
 \begin{theorem}[תנאי מספיק לקבלת מרחק במרחבים שלמים]
-	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית, כך שאם $\lVert v \rVert = {(\langle v, v \rangle)}^{1 / 2}$ אז $(V, \lVert \cdot \rVert)$ מרחב שלם.
+	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית, ונגדיר $\lVert v \rVert = {(\langle v, v \rangle)}^{1 / 2}$, נניח גם כי $(V, \lVert \cdot \rVert)$ מרחב שלם.
+	מרחבי מכפלה פנימית כאלה נקראים מרחבי הילברט.
 	נניח גם ש־$U \subseteq V$ קבוצה לא ריקה, קמורה וסגורה. \\
 	אז לכל $f \in V$ קיים ויחיד $g \in U$ כך שמתקיים,
 	\[
@@ -1925,9 +1926,9 @@
 \end{proof}
 עתה משהוכחנו את המשפט, נוכל להגדיר באופן סיסטמטי את המרחק המתקבל.
 \begin{definition}[הטלה אורתוגונלית למרחב הילברט]
-	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב הילברט, כלומר שכמרחב נורמי מושרה הוא שלם.
+	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב הילברט, כלומר שכמרחב נורמי מושרה הוא שלם. \\
 	נניח גם ש־$\emptyset \ne U \subseteq V$ סגורה וקמורה. \\
-	נגדיר $P_U : V \to U$ על־ידי $P_U(f) = g$ עבור $\dist(f, U) = g$.
+	נגדיר $P_U : V \to U$ על־ידי $P_U(f) = g$ כאשר $g \in U$ הפונקציה היחידה המקיימת $\dist(f, U) = \lVert f - g \rVert$.
 \end{definition}
 \begin{remark}
 	מתקיים,
@@ -2066,7 +2067,7 @@
 \end{proof}
 נסיים בהגדרה שתשמש אותנו בדיון על הטלות אורתוגונליות בהמשך.
 \begin{definition}[תת־מרחב אורתוגונלי]
-	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית, ויהי תת־מרחב $U \subseteq V$.
+	יהי $(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית, ויהי תת־מרחב $U \subseteq V$ סגור.
 	אז נגדיר את תת־המרחב האורתוגונלי,
 	\[
 		U^\perp
