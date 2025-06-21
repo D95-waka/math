@@ -1,0 +1,170 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- מבנים אלגבריים (2), 80446}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+יהי $f \in \QQ[x]$ פולינום אי־פריק מדרגה 3 ויהי $L$ שדה הפיצול שלו. \\
+נראה ש־$[L : \QQ] = 3$ אם ורק אם $D_f$ ריבוע ב־$\QQ$, ושאחרת $[L : \QQ] = 6$.
+\begin{proof}
+	תהי $G = \gal(L / \QQ)$, אז בהכרח $G \le S_3$ וטרנזיטיבית, לכן $G \simeq \ZZ / 3\ZZ$ או $G \simeq S_3$. \\
+	אם $[L : \QQ] = 3$ אז $G \simeq \ZZ / 3\ZZ$ ולכן קיים אוטומורפיזם $\sigma \in G$ כך ש־$\langle \sigma \rangle = G$.
+	\[
+		\sigma(\sqrt{D_f})
+		= \prod_{1 \le i < j \le 3} (\sigma(x_i) - \sigma(x_j))
+		= \prod_{1 \le i < j \le 3} (x_i - x_j)
+		= \sqrt{D_f}
+	\]
+	כלומר זוהי נקודת שבת של $\sigma$ ולכן $\sqrt{D_f} \in \QQ$.
+
+	נניח ש־$\sqrt{D_f}$ ריבוע ב־$\QQ$.
+	נניח גם ש־$\sigma \in S_3 \setminus \ZZ / 3\ZZ$, כלומר $\sigma = (x_1\ x_2)$ בלי הגבלת הכלליות,
+	מההנחה שלנו גם,
+	\[
+		\sigma(\sqrt{D_f})
+		= \sqrt{D_f}
+	\]
+	אבל,
+	\[
+		\sigma(\sqrt{D_f})
+		= \sigma(x_1 - x_2) \sigma(x_1 - x_3) \sigma(x_2 - x_3)
+		= (x_2 - x_1) (x_2 - x_3) (x_1 - x_3)
+		= - \sqrt{D_f}
+	\]
+	וזו סתירה, לכן $\sigma \notin G$, ובהכרח רק $G \simeq \ZZ / 3\ZZ$, כלומר $[L : \QQ] = 3$.
+
+	אילו התנאי לא מתקיים, אז $G \simeq S_3$ ולכן,
+	\[
+		[L : \QQ]
+		= |G|
+		= |S_3|
+		= 6
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\question{}
+יהיו $F$ שדה ממציין שונה מ־2, $f \in F[x]$ פולינום ספרבילי אי־פריק ומתוקן, ו־$L$ שדה הפיצול של $f$ מעל $F$.
+נסמן ב־$\alpha_1, \ldots, \alpha_n$ את שורשי $f$ ב־$L$ ונגדיר $K = F(\sqrt{D_f})$.
+נראה שמתקיים,
+\[
+	\gal(L / K)
+	= \{ \sigma \in \gal(L / F) \mid \operatorname{sgn}(\sigma \restriction \{\alpha_1, \ldots, \alpha_n\}) = 1 \}
+\]
+כלומר ש־$\gal(L / K) = \gal(L / F) \cap A_n$ עד כדי איזומורפיזם.
+\begin{proof}
+	בתרגול ראינו כי $G \subseteq A_n \iff \sqrt{D_f} \in F$ לכל שדה $F$.
+	לכן $K$ מקיימת $\gal(L / K) \subseteq A_n$, ומהתאמת גלואה בפרט $\gal(L / K) \subseteq \gal(L / F) \cap A_n$.
+	נותר אם כן להראות שזהו שוויון. \\
+	תהי $\sigma \in (\gal(L / F) \cap A_n) \setminus \gal(L / K)$, כלומר $\sigma \restriction K \ne \id_K$.
+	אבל $\sigma(\sqrt{D_f}) = \pm \sqrt{D_f}$ בלבד, ובמקרה זה נקבל $\operatorname{sgn}(\sigma) = -1$ ישירות מהגדרת הסימן, ולכן $\sigma \notin A_n$, ונוכל להסיק שאין $\sigma$ כזו. \\
+	בהתאם נסיק $\gal(L / K) = \gal(L / F) \cap A_n$.
+\end{proof}
+
+\question{}
+יהיו $F$ שדה, $f \in F[x]$ פולינום ספרבילי אי־פריק ומתוקן, ו־$L$ שדה הפיצול של $f$ מעל $F$. \\
+נניח גם ש־$p = \operatorname{char} F$ וכן ש־$p = 0$ או שעבור $n = | \gal(L / F) |$ מתקיים $p \nmid n$.
+תהי $H \le \gal(L / F)$.
+
+\subquestion{}
+נגדיר את ההעתקה הלינארית $A_H : L \to L$ על־ידי,
+\[
+	A_H(x)
+	= \frac{1}{|H|} \sum_{\sigma \in H} \sigma(x)
+\]
+נראה ש־$A_H$ היא הטלה על $L^H$,
+כלומר ש־$\im(A_H) = L^H$ ו־$A_H \restriction L^H = \id_{L^H}$.
+\begin{proof}
+	תהי $\tau \in H$, אז מתקיים,
+	\[
+		\tau(A_H(x))
+		= \tau(\frac{1}{|H|} \sum_{\sigma \in H} \sigma(x))
+		= \frac{1}{|H|} \sum_{\sigma \in \tau H} \sigma(x)
+		= \frac{1}{|H|} \sum_{\sigma \in H} \sigma(x)
+		= A_H(x)
+	\]
+	כנביעה מ־$\tau H = H$, שכן חבורות גלואה תמיד טרנזיטיביות.
+	נסיק ש־$A_H(x) \in L^H = \{ x \in L \mid \forall \sigma \in H,\ \sigma(x) = x \}$.
+
+	יהי $x \in L^H$, כלומר $\sigma(x) = x$ לכל $\sigma \in H$, לכן,
+	\[
+		A_H(x)
+		= \frac{1}{|H|} \sum_{\sigma \in H} \sigma(x)
+		= \frac{1}{|H|} \sum_{\sigma \in H} x
+		= \frac{1}{|H|} x \cdot |H|
+		= x
+	\]
+	וקיבלנו ש־$A_H \restriction L^H = \id_{L^K}$.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $B = (b_1, \ldots, b_n)$ בסיס ל־$L$ מעל $F$ אז $\Sp\{ A_H(b_1), \ldots, A_H(b_n)\} = L^H$.
+\begin{proof}
+	יהי $x \in L^H$ ונניח שמתקיים,
+	\[
+		x
+		= \sum_{i = 1}^n \alpha_i b_i
+	\]
+	אז מתקיים גם,
+	\[
+		x
+		= A_H(x)
+		= \sum_{i = 1}^n A_H(\alpha_i b_i)
+		= \sum_{i = 1}^n \alpha_i A_H(b_i)
+	\]
+	נובע ש־$\Sp\{ A_H(b_1), \ldots, A_H(b_n)\} \supseteq L^H$.
+
+	מהצד השני אם $x \in \Sp\{ A_H(b_1), \ldots, A_H(b_n)\}$ אז,
+	\[
+		x
+		= \sum_{i = 1}^n \alpha_i A_H(b_i)
+		= A_H\left(\sum_{i = 1}^n \alpha_i b_i\right)
+		\in L^H
+	\]
+	מלינאריות $A_H$, ולכן מצאנו שיש שוויון.
+\end{proof}
+
+\pagebreak
+\subquestion{}
+נמצא דוגמה ל־$F, f, L, H$ כמוגדר לעיל, ו־$\alpha \in L$ כך ש־$F(\alpha) = L$ אבל שגם,
+\[
+	F(A_H(\alpha)) \subsetneq L^H
+\]
+\begin{solution}
+	נגדיר,
+	\[
+		F = \QQ,
+		\quad
+		f(x) = x^3 - 2,
+		\quad
+		\alpha = \xi_3 \sqrt[3]{2},
+		\quad
+		L = F(\alpha),
+		\quad
+		L^H = F(\xi_3)
+	\]
+	נגדיר בהתאמה,
+	\[
+		H
+		= \ZZ / 3\ZZ
+		= \{ \xi_3 \to \xi_3^i \mid 0 \le i \le 2 \}
+	\]
+	ולכן נוכל להסיק,
+	\[
+		A_H(\alpha)
+		= \frac{1}{3} \sum_{\sigma \in H} \sigma(\alpha)
+		= \frac{1}{3} \sum_{i = 0}^2 \xi_3^i \sqrt[3]{2}
+		= 0
+	\]
+	ולכן,
+	\[
+		F(A_H(\alpha))
+		= F(0)
+		= F
+		\subsetneq L
+	\]
+\end{solution}
+
+\end{document}
