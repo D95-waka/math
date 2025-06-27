@@ -4,40 +4,67 @@
 
 \begin{document}
 
-\begin{definition}[רציפות במידה שווה]
-	תהי $f$ רציפה במידה שווה, כלומר לכל $\varepsilon > 0$ קיים $\delta > 0$ כך שאם $|x - y| < \delta$ אז $|f(x) - f(y)| < \varepsilon$.
-\end{definition}
-\begin{definition}[רציפות חסומה במידה שווה]
-	תהי $f$ רציפה במידה שווה, כלומר לכל $\varepsilon > 0$ קיים $1 > \delta > 0$ כך שאם $|x - y| < \delta$ אז $|f(x) - f(y)| < \varepsilon$.
-\end{definition}
 \begin{proposition}
-	פונקציה $f : I \to \RR$ רציפה במידה שווה אם ורק אם היא רציפה חסומה במידה שווה.
+	יהי $b \in \NN \setminus \{ 0 \}$.
+	לכל $x \in \NN \setminus \{ 0 \}$ קיים $N \in \NN$ יחיד וסדרה יחידה ${\{ x_n \}}_{n = 0}^N \subseteq \{0, \ldots, b - 1\}$,
+	כך שמתקיים,
+	\[
+		x
+		= \sum_{n = 0}^N b^n \cdot x_n
+	\]
+	ו־$b_N \ne 0$.
 \end{proposition}
 \begin{proof}
-	נניח ש־$f$ רציפה חסומה במידה שווה ויהי $\varepsilon > 0$.
-	אז קיימת $1 > \delta > 0$ המקיימת את טענת הרציפות.
-	בפרט $\delta > 0$ ומעידה על רציפות במידה שווה.
+	נוכיח את הטענה באינדוקציה על $x$.
 
-	נניח ש־$f$ רציפה במידה שווה.
-	יהי $\varepsilon > 0$ ותהי $\delta > 0$ המקיימת את טענת הרציפות.
-	אם $\delta < 1$ אז סיימנו, ולכן נניח ש־$\delta > 1$.
-	נגדיר $\delta_1 = \frac{1}{2}$, אז מתקיים,
+	נניח ש־$x = 1$.
+	אילו $N > 0$ אז $x_N \ge 1$ ומתקיים,
 	\[
-		\forall x, y \in I,\ 
-		|x - y| < \delta_1
-		\implies |x - y| < \delta
-		\implies |f(x) - f(y)| < \varepsilon
+		\sum_{n = 0}^N b^n \cdot x_n
+		\ge b^N \cdot x_n
+		\ge b
 	\]
-	כלומר קיבלנו ש־$\delta_1$ מעיד על נכונות הרציפות במידה שווה, וזהו ערך חסום.
+	ולכן בהכרח $N = 0$ בלבד.
+	נובע אם כך ש־$x = x_0$ עבור $0 \le x_0 < N$, ולכן $x_0 = 1$ בלבד.
+
+	נניח שהטענה נכונה עבור $1 \le y < x$ לכל $y$ כזה ונוכיח את הטענה על $x$.
+	נגדיר,
+	\[
+		N
+		= \min\{ n \in \NN \mid b^{n + 1} > x \}
+	\]
+	קיים כזה מהסדר הטוב על הטבעיים (ולכן הטענה לא נכונה ב־$\operatorname{PA}$).
+	נגדיר גם,
+	\[
+		x_N
+		= \max\{ n \in [b] \mid x \le b^N \cdot n \}
+	\]
+	נסמן $y = x - b^N \cdot x_N$, אז $y < x$ ולכן מהנחת האינדוקציה קיים $M \le N$ ו־${\{ y_n \}}_{n = 0}^M$ כך שמתקיים,
+	\[
+		y
+		= \sum_{n = 0}^M b^n \cdot y_n
+	\]
+	אז נגדיר $x_n = y_n$ לכל $0 \le n \le M$ ו־$x_n = 0$ עבור $M < n < N$.
+	נקבל,
+	\[
+		\sum_{n = 0}^N b^n \cdot x_n
+		= b^N \cdot x_N + \sum_{n = 0}^M b^n \cdot x_n
+		= b^N \cdot x_N + y
+		= x
+	\]
+	לכן מצאנו $N$ וסדרה המקיימות את הטענה, עלינו להראות יחידות. \\
+	נניח ש־$N'$ ו־${\{ x_n' \}}_{n = 0}^{N'}$ מקיימים את הטענה.
+	אז מהחישוב שראינו של $N$ בהכרח נובע $N = N'$.
+	אם $N = 0$ אז $b^0 \cdot x_0 = x = b^0 \cdot x_0'$ ונובע $x_0 = x_0'$ בלבד.
+	עתה נניח שהטענה נכונה עבור רישא של הסדרה, $x_n = x_n'$ לכל $n < m \le N$, ונבחן את $m$.
+	נניח בלי הגבלת הכלליות ש־$x_n = 0$ לכל $n < m$ ולכן,
+	\[
+		x
+		= \sum_{n = m}^N b^n \cdot x_n
+		= b^m \sum_{n = m}^N b^{n - m} \cdot x_n
+	\]
+	ונוכל באופן דומה לקבל ש־$x_m = x_m'$ עבור $y = \sum_{n = m}^N b^{n - m} \cdot x_n$. \\
+	נסיק שאכן $x_n = x_n'$ לכל $n \le N$, וסיימנו להוכיח יחידות.
 \end{proof}
-
-\begin{remark}
-	נבחר $\delta_1 = \min\{ \delta, \frac{1}{2} \}$, אז אם $|x - y| < \delta_1$ בהכרח גם $|x - y| < \frac{1}{2}$ וגם $|x - y| < \delta$, אבל אז גם $|f(x) - f(y)| < \varepsilon$ בהתאם להגדרה.
-	נוכל אם כל להניח בלי הגבלת הכלליות ש־$\delta \le \frac{1}{2}$ ולכן בהכרח,
-	\[
-		1 - \delta^2
-		< 1
-	\]
-\end{remark}
 
 \end{document}
