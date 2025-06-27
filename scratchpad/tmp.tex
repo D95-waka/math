@@ -1,38 +1,43 @@
 \input{../article_base.tex}
 
-\usepackage{sectsty, xcolor}
-
-\definecolor{teal}{RGB}{0, 128, 128}
-\definecolor{yellow}{RGB}{252, 241, 188}
-
-\newcommand\maincolor{teal}
-
-\allsectionsfont{\color{\maincolor}}
-
-\newtheoremstyle{c2_plain}
-	{3pt}	% Space above
-	{3pt}	% Space below
-	{\itshape}% Body font
-	{}	% Indent amount
-	{\bfseries}	% Theorem head font
-	{}	% Punctuation after theorem head
-	{.5em}	% Space after theorem head
-	{\color{\maincolor}\thmname{#1}\thmnumber{ #2}\thmnote{ \text{(#3)}}}	% head content
-
-\theoremstyle{c2_plain}
-\newtheorem{theorem2}{משפט}[section]
-
+\usepackage{emoji}
 
 \begin{document}
 
-\section{A}
-\subsection{B}
-פתיחה כלשהי
+\begin{definition}[רציפות במידה שווה]
+	תהי $f$ רציפה במידה שווה, כלומר לכל $\varepsilon > 0$ קיים $\delta > 0$ כך שאם $|x - y| < \delta$ אז $|f(x) - f(y)| < \varepsilon$.
+\end{definition}
+\begin{definition}[רציפות חסומה במידה שווה]
+	תהי $f$ רציפה במידה שווה, כלומר לכל $\varepsilon > 0$ קיים $1 > \delta > 0$ כך שאם $|x - y| < \delta$ אז $|f(x) - f(y)| < \varepsilon$.
+\end{definition}
+\begin{proposition}
+	פונקציה $f : I \to \RR$ רציפה במידה שווה אם ורק אם היא רציפה חסומה במידה שווה.
+\end{proposition}
+\begin{proof}
+	נניח ש־$f$ רציפה חסומה במידה שווה ויהי $\varepsilon > 0$.
+	אז קיימת $1 > \delta > 0$ המקיימת את טענת הרציפות.
+	בפרט $\delta > 0$ ומעידה על רציפות במידה שווה.
 
-\subsubsection{C}
-טקסט לדוגמה
-\begin{theorem2}[שם המשפט]
-	משפט כלשהו
-\end{theorem2}
+	נניח ש־$f$ רציפה במידה שווה.
+	יהי $\varepsilon > 0$ ותהי $\delta > 0$ המקיימת את טענת הרציפות.
+	אם $\delta < 1$ אז סיימנו, ולכן נניח ש־$\delta > 1$.
+	נגדיר $\delta_1 = \frac{1}{2}$, אז מתקיים,
+	\[
+		\forall x, y \in I,\ 
+		|x - y| < \delta_1
+		\implies |x - y| < \delta
+		\implies |f(x) - f(y)| < \varepsilon
+	\]
+	כלומר קיבלנו ש־$\delta_1$ מעיד על נכונות הרציפות במידה שווה, וזהו ערך חסום.
+\end{proof}
+
+\begin{remark}
+	נבחר $\delta_1 = \min\{ \delta, \frac{1}{2} \}$, אז אם $|x - y| < \delta_1$ בהכרח גם $|x - y| < \frac{1}{2}$ וגם $|x - y| < \delta$, אבל אז גם $|f(x) - f(y)| < \varepsilon$ בהתאם להגדרה.
+	נוכל אם כל להניח בלי הגבלת הכלליות ש־$\delta \le \frac{1}{2}$ ולכן בהכרח,
+	\[
+		1 - \delta^2
+		< 1
+	\]
+\end{remark}
 
 \end{document}
