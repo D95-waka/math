@@ -114,7 +114,7 @@
 	כמובן מתקיים $\lVert l_n \rVert = 1$ לכל $n \in \NN$, ולכן סדרת הנקודות חסומה ב־$S$.
 \end{example}
 \begin{proposition}
-	${(l_n)}_{n = 1}^\infty \subseteq l_2$ איינה כוללת תת־סדרת קושי.
+	${(l_n)}_{n = 1}^\infty \subseteq l_2$ איננה כוללת תת־סדרת קושי.
 \end{proposition}
 \begin{proof}
 	נבחין כי $\lVert l_n - l_m \rVert = \sqrt{2}$ לכל $n \ne m$.
@@ -232,7 +232,7 @@
 	באנגלית Eqicontinuous family of functions.
 	נניח ש־$\Phi \subseteq C[a, b]$ עבור כל $\epsilon > 0$ קיים $\delta = \delta(\epsilon)$ (כלומר ערך $\delta$ תלוי רק ב־$\epsilon$), כך שמתקיים,
 	\[
-		\forall x_1, x_2 \in [a, b], \varphi \in \Phi\ 
+		\forall x_1, x_2 \in [a, b], \varphi \in \Phi,\ 
 		|x_1 - x_2| \le \delta(\epsilon)
 		\implies |\varphi(x_1) - \varphi(x_2)| \le \epsilon
 	\]
@@ -444,7 +444,7 @@
 		\item $K$ חסומה לחלוטין
 		\item
 			\begin{enumerate}
-				\item הקבוצה $K$ חסומה במרחב המטרי $(l_2, \lVert \cdot \rVert)$, ו
+				\item הקבוצה $K$ חסומה במרחב המטרי $(l_2, \lVert \cdot \rVert)$
 				\item $\lim_{M \to \infty} \sup_{x \in K} \sum_{j = M}^\infty x_j^2 = 0$
 			\end{enumerate}
 	\end{enumerate}
@@ -555,7 +555,10 @@
 		P_n(x)
 		= \int_{-1}^{1} F(x + u) Q_n(u)\ du
 	\]
-	כאשר $Q_n(u) = C_n {(1 - u^2)}^n$ כאשר $C_n$ קבוע מנרמל כך שיתקיים $\int_{-1}^{1} Q_n(u)\ du = 1$. \\
+	כאשר $Q_n(u) = C_n {(1 - u^2)}^n$ ו־$C_n$ קבוע מנרמל כך שיתקיים $\int_{-1}^{1} Q_n(u)\ du = 1$, כלומר,
+	\[
+		C_n = \frac{1}{\int_{-1}^{1} {(1 - u^2)}^n\ du}
+	\]
 	נבחין כי $F(x + u) \ne 0$ כאשר $x + u \in [0, 1]$, או בהתאם כאשר $u \in [-x, 1 - x]$.
 	נשתמש בהגדרת התומך ונקבל שמתקיים,
 	\[
@@ -563,15 +566,22 @@
 		= \int_{-x}^{1 - x} F(x + u) Q_n(u)\ du
 		= \int_0^1 F(t) Q_n(t - x)\ dt
 	\]
-	אבל $Q_n$ פולינום ונסיק שגם $P_n$ פולינום (מדוע?).
+	אבל $Q_n$ פולינום ונסיק שגם $P_n$ פולינום, זאת על־ידי הגדרת,
+	\[
+		G(x)
+		= \int_{0}^{x} F(t) Q_n(t - x)\ dt
+	\]
+	ובמצב זה $P_n'(x) = G'(1) - G'(0) = F(1) Q_n'(1 - x) - F(0) Q_n'(-x) = 0$. \\
 	נבחין כי,
 	\begin{align*}
-		& |P_n(x) - F(x)| \\
+		|P_n(x) - F(x)|
 		& = \left\lvert \int_{-1}^{1} F(x + u) Q_n(u)\ du - \int_{-1}^{1} F(x) Q_n(u)\ du \right\rvert \\
 		& \le \int_{-1}^{1} |F(x + u) - F(x)| Q_n(u)\ du \\
-		& \le \int_{-1}^{-\delta} |F(x + u) - F(x)| Q_n(u)\ du + \int_{-\delta}^{\delta} |F(x + u) - F(x)| Q_n(u)\ du + \int_{\delta}^1 |F(x + u) - F(x)| Q_n(u)\ du
+		& \le \int_{-1}^{-\delta} |F(x + u) - F(x)| Q_n(u)\ du & \overset{\text{def}}{=}  I_1 \\
+		&\quad + \int_{-\delta}^{\delta} |F(x + u) - F(x)| Q_n(u)\ du & \overset{\text{def}}{=}  I_2 \\
+		&\quad + \int_{\delta}^1 |F(x + u) - F(x)| Q_n(u)\ du & \overset{\text{def}}{=}  I_3
 	\end{align*}
-	נסמן את שלושת האינטגרלים הללו $I_1, I_2, I_3$ בהתאמה, ונבדוק,
+	ועתה נותר לחסום את $I_1, I_2, I_3$,
 	\[
 		I_2
 		\le \epsilon \int_{-\delta}^{\delta} Q_n\ du
@@ -599,11 +609,11 @@
 		= 2 {\left[ \frac{1}{\sqrt{n}} - n \frac{u^3}{3}\right]}_0^{\frac{1}{\sqrt{n}}}
 	\]
 	ולכן נסיק ש־$C_n \le \sqrt{n}$.
-	בהתאם נקבל חסם ל־$I_3$ ומטעמי סימטריה גם ל־$I_1$, ונוכל להסיק שלכל $\epsilon > 0$ קיים $\delta > 0$ כך שמתקיים,
+	בהתאם נקבל חסם ל־$I_3$ ומטעמי סימטריה גם ל־$I_1$, ונוכל להסיק שלכל $\epsilon > 0$ קיים $1 > \delta > 0$ כך שמתקיים,
 	\[
 		|F(x) - P_n(x)|
 		\le \epsilon + 4M \sqrt{n} {(1 - \delta^2)}^n
-		\xrightarrow{n \to \infty} 0
+		\xrightarrow{n \to \infty} \epsilon
 	\]
 	כלומר קיים $M_0 > 0$ כל ש־$|F(x) - P_n(x)| \le 2 \epsilon$ לכל $x \in \RR, n > M_0$, ולכן $P_n \overset{\RR}{\rightrightarrows} f$ ובפרט $P_n \overset{[0, 1]}{\rightrightarrows} f$ כפי שרצינו.
 \end{proof}
@@ -650,14 +660,15 @@
 \end{example}
 נעבור לדוגמה נגדית.
 \begin{example}
-	נגדיר $A \subseteq C[-1, 1]$ כך שמתקיים,
+	תהי הקבוצה $A_{\text{even}} \subseteq C[-1, 1]$ המוגדרת על־ידי,
 	\[
 		A_{\text{even}}
-		= \{ f \in C[-1, 1] \mid f \text{ is continuous}, \forall x \in [-1, 1], f(x) = f(-x) \}
+		= \{ f \in C[-1, 1] \mid \forall x \in [-1, 1],\ f(x) = f(-x) \}
 	\]
 	קבוצת הפונקציות הזוגיות.
 	זוהי בבירור אלגברה, שכן מכפלת פונקציות זוגיות היא זוגית וכך גם חיבורן.
 	אבל $A_{\text{even}}$ לא מפרידה בין נקודות.
+	נבחר לדוגמה את $x = -1, 1$, אז כל פונקציה $f \in A_{\text{even}}$ מקיימת $f(1) = f(-1)$.
 \end{example}
 \begin{definition}[קבוצה קומפקטית]
 	נניח ש־$(X, \rho)$ מרחב מטרי, ותהי $K \subseteq X$.
@@ -696,7 +707,7 @@
 		\quad h_1(x) \ne 0,
 		\quad h_2(y) \ne 0
 	\]
-	נגדיר את הפונקציות $u(t) = h_2(t) (g(t) - g(y)) \in A$ וכן $v(t) = h(t) (g(t) - g(y)) \in A$, כאשר השייכות ל־$A$ נובעת מהיותה אלגברה.
+	נגדיר את הפונקציות $u(t) = h_2(t) (g(t) - g(y)) \in A$ וכן $v(t) = h_1(t) (g(t) - g(y)) \in A$, כאשר השייכות ל־$A$ נובעת מהיותה אלגברה.
 	מתקיים,
 	\[
 		u(x) = 0,
@@ -710,7 +721,7 @@
 	\]
 	אז מתקיים $f(x) = c_1, f(y) = c_2$.
 \end{proof}
-נסמן למה זו ב־$(*)$.
+נסמן למה זו ב־$(*)$ לקראת הוכחת משפט סטון־ויירשטראס.
 \begin{lemma}
 	אם $A$ אלגברה אז גם $\overline{A}$ אלגברה,
 	וכן $|f| \in \overline{A}$ לכל $f \in A$.
@@ -743,7 +754,7 @@
 \end{proof}
 \begin{lemma}
 	נניח ש־$A$ אלגברה.
-	אם $f_1, \ldots, f_n \in A$ אז נראה ש־$\varphi, \psi$ המוגדרות על־ידי,
+	אם $f_1, \ldots, f_n \in A$ ו־$\varphi, \psi$ מוגדרות על־ידי,
 	\[
 		\varphi(t) = \max\{ f_1(t), \ldots, f_n(t) \},
 		\qquad
@@ -769,7 +780,7 @@
 		\item $g_x(x) = f(x)$
 		\item $g_x(t) > f(t) - \epsilon$ לכל $t \in K$
 	\end{itemize}
-	עבור כל $y \in K$ קיימת $(*)$ פונקציה $h_y \in A$ כך ש־$h_y(y) = f(y)$ ו־$h_y(x) = f(x)$. \\
+	עבור כל $y \in K$ קיימת $(*)$ פונקציה $h_y \in A$ כך ש־$h_y(y) = f(y)$ ו־$h_y(x) > f(x)$ עבור $x \ne y$. \\
 	נגדיר את הקבוצה,
 	\[
 		J_y
@@ -788,7 +799,7 @@
 		K = \bigcup_{i = 1}^n J_{y_i}
 	\]
 	עבור $y_i \in K$ לכל $1 \le i \le n$, כאשר $n \in \NN$. \\
-	נגדיר $g_x = \max\{ h_{y_1}, \ldots, h_{y_n} \}$ בנורמה $\lVert \cdot \rVert_\infty$.
+	נגדיר $g_x(t) = \max\{ h_{y_1}(t), \ldots, h_{y_n}(t) \}$, כלומר פונקציה המהווה מקסימום ל־$h_i$ בכל נקודה, בנורמה $\lVert \cdot \rVert_\infty$.
 	נובע ש־$g_x \in \overline{A}$ מ־$(\#)$.
 	נבחין גם כי $h_{y_1}(x) = \cdots = h_{y_n}(x)$ ולכן נוכל להסיק שבפרט $g_x(x) = f(x)$.
 	לכל $t \in K$ אנו יודעים כי $t \in J_{y_i}$ עבור איזשהו $i$, ולכן,
@@ -925,12 +936,12 @@
 	לכל $x \in V$,
 	\[
 		{\lVert x \rVert}^2
-		\ge \sum_{n = 1}^N {|\langle x, v_n \rangle}^2
+		\ge \sum_{n = 1}^N {\langle x, v_n \rangle}^2
 	\]
 	בפרט גם,
 	\[
 		{\lVert x \rVert}^2
-		\ge \sum_{n = 1}^\infty {|\langle x, v_n \rangle}^2
+		\ge \sum_{n = 1}^\infty {\langle x, v_n \rangle}^2
 	\]
 	לסדרות אורתונורמליות אינסופיות.
 \end{conclusion}
@@ -942,10 +953,10 @@
 	\[
 		{\lVert x \rVert}^2
 		\ge {|\langle x, v_1 \rangle|}^2
-		= {|\langle x, \frac{y}{\lVert y \rVert} \rangle|}^2
+		= {\left\lvert \langle x, \frac{y}{\lVert y \rVert} \rangle\right\rvert}^2
 		= \frac{{|\langle x, y \rangle|}^2}{{\lVert y \rVert}^2}
 	\]
-	ונסיק ש־$\lVert x \rVert \cdot \langle y \rangle \ge |\langle x, y \rangle|$
+	ונסיק ש־$\lVert x \rVert \cdot \lVert y \rVert \ge |\langle x, y \rangle|$
 \end{proof}
 \begin{theorem}[התכנסות טור פורייה]
 	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב מכפלה פנימית ו־${\{ v_n \}}_{n = 1}^\infty \subseteq V$ סדרה אורתוגונלית.
@@ -957,11 +968,11 @@
 \end{theorem}
 \begin{proof}
 	נניח שאכן $v = \sum_{n = 1}^\infty \alpha_n v_n$, אז $\lim_{N \to \infty} \lVert v - \sum_{n = 1}^N \alpha_n v_n \rVert = 0$.
-	אז,
+	וכן,
 	\[
 		\left\lvert \langle v_k, v \rangle - \langle v_k, \sum_{n = 1}^N \alpha_n v_n \rangle \right\rvert
 		= \left\lvert \langle v_k, v - \sum_{n = 1}^N \alpha_n v_n \rangle \right\rvert
-		\le \lVert v_k \rVert \cdot \left\lvert v - \sum_{n = 1}^N \alpha_n v_n \right\rvert \xrightarrow{N \to \infty} 0
+		\le \lVert v_k \rVert \cdot \left\lVert v - \sum_{n = 1}^N \alpha_n v_n \right\rVert \xrightarrow{N \to \infty} 0
 	\]
 	ובהתאם עבור $k \in \NN$ נוכל להסיק,
 	\[
@@ -1003,7 +1014,7 @@
 	\]
 	נגדיר את $x_n = \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$ להיות מקדם פורייה, אז,
 	\[
-		{\lVert v - \sum_{n = 1}^N \alpha_n v_n \rVert}^2
+		{\left\lVert v - \sum_{n = 1}^N \alpha_n v_n \right\rVert}^2
 		= {\lVert v \rVert}^2 - \sum_{n = 1}^N (\overline{\alpha_n} x_n + \alpha_n \overline{x_n} - {| \alpha_n |}^2) \cdot {\lVert v_n \rVert}^2
 	\]
 	וגם,
@@ -1013,12 +1024,12 @@
 	\]
 	ולכן,
 	\[
-		{\lVert v - \sum_{n = 1}^N \alpha_n v_n \rVert}^2
+		{\left\lVert v - \sum_{n = 1}^N \alpha_n v_n \right\rVert}^2
 		= {\lVert v \rVert}^2 + \sum_{n = 1}^N \left( {|\alpha_n - x_n|}^2 - {|x_n|}^2 \right) {\lVert v_n \rVert}^2
 	\]
 	עתה נובע,
 	\[
-		\min_{\alpha_1, \ldots, \alpha_N \in \CC} {\lVert v - \sum_{n = 1}^N \alpha_n v_n \rVert}^2
+		\min_{\alpha_1, \ldots, \alpha_N \in \CC} {\left\lVert v - \sum_{n = 1}^N \alpha_n v_n \right\rVert}^2
 		= {\lVert v \rVert}^2 - \sum_{n = 1}^N {|x_n|}^2 {\lVert v_n \rVert}^2
 	\]
 	ונקבל מינימום כאשר $\alpha_n = x_n = \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$.
@@ -1136,7 +1147,7 @@
 	נגדיר את מרחב המכפלה הפנימית $(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$ על־ידי,
 	\[
 		\tilde{C}[-\pi, \pi]
-		= \{ f : [-\pi, \pi] \to \RR \mid f \in C[-\pi, \pi], f(-\pi) = f(\pi) \}
+		= \{ f \in C[-\pi, \pi] \mid f(-\pi) = f(\pi) \}
 	\]
 	יחד עם המכפלה הפנימית,
 	\[
@@ -1159,8 +1170,11 @@
 		e_{2n} = \frac{1}{\sqrt{\pi}} \sin(nx),
 		\ldots
 	\]
-	אנו יודעים כי זוהי אכן מערכת אורתונורמלית.
+	זוהי מערכת אורתונורמלית במרחב $(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$.
 \end{definition}
+\begin{remark}
+	ההוכחה לטענה זו הייתה דוגמה בתרגול.
+\end{remark}
 \begin{theorem}[שלמות מערכת במרחב C]
 	המערכת ${\{ e_n \}}_{n = 0}^\infty \subseteq \tilde{C}[-\pi, \pi]$ היא מערכת אורתונורמלית שלמה במרחב $(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$.
 \end{theorem}
@@ -1250,7 +1264,7 @@
 	\]
 	כלומר,
 	\[
-		{\lVert f - \sum_{n = 0}^{2N} \langle e_n, f \rangle e_n \rVert}^2
+		{\left\lVert f - \sum_{n = 0}^{2N} \langle e_n, f \rangle e_n \right\rVert}^2
 		\xrightarrow{N \to \infty} 0
 	\]
 	אבל,
@@ -1360,7 +1374,7 @@
 	אז מתקיים,
 	\[
 		S_N(x)
-		= \frac{1}{\pi} \int_{0}^{\pi} (f(x + u) - f(x - u)) D_N(u)\ du
+		= \frac{1}{\pi} \int_{0}^{\pi} (f(x + u) + f(x - u)) D_N(u)\ du
 	\]
 	כאשר,
 	\[
@@ -1450,7 +1464,7 @@
 	והטענה נובעת.
 \end{proof}
 \begin{theorem}[התכנסות נקודתית של טורי פורייה]
-	נניח ש־$f : \RR \to \RR$ מחזורית עם מחור $2 \pi$ ובאינטגרבילית רימן.
+	נניח ש־$f : \RR \to \RR$ מחזורית עם מחור $2 \pi$ ואינטגרבילית רימן.
 	תהי $x_0 \in \RR$, אז $f$ מקיימת ב־$x_0$ את תנאי ליפשיץ,
 	כלומר קיים $c > 0$ כך שמתקיים,
 	\[
@@ -1459,12 +1473,13 @@
 		|f(x_0 - u) - f(x_0 - 0)| \le C u
 	\]
 	לכל $u \in (0, \delta)$.
-	כאשר גם $f(x_0 + 0) = \lim_{v \to 0} f(x_0 + v)$ וכן $f(x_0 - 0) = \lim_{v \to 0} f(x_0 - v)$.
-	מתקיים,
+	כאשר $f(x_0 + 0) = \lim_{v \to 0^+} f(x_0 + v)$ וכן $f(x_0 - 0) = \lim_{v \to 0^+} f(x_0 - v)$. \\
+	תחת תנאים אלה מתקיים,
 	\[
 		\lim_{N \to \infty} S_N(x_0)
 		= \frac{1}{2}(f(x_0 + 0) + f(x_0 - 0))
 	\]
+	בפרט אם $f(x_0 + 0) = f(x_0 - 0) = f(x_0)$ אז טור פורייה של $f$ מתכנס אליה ב־$x_0$ נקודתית.
 \end{theorem}
 \begin{proof}
 	\[
@@ -1504,7 +1519,7 @@
 	בפרט מתקיים,
 	\[
 		S_N(x_0)
-		= \lim_{N \to \infty} \int_{0}^{\pi} (f(x_0 + u) - f(x_0 + 0) + f(x_0 - u) - f(x_) - 0) \frac{\sin((N + \frac{1}{2}) u)}{2 \sin \frac{u}{2}}\ du
+		= \lim_{N \to \infty} \int_{0}^{\pi} (f(x_0 + u) - f(x_0 + 0) + f(x_0 - u) - f(x_0 - 0)) \frac{\sin((N + \frac{1}{2}) u)}{2 \sin \frac{u}{2}}\ du
 	\]
 	אבל ביטוי זה מתכנס לאפס ולכן לכל $0 < \varepsilon < \delta$ הפונקציה $\varphi$ היא אינטגרבילית.
 	מספיק להוכיח ש־$\varphi$ חסומה בקטע $[0, \varepsilon]$.
@@ -1554,7 +1569,7 @@
 	\[
 		D_n(u)
 		= \frac{\sin(n + \frac{1}{2}) u}{2 \sin \frac{u}{2}}
-		= \frac{1}{2} + \cos(u) + \cdots + \cos(\nu )
+		= \frac{1}{2} + \cos(u) + \cdots + \cos(n u)
 	\]
 	גרעין דיריכלה.
 	אז מתקיים,
@@ -1734,7 +1749,7 @@
 	\]
 	ונבחר,
 	\[
-		U = \{ f \in C[0, 1] \mid \int_{0}^{1} f(x)\ dx = 0, f(1) = 0 \}
+		U = \left\{ f \in C[0, 1] \middle| \int_{0}^{1} f(x)\ dx = 0, f(1) = 0 \right\}
 	\]
 	ונבחר עבור הפונקציה שלנו,
 	\[
@@ -1831,7 +1846,7 @@
 	לכן לא קיימת פונקציה $g$ כזו.
 \end{example}
 
-\section{שיעור 12 --- 18.6.2025}
+\section{שיעור 10 --- 18.6.2025}
 \subsection{מרחקים}
 \begin{definition}[קבוצה קמורה]
 	יהי $(V, \lVert \cdot \rVert)$ מרחב נורמי, ו־$U \subseteq V$.
@@ -1847,13 +1862,13 @@
 	לכל $f \in V$ הכדור,
 	\[
 		U
-		= B(f, r)
+		= \overline{B}(f, r)
 		= \{ \varphi \in V \mid \lVert f - \varphi \rVert < r \}
 	\]
 	הוא קבוצה קמורה.
 
 	נראה טענה זו.
-	אם $\varphi, \psi \in B(f, r)$ אז,
+	אם $\varphi, \psi \in \overline{B}(f, r)$ אז,
 	\[
 		\lVert t \varphi + (1 - t) \psi - f \rVert
 		= \lVert t \varphi + (1 - t) \psi - t f - (1 - t) f \rVert
@@ -1861,7 +1876,7 @@
 		\le tr + (1 - t) r
 		= r
 	\]
-	ולכן נובע $t \varphi + (1 - t) \psi \in B(r, f)$.
+	ולכן נובע $t \varphi + (1 - t) \psi \in \overline{B}(r, f)$.
 \end{example}
 נראה למה טכנית קצרה שתעזור לנו.
 \begin{lemma}
@@ -1903,7 +1918,7 @@
 		{\lVert g_i - g_j \rVert}^2
 		& = {\lVert (f - g_i) - (f - g_j) \rVert}^2 \\
 		& = 2 {\lVert f - g_i \rVert}^2 + 2 {\lVert f - g_j \rVert}^2 - {\lVert 2f - g_i - g_j \rVert}^2 \\
-		& = 2 {\lVert f - g_i \rVert}^2 + 2 {\lVert f - g_j \rVert}^2 - 4 {\lVert f - \frac{g_i - g_j}{2} \rVert}^2
+		& = 2 {\lVert f - g_i \rVert}^2 + 2 {\lVert f - g_j \rVert}^2 - 4 {\lVert f - \frac{g_i + g_j}{2} \rVert}^2
 	\end{align*}
 	נשים לב כי $\frac{g_i + g_j}{2} \in U$, זאת שכן $U$ קמורה,
 	לכן מתקיים,
@@ -1928,7 +1943,7 @@
 \begin{definition}[הטלה אורתוגונלית למרחב הילברט]
 	נניח ש־$(V, \langle \cdot, \cdot \rangle)$ מרחב הילברט, כלומר שכמרחב נורמי מושרה הוא שלם. \\
 	נניח גם ש־$\emptyset \ne U \subseteq V$ סגורה וקמורה. \\
-	נגדיר $P_U : V \to U$ על־ידי $P_U(f) = g$ כאשר $g \in U$ הפונקציה היחידה המקיימת $\dist(f, U) = \lVert f - g \rVert$.
+	נגדיר $P_U : V \to U$ על־ידי $P_U(f) = g$ כאשר $g \in U$ האיבר היחיד המקיים $\dist(f, U) = \lVert f - g \rVert$.
 \end{definition}
 \begin{remark}
 	מתקיים,
@@ -2022,7 +2037,7 @@
 	לכל $\alpha > 0$, כאשר אי־שוויון זה יכול להתקיים רק כאשר $\langle g, f - P_U(f) \rangle = 0$.
 
 	\textbf{2}
-	נשים לב כי אם $h \in U$ ומתקיים $\langle f - h, g \rangle = 0$ לכל $g \in U$ אז גם $\langle f - h \rangle = 0$.
+	נשים לב כי אם $h \in U$ ומתקיים $\langle f - h, g \rangle = 0$ לכל $g \in U$ אז גם $\langle f - h, g - h \rangle = 0$.
 	בהתאם,
 	\[
 		{\lVert f - h \rVert}^2
@@ -2046,11 +2061,12 @@
 	אם $\langle f - P_U(f), g \rangle = 0$ אז גם $\langle \alpha f - \alpha P_U(f), g \rangle = 0$ לכל $\alpha \in \CC$, ומהטענה השנייה נסיק $\alpha P_U(f) = P_U(\alpha f)$.
 
 	\textbf{4}
+	מתקיים,
 	\[
 		0
 		\le \langle f - P_U(f), f - P_U(f) \rangle
-		= \langle f - P_U(f), f \rangle - \langle f - P_U(f), P_U(f)
-		= \langle f - P_U(f), f \rangle - \langle f - 0
+		= \langle f - P_U(f), f \rangle - \langle f - P_U(f), P_U(f) \rangle
+		= \langle f - P_U(f), f \rangle - 0
 	\]
 	כאשר השוויון האחרון נובע מהטענה הראשונה.
 	בהתאם נובע ש־$\langle P_U(f), f \rangle \le {\lVert f \rVert}^2$.
