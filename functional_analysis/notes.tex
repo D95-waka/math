@@ -86,7 +86,7 @@
 		\left\lvert \sum_{i = 1}^{n} x_i y_i \right\rvert
 		\le {\left( \sum_{i = 1}^{n} x_i^2 \right)}^{1/2} \cdot {\left( \sum_{i = 1}^{n} y_i^2 \right)}^{1/2}
 	\]
-	ואם נגדיר $x_i' = |x_i$ וכן $y_i' = |y_i|$ אז מאי־השוויון הנתון נובע,
+	ואם נגדיר $x_i' = |x_i|$ וכן $y_i' = |y_i|$ אז מאי־השוויון הנתון נובע,
 	\[
 		\sum_{i = 1}^{n} |x_i'| \cdot |y_i'|
 		\le {\left( \sum_{i = 1}^{n} x_i^2 \right)}^{\frac{1}{2}} \cdot {\left( \sum_{i = 1}^{n} y_i^2 \right)}^{\frac{1}{2}}
@@ -169,7 +169,9 @@
 	\[
 		\Pi_n^* \subseteq \bigcup_{i = 1}^N B_\epsilon(y^i)
 	\]
-	נניח ש־$x_n^* \in B_\epsilon(y^i)$ ונוכל לבחור $n$ כך שמתקיים $\lVert x - x_n^* \rVert < \epsilon$, אז
+	מצאנו שלכל $x_n^*$ ובכלל לכל $n$ קיים $i$ כך ש־$x_n^* \in B_{\epsilon}(y^i)$,
+	עד כה עבדנו עם $n$ כללי, עתה נניח ש־$n$ מספיק גדול כך שיתקיים, $\lVert x - x_n^* \rVert < \epsilon$, כתוצאה מאי־השוויון שמצאנו לעיל.
+	אז,
 	\[
 		\lVert x - y^i \rVert
 		\le \lVert x - x_n^* \rVert + \lVert x_n^* - y^i \rVert
@@ -302,7 +304,7 @@
 		\forall \epsilon > 0,\ \exists \delta = \delta(\epsilon),\ |x - y| \le \delta(\epsilon)
 		\implies |\varphi(x) - \varphi(y)| \le 3 \epsilon
 	\]
-	כלומר, מצאנו רציפות במידה שווה.
+	כלומר, מצאנו רציפות במידה שווה, ובהתאם להגדרה ולאי־תלות ב־$\varphi$ גם רציפות במידה אחידה.
 
 	נעבור עתה לכיוון השני, נניח ש־$\Phi$ חסומה ורציפה במידה שווה.
 	יהי $\epsilon > 0$ ו־$\delta(\epsilon) > 0$ כך שמתקיים,
@@ -321,8 +323,8 @@
 		\le \epsilon + \epsilon + |\psi(x_i) - \psi(x_{i + 1})
 		\le 2 \epsilon + 3 \epsilon
 	\]
-	כלומר קיבלנו ש־$\lVert \varphi - \psi \rVert_\infty \le 5 \epsilon$, כלומר ניתן לחסום $\Psi \subseteq \bigcup_{\psi \in \Gamma} B_{5 \epsilon}(\psi)$ עבור $\Gamma$ קבוצת המצולעים שעוברים דרך הנקודות ברשת שהגדרנו,
-	כלומר זוהי קבוצה סופית.
+	קיבלנו ש־$\lVert \varphi - \psi \rVert_\infty \le 5 \epsilon$, ולכן ניתן לחסום $\Psi \subseteq \bigcup_{\psi \in \Gamma} B_{5 \epsilon}(\psi)$ עבור $\Gamma$ קבוצת המצולעים שעוברים דרך הנקודות ברשת שהגדרנו,
+	כלומר זוהי קבוצה סופית המעידה על חסימות בהחלט של $\Phi$.
 \end{proof}
 \begin{definition}[מרחב מטרי שלם]
 	מרחב מטרי $(X, \rho)$ יקרא שלם אם כל סדרת קושי מתכנסת לנקודה במרחב המטרי.
@@ -857,7 +859,7 @@
 	כך שמתקיימים התנאים,
 	\begin{enumerate}
 		\item $\forall x, y \in V, \overline{\langle x, y \rangle} = \langle y, x \rangle$
-		\item $\forall x, y \in V, \alpha \in \RR,\ \langle x, \alpha y \rangle = d \langle x, y \rangle$
+		\item $\forall x, y \in V, \alpha \in \RR,\ \langle x, \alpha y \rangle = \alpha \langle x, y \rangle$
 		\item $\langle x, y + z \rangle = \langle x, y \rangle + \langle x, z \rangle$
 		\item $\langle x, x \rangle \ge 0$ ואם $\langle x, x \rangle = 0$ אז $x = 0_V$
 	\end{enumerate}
@@ -1019,15 +1021,17 @@
 	\]
 	וגם,
 	\[
-		(\alpha_n - x_n)(\overline{\alpha_n} - \overline{x_n})
+		{|\alpha_n - x_n|}^2
+		= (\alpha_n - x_n)(\overline{\alpha_n} - \overline{x_n})
 		= {|\alpha_n|}^2 - x_n \overline{\alpha_n} - \overline{x_n} \alpha_n  + {|x_n|}^2
 	\]
-	ולכן,
+	נשנה אגפים ונציב ונקבל,
 	\[
 		{\left\lVert v - \sum_{n = 1}^N \alpha_n v_n \right\rVert}^2
 		= {\lVert v \rVert}^2 + \sum_{n = 1}^N \left( {|\alpha_n - x_n|}^2 - {|x_n|}^2 \right) {\lVert v_n \rVert}^2
 	\]
-	עתה נובע,
+	כלומר הביטוי שאנו מנסים לחשב מורכב מחיבור של ${\lVert v \rVert}^2$, הוא ערך קבוע, הסכום $\sum_{n = 1}^N {|\alpha_n - x_n|}^2 {\lVert v_n \rVert}^2$ אשר תלוי בבחירת $\alpha$ וביטוי נוסף אשר שוב לא תלוי בבחירה זו.
+	נסיק אם כן שמתקבל מינימום כאשר ${| \alpha_n - x_n |}^2$ מינימלי לכל $n$, ואם הביטוי מתאפס אז,
 	\[
 		\min_{\alpha_1, \ldots, \alpha_N \in \CC} {\left\lVert v - \sum_{n = 1}^N \alpha_n v_n \right\rVert}^2
 		= {\lVert v \rVert}^2 - \sum_{n = 1}^N {|x_n|}^2 {\lVert v_n \rVert}^2
@@ -1096,9 +1100,18 @@
 		\left\langle \sum_{n = 1}^N \alpha_n e_n, \sum_{m = 1}^N \alpha_m e_m \right\rangle
 		= \sum_{n = 1}^N \sum_{m = 1}^N \langle \alpha_n e_n, \alpha_m e_m \rangle
 		= \sum_{n = 1}^N \sum_{m = 1}^N \overline{\alpha_n} \alpha_m \langle e_n, e_m \rangle
-		= \sum_{n = 1}^N \overline{\alpha_n} \alpha_m
+		= \sum_{n = 1}^N \overline{\alpha_n} \alpha_n
 	\]
-	נובע,
+	ולכן גם,
+	\[
+		\sum_{n = 1}^N {| x_n |}^2
+		\ge {\left\lvert \sum_{n = 1}^N x_n \right\rvert}^2
+		= {\lVert x \rVert}^2
+		= {\left\lvert \sum_{n = 1}^N \alpha_n e_n \right\rvert}^2
+		= \left\langle \sum_{n = 1}^N \alpha_n e_n, \sum_{m = 1}^N \alpha_m e_m \right\rangle
+		= \sum_{n = 1}^N \overline{\alpha_n} \alpha_n
+	\]
+	נשתמש באי־השוויון שמצאנו זה עתה,
 	\[
 		{\lVert v \rVert}^2 - \sum_{n = 1}^N {| x_n |}^2
 		\le {\left\lVert v - \sum_{n = 1}^N \alpha_n e_n \right\rVert}^2
