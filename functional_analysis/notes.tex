@@ -1012,7 +1012,7 @@
 \begin{proof}
 	\[
 		\langle v - \sum_{n = 1}^N \alpha_n v_n, v - \sum_{n = 1}^N \alpha_n v_n \rangle
-		= {\lVert v \rVert}^2 - \sum_{n = 1}^N \overline{\alpha_n} \langle v_n, v \rangle - \sum_{n = 1}^N \alpha_n \langle v, v_n \rangle + \sum_{n = }^N {| \alpha_n |}^2 \cdot {\lVert v_n \rVert}^2
+		= {\lVert v \rVert}^2 - \sum_{n = 1}^N \overline{\alpha_n} \langle v_n, v \rangle - \sum_{n = 1}^N \alpha_n \langle v, v_n \rangle + \sum_{n = 1}^N {| \alpha_n |}^2 \cdot {\lVert v_n \rVert}^2
 	\]
 	נגדיר את $x_n = \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2}$ להיות מקדם פורייה, אז,
 	\[
@@ -1495,11 +1495,14 @@
 	בפרט אם $f(x_0 + 0) = f(x_0 - 0) = f(x_0)$ אז טור פורייה של $f$ מתכנס אליה ב־$x_0$ נקודתית.
 \end{theorem}
 \begin{proof}
+	תחילה נוכיח את השוויון,
 	\[
-		\lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} \frac{\sin((N + \frac{1}{2}) x)}{2 \sin \frac{x}{2}}\ dx
+		\lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} D_N(x)\ dx
+		= \lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} \frac{\sin((N + \frac{1}{2}) x)}{2 \sin \frac{x}{2}}\ dx
 		= \frac{1}{2}
 	\]
-	נבחר $f(t) = \frac{1}{2}$ ונקבל,
+	כדי לעשות כן נקבע $f(t) = \frac{1}{2}$.
+	נחשב את מקדמי פורייה של $f$,
 	\[
 		a_0
 		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(t)\ dt
@@ -1518,30 +1521,55 @@
 		= \frac{1}{\pi} \int_{0}^{\pi} (f(x_0 + u) + f(x_0 - u)) D_N(u)\ du
 		= \frac{1}{\pi} \int_{0}^{\pi} D_N(u)\ du
 	\]
+	לכן האינטגרל שאנו רוצים לחשב הוא אכן הסכום $S_N(x_0)$, אבל גם ראינו ש־$S_N(x_0) = \frac{1}{2}$ מחישוב ישיר של המקדמים, לכן מעקרון המקומיות נובע בדיוק,
+	\[
+		\lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} D_N(x)\ dx
+		= \frac{1}{2}
+	\]
+	על־ידי כפל בקבוע נוכל גם להסיק שמתקיים,
+	\[
+		\frac{f(x + 0) + f(x - 0)}{2}
+		= \lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} (f(x_0 + 0) + f(x_0 - 0)) D_N(u)\ du
+	\]
+	לכל $f$ המקיימת את התנאים של המשפט עצמו.
 
-	צריך להוכיח שמתקיים,
+	נעבור להוכחת המשפט עצמו, כלומר עתה נראה שלכל $f$ מתקיים,
 	\[
 		\lim_{N \to \infty} S_N(x_0) - \frac{1}{2}(f(x_0 + 0) + f(x_0 - 0))
 		= 0
 	\]
-	נבדוק,
+	וכן כמסקנה מהחלק הקודם,
+	\begin{align*}
+		\lim_{N \to \infty} S_N(x_0) - \frac{f(x_0 + 0) + f(x_0 - 0)}{2}
+		& = \lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} (f(x_0 + u) - f(x_0 + 0) + f(x_0 - u) - f(x_0 - 0)) D_N(u)\ dx \\
+		& = \lim_{N \to \infty} \int_{0}^{\delta} \varphi(u) \sin((N + \frac{1}{2}) u)\ du
+	\end{align*}
+	כאשר אנו מגדירים,
 	\[
-		S_N(x_0)
-		= \frac{1}{\pi} \int_{0}^{\pi} \frac{\sin((N + \frac{1}{2}) u)}{2 \sin \frac{u}{2}} (f(x_0 + u) + f(x_0 - u))\ du
+		\varphi(u)
+		= \frac{f(x_0 + u) - f(x_0 + 0) + f(x_0 - u) - f(x_0 - 0)}{2 \pi \sin(\frac{u}{2})}
 	\]
-	בפרט מתקיים,
-	\[
-		S_N(x_0)
-		= \lim_{N \to \infty} \int_{0}^{\pi} (f(x_0 + u) - f(x_0 + 0) + f(x_0 - u) - f(x_0 - 0)) \frac{\sin((N + \frac{1}{2}) u)}{2 \sin \frac{u}{2}}\ du
-	\]
-	אבל ביטוי זה מתכנס לאפס ולכן לכל $0 < \varepsilon < \delta$ הפונקציה $\varphi$ היא אינטגרבילית.
-	מספיק להוכיח ש־$\varphi$ חסומה בקטע $[0, \varepsilon]$.
+	נרצה להראות ש־$\varphi$ אינטגרבילית ב־$[0, \delta]$.
+	מהגדרתה לכל $[\epsilon, \delta]$ היא הרכבת פונקציה רציפה ופונקציה אינטגרבילית ולכן אינטגרבילית, ונשאר לנו לבדוק אם היא אינטגרבילית גם בסביבת אפס.
+	נבדוק חסימות,
 	\[
 		|\varphi(u)|
-		\le \frac{|f(x_0 + u) - f(x_0 + 0)| + |f(x_0 - u) - f(x_0 - 0)|}{2 \sin \frac{u}{2}}
-		\le \tilde{C} \frac{u}{\pi \sin \frac{u}{2}}
-		\le \frac{\tilde{C}}{\pi}
+		\le \frac{|f(x_0 + u) - f(x_0 + 0)| + |f(x_0 - u) - f(x_0 - 0)|}{2 \pi \sin(\frac{u}{2})}
+		\le \frac{C u}{\pi \sin(\frac{u}{2})}
 	\]
+	כאשר השתמשנו בתנאי ליפשיץ.
+	נבחין כי ביטוי זה חסום שכן $\frac{C}{\pi}$ ערך חסום, ו־$\frac{u}{\sin(\frac{u}{2})} \xrightarrow{u \to 0} 1$. \\
+	מצאנו ש־$\varphi$ אינטגרבילית רימן ב־$[0, \delta]$, לכן מהלמה של רימן נוכל להסיק,
+	\[
+		\lim_{N \to \infty} \int_{0}^{\delta} \varphi(u) \sin((N + \frac{1}{2}) u)\ du
+		= 0
+	\]
+	כלומר,
+	\[
+		\lim_{N \to \infty} S_N(x_0)
+		= \frac{1}{2} (f(x_0 + 0) + f(x_0 - 0))
+	\]
+	כפי שרצינו.
 \end{proof}
 
 \section{שיעור 9 --- 11.6.2025}
