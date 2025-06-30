@@ -405,10 +405,10 @@
 	\]
 	כלומר מצאנו סדרה גבולית והוכחנו שהיא במרחב שלנו.
 \end{proof}
-\begin{conclusion}
+\begin{corollary}
 	נניח ש־${\{ f_n \}}_{n = 1}^\infty \subseteq C[a, b]$ סדרה חסומה במידה שווה ורציפה במידה שווה,
 	אז קיימת תת־סדרה ${\{ f_{n_k} \}}_{k = 1}^\infty \subseteq \{ f_n \}$ שמתכנסת במידה שווה לפונקציה $f \in C[a, b]$.
-\end{conclusion}
+\end{corollary}
 \begin{theorem}[אנלוגי למשפט ארצלה ל־l2]
 	נניח ש־$\Phi \subseteq l_2$, אז התנאים הבאים שקולים,
 	\begin{enumerate}
@@ -934,7 +934,7 @@
 	\]
 	ולכן $\langle x, x \rangle = \langle u, u \rangle + \langle v, v \rangle$.
 \end{proof}
-\begin{conclusion}[אי־שוויון בסל]
+\begin{corollary}[אי־שוויון בסל]
 	לכל $x \in V$,
 	\[
 		{\lVert x \rVert}^2
@@ -946,10 +946,10 @@
 		\ge \sum_{n = 1}^\infty {\langle x, v_n \rangle}^2
 	\]
 	לסדרות אורתונורמליות אינסופיות.
-\end{conclusion}
-\begin{conclusion}[אי־שוויון שוורץ]
+\end{corollary}
+\begin{corollary}[אי־שוויון שוורץ]
 	מתקיים $|\langle x, y \rangle| \le \lVert x \rVert \cdot \lVert y \rVert$ לכל $y \ne 0_V$.
-\end{conclusion}
+\end{corollary}
 \begin{proof}
 	נגדיר $v_1 = \frac{y}{\lVert y \rVert}$, אז,
 	\[
@@ -1261,14 +1261,14 @@
 		f \sim \frac{a_0}{2} + \sum_{n = 1}^\infty a_n \cos(nx) + b_n \sin(nx)
 	\]
 \end{remark}
-\begin{conclusion}
+\begin{corollary}
 	מתקיים,
 	\[
 		\lim_{N \to \infty} 
 		\int_{-\pi}^{\pi} {\left\lvert f(t) - \frac{a_0}{2} - \sum_{n = 1}^N a_n \cos(nt) - \sum_{n = 1}^N b_n \sin(nt) \right\rvert}^2\ dt
 		= 0
 	\]
-\end{conclusion}
+\end{corollary}
 \begin{proof}
 	${\{ e_n \}}_{n = 1}^\infty$ מערכת שלמה ב־$(\tilde{C}[-\pi, \pi], \langle \cdot, \cdot \rangle)$,
 	לכן,
@@ -1287,13 +1287,13 @@
 	\]
 	כפי שרצינו.
 \end{proof}
-\begin{conclusion}[שוויון פרסבל]
+\begin{corollary}[שוויון פרסבל]
 	אם $f \in \tilde{C}[-\pi, \pi]$ אז,
 	\[
 		\frac{1}{\pi} \int_{-\pi}^{\pi} f^2(t)\ dt
 		= \frac{{|a_0|}^2}{2} + \sum_{n = 1}^\infty ({| a_n |}^2 + {| b_n |}^2)
 	\]
-\end{conclusion}
+\end{corollary}
 \begin{proof}
 	אם $v = \sum_{n = 0}^\infty \langle e_n, v \rangle e_n$ אז גם,
 	\[
@@ -1369,14 +1369,14 @@
 	\end{align*}
 	כאשר השתמשנו באינטגרל של $\sin$ כדי לחשב את הטענה, ובאינטגרביליות כדי לחסום.
 \end{proof}
-\begin{conclusion}
+\begin{corollary}
 	עבור ${\{ a_n \}}_{n = 1}^\infty, {\{ b_n \}}_{n = 1}^\infty$ מקדמי פורייה של פונקציה אינטגרבילית רימן, מתקיים,
 	\[
 		\lim_{n \to \infty} a_n
 		= \lim_{n \to \infty} b_n
 		= 0
 	\]
-\end{conclusion}
+\end{corollary}
 \begin{theorem}[נוסחת דיריכלה]
 	תהי $f : [-\pi, \pi] \to \RR$ כך ש־$f(-\pi) = f(\pi)$ ו־$f$ אינטגרבילית,
 	נסמן גם,
@@ -1495,30 +1495,34 @@
 	בפרט אם $f(x_0 + 0) = f(x_0 - 0) = f(x_0)$ אז טור פורייה של $f$ מתכנס אליה ב־$x_0$ נקודתית.
 \end{theorem}
 \begin{proof}
-	תחילה נוכיח את השוויון,
+	לפני שניגש להוכחת המשפט, נוכיח למה קצרה שתשמש אותנו בהוכחת המשפט עצמו.
+	נטען כי מתקיים,
 	\[
 		\lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} D_N(x)\ dx
 		= \lim_{N \to \infty} \frac{1}{\pi} \int_{0}^{\delta} \frac{\sin((N + \frac{1}{2}) x)}{2 \sin \frac{x}{2}}\ dx
 		= \frac{1}{2}
 	\]
-	כדי לעשות כן נקבע $f(t) = \frac{1}{2}$.
-	נחשב את מקדמי פורייה של $f$,
+	כלומר אנחנו רוצים להראות שהגבול של האינטגרל של גרעין דיריכלה מתכנס לחצי.
+	כדי לעשות את זה נרצה להשתמש בעיקרון המקומיות של טורי פורייה, אבל בשביל זה נצטרך למצוא פונקציה עבורה נקבל אינטגרל על הגרעין בלבד.
+	נבחר את הפונקציה $g(t) = \frac{1}{2}$, ונבדוק שהיא אכן מקיימת את הדרישה שלנו.
+	נחשב את מקדמי פורייה של $g$,
 	\[
 		a_0
-		= \frac{1}{\pi} \int_{-\pi}^{\pi} f(t)\ dt
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} g(t)\ dt
 		= 1
 	\]
 	וכן,
 	\[
 		a_n
-		= \frac{1}{\pi} \int_{-\pi}^{\pi} \frac{1}{2} \cos(nt)\ dt
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} g(t) \cos(n t)\ dt
+		= \frac{1}{\pi} \int_{-\pi}^{\pi} \frac{1}{2} \cos(n t)\ dt
 		= 0
 	\]
-	וכך גם נובע $b_n = 0$.
-	ונסיק,
+	מחישוב זהה נוכל גם להסיק ש־$b_n = 0$ לכל $n$.
+	נציב בנוסחת דיריכלה ונקבל,
 	\[
 		S_N(x_0)
-		= \frac{1}{\pi} \int_{0}^{\pi} (f(x_0 + u) + f(x_0 - u)) D_N(u)\ du
+		= \frac{1}{\pi} \int_{0}^{\pi} (g(x_0 + u) + g(x_0 - u)) D_N(u)\ du
 		= \frac{1}{\pi} \int_{0}^{\pi} D_N(u)\ du
 	\]
 	לכן האינטגרל שאנו רוצים לחשב הוא אכן הסכום $S_N(x_0)$, אבל גם ראינו ש־$S_N(x_0) = \frac{1}{2}$ מחישוב ישיר של המקדמים, לכן מעקרון המקומיות נובע בדיוק,
@@ -1558,7 +1562,7 @@
 		\le \frac{C u}{\pi \sin(\frac{u}{2})}
 	\]
 	כאשר השתמשנו בתנאי ליפשיץ.
-	נבחין כי ביטוי זה חסום שכן $\frac{C}{\pi}$ ערך חסום, ו־$\frac{u}{\sin(\frac{u}{2})} \xrightarrow{u \to 0} 1$. \\
+	נבחין כי ביטוי זה חסום שכן $\frac{C}{\pi}$ ערך חסום, ו־$\frac{u}{\sin(\frac{u}{2})} \xrightarrow{u \to 0} \frac{1}{2}$. \\
 	מצאנו ש־$\varphi$ אינטגרבילית רימן ב־$[0, \delta]$, לכן מהלמה של רימן נוכל להסיק,
 	\[
 		\lim_{N \to \infty} \int_{0}^{\delta} \varphi(u) \sin((N + \frac{1}{2}) u)\ du
@@ -1740,7 +1744,7 @@
 		$f$ רציפה במידה שווה ב־$\RR$.
 		יהי $\varepsilon > 0$, אז קיים $\delta = \delta(\varepsilon)$ כך שמתקיים,
 		\[
-			|N| \le \delta
+			|u - x| \le \delta
 			\implies \forall x \in \RR,\ |f(x + u) - f(x)| \le \varepsilon
 		\]
 		אז מתקיים,
