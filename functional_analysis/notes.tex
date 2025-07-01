@@ -918,7 +918,7 @@
 	אז,
 	\[
 		{\lVert x \rVert}^2
-		= \left( \sum_{n = 1}^N {|\langle x, v_n \rangle|}^2 \right) + {\lVert x - \sum_{n = 1}^N {|\langle v_n, x \rangle|}^2 \rVert}^2
+		= \left( \sum_{n = 1}^N {|\langle x, v_n \rangle|}^2 \right) + {\left\lVert x - \sum_{n = 1}^N \langle v_n, x \rangle v_n \right\rVert}^2
 	\]
 \end{theorem}
 \begin{proof}
@@ -1005,7 +1005,7 @@
 	במקרה זה,
 	\[
 		\min_{\alpha_i \in \CC, i \le N} \left\lVert v - \sum_{n = 1}^N \alpha_n v_n \right\rVert
-		= \left\lVert v - \sum_{n = 1}^\infty \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2} v_n \right\rVert
+		= \left\lVert v - \sum_{n = 1}^N \frac{\langle v_n, v \rangle}{{\lVert v_n \rVert}^2} v_n \right\rVert
 	\]
 	כלומר בחירת מקדמי פורייה מניבה את הקירוב הטוב ביותר ל־$v$.
 \end{theorem}
@@ -1590,9 +1590,9 @@
 	\[
 		a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t)\ dt,
 		\quad
-		a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(n t)\ dt,
+		a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(k t)\ dt,
 		\quad
-		a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(n t)\ dt
+		b_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(k t)\ dt
 	\]
 	נגדיר,
 	\[
@@ -1601,7 +1601,7 @@
 	\]
 	אז מתקיים,
 	\begin{enumerate}
-		\item אם $f$ רציפה ב־$x_0$ אז $\lim_{N \to \infty} S_N(x_0) = f(x_0)$
+		\item אם $f$ רציפה ב־$x_0$ אז $\lim_{N \to \infty} \sigma_N(x_0) = f(x_0)$
 		\item אם $f$ רציפה בכל $\RR$ אז $\sigma_N \rightrightarrows f$ כאשר $N \to \infty$
 	\end{enumerate}
 \end{theorem}
@@ -1665,7 +1665,7 @@
 	עבור,
 	\[
 		K_N(u)
-		= \frac{1}{N} \frac{\sin^2 \frac{(N + 1) u}{2}}{\sin^2 \frac{u}{2}}
+		= \frac{1}{N + 1} \frac{\sin^2 \frac{(N + 1) u}{2}}{\sin^2 \frac{u}{2}}
 	\]
 	כאשר $K_N$ נקרא גם גרעין פייר.
 	זהו גרעין שימושי ביותר, שכן הוא אי־שלילי, חסום, ושואף לאפס במרחק מהמרכז.
