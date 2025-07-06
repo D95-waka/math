@@ -52,6 +52,8 @@
 \begin{definition}[הגדרה שקולה לרציפות]
 	$f : X \to Y$ תיקרא רציפה אם לכל $V \subseteq Y$ קבוצה פתוחה ב־$Y$ מתקיים $f^{-1}(V) = \{ x \in X \mid f(x) \in V \}$ קבוצה פתוחה ב־$X$.
 \end{definition}
+עתה אנו יכולים לדון בטופולוגיה.
+עד כה דיברנו על קבוצות פתוחות כמושרות ממרחבים מטריים, עתה נרצה לאפיין ולחקור את הקונספט של קבוצות פתוחות בפני עצמן.
 \begin{definition}[טופולוגיה]
 	תהי $X$ קבוצה (לא ריקה), \textbf{טופולוגיה} על $X$ היא אוסף $\tau \subseteq \Pp(X)$, כך שמתקיימים התנאים הבאים,
 	\begin{enumerate}
@@ -60,18 +62,20 @@
 		\item $\tau$ סגור לחיתוכים סופיים, כלומר לכל $U, V \in \tau$ מתקיים $U \cap V \in \tau$
 	\end{enumerate}
 \end{definition}
+\begin{remark}
+	אם $X$ קבוצה ו־$U \subseteq X$ כך ש־$U \in \tau$ אז נאמר ש־$U$ פתוחה. \\
+	באופן דומה אם $X \setminus U \in \tau$ אז נאמר ש־$U$ סגורה.
+\end{remark}
 \begin{definition}[מרחב טופולוגי]
 	זוג $(X, \tau)$ כאשר $X$ קבוצה לא ריקה ו־$\tau$ טופולוגיה על $X$, יקרא מרחב טופולוגי.
 \end{definition}
 \begin{remark}
 	בעצם הגדרנו כבר מתי פונקציה $f : X \to Y$ עבור מרחבים טופולוגיים $(X, \tau), (Y, \Omega)$ היא רציפה, כאשר $f^{-1}(U) \in \tau$ לכל $U \in \Omega$.
 \end{remark}
-\begin{notation}
-	איברי $\tau$ יקראו קבוצות פתוחות.
-\end{notation}
 \begin{definition}[קבוצה סגורה]
 	אם $(X, \tau)$ מרחב טופולוגי אז תת־קבוצה $A \subseteq X$ תיקרא סגורה אם $X \setminus A \in \tau$, כלומר המשלים של $A$ היא קבוצה פתוחה.
 \end{definition}
+עכשיו כשאנחנו מצוידים בהגדרה של טופולוגיה, הגיעה העת לראות דוגמות יסודיות למרחבים טופולוגיים.
 \begin{example}
 	יהי $(X, d)$ מרחב מטרי, נגדיר $\tau = \{ U \subseteq X \mid \forall x \in U \exists r > 0, B(x, r) \subseteq U \}$, כלומר נגדיר טופולוגיה באופן טריוויאלי כנביעה מהמרחב המטרי.
 \end{example}
@@ -79,7 +83,7 @@
 	הוכיחו כי אכן זהו מרחב טופולוגי.
 \end{exercise}
 \begin{example}
-	יהי $X$ קבוצה כלשהי, אז ניתן להגדיר על $X$ טופולוגיה $\tau_0 = \{ \emptyset, X \}$.
+	תהי $X$ קבוצה כלשהי, אז ניתן להגדיר על $X$ טופולוגיה $\tau_0 = \{ \emptyset, X \}$.
 	טופולוגיה זו נקראת טופולוגיה טריוויאלית.
 \end{example}
 \begin{example}
@@ -93,13 +97,19 @@
 \begin{remark}
 	לא כל טופולוגיה נובעת ממטריקה.
 	לדוגמה הטופולוגיה הטריוויאלית על מרחב עם לפחות 2 נקודות.
-\end{remark}
-\begin{remark}
+
 	נניח $x, y \in X$ אז נבחר $r = \frac{1}{2} d(x, y)$ ואז $y \notin B(x, r)$ ולכן $\emptyset \ne B(x, r) \ne X$, קל לראות שביחס לטופולוגיה שמושרית מהמטריקה $d$, הקבוצה $B(x, r)$ קבוצה פתוחה.
 \end{remark}
 \begin{example}
-	נגדיר $X = \CC^n$ עבור איזשהו $n \in \NN$ ונגדיר $\Ff = \{ A \subseteq \CC^n \mid \exists {\{f_i\}}_{i \in I} \subseteq \CC[x_1, \dots, x_n], A = \{(p_1, \dots, p_n) \mid \forall i \in I, f_i(p_1, \dots, p_n) = 0 \}\}$.
+	נגדיר $X = \CC^n$ עבור איזשהו $n \in \NN$ ונגדיר,
+	\[
+		\Ff = \{ A \subseteq \CC^n \mid \exists {\{f_i\}}_{i \in I} \subseteq \CC[x_1, \dots, x_n], A = \{(p_1, \dots, p_n) \mid \forall i \in I, f_i(p_1, \dots, p_n) = 0 \}\}
+	\]
+	המרחב בו כל קבוצה המהווה קבוצת שבת לפולינומים מרוכבים ב־$n$ משתנים היא קבוצה פתוחה.
+	זהו מרחב טופולוגי.
 \end{example}
+כבר עכשיו ברור שמרחבים טופולוגיים יכולים להיות מאוד מורכבים לתיאור ולביטוי.
+נרצה למצוא דרך לתאר טופולוגיה על־ידי בסיס, בדומה למרחבים וקטוריים.
 \begin{definition}[בסיס לטופולוגיה]\label{topology_basis_definition}
 	בסיס לטופולוגיה הוא אוסף $\Bb$ של תתי־קבוצות של $X$ כך שמתקיים,
 	\begin{enumerate}
@@ -107,11 +117,15 @@
 		\item לכל $A, B \in \Bb$ ולכל $x \in A \cap B$ יש $C \in \Bb$ כך ש־$x \in C \subseteq A \cap B$
 	\end{enumerate}
 \end{definition}
+הגדרה זו מאפשרת לנו לטעון את הטענה החשובה הבאה, ובכך להצדיק הגדרה זו.
 \begin{proposition}
-	עבור בסיס $\Bb$ האוסף $\tau_\Bb = \{ U \subseteq X \mid U \text{ is a union of elements of } \Bb \}$ היא טופולוגיה,
+	עבור בסיס $\Bb$ האוסף,
 	\[
-		\forall \alpha \in I, B_\alpha \in \Bb, U = \bigcup_{\alpha \in I} B_\alpha
+		\tau_\Bb
+		= \{ U \subseteq X \mid \exists B \subseteq \Bb,\ U = \bigcup B \}
 	\]
+	אוסף איחודי האיברים ב־$\Bb$, כלומר כל איבר ב־$\tau_\Bb$ הוא איחוד של איזושהי כמות של קבוצות ב־$\Bb$. \\
+	אז $(\bigcup \Bb, \tau_\Bb)$ הוא מרחב טופולוגי.
 \end{proposition}
 \begin{proof}
 	מכיוון ש־$\tau_\Bb$ סגורה לחיתוך סופי, אז אם $U, V \in \tau_\Bb$ אז $U = \bigcup_{\alpha \in I} B_\alpha \in \Bb$ וכן $V = \bigcup_{\beta \in J} A_\beta, A_\beta \in \Bb$, אז מתקיים,
@@ -127,27 +141,28 @@
 	בהתאם מצאנו סגירות לחיתוך סופי.
 \end{proof}
 \begin{remark}
-	יהי $(X, d)$ מרחב מטרי, אז $\{ B(x, r) \subseteq X \mid x \in X, r > 0 \}$ הוא טופולוגיה.
-	אבל עכשיו נוכל להגדיר גם את $\{ B(x, \frac{1}{n}) \subseteq X \mid x \in X, n \in \NN \}$, זהו בסיס לטופולוגיה לאותה הטופולוגיה שהגדרנו למרחב המטרי.
+	יהי $(X, d)$ מרחב מטרי, אז $\{ B(x, r) \subseteq X \mid x \in X, r > 0 \}$ הוא בסיס לטופולוגיה המושרית מהמרחב המטרי. \\
+	אבל עכשיו נוכל להגדיר גם את $\{ B(x, \frac{1}{n}) \subseteq X \mid x \in X, n \in \NN \}$, זהו בסיס נוסף לאותו המרחב, אך הפעם הוא גם בן־מניה.
 \end{remark}
 \begin{exercise}
 	הוכיחו שזהו אכן בסיס עבור המרחב הטופולוגי הנתון.
 \end{exercise}
 \begin{example}
-	נניח ש־$X = \ZZ$, ונגדיר את הבסיס $C$ להיות אוסף הסדרות האריתמטיות הדו־צדדיות, כלומר $C = \{ a + d \ZZ \mid a, d \in \ZZ, d \ne 0 \}$.
-	אנו טוענים כי זהו אכן בסיס (לטופולוגיה).
-	נתבונן בזוג קבוצות ב־$C$, $a + d \ZZ, b + q \ZZ$, ונניח ש־$p \in (a + d \ZZ) \cap (b + q \ZZ)$ אז $p \in p + dq \ZZ \subseteq (a + d \ZZ) \cap (b + q \ZZ)$.
-	נגדיר טופולוגיית $\tau_C$.
-
-	קבוצות סגורות הן משלימים לקבוצות פתוחות.
-
-	כל סדרה אריתמטית דו־צדדית אינסופית היא גם פתוחה וגם סגורה.
-	בפרט חיתוך סופי של סדרות אריתמטיות הוא סגור.
-	לכן המשלים שלו הוא פתוח.
+	נניח ש־$X = \ZZ$, ונגדיר את הבסיס $\Cc$ להיות אוסף הסדרות האריתמטיות הדו־צדדיות, כלומר,
+	\[
+		\Cc = \{ a + d \ZZ \mid a, d \in \ZZ, d \ne 0 \}
+	\]
+	זהו בסיס לטופולוגיה, ואנו רוצים להבין מה מבנה טופולוגיה זו. \\
+	נתבונן בזוג קבוצות ב־$\Cc$, $a + d \ZZ, b + q \ZZ$, ונניח ש־$p \in (a + d \ZZ) \cap (b + q \ZZ)$ אז,
+	\[
+		p \in p + dq \ZZ \subseteq (a + d \ZZ) \cap (b + q \ZZ)
+	\]
+	לכל $p$ כזו.
+	נוכל להסיק אם כן על־ידי בניית משלים שכל קבוצה פתוחה ב־$\tau_\Cc$ היא גם סגורה.
 \end{example}
-\begin{conclusion}[משפט אוקלידס]
+\begin{corollary}[משפט אוקלידס]
 	יש אינסוף מספרים ראשוניים.
-\end{conclusion}
+\end{corollary}
 \begin{proof}
 	נניח בשלילה כי יש מספר סופי של ראשוניים, $p_1, \dots, p_k$ עבור $k \in \NN$.
 	נבחן את $\bigcup_{i = 1}^k p_i \ZZ$, זוהי קבוצה פתוחה וגם סגורה, לכן
@@ -157,6 +172,7 @@
 	\]
 	ולכן נובע ש־$\{-1, 1\}$ קבוצה פתוחה וזו כמובן סתירה.
 \end{proof}
+נמשיך וננסה למצוא עוד מרחבים טופולוגיים יסודיים שאנו יכולים לאפיין.
 \begin{proposition}[צמצום מרחב טופולוגי]
 	נניח ש־$(X, \tau)$ מרחב טופולוגי, לכל $\emptyset \ne Y \subseteq X$ נגדיר $\tau_Y = \{ U \cap Y \mid U \in \tau \}$.
 	אז $\tau_Y$ היא טופולוגיה.
@@ -1071,9 +1087,9 @@
 	וכן $b \in V = \bigcap_{i = 1}^N V_{a_i}$.
 	$U, V$ פתוחות זרות כך ש־$A \subseteq U$ ו־$b \in V$.
 \end{proof}
-\begin{conclusion}
+\begin{corollary}
 	אם $X$ מרחב טופולוגי קומפקטי ו־$Y$ מרחב טופולוגי האוסדורף, $f : X \to Y$ רציפה חד־חד ערכית ועל, אז $f$ היא הומיאומורפיזם.
-\end{conclusion}
+\end{corollary}
 \begin{proof}
 	עלינו להראות רק ש־$f$ מקיימת ש־$f^{-1}$ רציפה, ונקבל שכלל התנאים להומיאומורפיזם חלים.
 	לכל תת־קבוצה סגורה $C \subseteq X$ עלינו להראות ש־${(f^{-1})}^{-1}(C) \subseteq Y$ סגורה.
@@ -1581,9 +1597,9 @@
 \begin{definition}[מרחב מושלם]
 	מרחב $X$ נקרא מושלם אם כל נקודה $x \in X$ היא נקודת הצטברות $X \setminus \{ x \}$.
 \end{definition}
-\begin{conclusion}
+\begin{corollary}
 	נניח ש־$X$ מרחב קומפקטי האוסדורף מושלם, אז $X$ לא בן־מניה.
-\end{conclusion}
+\end{corollary}
 \begin{definition}[תכונת בייר]
 	נאמר שמרחב $X$ הוא מרחב בייר אם מתקיים שלאיחוד בן־מניה של קבוצות דלילות אין פנים.
 \end{definition}
@@ -1838,10 +1854,10 @@ $X$ מרחב בייר (לאיחוד בן־מניה של דלילות יש פני
 	אז $\alpha * \beta \sim \alpha' * \beta'$.
 \end{proposition}
 את ההוכחה לא נראה, אבל היא נובעת ישירות מהגדרת מחלקות השקילות.
-\begin{conclusion}
+\begin{corollary}
 	אפשר להגדיר את פעולת השרשור על מחלקות הומוטופיה, כלומר הפעולה מוגדרת היטב על מחלקות שקילות. \\
 	נסמן במקרה זה $[\alpha] * [\beta] = [\alpha * \beta]$ עבור נציגים כלשהם.
-\end{conclusion}
+\end{corollary}
 \begin{proposition}
 	לכל $[\alpha] \in \pi_1(X, x_0, x_1)$, $[\beta] \in \pi(X, x_1, x_2)$ ו־$\gamma \in \pi_1(X, x_2, x_3)$ מתקיים,
 	\[
@@ -1867,9 +1883,9 @@ $X$ מרחב בייר (לאיחוד בן־מניה של דלילות יש פני
 	\]
 	אז מבדיקה ישירה נסיק שאכן $H$ היא הומוטופיה ולכן מעידה על $\alpha \sim \beta$.
 \end{proof}
-\begin{conclusion}
+\begin{corollary}
 	$\pi_1(X, x_0)$ היא חבורה יחד עם פעולת השרשור.
-\end{conclusion}
+\end{corollary}
 \begin{proof}
 	הפעולה $*$ שהגדרנו על $\pi_1(X, x_0)$ מקיימת שלכל $u, v, w \in \pi_1(X, x_0)$ מתקיים $u (v w) = (u v) w$, כלומר אסוציאטיביות. \\
 	המסילה הקבועה $c_{x_0}(t) = x_0$ לכל $t \in [0, 1]$ היא איבר ניטרלי ביחס לפעולה, כלומר נגדיר $e = [c_{x_0}]$ ונבחין כי לכל $\gamma \in \Omega(X, x_0)$ מתקיים $e * \gamma = \gamma * e = \gamma$. \\
@@ -2108,9 +2124,9 @@ $X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מ
 	ההרמה היא יחידה לפי אותו טיעון ששימש אותנו ליחידות של הרמת מסילות. \\
 	הרמה של מסילה קבועה היא מסילה קבועה ישירות מהגדרתה, ולכן אם $F$ הומוטופיה עם נקודות קצה אז זו הומוטופיה של מסילות עם נקודות קצה.
 \end{proof}
-\begin{conclusion}
+\begin{corollary}
 	תהינה $f, g$ מסילות הומוטופיות ב־$B$ המתחילות ב־$b_0$, ותהי $e_0 \in p^{-1}(b_0)$, תהינה גם $\tilde{f}, \tilde{g}$ הרמות של $f, g$ המתחילות ב־$e_0$, אז $\tilde{f}(1) = \tilde{g}(1)$.
-\end{conclusion}
+\end{corollary}
 \begin{proof}
 	$f, g$ הומוטופיות ולכן קיימת הומוטופיה $F : I \times I \to B$ כך ש־$F |_{I \times \{ 0 \}} = f$ ו־$F |_{I \times \{ 1 \}} = g$.
 	להומוטופיה $F$ קיימת הרמה יחידה $\tilde{F}$ המקיימת $\tilde{F}(0, 0) = e_0$,
@@ -2126,12 +2142,12 @@ $X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מ
 
 \subsection{בין מרחבי כיסוי להומוטופיה}
 נמשיך ישירות מתוצאות השיעור הקודם ונבחין במספר מסקנות.
-\begin{conclusion}
+\begin{corollary}
 	אם $p : E \to B$ העתקת כיסוי,
 	אז לכל זוג מסילות $\alpha, \beta \in \Omega(B, b, c)$, אם הן הומוטופיות אז,
 	לכל זוג הרמות $\tilde{\alpha}, \tilde{\beta}$ ל־$E$ כך ש־$\tilde{\alpha}(0) = \tilde{\beta}(0)$ מתקיים גם $\tilde{\alpha}(1) = \tilde{\beta}(1)$. \\
 	בפרט מתקבלת ההעתקה $\Phi : \pi_1(B, b_0) \to p^{-1}(\{ b_0 \}) = p^{-1}(b_0)$.
-\end{conclusion}
+\end{corollary}
 בתרגול ראינו כי אם $E$ פשוט־קשר אז,
 \[
 	\Phi : \pi_1(B, b_0) \to p^{-1}(b_0)
@@ -2266,9 +2282,9 @@ $X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מ
 		= \rho_* \circ {(\iota_Y)}_*
 	\]
 \end{proof}
-\begin{conclusion}[משפט נקודת השבת של בראואר]
+\begin{corollary}[משפט נקודת השבת של בראואר]
 	לכל העתקה רציפה $f : D \to D$ עבור $D = \overline{B}(0, 1) \subseteq \RR^2$ יש נקודת שבת.
-\end{conclusion}
+\end{corollary}
 \begin{proof}
 	$S^1 \hookrightarrow D$ וכן $\ZZ = \pi_1(S^1, 1)$, אבל גם $\pi_1(D, 1) = 1$ טריוויאלית.
 	אין שיכון של $\ZZ$ בחבורה הטריוויאלית ולכן אין רטרקציה מעיגול הסגור לשפה שלו.
@@ -2480,10 +2496,10 @@ $X$ כוויץ אם יש נקודה יחידה כך שיש הומוטופיה מ
 		\simeq \pi_1(U, x_0) * \pi_1(V, x_0)
 	\]
 \end{theorem}
-\begin{conclusion}
+\begin{corollary}
 	אם $X$ היא המרחב הטופולוגי בצורת 8, אז מתקיים $\pi_1(X) \simeq F_2$ עבור $F_2$ חבורה חופשית עם שני יוצרים.
 	נבחר $U$ כחלק השמאלי של ה־8 ללא נקודות הקצה, ו־$V$ באופן דומה החלק הימני ללא נקודות קצה.
-\end{conclusion}
+\end{corollary}
 \begin{exercise}
 	מה קורה במקרים של גרפים סופיים כלליים?
 \end{exercise}
