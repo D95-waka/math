@@ -1,70 +1,57 @@
 \input{../article_base.tex}
 
-\usepackage{emoji}
-
 \begin{document}
 
 \begin{proposition}
-	יהי $b \in \NN \setminus \{ 0 \}$.
-	לכל $x \in \NN \setminus \{ 0 \}$ קיים $N \in \NN$ יחיד וסדרה יחידה ${\{ x_n \}}_{n = 0}^N \subseteq \{0, \ldots, b - 1\}$,
-	כך שמתקיים,
-	\[
-		x
-		= \sum_{n = 0}^N b^n \cdot x_n
-	\]
-	ו־$b_N \ne 0$.
+	קבוצה $A$ היא טרנזיטיבית אם ורק אם $\Pp(A)$ טרנזיטיבית.
 \end{proposition}
 \begin{proof}
-	נוכיח את הטענה באינדוקציה על $x$.
-
-	נניח ש־$x = 1$.
-	אילו $N > 0$ אז $x_N \ge 1$ ומתקיים,
+	נראה את הכיוון ההפוך, נניח ש־$\Pp(A)$ טרנזיטיבית.
+	הדבר הראשון שנבחין בו הוא שמתקיים,
 	\[
-		\sum_{n = 0}^N b^n \cdot x_n
-		\ge b^N \cdot x_n
-		\ge b
+		x \in \Pp(A) \iff x \subseteq A,
+		\quad
+		x \in y \in \Pp(A) \implies x \in \Pp(A)
 	\]
-	ולכן בהכרח $N = 0$ בלבד.
-	נובע אם כך ש־$x = x_0$ עבור $0 \le x_0 < N$, ולכן $x_0 = 1$ בלבד.
-
-	נניח שהטענה נכונה עבור $1 \le y < x$ לכל $y$ כזה ונוכיח את הטענה על $x$.
-	נגדיר,
+	הטענה הראשונה היא הגדרת קבוצת החזקה, השנייה היא הגדרה שקולה לטרנזיטיביות, לבסוף נכתוב את ההגדרה עצמה,
 	\[
-		N
-		= \min\{ n \in \NN \mid b^{n + 1} > x \}
+		x \in \Pp(A) \implies x \subseteq \Pp(A)
 	\]
-	קיים כזה מהסדר הטוב על הטבעיים (ולכן הטענה לא נכונה ב־$\operatorname{PA}$).
-	נגדיר גם,
+	נניח ש־$x \in y \in A$, ונרצה להראות ש־ $x \in A$. \\
+	נתון כי $y \in A$ ולכן $\{ y \} \subseteq A \iff \{ y \} \in \Pp(A)$.
+	אבל מהאפיון השקול לטרנזיטיביות נקבל
 	\[
-		x_N
-		= \max\{ n \in [b] \mid x \le b^N \cdot n \}
+		y \in \{ y \} \in \Pp(A) \implies y \in \Pp(A)
 	\]
-	נסמן $y = x - b^N \cdot x_N$, אז $y < x$ ולכן מהנחת האינדוקציה קיים $M \le N$ ו־${\{ y_n \}}_{n = 0}^M$ כך שמתקיים,
+	כלומר $y \subseteq A$ מהגדרת קבוצת חזקה.
+	אבל $x \in y \subseteq A$ ולכן נקבל ש־$x \in A$, בדיוק כפי שרצינו.
+\end{proof}
+\begin{exercise}
+	נניח ש־$\langle A, \le \rangle$ סדר קווי כלשהו.
+	הוכיחו כי $\operatorname{min}_2 : A^2 \to A$ היא פונקציה, כלומר הראו כי היא קבוצה המקיימת את תכונת הפונקציה.
+\end{exercise}
+\begin{exercise}
+	השתמשו במשפט הרקורסיה כדי להראות שקיימת פונקציה $\operatorname{min}_F$ כך שמתקיים,
 	\[
-		y
-		= \sum_{n = 0}^M b^n \cdot y_n
+		\forall n < \omega,\ 
+		\operatorname{min}_F(n) = \operatorname{min}_2
 	\]
-	אז נגדיר $x_n = y_n$ לכל $0 \le n \le M$ ו־$x_n = 0$ עבור $M < n < N$.
-	נקבל,
+\end{exercise}
+\begin{exercise}
+	הראו כי קיימת הפונקציה $\min : \Pp^{< \omega}(A) \to A$ המקבלת קבוצות סופיות של טבעיים ומחזירה את המינימום שלהם.
+\end{exercise}
+\begin{proof}
+	אנו יודעים כי $\NN^3$ קיימת וכן נגדיר,
 	\[
-		\sum_{n = 0}^N b^n \cdot x_n
-		= b^N \cdot x_N + \sum_{n = 0}^M b^n \cdot x_n
-		= b^N \cdot x_N + y
-		= x
+		P(x, y, z)
+		= (z = x \lor z = y) \land (z \le x \land z \le y)
 	\]
-	לכן מצאנו $N$ וסדרה המקיימות את הטענה, עלינו להראות יחידות. \\
-	נניח ש־$N'$ ו־${\{ x_n' \}}_{n = 0}^{N'}$ מקיימים את הטענה.
-	אז מהחישוב שראינו של $N$ בהכרח נובע $N = N'$.
-	אם $N = 0$ אז $b^0 \cdot x_0 = x = b^0 \cdot x_0'$ ונובע $x_0 = x_0'$ בלבד.
-	עתה נניח שהטענה נכונה עבור רישא של הסדרה, $x_n = x_n'$ לכל $n < m \le N$, ונבחן את $m$.
-	נניח בלי הגבלת הכלליות ש־$x_n = 0$ לכל $n < m$ ולכן,
+	אז מהפרדה,
 	\[
-		x
-		= \sum_{n = m}^N b^n \cdot x_n
-		= b^m \sum_{n = m}^N b^{n - m} \cdot x_n
+		f = \{ (x, y, z) \in \NN^3 \mid P(x, y, z) \}
 	\]
-	ונוכל באופן דומה לקבל ש־$x_m = x_m'$ עבור $y = \sum_{n = m}^N b^{n - m} \cdot x_n$. \\
-	נסיק שאכן $x_n = x_n'$ לכל $n \le N$, וסיימנו להוכיח יחידות.
+	היא קבוצה.
+	נותר להראות שהיא פונקציה.
 \end{proof}
 
 \end{document}
