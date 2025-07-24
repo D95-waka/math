@@ -3,55 +3,48 @@
 \begin{document}
 
 \begin{proposition}
-	קבוצה $A$ היא טרנזיטיבית אם ורק אם $\Pp(A)$ טרנזיטיבית.
+	קיימת הרחבת שדות $K / \QQ$ כך שהיא הרחבת גלואה ו־$\gal(K / \QQ) \simeq \ZZ / 5\ZZ$.
 \end{proposition}
 \begin{proof}
-	נראה את הכיוון ההפוך, נניח ש־$\Pp(A)$ טרנזיטיבית.
-	הדבר הראשון שנבחין בו הוא שמתקיים,
+	נתחיל בהגדרה $\zeta = \xi_{11}$ שורש היחידה הפרימיטיבי מסדר $11$ ב־$\QQ$.
+	נגדיר גם $L = \QQ(\zeta)$ ונקבל ש־$L / \QQ$ היא הרחבה ציקלוטומית וגלואה, ומתקיים,
 	\[
-		x \in \Pp(A) \iff x \subseteq A,
-		\quad
-		x \in y \in \Pp(A) \implies x \in \Pp(A)
+		[L : \QQ]
+		= | {(\ZZ / 11\ZZ)}^\times |
+		= 10
 	\]
-	הטענה הראשונה היא הגדרת קבוצת החזקה, השנייה היא הגדרה שקולה לטרנזיטיביות, לבסוף נכתוב את ההגדרה עצמה,
+	וכן אנו יודעים כי הרחבות ציקלוטומיות הן בעלות חבורת גלואה ציקלית ולכן,
 	\[
-		x \in \Pp(A) \implies x \subseteq \Pp(A)
+		\gal(L / \QQ)
+		\simeq \ZZ / 10\ZZ
 	\]
-	נניח ש־$x \in y \in A$, ונרצה להראות ש־ $x \in A$. \\
-	נתון כי $y \in A$ ולכן $\{ y \} \subseteq A \iff \{ y \} \in \Pp(A)$.
-	אבל מהאפיון השקול לטרנזיטיביות נקבל
+	עשינו את כל זה כי אנחנו רוצים למצוא את החבורה $\ZZ / 5\ZZ$, אז מספיק למצוא חבורה ככה שהיא תת־חבורה שלה, ואכן,
 	\[
-		y \in \{ y \} \in \Pp(A) \implies y \in \Pp(A)
+		\ZZ / 5\ZZ
+		\le \gal(L / \QQ)
 	\]
-	כלומר $y \subseteq A$ מהגדרת קבוצת חזקה.
-	אבל $x \in y \subseteq A$ ולכן נקבל ש־$x \in A$, בדיוק כפי שרצינו.
-\end{proof}
-\begin{exercise}
-	נניח ש־$\langle A, \le \rangle$ סדר קווי כלשהו.
-	הוכיחו כי $\operatorname{min}_2 : A^2 \to A$ היא פונקציה, כלומר הראו כי היא קבוצה המקיימת את תכונת הפונקציה.
-\end{exercise}
-\begin{exercise}
-	השתמשו במשפט הרקורסיה כדי להראות שקיימת פונקציה $\operatorname{min}_F$ כך שמתקיים,
+	אבל אנחנו צריכים למצוא את המבנה של $H$, לא רק להגיד שקיימת כזאת, אז נגדיר,
 	\[
-		\forall n < \omega,\ 
-		\operatorname{min}_F(n) = \operatorname{min}_2
+		H
+		= \langle \zeta \mapsto \zeta^2 \rangle
+		= \{ \zeta \mapsto \zeta^{2 n} \mid 1 \le n \le 5 \}
 	\]
-\end{exercise}
-\begin{exercise}
-	הראו כי קיימת הפונקציה $\min : \Pp^{< \omega}(A) \to A$ המקבלת קבוצות סופיות של טבעיים ומחזירה את המינימום שלהם.
-\end{exercise}
-\begin{proof}
-	אנו יודעים כי $\NN^3$ קיימת וכן נגדיר,
+	זוהי אכן חבורת אוטומורפיזמים כפי שרצינו ומתקיים $|H| = 5$.
+	אבל ממשפט התאמת גלואה מתקיים $L / L^H$ היא הרחבת גלואה כך ש־$[L : L^H] = 5$.
+	בשלב הזה בגדול סיימנו את השאלה כי מצאנו הרחבת שדות כמו שביקשו, אבל בתרגול ראינו דרך לבנות ממש את השדה הזה.
+
+	נגדיר $\alpha = \sum_{n = 1}^5 \zeta^{2 n}$, הדבר הזה מקיים,
 	\[
-		P(x, y, z)
-		= (z = x \lor z = y) \land (z \le x \land z \le y)
+		\forall \sigma \in H,\ 
+		\sigma(\alpha)
+		= \sum_{n = 1}^5 \sigma(\zeta^{2 n})
+		= \alpha
 	\]
-	אז מהפרדה,
+	מטעמי סימטריה, אז $\QQ(\alpha) \subseteq L^H$ ממש מהגדרת $L^H$ כשדה שבט של $H$, ונסיק,
 	\[
-		f = \{ (x, y, z) \in \NN^3 \mid P(x, y, z) \}
+		\QQ(\alpha) = L^H
 	\]
-	היא קבוצה.
-	נותר להראות שהיא פונקציה.
+	ומצאנו ש־$\QQ(\zeta) / \QQ(\alpha)$ הרחבת גלואה כך ש־$\gal(\QQ(\zeta) / \QQ(\alpha)) \simeq \ZZ / 5\ZZ$.
 \end{proof}
 
 \end{document}
