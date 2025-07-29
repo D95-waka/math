@@ -145,11 +145,6 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <th>19</th>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
-        <td>2026א'</td>
-        <td>3</td>
-    </tr>
-    <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80616">תורת המודלים 1</a></td>
         <td>2026א'</td>
         <td>2</td>
@@ -158,6 +153,16 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80517">תורת המידה</a></td>
         <td>2026א'</td>
         <td>4</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80607">מושגי יסוד בטופולוגיה אלגברית</a></td>
+        <td>2026א'</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
+        <td>2026ב'</td>
+        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>

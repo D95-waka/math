@@ -228,11 +228,168 @@
 	= \lim_{R \to \infty} \int_{Q_R} F\ dl
 \]
 \begin{solution}
-	\[
+	על־ידי שימוש בזהויות מוכרות ובאי־השוויון הנתון $\lVert u \times v \rVert \le \lVert u \rVert \cdot \lVert v \rVert$ נסיק,
+	\begin{align*}
 		\left\lVert \int_{\mu_2} F(t)\ dt \right\rVert
-		\le \int_{\mu_2} \left\lVert F(t) \right\rVert\ dt
-		\le \int_{\mu_2} \left\lVert F(t) \right\rVert\ dt
-	.\]
+		& \le \int_{\mu_2} \left\lVert F(t) \right\rVert\ dt \\
+		& \le \int_{\mu_2} \int_{0}^{2 \pi} \left\lVert \nabla {\lVert t - \gamma(u) \rVert}^{-1} \right\rVert \cdot \left\lVert \gamma'(u) \right\rVert\ du\ dt \\
+		& = \int_{\mu_2} \int_{0}^{2 \pi} \frac{\lVert t - \gamma(u) \rVert}{{\lVert t - \gamma(u) \rVert}^3} \cdot 1\ du\ dt \\
+		& = \int_{\mu_2} \int_{0}^{2 \pi} \frac{du\ dt}{{\lVert t - \gamma(u) \rVert}^3} \\
+		& = \int_{0}^{2 \pi} \int_{0}^{2R} \frac{\mu_2'(u) \cdot dt\ du}{{\lvert {(u - \cos t)}^2 + \sin^2 t + R^2 \rvert}^{3 / 2}} \\
+		& \xrightarrow{x \to \infty} 0
+	\end{align*}
+	באופן שקול נוכל לקבל שאיפה לאפס של $\int_{\mu_4} F(t)\ dt$, ולכן נותר לנו לחשב את האינטגרל המסילתי על $\mu_3$.
+	\begin{align*}
+		\int_{\mu_3} F(t)\ dt
+		& = \int_{\mu_3} \int_{0}^{2 \pi} \frac{0 - \cos u}{{\lVert (2R, 0, t) - \gamma(u) \rVert}^3} \cdot (\cos u) - \frac{2R - \sin u}{{\lVert (2R, 0, t) - \gamma(u) \rVert}^3} \cdot (- \sin u)\ du\ dt \\
+		& = \int_{\mu_3} \int_{0}^{2 \pi} \frac{- \cos^2(u) - \sin^2(u) + 2R \sin t}{{\lVert {(2R - \cos u)}^2 + \sin^2(u) + t^2 \rVert}^3}\ du\ dt \\
+		& = \int_{-R}^{R} \int_{0}^{2 \pi} \frac{-1 + 2R \sin t}{\lvert {4R^2 - 4 \cos u + 1 + t^2 \rvert}^{3 / 2}}\ du\ dt \\
+		& \xrightarrow{R \to \infty} 0
+	\end{align*}
+	משיקולי אינפי 2.
+	נסיק אם כן ש־$L_{\infty} = \lim_{R \to \infty} \frac{-4 \pi R}{\sqrt{1 + R^2}} = -4 \pi$ בלבד.
+\end{solution}
+
+\subquestion{}
+נראה ש־$\int_{Q_1} F\ dl = L_{\infty}$ ונסיק ש־$F$ לא משמרת ובהתאם ש־$\RR^3 \setminus C$ לא פשוטת קשר.
+\begin{proof}
+	נגדיר $T_R \overset{\operatorname{def}}{=} Q_R \setminus {\{ 0 \}}^2 \times [-1, 1]$, אז $T_{R_1}$ שקול הומוטופית מסילתית ל־$T_{R_2}$ לכל $R_1, R_2 > \frac{1}{2}$, אבל $F$ שדה משמר מקומית ולכן האינטגרלים שלהם שווים.
+	אז נסיק,
+	\[
+		\int_{T_1} F\ dl
+		= \int_{T_R} F\ dl
+		\xrightarrow{R \to \infty} L_{\infty} - I
+	\]
+	עבור,
+	\[
+		I = \int_{Q_1} F\ dl
+		= \int_{\mu_1} F\ dl
+		= \frac{-4 \pi \cdot 1}{\sqrt{1 + 1^2}}
+		= - 2 \sqrt{2} \pi
+	\]
+	כלומר מצאנו שבדיוק מתקיים $\int_{Q_1} F\ dl = L_{\infty}$.
+
+	אילו הייתה $\RR^3 \setminus C$ פשוטת קשר, אז ערך כל אינטגרל מסילתי על לולאה היה $0$, לכן ערך אינטגרל זה (שאיננו מתאפס) מהווה סתירה ישירה להנחה כי התחום פשוט קשר.
+	למעשה ידענו זאת כבר כי החבורה היסודית שלו היא $\ZZ \ne \{ 1 \}$.
+\end{proof}
+
+\question{}
+תהינה $M^k \subseteq \RR^m, N^k \subseteq \RR^n$ שתי יריעות. \\
+נגדיר את הדיפאומורפיזם החלק $F : M \to N$ כאיזומטריה אם לכל $p \in M$ ולכל $v, w \in T_p M$ מתקיים,
+\[
+	\langle v, w \rangle
+	= \langle d F |_p (v), d F |_p (w) \rangle
+\]
+כלומר ש־$DF |_p : T_p M \to T_{F(p)} N$ היא איזומטריה.
+
+\subquestion{}
+נראה שאם $F : M \to N$ איזומטריה וכן $M, N$ שתיהן קומפקטיות, \\
+אז $\vol_k(M) = \vol_k(N)$ וכן לכל מסילה חלקה $\gamma : [a, b] \to M$ מתקיים $L(\gamma) = L(F \circ \gamma)$.
+\begin{proof}
+	נרצה להשתמש במשפט הדיברגנץ.
+	נוכל לשכן את שתי היריעות באותו מרחב (הגדול מביניהם), ושימוש ב־$F$ לבנייה של $\varphi$ המעבירה את $M$ ל־$N$.
+
+	נניח ש־$p \in M$ וכן ש־$p \in U \subseteq M$ סביבה פתוחה כך ש־$\alpha : W \to U$ פרמטריזציה מקומית, ו־$W \subseteq \HH^k$.
+	אז $\beta = F \circ \alpha$ פרמטריזציה מקומית של $q = F(p) \in N$.
+	נסמן,
+	\[
+		T_x = D \alpha |_x,
+		\quad
+		S_x
+		= D \beta |_x
+		= (D F |_{\alpha(x)}) \circ D \alpha |_x
+		= (D F |_{\alpha(x)}) \circ T_x
+	\]
+	אז מתקיים,
+	\begin{align*}
+		V(T_x)
+		& = \sqrt{\det\left({(\langle T_x(e_i), T_x(e_j) \rangle)}_{i, j \in [k]}\right)} \\
+		& = \sqrt{\det\left({(\langle D F |_x T_x(e_i), D F |_x T(e_j) \rangle)}_{i, j \in [k]}\right)} \\
+		& = \sqrt{\det\left({(\langle S_x(e_i), S_x(e_j) \rangle)}_{i, j \in [k]}\right)} \\
+		& = V(S_x)
+	\end{align*}
+	ולכן נובע,
+	\[
+		\int_U 1\ d\vol_k
+		= \int_{W} 1\ V(T_x)\ dx
+		= \int_{W} 1\ V(S_x)\ dx
+		\int_{F(U)} 1\ d\vol_k
+	\]
+	ומכאן תוך שימוש בהגדרת היריעה (הגדרת חלוקת יחידה ושימוש חזור בטענה שעתה הוכחנו) נקבל שהנפחים זהים.
+
+	נניח ש־$\gamma : [a, b] \to M$, אז,
+	\[
+		L(\gamma)
+		= \int_{a}^{b} \lVert \gamma'(t) \rVert\ dt
+		= \int_{a}^{b} \langle \gamma'(t), \gamma'(t) \rangle\ dt
+		= \int_{a}^{b} \langle D F |_t \gamma'(t), D F |_t \gamma'(t) \rangle\ dt
+		= \int_{a}^{b} \lVert (F \circ \gamma)'(t) \rVert\ dt
+		= L(F \circ \gamma)
+	\]
+	ומצאנו כי השוויון מתקיים אף הוא.
+\end{proof}
+
+\subquestion{}
+נניח ש־$F : S^n(1) \to S^n(2)$ הדיפאומורפיזם החלק בין ספירה ברדיוס $1$ לספירה ברדיוס $2$ ב־$\RR^{n + 1}$, כאשר $F(x) = 2x$.
+נוכיח כי $F$ היא לא איזומטריה.
+\begin{proof}
+	נניח בשלילה שהיא איזומטריה ולכן בפרט המסילה $\gamma : [0, 1] \to \{ (\cos t, \sin t) \} \times {\{ 0 \}}^{n - 1}$ מקיימת,
+	\[
+		2 \pi
+		= L(\gamma)
+		= L(F \circ \gamma)
+		= 2 \pi \cdot 2
+	\]
+	וזו סתירה.
+\end{proof}
+
+\subquestion{}
+תהינה היריעות,
+\[
+	M = (0, 2 \pi) \times (0, 1) \subseteq \RR^2,
+	\quad
+	N = \{ (x, y) \in \RR^2 \mid x^2 + y^2 = 1, (x, y) \ne (1, 0) \} \times (0, 1) \subseteq \RR^3
+\]
+שתי היריעות הנתונות הן איזומטריות, אנו נמצא איזומטריה $F : M \to N$ ונסביר על שימושיה.
+\begin{solution}
+	נגדיר,
+	\[
+		F(t, y)
+		= (\cos t, \sin t, y)
+	\]
+	ונראה שזו אכן איזומטריה.
+	נתחיל להראות שהיא דיפאומורפיזם חלק.
+	היא מוגדרת היטב ישירות מהגדרת היריעות, וכמו כן היא חד־חד ערכית ועל מטענות שראינו לאורך הסמסטר.
+	היא חלקה כהרכבת פונקציות חלקות, ולכן מהווה דיפאומורפיזם חלק.
+
+	נסמן $p = (t, y)$.
+	מחישוב עולה כי,
+	\[
+		D F |_p
+		= \begin{pmatrix}
+			- \sin t & 0 \\
+			\cos t & 0 \\
+			0 & 1
+		\end{pmatrix} 
+	\]
+	ואם $v = (v_1, v_2), w = (w_1, w_2)$ אז,
+	\[
+		D F |_{p}(v)
+		= \begin{pmatrix} - v_1 \sin t \\ v_1 \cos t \\ v_2 \end{pmatrix},
+		\quad
+		D F |_{p}(w)
+		= \begin{pmatrix} - w_1 \sin t \\ w_1 \cos t \\ w_2 \end{pmatrix}
+	\]
+	לבסוף נציב,
+	\[
+		\langle D F |_p(u), D F |_p(w) \rangle
+		= v_1 w_1 \sin^2 t + v_1 w_1 \cos^2 t + v_2 w_2
+		= v_1 w_1 + v_2 w_2
+		= \langle v, w \rangle
+	\]
+	ומצאנו כי מתקיימת ההגדרה לאיזומטריה.
+
+	לפעמים אני לוקח דף ומגלגל אותו לטלסקופ, המרחקים על הדף לא משתנים, אבל הדף משנה את צורתו מ־$M$ ל־$N$.
 \end{solution}
 
 \end{document}
