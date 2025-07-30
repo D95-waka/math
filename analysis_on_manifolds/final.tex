@@ -110,7 +110,7 @@
 \subquestion{}
 נניח ש־$M^k \subseteq \RR^n$ יריעה ללא שפה,
 ותהי $U \subseteq \RR^k$ פתוחה כלשהי.
-נניח ש־$\alpha : U \to M$ היא חלקה כך ש־$D \alpha |_x$  מדרגה $k$ לכל $x \in U$. \\
+נניח ש־$\alpha : U \to M$ היא חלקה כך ש־$D \alpha |_x$ מדרגה $k$ לכל $x \in U$. \\
 נראה ש־$\alpha$ היא העתקה פתוחה.
 \begin{proof}
 	עבור נקודה כלשהי $x \in U$ מהנתון $\alpha$ רגולרית ב־$x$ ולכן ממשפט הפונקציה ההפיכה $\alpha |_V : V \to \alpha(V)$ היא דיפאומורפיזם הפיך, כאשר $x \in V \subseteq U$ פתוחה.
@@ -135,7 +135,7 @@
 נגדיר את השדה הווקטורי $F$ על $\RR^3 \setminus C$ המוגדר על־ידי,
 \[
 	F(x)
-	= \int_{0}^{2 \pi} \frac{x - \gamma(t)}{{\lVert x - \gamma(t) \rVert}^3} \times  \gamma'(t)\ dt
+	= \int_{0}^{2 \pi} \frac{x - \gamma(t)}{{\lVert x - \gamma(t) \rVert}^3} \times \gamma'(t)\ dt
 \]
 כאשר,
 \[
@@ -403,9 +403,49 @@
 	\left. \frac{\partial^2 \alpha}{\partial^2 y} \right\rvert_{(x_0, y_0)}
 	\right\}
 \]
-היא קבוצה אורתוגונלית.
+אז $T_p M \perp B$.
 \begin{proof}
-	
+	נחשב,
+	\begin{align*}
+		\left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial \alpha}{\partial x} \right\rangle
+		& = \left\langle \lim_{h \to 0} \frac{1}{h}\left( \left. \frac{\partial \alpha}{\partial x} \right\rvert_{(x, y + h)} - \frac{\partial \alpha}{\partial x}\right), \frac{\partial \alpha}{\partial x} \right\rangle \\
+		& = \lim_{h \to 0} \frac{1}{h} \left\langle \left. \frac{\partial \alpha}{\partial x} \right\rvert_{(x, y + h)} - \frac{\partial \alpha}{\partial x}, \frac{\partial \alpha}{\partial x} \right\rangle \\
+		& = \lim_{h \to 0} \frac{1}{h} \left( \left\langle \left. \frac{\partial \alpha}{\partial x} \right\rvert_{(x, y + h)}, \frac{\partial \alpha}{\partial x} \right\rangle
+		- \left\langle \frac{\partial \alpha}{\partial x}, \frac{\partial \alpha}{\partial x} \right\rangle \right) \\
+		& \overset{(1)}{=} \lim_{h \to 0} \frac{1}{h} \left( \left\langle D \alpha |_{(x, y + h)}(1, 0), D \alpha |_{(x, y)}(1, 0) \right\rangle
+		- \left\langle D \alpha |_{(x, y)}(1, 0), D \alpha |_{(x, y)}(1, 0) \right\rangle \right) \\
+		& \overset{(2)}{=} \lim_{h \to 0} \frac{1}{h} (1 - 1) \\
+		& = 0
+	\end{align*}
+	כאשר,
+	\begin{enumerate}
+		\item נובע מהגדרת הדיפרנציאל
+		\item שימוש באיזומטריה ובעובדה ש־$(1, 0)$ לא מחזיר ערכים על ציר ה־$y$
+	\end{enumerate}
+	באופן שקול נוכל להסיק שגם,
+	\[
+		\left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial \alpha}{\partial y} \right\rangle
+		= 0
+	\]
+	ולכן לכל $\beta_1, \beta_2 \in \RR$ סקלרים גם,
+	\[
+		\beta_1 \left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial \alpha}{\partial x} \right\rangle
+		+ \beta_2 \left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial \alpha}{\partial y} \right\rangle
+		= 0
+	\]
+	אבל זה אינו אלא השוויון,
+	\[
+		\left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, D \alpha |_{(x, y)}(\beta) \right\rangle
+		= 0
+	\]
+	עבור $\beta = (\beta_1, \beta_2)$.
+	נסיק ש־$\frac{\partial^2 \alpha}{\partial x \partial y} \perp T_p M$.
+
+	ניזכר ש־$D \alpha : T_p M \to T_p N$ היא איזומטריה, וכן אנו רוצים להראות,
+	\[
+		\forall v \in T_p M, b \in B,\ 
+		\langle v, b \rangle = 0
+	.\]
 \end{proof}
 
 \end{document}
