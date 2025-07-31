@@ -5,6 +5,7 @@
 
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\curl}{curl}
 
 \begin{document}
 \maketitle
@@ -83,28 +84,38 @@
 נסמן $p \in \partial M$ ו־$q \in \partial N$ נקודות כך ש־$f(p) = q$ ו־$D f |_p : T_p M \to T_q N$ איזומורפיזם לינארי. \\
 נראה שקיימות סביבות פתוחות $p \in U \subseteq M$ ו־$q \in V \subseteq N$ כך ש־$f |_U : U \to V$ היא דיפאומורפיזם.
 \begin{proof}
-	תהי $\alpha : U_0 \to \alpha(U_0)$ פרמטריזציה מקומית של $p \in U_0 \subseteq \HH^k$ ב־$M$ עבור $k = \dim M$.
-	נניח ש־$\beta : V_0 \to \alpha(V_0)$ פרמטריזציה מקומית של $q \in V_0 \subseteq \HH^k$ ב־$N$.
-	אם $f^{-1}(V_0) \subseteq U_0$ אז נגדיר $U = f^{-1}(V_0)$ ו־$V = V_0$, על־ידי שימוש באפיון של רציפות.
-	אחרת $U = f^{-1}(V_0) \cap U_0$ היא קבוצה פתוחה 
+	נסמן $k = \dim M$.
+	תהי $\alpha : W_0 \to M$ פרמטריזציה מקומית כך ש־ $W_0 \subseteq \HH^k$ ובלי הגבלת הכלליות (ותוך שימוש בטענה שראינו) גם $\alpha(0) = p$.
+	נסמן גם $\beta : \Omega_0 \to N$ פרמטריזציה מקומית סביב $q$, גם הפעם נניח $\Omega_0 \subseteq \HH^k, \beta(0) = q$.
+	נגדיר את הפונקציה $g : U_0 \to \HH^k$ עבור $U_0 \subseteq \HH^k$ על־ידי,
+	\[
+		g = \beta^{-1} \circ f \circ \alpha
+	\]
+	כאשר $U_0$ הוא סביבה פתוחה (בטופולוגיה המושרית) אשר ידוע שקיימת מבחירת סביבה קטנה מספיק.
+	מההנחה שלנו מתקיים $g(0) = 0$ וכן,
+	\[
+		\forall x \in \partial \HH^k,\ 
+		g(x) \in \partial \HH^k
+	\]
+	לבסוף גם נבחין כי $0$ נקודה רגולרית של $g$, הסיבה היא שנתון ש־$f$ רגולרית בנקודה זו במובן של מרחבים מטריים, וכן פרמטריזציות הן הפיכות מקומית.
+	לכן מספיק להוכיח את הטענה עבור מקרה זה, כלומר ביצענו תרגום של הבעיה לבעיה במרחבים מטריים.
 
-	נניח בלי הגבלת הכלליות ש־$\alpha(0) = p, \beta(0) = q$, זאת שכן נוכל לבצע הזזות וכן מהעובדה שהוכחה במהלך הקורס שמתקיים,
+	נבנה פונקציה חדשה המבוססת על $g$,
 	\[
-		\alpha(({\{ 0 \}}^{k - 1} \times \RR) \cap U_0) \subseteq \partial M
+		h(x)
+		= \begin{cases}
+			g(x) & x_k \ge 0 \\
+			- g(-x) & x_k < 0
+		\end{cases}
 	\]
-	אז $U_0 \cap V_0$ היא קבוצה פתוחה ונסמן,
+	משימוש בכלל השרשרת נקבל ש־$h$ היא פונקציה דיפרנציאבילית בכל נקודה ב־$U_1 = U_0 \cup \{ -x | x \in U_0 \}$, ובפרט היא דיפרנציאבילית ב־$x = 0$ ומתקיים,
 	\[
-		U = \alpha(U_0 \cap V_0),
-		\quad
-		V = \beta(U_0 \cap V_0)
+		D h |_0
+		= D g |_0
 	\]
-	כל פרמטריזציה מקומית היא דיפאומורפיזם ולכן הומיאומורפיזם ובהתאם העתקה פתוחה, לכן $U \subseteq M, V \subseteq N$ קבוצות פתוחות.
-	עתה נגדיר את $g : U_0 \cap V_0 \to \HH^k$ על־ידי,
-	\[
-		g = \beta \circ f \circ \alpha^{-1}
-	\]
-	אז בהכרח $g$ רגולרית ב־$(0, 0)$ מהנתונים, והיא הפיכה בסביבה פתוחה של הראשית על־ידי שימוש במשפט מאינפי 3 והרחבה רציפה של $g$.
-	נניח ש־$0 \in U' \subseteq U_0 \cap V_0$ סביבה כזו, אז נוכל לצמצם את $U, V$ בהתאם ל־$\alpha^{-1}(U')$ ו־$\beta^{-1}(g(U'))$.
+	נבחין כי בבנייה זו השתמשנו בעובדה ש־$\forall x \in \partial U_0,\ g(x) \in \partial \HH^k$ וכן בעובדה החשובה לא פחות ש־$\forall x \in U_0^\circ,\ g(x) \in {(\HH^k)}^\circ$.
+	אבל נתון כי $D g |_0$ רגולרית ולכן גם $D h |_0$ רגולרית וקיימת סביבה פתוחה בה $h$ מוגדרת סביב $0$, לכן משפט הפונקציה ההפוכה חל וקיימת סביבה $U_2 \subseteq U_1$ כך ש־$h |_{U_2} : U_2 \to U_2$ הפיכה ולכן גם דיפאומורפיזם חלק.
+	לבסוף נגדיר $U = U_2 \cap U_0$ ונקבל ש־$g \restriction U = h \restriction U$ ולכן $g$ דיפאומורפיזם חלק תחת הצמצום.
 \end{proof}
 
 \subquestion{}
@@ -155,27 +166,66 @@
 		& = \sum_{j = 1}^3 \frac{p_j - x_j}{{\lVert x - p \rVert}^3} e_j \\
 		& = \frac{p - x}{{\lVert x - p \rVert}^3}
 	\end{align*}
+	לכן מתקיים,
+	\[
+		F(x)
+		= \int_{0}^{2 \pi} (\nabla {\lVert x - \gamma(t) \rVert}^{-1}) \times \gamma'(t)\ dt
+	\]
+
 	אנו רוצים להראות שימור מקומי, כלומר שמתקיים,
 	\[
 		\frac{\partial F_i}{\partial x_i}
 		= \frac{\partial F_j}{\partial x_j}
 	\]
 	לכל $i, j \in [3]$.
-	אנו יודעים כי זהו תנאי שקול לאינווריאנטיות של אינטגרלים מסילתיים על מסילות הומוטופיות.
-	מהשוויון שמצאנו קודם לכן מתקיים,
+	נבחין כי ישירות מהגדרה, $F$ משמר מקומית אם ורק אם $\curl F = 0$. \\
+	בשל חוסר התלות של $\curl$ באינטגרציה על $t$ גם מתקיים,
 	\[
-		F(x)
-		= \int_{0}^{2 \pi} (\nabla {\lVert x - \gamma(t) \rVert}^{-1}) \times \gamma'(t)\ dt
+		\curl F(x)
+		= \curl \int_{0}^{2 \pi} (\nabla {\lVert x - \gamma(t) \rVert}^{-1}) \times \gamma'(t)\ dt
+		= \int_{0}^{2 \pi} \curl((\nabla {\lVert x - \gamma(t) \rVert}^{-1}) \times \gamma'(t))\ dt
 	\]
-	אבל לכל מסילה $\mu : [0, 1] \to \RR^3 \setminus C$ נקבל,
-	\begin{align*}
-		\int_{\mu} F(x)\ dx
-		& = \int_{\mu} \int_{0}^{2 \pi} (\nabla {\lVert x - \gamma(t) \rVert}^{-1}) \times \gamma'(t)\ dt\ dx \\
-		& = \int_{0}^{2 \pi} \int_{\mu} (\nabla {\lVert x - \gamma(t) \rVert}^{-1}) \times \gamma'(t)\ dx\ dt \\
-		& = \int_{0}^{2 \pi} \left(\int_{\mu} \nabla {\lVert x - \gamma(t) \rVert}^{-1}\ dx\right) \times \gamma'(t)\ dt \\
-		& = \int_{0}^{2 \pi} \left({\lVert \mu(1) - \gamma(t) \rVert}^{-1} - {\lVert \mu(0) - \gamma(t) \rVert}^{-1}\right) \times \gamma'(t)\ dt
-	\end{align*}
-	ומתנאים שקולים לשימור מקומי נקבל שהשדה אכן משמר מקומית.
+	מלמה שנוכיח בהמשך גם מתקיים,
+	\[
+		(\nabla {\lVert x - \gamma(t) \rVert}^{-1}) \times \gamma'(t)
+		= (\nabla {\lVert x - \gamma(t) \rVert}^{-1}) \times \gamma'(t) + {\lVert x - \gamma(t) \rVert}^{-1} \times (\nabla \gamma'(t))
+		= \nabla ({\lVert x - \gamma(t) \rVert}^{-1} \times \gamma'(t))
+	\]
+	ולכן,
+	\[
+		\curl F(x)
+		= \curl \nabla ({\lVert x - \gamma(t) \rVert}^{-1} \times \gamma'(t))
+		= 0
+	\]
+	כאשר השוויון לאפס נובע ישירות משימור מקומי של גרדיאנט של פונקציה שכבר ראינו.
+	בהתאם נובע,
+	\[
+		\curl F
+		= \int_{0}^{2 \pi} 0\ dt
+		= 0
+	\]
+	ולכן $F$ משמר מקומית כפי שרצינו.
+
+	ננסח ונוכיח את הלמה $(*)$.
+	אם $f : \RR^3 \to \RR, G : \RR^3 \to \RR^3$ פונקציה ושדה וקטורי חלקים,
+	אז,
+	\[
+		\curl(\nabla f \times G)
+		= 
+	\]
+	נשתמש בהגדרת המכפלה הווקטורית ובנגזרת מכפלה,
+	\[
+		\curl(\nabla f \times G)
+		= \curl(
+			\partial_2 f \cdot G_3 - \partial_3 f \cdot G_2,
+			\partial_3 f \cdot G_1 - \partial_1 f \cdot G_3,
+			\partial_1 f \cdot G_2 - \partial_2 f \cdot G_1)
+		= (
+			\partial_2(\partial_1 f \cdot G_2 - \partial_2 f \cdot G_1) - \partial_3 (\partial_3 f \cdot G_1 - \partial_1 f \cdot G_3),
+			\partial_3 (\partial_2 f \cdot G_3 - \partial_3 f \cdot G_2) - \partial_1 (\partial_1 f \cdot G_2 - \partial_2 f \cdot G_1),
+			\partial_1 (\partial_3 f \cdot G_1 - \partial_1 f \cdot G_3) - \partial_2 (\partial_2 f \cdot G_3 - \partial_3 f \cdot G_2)
+			)
+	.\]
 \end{proof}
 
 \subquestion{}
