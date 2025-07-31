@@ -207,24 +207,33 @@
 	ולכן $F$ משמר מקומית כפי שרצינו.
 
 	ננסח ונוכיח את הלמה $(*)$.
-	אם $f : \RR^3 \to \RR, G : \RR^3 \to \RR^3$ פונקציה ושדה וקטורי חלקים,
-	אז,
+	אם $F, G$ שדות וקטוריים, אז,
 	\[
-		\curl(\nabla f \times G)
-		= 
+		\nabla (F \times G)
+		= (\nabla F) \times G + F \times (\nabla G)
 	\]
 	נשתמש בהגדרת המכפלה הווקטורית ובנגזרת מכפלה,
 	\[
-		\curl(\nabla f \times G)
-		= \curl(
-			\partial_2 f \cdot G_3 - \partial_3 f \cdot G_2,
-			\partial_3 f \cdot G_1 - \partial_1 f \cdot G_3,
-			\partial_1 f \cdot G_2 - \partial_2 f \cdot G_1)
-		= (
-			\partial_2(\partial_1 f \cdot G_2 - \partial_2 f \cdot G_1) - \partial_3 (\partial_3 f \cdot G_1 - \partial_1 f \cdot G_3),
-			\partial_3 (\partial_2 f \cdot G_3 - \partial_3 f \cdot G_2) - \partial_1 (\partial_1 f \cdot G_2 - \partial_2 f \cdot G_1),
-			\partial_1 (\partial_3 f \cdot G_1 - \partial_1 f \cdot G_3) - \partial_2 (\partial_2 f \cdot G_3 - \partial_3 f \cdot G_2)
-			)
+		\nabla (F(x) \times G(x))
+	.\]
+
+	\begin{align*}
+		(x - \gamma(t)) \times \gamma'(t)
+		& = (x - (\cos t, \sin t, 0)) \times (- \sin t, \cos t, 0) \\
+		& = (- x_3 \cos t, - x_3 \sin t, (x_1 - \cos t) \cos t + (x_2 - \sin t) \sin t) \\
+		& = (- x_3 \cos t, - x_3 \sin t, x_1 \cos t + x_2 \sin t - 1)
+	\end{align*}
+	ולכן,
+	\begin{align*}
+		\frac{\partial F_1}{\partial x_1}
+		& = \frac{\partial}{\partial x_1} \int_{0}^{2 \pi} \frac{1}{{\lVert x - \gamma(t) \rVert}^3} (-x_3 \cos t)\ dt \\
+		& = -x_3 \int_{0}^{2 \pi} \frac{\partial}{\partial x_1} \frac{\cos t}{{({(x_1 - \cos t)}^2 + {(x_2 - \sin t)}^2 + x_3^2)}^{3 / 2}}\ dt \\
+		& = 3 x_3 \int_{0}^{2 \pi} \cdot {({(x_1 - \cos t)}^2 + {(x_2 - \sin t)}^2 + x_3^2)}^{-5 / 2} \cdot \cos(t) (x_1 - \cos t)\ dt \\
+	\end{align*}
+	אבל באותו אופן בדיוק גם,
+	\[
+		\frac{\partial F_2}{\partial x_2}
+		= 3 x_3 \int_{0}^{2 \pi} \cdot {({(x_1 - \cos t)}^2 + {(x_2 - \sin t)}^2 + x_3^2)}^{-5 / 2} \cdot \sin(t) (x_1 - \sin t)\ dt \\
 	.\]
 \end{proof}
 
