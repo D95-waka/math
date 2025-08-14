@@ -25,10 +25,11 @@
 		\int_M \Div_M X\ d\vol_k
 		= \int_{\partial M} \langle X(p), \nu(p) \rangle\ d\vol_{k - 1}(p)
 	\]
-	כלומר ערך האינטגרל הוא ערך האינטגרל בשפה של מכפלה בנורמל חיצוני, שלא במפתיע אין תלות בשפה (ולמעשה כבר עתה יכולנו להוכיח זאת ישירות מחלוקת היריעה לשפתה ולפנימה), והתלות היא בכמה היריעה התרחבה בתהליך $X$.
+	כלומר ערך האינטגרל הוא ערך האינטגרל בשפה של מכפלה בנורמל חיצוני, שלא במפתיע אין תלות בפנים (ולמעשה כבר עתה יכולנו להוכיח זאת ישירות עם אדיטיביות האינטגרל וחלוקה לשפה ופנים), והתלות היא בכמה היריעה התרחבה עם $X$.
 
-	לאחר הבנה מעמיקה של המשפט, נוכל להסביר את הוכחתו, היא כיאה לכל משפט רציני מתחילה ברדוקציות.
-	הרדוקציה הראשונה מטרתה לגרוס כי השדה הווקטורי הוא מכווץ בלבד, כלומר,
+	לאחר הבנה מעמיקה של המשפט, נוכל להסביר את הוכחתו, היא כיאה לכל משפט מרכזי באנליזה מתחילה ברדוקציות.
+	הרדוקציה שאנו נעשה היא זו שתאפשר לנו להניח שהשדה הווקטורי $X$ הוא מכווץ בלבד, ובכך נוכל להשתמש באסטרטגיה שנראה בהמשך.
+	פורמלית נוכיח כי,
 	\[
 		\langle X(p), \nu(p) \rangle < 0
 	\]
@@ -58,7 +59,7 @@
 		= - \left. \frac{d}{dt} \vol_k(N_t) \right\lvert_{t = 0}
 	\]
 	כלומר עלינו לנתח את $N_t$ בלבד כדי למצוא את הטענה.
-	אבל ישירות מהגדרת $N_t$ אנו יודעים כי (ופוביני),
+	אבל ישירות מהגדרת $N_t$ אנו יודעים כי (על־ידי שימוש בפוביני),
 	\[
 		\vol_k(N_t)
 		= \int_{\partial M} \int_{0}^{t} V(D \varphi |_{(x, s)})\ ds\ d\vol_{k - 1}(x)
@@ -85,7 +86,7 @@
 נראה שקיימות סביבות פתוחות $p \in U \subseteq M$ ו־$q \in V \subseteq N$ כך ש־$f |_U : U \to V$ היא דיפאומורפיזם.
 \begin{proof}
 	נסמן $k = \dim M$.
-	תהי $\alpha : W_0 \to M$ פרמטריזציה מקומית כך ש־ $W_0 \subseteq \HH^k$ ובלי הגבלת הכלליות (ותוך שימוש בטענה שראינו) גם $\alpha(0) = p$.
+	תהי $\alpha : W_0 \to M$ פרמטריזציה מקומית כך ש־ $W_0 \subseteq \HH^k$, ראינו כי אם נקודה שייכת לשפה אז הפרמטריזציה של השפה של $\HH^k$ הולכת לשפה של היריעה, וכן $0 \in \partial \HH^k$ נניח בלי הגבלת הכלליות ש־$\alpha(0) = p$.
 	נסמן גם $\beta : \Omega_0 \to N$ פרמטריזציה מקומית סביב $q$, גם הפעם נניח $\Omega_0 \subseteq \HH^k, \beta(0) = q$.
 	נגדיר את הפונקציה $g : U_0 \to \HH^k$ עבור $U_0 \subseteq \HH^k$ על־ידי,
 	\[
@@ -124,7 +125,7 @@
 נניח ש־$\alpha : U \to M$ היא חלקה כך ש־$D \alpha |_x$ מדרגה $k$ לכל $x \in U$. \\
 נראה ש־$\alpha$ היא העתקה פתוחה.
 \begin{proof}
-	עבור נקודה כלשהי $x \in U$ מהנתון $\alpha$ רגולרית ב־$x$ ולכן ממשפט הפונקציה ההפיכה $\alpha |_V : V \to \alpha(V)$ היא דיפאומורפיזם הפיך, כאשר $x \in V \subseteq U$ פתוחה.
+	עבור נקודה כלשהי $x \in U$ מהנתון $\alpha$ רגולרית ב־$x$ ולכן ממשפט הפונקציה ההפוכה $\alpha |_V : V \to \alpha(V)$ היא דיפאומורפיזם הפיך, כאשר $x \in V \subseteq U$ פתוחה.
 	אבל טענה זו נכונה לכל $x$, כלומר $\alpha$ הפיכה מקומית בכל מקום, ולכן הפיכה ובהתאם גם דיפאומורפיזם ולכן בפרט הומיאומורפיזם ומאפיון שקול העתקה פתוחה.
 \end{proof}
 
@@ -133,7 +134,7 @@
 אנו נסביר עתה את הקשר שבין שתי הטענות הלכאורה מעט סותרות הללו.
 \begin{solution}
 	בהוכחת הטענה כבר התבססנו על תכונת הפתיחות המקומית של היריעה, למעשה הטענה שראינו בסעיף ב' היא דרך מצוינת להבין מה היא יריעה.
-	כלומר, נוכל להסיק שיריעה מתנהגת באופן מספיר ''יפה'' כדי לאפשר לפונקציות רגולריות להיות גם פתוחות באופן ישיר, ובכך הן האובייקט שקושר בין דיפאומורפיזם (ובפרט הומיאומורפיזם ופתיחות) לבין קבוצה במרחב.
+	כלומר, נוכל להסיק שיריעה מתנהגת באופן מספיק ''יפה'' כדי לאפשר לפונקציות רגולריות להיות גם פתוחות באופן ישיר, ובכך הן האובייקט שקושר בין דיפאומורפיזם (ובפרט הומיאומורפיזם ופתיחות) לבין קבוצה במרחב.
 \end{solution}
 
 \question{}
@@ -279,12 +280,15 @@
 	על־ידי שימוש בזהויות מוכרות ובאי־השוויון הנתון $\lVert u \times v \rVert \le \lVert u \rVert \cdot \lVert v \rVert$ נסיק,
 	\begin{align*}
 		\left\lVert \int_{\mu_2} F(t)\ dt \right\rVert
-		& \le \int_{\mu_2} \left\lVert F(t) \right\rVert\ dt \\
-		& \le \int_{\mu_2} \int_{0}^{2 \pi} \left\lVert \nabla {\lVert t - \gamma(u) \rVert}^{-1} \right\rVert \cdot \left\lVert \gamma'(u) \right\rVert\ du\ dt \\
-		& = \int_{\mu_2} \int_{0}^{2 \pi} \frac{\lVert t - \gamma(u) \rVert}{{\lVert t - \gamma(u) \rVert}^3} \cdot 1\ du\ dt \\
-		& = \int_{\mu_2} \int_{0}^{2 \pi} \frac{du\ dt}{{\lVert t - \gamma(u) \rVert}^3} \\
-		& = \int_{0}^{2 \pi} \int_{0}^{2R} \frac{\mu_2'(u) \cdot dt\ du}{{\lvert {(u - \cos t)}^2 + \sin^2 t + R^2 \rvert}^{3 / 2}} \\
-		& \xrightarrow{x \to \infty} 0
+		& \le \int_{\mu_2} \left\lVert F(p) \right\rVert\ dl \\
+		& \le \int_{\mu_2} \int_{0}^{2 \pi} \frac{\lVert p - \gamma(t) \rVert}{{\lVert p - \gamma(t) \rVert}^3} \cdot \lVert \gamma'(t) \rVert\ dt\ dl \\
+		& = \int_{\mu_2} \int_{0}^{2 \pi} \frac{dt\ dl}{{\lVert p - \gamma(t) \rVert}^2} \\
+		& = \int_{0}^{2R} \int_{0}^{2 \pi} \frac{|\mu_2'(u)| \cdot dt\ du}{{\lVert \mu_2(u) - \gamma(t) \rVert}^2} \\
+		& = \int_{-R}^{R} \int_{0}^{2 \pi} \frac{dt\ du}{{(\cos t - u)}^2 + \sin^2 t + R^2} \\
+		& = \int_{-R}^{R} \int_{0}^{2 \pi} \frac{dt\ du}{u^2 + 2u \cos t + 1 + R^2} \\
+		& \le \int_{-R}^{R} \int_{0}^{2 \pi} \frac{dt\ du}{u^2 + 1 + R^2} \\
+		& = \int_{-R}^{R} \frac{2 \pi\ du}{u^2 + 1 + R^2} \\
+		& \xrightarrow{R \to \infty} 0
 	\end{align*}
 	באופן שקול נוכל לקבל שאיפה לאפס של $\int_{\mu_4} F(t)\ dt$, ולכן נותר לנו לחשב את האינטגרל המסילתי על $\mu_3$.
 	\begin{align*}
@@ -294,7 +298,7 @@
 		& = \int_{-R}^{R} \int_{0}^{2 \pi} \frac{-1 + 2R \sin t}{\lvert {4R^2 - 4 \cos u + 1 + t^2 \rvert}^{3 / 2}}\ du\ dt \\
 		& \xrightarrow{R \to \infty} 0
 	\end{align*}
-	משיקולי אינפי 2.
+	משיקולי חסימה על־ידי אינטגרל מהצורה של הסעיף הקודם.
 	נסיק אם כן ש־$L_{\infty} = \lim_{R \to \infty} \frac{-4 \pi R}{\sqrt{1 + R^2}} = -4 \pi$ בלבד.
 \end{solution}
 
@@ -334,9 +338,6 @@
 נראה שאם $F : M \to N$ איזומטריה וכן $M, N$ שתיהן קומפקטיות, \\
 אז $\vol_k(M) = \vol_k(N)$ וכן לכל מסילה חלקה $\gamma : [a, b] \to M$ מתקיים $L(\gamma) = L(F \circ \gamma)$.
 \begin{proof}
-	נרצה להשתמש במשפט הדיברגנץ.
-	נוכל לשכן את שתי היריעות באותו מרחב (הגדול מביניהם), ושימוש ב־$F$ לבנייה של $\varphi$ המעבירה את $M$ ל־$N$.
-
 	נניח ש־$p \in M$ וכן ש־$p \in U \subseteq M$ סביבה פתוחה כך ש־$\alpha : W \to U$ פרמטריזציה מקומית, ו־$W \subseteq \HH^k$.
 	אז $\beta = F \circ \alpha$ פרמטריזציה מקומית של $q = F(p) \in N$.
 	נסמן,
@@ -407,7 +408,7 @@
 	\]
 	ונראה שזו אכן איזומטריה.
 	נתחיל להראות שהיא דיפאומורפיזם חלק.
-	היא מוגדרת היטב ישירות מהגדרת היריעות, וכמו כן היא חד־חד ערכית ועל מטענות שראינו לאורך הסמסטר.
+	היא מוגדרת היטב כהרכבת פונקציות, היא חד־חד ערכית מחד־חד ערכיות של $(\cos t, \sin t) \simeq e^{it}$ וכי בקורדינטה השלישית היא הזהות, והיא על על־ידי בחירה של $(\Arg (x, y), t)$.
 	היא חלקה כהרכבת פונקציות חלקות, ולכן מהווה דיפאומורפיזם חלק.
 
 	נסמן $p = (t, y)$.
@@ -540,7 +541,7 @@
 		\left\langle \frac{\partial^3 \alpha}{\partial x^2 \partial y}, \frac{\partial \alpha}{\partial y} \right\rangle
 		= \left\langle \frac{\partial}{\partial x} \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial \alpha}{\partial y} \right\rangle
 		= \frac{\partial}{\partial x} \left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial \alpha}{\partial y} \right\rangle
-		- \left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial}{\partial x} \frac{\partial \alpha}{\partial y} \right\rangle
+		= \left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial}{\partial x} \frac{\partial \alpha}{\partial y} \right\rangle
 		= 0 - \left\langle \frac{\partial^2 \alpha}{\partial x \partial y}, \frac{\partial^2 \alpha}{\partial x \partial y} \right\rangle
 	\]
 	כאשר השוויון האחרון נובע ישירות מהעובדה שמתקיים,
