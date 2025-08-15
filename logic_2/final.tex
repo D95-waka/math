@@ -1,0 +1,80 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Final Exercise Answer Sheet --- Logic Theory (2), 80424}
+
+\DeclareMathOperator{\PA}{PA}
+\DeclareMathOperator{\Coll}{Coll}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Sat}{Sat}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+\subquestion{}
+Let $U \subseteq \Pp(\NN)$ be a non-principal ultrafilter, let $\langle \Mm_n \mid n < \omega \rangle$ be a sequence of $L$-structures, and $\Mm = \prod_{n < \omega} \Mm_n / U$. \\
+We will show that for every countable consistent set of formulas $\Gamma(x)$ with parameters from $M$ is realized in $\Mm$, namely that $\Mm$ is countably saturated.
+\begin{proof}
+	Take a coverage $\langle \Sigma_n(x) \mid n < \omega \rangle \subseteq \Gamma(x)$ such that $|\Sigma_n| < \omega$ for all $n$.
+	Then $\Sigma_n$ is realized, and let $[f_n] \in M$ be such that $\Mm \models \Sigma_n([f_n])$.
+	Then $a_n = \{ j < \omega \mid \Mm_n \models \Sigma_n(f_n(j)) \} \in U$.
+	Filters are closed to intersection, then let us assume that $a_{n + 1} \subseteq a_n$, otherwise we could define,
+	\[
+		g_{n + 1}(i) = \begin{cases}
+			f_{n + 1}(i) & i \in a_n \\
+			c_n & \text{otherwise}
+		\end{cases}
+	\]
+	where $c_n \in M_n$ is some arbitrary value.
+
+	We now take $a = \bigcap_{n < \omega} a_n$ and $[f] \in M$ such that for $n \in a$, $f(n) \in \{ f_i(n) \mid i < \omega \}$.
+	If $a \in U$ then $\Mm \models \Gamma([f])$, then let us assume $a \notin U$, conversely $a^C = \NN \setminus a \in U$.
+	$a^C \cap a_n \in U$ for all $n$ and therefore $a^C \cap a_n \ne \emptyset$.
+	It immediately follows that $\emptyset \in U$, a contradiction.
+\end{proof}
+
+\subquestion{}
+We define $\sigma$-complete ultrafilter $U$ as an ultrafilter such that it is closed to countable intersections. \\
+Let $U$ be some $\sigma$-complete ultrafilter, $L = \{ = \}$, $\Mm = {(\NN, =)}^I / U$ for some index set $I$. \\
+We will show that $|M| = \omega$ and deduce that $\Mm$ is not countably saturated.
+\begin{proof}
+	Directly by Łoś theorem and sentence of the form $\varphi_N = \bigwedge_{n < N} \exists x (x \ne c_n)$ we deduce that $|M| \ge \omega$.
+	Define $C_x = {\{ x \}}^I$ the constant function, we will show that for every $[f] \in M$ there is $n < \omega$ such that $[f] = [C_n]$.
+	Note that this is equivalent to the claim that $\{ j < \omega \mid f(j) = n \} \in U$.
+	We will assume otherwise in contradiction, then $a_n = \{ j < \omega \mid f(j) \ne n \}$ is in $U$, and $a_n \cap a_m$ is non-empty for all $n \ne m$.
+	We take $a = \bigcap_{n < \omega} a_n$, $U$ is $\sigma$-complete therefore $a \in U$.
+	It follows that $f(j) \ne n$ for all $j \in I, n < \omega$, a contradiction to $f$ being $I \to \NN$ function.
+\end{proof}
+
+\subquestion{}
+We will show that if $U$ is an ultrafilter on some indices set $I$ such that $U$ is not $\sigma$-complete and $\langle \Mm_i \mid i \in I \rangle$, \\
+then $\Mm = \prod_{i \in I} \Mm_i / U$ is countably saturated.
+\begin{proof}
+	By $\sigma$-incompleteness we can assume that there is decreasing chain $\langle u_n \mid j < \omega \rangle \subseteq U$ such that $\bigcap_{n < \omega} u_n \notin U$.
+	We can assume without loss of generality that $\bigcap u_n = \emptyset$ as $I \setminus \bigcap u_n \in U$ and therefore we can take $u_n \setminus \bigcap u_m$.
+
+	Let $\Gamma(x)$ be countably realized set of formulas.
+	By countability let us denote $\Gamma(x) = \{ \gamma_n \mid n < \omega \}$.
+	For every $N < \omega$ we also define $\Gamma_N = \{ \gamma_n \mid n < N \}$.
+	Then $\Gamma_N$ is finite set of formulas, and realized by $[f_N] \in M$.
+	We can take $f_N$ such that,
+	\[
+		a_N = \{ j \in I \mid \Mm_j \models \Gamma_N(f_N(j)) \}
+		\subseteq \{ j \in I \mid \Mm_j \models \Gamma_N(f_M(j)) \}
+	\]
+	for $M < N$ by finite intersections.
+	The sequence $\langle a_n \mid n < \omega \rangle \subseteq U$ is decreasing.
+	Let us take $U_n = u_n \cap a_n$ for every $n$, clearly $U_n \in U$.
+	Note that for every $i \in I$ there is maximal $n < \omega$ such that $i \in U_n$, and let us define $f(i) = f_n(i)$.
+	Indeed $f \in M$ and,
+	\[
+		\Mm \models \gamma_n([f])
+		\iff \{ j \in I \mid \Mm_j \models \gamma_n(f(j)) \} \in U
+		\impliedby \{ j \in I \mid \Mm_j \models \gamma_n(f_n(j)) \} \in U
+	\]
+	but the latter holds directly by the definition of $f$.
+\end{proof}
+
+
+\end{document}
