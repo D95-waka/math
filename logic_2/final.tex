@@ -76,5 +76,82 @@ then $\Mm = \prod_{i \in I} \Mm_i / U$ is countably saturated.
 	but the latter holds directly by the definition of $f$.
 \end{proof}
 
+\question{}
+We will show that the following are equivalent,
+\begin{enumerate}
+	\item The axiom of choice
+	\item
+		\begin{enumerate}
+			\item The ultrafilter lemma: Every filter extends to an ultrafilter
+			\item Alternative version of Łoś theorem: If $\Mm$ is an $L$-structure and $U$ is an ultrafilter on indices set $I$, then for any sentence $\varphi$, $\Mm^I / U \models \varphi \iff \Mm \models \varphi$
+		\end{enumerate}
+\end{enumerate}
+\begin{proof}
+	$1 \implies 2$.
+	We saw in class that the ultrafilter lemma is directly deduced from Zorn's lemma, which is equivalent to the axiom of choice;
+	Let $D$ be a filter, we define the order $X = \langle \{ D \subseteq F \subseteq \Pp(I) \mid F \text{ is a filter} \}, \subseteq \rangle$.
+	$X$ is clearly not empty as $D \in X$. Let $C \subseteq X$ be a chain, and let $D_C = \bigcup C$.
+	Then $D_C$ is a filter and in particular $D \subseteq D_C$, then $D_C \in X$ and $F \subseteq D_C$ for all $F \in C$.
+	By Zorn's lemma there is maximal element $U_D \in X$, namely $F \subseteq U_D$ for all $F \in X$. \\
+	It reminds to show that maximal filter is an ultrafilter, then let us assume in contradiction that it is not, meaning that there is $A \subseteq I$ such that $A \notin U_D$ as well $I \setminus A \notin U_D$.
+	We can define $U = \langle U_D \cup \{ A \} \rangle$, this is a filter such that $U_D \subsetneq U$, a contradiction to $U_D$ being maximal.
+
+	As for the alternative version of Łoś theorem, it is derived from the general version for ultra-powers.
+	While we will not recite the whole proof, we will note where it uses choice.
+	The axiom of choice is being used in the proof at induction step for quantifiers, specifically to get a witness to global quantifiers.
+
+	$2 \implies 1$.
+	Let $A$ be some set, and let us assume toward a contradiction that there is no choice function $A \to \bigcup A$.
+	We define $S \subseteq \Pp(A)$ the set of all subsets of $A$ that do have choice function.
+	In particular $\emptyset \in S$ as $\emptyset \to \bigcup \emptyset = \emptyset$ is witnessed by $\emptyset$.
+
+	Let $B \subseteq S$ and $f : B \to \bigcup B$ choice function, namely $\forall b \in B,\ f(b) \in b$.
+	For every $B' \subseteq B$ consider $f' = f \restriction B'$.
+	$f'(b) \in b$ directly by $f$'s definition, then $\rng f' \subseteq \bigcup B'$.
+	We conclude that $B' \in S$, meaning $S$ is closed under subsets.
+
+	Let $B, C \in S$, we will show that $B \cup C \in S$ as well.
+	We will assume that they are disjoint, as otherwise we can take $B' = B \setminus C \subseteq B$ by closeness to subsets.
+	if $f : B \to \bigcup B, g : C \to \bigcup C$ such that $\forall b \in B, c \in C,\ f(b) \in b, g(c) \in c$, then $h = f \cup g$ is well-defined function,
+	as for each $x \in \dom h$, either $x \in B$ or $x \in C$.
+	Also $f(x) \in B \lor f(x) \in C$ then $f(x) \in B \cup C$.
+	We deduce that $S$ is closed to finite unions by induction.
+
+	We define $D = \Pp(A) \setminus S$, the collection of subsets such that there is no choice function over them. In particular by our assumption $A \in D$.
+	By inversion we conclude that $D$ is closed under super-sets and finite intersections, as well $\emptyset \notin D$, then $D$ is a filter.
+	Using the ultrafilter lemma we define $D \subseteq U$ an ultrafilter extending $D$.
+
+	Consider $\Mm = \langle \bigcup A, = \rangle$, we define $\Nn = \Mm^A / U$, and the sentence $\varphi = \exists x, y,\ x \ne y$.
+	By Łoś theorem and the fact that $a \in A$ is not empty for all $a$, we get that $\Mm \models \varphi$ and therefore $\Nn \models \varphi$.
+	It follows that there are $[f], [g] \in N$ such that $[f] \ne [g]$, and $f, g : A \to \bigcup A$.
+	\[
+		\{ j \in A \mid f(j) = g(j) \} \notin S
+		\iff \{ j \in A \mid f(j) \ne g(j) \} \in S
+	.\]
+
+	Maybe $\Mm = \langle A \cup \bigcup A; \in \rangle$ such that $x \in y \iff x \in y \in A$.
+	Also $\varphi = \forall x (\exists y,\ y \in x \lor \exists y, z,\ y, z \in x)$.
+	Of course $\Mm \models \varphi$, therefore $\Mm^M / U \models \varphi$.
+
+	We need to show that $S$ contains the empty set somehow.
+	Let $f : B \to \bigcup B$ be some choice function for $B \notin U$, and let us extend it to $A \to \bigcup A$ function by setting $\forall x \notin B,\ f(x) = c$ for some constant $c \in \bigcup A$.
+	We can define $\varphi = \forall x, x \ne c$ by creating constant symbol in $L$.
+	It's clear that $[f] \in \Nn$ and $\{ i \in A \mid f(i) = c \} \in S$
+	\[
+		\Mm \not\models \varphi
+		\iff \Nn \not\models \varphi
+		\iff \{ i \in A \mid \Mm \models \varphi \} \in S
+	.\]
+
+	We take some $\varphi = \exists x = c$ for constant then it holds and we get $x = [f]$ for $\{ i \in A \mid f(i) = c \} \in S$ and define $f' \in [f]$ such that $f'(i) \ne c$ for certain values.
+
+	Let us define $\Mm = \langle \bigcup A, R \rangle$ such that $\langle x, y \rangle \in R^\Mm \iff \exists a \in A,\ x, y \in a$.
+	We assume that $a \cap b = \emptyset$ for all $a, b \in A$ as well.
+	Then $R^\Mm$ is equivalency relation, and therefore $R^{\Mm^A / U}$ is as well.
+	Let $B \in S$ be some non-trivial set and let $g : B \to M$ be choice function.
+	then $[g] \in \Mm^A / U$.
+	We assumed that $B$ is not trivial then there are $x, y \in A$, $\langle g(x), g(y) \rangle \notin R^{\Mm}$.
+	But then it immediately follows that $\langle [g], [c_{g(x)}] \rangle, \langle [g], [c_{g(y)}] \rangle \in R^{\Mm^A / U}$ in contradiction to $\langle [c_{g(x)}], [c_{g(y)}] \rangle \notin R^{\Mm^A / U}$.
+\end{proof}
 
 \end{document}
