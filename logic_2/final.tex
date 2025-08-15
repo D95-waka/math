@@ -121,30 +121,6 @@ We will show that the following are equivalent,
 	By inversion we conclude that $D$ is closed under super-sets and finite intersections, as well $\emptyset \notin D$, then $D$ is a filter.
 	Using the ultrafilter lemma we define $D \subseteq U$ an ultrafilter extending $D$.
 
-	Consider $\Mm = \langle \bigcup A, = \rangle$, we define $\Nn = \Mm^A / U$, and the sentence $\varphi = \exists x, y,\ x \ne y$.
-	By Łoś theorem and the fact that $a \in A$ is not empty for all $a$, we get that $\Mm \models \varphi$ and therefore $\Nn \models \varphi$.
-	It follows that there are $[f], [g] \in N$ such that $[f] \ne [g]$, and $f, g : A \to \bigcup A$.
-	\[
-		\{ j \in A \mid f(j) = g(j) \} \notin S
-		\iff \{ j \in A \mid f(j) \ne g(j) \} \in S
-	.\]
-
-	Maybe $\Mm = \langle A \cup \bigcup A; \in \rangle$ such that $x \in y \iff x \in y \in A$.
-	Also $\varphi = \forall x (\exists y,\ y \in x \lor \exists y, z,\ y, z \in x)$.
-	Of course $\Mm \models \varphi$, therefore $\Mm^M / U \models \varphi$.
-
-	We need to show that $S$ contains the empty set somehow.
-	Let $f : B \to \bigcup B$ be some choice function for $B \notin U$, and let us extend it to $A \to \bigcup A$ function by setting $\forall x \notin B,\ f(x) = c$ for some constant $c \in \bigcup A$.
-	We can define $\varphi = \forall x, x \ne c$ by creating constant symbol in $L$.
-	It's clear that $[f] \in \Nn$ and $\{ i \in A \mid f(i) = c \} \in S$
-	\[
-		\Mm \not\models \varphi
-		\iff \Nn \not\models \varphi
-		\iff \{ i \in A \mid \Mm \models \varphi \} \in S
-	.\]
-
-	We take some $\varphi = \exists x = c$ for constant then it holds and we get $x = [f]$ for $\{ i \in A \mid f(i) = c \} \in S$ and define $f' \in [f]$ such that $f'(i) \ne c$ for certain values.
-
 	Let us define $\Mm = \langle \bigcup A, R \rangle$ such that $\langle x, y \rangle \in R^\Mm \iff \exists a \in A,\ x, y \in a$.
 	We assume that $a \cap b = \emptyset$ for all $a, b \in A$ as well.
 	Then $R^\Mm$ is equivalency relation, and therefore $R^{\Mm^A / U}$ is as well.
@@ -152,6 +128,27 @@ We will show that the following are equivalent,
 	then $[g] \in \Mm^A / U$.
 	We assumed that $B$ is not trivial then there are $x, y \in A$, $\langle g(x), g(y) \rangle \notin R^{\Mm}$.
 	But then it immediately follows that $\langle [g], [c_{g(x)}] \rangle, \langle [g], [c_{g(y)}] \rangle \in R^{\Mm^A / U}$ in contradiction to $\langle [c_{g(x)}], [c_{g(y)}] \rangle \notin R^{\Mm^A / U}$.
+\end{proof}
+
+\question{}
+We will show that if $t$ is a term that does not contain the variable $v$, and $\varphi \in \Sigma_0^0$,
+then $\forall v \le t\ \varphi$ is $\Sigma_0^0$-formula as well.
+We will conclude that $\Sigma_0^0$ is closed under bounded quantification with general terms.
+\begin{proof}
+	
+\end{proof}
+
+\question{}
+Let $T$ be a theory.
+We will show that the following are equivalent.
+\begin{enumerate}
+	\item $T$ is axiomatizable
+	\item $T$ is recursively-enumerable
+	\item There is a recursively-enumerable set $\Sigma$ such that $\cl \Sigma = T$
+\end{enumerate}
+\begin{proof}
+	$1 \implies 2$.
+	$T$ is a theory, meaning that $T = \cl T$, and by the assumption that it is axiomatizable there is $\Sigma$ recursive set of sentences such that $T = \cl \Sigma$.
 \end{proof}
 
 \end{document}
