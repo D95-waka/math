@@ -6,6 +6,8 @@
 \DeclareMathOperator{\Coll}{Coll}
 \DeclareMathOperator{\Ind}{Ind}
 \DeclareMathOperator{\Sat}{Sat}
+\DeclareMathOperator{\pr}{Pr}
+\DeclareMathOperator{\sent}{sent}
 
 \begin{document}
 \maketitle
@@ -149,6 +151,27 @@ We will show that the following are equivalent.
 \begin{proof}
 	$1 \implies 2$.
 	$T$ is a theory, meaning that $T = \cl T$, and by the assumption that it is axiomatizable there is $\Sigma$ recursive set of sentences such that $T = \cl \Sigma$.
+	We proved in class that $\pr(x, y)$ is a recursively-enumerable function,
+	where it holds if and only if $x$ is a Gödel number for set of recursively-enumerable formulas and $y$ is Gödel number for formulas $\varphi$, and $\Sigma \models \varphi$.
+	By our definition, $T = \cl_{\models} \Sigma = \{ \lceil \varphi \rceil \mid \varphi \in \operatorname{sent}, \pr(\lceil \Sigma \rceil, \lceil \varphi \rceil) \}$.
+	If we define $f(n) = \pr(\lceil \Sigma \rceil, n)$ we get $T = \dom f$ and by equivalency to recursively-enumerable lemma, it follows that $T$ is recursively-enumerable.
+
+	$2 \implies 3$.
+	$T$ is a theory, then $\cl T = T$, then if we define $\Sigma = T$ we get that $\Sigma$ is recursively-enumerable and $\cl \Sigma = T$.
+
+	$3 \implies 1$.
+	Let $f$ be recursive function such that $\dom f = \Sigma$ for recursively-enumerable $\Sigma$, $\cl \Sigma = T$.
+	Notice that if $f(n)$ is defined then $\pr(\lceil \Sigma \rceil, n)$ is also defined and returns $1$, then let us assume that $f(n) = \pr(\lceil \Sigma \rceil, n)$.
+	We also know that $g : \NN \to \{ 0, 1 \}$ such that $g(n) = 1 \iff \exists \varphi \in \sent_{L_{\PA}},\ n = \lceil \varphi \rceil$ is full recursive function.
+	Then $h(n) = f(g(n) \cdot n)$ is recursive function such that $T = h^{-1}(\{ 1 \})$, and witnessing $T$ being axiomatizable.
+\end{proof}
+
+\question{}
+\subquestion{}
+We will show that if $f : \NN^k \to \NN$ is primitive-recursive function then there is a $\Sigma_1$-formula $\varphi(x_0, \ldots, x_{k - 1}, y)$ defining $f$,
+such that $\PA \vdash \exists \bar{x} \exists y\ \varphi(\bar{x}, y)$.
+\begin{proof}
+	$f$ is primitive-recursive and therefore $\Sigma_1^0$, or without loss of generality $\Sigma_1$, meaning that there is $\psi(x_0, \ldots, x_{k - 1}, y)$ such that $\psi(\bar{x}, y) \iff f(\bar{x}) = y$.
 \end{proof}
 
 \end{document}
