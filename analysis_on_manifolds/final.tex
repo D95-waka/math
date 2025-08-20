@@ -106,9 +106,10 @@
 		h(x)
 		= \begin{cases}
 			g(x) & x_k \ge 0 \\
-			- g(-x) & x_k < 0
+			\sigma(g(\sigma(x))) & x_k < 0
 		\end{cases}
 	\]
+	עבור $\sigma : \RR^k \to \RR^k$ כך ש־$\sigma_i = \id$ לכל $1 \le i < k$ ו־$\sigma_k(x) = -x$, כלומר זוהי ההעתקה שהופכת על הציר האחרון.
 	משימוש בכלל השרשרת נקבל ש־$h$ היא פונקציה דיפרנציאבילית בכל נקודה ב־$U_1 = U_0 \cup \{ -x | x \in U_0 \}$, ובפרט היא דיפרנציאבילית ב־$x = 0$ ומתקיים,
 	\[
 		D h |_0
@@ -125,7 +126,9 @@
 נניח ש־$\alpha : U \to M$ היא חלקה כך ש־$D \alpha |_x$ מדרגה $k$ לכל $x \in U$. \\
 נראה ש־$\alpha$ היא העתקה פתוחה.
 \begin{proof}
-	עבור נקודה כלשהי $x \in U$ מהנתון $\alpha$ רגולרית ב־$x$ ולכן ממשפט הפונקציה ההפוכה $\alpha |_V : V \to \alpha(V)$ היא דיפאומורפיזם הפיך, כאשר $x \in V \subseteq U$ פתוחה.
+	עבור נקודה כלשהי $x \in U$ מהנתון $\alpha$ רגולרית ב־$x$ ולכן ממשפט הפונקציה ההפוכה $\alpha |_{V_x} : V_x \to \alpha(V)$ היא דיפאומורפיזם הפיך, כאשר $x \in V_x \subseteq U$ פתוחה.
+	אם כך נוכל לבחור $V_x$ לכל $x$ ונקבל כיסוי פתוח של $U$, כך שבכל איבר בכיסוי הפונקציה $\alpha$ היא דיפאומורפיזם חלק ממשפט הפונקציה ההפוכה.
+	בפרט נקבל ש־$\alpha : U = \bigcup_{x \in U} V_x \to \alpha(U)$ היא דיפאומורפיזם חלק.
 	אבל טענה זו נכונה לכל $x$, כלומר $\alpha$ הפיכה מקומית בכל מקום, ולכן הפיכה ובהתאם גם דיפאומורפיזם ולכן בפרט הומיאומורפיזם ומאפיון שקול העתקה פתוחה.
 \end{proof}
 
@@ -277,20 +280,30 @@
 	= \lim_{R \to \infty} \int_{Q_R} F\ dl
 \]
 \begin{solution}
-	על־ידי שימוש בזהויות מוכרות ובאי־השוויון הנתון $\lVert u \times v \rVert \le \lVert u \rVert \cdot \lVert v \rVert$ נסיק,
+	על־ידי שימוש בזהויות מוכרות ובאי־השוויון הנתון  נסיק,
 	\begin{align*}
-		\left\lVert \int_{\mu_2} F(t)\ dt \right\rVert
-		& \le \int_{\mu_2} \left\lVert F(p) \right\rVert\ dl \\
-		& \le \int_{\mu_2} \int_{0}^{2 \pi} \frac{\lVert p - \gamma(t) \rVert}{{\lVert p - \gamma(t) \rVert}^3} \cdot \lVert \gamma'(t) \rVert\ dt\ dl \\
-		& = \int_{\mu_2} \int_{0}^{2 \pi} \frac{dt\ dl}{{\lVert p - \gamma(t) \rVert}^2} \\
-		& = \int_{0}^{2R} \int_{0}^{2 \pi} \frac{|\mu_2'(u)| \cdot dt\ du}{{\lVert \mu_2(u) - \gamma(t) \rVert}^2} \\
-		& = \int_{-R}^{R} \int_{0}^{2 \pi} \frac{dt\ du}{{(\cos t - u)}^2 + \sin^2 t + R^2} \\
-		& = \int_{-R}^{R} \int_{0}^{2 \pi} \frac{dt\ du}{u^2 + 2u \cos t + 1 + R^2} \\
-		& \le \int_{-R}^{R} \int_{0}^{2 \pi} \frac{dt\ du}{u^2 + 1 + R^2} \\
-		& = \int_{-R}^{R} \frac{2 \pi\ du}{u^2 + 1 + R^2} \\
-		& \xrightarrow{R \to \infty} 0
+		& \left\lVert \int_{\mu_2} F(t)\ dt \right\rVert
+		&& \le \int_{\mu_2} \left\lVert F(p) \right\rVert\ dl \\
+		& \overset{(1)}{\le}  \int_{\mu_2} \int_{0}^{2 \pi} \frac{\lVert p - \gamma(t) \rVert}{{\lVert p - \gamma(t) \rVert}^3} \cdot \lVert \gamma'(t) \rVert\ dt\ dl
+		&& \overset{(2)}{=}  \int_{\mu_2} \int_{0}^{2 \pi} \frac{dt\ dl}{{\lVert p - \gamma(t) \rVert}^2} \\
+		& = \int_{0}^{2R} \int_{0}^{2 \pi} \frac{|\mu_2'(u)| \cdot dt\ du}{{\lVert \mu_2(u) - \gamma(t) \rVert}^2}
+		&& = \int_{0}^{2R} \int_{0}^{2 \pi} \frac{dt\ du}{{(\cos t - u)}^2 + \sin^2 t + R^2} \\
+		& = \int_{0}^{2R} \int_{0}^{2 \pi} \frac{dt\ du}{u^2 + 2u \cos t + 1 + R^2}
+		&& \overset{(3)}{\le} \int_{0}^{2R} \int_{0}^{2 \pi} \frac{dt\ du}{{(u - 1)}^2 + R^2} \\
+		& \overset{(4)}{=}  \frac{2 \pi}{R} \int_{0}^{2R} \frac{du}{{\left(\frac{u - 1}{R}\right)}^2 + 1}
+		&& = \frac{2 \pi}{R} \cdot {\left[ \arctan(\frac{u - 1}{R}) \right]}_{u = 0}^{u = 2R} \\
+		& \le \frac{2 \pi^2}{R}
+		\xrightarrow{R \to \infty} 0
 	\end{align*}
-	באופן שקול נוכל לקבל שאיפה לאפס של $\int_{\mu_4} F(t)\ dt$, ולכן נותר לנו לחשב את האינטגרל המסילתי על $\mu_3$.
+	כאשר,
+	\begin{enumerate}
+		\item אי־השוויון הנתון, $\lVert u \times v \rVert \le \lVert u \rVert \cdot \lVert v \rVert$
+		\item $\gamma'(t) = (- \sin t, \cos t, 0)$ ולכן גם $\lVert \gamma'(t) \rVert = \sqrt{\cos^2 t + \sin^2 t + 0} = 1$
+		\item מתקיים $4u \ge 2u \cos t + 2u \ge 0$ ולכן נוכל להקטין את המכנה על־ידי הסרת הביטוי תוך כדי הוספת $2u - 2u$
+		\item הפונקציה לא תלויה יותר ב־$t$ ולכן האינטגרל הוא על בביטוי קבוע
+	\end{enumerate}
+	נבחין כי המקרה של $\int_{\mu_4} F\ dl$ הוא שקול לחלוטין מטעמי סימטריה, ולכן נוכל להסיק שגם אינטגרל זה שואף לאפס כאשר $R \to \infty$. \\
+	נותר לנו אם כך לחשב את $\int_{\mu_3} F\ dl$, כאשר נשתמש בהגדרת המכפלה הווקטורית,
 	\begin{align*}
 		\int_{\mu_3} F(t)\ dt
 		& = \int_{\mu_3} \int_{0}^{2 \pi} \frac{0 - \cos u}{{\lVert (2R, 0, t) - \gamma(u) \rVert}^3} \cdot (\cos u) - \frac{2R - \sin u}{{\lVert (2R, 0, t) - \gamma(u) \rVert}^3} \cdot (- \sin u)\ du\ dt \\
@@ -305,24 +318,56 @@
 \subquestion{}
 נראה ש־$\int_{Q_1} F\ dl = L_{\infty}$ ונסיק ש־$F$ לא משמרת ובהתאם ש־$\RR^3 \setminus C$ לא פשוטת קשר.
 \begin{proof}
-	נגדיר $T_R \overset{\operatorname{def}}{=} Q_R \setminus {\{ 0 \}}^2 \times [-1, 1]$, אז $T_{R_1}$ שקול הומוטופית מסילתית ל־$T_{R_2}$ לכל $R_1, R_2 > \frac{1}{2}$, אבל $F$ שדה משמר מקומית ולכן האינטגרלים שלהם שווים.
-	אז נסיק,
+	נגדיר את $T_R = Q_R \setminus {\{ 0 \}}^2 \times [-1, 1]$, כלומר הריבוע ללא הקטע העובר דרך המעגל, וניזכר בהגדרה מסעיף ב' של $\mu$ המסילה בדיוק על הקטע החסר, כלומר,
+	\[
+		T_R + \mu
+		= Q_R
+	\]
+	בהתאם מאדיטיביות האינטגרל מתקיים,
+	\[
+		\int_{Q_R} F\ dl
+		= \int_{T_R} F\ dl + \int_{\mu} F\ dl
+	\]
+	נניח ש־$R_1, R_2 \ge \frac{1}{2}$, ונבנה את ההעתקה $H : {[0, 1]}^2 \to \RR^3 \setminus C$ על־ידי,
+	\[
+		H(s, t)
+		= T_{R_1 (1 - s) + R_2 s}(t)
+	.\]
+	מהאופן בו הגדרנו את $T_s$ נקבל שזו פונקציה רציפה כך ש־$H(0) \equiv T_{R_1}, H(1) \equiv T_{R_2}$ וכן $H(s, 0) = (0, 0, -1), H(s, 1) = (0, 0, 1)$.
+	כלומר $H$ היא הומוטופיה מסילתית רציפה המעידה על שקילות הומוטופית של $T_{R_1}$ ו־$T_{R_2}$, ולכן משימור מקומי של $F$ ב־$\RR^3 \setminus C$ נסיק שמתקיים,
+	\[
+		\int_{T_1} F\ dl
+		= \int_{T_2} F\ dl
+	\]
+	בפרט אם נציב $R_1 = 1, R_2 = R$ ונשתמש בשוויון שמצאנו קודם,
 	\[
 		\int_{T_1} F\ dl
 		= \int_{T_R} F\ dl
-		\xrightarrow{R \to \infty} L_{\infty} - I
+		= \int_{Q_R} F\ dl - \int_{\mu} F\ dl
+		\xrightarrow{x \to \infty} L_{\infty} - \int_{\mu} F\ dl
 	\]
-	עבור,
+	כלומר מצאנו שמתקיים,
 	\[
-		I = \int_{Q_1} F\ dl
-		= \int_{\mu_1} F\ dl
-		= \frac{-4 \pi \cdot 1}{\sqrt{1 + 1^2}}
-		= - 2 \sqrt{2} \pi
+		\int_{T_1} F\ dl
+		= L_{\infty} - \int_{\mu} F\ dl
+		\iff
+		\int_{T_1} F\ dl + \int_{\mu} F\ dl
+		= \int_{Q_1} F\ dl
+		= L_{\infty}
 	\]
-	כלומר מצאנו שבדיוק מתקיים $\int_{Q_1} F\ dl = L_{\infty}$.
 
-	אילו הייתה $\RR^3 \setminus C$ פשוטת קשר, אז ערך כל אינטגרל מסילתי על לולאה היה $0$, לכן ערך אינטגרל זה (שאיננו מתאפס) מהווה סתירה ישירה להנחה כי התחום פשוט קשר.
-	למעשה ידענו זאת כבר כי החבורה היסודית שלו היא $\ZZ \ne \{ 1 \}$.
+	נבחין כי המסילה $Q_1$ היא לולאה, ולכן אם $\RR^3 \setminus C$ היה פשוט קשר, אז הלולאה הייתה הומוטופית מסילתית ללולאה טריוויאלית, כלומר,
+	\[
+		\forall t \in [0, 1],\ \gamma(t) = (0, 0, 0)
+	\]
+	והיינו מקבלים,
+	\[
+		\int_{Q_1} F\ dl
+		= 0
+		\ne L_{\infty}
+	\]
+	כלומר זוהי סתירה, לכן $\RR^3 \setminus C$ הוא לא תחום פשוט קשר. \\
+	למעשה ידענו זאת כבר כי החבורה היסודית של המרחב היא $\ZZ$, וזו כמובן לא טריוויאלית.
 \end{proof}
 
 \question{}
