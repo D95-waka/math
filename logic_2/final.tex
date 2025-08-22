@@ -195,4 +195,42 @@ We will show that the above claim does not hold for general recursive functions.
 	Then $B(\alpha, \alpha)$ is not defined, a contradiction.
 \end{solution}
 
+\question{}
+Assuming that $\Mm \models \PA$, such that $c \in M$ is non-standard, and let us define $N = \bigcup_{n \in \NN} \{ x \in M \mid x \le^\Mm c^n \}$. \\
+We will show that $\Nn \subseteq \Mm$ and that $\Nn \not\models \PA$.
+\begin{proof}
+	Let $x, y \in N$, we will show that $x + y, x \cdot y \in N$ as well.
+	Consider $m \in \NN$ such that $x, y \le c^m$, there must be such $m$ as $\le^\Mm$ is linear.
+	It follows that,
+	\[
+		x + y
+		\le c^m + c^m
+		= 2 \cdot c^m
+		\le c \cdot c^m
+		= c^{m + 1}
+	\]
+	In particular for $y = 1$ we get that $S(x) \in N$.
+	We can also see that,
+	\[
+		x \cdot y
+		\le c^m \cdot c^m
+		\le c^{2m}
+	\]
+	Therefore $S(x), x + y, x \cdot y \in N$, meaning that it is a set closed to functions of $\Mm$, we conclude that $\Nn \subseteq \Mm$.
+
+	Is it possible to find element in $M$ that witness bound for $N$?
+	What about $[d(n) = 2^n]$? It is some non-standard element such that is larger than $[n \mapsto n^k]$ for all $k \in \NN$.
+
+	If $N = M$ then $\Nn \models \PA$, we want to find an element $e \in M$ such that $e \notin N$.
+	Notice that $n \mapsto c^n$ is recursive function, then by using minimization we get that $N$ is recursive function.
+	Would it be total, we could get that $\Mm$ is recursive and therefore standard, a contradiction, then $N$ is not total, and let $e \in M \setminus N$.
+	From $N$'s definition we deduce that $c^n <^\Mm e$ for every $n \in \NN$, meaning that $N$ is bounded in $\Mm$ by $e$.
+
+	$n \mapsto c^n$ is recursive, then let $f : \NN \to M$ be such function.
+	We can prove $\varphi(n) = \exists d,\ d > f(n)$ on $\Mm$ by induction scheme.
+	For $n = 0$ the claim is of course trivial, as $2 > 1$ and $\underline{2} \in M$ for any model of $\PA$.
+	Assuming that $\Mm \models \varphi(n)$, we get from $e \in M$ that $\Mm \models \varphi(S(n))$, then we can deduce that $\varphi$ holds for all values, in particular for $n = c$.
+	$\Nn \models \varphi(c)$ as well as a sub-model of $\Mm$ and $\Nn \models \PA$, but this is a direct contradiction.
+\end{proof}
+
 \end{document}
