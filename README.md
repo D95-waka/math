@@ -133,7 +133,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">בלמידה</th>
-        <th>18</th>
+        <th>3</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80424">לוגיקה מתמטית 2</a></td>
@@ -142,7 +142,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">עתידיים</th>
-        <th>19</th>
+        <th>24</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80616">תורת המודלים 1</a></td>
@@ -163,6 +163,11 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">סקס- רביה מינית ממולקולות עד פילים</a></td>
         <td>2026א'</td>
         <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6178">קוגניציה אנושית למלאכותית</a></td>
+        <td>2026א'</td>
+        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
