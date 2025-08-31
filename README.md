@@ -49,7 +49,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">הסתיימו</th>
-        <th>59</th>
+        <th>74</th>
     </tr>
     <tr>
         <td><a href="./discrete_mathematics">מתמטיקה דיסקרטית</a></td>
@@ -112,16 +112,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>4</td>
     </tr>
     <tr>
-        <th colspan="2">בלמידה</th>
-        <th>18</th>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80416">אליזה על יריעות</a></td>
-        <td>2025ב'</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80417">אליזה פונקציונלית</a></td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80417">אנליזה פונקציונלית</a></td>
         <td>2025ב'</td>
         <td>3</td>
     </tr>
@@ -134,6 +125,15 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80516">מבוא לטופולוגיה</a></td>
         <td>2025ב'</td>
         <td>4</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80416">אליזה על יריעות</a></td>
+        <td>2025ב'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <th colspan="2">בלמידה</th>
+        <th>18</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80424">לוגיקה מתמטית 2</a></td>
@@ -155,9 +155,14 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>4</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80607">מושגי יסוד בטופולוגיה אלגברית</a></td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80560">גיאומטריה דיפרנציאלית אלמנטרית</a></td>
         <td>2026א'</td>
-        <td>6</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">סקס- רביה מינית ממולקולות עד פילים</a></td>
+        <td>2026א'</td>
+        <td>2</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
@@ -175,11 +180,6 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>4</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80699">אלגבראות בוליאניות</a></td>
-        <td>2026ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
         <th colspan="3">לא בתוכנית</th>
     </tr>
     <tr>
@@ -189,6 +189,11 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80579">כפיה ואי־תלות</a></td>
+        <td>2027ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80699">אלגבראות בוליאניות</a></td>
         <td>2027ב'</td>
         <td>2</td>
     </tr>
