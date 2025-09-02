@@ -8,6 +8,8 @@
 \DeclareMathOperator{\Sat}{Sat}
 \DeclareMathOperator{\pr}{Pr}
 \DeclareMathOperator{\sent}{sent}
+\DeclareMathOperator{\val}{Val}
+\DeclareMathOperator{\sat}{Sat}
 
 \begin{document}
 \maketitle
@@ -231,6 +233,41 @@ We will show that $\Nn \subseteq \Mm$ and that $\Nn \not\models \PA$.
 	For $n = 0$ the claim is of course trivial, as $2 > 1$ and $\underline{2} \in M$ for any model of $\PA$.
 	Assuming that $\Mm \models \varphi(n)$, we get from $e \in M$ that $\Mm \models \varphi(S(n))$, then we can deduce that $\varphi$ holds for all values, in particular for $n = c$.
 	$\Nn \models \varphi(c)$ as well as a sub-model of $\Mm$ and $\Nn \models \PA$, but this is a direct contradiction.
+\end{proof}
+
+\question{}
+Let $L$ be some language such that it has Gödel numbering.
+Let $X$ be a family of sentences in $L$, and,
+\begin{align*}
+	& \sat(X)
+	= \{ \lceil \varphi \rceil \mid \varphi \in X, \exists \Mm,\ \Mm \models \varphi \} \\
+	& \sat_{\infty}(X)
+	= \{ \lceil \varphi \rceil \mid \varphi \in X, \varphi \text{ has an infinite model} \} \\
+	& \val(X)
+	= \{ \lceil \varphi \rceil \mid \varphi \in X \land \models \varphi \}
+\end{align*}
+
+For this question we assume that $X$ is recursive.
+\subquestion{}
+We will show that $\sat(X)$ is recursive if and only if $\val(\lnot X)$ is recursive and $\sat(\lnot X)$ is recursive if and only if $\val(X)$ is recursive.
+\begin{proof}
+	Assume that $\sat(X)$ is recursive, then $X \setminus \sat(X)$ is recursive as well, and by definition $\varphi \in X \setminus \sat(X)$ if there is no model that satisfy $\varphi$.
+	But this is exactly $\val(\lnot X)$, as it is the set of sentences such that a sentence $\varphi$ is in $\val(X)$ if $\lnot \varphi$ is tautology, meaning that $\varphi \equiv_{\operatorname{tau}} \perp$.
+
+	Let us assume that $\val(\lnot X)$ is recursive.
+	We deduce that $X \setminus \val(X)$ is recursive as well, and yet again by direct definition it is exactly $\sat(X)$.
+
+	The last part of the claim follows from the first part and the fact that $\lceil \varphi \rceil \to \lceil \lnot \varphi \rceil$ is recursive map.
+\end{proof}
+
+\subquestion{}
+We will show that if $\sat_{\infty}(X)$ is recursive, then $\sat(X)$ is recursive as well.
+\begin{proof}
+	It is sufficient to show that $\val(\lnot X)$ is recursive by the last part.
+
+	In the Tachles we can enumerate finite structures and by that get if $\varphi \in \sat_{< \infty}(X)$, and then use union.
+
+	We also need to show that $\lnot \sat_{< \infty}(X) = \sat_{< \infty}(\lnot X)$ is recursive, I think it's done the same way.
 \end{proof}
 
 \end{document}
