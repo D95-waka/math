@@ -10,6 +10,7 @@
 \DeclareMathOperator{\sent}{sent}
 \DeclareMathOperator{\val}{Val}
 \DeclareMathOperator{\sat}{Sat}
+\DeclareMathOperator{\term}{term}
 
 \begin{document}
 \maketitle
@@ -263,11 +264,49 @@ We will show that $\sat(X)$ is recursive if and only if $\val(\lnot X)$ is recur
 \subquestion{}
 We will show that if $\sat_{\infty}(X)$ is recursive, then $\sat(X)$ is recursive as well.
 \begin{proof}
-	It is sufficient to show that $\val(\lnot X)$ is recursive by the last part.
+	We notate $\sat_{< \infty}(X) = \{ \lceil \varphi \rceil \in X \mid \exists \Mm \models \varphi, |M| < \infty \}$ the set of sentences of $X$ that are right in some finite model.
+	$\sat(X) = \sat_{< \infty}(X) \cup \sat_{\infty}(X)$, and we know that finite union of recursive sets is recursive, then it suffices to show that $\sat_{< \infty}(X)$ is recursive set.
+	In the previous course we had shown that there is an embedding between finite models of a countable language and sentences, up to model isomorphism.
+	We also saw an algorithm to build such sentences, and can enumerate through it,
+	meaning that we can assume that there is $m : \NN \to \NN$ function such that if $\Mm$ a model of $L$ then exists $i \in \NN$ such that $m(i) = \lceil \varphi \rceil$ for $\Mm \models \varphi$.
 
-	In the Tachles we can enumerate finite structures and by that get if $\varphi \in \sat_{< \infty}(X)$, and then use union.
+	By our definition of $\sat_{< \infty}(X)$, an element $n \in \NN$ fulfills $n \in \sat_{< \infty}(X)$ if and only if $\exists i,\ m(i) \models \varphi$, or by using Gödel numbers,
+	\[
+		\exists i \pr(m(i), n)
+		\iff n \in \sat_{< \infty}(X)
+	\]
+	We can now define $\psi_0(x) = x \in \sat_{\infty}(X) \lor \exists i \pr(m(i), x)$, this is a $\Sigma_1^0$ formula, but it is not clear that it is $\Pi_1^0$ as well.
 
-	We also need to show that $\lnot \sat_{< \infty}(X) = \sat_{< \infty}(\lnot X)$ is recursive, I think it's done the same way.
+	$x \notin \sat(X)$ if and only if $x \in \val(\lnot X)$ by the previous part, then $\psi_1(x) = \lnot \pr(x, \lceil \perp \rceil)$ fulfills,
+	\[
+		\psi_1(x)
+		\iff \lnot (x \in \val(\lnot X))
+		\iff \lnot (x \notin \sat(X))
+		\iff x \in \sat(X)
+	\]
+	$\psi_1$ is $\Sigma_1^0$ formula and therefore $\lnot \psi_1$ is $\Pi_1^0$. \\
+	But it is implied that $\psi_0 \equiv \psi_1$, in particular $\psi_0 \in \Delta_1^0$.
+	We deduce that $\psi_0$ defining recursive set, and that this set is exactly $\sat(X)$.
+\end{proof}
+
+\question{}
+Assume that $L$ is some language and $\varphi(x, y_0, \ldots, y_{k - 1})$ is some formula and that $\Mm$ is an $L$-structure,
+A function $f : M^k \to M$ is called \textit{Skolem function for $\varphi$} if for every $a_0, \ldots, a_{k - 1} \in M$,
+\[
+	\Mm \models \exists x\ \varphi(x, a_0, \ldots, a_{k - 1})
+	\implies \Mm \models \varphi(f(a_0, \ldots, a_{k - 1}), a_0, \ldots, a_{k - 1})
+\]
+A theory $T$ is said to \textit{has a built-in Skolem functions} if for every such formula $\varphi$ there is a term in the language, \\
+$t_{\varphi}(y_0, \ldots, y_{k - 1})$, such that $t_\varphi^\Mm$ is a Skolem function for $\varphi$ for any $\Mm \models T$.
+
+\subquestion{}
+We will show that if $T$ has a built-in Skolem functions, then $T$ has quantifier elimination,
+meaning that for every formula $\psi(x_0, \ldots, x_{n - 1})$ there is a quantifier free formula $\psi'(x_0, \ldots, x_{n - 1})$ such that $T \vdash \forall \bar{x} (\psi \leftrightarrow \psi')$.
+\begin{proof}
+	We will prove the claim by induction over the number of free variables $n$.
+
+	For $n = 0$ and a given model $\Mm$, $\psi$ is a sentence and either $\Mm \models \psi$ and
+	Consider $t_{\psi}$, then we can define 
 \end{proof}
 
 \end{document}
