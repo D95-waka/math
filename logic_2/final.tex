@@ -8,9 +8,11 @@
 \DeclareMathOperator{\Sat}{Sat}
 \DeclareMathOperator{\pr}{Pr}
 \DeclareMathOperator{\sent}{sent}
+\DeclareMathOperator{\form}{form}
 \DeclareMathOperator{\val}{Val}
 \DeclareMathOperator{\sat}{Sat}
 \DeclareMathOperator{\term}{term}
+\DeclareMathOperator{\sk}{Sk}
 
 \begin{document}
 \maketitle
@@ -303,10 +305,122 @@ $t_{\varphi}(y_0, \ldots, y_{k - 1})$, such that $t_\varphi^\Mm$ is a Skolem fun
 We will show that if $T$ has a built-in Skolem functions, then $T$ has quantifier elimination,
 meaning that for every formula $\psi(x_0, \ldots, x_{n - 1})$ there is a quantifier free formula $\psi'(x_0, \ldots, x_{n - 1})$ such that $T \vdash \forall \bar{x} (\psi \leftrightarrow \psi')$.
 \begin{proof}
-	We will prove the claim by induction over the number of free variables $n$.
+	The proof is by induction over the structure of the formula.
+	For atomic formulas the claim is trivial, as there are no quantifiers in such formulas.
+	In the same meaner, binary operations and $\lnot$ preserve quantifier-free formulas.
 
-	For $n = 0$ and a given model $\Mm$, $\psi$ is a sentence and either $\Mm \models \psi$ and
-	Consider $t_{\psi}$, then we can define 
+	We move to the case of existential quantifiers.
+	Assume that $\varphi(x_0, \ldots, x_{n - 1}) = \exists v\ \psi(v, x_0, \ldots, x_{n - 1})$, for $\psi$ quantifier-free formula.
+	$T$ has built-in Skolem function to $\psi$, $t = t_{\psi}(x_0, \ldots, x_{n - 1})$, such that for $a_0, \ldots, a_{n - 1} \in M$,
+	\[
+		\Mm \models \varphi(a_0, \ldots, a_{n - 1})
+		\implies \Mm \models \psi(t^\Mm(a_0, \ldots, a_{n - 1}), a_0, \ldots, a_{n - 1})
+	\]
+	It follows that also,
+	\[
+		\Mm \models \varphi(a_0, \ldots, a_{n - 1}) \to \psi(t^\Mm(a_0, \ldots, a_{n - 1}), a_0, \ldots, a_{n - 1})
+	\]
+	By defining $\varphi' = \psi_t^v$, and the fact that $\bar{a}$ is arbitrary,
+	\[
+		\Mm \models \forall \bar{x} (\varphi \to \varphi')
+	\]
+	It is trivial that $\Mm \models \forall \bar{x} (\varphi' \to \varphi)$ then,
+	\[
+		\Mm \models \forall \bar{x} (\varphi \leftrightarrow \varphi')
+	\]
+	This holds for any $\Mm \models T$, then by the completeness theorem, $T \vdash \forall \bar{x} (\varphi \leftrightarrow \varphi')$.
 \end{proof}
+
+\subquestion{}
+We will show that if $T$ has built-in Skolem functions and $\Mm \models T$, then any $\Nn \subseteq \Mm$ is an elementary substructure.
+\begin{proof}
+	For any substructure $\Nn \subseteq \Mm$ and quantifier-free closed-sentence $\varphi$, $\Mm \models \varphi \iff \Nn \models \varphi$.
+	This claim was proven in the previous course.
+	We also saw in the last part that for each $\varphi \in \sent_L$ there is $\varphi'$ which is quantifier-free and $T \vdash \varphi \leftrightarrow \varphi'$.
+	In particular if $\varphi \in T$ then $\varphi' \in T$, and defining,
+	\[
+		T'
+		= \{ \varphi' \mid \varphi \in T \}
+	\]
+	We get $T = T'$.
+	It is implied that we can assume without loss of generality that $T$ is quantifier-free, and that $\Nn \models T$.
+
+	In intention to use Tarski-Vaught test,
+	let $\varphi(x_0, \ldots, x_{n - 1}) = \exists v\ \psi(v, x_0, \ldots, x_{n - 1})$ and $a_0, \ldots, a_{n - 1} \in N$.
+	Assume that $\Mm \models \varphi(a_0, \ldots, a_{n - 1})$, and we will find $b \in N$ such that $\Mm \models \psi(b, a_0, \ldots, a_{n - 1})$. \\
+	By the last part, let $\varphi'$ be quantifier-free formula such that $\Mm \models \forall \bar{x} (\varphi \leftrightarrow \varphi')$.
+	$\Nn \subseteq \Mm$ and $a_0, \ldots, a_{n - 1} \in N$, then $\Nn \models \varphi'(a_0, \ldots, a_{n - 1})$.
+	By out initial assumption $\Nn \models T$, then $\Nn \models \varphi(a_0, \ldots, a_{n - 1}) \iff \Nn \models \exists v\ \psi(v, a_0, \ldots, a_{n - 1})$.
+	Let $b = v^\Nn$ the witness to the sentence, then $b \in N$ and from Tarski-Vaught $\Nn \prec \Mm$.
+\end{proof}
+
+\subquestion{}
+We will show that for any language $L$ there is some language $L_{\sk} \supseteq L$ and some $L_{\sk}$-theory $S$ such that the following holds:
+\begin{enumerate}
+	\item $S$ is universal,
+		every sentence in the axioms of $S$ is of the form $\forall x_0 \ldots \forall x_{n - 1}\ \psi$ such that $\psi$ is quantifier-free
+	\item If $\Mm$ is an $L$-structure then there is an expansion of $\Mm$ to a structure $\Mm_{\sk} \models S$
+	\item $S$ has built-in Skolem functions in $L_{\sk}$
+\end{enumerate}
+\begin{proof}
+	Let us define,
+	\[
+		L_{\sk}
+		= L \cupdot \{ f_{\varphi} \mid \varphi = \exists v\ \psi(v, x_0, \ldots, x_{n - 1}),\ \psi \in \form_L \}
+	\]
+	An extension of $L$ such that every formula of n free variables of the stated form has n-placed function symbol $f_{\varphi}$.
+	We define the theory,
+	\[
+		S
+		= \{ \forall y_0 \ldots \forall y_{n - 1}\ (\varphi(y_0, \ldots, y_{n - 1}) \to \psi(f_{\varphi}(y_0, \ldots, y_{n - 1}), y_0, \ldots, y_{n - 1}))
+		\mid \varphi = \exists v\ \psi(v, x_0, \ldots, x_{n - 1}),\ \psi \in \form_L \}
+	\]
+	namely, $f_{\varphi}$ is a Skolem function of $\psi$ in $S$.
+
+	\textbf{3.}
+	If $\Mm \models S$ and $\varphi(x, y_0, \ldots, y_{n - 1})$ some $L_{\sk}$-formula, then we will choose $t_{\varphi}(x_0, \ldots, x_{n - 1}) = f_{\varphi}$.
+	By our theory's definition,
+	\[
+		\Mm \models \forall y_0 \ldots \forall y_{n - 1}\ (\exists y\ \varphi(y, y_0, \ldots, y_{n - 1}) \to \varphi(f_{\varphi}(y_0, \ldots, y_{n - 1}), y_0, \ldots, y_{n - 1}))
+	\]
+	If $a_0, \ldots, a_{n - 1} \in M$ then in particular,
+	\[
+		\Mm \models \exists y\ \varphi(y, y_0, \ldots, y_{n - 1}) \to \varphi(t^\Mm(y_0, \ldots, y_{n - 1}), y_0, \ldots, y_{n - 1})
+	\]
+	and by inverting Modus ponens,
+	\[
+		\Mm \models \exists y\ \varphi(y, y_0, \ldots, y_{n - 1})
+		\implies \Mm \models \varphi(t^\Mm(y_0, \ldots, y_{n - 1}), y_0, \ldots, y_{n - 1})
+	\]
+	Then $S$ indeed has built-in Skolem functions.
+
+	\textbf{1.}
+	Follows immediately from the last part and \textbf{1}.
+
+	\textbf{2.}
+	Let $\Mm$ be some $L$-structure.
+	Using the well-ordering principle, let $\langle M, \le \rangle$ be a well-order. \\
+	For some formula $\varphi(x, x_0, \ldots, x_{n - 1})$, we define,
+	\[
+		f_{\varphi}^\Mm(x_0, \ldots, x_{n - 1})
+		= \begin{cases}
+			\min_{\le} \{ a \in M \mid \Mm \models \varphi(a, x_0, \ldots, x_{n - 1}) \} & \Mm \models \exists x\ \varphi(x, x_0, \ldots, x_{n - 1}) \\
+			z & \text{otherwise}
+		\end{cases}
+	\]
+	for $z \in M$ some arbitrary value.
+	By out definition it is clear that $\Mm \models S$.
+\end{proof}
+
+\subquestion{}
+We will check if $\PA$ has built-in Skolem functions, and if it has definable built-in Skolem functions.
+\begin{solution}
+	We assume towards a contradiction that $\PA$ has built-in Skolem functions.
+	We know that there is some recursive function that is not primitive-recursive, notate it by $y = b(n) \iff \varphi(y, x)$.
+	This is $\Sigma_1^0$ formula by equivalency to recursive functions, hence $\varphi = \exists z\ \psi(z, y, x)$.
+	It follows from part b that there is quantifier-free formula equivalent to $\varphi$, and therefore it is equivalent to bounded-quantifier formula, then $b$ is primitive-recursive, a contradiction.
+
+	I want to say that $\PA$ does not has definable Skolem functions, as we can take $\varphi \in \Sigma_3 \setminus \Sigma_2$ and if it were to be definable then $\varphi \in \Sigma_1^0$, which is not possible.
+\end{solution}
 
 \end{document}
