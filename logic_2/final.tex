@@ -223,19 +223,34 @@ We will show that $\Nn \subseteq \Mm$ and that $\Nn \not\models \PA$.
 	\]
 	Therefore $S(x), x + y, x \cdot y \in N$, meaning that it is a set closed to functions of $\Mm$, we conclude that $\Nn \subseteq \Mm$.
 
-	Is it possible to find element in $M$ that witness bound for $N$?
-	What about $[d(n) = 2^n]$? It is some non-standard element such that is larger than $[n \mapsto n^k]$ for all $k \in \NN$.
+	Let us define the partial function $H : \NN^3 \to \NN$
+	\[
+		H(n, x, k)
+		= x \cdot k
+	\]
+	and $G = c_1$, then by induction scheme there exists primitive-recursive function $F : \NN^2 \rightharpoonup \NN$ defined by,
+	\[
+		F(x, 0) = 1,
+		\quad
+		F(x, n + 1)
+		= x \cdot F(n)
+	\]
+	This is a primitive-recursive from definition therefore it is total, and we denote $x^n = F(x, n)$ for all $x$ and $n$.
+	In particular, consider $e = c^c$, this element fulfills $e \in M$, we will show that $e \notin N$.
 
-	If $N = M$ then $\Nn \models \PA$, we want to find an element $e \in M$ such that $e \notin N$.
-	Notice that $n \mapsto c^n$ is recursive function, then by using minimization we get that $N$ is recursive function.
-	Would it be total, we could get that $\Mm$ is recursive and therefore standard, a contradiction, then $N$ is not total, and let $e \in M \setminus N$.
-	From $N$'s definition we deduce that $c^n <^\Mm e$ for every $n \in \NN$, meaning that $N$ is bounded in $\Mm$ by $e$.
+	the function $F$ fulfills $\PA \models n < m \implies x^n < x^m$ for any $x > 1$.
+	The proof is by fixation of $n$, induction over $m$ and then induction over $n$.
+	We start by showing that $x^n < x^{S(n)}$, as for $n = 0$ we get $1 < x$ and if $x^n < x^{S(n)}$ then $x \cdot x^n < x \cdot x^{S(n)} \iff x^{S(n)} < x^{S(S(n))}$.
+	We can now fix $n$ and prove that $x^n < x^m$ for all $n < m$.
+	This time we use $m = S(n)$ as the recursion base, this was proven already.
+	The step is identical to the first case.
+	We infer from induction scheme that indeed $n < m \implies x^n < x^m$.
 
-	$n \mapsto c^n$ is recursive, then let $f : \NN \to M$ be such function.
-	We can prove $\varphi(n) = \exists d,\ d > f(n)$ on $\Mm$ by induction scheme.
-	For $n = 0$ the claim is of course trivial, as $2 > 1$ and $\underline{2} \in M$ for any model of $\PA$.
-	Assuming that $\Mm \models \varphi(n)$, we get from $e \in M$ that $\Mm \models \varphi(S(n))$, then we can deduce that $\varphi$ holds for all values, in particular for $n = c$.
-	$\Nn \models \varphi(c)$ as well as a sub-model of $\Mm$ and $\Nn \models \PA$, but this is a direct contradiction.
+	$c \in M$ is non-standard, then $\underline{n} < c$ for all $n \in \hat{\NN}$, it is implied that $c^n < c^c = e$ for all $n$.
+	If $x \in N$, then there exists $n \in \hat{\NN}$ such that $x \le c^n < c^{S(n)} < c^c = e$, meaning that $x < e$ for all $x \in N$, as a result $e \notin N$.
+
+	We assume in contradiction that $\Nn \models \PA$, then $F$ is definable and primitive-recursive over $\Nn$.
+	We also know that $c \in N$ as $c \le^\Mm c^1$, then $d = F^\Nn(c, c)$ fulfills that $d \in N$ but $\Nn \subseteq \Mm$ and $F^\Nn(c, c) = F^\Mm(c, c) = e \notin N$, a contradiction.
 \end{proof}
 
 \question{}
