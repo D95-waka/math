@@ -438,4 +438,22 @@ We will check if $\PA$ has built-in Skolem functions, and if it has definable bu
 	I want to say that $\PA$ does not has definable Skolem functions, as we can take $\varphi \in \Sigma_3 \setminus \Sigma_2$ and if it were to be definable then $\varphi \in \Sigma_1^0$, which is not possible.
 \end{solution}
 
+\question{}
+Let $L = \{ F_{i, j} \mid i, j \in \NN \}$ be a language such that $F_{i, j}$ is a $j$-place function symbol.
+Let $E$ be the set of existential sentences, namely the sentences of the form $\exists x_0 \ldots \exists x_{n - 1}\ \psi$ where $\psi$ is quantifier-free,
+and let $A$ be the set of universal sentences, meaning the sentences of the form $\forall x_0 \ldots \forall x_{n - 1}\ \psi$ for quantifier-free $\psi$. \\
+We will show that $\val(E)$ is not recursive.
+\begin{proof}
+	The claim is equivalent to the claim that $\val(A)$ is not recursive by question 7 part a and the fact that,
+	\[
+		\exists x_0 \ldots \exists x_{n - 1}\ \psi
+		\equiv \lnot \lnot \exists x_0 \ldots \exists x_{n - 1}\ \psi
+		\equiv \lnot \forall x_0 \ldots \forall x_{n - 1}\ (\lnot \psi)
+	\]
+	and that if $\psi$ is quantifier-free then $\lnot \psi$ is as well.
+
+	Let $L_F = \{ F_{0, 2} \} \subseteq L$ be reduction of $L$.
+	We assume toward a contradiction that $\val(E)$ is recursive, and will show that $\val(\sent_{L_F})$ is recursive as well.
+\end{proof}
+
 \end{document}
