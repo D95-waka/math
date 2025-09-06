@@ -142,7 +142,7 @@ We will show that if $t$ is a term that does not contain the variable $v$, and $
 then $\forall v \le t\ \varphi$ is $\Sigma_0^0$-formula as well.
 We will conclude that $\Sigma_0^0$ is closed under bounded quantification with general terms.
 \begin{proof}
-	
+	TODO
 \end{proof}
 
 \question{}
@@ -454,6 +454,49 @@ We will show that $\val(E)$ is not recursive.
 
 	Let $L_F = \{ F_{0, 2} \} \subseteq L$ be reduction of $L$.
 	We assume toward a contradiction that $\val(E)$ is recursive, and will show that $\val(\sent_{L_F})$ is recursive as well.
+
+	TODO
+\end{proof}
+
+\question{}
+\begin{remark}
+	If $A$ is some set, then ${[A]}^n = \{ B \subseteq A \mid |B| = n \}$.
+\end{remark}
+We will prove Ramsey's theorem,
+namely that for $m, r \in \NN$, and $f : {[ \NN ]}^r \to [m]$, there is an infinite subset $A \subseteq \NN$ such that $f \restriction {[ A ]}^r$ is constant. \\
+We will conclude the finite version of the theorem.
+\begin{proof}
+	We will show it by induction over $r$.
+
+	For $r = 1$ the claim is trivial, then let $r = 2$.
+	Let $a_0 = 0$ and $B_0 = \NN$, and let $h : B_0 \setminus \{ a_0 \} \to [m]$ by,
+	\[
+		\forall b \in B_0 \setminus \{ a_0 \},\ h(b) = f(\{a_0, b\})
+	\]
+	$h$ fulfills the claim for $r = 1$ and therefore there is some set $B_1 \subseteq B_0 \setminus \{ a_0 \}$ such that $h \restriction B_1$ is constant.
+	We define $a_1 = \min B_1$ and $c_0 = h(a_1)$.
+	We extend this construction recursively and get $a_0 < a_1 < \cdots$ and $B_0 \supseteq B_1 \supseteq \cdots$ sequences such that $a_n = \min B_n$ for all $n$.
+	The construction also gives us some sequence ${\{ c_n \}}_{n = }^\infty \subseteq [m]$, then by pigeonhole principle there is $k \in [m]$ such that $K = \{ n \in \NN \mid c_n = k \}$ is infinite.
+	Now consider the set $A = \{ a_n \in \NN \mid n \in K \}$, by its definition for all $a, b \in A$ there is $n \in \NN$ such that $a = a_n$ and $b \in B_{n + 1}$, hence $f(\{a, b\}) = c_n$.
+	Thus we conclude that $A$ is both infinite and witnessing the claim for $f$.
+
+	Moving to the induction step, we assume the claim for $r \in \NN$, and show the case of $r + 1$.
+	Let $f : {[ \NN ]}^{r + 1} \to [m]$.
+	The argument is identical to the case of $r = 2$, let us define $B_0 = \NN$ and $a_0 = 0$.
+	We define the function $h : {[ B_0 \setminus \{ a_0 \} ]}^r \to m$, by the induction hypothesis there is $B_1$ such that $h \restriction B_1 = c_i$ for some $i \in [m]$, then let $c_0 = i$ and $a_1 = \min B_1$.
+	We get sequences as in the last case and define $k$ and $K$ the same way using pigeonhole yet again.
+	In this case $A$ is defined the same way, but we will show that it witnessing the claim using $r$-tuples instead,
+	if $b_0, \ldots, b_{r - 1} \in A$ then we take $b = \min\{ b_0, \ldots, b_{r - 1} \}$ and $n \in \NN$ such that $a_n = b$, therefore $b_i \ne b \implies b_i \in B_n$, so $f(\{ b_i \mid i < r \}) = k$.
+
+	The finite version of Ramsey's theorem was proved using the compactness theorem in the previous course and will remain as an exercise to the reader.
+	% TODO: Delete this.
+\end{proof}
+
+\question{}
+Suppose that $L$ is a finite relational language. \\
+We will show that $\sat_{\infty}(A)$ is recursive.
+\begin{proof}
+	TODO
 \end{proof}
 
 \end{document}
