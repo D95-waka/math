@@ -1,6 +1,6 @@
 \newcounter{english}
 \input{../article_base.tex}
-\title{Final Exercise Answer Sheet --- Logic Theory (2), 80424}
+\title{Solution to Final Exercise --- Logic Theory (2), 80424}
 
 \DeclareMathOperator{\PA}{PA}
 \DeclareMathOperator{\Coll}{Coll}
@@ -496,7 +496,26 @@ We will conclude the finite version of the theorem.
 Suppose that $L$ is a finite relational language. \\
 We will show that $\sat_{\infty}(A)$ is recursive.
 \begin{proof}
-	TODO
+	we denote $L = \{ R_i \mid i < n \}$ for $n \in \NN$, such that $R_i$ is $k_i$-place relation symbol.
+
+	If $\varphi \in \sat_{\infty}(A)$ then there exists quantifier-free $\psi(x_0, \ldots, x_{m - 1})$ such that $\varphi = \forall x_0 \ldots \forall x_{m - 1} \psi$.
+	By $\sat_{\infty}$, $\Mm \models \varphi$ for some model with $|M| = \omega$ without loss of generality using downwards Skolem Löwenheim–Skolem theorem.
+	If we use canonical structure from the proof of the completeness theorem we get that there exist $\Mm' \models \varphi$ with $|M'| < \omega$.
+	More explicitly, it is enough that $|M'| \ge N_{\psi} = \operatorname{FV}(\psi)$.
+
+	Let $\sup \{ k_0, \ldots, k_{n - 1}, N_{\psi} \} \le r \in \NN$ and let,
+	\[
+		\Gamma_s
+		= \{ R_i(x_0, \ldots, x_{s - 1}) \mid i < n, k_i \le s \}
+	\]
+	$n$ is finite and therefore $s$ and $\Gamma_s$ as well.
+	We say that an $L$-structure $\Mm$ with $M \subseteq \NN$ is $\Gamma$-homogeneous if for every $R_i(x_0, \ldots, x_{s - 1}) \in \Gamma_s$,
+	\[
+		\forall a_0 < \cdots < a_{s - 1}, b_0 < \cdots < b_{s - 1} \in M,\ 
+		\Mm \models R_i(a_0, \ldots, a_{s - 1})
+		\iff \Mm \models R_i(b_0, \ldots, b_{s - 1})
+	.\]
+	% TODO: I think the way this hint is written is misleading, and that there should not be such `s`
 \end{proof}
 
 \end{document}
