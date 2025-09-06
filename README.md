@@ -160,14 +160,19 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">סקס- רביה מינית ממולקולות עד פילים</a></td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6178">קוגניציה אנושית למלאכותית</a></td>
+        <td>2026א'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/03053">תיאוריות בהתפתחות הילד והמתבגר</a></td>
         <td>2026א'</td>
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6178">קוגניציה אנושית למלאכותית</a></td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/15005">חשיבה ביקורתית</a></td>
         <td>2026א'</td>
-        <td>3</td>
+        <td>2</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
@@ -185,24 +190,67 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>4</td>
     </tr>
     <tr>
-        <th colspan="3">לא בתוכנית</th>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80824">תורת המודלים 2</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80985">חבורות וייטהד</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">סקס- רביה מינית ממולקולות עד פילים, באנגלית</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">שימוש לטוב/שימוש לרעה בסמים</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80650">תורת הקבוצות האקסיומטית</a></td>
         <td>2027א'</td>
         <td>3</td>
     </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80579">כפיה ואי־תלות</a></td>
-        <td>2027ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80699">אלגבראות בוליאניות</a></td>
-        <td>2027ב'</td>
-        <td>2</td>
-    </tr>
 </table>
 
-יש לעשות שני קורסים באנגלית ולהגיע לסך ניקוד כולל של 124 נקודות זכות.
-הסך הכולל הנוכחי הוא 96.
+בנוסף ישנן הדרישות המספריות:
+<table dir="rtl">
+    <tr>
+        <th>שם</th>
+        <th>דרוש</th>
+        <th>בוצע</th>
+    </tr>
+    <tr>
+        <td>חובה בחוג</td>
+        <td>53</td>
+        <td>50</td>
+    </tr>
+    <tr>
+        <td>חובת בחירה</td>
+        <td>25</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td>בחירה בחוג</td>
+        <td>17</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>לימודי תכנות</td>
+        <td>2</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>אבני פינה</td>
+        <td>2</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>לימודים משלימים</td>
+        <td>30</td>
+        <td>0</td>
+    </tr>
+</table>
