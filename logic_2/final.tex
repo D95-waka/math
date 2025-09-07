@@ -505,17 +505,50 @@ We will show that $\sat_{\infty}(A)$ is recursive.
 
 	Let $\sup \{ k_0, \ldots, k_{n - 1}, N_{\psi} \} \le r \in \NN$ and let,
 	\[
-		\Gamma_s
-		= \{ R_i(x_0, \ldots, x_{s - 1}) \mid i < n, k_i \le s \}
+		\Gamma
+		= \{ R_i(x_0, \ldots, x_{k_i - 1}) \mid i < n \}
 	\]
-	$n$ is finite and therefore $s$ and $\Gamma_s$ as well.
-	We say that an $L$-structure $\Mm$ with $M \subseteq \NN$ is $\Gamma$-homogeneous if for every $R_i(x_0, \ldots, x_{s - 1}) \in \Gamma_s$,
+	$n$ is finite and so is $L$ then $\Gamma$ is bound as well, and in particular finite.
+	We say that an $L$-structure $\Mm$ with $M \subseteq \NN$ is \textit{$\Gamma$-homogeneous} if for every $R_i(x_0, \ldots, x_{s - 1}) \in \Gamma$,
 	\[
-		\forall a_0 < \cdots < a_{s - 1}, b_0 < \cdots < b_{s - 1} \in M,\ 
-		\Mm \models R_i(a_0, \ldots, a_{s - 1})
-		\iff \Mm \models R_i(b_0, \ldots, b_{s - 1})
-	.\]
-	% TODO: I think the way this hint is written is misleading, and that there should not be such `s`
+		\forall a_0 < \cdots < a_{k_i - 1}, b_0 < \cdots < b_{k_i - 1} \in M,\ 
+		\Mm \models R_i(a_0, \ldots, a_{k_i - 1})
+		\iff \Mm \models R_i(b_0, \ldots, b_{k_i - 1})
+	\]
+	Let $f : {[ M ]}^r \to {\{ \FF, \TT \}}^n$ defined by,
+	\[
+		f(\{ a_0 < \cdots < a_{r - 1} \})(i)
+		= R_i^\Mm(a_0, \ldots, a_{k_i - 1})
+	\]
+	Notice that $|{\{ \FF, \TT \}}^n$ is finite and therefore the finite version of Ramsey's theorem holds,
+	there exists $N \in \NN$ such that for every model $\Mm$ with $|M| \ge N$ there is $A \subseteq M, |A| \ge r$ and $f \restriction {[ A ]}^r$ is constant.
+	$L$ does not contain any function or constant symbol, then $A$ can be extended to a sub-model $\Aa \subseteq \Mm$, but,
+	\[
+		\forall a_0 < \cdots < a_{k_i - 1}, b_0 < \cdots < b_{k_i - 1} \in A,\ 
+		f(\{ a_0 < \cdots a_{r - 1} \})
+		= f(\{ b_0 < \cdots b_{r - 1} \})
+	\]
+	Meaning that $\Aa$ is $\Gamma$-homogeneous.
+
+	Let $\Mm_0$ be a $\Gamma$-homogeneous structure with $M = [r]$.
+	% We will extend $\Mm$ to $\Nn_0$ such that $N_0 = \NN$, it suffices to define the relations $R_i$,
+	% \[
+	% 	R_i^{\Nn_0}(\langle a_i \mid i < k_i \rangle)
+	% 	\iff R_i^{\Mm_0}(\langle \min\{ r - 1, a_i \} \mid i < k_i \rangle)
+	% .\]
+	Let us define,
+	\[
+		\varphi_i
+		= \forall x_0 \ldots \forall x_{r - 1} \forall y_0 \ldots \forall y_{r - 1}\ 
+		\left(\left(\bigwedge_{j + 1 < r} x_j < x_{j + 1} \land y_j < y_{j + 1}\right) \to (R_i(x_0, \ldots, x_{k_i - 1}) \leftrightarrow R_i(y_0, \ldots, y_{k_i - 1}))\right)
+	\]
+	then $\Mm_0 \models \varphi_i$ for all $i < r$ if and only if $\Mm_0$ is $\Gamma$-homogeneous.
+	It follows that being $\Gamma$-homogeneous is embedded to $\operatorname{Th}(\Mm_0)$.
+	By upwards Löwenheim-Skolem theorem there is a model $\Mm_1$ such that $\operatorname{Th}(\Mm_0) = \operatorname{Th}(\Mm_1)$ and $|M_1| = \omega$, in particular $\Mm_1$ is $\Gamma$-homogeneous.
+
+	By the first claim $\psi \in \sat_{\infty}(A) \iff \psi \in \sat_{< \infty}(A)$ and in particular if there exist $\Mm \models \psi$ such that $|M| \ge r$.
+	By the second claim we can assume that $\Mm$ is $\Gamma$-homogeneous, therefore by the third claim there is $\Mm_1 \models \psi$ such that $|M_1| = \NN$ and $\Mm_1$ is $\Gamma$-homogeneous.
+	We deduce that $\psi \in \sat_{\infty}(A)$ if and only if there exists $\Gamma$-homogeneous $\NN$-universe model that thinks $\psi$ is true.
 \end{proof}
 
 \end{document}
