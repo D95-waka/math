@@ -13,6 +13,7 @@
 \DeclareMathOperator{\sat}{Sat}
 \DeclareMathOperator{\term}{term}
 \DeclareMathOperator{\sk}{Sk}
+\DeclareMathOperator{\FV}{FV}
 
 \begin{document}
 \maketitle
@@ -454,8 +455,43 @@ We will show that $\val(E)$ is not recursive.
 
 	Let $L_F = \{ F_{0, 2} \} \subseteq L$ be reduction of $L$.
 	We assume toward a contradiction that $\val(E)$ is recursive, and will show that $\val(\sent_{L_F})$ is recursive as well.
+	Let $\varphi(x_0, \ldots, x_{n - 1})$ be some $L_F$-formula.
+	We knot that $|\sent_L| = \omega \setminus \{ 0 \}$ then there is $f : \sent_L \to \omega$, and let $F_{\varphi} = F_{f(\varphi), \FV(\varphi)}$.
+	By question 8 part c, there is a theory $T$ that has built-in Skolem functions, and $F_{\varphi}$ is a Skolem function of $\varphi$.
+	We denote $\varphi^*(x_0, \ldots, x_{n - 1})$ quantifier-free formula such that,
+	\[
+		T \vdash \forall x_0 \ldots \forall x_{n - 1} (\varphi \leftrightarrow \varphi^*)
+	\]
+	such formula exists by question 8 part a.
+	By the proof of part c of the last question we can deduce that $\varphi \mapsto \varphi^*$ is recursive, thus $\varphi \mapsto x_0 \ldots \forall x_{n - 1} (\varphi \leftrightarrow \varphi^*)$ is recursive as well.
+	The proof scheme that witnesses $T \vdash x_0 \ldots \forall x_{n - 1} (\varphi \leftrightarrow \varphi^*)$ uses finite sentences.
+	By $S$'s definition in part c of question 8, we can assume that there is $\varphi' \in \sent_L$ universal sentence that fulfills,
+	\[
+		\varphi' \vdash \forall x_0 \ldots \forall x_{n - 1}\ (\varphi \leftrightarrow \varphi^*)
+	\]
+	Or equivalently,
+	\[
+		\vdash_L \varphi' \to \forall x_0 \ldots \forall x_{n - 1}\ (\varphi \leftrightarrow \varphi^*)
+	\]
+	It follows that if $\psi \in \sent_{L_F}$ then there exists quantifier-free sentence $\psi^*$ and universal sentence $\psi'$ such that,
+	\[
+		\vdash_L \psi' \to (\psi \leftrightarrow \psi^*)
+		\iff \vdash_L (\psi' \to \psi) \leftrightarrow (\psi' \to \psi^*)
+	\]
+	or alternatively.
+	\[
+		\vdash_L \psi' \to \psi^*
+		\iff \vdash_L \psi' \to \psi
+	\]
+	Finally we can deduce that,
+	\[
+		\vdash_{L_F} \psi
+		\iff \vdash_L \psi' \to \vdash_{L_F} \psi
+		\iff \vdash_L \psi' \to \vdash_{L_F} \psi^*
+	\]
+	and $\vdash_L \psi'$ if and only if $\psi' \in \val(E)$, for the same reason stated in the beginning of the proof.
 
-	TODO
+	We deduce that the set $\val(\sent_{L_F})$ is recursive, in contradiction to exercise 11, question 3, thus $\val(E)$ is not recursive.
 \end{proof}
 
 \question{}
@@ -530,12 +566,7 @@ We will show that $\sat_{\infty}(A)$ is recursive.
 	\]
 	Meaning that $\Aa$ is $\Gamma$-homogeneous.
 
-	Let $\Mm_0$ be a $\Gamma$-homogeneous structure with $M = [r]$.
-	% We will extend $\Mm$ to $\Nn_0$ such that $N_0 = \NN$, it suffices to define the relations $R_i$,
-	% \[
-	% 	R_i^{\Nn_0}(\langle a_i \mid i < k_i \rangle)
-	% 	\iff R_i^{\Mm_0}(\langle \min\{ r - 1, a_i \} \mid i < k_i \rangle)
-	% .\]
+	We assume that $\Mm_0$ is a $\Gamma$-homogeneous structure with $M = [r]$.
 	Let us define,
 	\[
 		\varphi_i
@@ -549,6 +580,15 @@ We will show that $\sat_{\infty}(A)$ is recursive.
 	By the first claim $\psi \in \sat_{\infty}(A) \iff \psi \in \sat_{< \infty}(A)$ and in particular if there exist $\Mm \models \psi$ such that $|M| \ge r$.
 	By the second claim we can assume that $\Mm$ is $\Gamma$-homogeneous, therefore by the third claim there is $\Mm_1 \models \psi$ such that $|M_1| = \NN$ and $\Mm_1$ is $\Gamma$-homogeneous.
 	We deduce that $\psi \in \sat_{\infty}(A)$ if and only if there exists $\Gamma$-homogeneous $\NN$-universe model that thinks $\psi$ is true.
+
+	$\psi \in \sat_{\infty}(A) \iff \psi \in \sat_{< \infty}(A) \iff \exists \Mm \models \psi, |M| = r$, and we know that there is unique sentence $\varphi_{\psi}$ such that,
+	\[
+		\Aa \cong \Bb
+		\iff \Aa, \Bb \models \varphi_{\psi}
+	\]
+	therefore $\psi \in \sat_{\infty}(A) \iff \varphi_{\psi} \models \psi \iff \varphi_{\psi} \vdash \psi \iff \pr(\lceil \varphi_{\psi} \rceil, \lceil \psi \rceil)$.
+
+	From the other hand, if $\psi \notin \sat_{\infty}(A)$
 \end{proof}
 
 \end{document}
