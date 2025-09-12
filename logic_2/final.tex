@@ -143,7 +143,30 @@ We will show that if $t$ is a term that does not contain the variable $v$, and $
 then $\forall v \le t\ \varphi$ is $\Sigma_0^0$-formula as well.
 We will conclude that $\Sigma_0^0$ is closed under bounded quantification with general terms.
 \begin{proof}
-	TODO
+	Let $\Sigma_0'$ be the closure of the atomic formulas under boolean operations and term-bounded quantifiers.
+	Let $\varphi \in \Sigma_0'$, and $t$ is substitutable by $v$ then $\varphi_t^v \in \Sigma_0'$, this can be proved by induction over the structure of $\varphi$.
+	Let $q : \Sigma_0' \to \NN$ be count function for quantifiers on a given formula, in particular $q(\varphi) = q(\varphi_t^v)$.
+	
+	We will show by full induction over $q(\varphi)$ that for any $\varphi \in \Sigma_0'$ also $\varphi \in \Sigma_0^0$.
+	The case $q(\varphi) = 0$ is trivial, as $\varphi$ is quantifier-free, thus $\varphi \in \Sigma_0^0$. \\
+	Let us assume that for some $q$ the claim holds for any $q' < q$ and will show that it also holds for $q$.
+	We will show it using induction over the structure of $\varphi$.
+	For the case of atomic formula $\psi$ the claim is trivial as $q(\psi) = 0$.
+	The case of negation and binary operations is deriving from closure of $\Sigma_0^0$ to binary operations.
+	It remains to show the case $\varphi = \forall v \le t\ \psi$ for $q(\psi) = q - 1$.
+
+	We will show this claim by induction over the structure of $t$.
+	For $t = 0, 1$ or $t = w$ for some variable, the claim holds by the definition of $\Sigma_0^0$.
+	For $t = t_0 + t_1$,
+	\[
+		\forall v \le t\ \psi
+		\equiv \forall v_0 \le t_0 \forall v_1 \le t_1\ \psi_{v_0 + v_1}^v
+	\]
+	and therefore by the induction hypothesis and the first claim we get $\forall v \le t_0 + t_1\ \psi \in \Sigma_0^0$.
+	The case of multiplication symbol is identical.
+
+	We have shown that $\varphi \in \Sigma_0' \implies \varphi \in \Sigma_0^0$, or equivalently that $\Sigma_0' \subseteq \Sigma_0^0$,
+	meaning that $\Sigma_0^0$ is closed under term-bounded quantifiers.
 \end{proof}
 
 \question{}
