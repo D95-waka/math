@@ -24,39 +24,56 @@
 Let $U \subseteq \Pp(\NN)$ be a non-principal ultrafilter, let $\langle \Mm_n \mid n < \omega \rangle$ be a sequence of $L$-structures, and $\Mm = \prod_{n < \omega} \Mm_n / U$. \\
 We will show that for every countable consistent set of formulas $\Gamma(x)$ with parameters from $M$ is realized in $\Mm$, namely that $\Mm$ is countably saturated.
 \begin{proof}
-	Take a coverage $\langle \Sigma_n(x) \mid n < \omega \rangle \subseteq \Gamma(x)$ such that $|\Sigma_n| < \omega$ for all $n$.
-	Then $\Sigma_n$ is realized, and let $[f_n] \in M$ be such that $\Mm \models \Sigma_n([f_n])$.
-	Then $a_n = \{ j < \omega \mid \Mm_n \models \Sigma_n(f_n(j)) \} \in U$.
-	Filters are closed to intersection, then let us assume that $a_{n + 1} \subseteq a_n$, otherwise we could define,
+	$\Gamma(x)$ is countable, then we notate $\Gamma = \{ \gamma_n(x) \mid n < \omega \}$, and define $\Sigma_n(x) = \{ \gamma_m(x) \mid m < n \}$.
+	$\langle \Sigma_n \mid n < \omega \rangle$ is increasing sequence of formulas.
+	For any $n$, $\Sigma_n$ is realized, and let $f_n \in \prod_{i < \omega} M_i$ be a function such that $\Mm \models \Sigma_n([f_n])$.
+	Then $a_n = \{ j < \omega \mid \Mm_n \models \Sigma_n(f_n(j)) \} \in U$. \\
+	Filters are closed to intersection, then we assume without loss of generality that $a_{n + 1} \subseteq a_n$, otherwise we could have defined,
 	\[
 		g_{n + 1}(i) = \begin{cases}
 			f_{n + 1}(i) & i \in a_n \\
 			c_n & \text{otherwise}
 		\end{cases}
 	\]
-	where $c_n \in M_n$ is some arbitrary value.
+	where $c_n \in M_n$ is some arbitrary constant value.
 
-	We now take $a = \bigcap_{n < \omega} a_n$ and $[f] \in M$ such that for $n \in a$, $f(n) \in \{ f_i(n) \mid i < \omega \}$.
-	If $a \in U$ then $\Mm \models \Gamma([f])$, then let us assume $a \notin U$, conversely $a^C = \NN \setminus a \in U$.
-	$a^C \cap a_n \in U$ for all $n$ and therefore $a^C \cap a_n \ne \emptyset$.
-	It immediately follows that $\emptyset \in U$, a contradiction.
+	We now take $a = \bigcap_{n < \omega} a_n$, if $a \in U$ then we can define $f \in \prod_{i < \omega} M_i$ such that $\forall n \in a,\ f(n) \in \{ f_i(n) \mid i \in a \}$ and conclude the claim.
+	Otherwise $a \notin U$, then let $[f] \in M$ such that for $n \in a$, $f(n) = f_k(n)$ for the maximal $k < \omega$ such that $n \in a_k$.
+	For any $\Sigma_n$ we get that $\Mm \models \Sigma_n([f])$, therefore $\Mm \models \Gamma([f])$ as well.
+
+	We can also prove the claim using part c by showing that $U$ is not $\sigma$-complete. \\
+	We define $a_n = \omega \setminus \{ n \}$, $U$ is not principal then $\{ n \} \notin U$ and $a_n \in U$.
+	But $\bigcap_{n < \omega} a_n = \emptyset \notin U$.
 \end{proof}
 
 \subquestion{}
-We define $\sigma$-complete ultrafilter $U$ as an ultrafilter such that it is closed to countable intersections. \\
+We define $\sigma$-complete ultrafilter $U$ as an ultrafilter that is closed under countable intersections. \\
 Let $U$ be some $\sigma$-complete ultrafilter, $L = \{ = \}$, $\Mm = {(\NN, =)}^I / U$ for some index set $I$. \\
 We will show that $|M| = \omega$ and deduce that $\Mm$ is not countably saturated.
 \begin{proof}
-	Directly by Łoś theorem and sentence of the form $\varphi_N = \bigwedge_{n < N} \exists x (x \ne c_n)$ we deduce that $|M| \ge \omega$.
+	Let $\varphi_N$ be the sentence that there are at least $N$ unique elements,
+	\[
+		\varphi_N = \exists x_0 \ldots \exists x_{N - 1}\ \left( \bigwedge_{m, n < N} x_n \ne x_m \right)
+	\]
+	$(\NN, =) \models \varphi_N$ for every $N$ as $|\NN|$ is not finite.
+	By Łoś theorem we deduce that $|M| \ge \omega$. \\
 	Define $C_x = {\{ x \}}^I$ the constant function, we will show that for every $[f] \in M$ there is $n < \omega$ such that $[f] = [C_n]$.
 	Note that this is equivalent to the claim that $\{ j < \omega \mid f(j) = n \} \in U$.
-	We will assume otherwise in contradiction, then $a_n = \{ j < \omega \mid f(j) \ne n \}$ is in $U$, and $a_n \cap a_m$ is non-empty for all $n \ne m$.
-	We take $a = \bigcap_{n < \omega} a_n$, $U$ is $\sigma$-complete therefore $a \in U$.
-	It follows that $f(j) \ne n$ for all $j \in I, n < \omega$, a contradiction to $f$ being $I \to \NN$ function.
+	Towards a contradiction, we assume that $a_n = \{ j < \omega \mid f(j) \ne n \} \in U$ for all $n < \omega$.
+	Take $a = \bigcap_{n < \omega} a_n$, $U$ is $\sigma$-complete thus $a \in U$.
+	It follows that $f(j) \ne n$ for all $j \in a, n < \omega$, a contradiction to $f$ being total function.
+
+	It follows that $|M| = \omega$ and $\Mm \cong (\NN, =)$.
+	In particular we can notate $M = \{ m_i \mid i < \omega \}$ and,
+	\[
+		\psi_n(x)
+		= x \ne m_n
+	\]
+	If $\Gamma(x) = \{ \psi_n \mid n < \omega \}$ then $\Gamma$ cannot be realized, and accordingly $\Mm$ is not countably saturated.
 \end{proof}
 
 \subquestion{}
-We will show that if $U$ is an ultrafilter on some indices set $I$ such that $U$ is not $\sigma$-complete and $\langle \Mm_i \mid i \in I \rangle$, \\
+We will show that if $U$ is an ultrafilter on some indices set $I$ such that $U$ is not $\sigma$-complete and $\langle \Mm_i \mid i \in I \rangle$ sequence of models,
 then $\Mm = \prod_{i \in I} \Mm_i / U$ is countably saturated.
 \begin{proof}
 	By $\sigma$-incompleteness we can assume that there is decreasing chain $\langle u_n \mid j < \omega \rangle \subseteq U$ such that $\bigcap_{n < \omega} u_n \notin U$.
@@ -65,23 +82,28 @@ then $\Mm = \prod_{i \in I} \Mm_i / U$ is countably saturated.
 	Let $\Gamma(x)$ be countably realized set of formulas.
 	By countability let us denote $\Gamma(x) = \{ \gamma_n \mid n < \omega \}$.
 	For every $N < \omega$ we also define $\Gamma_N = \{ \gamma_n \mid n < N \}$.
-	Then $\Gamma_N$ is finite set of formulas, and realized by $[f_N] \in M$.
+	Then $\Gamma_N$ is finite set of formulas, by our assumption is realized by some $[f_N] \in M$.
 	We can take $f_N$ such that,
 	\[
-		a_N = \{ j \in I \mid \Mm_j \models \Gamma_N(f_N(j)) \}
+		a_N
+		= \{ j \in I \mid \Mm_j \models \Gamma_N(f_N(j)) \}
 		\subseteq \{ j \in I \mid \Mm_j \models \Gamma_N(f_M(j)) \}
 	\]
-	for $M < N$ by finite intersections.
+	where $M < N$ by finite intersections.
 	The sequence $\langle a_n \mid n < \omega \rangle \subseteq U$ is decreasing.
 	Let us take $U_n = u_n \cap a_n$ for every $n$, clearly $U_n \in U$.
-	Note that for every $i \in I$ there is maximal $n < \omega$ such that $i \in U_n$, and let us define $f(i) = f_n(i)$.
+	Note that for every $i \in I$ there is maximal $n < \omega$ such that $i \in U_n$ as $\bigcap_{n < \omega} U_n = \emptyset$, and let us define $f(i) = f_n(i)$.
 	Indeed $f \in M$ and,
 	\[
 		\Mm \models \gamma_n([f])
 		\iff \{ j \in I \mid \Mm_j \models \gamma_n(f(j)) \} \in U
 		\impliedby \{ j \in I \mid \Mm_j \models \gamma_n(f_n(j)) \} \in U
 	\]
-	but the latter holds directly by the definition of $f$.
+	but the latter holds directly by the definition of $f$, then,
+	\[
+		\Mm \models \Gamma([f])
+	\]
+	as required.
 \end{proof}
 
 \question{}
@@ -100,7 +122,7 @@ We will show that the following are equivalent,
 	Let $D$ be a filter, we define the order $X = \langle \{ D \subseteq F \subseteq \Pp(I) \mid F \text{ is a filter} \}, \subseteq \rangle$.
 	$X$ is clearly not empty as $D \in X$. Let $C \subseteq X$ be a chain, and let $D_C = \bigcup C$.
 	Then $D_C$ is a filter and in particular $D \subseteq D_C$, then $D_C \in X$ and $F \subseteq D_C$ for all $F \in C$.
-	By Zorn's lemma there is maximal element $U_D \in X$, namely $F \subseteq U_D$ for all $F \in X$. \\
+	By Zorn's lemma there is maximal element $U_D \in X$, namely $U_D \subseteq F$ implies that $U_D = F$ for all $F \in X$. \\
 	It reminds to show that maximal filter is an ultrafilter, then let us assume in contradiction that it is not, meaning that there is $A \subseteq I$ such that $A \notin U_D$ as well $I \setminus A \notin U_D$.
 	We can define $U = \langle U_D \cup \{ A \} \rangle$, this is a filter such that $U_D \subsetneq U$, a contradiction to $U_D$ being maximal.
 
@@ -109,11 +131,11 @@ We will show that the following are equivalent,
 	The axiom of choice is being used in the proof at induction step for quantifiers, specifically to get a witness to global quantifiers.
 
 	$2 \implies 1$.
-	Let $A$ be some set, and let us assume toward a contradiction that there is no choice function $A \to \bigcup A$.
+	Let $A$ be some set such that $\emptyset \notin A$, and let us assume toward a contradiction that there is no choice function $A \to \bigcup A$.
 	We define $S \subseteq \Pp(A)$ the set of all subsets of $A$ that do have choice function.
 	In particular $\emptyset \in S$ as $\emptyset \to \bigcup \emptyset = \emptyset$ is witnessed by $\emptyset$.
 
-	Let $B \subseteq S$ and $f : B \to \bigcup B$ choice function, namely $\forall b \in B,\ f(b) \in b$.
+	Let $B \in S$ and $f : B \to \bigcup B$ choice function, namely $\forall b \in B,\ f(b) \in b$.
 	For every $B' \subseteq B$ consider $f' = f \restriction B'$.
 	$f'(b) \in b$ directly by $f$'s definition, then $\rng f' \subseteq \bigcup B'$.
 	We conclude that $B' \in S$, meaning $S$ is closed under subsets.
