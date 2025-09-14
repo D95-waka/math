@@ -223,7 +223,7 @@ We will show that the following are equivalent.
 \question{}
 \subquestion{}
 We will show that if $f : \NN^k \to \NN$ is primitive-recursive function then there is a $\Sigma_1$-formula $\varphi(x_0, \ldots, x_{k - 1}, y)$ defining $f$,
-such that $\PA \vdash \exists \bar{x} \exists y\ \varphi(\bar{x}, y)$.
+such that $\PA \vdash \forall \bar{x} \exists y\ \varphi(\bar{x}, y)$.
 \begin{proof}
 	We defined primitive-recursive functions in such way that they are recursive in particular, and then proved that every recursive function is $\Sigma_1^0$.
 	Let us define $\varphi(\bar{x}, y) = \exists z \psi(\bar{x}, y, z)$ for $\psi \in \Sigma_0$.
@@ -236,17 +236,45 @@ such that $\PA \vdash \exists \bar{x} \exists y\ \varphi(\bar{x}, y)$.
 \subquestion{}
 We will show that the above claim does not hold for general recursive functions.
 \begin{solution}
-	We will find total recursive function $f : \NN \to \NN$ such that for any $\Sigma_1$-formula $\varphi(x, y)$, it fulfills $\PA \not\vdash \forall x \exists y\ \varphi(x, y)$.
+	We will find total recursive function $f : \NN \to \NN$ such that for any $\Sigma_1$-formula $\varphi(x, y)$ such that,
+	\[
+		\hat{\NN} \models \varphi(x, y)
+		\iff f(x) = y
+	\]
+	it holds that $\PA \not\vdash \forall x \exists y\ \varphi(x, y)$.
 
 	In class we defined a variant of Ackerman function $B : \NN^2 \to \NN$.
-	It is clear that in $\hat{\NN}$ the function $B \circ \operatorname{cd}$ is total $\NN \to \NN$ function.
-	We have also shown that $B$ is not primitive-recursive.
+	By our definition for $B$ we get that it is defined for any numerator, in particular $B^{\hat{\NN}}$ is a total function as required.
+	$B$ was also proved to not be primitive-recursive.
 
-	If we show that in other models of $\PA$ the function is not total then we are done.
-	Let us assume towards a contradiction that indeed the claim that $B$ is total is provable in $\PA$, then the claim holds for every model of $\PA$.
-	In particular, consider a non-standard model $\Nn$, meaning that there is $\alpha \in N$ such that there is an infinite decreasing chain of elements of $C \subseteq \Nn$,
-	in which exists $\alpha_1 \in C$ such that $S(\alpha_1) = \alpha$ et cetera.
-	Then $B(\alpha, \alpha)$ is not defined, a contradiction.
+	Let $\varphi \in \sent_{L_{\PA}}$ be a sentence such that,
+	\[
+		\hat{\NN} \models B(x, y) = z
+		\iff \hat{\NN} \models \varphi(x, y, z)
+	\]
+	We will show that,
+	\[
+		\PA \not\vdash \forall x \forall y \exists z\ \varphi(x, y, z)
+	\]
+
+	By the completeness theorem it suffices to find a model $\Nn \models \PA$ such that,
+	\[
+		\Nn \models \lnot \forall x \forall y \exists z\ \varphi(x, y, z)
+		\iff
+		\Nn \models \exists x \exists y \forall z\ \lnot \varphi(x, y, z)
+	\]
+	This is the claim that $B$ is not total in $\Nn$.
+
+	Consider the non-standard model $\Nn \models \PA$ that as for $\langle N, \le^\Nn \rangle$ it holds that,
+	\[
+		\Nn
+		\cong \NN + \QQ \times \ZZ
+	\]
+	$\varphi \in \Sigma_1$ therefore $\varphi = \exists v\ \psi(v, x, y, z)$ for $\psi \in \Sigma_0$.
+	% and let us define the chain $C = \{ (1, 1, n) \mid n \in \ZZ \}$.
+	% Notate $\alpha \in C$ and observe $B(\alpha, \alpha)$, if $B$ is total and $\beta = B(\alpha, \alpha)$, we will show that for any $a \in \Nn$, $a <^\Nn \beta$ in induction.
+	% For the case of $0$ the claim is trivial by $\alpha$'s definition.
+	% If $a <^\Nn \beta$ then $S(a) <^\Nn S(\beta) <^\Nn B(S(\alpha), \alpha) = B(\alpha, \alpha) = \beta$.
 \end{solution}
 
 \question{}
