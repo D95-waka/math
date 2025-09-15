@@ -235,47 +235,37 @@ such that $\PA \vdash \forall \bar{x} \exists y\ \varphi(\bar{x}, y)$.
 
 \subquestion{}
 We will show that the above claim does not hold for general recursive functions.
-\begin{solution}
-	We will find total recursive function $f : \NN \to \NN$ such that for any $\Sigma_1$-formula $\varphi(x, y)$ such that,
+\begin{proof}
+	Let us assume for contradiction that indeed the claim holds for general total recursive functions.
+	Let $\sigma : \NN \to \NN$ be function such that $\sigma(\lceil \varphi \rceil) = \lceil \lnot \varphi \rceil$ and constant otherwise.
+	$\sigma$ is primitive-recursive and total, and by Roger's fixed point theorem there is $e \in \NN$ such that,
 	\[
-		\hat{\NN} \models \varphi(x, y)
-		\iff f(x) = y
+		\forall x,\ U(e, x) = U(\sigma(e), x)
 	\]
-	it holds that $\PA \not\vdash \forall x \exists y\ \varphi(x, y)$.
+	We notate $f : \NN \to \NN$ as the recursive function,
+	\[
+		f(x) = y
+		\iff \psi(x, y),\ e = \lceil \psi \rceil
+	\]
+	then,
+	\[
+		\forall x,\ 
+		U(e, x)
+		= f(x)
+		= 1 \dot{-} f(x)
+		= U(\lceil \lnot \psi \rceil, x)
+	\]
+	then $f$ is nowhere defined,
+	\[
+		\hat{\NN}
+		\not\models \exists x \exists y\ \psi(x, y)
+		\iff \hat{\NN}
+		\models \forall x \forall y\ \lnot \psi(x, y)
+	\]
+	Meaning that $\lnot \psi$ is total recursive relation and by our assumption also provably total.
 
-	In class we defined a variant of Ackerman function $B : \NN^2 \to \NN$.
-	By our definition for $B$ we get that it is defined for any numerator, in particular $B^{\hat{\NN}}$ is a total function as required.
-	$B$ was also proved to not be primitive-recursive.
-
-	Let $\varphi \in \sent_{L_{\PA}}$ be a sentence such that,
-	\[
-		\hat{\NN} \models B(x, y) = z
-		\iff \hat{\NN} \models \varphi(x, y, z)
-	\]
-	We will show that,
-	\[
-		\PA \not\vdash \forall x \forall y \exists z\ \varphi(x, y, z)
-	\]
-
-	By the completeness theorem it suffices to find a model $\Nn \models \PA$ such that,
-	\[
-		\Nn \models \lnot \forall x \forall y \exists z\ \varphi(x, y, z)
-		\iff
-		\Nn \models \exists x \exists y \forall z\ \lnot \varphi(x, y, z)
-	\]
-	This is the claim that $B$ is not total in $\Nn$.
-
-	Consider the non-standard model $\Nn \models \PA$ that as for $\langle N, \le^\Nn \rangle$ it holds that,
-	\[
-		\Nn
-		\cong \NN + \QQ \times \ZZ
-	\]
-	$\varphi \in \Sigma_1$ therefore $\varphi = \exists v\ \psi(v, x, y, z)$ for $\psi \in \Sigma_0$.
-	% and let us define the chain $C = \{ (1, 1, n) \mid n \in \ZZ \}$.
-	% Notate $\alpha \in C$ and observe $B(\alpha, \alpha)$, if $B$ is total and $\beta = B(\alpha, \alpha)$, we will show that for any $a \in \Nn$, $a <^\Nn \beta$ in induction.
-	% For the case of $0$ the claim is trivial by $\alpha$'s definition.
-	% If $a <^\Nn \beta$ then $S(a) <^\Nn S(\beta) <^\Nn B(S(\alpha), \alpha) = B(\alpha, \alpha) = \beta$.
-\end{solution}
+	This is wrong.
+\end{proof}
 
 \question{}
 Assuming that $\Mm \models \PA$, such that $c \in M$ is non-standard, and let us define $N = \bigcup_{n \in \NN} \{ x \in M \mid x \le^\Mm c^n \}$. \\
