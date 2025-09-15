@@ -236,35 +236,37 @@ such that $\PA \vdash \forall \bar{x} \exists y\ \varphi(\bar{x}, y)$.
 \subquestion{}
 We will show that the above claim does not hold for general recursive functions.
 \begin{proof}
-	Let us assume for contradiction that indeed the claim holds for general total recursive functions.
-	Let $\sigma : \NN \to \NN$ be function such that $\sigma(\lceil \varphi \rceil) = \lceil \lnot \varphi \rceil$ and constant otherwise.
-	$\sigma$ is primitive-recursive and total, and by Roger's fixed point theorem there is $e \in \NN$ such that,
+	By defining the recursive function,
 	\[
-		\forall x,\ U(e, x) = U(\sigma(e), x)
+		H(0) = 0,
+		H(n + 1) = S(H(n))
 	\]
-	We notate $f : \NN \to \NN$ as the recursive function,
-	\[
-		f(x) = y
-		\iff \psi(x, y),\ e = \lceil \psi \rceil
-	\]
-	then,
-	\[
-		\forall x,\ 
-		U(e, x)
-		= f(x)
-		= 1 \dot{-} f(x)
-		= U(\lceil \lnot \psi \rceil, x)
-	\]
-	then $f$ is nowhere defined,
+	we deduce that the formula $\varphi(x, y) = \exists \underline{n}\ y = \underline{n} \land n = x$ defines recursive function such that for numerals it is identity.
+	We also know that,
 	\[
 		\hat{\NN}
-		\not\models \exists x \exists y\ \psi(x, y)
-		\iff \hat{\NN}
-		\models \forall x \forall y\ \lnot \psi(x, y)
+		\models \forall x \exists y\ \varphi(x, y)
 	\]
-	Meaning that $\lnot \psi$ is total recursive relation and by our assumption also provably total.
+	namely, in the standard model every element is numeral.
+	Then by completeness,
+	\[
+		\hat{\NN}
+		\vdash \forall x \exists y\ \varphi(x, y)
+	\]
+	If by contradiction,
+	\[
+		\PA
+		\vdash \forall x \exists y\ \varphi(x, y)
+	\]
+	then for a non-standard model $\Nn \models \PA$ and a non-standard element $c \in N$,
+	\[
+		\Nn
+		\vdash \varphi(c)
+	\]
+	meaning that $c$ is standard, a contradiction.
 
-	This is wrong.
+	We found total recursive function $f : \NN \to \NN$ such that for any non-standard model it is not total,
+	then for every such $\varphi(x, y)$ that defines $f$ it is implied that $\PA \not\vdash \forall x \exists y\ \varphi(x, y)$.
 \end{proof}
 
 \question{}
@@ -350,7 +352,9 @@ We will show that if $\sat_{\infty}(X)$ is recursive, then $\sat(X)$ is recursiv
 \begin{proof}
 	We notate $\sat_{< \infty}(X) = \{ \lceil \varphi \rceil \in X \mid \exists \Mm \models \varphi, |M| < \infty \}$ the set of sentences of $X$ that are right in some finite model.
 	$\sat(X) = \sat_{< \infty}(X) \cup \sat_{\infty}(X)$, and we know that finite union of recursive sets is recursive, then it suffices to show that $\sat_{< \infty}(X)$ is recursive set.
-	In the previous course we had shown that there is an embedding between finite models of a countable language and sentences, up to model isomorphism.
+	Suppose that $\lceil \varphi \rceil \in X$ is some sentence, then we can extract the set of symbols used by it recursively (even by a primitive-recursive function).
+	This leads us to the definition of some $L' \subseteq L$ such that $\varphi \in \sent_{L'}$, such that $L'$ is finite.
+	In the previous course we had shown that there is an embedding between finite models of a finite language and sentences, up to model isomorphism.
 	We also saw an algorithm to build such sentences, and can enumerate through it,
 	meaning that we can assume that there is $m : \NN \to \NN$ function such that if $\Mm$ a model of $L$ then exists $i \in \NN$ such that $m(i) = \lceil \varphi \rceil$ for $\Mm \models \varphi$.
 
