@@ -236,37 +236,43 @@ such that $\PA \vdash \forall \bar{x} \exists y\ \varphi(\bar{x}, y)$.
 \subquestion{}
 We will show that the above claim does not hold for general recursive functions.
 \begin{proof}
-	By defining the recursive function,
+	By the lemmas before the first incompleteness theorem we can choose some $\Pi_2$-sentence $\varphi$ such that $\hat{\NN} \models \varphi$ but $\PA \not\vdash \varphi$.
+	Let us assume that $\varphi = \forall x \exists y\ \psi$ for $\psi \in \Sigma_0^0$ by the definition of $\Pi_2$, and define,
 	\[
-		H(0) = 0,
-		H(n + 1) = S(H(n))
+		f(x) = y
+		\iff \exists y\ \psi
 	\]
-	we deduce that the formula $\varphi(x, y) = \exists \underline{n}\ y = \underline{n} \land n = x$ defines recursive function such that for numerals it is identity.
-	We also know that,
+	There is the problem that $\psi$ is not necessarily fulfills the function sentence, namely,
 	\[
-		\hat{\NN}
-		\models \forall x \exists y\ \varphi(x, y)
+		\forall x \exists y (\psi(x, y) \land (\forall y'\ \psi(x, y') \to y = y'))
 	\]
-	namely, in the standard model every element is numeral.
-	Then by completeness,
+	But by using minimization we can define,
 	\[
-		\hat{\NN}
-		\vdash \forall x \exists y\ \varphi(x, y)
+		\psi' = \psi y\ \psi(x, y)
 	\]
-	If by contradiction,
+	such that $\psi$ now doe define a function $f$, and as a $\Sigma_1^0$-formula this function is also recursive.
+	By $\hat{\NN} \models \varphi'$ for modified version of $\varphi$ for $\psi'$, we can also deduce that $f$ is total, but,
+	\[
+		\PA \not\vdash \forall x \exists y\ \psi'(x, y)
+	\]
+	as required.
+
+	Let us assume towards a contradiction that there is $\phi(x, y) \in \Sigma_1$ such that,
+	\[
+		\hat{\NN} \models \forall x \forall y\ \phi(x, y) \leftrightarrow \psi(x, y)
+	\]
+	and that $\PA \vdash \forall x \exists y\ \phi(x, y)$.
+	We can use induction scheme on $x$ with $\exists y\ \phi(x, y) \land \psi(x, y)$, deducing using the function sentence that $\PA \vdash \psi \leftrightarrow \phi$, and therefore,
+	\[
+		\PA \cup \{ \phi \} \vdash \forall x \exists y\ \psi(x, y)
+	\]
+	By the contradiction assumption it follows that,
 	\[
 		\PA
-		\vdash \forall x \exists y\ \varphi(x, y)
+		\vdash \forall x \exists t\ \psi(x, y)
 	\]
-	then for a non-standard model $\Nn \models \PA$ and a non-standard element $c \in N$,
-	\[
-		\Nn
-		\vdash \varphi(c)
-	\]
-	meaning that $c$ is standard, a contradiction.
-
-	We found total recursive function $f : \NN \to \NN$ such that for any non-standard model it is not total,
-	then for every such $\varphi(x, y)$ that defines $f$ it is implied that $\PA \not\vdash \forall x \exists y\ \varphi(x, y)$.
+	Therefore, there is no such $\phi$.
+	TODO Fix this
 \end{proof}
 
 \question{}
@@ -393,7 +399,7 @@ meaning that for every formula $\psi(x_0, \ldots, x_{n - 1})$ there is a quantif
 \begin{proof}
 	The proof is by induction over the structure of the formula.
 	For atomic formulas the claim is trivial, as there are no quantifiers in such formulas.
-	In the same meaner, binary operations and $\lnot$ preserve quantifier-free formulas.
+	In the same manner, binary relations and the unary relation preserve quantifier-free formulas.
 
 	We move to the case of existential quantifiers.
 	Assume that $\varphi(x_0, \ldots, x_{n - 1}) = \exists v\ \psi(v, x_0, \ldots, x_{n - 1})$, for $\psi$ quantifier-free formula.
@@ -404,17 +410,17 @@ meaning that for every formula $\psi(x_0, \ldots, x_{n - 1})$ there is a quantif
 	\]
 	It follows that also,
 	\[
-		\Mm \models \varphi(a_0, \ldots, a_{n - 1}) \to \psi(t^\Mm(a_0, \ldots, a_{n - 1}), a_0, \ldots, a_{n - 1})
+		\Mm \models \varphi(a_0, \ldots, a_{n - 1}) \to \psi(t(a_0, \ldots, a_{n - 1}), a_0, \ldots, a_{n - 1})
 	\]
 	By defining $\varphi' = \psi_t^v$, and the fact that $\bar{a}$ is arbitrary,
 	\[
 		\Mm \models \forall \bar{x} (\varphi \to \varphi')
 	\]
-	It is trivial that $\Mm \models \forall \bar{x} (\varphi' \to \varphi)$ then,
+	Notice that $\Mm \models \forall \bar{x} (\varphi' \to \varphi)$ directly from $\varphi$ and $\varphi'$'s definitions, then,
 	\[
 		\Mm \models \forall \bar{x} (\varphi \leftrightarrow \varphi')
 	\]
-	This holds for any $\Mm \models T$, then by the completeness theorem, $T \vdash \forall \bar{x} (\varphi \leftrightarrow \varphi')$.
+	This holds for any $\Mm \models T$, then by the completeness theorem, $T \vdash \forall \bar{x} (\varphi \leftrightarrow \varphi')$, and $\varphi'$ is quantifier-free as needed.
 \end{proof}
 
 \subquestion{}
@@ -423,21 +429,28 @@ We will show that if $T$ has built-in Skolem functions and $\Mm \models T$, then
 	For any substructure $\Nn \subseteq \Mm$ and quantifier-free closed-sentence $\varphi$, $\Mm \models \varphi \iff \Nn \models \varphi$.
 	This claim was proven in the previous course.
 	We also saw in the last part that for each $\varphi \in \sent_L$ there is $\varphi'$ which is quantifier-free and $T \vdash \varphi \leftrightarrow \varphi'$.
-	In particular if $\varphi \in T$ then $\varphi' \in T$, and defining,
-	\[
-		T'
-		= \{ \varphi' \mid \varphi \in T \}
-	\]
-	We get $T = T'$.
-	It is implied that we can assume without loss of generality that $T$ is quantifier-free, and that $\Nn \models T$.
+	Note that for each $\varphi \in T$ there is such $\varphi' \in T$ as well, meaning that we can define $T' = \{ \varphi' \mid \varphi \in T \}$,
+	such that $\cl_{\vdash} T' = T$, and thus $\Nn \models T'$ and $\Nn \vdash T$.
 
-	In intention to use Tarski-Vaught test,
-	let $\varphi(x_0, \ldots, x_{n - 1}) = \exists v\ \psi(v, x_0, \ldots, x_{n - 1})$ and $a_0, \ldots, a_{n - 1} \in N$.
-	Assume that $\Mm \models \varphi(a_0, \ldots, a_{n - 1})$, and we will find $b \in N$ such that $\Mm \models \psi(b, a_0, \ldots, a_{n - 1})$. \\
-	By the last part, let $\varphi'$ be quantifier-free formula such that $\Mm \models \forall \bar{x} (\varphi \leftrightarrow \varphi')$.
+	In intention to use Tarski-Vaught test let,
+	\[
+		\varphi(x_0, \ldots, x_{n - 1}) = \exists v\ \psi(v, x_0, \ldots, x_{n - 1})
+		\implies \Mm \models \varphi'(a_0, \ldots, a_{n - 1})
+	\]
+	and $a_0, \ldots, a_{n - 1} \in N$.
+	Assume that $\Mm \models \varphi(a_0, \ldots, a_{n - 1})$, we will find $b \in N$ such that $\Mm \models \psi(b, a_0, \ldots, a_{n - 1})$. \\
+	By the last part, let $\varphi'$ be quantifier-free formula such that,
+	\[
+		\Mm \models \forall \bar{x} (\varphi \leftrightarrow \varphi')
+	\]
 	$\Nn \subseteq \Mm$ and $a_0, \ldots, a_{n - 1} \in N$, then $\Nn \models \varphi'(a_0, \ldots, a_{n - 1})$.
-	By out initial assumption $\Nn \models T$, then $\Nn \models \varphi(a_0, \ldots, a_{n - 1}) \iff \Nn \models \exists v\ \psi(v, a_0, \ldots, a_{n - 1})$.
-	Let $b = v^\Nn$ the witness to the sentence, then $b \in N$ and from Tarski-Vaught $\Nn \prec \Mm$.
+	By the last claim $\Nn \models T$, then,
+	\[
+		\Nn \models \forall \bar{x}\ (\varphi \leftrightarrow \varphi')
+		\implies \Nn \models \varphi(a_0, \ldots, a_{n - 1})
+		\iff \Nn \models \exists v\ \psi(v, a_0, \ldots, a_{n - 1})
+	\]
+	Let $b = v^\Nn$ the witness to the last statement, then $b \in N$ and Tarski-Vaught test holds, meaning that $\Nn \prec \Mm$.
 \end{proof}
 
 \subquestion{}
@@ -473,7 +486,7 @@ We will show that for any language $L$ there is some language $L_{\sk} \supseteq
 	\[
 		\Mm \models \exists y\ \varphi(y, y_0, \ldots, y_{n - 1}) \to \varphi(t^\Mm(y_0, \ldots, y_{n - 1}), y_0, \ldots, y_{n - 1})
 	\]
-	and by inverting Modus ponens,
+	and by Modus ponens,
 	\[
 		\Mm \models \exists y\ \varphi(y, y_0, \ldots, y_{n - 1})
 		\implies \Mm \models \varphi(t^\Mm(y_0, \ldots, y_{n - 1}), y_0, \ldots, y_{n - 1})
@@ -481,7 +494,7 @@ We will show that for any language $L$ there is some language $L_{\sk} \supseteq
 	Then $S$ indeed has built-in Skolem functions.
 
 	\textbf{1.}
-	Follows immediately from the last part and \textbf{1}.
+	Follows immediately from the last part (the definition of $T'$) and \textbf{3}.
 
 	\textbf{2.}
 	Let $\Mm$ be some $L$-structure.
@@ -494,19 +507,30 @@ We will show that for any language $L$ there is some language $L_{\sk} \supseteq
 			z & \text{otherwise}
 		\end{cases}
 	\]
-	for $z \in M$ some arbitrary value.
-	By out definition it is clear that $\Mm \models S$.
+	where $z \in M$ some arbitrary value.
+	By our definition it is clear that $\Mm \models S$.
 \end{proof}
 
 \subquestion{}
 We will check if $\PA$ has built-in Skolem functions, and if it has definable built-in Skolem functions.
 \begin{solution}
 	We assume towards a contradiction that $\PA$ has built-in Skolem functions.
-	We know that there is some recursive function that is not primitive-recursive, notate it by $y = b(n) \iff \varphi(y, x)$.
-	This is $\Sigma_1^0$ formula by equivalency to recursive functions, hence $\varphi = \exists z\ \psi(z, y, x)$.
-	It follows from part b that there is quantifier-free formula equivalent to $\varphi$, and therefore it is equivalent to bounded-quantifier formula, then $b$ is primitive-recursive, a contradiction.
+	Let $\varphi(x) \in \Sigma_2$ be some formula such that $\varphi = \exists v\ \psi(v, x)$ for $\psi \in \Pi_1$.
+	Let $\psi'$ be quantifier-free formula, $\varphi' = \exists v\ \psi'$,
+	\[
+		\PA \vdash \forall v \forall x\ (\psi(v) \leftrightarrow \psi'(v))
+	\]
+	Then,
+	\[
+		\PA \vdash \forall x\ (\varphi' \leftrightarrow \varphi)
+		\implies
+		\hat{\NN}
+		\models \forall x\ (\varphi' \leftrightarrow \varphi)
+	\]
+	but $\varphi' \in \Sigma_1$, meaning that $\Sigma_2 \subseteq \Sigma_1^0$, a contradiction to the fact that $\Sigma_2^0 \supsetneq \Sigma_1^0$.
 
 	I want to say that $\PA$ does not has definable Skolem functions, as we can take $\varphi \in \Sigma_3 \setminus \Sigma_2$ and if it were to be definable then $\varphi \in \Sigma_1^0$, which is not possible.
+	TODO this finally
 \end{solution}
 
 \question{}
@@ -596,69 +620,6 @@ We will conclude the finite version of the theorem.
 
 	The finite version of Ramsey's theorem was proved using the compactness theorem in the previous course and will remain as an exercise to the reader.
 	% TODO: Delete this.
-\end{proof}
-
-\question{}
-Suppose that $L$ is a finite relational language. \\
-We will show that $\sat_{\infty}(A)$ is recursive.
-\begin{proof}
-	we denote $L = \{ R_i \mid i < n \}$ for $n \in \NN$, such that $R_i$ is $k_i$-place relation symbol.
-
-	If $\varphi \in \sat_{\infty}(A)$ then there exists quantifier-free $\psi(x_0, \ldots, x_{m - 1})$ such that $\varphi = \forall x_0 \ldots \forall x_{m - 1} \psi$.
-	By $\sat_{\infty}$, $\Mm \models \varphi$ for some model with $|M| = \omega$ without loss of generality using downwards Skolem Löwenheim–Skolem theorem.
-	If we use canonical structure from the proof of the completeness theorem we get that there exist $\Mm' \models \varphi$ with $|M'| < \omega$.
-	More explicitly, it is enough that $|M'| \ge N_{\psi} = \operatorname{FV}(\psi)$.
-
-	Let $\sup \{ k_0, \ldots, k_{n - 1}, N_{\psi} \} \le r \in \NN$ and let,
-	\[
-		\Gamma
-		= \{ R_i(x_0, \ldots, x_{k_i - 1}) \mid i < n \}
-	\]
-	$n$ is finite and so is $L$ then $\Gamma$ is bound as well, and in particular finite.
-	We say that an $L$-structure $\Mm$ with $M \subseteq \NN$ is \textit{$\Gamma$-homogeneous} if for every $R_i(x_0, \ldots, x_{s - 1}) \in \Gamma$,
-	\[
-		\forall a_0 < \cdots < a_{k_i - 1}, b_0 < \cdots < b_{k_i - 1} \in M,\ 
-		\Mm \models R_i(a_0, \ldots, a_{k_i - 1})
-		\iff \Mm \models R_i(b_0, \ldots, b_{k_i - 1})
-	\]
-	Let $f : {[ M ]}^r \to {\{ \FF, \TT \}}^n$ defined by,
-	\[
-		f(\{ a_0 < \cdots < a_{r - 1} \})(i)
-		= R_i^\Mm(a_0, \ldots, a_{k_i - 1})
-	\]
-	Notice that $|{\{ \FF, \TT \}}^n$ is finite and therefore the finite version of Ramsey's theorem holds,
-	there exists $N \in \NN$ such that for every model $\Mm$ with $|M| \ge N$ there is $A \subseteq M, |A| \ge r$ and $f \restriction {[ A ]}^r$ is constant.
-	$L$ does not contain any function or constant symbol, then $A$ can be extended to a sub-model $\Aa \subseteq \Mm$, but,
-	\[
-		\forall a_0 < \cdots < a_{k_i - 1}, b_0 < \cdots < b_{k_i - 1} \in A,\ 
-		f(\{ a_0 < \cdots a_{r - 1} \})
-		= f(\{ b_0 < \cdots b_{r - 1} \})
-	\]
-	Meaning that $\Aa$ is $\Gamma$-homogeneous.
-
-	We assume that $\Mm_0$ is a $\Gamma$-homogeneous structure with $M = [r]$.
-	Let us define,
-	\[
-		\varphi_i
-		= \forall x_0 \ldots \forall x_{r - 1} \forall y_0 \ldots \forall y_{r - 1}\ 
-		\left(\left(\bigwedge_{j + 1 < r} x_j < x_{j + 1} \land y_j < y_{j + 1}\right) \to (R_i(x_0, \ldots, x_{k_i - 1}) \leftrightarrow R_i(y_0, \ldots, y_{k_i - 1}))\right)
-	\]
-	then $\Mm_0 \models \varphi_i$ for all $i < r$ if and only if $\Mm_0$ is $\Gamma$-homogeneous.
-	It follows that being $\Gamma$-homogeneous is embedded to $\operatorname{Th}(\Mm_0)$.
-	By upwards Löwenheim-Skolem theorem there is a model $\Mm_1$ such that $\operatorname{Th}(\Mm_0) = \operatorname{Th}(\Mm_1)$ and $|M_1| = \omega$, in particular $\Mm_1$ is $\Gamma$-homogeneous.
-
-	By the first claim $\psi \in \sat_{\infty}(A) \iff \psi \in \sat_{< \infty}(A)$ and in particular if there exist $\Mm \models \psi$ such that $|M| \ge r$.
-	By the second claim we can assume that $\Mm$ is $\Gamma$-homogeneous, therefore by the third claim there is $\Mm_1 \models \psi$ such that $|M_1| = \NN$ and $\Mm_1$ is $\Gamma$-homogeneous.
-	We deduce that $\psi \in \sat_{\infty}(A)$ if and only if there exists $\Gamma$-homogeneous $\NN$-universe model that thinks $\psi$ is true.
-
-	$\psi \in \sat_{\infty}(A) \iff \psi \in \sat_{< \infty}(A) \iff \exists \Mm \models \psi, |M| = r$, and we know that there is unique sentence $\varphi_{\psi}$ such that,
-	\[
-		\Aa \cong \Bb
-		\iff \Aa, \Bb \models \varphi_{\psi}
-	\]
-	therefore $\psi \in \sat_{\infty}(A) \iff \varphi_{\psi} \models \psi \iff \varphi_{\psi} \vdash \psi \iff \pr(\lceil \varphi_{\psi} \rceil, \lceil \psi \rceil)$.
-
-	From the other hand, if $\psi \notin \sat_{\infty}(A)$
 \end{proof}
 
 \end{document}
