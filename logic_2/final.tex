@@ -14,6 +14,7 @@
 \DeclareMathOperator{\term}{term}
 \DeclareMathOperator{\sk}{Sk}
 \DeclareMathOperator{\FV}{FV}
+\DeclareMathOperator{\con}{Con}
 
 \begin{document}
 \maketitle
@@ -236,43 +237,44 @@ such that $\PA \vdash \forall \bar{x} \exists y\ \varphi(\bar{x}, y)$.
 \subquestion{}
 We will show that the above claim does not hold for general recursive functions.
 \begin{proof}
-	By the lemmas before the first incompleteness theorem we can choose some $\Pi_2$-sentence $\varphi$ such that $\hat{\NN} \models \varphi$ but $\PA \not\vdash \varphi$.
-	Let us assume that $\varphi = \forall x \exists y\ \psi$ for $\psi \in \Sigma_0^0$ by the definition of $\Pi_2$, and define,
+	The second incompleteness theorem states that,
 	\[
-		f(x) = y
-		\iff \exists y\ \psi
+		\PA \not\vdash \con(T)
 	\]
-	There is the problem that $\psi$ is not necessarily fulfills the function sentence, namely,
+	For $T \supseteq \PA$, in particular for $T = \PA \cup \{ \varphi \}$ for some $\varphi \in \sent_{L_{\PA}}$.
+	$\hat{\NN}$ is a model and therefore its theory is complete, meaning that either $S = \operatorname{Th}(\hat{\NN}) \vdash \varphi$ or $S \vdash \lnot \varphi$.
+	Let us define the recursive function $f : \NN \to \NN$ by,
 	\[
-		\forall x \exists y (\psi(x, y) \land (\forall y'\ \psi(x, y') \to y = y'))
+		f(n)
+		= \begin{cases}
+			2 & n = \lceil \varphi \rceil, \varphi \in \sent, S \vdash \varphi \\
+			1 & n = \lceil \varphi \rceil, \varphi \in \sent, S \vdash \lnot \varphi \\
+			0 & \forall \varphi \in \sent, n \ne \lceil \varphi \rceil
+		\end{cases}
 	\]
-	But by using minimization we can define,
-	\[
-		\psi' = \psi y\ \psi(x, y)
-	\]
-	such that $\psi$ now doe define a function $f$, and as a $\Sigma_1^0$-formula this function is also recursive.
-	By $\hat{\NN} \models \varphi'$ for modified version of $\varphi$ for $\psi'$, we can also deduce that $f$ is total, but,
-	\[
-		\PA \not\vdash \forall x \exists y\ \psi'(x, y)
-	\]
-	as required.
+	We know that $n \in \sent$ is recursive, and provability is as well, therefore $f$ is indeed recursive and total in $\hat{\NN}$.
 
-	Let us assume towards a contradiction that there is $\phi(x, y) \in \Sigma_1$ such that,
+	If $\psi(x, y) \in \Sigma_1^0$ is some formula such that,
 	\[
-		\hat{\NN} \models \forall x \forall y\ \phi(x, y) \leftrightarrow \psi(x, y)
+		\hat{\NN}
+		\models f(x) = y \leftrightarrow \psi(x, y)
 	\]
-	and that $\PA \vdash \forall x \exists y\ \phi(x, y)$.
-	We can use induction scheme on $x$ with $\exists y\ \phi(x, y) \land \psi(x, y)$, deducing using the function sentence that $\PA \vdash \psi \leftrightarrow \phi$, and therefore,
+	then,
 	\[
-		\PA \cup \{ \phi \} \vdash \forall x \exists y\ \psi(x, y)
+		\hat{\NN}
+		\models \forall x \exists y\ \psi(x, y)
 	\]
-	By the contradiction assumption it follows that,
+	as we mentioned, but,
 	\[
 		\PA
-		\vdash \forall x \exists t\ \psi(x, y)
+		\not\vdash \forall x \exists y \psi(x, y)
 	\]
-	Therefore, there is no such $\phi$.
-	TODO Fix this
+	otherwise in particular for $x = \lceil \forall z (z = z) \rceil$ we would get,
+	\[
+		\PA
+		\vdash \con(T)
+	\]
+	a direct contradiction to the second incompleteness theorem.
 \end{proof}
 
 \question{}
@@ -529,8 +531,13 @@ We will check if $\PA$ has built-in Skolem functions, and if it has definable bu
 	\]
 	but $\varphi' \in \Sigma_1$, meaning that $\Sigma_2 \subseteq \Sigma_1^0$, a contradiction to the fact that $\Sigma_2^0 \supsetneq \Sigma_1^0$.
 
-	I want to say that $\PA$ does not has definable Skolem functions, as we can take $\varphi \in \Sigma_3 \setminus \Sigma_2$ and if it were to be definable then $\varphi \in \Sigma_1^0$, which is not possible.
-	TODO this finally
+	We say that $\PA$ has definable Skolem functions if for any $\varphi = \exists x\ \psi(x_0, \ldots, x_{n - 1})$ and a model $\Mm \models \PA$,
+	there is $\exists x\ \phi_{\psi}(x, x_0, \ldots, x_{n - 1}) \in \Sigma_1$ such that for any $a_0, \ldots, a_{n - 1} \in M$,
+	\[
+		\Mm \models \varphi(a_0, \ldots, a_{n - 1})
+		\implies \Mm \models \exists x\ (\phi_{\psi}(x, a_0, \ldots, a_{n - 1}) \land \psi(x, a_0, \ldots, a_{n - 1}))
+	.\]
+	TODO complete this
 \end{solution}
 
 \question{}
@@ -552,22 +559,30 @@ We will show that $\val(E)$ is not recursive.
 	Let $\varphi(x_0, \ldots, x_{n - 1})$ be some $L_F$-formula.
 	We knot that $|\sent_L| = \omega \setminus \{ 0 \}$ then there is $f : \sent_L \to \omega$, and let $F_{\varphi} = F_{f(\varphi), \FV(\varphi)}$.
 	By question 8 part c, there is a theory $T$ that has built-in Skolem functions, and $F_{\varphi}$ is a Skolem function of $\varphi$.
-	We denote $\varphi^*(x_0, \ldots, x_{n - 1})$ quantifier-free formula such that,
+	Let $\varphi^*(x_0, \ldots, x_{n - 1})$ be quantifier-free formula such that,
 	\[
 		T \vdash \forall x_0 \ldots \forall x_{n - 1} (\varphi \leftrightarrow \varphi^*)
 	\]
 	such formula exists by question 8 part a.
-	By the proof of part c of the last question we can deduce that $\varphi \mapsto \varphi^*$ is recursive, thus $\varphi \mapsto x_0 \ldots \forall x_{n - 1} (\varphi \leftrightarrow \varphi^*)$ is recursive as well.
-	The proof scheme that witnesses $T \vdash x_0 \ldots \forall x_{n - 1} (\varphi \leftrightarrow \varphi^*)$ uses finite sentences.
-	By $S$'s definition in part c of question 8, we can assume that there is $\varphi' \in \sent_L$ universal sentence that fulfills,
+	By the proof of question 8 part c we can deduce that $\lceil \varphi \rceil \mapsto \lceil \varphi^* \rceil$ is recursive,
+	thus,
+	\[
+		\lceil \varphi \rceil \mapsto \lceil x_0 \ldots \forall x_{n - 1} (\varphi \leftrightarrow \varphi^*) \rceil
+	\]
+	is recursive as well.
+	The proof scheme that witnesses $T \vdash x_0 \ldots \forall x_{n - 1} (\varphi \leftrightarrow \varphi^*)$ uses finite amount of sentences from $S$.
+	The process of finding those sentences is recursive, as it requires to construct those sentences by the given content of $\varphi$.
+	Note that this process requires that $f$ would be recursive, we saw such recursive functions through the course, and assume without loss of generality that indeed $f$ is recursive.
+	Using the recursive map to sentences from $S$, we can assume that there is $\varphi' \in \sent_L$ sentence that fulfills,
 	\[
 		\varphi' \vdash \forall x_0 \ldots \forall x_{n - 1}\ (\varphi \leftrightarrow \varphi^*)
 	\]
-	Or equivalently,
+	Moreover, by question 8 part c we can assume that $\varphi'$ is universal.
+	It follows that,
 	\[
 		\vdash_L \varphi' \to \forall x_0 \ldots \forall x_{n - 1}\ (\varphi \leftrightarrow \varphi^*)
 	\]
-	It follows that if $\psi \in \sent_{L_F}$ then there exists quantifier-free sentence $\psi^*$ and universal sentence $\psi'$ such that,
+	If $\psi \in \sent_{L_F}$ then there exists quantifier-free sentence $\psi^*$ and universal sentence $\psi'$ such that,
 	\[
 		\vdash_L \psi' \to (\psi \leftrightarrow \psi^*)
 		\iff \vdash_L (\psi' \to \psi) \leftrightarrow (\psi' \to \psi^*)
@@ -580,8 +595,8 @@ We will show that $\val(E)$ is not recursive.
 	Finally we can deduce that,
 	\[
 		\vdash_{L_F} \psi
-		\iff \vdash_L \psi' \to \vdash_{L_F} \psi
-		\iff \vdash_L \psi' \to \vdash_{L_F} \psi^*
+		\iff \vdash_L \psi' \to \psi
+		\iff \vdash_L \psi' \to \psi^*
 	\]
 	and $\vdash_L \psi'$ if and only if $\psi' \in \val(E)$, for the same reason stated in the beginning of the proof.
 
@@ -618,8 +633,7 @@ We will conclude the finite version of the theorem.
 	In this case $A$ is defined the same way, but we will show that it witnessing the claim using $r$-tuples instead,
 	if $b_0, \ldots, b_{r - 1} \in A$ then we take $b = \min\{ b_0, \ldots, b_{r - 1} \}$ and $n \in \NN$ such that $a_n = b$, therefore $b_i \ne b \implies b_i \in B_n$, so $f(\{ b_i \mid i < r \}) = k$.
 
-	The finite version of Ramsey's theorem was proved using the compactness theorem in the previous course and will remain as an exercise to the reader.
-	% TODO: Delete this.
+	The finite version of Ramsey's theorem was proved using the compactness theorem in the previous course.
 \end{proof}
 
 \end{document}
