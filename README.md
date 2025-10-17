@@ -49,7 +49,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">הסתיימו</th>
-        <th>74</th>
+        <th>77</th>
     </tr>
     <tr>
         <td><a href="./discrete_mathematics">מתמטיקה דיסקרטית</a></td>
@@ -132,17 +132,13 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>4</td>
     </tr>
     <tr>
-        <th colspan="2">בלמידה</th>
-        <th>3</th>
-    </tr>
-    <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80424">לוגיקה מתמטית 2</a></td>
         <td>2025ב'</td>
         <td>3</td>
     </tr>
     <tr>
-        <th colspan="2">עתידיים</th>
-        <th>24</th>
+        <th colspan="2">בלמידה</th>
+        <th>19</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80616">תורת המודלים 1</a></td>
@@ -165,19 +161,28 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>3</td>
     </tr>
     <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6178">פרספקטיבות חדשות על הוראת מתמטיקה</a></td>
+        <td>2026א'</td>
+        <td>2</td>
+    </tr>
+    <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/03053">תיאוריות בהתפתחות הילד והמתבגר</a></td>
         <td>2026א'</td>
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/15005">חשיבה ביקורתית</a></td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/38373">הסכסוך הישראלי-פלסטיני א'</a></td>
         <td>2026א'</td>
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80756">תורת המספרים האלגבריים</a></td>
-        <td>2026ב'</td>
-        <td>3</td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/3405">יהודי אתיופיה: עבר, הווה ועתיד</a></td>
+        <td>2026א'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <th colspan="2">עתידיים</th>
+        <th>18</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
@@ -187,15 +192,15 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80421">תורת ההסתברות (2)</a></td>
         <td>2026ב'</td>
-        <td>4</td>
+        <td>3</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80824">תורת המודלים 2</a></td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80507">תבניות ריבועיות ומספרים P־אדיים</a></td>
         <td>2026ב'</td>
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80985">חבורות וייטהד</a></td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80824">תורת המודלים 2</a></td>
         <td>2026ב'</td>
         <td>2</td>
     </tr>
@@ -205,7 +210,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">שימוש לטוב/שימוש לרעה בסמים</a></td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/38406">הסכסוך הישראלי-פלסטיני ב'</a></td>
         <td>2026ב'</td>
         <td>2</td>
     </tr>
