@@ -17,19 +17,15 @@ Define,
 	= \exists x_0 \ldots \exists x_n \left( \bigwedge_{i \le n} \lnot P(x_i) \land \bigwedge_{i < j \le n} x_i \ne x_j \right)
 \]
 and let $T = \{ \varphi_n, \psi_n \mid n < \omega \}$. \\
-We will show that $\cl_{\vdash} T$ is $\omega$-categoric.
+We will show that $\cl_{\vdash} T$ is $\omega$-categorical.
 \begin{proof}
-	Let us define the model $\Mm \models T$ such that $M = 2 \times \NN$ and $\langle 0, n \rangle \in P^\Mm$ for $n < \omega$, as well $\langle 0, n \rangle \notin P^\Mm$.
-	It is clear that for any $n$, we can choose $\langle \langle 0, i \rangle \mid i < n \rangle$ as witnesses for $\varphi_n$, and similarly choose $\langle 1, i \rangle$ for $\psi_n$. \\
-	Let $\Nn \models T$ be some countable model, we will show that $\Nn \cong \Mm$.
-	For $n = 0$, $\Nn \models \varphi_n \implies \Nn \models \exists x\ P(x)$, and let $f(0, 0) = x$, and in similar manner $f(1, 0) = y$ for the witness of $\psi_0 = \exists \lnot P(x)$.
-	We use this as a basis for recursive definition of a function $f : M \to N$, it will be required to show in induction over $n$ that we can choose explicitly $x_i$ in $\varphi_n$ for $i < n$. \\
-	Let us assume the induction and recursion step, meaning that $f \restriction 2 \times n$ is defined.
-	$\Nn \models \varphi_{n + 1}$, meaning that there are at lest $n + 1$ elements of $\Nn$ such that they are in $P^\Nn$,
-	by the pigeonhole principle there is at least one element $a \in N$ such that $f(0, k) \ne a$ for $k < n + 1$, then we can define $f(0, n + 1) = a$.
-	This conclude our step, hence there is such function $f$, and by our construction it also holds that $f$ is embedding of $\Mm$ into $\Nn$, but 
-
-	This is all irrelevant, I can just use the set definition of $\Nn$.
+	Let $\Mm \models T$ be some model.
+	It can be proved by direct induction that $|P^\Mm| = \omega$ as well as $|\lnot P^\Mm| = \omega$.
+	Let us construct $f : \omega \to M$ such that $f(n) \in P^\Mm$ for any $n < \omega$.
+	$\Mm \models \varphi_0 \iff \Mm \models \exists x\ P(x)$ then let $f(0)$ be such witness.
+	Let us assume that $f \restriction n$ is defined, then $\Mm \models \varphi_{n + 1}$, then by the pigeonhole principle there is some $a \in \Mm$ such that $a \notin f '' n$, and let $f(n + 1) = a$.
+	For the sake of convenience let us redefine $f$ as $2 \times \omega \to M$ injective function such that $f(0, n)$ is the same as $f(n)$ and $f(1, n) \notin P^\Mm$.
+	By CSB we can assume that $f$ is bijection as well, and by the selection of $\Mm$ as an arbitrary model of $T$ we can deduce that for any $\Mm, \Nn \models T$, $\Mm \cong \Nn$ by composition of functions as was constructed.
 \end{proof}
 
 \question{}
@@ -73,7 +69,7 @@ We will show that $\Th(\NN, +, \cdot)$ has $2^{\aleph_0}$ non-isomorphic countab
 	\[
 		\Mm_A \models \exists p \forall x\ p \cdot x = \underline{p} \cdot x
 	\]
-	when $\underline{p}$ acts as numerator, and $\underline{p} \cdot x$ is abbreviation to $x + \cdots + x$ $p$ times.
+	when $\underline{p}$ acts as numeral, and $\underline{p} \cdot x$ is abbreviation to $x + \cdots + x$ $p$ times.
 	Let us denote this sentence as $\varphi_p$, then,
 	\[
 		\Mm_A \models \{ \varphi_{f(a)} \mid a \in A \}
@@ -88,24 +84,24 @@ We will show that $\Th(\NN, +, \cdot)$ has $2^{\aleph_0}$ non-isomorphic countab
 \question{}
 Let $\kappa \ge \omega$ be some cardinal and let $L$ be some language.
 Let $T$ be a $\kappa$-categorical $L$-theory such that it has no finite models.
-We will show that $T$ is complete.
-\begin{proof}
-	Let us assume for the sake of contradiction that $T$ is incomplete, and let $\varphi \in \sent_L$ be a sentence such that $T_+ = T \cup \{ \varphi \}$ is consistent.
-	Let $T_- = T \cup \{ \lnot \varphi \}$ and let $\Mm_+ \models T_+, \Mm_- \models T_-$ be models witnessing the theories consistency.
-	$|M_+|, |M_-| = |L|$ without loss of generality.
-
-	Why not choose $L = \{ c_{\alpha} \mid \alpha < \delta \}$ for $\kappa < \delta$ and,
+We will show that $T$ can be incomplete.
+\begin{solution}
+	Let $L = \{ c_{\alpha} \mid \alpha < \delta \} \cup \{ P \}$ for $\kappa < \delta$, where $c_{\alpha}$ is a constant symbol and $P$ is unary relation.
 	\[
-		T = \{ c_{\alpha} \ne c_{\beta} \mid \alpha < \beta < \kappa \}
+		T = \{ c_{\alpha} \ne c_{\beta} \mid \alpha < \beta < \delta \} \cup \{ P(c_{\alpha}) \mid \alpha < \delta \}
 	\]
-	If $\Mm \models T$ then $|M| \ge \kappa$ and then let $\kappa < \epsilon < \delta$ be some ordinal, the sentence $\varphi = c_0 = c_{\epsilon}$ is consistent with $T$ and $\lnot \varphi$ as well.
-\end{proof}
+	It follows from the definition of $T$ that if $\Mm \models T$ then $|M| \ge \delta > \kappa$, therefore there are no models of $T$ of cardinality $\kappa$, then the theory is vacuously complete.
+
+	Just take $\kappa = \omega$ and $L$ and $T$ from question 1, we saw that $T$ is $\omega$-categorical and has no finite models.
+	We also know that if $\Mm \models T$ and $|M| > \kappa$ then $|P^\Mm|, |\lnot P^\Mm| \ge \omega$, and therefore it is possible that $|P^\Mm| = |M|$ or $|P^\Mm| < |M|$, then $T$ cannot be complete.
+\end{solution}
 
 \question{}
 Let $T = \Th(\QQ, \le)$ be DLO\@. \\
 We will show that $T$ is not $\kappa$-categorical for some uncountable cardinal $\kappa$.
 \begin{proof}
-	
+	The key here is similar to question 4, we can define $P(x) \iff x \le c$ for some arbitrary value.
+	This is equivalent to the theory of 4 and 1, and we just talked about why this is not necessarily $\kappa$-categorical.
 \end{proof}
 
 \end{document}
