@@ -1,0 +1,252 @@
+\input{../article_base.tex}
+\title{תורת המודלים 1 --- סיכום}
+\setcounter{secnumdepth}{2}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\tableofcontents
+
+\section{שיעור 1 --- 19.10.2025}
+\subsection{רקע}
+שעת קבלה בימי ראשון בשתיים־עשרה.
+יהיו כשישה תרגילים ומטלה מסכמת.
+תורת המודלים היא תחום בלוגיקה שעוסקת בניתוח של תורות ושל מודלים המתקבלים מהם.
+נראה דוגמה למשפט שנובע מתחום זה.
+\begin{example}
+	משפט אקס־גרוטנדיק, הגורס כי אם פונקציה $f : \CC^n \to \CC^n$ כך שכל קורדינטה שלה היא פולינום ב־$n$ משתנים.
+	נניח ש־$f$ חד־חד ערכית, אז $f$ היא גם על.
+\end{example}
+זהו משפט מוזר מאוד ומפתיע.
+הדרך להוכיח אותו היא כזו,
+נניח שיש לנו סדרה של פולינומים כך שהם חד־חד ערכיים ולא על, אז הכישלון שנקבל הוא על־ידי פסוק מסדר ראשון בשפת תורת החוגים $\varphi$ כך ש־$\CC \models \varphi$.
+\[
+	\exists a_0, \ldots, \exists a_{N}\ \forall \bar{x} \forall \bar{y}\ (a_0 x_0 \cdots = a_0 y_0 \cdots) \to \bar{x} = \bar{y}
+	\land \exists \bar{z} \forall \bar{x} \lnot \bigwedge_{i < N} a_0 \bar{x} = z_i
+\]
+נבחין כי מתקיימת העובדה שנוכיח בהמשך,
+\begin{remark}
+	התורה של שדה סגור אלגברית ממציין נתון היא שלמה.
+	בפרט כל שדה סגור אלגברית ממציין 0 מקיים את $\varphi$.
+\end{remark}
+מההערה ושלמות נסיק שכל שדה מספיק סגור אלגברית ממימד מספיק גדול מקיים את $\varphi$.
+בפרט ל־$p$ ראשוני מספיק גדול $\overline{\FF}_p \models \varphi$.
+נסתכל על מקדמים של הפולינום הבעייתי $a_0, \ldots, a_{N}$ ונקבל שהם שייכים ל־$\FF_p[a_0, \ldots, a_{N}] = \tilde{\FF}$ שדה סופי כלשהו.
+נניח ש־$z_{0}, \ldots, z_{n - 1}$ מעידה על הפולינומים האלו, אז,
+\[
+	\tilde{\FF}[z_0, \ldots, z_{n - 1}] = \tilde{\tilde{\FF}} \subseteq \overline{\FF}_p 
+\]
+אז $f \restriction \tilde{\tilde{\FF}}$ חד־חד ערכית ולכן על ולכן $\bar{z}$ מתקבל כסתירה. \\
+הרעיון המגניב הוא שהצלחנו למצוא טענה מאוד מורכבת על־ידי שימוש במודלים שונים מאותו עולם.
+
+בקורס עצמו אנחנו נוכיח טענות בעולם של תורת המודלים, המשפטים המרכזיים הם:
+\begin{itemize}
+	\item משפט Vaught: תהי $T$ תורה בת־מניה שלמה, אז לא יתכן של־$T$ יש בדיוק שני מודלים לא איזומורפיים בני־מניה עד כדי איזומורפיזם
+	\item משפט מורלי (Morley): יהי $\kappa$ מונה לא בן־מניה, $T$ תורה מעל שפה בת־מניה, אז $T$ היא $\aleph_1$־קטגורית אם ורק אם $T$ היא $\kappa$־קטגורית
+\end{itemize}
+
+\subsection{תזכורת למושגים והגדרות}
+\begin{definition}[שפה]
+	אוסף של סימני קבועים יחסים ופונקציות.
+\end{definition}
+\begin{definition}[שמות עצם]
+	שמות עצם הם אובייקט סינטקטי שמורכב מסימני פונקציה קבועים ומשתנים.
+\end{definition}
+\begin{definition}[משתנה חופשי]
+	משתנים חופשיים, נסמן $\varphi(x_0, \ldots, x_{n - 1})$ כאשר המשתנים $x_0, \ldots, x_{n - 1}$ חופשיים ב־$\varphi$. \\
+	נוכל גם לדבר על המשתנים החופשיים של פסוק, ונסמן באופן דומה $t(x_0, \ldots, x_{n - 1})$.
+\end{definition}
+\begin{definition}[פסוק]
+	פסוק הוא נוסחה ללא משתנים חופשיים.
+\end{definition}
+\begin{definition}[השמה]
+	בהינתן נוסחה $\varphi(x_0, \ldots, x_{n - 1})$ ומבנה $\Aa$, $a_0, \ldots, a_{n - 1} \in A$,
+	אז $\Aa \models \varphi(a_0, \ldots, a_{n - 1})$ בהתאם להגדרת האמת והחישוב הרקורסיבית שראינו בקורסים קודמים.
+\end{definition}
+\begin{definition}[הומומורפיזם של מבנים]
+	בהינתן שני מבנים $\Aa, \Bb$ בשפה $L$, אז נסמן פונקציה $f : \Aa \to \Bb$ כפונקציה בין העולמות כך שהיא הומומורפיזם,
+	כלומר היא מכבדת פונקציות קבועים ויחסים במובן הבא,
+	\[
+		\bar{a} \in R^\Aa
+		\implies f(\bar{a}) \in R^\Bb
+	\]
+	שיכון הוא מקרה בו גם הכיוון השני מתקיים. \\
+	איזומורפיזם הוא שיכון שהוא גם על. \\
+	אוטומורפיזם הוא איזומורפיזם בין מבנה לעצמו.
+\end{definition}
+\begin{definition}[תת־מבנה]
+	נסמן תת־מבנה של מבנים על־ידי $\Aa \subseteq \Bb$ אם $\id : \Aa \to \Bb$ שיכון.
+	בפרט הקבוצה $A$ סגורה תחת הפונקציות של $B$ ומכילה את כל הקבועים.
+\end{definition}
+\begin{theorem}[משפט הקומפקטיות]
+	נניח ש־$\Sigma$ קבוצת פסוקים בשפה $L$ כך שלכל $\Sigma_0 \subseteq \Sigma$ סופית היא ספיקה, אז $\Sigma$ ספיקה.
+\end{theorem}
+\begin{definition}[תורה]
+	תורה היא קבוצת פסוקים סגורה למסקנות.
+	תורה $T$ היא עקבית אם $\perp \notin T$, ממשפט השלמות הגדרה זו שקולה לקיום מודל ל־$T$. \\
+	תורה $T$ היא שלמה אם לכל פסוק $\varphi$ מתקיים $\varphi \in T$ או $\lnot \varphi \in T$.
+\end{definition}
+לדוגמה אם $\Aa$ מבנה, אז $\operatorname{Th}(\Aa)$ שלמה.
+\begin{definition}[שקילות]
+	$\Aa \equiv \Bb$ אם $\operatorname{Th}(\Aa) = \operatorname{Th}(\Bb)$ ו־$\Aa \cong \Bb$ אם יש איזומורפיזם.
+	מתקיים $\Aa \cong \Bb \implies \Aa \equiv \Bb$.
+\end{definition}
+\begin{definition}
+	$f : \Aa \to \Bb$ נקראת שיכון אלמנטרי אם לכל נוסחה $\varphi(x_0, \ldots, x_{n - 1})$ ו־$a_0, \ldots, a_{n - 1} \in A$ אז,
+	\[
+		\Aa \models \varphi(a_0, \ldots, a_{n - 1})
+		\iff \Bb \models \varphi(f(a_0), \ldots, f(a_{n - 1}))
+	\]
+	אם $f = \id$ אז נגיד ש־$\Aa \prec \Bb$ תת־מודל אלמנטרי.
+\end{definition}
+\begin{remark}
+	נניח ש־$\langle \Aa_n \mid n < \omega \rangle$ שרשרת מבנים כך ש־$\Aa_n \subseteq \Aa_{n + 1}$,
+	אז יש דרך אחת להגדיר את איחוד המבנים $\Aa_{\omega} = \bigcup_{n < \omega} \Aa_n$ כך ש־$\Aa_n \subseteq \Aa_{\omega}$.
+	נעיר כי גם אם נוסיף את ההנחה ש־$\Aa_n \equiv \Aa_{n + 1}$ לא בהכרח נקבל שגם $\Aa_{\omega} \equiv \Aa_n$. \\
+	לדוגמה עבור $L = \{ \le \}$ ו־$\Aa_n = \{ z \in \ZZ \mid -n \le z \}$ אז $\Aa_{\omega} = \ZZ$ אבל התורות אכן שונות.
+\end{remark}
+\begin{definition}[קטגוריות]
+	נאמר שתורה $T$ היא $\kappa$־קטגורית אם לכל $\Aa, \Bb \models T$ אז מתקיים,
+	\[
+		|A| = |B|
+		\implies \Aa \cong \Bb
+	\]
+\end{definition}
+\begin{remark}
+	סודר $\alpha$ נקרא מונה אם לא קיים $\beta < \alpha$ ופונקציה $f : \beta \to \alpha$ על. \\
+	לכל מונה שונה מ־0 קיים מונה גדול יותר ומינימלי המסומן $\kappa^+$ ומכונה המונה העוקב של $\kappa$. \\
+	נסמן ${(\aleph_0)}^+ = \aleph_0$.
+\end{remark}
+\begin{theorem}
+	נניח ש־$\langle \Aa_n \mid n < \omega \rangle$ כך ש־$\Aa_n \prec \Aa_{n + 1}$ אז $\Aa_n \prec \Aa_{\omega}$.
+\end{theorem}
+\begin{proof}
+	קודם כל נשים לב לעובדה השימושית הבאה, אם $\Mm \prec \Nn \prec \Kk$ אז $\Mm \prec \Kk$.
+	נובע שלכל $n < m$ מתקיים $\Aa_n \prec \Aa_m$.
+	נוכיח את הטענה באינדוקציה על מבנה הנוסחה, לכל $n < \omega$ ולכל $a_0, \ldots, a_{m - 1} \in \Aa_n$ מתקיים,
+	\[
+		\Aa_n \models \psi(a_0, \ldots, a_{m - 1})
+		\Aa_{\omega} \models \psi(a_0, \ldots, a_{m - 1})
+	\]
+	עבור $\psi$ אטומית הטענה נובעת מכך שאלו הם תתי־מבנים.
+	אם הטענה נכונה עבור $\psi$ היא נכונה גם עבור שלילה וכך גם לקשרים הבינאריים. \\
+	נניח ש־$\varphi = \exists x_0\ \psi$ כאשר $\varphi = \varphi(x_1, \ldots, x_{m - 1})$.
+	אם $\Aa_n \models \varphi(a_1, \ldots, a_{m - 1})$ אז $\Aa_n \models \exists x_0\ \psi(x_0, \ldots, a_{m - 1})$ ולכם יש $a_0 \in \Aa_n$ כך שמתקיים $\Aa_n \models \psi(a_0, \ldots, a_{m - 1})$.
+	מהנחת האינדוקציה נקבל שגם $\Aa_{\omega} \models \psi(a_0, \ldots, a_{m - 1})$ ולכן $\Aa_{\omega} \models \exists x_0\ \psi(x_0, a_0, \ldots, a_{m - 1})$. \\
+	בכיוון השני נניח ש־$\Aa_{\omega} \models \exists x_0\ \psi(x_0, a_1, \ldots, a_{m - 1})$.
+	לכן קיים $b \in A_{\omega}$ כך שמתקיים $\Aa_{\psi} \models \psi(b, a_1, \ldots, a_{m - 1})$ ובהתאם קיים $k < \omega$ כלשהו כך ש־$n \le k$ ומתקיים $b \in A_k$.
+	מהנחת האינדוקציה $\Aa_{\omega} \models \psi(b, a_1, \ldots, a_{m - 1})$ ולכן מאינדוקציה $\Aa_k \models \psi(b, a_1, \ldots, a_{m - 1})$ ולבסוף גם,
+	\[
+		\Aa_n \prec \Aa_k \exists x_0\ \psi(x_0, a_1, \ldots, a_{m - 1})
+	\]
+	ונסיק שמתקיים גם,
+	\[
+		\Aa_n \models \exists x_0\ \psi(x_0, a_1, \ldots, a_{m - 1})
+	\]
+	כפי שרצינו.
+\end{proof}
+\begin{theorem}[מבחן טרסקי־ווט]
+	נניח ש־$\Mm \subseteq \Nn$ תת־מבנה כך שלכל נוסחה $\varphi(x, x_0, \ldots, x_{n - 1})$ ופרמטרים $a_0, \ldots, a_{n - 1} \in M$ כך שמתקיים,
+	\[
+		\Nn \models \exists x\ \varphi(x, a_0, \ldots, a_{n - 1})
+		\implies \exists b \in M,\ \Nn \models \varphi(b, a_0, \ldots, a_{n - 1})
+	\]
+	אם ורק אם תקיים $\Mm \prec \Nn$.
+\end{theorem}
+\begin{proof}
+	אם $\Mm \prec \Nn$ ומתקיים,
+	\[
+		\Nn \models \exists x\ \varphi(x, a_0, \ldots, a_{n - 1})
+		\implies \Mm \models \exists x\ \varphi(x, a_0, \ldots, a_{n - 1})
+	\]
+	ולכ קיים $b \in M$ כך שמתקיים $\varphi^\Mm(b, a_0, \ldots, a_{n - 1})$ ולכן בהכרח גם $\Nn \models \varphi(b, a_0, \ldots, a_{n - 1})$.
+
+	נעבור לכיוון השני, ושוב נוכיח באמצעות אינדוקציה על מבנה הנוסחה $\varphi(x_0, \ldots, x_{n - 1})$, שכן $a_0, \ldots, a_{n - 1} \in M$ אז,
+	\[
+		\Mm \models \varphi(a_0, \ldots, a_{n - 1})
+		\iff \Nn \models \varphi(a_0, \ldots, a_{n - 1})
+	\]
+	עבור נוסחות אטומיות וקשרים בינאריים הטענה כמובן טריוויאלית מהגדרה ולכן נניח שמתקיים,
+	\[
+		\varphi = \exists x\ \psi(x, x_1, \ldots, x_{n - 1})
+	\]
+	וכן שמתקיים $\Mm \models \varphi(a_1, \ldots, a_{n - 1})$.
+	לכן,
+	\[
+		\exists b \in M,\ \Mm \models \psi(b, a_1, \ldots, a_{n - 1})
+	\]
+	ולכן $\Nn \models \psi(b, a_1, \ldots, a_{n - 1})$ וכן $\NN \models \varphi(a_1, \ldots, a_{n - 1})$. \\
+	בכיוון השני נניח שמתקיים,
+	\[
+		\Nn \models \exists x\ \psi(x, a_1, \ldots, a_{n - 1})
+	\]
+	אבל אז מטרסקי־ווט נקבל שקיים $b \in M$ כך ש־$\Nn \models \psi(b, a_1, \ldots, a_{n - 1})$ ומהנחת האינדוקציה על $\psi$ נקבל,
+	\[
+		\Mm \models \psi(b, a_1, \ldots, a_{n - 1})
+		\implies \Mm \models \varphi(a_1, \ldots, a_{n - 1})
+	\]
+	וסיימנו את מהלך האינדוקציה.
+\end{proof}
+\begin{corollary}
+	נניח ש־$L = \{ = \}$ ונניח ש־$\Aa \subseteq \Bb$ מבנים אינסופיים בשפה $L$.
+	אז $\Aa \prec \Bb$.
+\end{corollary}
+\begin{proof}
+	נשתמש במבחן טרסקי־ווט (מעכשיו נכתוב גם TV).
+	נניח ש־$a_0, \ldots, a_{n - 1} \in A$ וכן שמתקיים,
+	\[
+		\Bb \models \exists x\ \varphi(a_0, \ldots, a_{n - 1})
+	\]
+	יהי $b \in B$ שמעיד על כך, אם $b \in \{ a_0, \ldots, a_{n - 1} \}$ אז בכל מקרה סיימנו. \\
+	נבחר $c \in A \setminus \{ a_0, \ldots, a_{n - 1} \}$ ונגדיר אוטומורפיזם של $\Bb$ על־ידי,
+	\[
+		f(z)
+		= \begin{cases}
+			c & z = b \\
+			b & z = c \\
+			z & \text{otherwise}
+		\end{cases}
+	\]
+	לכן $f$ אוטומורפיזם ובפרט שיכון אלמנטרי ומתקיים $f(a_i) = a_i$.
+	נסיק שמתקיים,
+	\[
+		\Bb \models \varphi(f(b), f(a_0), \ldots, f(a_{n - 1}))
+	\]
+	ולכן תנאי המבחן חלים.
+\end{proof}
+\begin{corollary}[לוונהיים־סקולם היורד]
+	נניח ש־$\Aa$ הוא $L$־מבנה ו־$\kappa$ מונה כך ש־$\aleph_0 + |L| \le \kappa \le |A|$, אז קיים $\Bb \prec \Aa$ כך ש־$|B| = \kappa$.
+\end{corollary}
+\begin{proof}
+	לכל נוסחה $\varphi(x_0, \ldots, x_n)$ נגדיר פונקציה $F_{\varphi} : A^n \to A$ על־ידי,
+	\[
+		F_{\varphi}(a_0, \ldots, a_n)
+		= \begin{cases}
+			b & \Aa \models \varphi(b, a_1, \ldots, a_n) \\
+			c & \Aa \models \lnot \exists x\ \varphi(x, a_1, \ldots, a_n)
+		\end{cases}
+	\]
+	עבור ערך שרירותי $c$.
+	עתה, תהי $X \subseteq A$ כך ש־$|X| = \kappa$, נגדיר,
+	\[
+		X_0 = X,
+		X_{n + 1} = \{ F_{\varphi}(a_1, \ldots, a_m) \mid a_1, \ldots, a_m \in X_n,\ \varphi \in \operatorname{form} \} \cup X_n
+	\]
+	לכל $n$, אז $|X_{n + 1}| = \kappa$ תמיד.
+	נסמן $B = \bigcup_{n < \omega} X_n$, אז,
+	\[
+		\kappa \le |B| \le \kappa + \aleph_0 = \kappa
+	\]
+	מתקיים $\Bb \subseteq \Aa$ כי אם $F$ סימן פונקציה ו־$\bar{c} \in B^n$ אז $F(\bar{c}) \in B$ כי הוא העדות היחידה לנוסחה $F(\bar{c}) = x$.
+	בהתאם $\Bb \subseteq \Aa$ מקיים את TV ישירות מהבניה.
+	אם $b_1, \ldots, b_n \in B$ ו־$\varphi$ נוסחה אז יש $b_1, \ldots, b_n \in X_m$, העדות ל־TV תהיה ב־$B \supseteq X_{m + 1}$.
+\end{proof}
+
+\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
+
+\end{document}

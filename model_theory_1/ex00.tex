@@ -1,0 +1,111 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Solution to Exercise 0 --- Model Theory (1), 80616}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+Let $L = \{ P \}$ a language where $P$ is unary relation.
+Define,
+\[
+	\varphi_n
+	= \exists x_0 \ldots \exists x_n \left( \bigwedge_{i \le n} P(x_i) \land \bigwedge_{i < j \le n} x_i \ne x_j \right),
+	\quad
+	\psi_n
+	= \exists x_0 \ldots \exists x_n \left( \bigwedge_{i \le n} \lnot P(x_i) \land \bigwedge_{i < j \le n} x_i \ne x_j \right)
+\]
+and let $T = \{ \varphi_n, \psi_n \mid n < \omega \}$. \\
+We will show that $\cl_{\vdash} T$ is $\omega$-categoric.
+\begin{proof}
+	Let us define the model $\Mm \models T$ such that $M = 2 \times \NN$ and $\langle 0, n \rangle \in P^\Mm$ for $n < \omega$, as well $\langle 0, n \rangle \notin P^\Mm$.
+	It is clear that for any $n$, we can choose $\langle \langle 0, i \rangle \mid i < n \rangle$ as witnesses for $\varphi_n$, and similarly choose $\langle 1, i \rangle$ for $\psi_n$. \\
+	Let $\Nn \models T$ be some countable model, we will show that $\Nn \cong \Mm$.
+	For $n = 0$, $\Nn \models \varphi_n \implies \Nn \models \exists x\ P(x)$, and let $f(0, 0) = x$, and in similar manner $f(1, 0) = y$ for the witness of $\psi_0 = \exists \lnot P(x)$.
+	We use this as a basis for recursive definition of a function $f : M \to N$, it will be required to show in induction over $n$ that we can choose explicitly $x_i$ in $\varphi_n$ for $i < n$. \\
+	Let us assume the induction and recursion step, meaning that $f \restriction 2 \times n$ is defined.
+	$\Nn \models \varphi_{n + 1}$, meaning that there are at lest $n + 1$ elements of $\Nn$ such that they are in $P^\Nn$,
+	by the pigeonhole principle there is at least one element $a \in N$ such that $f(0, k) \ne a$ for $k < n + 1$, then we can define $f(0, n + 1) = a$.
+	This conclude our step, hence there is such function $f$, and by our construction it also holds that $f$ is embedding of $\Mm$ into $\Nn$, but 
+
+	This is all irrelevant, I can just use the set definition of $\Nn$.
+\end{proof}
+
+\question{}
+Let $L = \{ c_n \mid n < \omega \}$ be language consists of constant symbols.
+Let us define the theory $T = \{ c_i \ne c_j \mid i < j < \omega \}$. \\
+We will show that there are countably many non-isomorphic countable models of $T$, and that $T$ is complete.
+\begin{proof}
+	Let us define the model $\Mm_n$ such that $M = \omega$ and,
+	\[
+		c_i^\Mm = i + n
+	\]
+	for any $i < j < \omega$,
+	\[
+		c_i^\Mm
+		= i + n
+		\ne j + n
+		= c_j^\Mm
+	\]
+	therefore $\Mm_n \models T$.
+	$\Mm_n \models k \ne c_i$ for all $i < \omega$, in particular $\Mm_n \models \exists x\ x \ne c_i$.
+	It is implied that also,
+	\[
+		\Mm_n
+		\models \exists x_0 \ldots \exists x_{k - 1} \left( \bigwedge_{i < j < k} x_i \ne x_j \land x_i \ne c_l \right)
+		= \varphi_l^k
+	\]
+	for all $l < \omega$.
+	Finally, $\Mm_n \not\models \varphi_l^k$ for any $k > n$, we deduce that $\Mm_n \not\cong \Mm_m$ for any $n \ne m$.
+
+	We move to show that $T$ is complete.
+	Let us assume toward a contradiction that $\varphi$ is a sentence such that $\varphi \notin T$ and $T \cup \{ \varphi \}$ is consistent.
+	By construction of Henkin models we can deduce that $\Mm_0 \models \varphi$, but $\Mm_0$ is minimal, namely if $\Nn \models T$ then $\Mm_0 \subseteq \Nn$,
+	then by definition $T \models \varphi$, a contradiction.
+\end{proof}
+
+\question{}
+We will show that $\Th(\NN, +, \cdot)$ has $2^{\aleph_0}$ non-isomorphic countable models.
+\begin{proof}
+	Let $f : \omega \to P$ be the map between number and its respective prime in the order induced from $\NN$, namely $f(0) = 2, f(1) = 3, \ldots$.
+	assuming that $A \subseteq \omega$ is some set, we define $\Mm_A = (\cl_{+, \cdot}(f(A)), +, \cdot)$.
+	\[
+		\Mm_A \models \exists p \forall x\ p \cdot x = \underline{p} \cdot x
+	\]
+	when $\underline{p}$ acts as numerator, and $\underline{p} \cdot x$ is abbreviation to $x + \cdots + x$ $p$ times.
+	Let us denote this sentence as $\varphi_p$, then,
+	\[
+		\Mm_A \models \{ \varphi_{f(a)} \mid a \in A \}
+	\]
+	as well,
+	\[
+		\Mm_A \not\models \{ \varphi_q \mid q \notin \cl_+ A \}
+	\]
+	Therefore if $A, B \subseteq \omega$ and $A \ne B$ then $\Mm_A \not\cong \Mm_B$, thus there are $|\Pp(\omega)|$ non-isomorphic countable models.
+\end{proof}
+
+\question{}
+Let $\kappa \ge \omega$ be some cardinal and let $L$ be some language.
+Let $T$ be a $\kappa$-categorical $L$-theory such that it has no finite models.
+We will show that $T$ is complete.
+\begin{proof}
+	Let us assume for the sake of contradiction that $T$ is incomplete, and let $\varphi \in \sent_L$ be a sentence such that $T_+ = T \cup \{ \varphi \}$ is consistent.
+	Let $T_- = T \cup \{ \lnot \varphi \}$ and let $\Mm_+ \models T_+, \Mm_- \models T_-$ be models witnessing the theories consistency.
+	$|M_+|, |M_-| = |L|$ without loss of generality.
+
+	Why not choose $L = \{ c_{\alpha} \mid \alpha < \delta \}$ for $\kappa < \delta$ and,
+	\[
+		T = \{ c_{\alpha} \ne c_{\beta} \mid \alpha < \beta < \kappa \}
+	\]
+	If $\Mm \models T$ then $|M| \ge \kappa$ and then let $\kappa < \epsilon < \delta$ be some ordinal, the sentence $\varphi = c_0 = c_{\epsilon}$ is consistent with $T$ and $\lnot \varphi$ as well.
+\end{proof}
+
+\question{}
+Let $T = \Th(\QQ, \le)$ be DLO\@. \\
+We will show that $T$ is not $\kappa$-categorical for some uncountable cardinal $\kappa$.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}
