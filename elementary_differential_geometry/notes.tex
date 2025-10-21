@@ -83,14 +83,211 @@
 		\item חד־חד ערכיות ברכיב השני: לכל $P, Q \in E$ קיים $v \in V$ יחיד כך שמתקיים $P + v = Q$, נסמן $v = \overrightarrow{P Q}$
 	\end{enumerate}
 \end{definition}
-\begin{example}
-	אם $V$ מרחב וקטורי כלשהו, אז $(V, V, +)$ הוא מרחב אפיני.
-\end{example}
+\begin{notation}
+	נסמן את ההשמה החלקית של $t$ על־ידי $t_P$ עבור $P \in E$ נתונה, כלומר,
+	\[
+		t_P(v)
+		= t(P, v)
+		= P + v
+	\]
+\end{notation}
 \begin{example}
 	יהיו $I \subseteq \RR$ קטע ו־$f : I \to \RR$ רציפה. \\
 	נסמן $E = \{ F : I \to \RR \mid F' = f \}$ וכן $V = \RR$, ולבסוף גם $(F, c) \mapsto F + c$. \\
 	אז זהו מרחב אפיני, והמימד שלו הוא בדיוק 1.
 \end{example}
+
+\section{שיעור 2 --- 21.10.2025}
+\subsection{מרחבים אפיניים --- המשך}
+נמשיך לראות דוגמות למרחבים אפיניים.
+\begin{example}
+	נבחר את,
+	\[
+		E = \{ (x^1, \ldots, x^n) \in \FF^n \mid x^1 + \cdots + x^n = 1 \}
+	\]
+	יחד עם,
+	\[
+		V = \{ (\xi^1, \ldots, \xi^n) \in \FF^n \mid \xi^1 + \cdots + \xi^n = 0 \}
+	\]
+	ופונקציית ההזזה,
+	\[
+		t(x, \xi)
+		= x + \xi
+		= (x^1 + \xi^1, \ldots, x^n + \xi^n)
+	\]
+	זהו מרחב אפיני, ההוכחה שזהו המצב מושארת לקורא.
+\end{example}
+\begin{example}
+	אם $V$ מרחב וקטורי מעל $\FF$ אז $(V, V, t)$ עבור $t : V \times V \to V$ המוגדרת על־ידי סכום, הוא מרחב אפיני.
+\end{example}
+בהינתן מרחב אפיני אנו יכולים לבנות פונקציה $v : E \times E \to V$ המסומנת על־ידי $v(P, Q) = Q - P$, היא הפונקציה שמתאימה לשתי נקודות את הווקטור היחיד שמקיים $P + w = Q$.
+זוהי הפונקציה שמקיימת את התכונה השלישית של הגדרת המרחב האפיני, ובזמן שהיא שוברת באיזשהו מקום את הסימטריה שבין הנקודות, היא פותחת פתח לדיון אודות הרעיון של וקטורים.
+\begin{proposition}[תכונות של פונקציית ההפרש]
+	אם $v : E \times E \to V$ פונקציית ההפרש אז מתקיים,
+	\begin{enumerate}
+		\item לכל $P, Q, R \in E$ מתקיים $(Q - P) + (R - Q) = R - P$
+		\item לכל $P \in E$ הפונקציה $v_P : E \to V$ המוגדרת על־ידי $v_P(Q) = Q - P = v(P, Q)$ היא פונקציה חד־חד ערכית ועל
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item ישירות מאקסיומות מרחב אפיני,
+		\[
+			P + ((Q - P) + (R - Q))
+			= (P + (Q - P)) + (R - Q)
+			= Q + (R - Q)
+			= R
+		\]
+		\item עבור $w \in V$ תהי $Q = P + w$ אז,
+			\[
+				v_P(Q)
+				= Q - P
+				= v
+			\]
+			ולכן הפונקציה היא על.
+			נניח ש־$v_P(Q) = v_P(R)$ עבור $R \in E$, אז,
+			\[
+				Q - P
+				= R - P
+				\implies Q = P + (Q - P)
+				= P + (R - P)
+				= R
+			\]
+			וקיבלנו חד־חד ערכיות.
+			\qedhere
+	\end{enumerate}
+\end{proof}
+\begin{proposition}
+	עבור $P \in E$ הפונקציות $v_P$ ו־$t_P$ הן הופכיות אחת לשנייה.
+\end{proposition}
+\begin{proof}
+	\[
+		E \overset{v_P}{\mapsto} V
+		\overset{t_P}{\mapsto} E
+	\]
+	לכל $Q \in E$ מתקיים,
+	\[
+		Q
+		\mapsto Q - P
+		\mapsto P + (Q - P)
+		= Q
+	\]
+	וכן,
+	\[
+		V \overset{t_P}{\mapsto} E
+		\overset{v_P}{\mapsto} V
+	\]
+	ומתקיים,
+	\[
+		v
+		\mapsto P + v
+		\mapsto (P + v) - P
+		= v
+	\]
+\end{proof}
+עתה אנו רוצים להגדיר מרחב וקטורי מעל המרחב האפיני שלנו, נבחן את $E \times E$ ונמפה את הנקודות ל־$V \times V$ על־ידי שימוש ב־$v_P \times v_P$.
+נבחן את,
+\[
+	E \times E
+	\xrightarrow{v_P \times v_P} V \times V
+	\xrightarrow{+} V
+	\xrightarrow{t_P} E
+	\xleftarrow{+} E \times E
+\]
+כלומר, נבחן את המיפוי,
+\[
+	(Q, R)
+	\mapsto (Q - P, R - P)
+	\overset{+}{\mapsto}  (Q - P) + (R - P)
+	\overset{t_P}{\leftarrow} P + (Q - P) + (R - P)
+\]
+את המבנה הזה נהוג לכנות $E_P = (E, P, +_P, \cdot_P)$ וזהו אכן מרחב וקטורי.
+
+\subsection{תתי־מרחבים אפיניים}
+\begin{definition}[תת־מרחב אפיני]
+	יהי מרחב אפיני $(E, V)$.
+	קבוצה $L \subseteq E$ תיקרא תת־מרחב אפיני אם $L = \emptyset$ או שקיימים $P \in L$ ו־$W \le V$ כך שמתקיים,
+	\[
+		L
+		= P + W
+		= \{ P + w \mid w \in W \}
+	\]
+	נקרא גם יריעה אפינית או יריעה לינארית, ולמעשה נשתמש בשמות אלה יותר.
+\end{definition}
+\begin{example}
+	נבחן את $E = \RR^2$ ונגדיר את,
+	\[
+		L = \{ (x, y) \in \RR^2 \mid x + y = 1 \}
+	\]
+	נבחין כי $L$ הוא לא תת־מרחב של המרחב הלינארי $E$, אך אנו לא בוחנים את $E$ ואת $L$ כמרחבים לינאריים, אלא כמרחבים אפיניים.
+	במקרה זה אם נבחר את $W = \Sp\{ (1, -1) \} = \{ (x, y) \in \RR^2 \mid x + y = 0 \} \le \RR^2$ וכן את $P = (0, 1)$ אז נקבל $L = P + W$.
+\end{example}
+\begin{remark}
+	אם $L = P + W$ תת־מרחב אפיני, אז,
+	\[
+		W
+		= L - P
+		= \{ Q - P \mid Q \in L \}
+	\]
+	בהתאם גם $Q \in L \implies Q = P + w$ עבור $w \in W$ כלשהו, נובע ש־$Q - P = w \in W$.
+\end{remark}
+\begin{theorem}[יחידות תת־מרחב לינארי פורס]
+	$P + W = Q + W'$ עבור $P, Q \in E$ ו־$W, W' \le V$ אם ורק אם $W = W'$ ו־$Q - P \in W$.
+\end{theorem}
+ההוכחה מושארת במסגרת התרגילים הבאים.
+\begin{exercise}
+	הוכיחו כי $P + W = Q + W$ אם ורק אם $Q - P \in W$.
+\end{exercise}
+\begin{exercise}
+	הוכיחו כי אם $R + W = R + W'$ אז נובע ש־$W = W'$.
+\end{exercise}
+\begin{definition}[מרחב משיק]
+	$W = W(L)$ נקרא מרחב הכיוונים או המרחב המשיק של $L$. \\
+	בהתאם נסמן $\dim_{\FF} L = \dim_{\FF} W$ כמימד תת־המרחב.
+\end{definition}
+\begin{exercise}
+	הוכיחו כי חיתוך של תתי־יריעות הוא תת־יריעה.
+\end{exercise}
+\begin{definition}
+	אם $S \subseteq E$ קבוצה של נקודות, אז נאמר ש־$L$ הוא תת־היריעה האפינית הנוצרת על־ידי $S$ אם $L$ הוא היריעה המינימלית במימדה המכילה את כלל הנקודות.
+\end{definition}
+\begin{example}
+	אם $E = \RR^2$ אז תת־היריעה הנוצרת על־ידי $\{ (0, 0) \}$ היא היריעה $\{ (0, 0) \}$, תת־היריעה הנוצרת על־ידי $\{ (0, 1), (1, 0) \}$ היא היריעה $L = \{ (x, y) \in \RR^2 \mid x + y = 0 \}$.
+\end{example}
+\begin{definition}
+	קבוצה של נקודות תיקרא בלתי־תלויה אפינית אם אין נקודה ששייכת למרחב האפיני שנוצר על־ידי יתר הנקודות.
+\end{definition}
+\begin{example}
+	במרחב $\RR^3$ הקבוצות הבאות בלתי־תלויות אפינית:
+	\[
+		\{ (0, 1, 0) \},
+		\quad
+		\{ (0, 1, 0), (1, 0, 0) \},
+		\quad
+		\{ (0, 1, 0), (1, 0, 0), (0, 0, 1) \}
+	\]
+	אך לא יכול להיות שתהיה קבוצה בגודל $4$ כזו אם הנקודות הן לא קולינאריות.
+\end{example}
+\begin{theorem}
+	יהי $(E, V)$ מרחב אפיני.
+	תהי $(P_1, \ldots, P_r)$ סדרת נקודות ב־$E$ ותהי $(\lambda^1, \ldots, \lambda^n)$ סדרת סקלרים ב־$\FF$ עם התכונה ש־$\lambda^1 + \cdots + \lambda^n = 1$.
+	אז לכל $P_0, P_0' \in E$ מתקיים,
+	\[
+		P_0 + \lambda^1 (P_1 - P_0) + \lambda^2 (P_2 - P_0) + \cdots + \lambda^r (P_r - P_0)
+		= P_0' + \lambda^1 (P_1 - P_0') + \lambda^2 (P_2 - P_0') + \cdots + \lambda^r (P_r - P_0')
+	\]
+\end{theorem}
+\begin{proof}
+	\begin{align*}
+		& P_0 + \lambda^1 (P_1 - P_0) + \lambda^2 (P_2 - P_0) + \cdots + \lambda^r (P_r - P_0) \\
+		= & P_0' + (P_0 - P_0') + \lambda^1 ((P_1 - P_0') + (P_0' - P_0)) + \cdots + \lambda^r ((P_r - P_0') + (P_0' - P_0)) \\
+		= & P_0' + (P_0 - P_0') + (\lambda^1 + \cdots + \lambda^r) (P_0' - P_0) + \lambda^1 (P_1 - P_0') + \cdots + \lambda^r (P_r - P_0')
+	\end{align*}
+\end{proof}
+\begin{notation}
+	נסמן את הנקודה היחידה הזו שאיננה תלויה בראשית בסימון $\lambda^1 P_1 + \cdots + \lambda^r P_r$. \\
+	זה נקרא צירוף אפיני והוא התחליף שלנו לצירופים לינאריים, והוא אף סגור להם.
+\end{notation}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
