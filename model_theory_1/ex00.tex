@@ -69,32 +69,23 @@ We will show that $T = \Th(\NN, +, \cdot)$ has $2^{\aleph_0}$ non-isomorphic cou
 		\varphi_{n}(x) = \forall y\ x \cdot y = \overbrace{y + \cdots + y}^{\text{$n$ times}}
 	\]
 	If $\Mm \models T$ then we denote by $\underline{n}$ the single element of $M$ that fulfills $\varphi_{n}$. \\
-	By the fact that $\exists x\ \varphi_n(x) \in T$ it follows that $\{ \underline{n} \mid n < \omega \} \subseteq M$ for any such model.
+	By the fact that $\exists x\ \varphi_n(x) \in T$ it follows that $\{ \underline{n} \mid n < \omega \} \subseteq M$ for any such model. \\
+	We also denote by $x \mid y$ the formula $\exists z\ x \cdot z = y$.
 
-	Let us define an explicit model of $T$, $M = \NN(\mu_n)$ where $n \in \NN$ and $\mu_n$ is primitive root of unity of order $n$, namely,
+	Let $P \subseteq \NN$ be the set of prime numerals, namely $\varphi(x) = \forall y,\ (y \mid x \to (y = x \lor y = \underline{1}))$.
+	We add new constant symbol $c$ to the language of $T$, and let $P' \subseteq P$ be some infinite set of primes.
+	Let us define a new theory,
 	\[
-		\Mm \models (\forall m < n,\ \mu_n^m \ne \underline{1}) \land \mu_n^n = \underline{1}
+		T' = T \cup \{ \underline{p} \mid c \mid p \in P' \} \cup \{ \underline{p} \nmid c \mid p \notin P' \}
 	\]
-	when power is notation for repeated use of $\cdot$ symbol.
-	This is a first-order sentence with parameters. \\
-	This cannot work as this sentence is false in $T$.
+	For any $T_0' \subseteq T'$ finite, either $T_0' \subseteq T$ and satisfiable or $\{ c \mid \underline{p} \mid p \in P_0' \} \in T_0'$ for some finite $P_0' \subseteq P'$,
+	and then $\NN \models \prod_{p \in P_0'} \underline{p}$.
+	From the compactness theorem we conclude that $T'$ is satisfiable and let $\Mm_{P'}' \models T'$ be a witness.
+	We can now remove the constant symbol $c$ and get a model $\Mm_{P'} \models T$.
 
-	Maybe using vector spaces over $\QQ$?
-	We first need to prove that $\QQ \models T$.
-	But $\NN \models \lnot \exists x, x \cdot x = \underline{2}$.
-
-	Let $\epsilon_0 = \omega$ and $\epsilon_{n + 1} = \Pp(\epsilon_n)$, this generates a recursive sequence of elements of different cardinality such that they are all infinite.
-	This won't work as well.
-
-	Last try, let us define $M = 2 \times \omega$ and let $\{ n \} \times \omega$ act as the given model $(\NN, +, \cdot)$ within its domain, for $n \in 2$.
-	$T \models \forall x, y,\ (x + y = y + x \land x \cdot y = y \cdot x)$ then it suffices to define the operations $\langle 0, n \rangle + \langle 1, m \rangle$ and $\langle 0, n \rangle \cdot \langle 1, m \rangle$.
-	Let $f : \omega^2 \to \omega$ be some bilinear form, and define the function symbols such that,
-	\[
-		\langle 0, n \rangle + \langle 1, m \rangle
-		= \langle 1, f(n, m) \rangle
-	\]
-	The dot product symbol is defined by decomposition to plus symbols chain in $\{ 1 \} \times \NN$.
-	Consider the model countable $\Mm_f = (M, +, \cdot)$ as defined, we claim that $\Mm \models T$.
+	By downwards Löwenheim Skolem theorem we can assume that $|M_{P'}| = \omega$ for any $P' \subseteq P$.
+	Let us assume that $|\{ \Mm_{P'} \mid P' \subseteq P, |P'| = \omega \}| < 2^{\omega}$, then there must be model $\Nn$ such that it has non-countable non-standard elements, in contradiction to being countable.
+	Then $|\{ \Mm_{P'} \mid P' \subseteq P, |P'| = \omega \}| \ge 2^{\omega}$.
 \end{proof}
 
 \question{}
@@ -104,20 +95,29 @@ We will show that $T$ can be incomplete.
 \begin{solution}
 	Let $L = \{ c_{\alpha} \mid \alpha < \delta \} \cup \{ P \}$ for $\kappa < \delta$, where $c_{\alpha}$ is a constant symbol and $P$ is unary relation.
 	\[
-		T = \{ c_{\alpha} \ne c_{\beta} \mid \alpha < \beta < \delta \} \cup \{ P(c_{\alpha}) \mid \alpha < \delta \}
+		T = \{ c_{\alpha} \ne c_{\beta} \mid \alpha < \beta < \delta \}
 	\]
-	It follows from the definition of $T$ that if $\Mm \models T$ then $|M| \ge \delta > \kappa$, therefore there are no models of $T$ of cardinality $\kappa$, then the theory is vacuously complete.
-
-	Just take $\kappa = \omega$ and $L$ and $T$ from question 1, we saw that $T$ is $\omega$-categorical and has no finite models.
-	We also know that if $\Mm \models T$ and $|M| > \kappa$ then $|P^\Mm|, |\lnot P^\Mm| \ge \omega$, and therefore it is possible that $|P^\Mm| = |M|$ or $|P^\Mm| < |M|$, then $T$ cannot be complete.
+	It follows from the definition of $T$ that if $\Mm \models T$ then $|M| \ge \delta > \kappa$, therefore there are no models of $T$ of cardinality $\kappa$, then the theory is vacuously $\kappa$-categorical.
+	$T$ is not complete, as $P(c_0) \notin T$ as well $\lnot P(c_0) \notin T$.
 \end{solution}
 
 \question{}
 Let $T = \Th(\QQ, \le)$ be DLO\@. \\
 We will show that $T$ is not $\kappa$-categorical for some uncountable cardinal $\kappa$.
 \begin{proof}
-	The key here is similar to question 4, we can define $P(x) \iff x \le c$ for some arbitrary value.
-	This is equivalent to the theory of 4 and 1, and we just talked about why this is not necessarily $\kappa$-categorical.
+	Define $(\RR, \le)$ and $(\RR + \QQ, \le)$, these are both models of DLO, and let us assume that $f : \RR + \QQ \to \RR$ is model isomorphism and thus also an order isomorphism.
+	Let $y = f(\langle 1, 0 \rangle)$, then,
+	\[
+		|\{ x \ge y \mid x \in \RR \}|
+		= 2^{\omega}
+	\]
+	but
+	\[
+		|\{ f^{-1}(x) \ge^{\RR + \QQ} \langle 1, 0 \rangle \mid x \in \RR \}|
+		\le |\QQ|
+		= \omega
+	\]
+	a contradiction, then $(\RR, \le) \not\cong (\RR + \QQ, \le)$.
 \end{proof}
 
 \end{document}
