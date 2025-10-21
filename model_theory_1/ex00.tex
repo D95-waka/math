@@ -62,23 +62,39 @@ We will show that there are countably many non-isomorphic countable models of $T
 \end{proof}
 
 \question{}
-We will show that $\Th(\NN, +, \cdot)$ has $2^{\aleph_0}$ non-isomorphic countable models.
+We will show that $T = \Th(\NN, +, \cdot)$ has $2^{\aleph_0}$ non-isomorphic countable models.
 \begin{proof}
-	Let $f : \omega \to P$ be the map between number and its respective prime in the order induced from $\NN$, namely $f(0) = 2, f(1) = 3, \ldots$.
-	assuming that $A \subseteq \omega$ is some set, we define $\Mm_A = (\cl_{+, \cdot}(f(A)), +, \cdot)$.
+	Observe the fact that numbers are definable in $T$, by formula as such,
 	\[
-		\Mm_A \models \exists p \forall x\ p \cdot x = \underline{p} \cdot x
+		\varphi_{n}(x) = \forall y\ x \cdot y = \overbrace{y + \cdots + y}^{\text{$n$ times}}
 	\]
-	when $\underline{p}$ acts as numeral, and $\underline{p} \cdot x$ is abbreviation to $x + \cdots + x$ $p$ times.
-	Let us denote this sentence as $\varphi_p$, then,
+	If $\Mm \models T$ then we denote by $\underline{n}$ the single element of $M$ that fulfills $\varphi_{n}$. \\
+	By the fact that $\exists x\ \varphi_n(x) \in T$ it follows that $\{ \underline{n} \mid n < \omega \} \subseteq M$ for any such model.
+
+	Let us define an explicit model of $T$, $M = \NN(\mu_n)$ where $n \in \NN$ and $\mu_n$ is primitive root of unity of order $n$, namely,
 	\[
-		\Mm_A \models \{ \varphi_{f(a)} \mid a \in A \}
+		\Mm \models (\forall m < n,\ \mu_n^m \ne \underline{1}) \land \mu_n^n = \underline{1}
 	\]
-	as well,
+	when power is notation for repeated use of $\cdot$ symbol.
+	This is a first-order sentence with parameters. \\
+	This cannot work as this sentence is false in $T$.
+
+	Maybe using vector spaces over $\QQ$?
+	We first need to prove that $\QQ \models T$.
+	But $\NN \models \lnot \exists x, x \cdot x = \underline{2}$.
+
+	Let $\epsilon_0 = \omega$ and $\epsilon_{n + 1} = \Pp(\epsilon_n)$, this generates a recursive sequence of elements of different cardinality such that they are all infinite.
+	This won't work as well.
+
+	Last try, let us define $M = 2 \times \omega$ and let $\{ n \} \times \omega$ act as the given model $(\NN, +, \cdot)$ within its domain, for $n \in 2$.
+	$T \models \forall x, y,\ (x + y = y + x \land x \cdot y = y \cdot x)$ then it suffices to define the operations $\langle 0, n \rangle + \langle 1, m \rangle$ and $\langle 0, n \rangle \cdot \langle 1, m \rangle$.
+	Let $f : \omega^2 \to \omega$ be some bilinear form, and define the function symbols such that,
 	\[
-		\Mm_A \not\models \{ \varphi_q \mid q \notin \cl_+ A \}
+		\langle 0, n \rangle + \langle 1, m \rangle
+		= \langle 1, f(n, m) \rangle
 	\]
-	Therefore if $A, B \subseteq \omega$ and $A \ne B$ then $\Mm_A \not\cong \Mm_B$, thus there are $|\Pp(\omega)|$ non-isomorphic countable models.
+	The dot product symbol is defined by decomposition to plus symbols chain in $\{ 1 \} \times \NN$.
+	Consider the model countable $\Mm_f = (M, +, \cdot)$ as defined, we claim that $\Mm \models T$.
 \end{proof}
 
 \question{}
