@@ -1,0 +1,188 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 1 --- גאומטריה דיפרנציאלית אלמנטרית, 80560}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\section{שאלה 0}
+יהי $(\Pp, \Ll)$ מישור אפיני בגישה סינתטית.
+
+\subquestion{}
+נוכיח כי במישור האפיני יש לפחות שלושה ישרים שונים.
+\begin{proof}
+	נסמן ב־$P, Q, R, S$ את 4 הנקודות הלא קולינאריות שנתון ושמצאנו שקיימות.
+	מצאנו במהלך הוכחה ש־$l = \langle P, Q \rangle$ ו־$m = \langle P, R \rangle$ יחד עם $l' \parallel l \ni R$ וכן $m \parallel m' \ni S$ הם ישרים שונים.
+\end{proof}
+
+\subquestion{}
+נוכיח שלא קיים ישר ללא נקודות.
+\begin{proof}
+	נניח בשלילה שקיים ישר כזה $l \in \Ll$.
+	נניח גם ש־$P, Q, R \in \Pp$ נקודות לא קולינאריות, וכן נסמן $m = \langle P, Q \rangle, n = \langle P, R \rangle$, אז ידוע ש־$m \not\parallel n$.
+	נגדיר את המשיקים $l \parallel l' \ni Q$ וכן את $l \parallel l'' \ni R$, אז בהכרח $l' \parallel l''$ וכן $Q \in l' \cap m$ וגם $R \in l'' \cap R$.
+	אילו $l \parallel m$ וגם $l \parallel n$ אז נקבל ש־$l' = l''$ ולכן $P, Q, R$ קולינאריות בסתירה, ולכן $l \lnot\parallel m$ וקיימת נקודת חיתוך.
+\end{proof}
+
+\subquestion{}
+נוכיח כי לכל ישר לפחות שתי נקודות שונות.
+\begin{proof}
+	יהי ישר $l \in \Ll$, ותהי $P \in l$ נקודה כלשהי שידוע שקיימת מהסעיף הקודם.
+	נניח שוב ש־$P, Q, R \in \Pp$ נקודות לא קולינאריות ונגדיר את $m = \langle P, Q \rangle$. \\
+	נסמן גם את $n = \langle Q, R \rangle$, אם $n \lnot\parallel l$ אז סיימנו, שכן $Q \in l$ או $R \in l$, לכן נניח ש־$n \parallel l$.
+	נגדיר את המשיק $R \in m' \parallel m$, אז $l \not\parallel m'$ בהכרח ולכן יש להם נקודת חיתוך.
+\end{proof}
+
+\subquestion{}
+נראה כי לכל שני ישרים כמות זהה של נקודות.
+\begin{proof}
+	נניח ש־$l_0, l_1 \in \Ll$ ישרים מקבילים, ונניח ש־$P_0 \in l_0, P_1 \in l_1$. \\
+	אם $l_0 = l_1$ אז סיימנו, לכן נניח ש־$l_0 \ne l_1$, כלומר הנקודות המרכיבות אותם שונות. \\
+	נגדיר את הישר $m = \langle P_0, P_1 \rangle$, בהכרח $m \not\parallel l_0, l_1$.
+	תהי נקודה $Q \in l_0$, אז נגדיר את $Q \in n \parallel m$, מתקיים $n \not\parallel l_1$ ולכן יש להם נקודת חיתוך $Q' \in l_1$. 
+
+	נניח עתה ש־$Q_0, Q_1 \in l_0$ וכן ש־$Q_0', Q_1' \in l_1$ מתאימות אליה, נראה ש־$Q_0 \ne Q_1 \implies Q_0' \ne Q_1'$.
+	נניח ש־$Q_0' = Q_1'$, וכן נניח ש־$Q_0 \ne Q_1$, אז $o = \langle Q_0, Q_0' \rangle, p = \langle Q_1, Q_0' \rangle$ הם ישרים לא מקבילים.
+	אבל $o \parallel m \parallel p \implies o \parallel p$ בסתירה.
+\end{proof}
+
+\subquestion{}
+נראה שלכל שני ישרים נחתכים יש אותה כמות של נקודות.
+\begin{proof}
+	נפעל באופן זהה לסעיף הקודם.
+	אם $l_0, l_1 \in \Ll$ כך ש־$l_0 \cap l_1 = \{ O \}$ אז קיימות נקודות שונות $P_0, P_1 \in \Pp$ כך ש־$P_0 \in l_0, P_1 \in l_1$, מכאן ההוכחה זהה תוך שימוש ב־$m = \langle P_0, P_1 \rangle$.
+\end{proof}
+
+\subquestion{}
+נסיק שלכל הישרים במישור האפיני יש אותה כמות של נקודות.
+\begin{proof}
+	נסמן שתי נקודות כלשהן $P, Q \in \Pp$ ואת $l = \langle P, Q \rangle$.
+	יהי $m \in \Ll$ ישר כלשהו.
+	אם $l \parallel m$ אז יש להם אותו מספר נקודות בהתאם לסעיף ד'.
+	אם $l \not\parallel m$ אז מסעיף ה' יש לישרים אותו מספר נקודות.
+\end{proof}
+
+\question{}
+יהי $\FF$ שדה ויהי $(E, V, t)$ מרחב אפיני. \\
+תהי $P \in E$ ו־$(E, +_P, \cdot_P)$ מרחב וקטורי מעל $\FF$ שראשיתו $P$, נסמן כ־$E_P$. \\
+נוכיח שההעתקה $v_P : E_P \to V$ היא איזומורפיזם של מרחבים וקטוריים.
+\begin{proof}
+	נוכיח תחילה ש־$v_P$ העתקה לינארית.
+	נניח ש־$\alpha, \beta \in \FF$ וכן ש־$Q, R \in E_P$, אז מתקיים,
+	\begin{align*}
+		v_P(\alpha Q +_P \beta R)
+		& = v(P, \alpha Q +_P \beta R) \\
+		& = \alpha Q +_P \beta R - P \\
+		& = \alpha \cdot_P + Q \beta \cdot_P R - 2P \\
+		& = \alpha (Q - P) + P + \beta (R - P) + P - 2P \\
+		& = \alpha v_P(Q) + \beta v_P(R)
+	\end{align*}
+	תוך שימוש בהגדרות המופיעות בסיכום.
+
+	ראינו ש־$v_P$ היא העתקה הפיכה בהרצאה ולכן היא איזומורפיזם של מרחבים וקטוריים.
+\end{proof}
+
+\question{}
+\subquestion{}
+יהיו $W, W' \le V$ תתי־מרחבים אפיניים ו־$P, Q \in E$ נקודות.
+נראה ישירות כי מתקיים,
+\[
+	P + W
+	= Q + W'
+	\iff W = W' \land Q - P \in W
+\]
+\begin{proof}
+	נראה תחילה ש־$P + W = Q + W \iff Q - P \in W$. \\
+	נניח ש־$P + W = Q + W$, אז,
+	\[
+		P + W - Q
+		= Q + W - Q
+		= \{ w + Q - Q \mid w \in W \}
+		= \{ w \mid w \in W \}
+		= W
+	\]
+	ולכן בפרט $P + Q \in W$. \\
+	נניח ש־$Q - P \in W$, אז מתקיים,
+	\[
+		P + W
+		= P - Q + Q + W
+		= Q + W
+	\]
+	ונסיק את הטענה הראשונה.
+
+	עתה נראה שאם $R + W = R + W'$ אז $W = W'$.
+	יהי $w \in R + W$, אז קיים $w' \in W$ כך ש־$w = R + w'$, וידוע כי גם $w \in W'$ ולכן קיים גם $w'' \in W'$ כך ש־$R + w'' = w$.
+	אז בהתאם מתקיים $w'' = w'$ ולכן $W = W'$.
+
+	עתה נעבור להוכחת טענת השאלה, נניח ש$P + W = Q + W'$.
+	מתקיים,
+	\[
+		P + W = Q + W'
+		\iff P - Q + W = Q - Q + W'
+		\iff P - P + W = Q - P + W'
+	\]
+	ולכן נובע ש־$W = W'$ ומטענת העזר הראשונה נובע שגם $P - Q \in W$.
+
+	נעבור לכיוון השני ונניח ש־$W = W'$ וכן ש־$P - Q \in W$.
+	אז הטענה נובעת ישירות מטענת העזר הראשונה.
+\end{proof}
+
+\subquestion{}
+תהי $F = P + W \le E$ תת־יריעה עבור $P \in E$ ו־$W \le V$. \\
+נראה שלכל $Q \in F$ מתקיים $F = Q + W$.
+\begin{proof}
+	נבחין כי $Q \in F \iff Q = P + w$ עבור $w \in W$.
+	בהתאם $Q - P = w \in W$ ולכן מסעיף הקודם נובע $Q + W = P + W = F$.
+\end{proof}
+
+\question{}
+\begin{definition}
+	יהיו $(F_1, W_1)$ ו־$(F_2, W_2)$ שתי תת־יריעות. \\
+	נאמר שהן מקבילות אם $W_1 = W_2$ ונסמן $F_1 \parallel F_2$.
+\end{definition}
+נוכיח את משפט אוקלידס: לכל $F \subseteq E$ תת־יריעה ו־$P \in E \setminus F$ קיימת $P \in F' \subseteq E$ תת־יריעה יחידה מקבילה ל־$F$.
+\begin{proof}
+	נניח שמתקיים $F = Q + W$ עבור $Q \in E$ ו־$W \le V$. \\
+	בהתאם $F' = P + W$ היא תת־יריעה של $E$, מהגדרתה היא מקבילה ל־$F$.
+
+	נותר אם כן להוכיח יחידות, נניח שגם $F'' \le E$ תת־יריעה מקבילה ל־$F$, ונסיק ש־$F'' = P + W = F'$ מהשאלה הקודמת.
+\end{proof}
+
+\question{}
+תהיינה תת־יריעות $F_1, F_2 \le E$. \\
+נראה כי $F_1 \parallel F_2 \iff \exists v \in V,\ F_1 + v = F_2$ וכן שאם $F \le E$ אז לכל $v, w \in V$ מתקיים $F + v = F + w \iff v - w \in W$.
+\begin{proof}
+	נסמן $F_1 = P_1 + W_1, F_2 = P_2 + W_2$. \\
+	נניח ש־$F_1 + v = F_2$ עבור $v \in V$, אז מתקיים $P_1 + W_1 + v = P_2 + W_2$ ולכן נובע ש־$W_1 = W_2$ (משאלה 3) ובהתאם $F_1 \parallel F_2$.
+
+	נניח ש־$F_1 \parallel F_2$, כלומר $W_1 = W_2$.
+	נסמן $v = P_1 - P_2 \in V$, אז מתקיים $P_1 + W_1 + v = P_1 + P_2 - P_1 + W_1 = P_2 + W_2$, כלומר $F_1 + v = F_2$.
+
+	נניח עתה ש־$F \le E$ ויהיו $v, w \in V$.
+	נניח גם ש־$F = P + W$. \\
+	אם $F + v = F + w$ אז $P + v + W = P + w + W$ ולכן $(P - v) - (P - w) \in W$. \\
+	נניח בכיוון ההפוך ש־$v - w \in W$, אז תת־היריעות מקבילות ובהכרח $F + v = F + w$.
+\end{proof}
+
+\question{}
+תהי $S \subseteq E$ ונגדיר,
+\[
+	\langle S \rangle
+	= \bigcap_{S \subseteq F \le E} F
+\]
+כלומר נאמר ש־$S$ יוצרת את תת־היריעה $\langle S \rangle$. \\
+נוכיח כי $\langle S \rangle \le E$ וכן שהיא מינימלית ביחס ההכלה ביחס לתת־היריעות המכילות את $S$.
+\begin{proof}
+	אם $S = \emptyset$ אז היא תת־יריעה והיא מינימלית ביחס ההכלה, לכן נניח ש־$S \ne \emptyset$, ותהי $P \in S$ נקודה כלשהי.
+	מתקיים $P \in F$ לכל $S \subseteq F \le E$ ולכן $F = P + W$ עבור $W \le V$.
+	נוכל אם כן להסיק שמתקיים,
+	\[
+		\langle S \rangle
+		= P + \bigcap_{S - P \subseteq W \le V} W
+	\]
+	כלומר $\langle S \rangle = P + \langle S - P \rangle$, כאשר $\langle S - P \rangle$ הוא תת־מרחב וקטורי הנוצר על־ידי $S - P$.
+	נסמן $W' = \langle S - P \rangle$ ונסיק ש־$S = P + W' \le E$. \\
+	נשאר להוכיח שתת־יריעה זו היא מינימלית ביחס ההכלה, אך טענה זו נובעת ישירות ממינימליות ביחס להכלה של תת־מרחב וקטורי נוצר.
+\end{proof}
+
+\end{document}
