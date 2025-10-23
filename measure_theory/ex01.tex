@@ -1,0 +1,140 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 1 --- תורת המידה, 80517}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+תהי קבוצה $X \ne \emptyset$.
+
+\subquestion{}
+תהי $\Aa \subseteq \Pp(X)$ כך ש־$X \in \Aa$ ולכל $E_1, E_2 \in \Aa$ מתקיים $E_1 \setminus E_2 \in \Aa$. \\
+נראה ש־$\Aa$ היא אלגברה על $X$.
+\begin{proof}
+	מתקיים $X \in \Aa$ ולכן גם $X \setminus X = \emptyset \in \Aa$. \\
+	אם $E \in \Aa$ אז $X \setminus E = E^C \in \Aa$, כלומר יש סגירות למשלים. \\
+	לבסוף נרצה להראות סגירות לאיחוד סופי, נניח ש־$E_1, E_2 \in \Aa$, אז מתקיים,
+	\[
+		E_1 \cap E_2
+		= E_1 \setminus E_2^C
+	\]
+	אבל $E_2^C \in \Aa$ ולכן $E_1 \cap E_2 \in \Aa$.
+	בהתאם גם ${(E_1^C \cap E_2^C)}^C = E_1 \cup E_2 \in \Aa$ ולכן יש סגירות לאיחודים סופיים. \\
+	מצאנו כי שלוש התכונות של אלגברה חלות על $\Aa$ ובהתאם היא אלגברה.
+\end{proof}
+
+\subquestion{}
+תהיינה ${\{ \Aa_n \}}_{n = 1}^{\infty} \subseteq \Pp^2(X)$ אלגברות על $X$ כך שמתקיים $\Aa_n \subseteq \Aa_{n + 1}$ לכל $n < \omega$. \\
+נוכיח שגם $\Aa = \bigcup \{ \Aa_n \}$ אלגברה על $X$.
+\begin{proof}
+	בבירור $\emptyset, X \in \Aa$ ולכן מספיק לבדוק סגירות למשלים ולאיחוד סופי. \\
+	אם $A \in \Aa$ אז קיים $n < \omega$ מינימלי כך ש־$A \in \Aa_n$, אבל $\Aa_n$ אלגברה ולכן $A^c \in \Aa_n$ וגם $A^C \in \Aa$. \\
+	נניח ש־$A, B \in \Aa$ ובאופן דומה נבחר $n < \omega$ מינימלי כך ש־$A, B \in \Aa_n$, אז מתקיים $A \cup B \in \Aa_n$ ונקבל גם סגירות לאיחוד סופי ב־$\Aa$.
+\end{proof}
+
+\subquestion{}
+נראה כי איחוד שרשרת עולה של $\sigma$־אלגברות לא בהכרח $\sigma$־אלגברה.
+\begin{solution}
+	נגדיר $X = \omega_1$ וכן $X_n = n$, וכן $\Aa_n = \langle X_n \rangle$, לכל $n < \omega$.
+	מהגדרת ה־$\sigma$־אלגברה הנוצרת נקבל ש־$\Aa_n \subseteq \Aa_{n + 1}$ לכל $n$.
+	נגדיר $\Aa = \bigcup \{ \Aa_n \} = \langle \omega \rangle$, ונטען שזו היא $\sigma$־אלגברה.
+	אבל $X_n \in \Aa$ לכל $n$ ולכן גם $\bigcup_{n < \omega} X_n = \omega \in \Aa$.
+	אבל טענה זו נכונה אם ורק אם קיים $n < \omega$ כך ש־$\omega \in \Aa_n$, וזה כמובן לא יתכן.
+\end{solution}
+
+\question{}
+תהי $\Bb(\RR)$ $\sigma$־אלגברת בורל ותהי $U \subseteq \RR$ פתוחה.
+
+\subquestion{}
+נראה ש־$U$ ניתנת להצגה כאיחוד של אוסף קטעים פתוחים זרים בזוגות.
+\begin{proof}
+	נניח ש־$U = \bigcup_{\alpha \in I} U_{\alpha}$ חלוקה למחלקת קשירות מסילתית של $U$.
+	מתקיים $U_{\alpha} \cap U_{\beta} = \emptyset$ לכל $\alpha \ne \beta \in I$ מהגדרת הקשירות.
+	נותר להוכיח שקבוצה קשירה מסילתית ב־$\RR$ היא קטע.
+
+	נניח בשלילה ש־$V$ קשירה מסילתית אך לא קטע ולכן קיימת $a \notin V$ כך שקיימים $b < a < c$ כאשר $b, c \in V$.
+	אז בהתאמה $V \cap (-\infty, a)$ וכן $V \cap (a, \infty)$ קבוצות פתוחות המהוות חלוקה של $V$, סתירה.
+\end{proof}
+
+\subquestion{}
+נראה ש־$|I| \le \omega$.
+\begin{proof}
+	תהי פונקציית בחירה $c : I \to U$ כך ש־$c\ '' I \subseteq \QQ$, אז $|I| > \omega \implies \omega \le |c(U)| > \omega$, וזו כמובן סתירה.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$\Bb(\RR)$ נוצרת על־ידי אוסף הקטעים הפתוחים ב־$\RR$.
+\begin{proof}
+	ידוע כבר כי $\BB = \{ B(x, r) \mid x \in \RR, r > 0 \}$ הוא בסיס לטופולוגיה של $\RR$ ולכן מהווה גם בסיס ל־$\Bb(\RR)$. \\
+	נוכל לראות זאת בעוד דרך, כל $U \in \tau(\RR)$ היא איחוד בן־מניה של קטעים פתוחים, ולכן אם נבחר את אוסף כל הטעים הפתוחים נקבל שכל $U$ פתוחה היא איחוד של מספר בן־מניה של איברים משם.
+\end{proof}
+
+\question{}
+תהי $f : X_1 \to X_2$ פונקציה ותהי $\Mm_2$ $\sigma$־אלגברה על $X_2$.\\
+נראה כי $\Mm_1 = \{ f^{-1}(A) \mid A \in \Mm_2 \}$ היא $\sigma$־אלגברה על $X_1$.
+\begin{proof}
+	$\emptyset, X_2 \in \Mm_2$ ולכן גם $f^{-1}(\emptyset) = \emptyset, f^{-1}(X_2) = X_1 \in \Mm_1$. \\
+	נניח ש־$E \in \Mm_1$, אז קיימת $F \in \Mm_2$ כך ש־$E = f^{-1}(F)$ אך גם $F^C \in \Mm_2$ ולכן גם $E^C = {(f^{-1}(F))}^C = f^{-1}(F^C) \in \Mm_1$. \\
+	נניח ש־${\{ E_n \}}_{n = 1}^{\infty} \subseteq \Mm_1$ ונסמן ${\{ F_n \}}_{n = 1}^{\infty} \subseteq \Mm_2$ כך ש־$f(E_n) = F_n$ לכל $n < \omega$.
+	ידוע כי $\bigcup \{ F_n \} \in \Mm_2$ וכן,
+	\[
+		f^{-1}(\bigcup \{ F_n \})
+		= \bigcup \{ f^{-1}(F_n) \mid n < \omega \}
+		\in \Mm_1
+	\]
+	ונסיק כי יש סגירות לאיחוד בן־מניה וש־$\Mm_1$ היא $\sigma$־אלגברה על $X_1$.
+\end{proof}
+
+\question{}
+יהי מרחב מטרי $(X, d)$ כך שהטופולוגיה $\tau$ המושרית ממנו היא $\sigma$־אלגברה. \\
+נראה שזהו מרחב דיסקרטי.
+\begin{proof}
+	תהי נקודה $x \in X$ ונגדיר את הקבוצות הפתוחות,
+	\[
+		U_n = B(x, \frac{1}{n})
+	\]
+	לכל $n > 1$.
+	אז מסגירות לחיתוך בן־מניה גם,
+	\[
+		\bigcap_{n = 1}^{\infty} U_n
+		= \{ x \}
+		\in \tau
+	\]
+	כלומר מצאנו ש־$\tau = \Pp(X)$ כרצוי.
+\end{proof}
+
+\question{}
+תהי $X$ קבוצה ונניח ש־$\Mm$ היא $\sigma$־אלגברה על $X$ כך ש־$|X| \ge \omega$.
+
+\subquestion{}
+נראה ש־$\Mm$ מכילה מספר אינסופי של קבוצות זרות.
+\begin{proof}
+	נניח ש־${\{ X_n \}}_{n = 1}^{\infty} \subseteq X$ סדרת קבוצות מדידות, ונגדיר סדרה חדשה ברקורסיה.
+	נגדיר,
+	\[
+		Y_1 = \begin{cases}
+			X_1 & X_1 \ne \emptyset \\
+			X & \text{otherwise}
+		\end{cases}
+		\quad
+		Y_{n + 1}
+		= \begin{cases}
+			Y_n \cap X_{n + 1} & Y_n \cap X_{n + 1} \ne \emptyset \\
+			Y_n \cap X_{n + 1}^C & \text{otherwise}
+		\end{cases}
+	\]
+	אז נקבל ש־$Y_n \ne \emptyset$ וכן ש־$\{ Y_n \}$ שרשרת יורדת ביחס ההכלה, ולבסוף נגדיר $Z_n = Y_n \setminus Y_{n + 1}$, אז נובע ש־$Z_n \cap Z_m = \emptyset$ לכל $n \ne m$, כלומר זוהי קבוצה בת־מניה של קבוצות מדידות זרות בזוגות.
+\end{proof}
+
+\subquestion{}
+נראה ש־$|\Mm| > \omega$.
+\begin{proof}
+	נגדיר את הפונקציה $f : 2^{\omega} \to \Mm$ על־ידי,
+	\[
+		f(g) = \bigcup \{ Z_n \mid n < \omega, g(n) = 1 \}
+	\]
+	ידוע ש־$\{ Z_n \}$ קבוצה של קבוצות מדידות שונות ולכן איחוד בן־מניה שלהן הוא קבוצה מדידה, ונקבל ש־$f$ מעידה על $|\Mm| = 2^{\omega} > \omega$.
+\end{proof}
+
+\end{document}
