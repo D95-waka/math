@@ -19,7 +19,7 @@ Define,
 and let $T = \{ \varphi_n, \psi_n \mid n < \omega \}$. \\
 We will show that $\cl_{\vdash} T$ is $\omega$-categorical.
 \begin{proof}
-	Let $\Mm \models T$ be some model.
+	Let $\Mm \models T$ be some countable model.
 	It can be proved by direct induction that $|P^\Mm| = \omega$ as well as $|\lnot P^\Mm| = \omega$.
 	Let us construct $f : \omega \to M$ such that $f(n) \in P^\Mm$ for any $n < \omega$.
 	$\Mm \models \varphi_0 \iff \Mm \models \exists x\ P(x)$ then let $f(0)$ be such witness.
@@ -35,17 +35,17 @@ We will show that there are countably many non-isomorphic countable models of $T
 \begin{proof}
 	Let us define the model $\Mm_n$ such that $M = \omega$ and,
 	\[
-		c_i^\Mm = i + n
+		c_i^{\Mm_n} = i + n
 	\]
 	for any $i < j < \omega$,
 	\[
-		c_i^\Mm
+		c_i^{\Mm_n}
 		= i + n
 		\ne j + n
-		= c_j^\Mm
+		= c_j^{\Mm_n}
 	\]
 	therefore $\Mm_n \models T$.
-	$\Mm_n \models k \ne c_i$ for all $i < \omega$, in particular $\Mm_n \models \exists x\ x \ne c_i$.
+	$\Mm_n \models k \ne c_i$ for all $1 < k < i < \omega$, in particular $\Mm_n \models \exists x\ x \ne c_i$.
 	It is implied that also,
 	\[
 		\Mm_n
@@ -53,7 +53,7 @@ We will show that there are countably many non-isomorphic countable models of $T
 		= \varphi_l^k
 	\]
 	for all $l < \omega$.
-	Finally, $\Mm_n \not\models \varphi_l^k$ for any $k > n$, we deduce that $\Mm_n \not\cong \Mm_m$ for any $n \ne m$.
+	Finally, $\Mm_n \not\models \varphi_l^k$ for any $k > n + 1$, we deduce that $\Mm_n \not\cong \Mm_m$ for any $n \ne m$.
 
 	We move to show that $T$ is complete.
 	Let us assume toward a contradiction that $\varphi$ is a sentence such that $\varphi \notin T$ and $T \cup \{ \varphi \}$ is consistent.
