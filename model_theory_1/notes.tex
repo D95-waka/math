@@ -12,6 +12,108 @@
 
 \tableofcontents
 
+\setcounter{section}{-1}
+\section{שיעור הכנה}
+\subsection{מעט תורת הקבוצות}
+\begin{definition}[מונה]
+	סודר $\alpha$ נקרא מונה אם לכל $\beta < \alpha$ אין העתקה על $f : \beta \to \alpha$ (שקול לאי־קיום פונקציה חד־חד ערכית).
+\end{definition}
+\begin{example}
+	כל הסודרים הסופיים הם מונים, וכך גם $\omega$.
+\end{example}
+\begin{example} 
+	$\omega + 1, \omega + 2, \ldots$ הם לא מונים כי נוכל לבנות פונקציה $f : \omega + n \to \omega$ חד־חד ערכית.
+\end{example}
+נגדיר לדוגמה גם את $\omega_1 = \aleph_1$ להיות המונה הבא אחרי $\omega$.
+\begin{theorem}[אי־חסימות מונים]
+	לכל מונה $\kappa$ יש מונה $\mu > \kappa$.
+\end{theorem}
+\begin{proof}
+	בהנחת אקסיומת הבחירה נסדר את $\Pp(\kappa)$ בסדר טוב בטיפוס סדר $\alpha$.
+	אז אין העתקה על מ־$\kappa$ ל־$\alpha$.
+	יהי $\mu > 0$ הסודר הראשון כך שאין העתקה על מ־$\kappa$ ל־$\mu$ ונטען כי $\mu$ מונה. \\
+	אם $\mu$ איננו מונה, אז יש $\beta < \mu$ והעתקה חד־חד ערכית ועל $g : \alpha \to \beta$, והרכבת הפונקציות מספקת סתירה.
+\end{proof}
+ישנה גם הוכחה ללא אקסיומת הבחירה אבל לא נביא אותה בסיכום זה.
+\begin{definition}[מונה עוקב]
+	המונה הראשון שגדול ממונה $\kappa$ נקרא העוקב של $\kappa$ ומסומן $\kappa^+$.
+\end{definition}
+\begin{remark}
+	אם $A$ קבוצת מונים, אז גם $\bigcup A$ מונה.
+\end{remark}
+אנו יכולים לבחון את $\aleph_0 = \omega$ וכן את $\aleph_1 = \aleph_0^+$ וכן הלאה, ולבסוף נוכל להגדיר גם את $\aleph_{\omega} = \sup\{ \aleph_n \mid n < \omega \}$, וכן $\aleph_{\omega + 1} = \aleph_{\omega}^+$.
+\begin{theorem}[היררכיית אלף]
+	כל מונה הוא $\aleph_{\alpha}$ עבור איזשהו סודר $\alpha$.
+\end{theorem}
+\begin{proof}
+	נניח ש־$\kappa$ מונה, אז $\kappa \le \aleph_{\kappa}$ (ניתן להוכחה באינדוקציה טרנספיניטית).
+	לכן קיים $\gamma$ הסודר הראשון כך ש־$\kappa \le \aleph_{\gamma}$.
+	אם $\kappa < \aleph_{\gamma}$ אז נחלק למקרים.
+	אם $\gamma = \delta + 1$ אז $\aleph_{\gamma} = \aleph_{\delta}^+$ אבל $\aleph_{\delta} < \kappa < \aleph_{\delta + 1}$ ואז $\kappa = \aleph_{\delta}$.
+	אם $\gamma$ גבולי, אז $\aleph_{\gamma} = \sup\{ aleph_{\beta} \mid \beta < \gamma \}$ ולכן יש $\beta < \gamma$ כך ש־$\kappa \le \aleph_{\beta}$ כסתירה.
+	לכן נסיק ש־$\kappa = \aleph_{\gamma}$.
+\end{proof}
+\begin{corollary}
+	אם $\alpha$ סודר ו־$\kappa \le \alpha$ מונה ומקסימלי מבין המונים $\le \alpha$, אז $|\alpha| = |\kappa| = \kappa$.
+\end{corollary}
+\begin{proof}
+	באינדוקציה.
+\end{proof}
+\begin{definition}[מונה סדיר]
+	מונה אינסופי $\kappa$ יקרא סדיר (regular) אם אין $\mu < \kappa$ ופונקציה $f : \mu \to \kappa$ כך ש־$\sup \rng f = \kappa$.
+\end{definition}
+ניצוק תוכן להגדרה זו.
+\begin{proposition}
+	מונה $\kappa$ הוא סדיר אם ורק אם אין פירוק של $\kappa$ כאיחוד של קבוצות $\kappa = \bigcup \{ A_i \mid i < \mu \}$ כך ש־$\mu < \kappa$ וכן $|A_i| < \kappa$.
+\end{proposition}
+\begin{example}
+	$\omega$ הוא סדיר, תחת אקסיומת הבחירה גם $\omega_1$ הוא סדיר.
+	נניח ש־$f : \mu \to \omega_1$ עבור $\mu < \omega_1$ וכן $\sup \rng f = \bigcup \{ f(\delta) \mid \delta < \mu \}$ כאשר $f(\delta)$ בן־מניה.
+	אבל מאקסיומת הבחירה איחוד בן־מניה של קבוצות בנות־מניה הוא גם בן־מניה.
+\end{example}
+\begin{definition}
+	מונה $\kappa$ יקרא חריג אם הוא אינסופי ואינו סדיר.
+\end{definition}
+\begin{example}
+	$\aleph_{\omega}$ הוא מונה חריג.
+	נגדיר $f(n) = \omega_n = \aleph_n$ כאשר $f : \omega \to \aleph_{\omega}$.
+\end{example}
+\begin{proposition}
+	לכל מונה אינסופי $\kappa$ מתקיים $|\kappa| = |\kappa \times \kappa|$.
+\end{proposition}
+\begin{proof}
+	נספק סקיצה כללית.
+	נוכיח באינדוקציה על מונים אינסופיים. \\
+	ל־$\omega$ זה ידוע וקל. \\
+	נניח ש־$\kappa$ מונה כך שהטענה נכונה למונים קטנים ממנו.
+	נגדיר סדר טוב על $\kappa \times \kappa$ באופן הבא,
+	\begin{align*}
+		\langle \alpha, \beta \rangle \le (\gamma, \delta)
+		\iff & (\max\{ \alpha, \beta \} < \max\{ \gamma, \delta \}) \\
+		\lor & (\max\{ \alpha, \beta \} = \max\{ \gamma, \delta \} \land \alpha < \gamma) \\
+		\lor & (\max\{ \alpha, \beta \} = \max\{ \gamma, \delta \} \land \alpha = \gamma \land \beta \le \delta)
+	\end{align*}
+	נשים לב כי מתחת ל־$\langle \alpha, \beta \rangle$ יש פחות מ־$\kappa$ איברים,
+	\[
+		\le |\alpha + 1| \times |\beta + 1|
+		\le |\mu_1 \times \mu_2|
+		\le |\mu \times \mu|
+		< \kappa
+	\]
+	עבור $\mu = \max(\mu_1, \mu_2) < \kappa$.
+	הסדר שהגדרנו איזומורפי לסודר $\delta \le \kappa$ ולכן $\kappa \le |\kappa \times \kappa| \le \kappa$.
+\end{proof}
+\begin{corollary}
+	לכל מונה $\kappa$ מתקיים $|\kappa^{< \omega}| = \kappa$.
+\end{corollary}
+\begin{theorem}[מונה עוקב הוא סדיר]
+	אם $\kappa$ מונה אז $\kappa^+$ מונה סדיר.
+\end{theorem}
+\begin{proof}
+	נניח בשלילה שלא ותהי $f : \mu \to \kappa^+$ כך ש־$\bigcup \{ f(\alpha) \mid \alpha < \mu \} = \kappa^+$. \\
+	באמצעות בחירה לכל $\alpha$ נבחר $H_{\alpha} : \kappa \twoheadrightarrow f(\alpha) + 1$ וכן $H(\alpha, \beta) = H_{\alpha}(\beta)$ עבור $H : \mu \times \kappa \twoheadrightarrow \kappa^+$, וזו כמובן סתירה.
+\end{proof}
+
 \section{שיעור 1 --- 19.10.2025}
 \subsection{רקע}
 שעת קבלה בימי ראשון בשתיים־עשרה.
@@ -246,6 +348,177 @@
 	בהתאם $\Bb \subseteq \Aa$ מקיים את TV ישירות מהבניה.
 	אם $b_1, \ldots, b_n \in B$ ו־$\varphi$ נוסחה אז יש $b_1, \ldots, b_n \in X_m$, העדות ל־TV תהיה ב־$B \supseteq X_{m + 1}$.
 \end{proof}
+
+\section{שיעור 2 --- 26.10.2025}
+\subsection{לוונהיים־סקולם}
+\begin{definition}[פונקציית סקולם]
+	אם $\varphi(x_0, \ldots, x_{n - 1})$ נוסחה כלשהי,
+	אז פונקציה $F_{\varphi} : N \to M$ כך ש־$\Mm \models \exists x\ \varphi(x, a_1, \ldots, a_{n - 1})$ אז $b = F_{\varphi}(a_1, \ldots, a_{n - 1})$ כך ש־$\Mm \models \varphi(b, a_1, \ldots, a_{n - 1})$.
+\end{definition}
+וננסח שוב את קריטריון טרסקי־ווט תוך שימוש בהגדרה זו.
+\begin{theorem}[ניסוח שקול ללוונהיים־סקולם היורד]
+	$F_{\varphi}(X^n) \subseteq X$ לכל $X \subseteq M$ ולכל $\varphi(x_0, \ldots, x_{n - 1})$ אז $X \prec \Mm$.
+\end{theorem}
+ותוך שימוש באפיון זה הוכחנו את משפט לוונהיים־סקולם היורד.
+\begin{theorem}[לוונהיים־סקולם העולה]
+	יהי $\Mm$ מודל אינסופי ו־$\kappa > |M|, |L|$, אז קיים $\Mm \prec \Nn$ מודל כך ש־$|N| = \kappa$.
+\end{theorem}
+נגדיר הגדרה שתשמש אותנו בהוכחת המשפט.
+\begin{definition}[העשרה בקבועים]
+	עבור מודל $\Mm$ ו־$A \subseteq M$ נסמן ב־$L_A$ את ההעשרה של $L$ על־ידי קבועים $\{ d_a \mid a \in A \}$ ואת $\Mm_A$ את ההעשרה של פירוש הקבועים כך ש־$d_a^{\Mm_A} = a$.
+\end{definition}
+\begin{notation}
+	$\diag(\Mm) = \Th(\Mm_M)$.
+\end{notation}
+עתה נוכל לעבור להוכחה.
+\begin{proof}
+	נתחיל בלבנות $\tilde{\Nn}$ כך שיש שיכון אלמנטרי $j : \Mm \to \tilde{\Nn}$ וש־$|\tilde{N}| = \kappa$.
+	נבחן את ההעשרה $L_M$ בקבועים הנוספים $\{ c_{\alpha} \mid \alpha < \kappa \}$ ואת התורה,
+	\[
+		T = \diag(M) \cup \{ c_{\alpha} \ne c_{\beta} \mid \alpha < \beta < \kappa \}
+	\]
+	מקומפקטיות ל־$T$ יש מודל.
+	בנוסף מלוונהיים־סקולם היורד יש מודל כזה שעוצמתו היא $|L_M| + \kappa + \aleph_0 = \kappa$ ונסמנו $\tilde{\Nn}$.
+	נגדיר $j(a) = d_a^{\tilde{\Nn}}$ ואז לפי הגדרת $\diag(\Mm)$ אם $\psi$ נוסחה ו־$\Mm \models \psi(a_0, \ldots, a_{n - 1}) \iff \psi(d_{a_0}, \ldots, d_{a_{n - 1}}) \in \diag(\Mm)$.
+	וכל זה נכון אם ורק אם $\tilde{\Nn} \models \psi(d_{a_0}, \ldots, d_{a_{n - 1}}) \iff \tilde{\Nn} \models \psi(j(a_0), \ldots, j(a_{n - 1}))$.
+	כעת נתקן את $\tilde{\Nn}$ כך ש־$\Mm \subseteq \Nn$ עבור $\Nn \cong \tilde{\Nn}$.
+	קודם כל בלי הגבלת הכלליות $\tilde{N} \cap M = \emptyset$ ונגדיר $N = (\tilde{N} \setminus \rng j) \cup M$ ונגדיר את ההעתקה,
+	\[
+		f : \tilde{\Nn} \to \Nn,
+		\quad
+		f(x) = \begin{cases}
+			x & x \notin \rng j \\
+			j^{-1}(x) & x \in \rng j
+		\end{cases}
+	\]
+	כלומר, הגדרנו את $\Nn$ כך שהיא תהיה איזומורפיזם.
+\end{proof}
+\begin{definition}[קטגוריות]
+	יהי $\kappa$ מונה, תורה $T$ תיקרא $\kappa$־קטגורית אם יש מודל יחיד $\Nn \models T$ כך ש־$|N| = \kappa$ עד כדי איזומורפיזם.
+\end{definition}
+\begin{theorem}
+	נניח ש־$T$ היא תורה בשפה $L$ ול־$T$ אין מודלים סופיים.
+	אם בנוסף $T$ היא $\kappa$־קטגורית עבור $\kappa > |L|$ אז $T$ שלמה.
+\end{theorem}
+\begin{proof}
+	נניח ש־$\varphi$ פסוק כך ש־$T \cup \{ \varphi \}$ עקבית, ונניח בשלילה שגם $T \cup \{ \lnot \varphi \}$ עקבית. \\
+	אז מלוונהיים־סקולם העולה יש שני מודלים $\Mm_0, \Mm_1$ מעוצמה $|L| + \aleph_0 \le \kappa$ כך שמתקיים,
+	\[
+		\Mm_0 \models T \cup \{ \varphi \},
+		\quad
+		\Mm_1 \models T \cup \{ \lnot \varphi \}
+	\]
+	אבל $\Mm_0 \cong \Mm_1$ וזו סתירה.
+\end{proof}
+\begin{example}
+	DLO, תורת הסדרים הקוויים הצפופים ללא נקודות קצה, בשפה $\{ < \}$.
+	\[
+		\forall x \forall y (x < y \to \exists z\ x < z < y),
+		\quad
+		\forall x \exists y\ (y < x) \land \exists z (x < z)
+	\]
+	יחד עם הפסוקים שמגדירים ש־$<$ הוא סדר קווי חד.
+\end{example}
+\begin{theorem}[קנטור]
+	DLO היא $\aleph_0$־קטגורית. \\
+	יתר על־כן, אם $\Mm, \Nn \models \operatorname{DLO}$ כך ש־$|M| = |N| = \aleph_0$ ומתקיים,
+	\[
+		\Mm \models a_0 < a_1 < \cdots < a_{n - 1},
+		\quad
+		\Nn \models b_0 < b_1 < \cdots < b_{n - 1}
+	\]
+	אז קיים איזומורפיזם $\sigma : \Mm \to \Nn$ המקיים $\sigma(a_i) = b_i$.
+\end{theorem}
+\begin{proof}
+	נשתמש בהוכחת ההלוך ושוב (back and forth), נמנה את איברים $M$ ו־$N$,
+	\[
+		M = \{ a_i \mid i < \omega \},
+		\quad
+		N = \{ b_i \mid i < \omega \}
+	\]
+	ונבנה ברקורסיה על $\omega$ סדרת פונקציות $\sigma_i$ משמרות סדר.
+	עבור $i = 0$ נגדיר $\sigma_0(a_i) = b_i$.
+	נניח שבנינו את $\sigma_k$ ו־$k$ זוגי.
+	נבחן את $j < \omega$ המינימלי כך ש־$a_j \notin \dom \sigma_k$.
+	יש שלוש אפשרויות כאלה. \\
+	האפשרות הראשונה היא שיש $d_0, d_1 \in \dom \sigma_k$ כך ש־$d_0 < a_j < d_1$ וזה הטווח המינימלי, כלומר $d_0 = \max\{ x \in \dom \sigma_k \mid a_j < x \}$.
+	נבחן את $\sigma(d_0) < \sigma_k(d_1)$ ונבחר $e \in N$ שמקיים $\sigma_k(d_0) < e < \sigma_k(d_1)$.
+	אז נגדיר $\sigma_{k + 1} = \sigma_k \cup \{ \langle a_j, e \rangle \}$.
+	שתי האפשרויות האחרות הן ש־$a_j$ מעל או מתחת לכל $\dom \sigma_k$, ואז בהתאם נבחר נקודות מעבר לתחום זה, אשר קיימות מעצם חוסר קיום נקודות קצה. \\
+	עבור $k$ אי־זוגי נבחן את $\sigma_k^{-1}$ וכמו במקרה הקודם נוסיף את $b_j$ עם $j$ מינימלי שאיננו ב־$\dom \sigma_k^{-1} = \rng \sigma_k$ באופן משמר סדר. \\
+	נגדיר $\sigma = \bigcup_{k < \omega} \sigma_k$, זוהי פונקציה משמרת סדר חד־חד ערכית ועל.
+\end{proof}
+
+\subsection{כותרת כלשהי}
+\begin{lemma}[הפרדה]
+	נניח ש־$T_1, T_2$ תורות בשפה $L$.
+	$\Sigma$ אוסף פסוקים ב־$L$ שסגור תחת גימום ואיווי ומכיל את $\perp, \top$ (כאשר ההכלה הזו חשובה רק למקרה הלא עקבי).
+	אז התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item יש $\varphi \in \Sigma$ כך ש־$T_1 \models \varphi, T_2 \models \lnot \varphi$
+		\item לכל זוג מודלים $\Mm_1 \models T_1, \Mm \models T_2$ יש פסוק $\varphi \in \Sigma$ כך ש־$\Mm_1 \models \varphi, \Mm_2 \models \lnot \varphi$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	$1 \implies 2$ ברור, ולכן נניח את תנאי 2. \\
+	נקבע את $\Mm_* = \Mm_1$, אז התורה,
+	\[
+		T_2 \cup \{ \varphi_{\Mm_*, \Mm_2} \mid \Mm_2 \models T_2 \}
+	\]
+	היא לא עקבית, אחרת אם $\Nn$ מקיים אותה אז $\Nn \models T_2$ אבל $\Nn \models \varphi_{\Mm_*, \Nn}$ וזו סתירה.
+	לכן מקומפקטיות יש סדרה סופית של מבנים $\Mm_2^0, \ldots, \Mm_2^{n - 1} \models T_2$ כך שמתקיים,
+	\[
+		T_2 \cup \{ \varphi_{\Mm_*, \Mm_2^0, \ldots, \Mm_2^{n - 1}} \} \models \perp
+	\]
+	נסמן $\Mm_* \models \psi_{\Mm_*} = \bigwedge_{i < n} \varphi_{\Mm_*, \Mm_2^i} \in \Sigma$.
+	כעת נבחן את $T_1 \cup \{ \lnot \psi_{\Mm_*} \mid \Mm_* \models T_1 \}$.
+	היא לא עקבית ולכן $T_1 \models \lnot \bigwedge_{i < n} (\lnot \psi_{\Mm_*}) \equiv \bigvee_{i < n} \psi_{\Mm_*^i} \in \Sigma$.
+	אבל $T_2 \models \lnot \bigvee_{i < n} \psi_{\Mm_*^1}$ כרצוי.
+\end{proof}
+נסתכל על זוג מבנים $\Mm \subseteq \Nn$, אז אם $\varphi$ פסוק מהצורה של $\forall x\ \psi$ עבור $\psi$ חסר כמתים, אז נכונותו ב־$\Nn$ תגרור את נכונותו ב־$\Mm$.
+אנו רוצים להגדיר תכונה שגוררת שכל תת־מודל מקיים את התורה של המודל המקורי.
+נראה שזהו למעשה המצב שבו זה קורה.
+\begin{notation}
+	נניח ש־$\Mm, \Nn$ מבנים ו־$\Delta$ קבוצת נוסחות.
+	נסמן $f : \Mm \to_{\Delta} \Nn$ אם לכל נוסחה $\psi(x_0, \ldots, x_{n - 1}) \in \Delta$,
+	\[
+		\Mm \models \psi(a_0, \ldots, a_{n - 1})
+		\implies \Nn \models \psi(f(a_0), \ldots, f(a_{n - 1}))
+	\]
+\end{notation}
+\begin{lemma}
+	תהי $\Delta$ קבוצת פסוקים סגורה תחת גימום, איווי הוספת כמת קיים והחלפת שמות משתנים.
+	נניח ש־$\Mm$ מודל ו־$T$ תורה, אז התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item לכל $\varphi \in \Delta \cap \Th(\Mm)$, $T \cup \{ \varphi \}$ עקבית
+		\item יש מודל של $T$ ושיכון $f : \Mm \to_{\Delta} \Nn$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	$2 \implies 1$ טריוויאלי שכן $\Nn \models T \cup (\Th(\Mm) \cap \Delta)$, ולכן נוכיח את $1 \implies 2$. \\
+	נבחן את $T \cup \{ \psi(d_{a_0}, \ldots, d_{a_{n - 1}}) \mid \psi \in \Delta, \Mm \models \psi(a_0, \ldots, a_{n - 1}) \}$ בשפה המועשרת.
+	נניח בשלילה שהיא לא עקבית.
+	אז $T \models \lnot \bigwedge \psi_i(d_{a_0}, \ldots, d_{a_{n - 1}})$ כאשר $\rho = \bigwedge \psi_i \in \Delta$.
+	אז ממשפט הכללה על־ידי קבועים נסיק ש־$T \models \forall x_0 \cdots \forall x_{n - 1}\ \lnot \rho$, כלומר $T \models \lnot \exists x_0 \cdots \exists x_{n - 1}\ \rho(x_0, \ldots, x_{n - 1})$.
+	אבל $\Mm \models \exists x_0 \cdots \exists x_{n - 1}\ \rho$ בסתירה ל־1.
+\end{proof}
+\begin{corollary}
+	יהיו $T_1, T_2$ תורות,
+	אז התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item יש פסוק מהצורה $\varphi = \forall x\ \psi$ כש־$\varphi$ חסר כמתים (פסוק גלובלי) כך ש־$T_1 \models \varphi, T_2 \models \lnot \varphi$
+		\item אין מודל של $T_2$ שהוא תת־מודל של $T_1$
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	$2 \implies 1$.
+	נבחר $\Delta$ להיות פסוקים קיומיים, כלומר $\exists x\ \psi$ עבור $\psi$ חסרי כמתים (עד כדי שקילות).
+	נראה שלכל מודל $\Mm_1 \models T_1, \Mm_2 \models T_2$ יש פסוק גלובלי שמפריד ביניהם.
+	אחרת כל פסוק קיומי ש־$\Mm_2$ מספק עקבי עם $T_1$.
+	לכן מהלמה הקודמת נקבל שיכון מ־$\Mm_2$ למודל של $T_1$ בסתירה.
+	נגדיר את $\Sigma$ להיות הפסוקים ששקולים לפסוקים גלובליים, גם הם סגורים תחת גימום ואיווי, ונקבל פסוק מפריד כמבוקש.
+\end{proof}
+למעשה מצאנו אפיון סינטקטי שמאפיין את ההבדל האפשרי בין מבנים ותתי־מבנים.
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
