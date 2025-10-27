@@ -240,12 +240,12 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <td>חובת בחירה</td>
-        <td>25</td>
+        <td>23</td>
         <td>24</td>
     </tr>
     <tr>
         <td>בחירה בחוג</td>
-        <td>17</td>
+        <td>16</td>
         <td>0</td>
     </tr>
     <tr>

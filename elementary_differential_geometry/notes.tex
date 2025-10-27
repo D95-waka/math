@@ -326,6 +326,112 @@
 	זה נקרא צירוף אפיני והוא התחליף שלנו לצירופים לינאריים, והוא אף סגור להם.
 \end{notation}
 
+\section{שיעור 3 --- 27.10.2025}
+\subsection{העתקות אפיניות}
+עד כה יש לנו את המרחב האפיני $(E, V)$, ונגדיר את המודל הסטנדרטי.
+\begin{definition}[מודל אפיני סטנדרטי]
+	נסמן $\AAA^n = (\AAA^n, \RR^n)$ כאשר $\AAA^n = \RR^n$, ונסמן את הערכים בו בעזרת $(x, \xi) \in \AAA^n$.
+	פונקציית הצירוף תוגדר על־ידי חיבור.
+\end{definition}
+עתה נעבור לעסוק בהעתקות משמרות מבנה.
+\begin{definition}[העתקה אפינית]
+	נניח ש־$(E, V), (F, U)$ מעל שדה משותף $\FF$.
+	העתקה אפינית, המסומנת $E \to F$, נתונה על־ידי זוג פונקציות $f : E \to F$ ו־$\varphi : V \to U$ העתקה לינארית,
+	כך שמתקיים,
+	\[
+		\forall P \in E \forall v \in V,\ f(P + v) = f(P) + \varphi(v)
+	\]
+\end{definition}
+\begin{remark}
+	תוך שימוש בהגדרה הדואלית שלנו נסיק שמתקיים, $f(P + v) = f(P) + \varphi(v) \iff f(P + v) - f(P) = \varphi(v)$.
+	נובע אם כך ש־$\varphi$ נקבעת ביחידות עבור הפונקציה $f$.
+\end{remark}
+\begin{notation}
+	נסמן $df = \varphi$ ונאמר ש־$\varphi$ היא הדיפרנציאל של $f$.
+\end{notation}
+הסיבה שאנחנו קוראים ל־$\varphi$ כך היא שפונקציות $f$ שונות יכולות להיות בעלות דיפרנציאל זהה, והן תיבדלנה בקבוע בלבד, כלומר הדיפרנציאל מתנהג כפי שהיינו מצפים מדיפרנציאל באנליזה.
+נעבור למספר דוגמות להעתקות אפיניות.
+\begin{example}
+	פונקציה קבועה, כלומר $f(P) = f(Q)$ לכל $P, Q \in E$.
+	במקרה זה $\varphi \equiv 0_V$ או ש־$\varphi = 0_{\Hom(V, U)}$.
+\end{example}
+\begin{example}
+	הזזות. נבחן את המקרה $E = F, V = U$, כלומר בבחינת אנדומורפיזם, לכל $w \in V$ נגדיר את ההעתקה $t_w : E \to E$ על־ידי $P \mapsto P + w$. \\
+	נבדוק שהיא אכן אפינית,
+	אם $P \in E, v \in V$ אז,
+	\[
+		t_w(P + v) - t_w(P)
+		= (P + v) + w - (P + w)
+		= (P + w) + v - (P + w)
+		= v
+	\]
+	כאשר,
+	\[
+		(P + v) + w
+		= P + (v + w)
+		= P + (w + v)
+		= (P + w) + v
+	\]
+	ישירות מהאקסיומה השנייה ושימוש בקומוטטיביות החיבור במרחבים וקטוריים.
+	כלומר $\varphi(v) = v$ לכל $v \in V$, או בסימון שלנו $dt_w = \id_V$.
+\end{example}
+\begin{example}
+	פונקציות הומותטיות (homothecy).
+	יהיו $O \in F, \lambda \in \FF$, אז נגדיר את הפונקציה $h_{O, \lambda} : E \to F$ על־ידי ההכפלה של וקטור פי $\lambda$ במרחקו מ־$O$, כלומר,
+	\[
+		h_{O, \lambda}(P) = O + \lambda(P - O)
+	\]
+	ומתקיים $dh_{O, \lambda} = \lambda \id_V$.
+\end{example}
+\begin{exercise}
+	הוכיחו כי פונקציה הומותטית היא העתקה אפינית.
+\end{exercise}
+\begin{example}
+	נניח ש־$E = \AAA^n$ וש־$F = \AAA^m$.
+	נגדיר את ההעתקה $\AAA^n \to \AAA^m$ על־ידי,
+	\[
+		x \mapsto A \cdot x + b
+	\]
+	עבור $A \in \operatorname{Mat}_{n, m}(\FF)$ ו־$b \in F$.
+	במקרה זה הדיפרנציאל הוא ההעתקה הלינארית המיוצגת על־ידי $A$.
+\end{example}
+\begin{exercise}
+	הוכיחו שהרכבה של העתקות אפיניות היא אפינית. \\
+	הוכיחו שגם $d(g \circ f) = dg \circ df$.
+\end{exercise}
+\begin{definition}[איזומורפיזם אפיני]
+	$f: E \to F$ תיקרא איזומורפיזם אפיני אם קיימת העתקה אפינית $g : F \to E$ כך שמתקיים,
+	\[
+		g \circ f = \id_E
+		\quad
+		f \circ g = \id_F
+	\]
+	במקרה ש־$E = F$ נקרא להעתקה אוטומורפיזם אפיני, ונסמן ב־$\aut(E)$ להיות חבורת האוטומורפיזמים מעל המרחב האפיני $E$.
+\end{definition}
+
+\subsection{יוצרים ובסיסים}
+\begin{definition}[תת־יריעה נוצרת]
+	נניח ש־$S \subseteq E$ תת־קבוצה, אז $\langle S \rangle \le E$ היא תת־היריעה הנוצרת על־ידי $S$, והיא חיתוך כל היריעות המכילות את $S$,
+	\[
+		\forall S,\ \subseteq L \le E \implies \langle S \rangle \subseteq L
+	\]
+	משפחה $S$ של נקודות נקראת יוצרת של $E$ אם $\langle S \rangle = E$.
+\end{definition}
+\begin{definition}[בסיס אפיני]
+	$\{ P_0, \ldots, P_n \}$ תיקרא סדרה בלתי־תלויה אפינית כאשר $\dim \langle P_0, \ldots, P_n \rangle = n$ ונכנה את $\{ P_0, \ldots, P_n \}$ בסיס אפיני ובלתי־תלוי אפינית.
+\end{definition}
+נעבור עתה לדבר על קורדינטות.
+\begin{definition}[מערכת יחוס]
+	יהי $E$ ממימד סופי מעל $\FF$.
+	מערכת יחוס מעל $E$ נתונה על־ידי זוג $(O, \Bb)$ כאשר $O \in E$ ו־$\Bb = (b_1, \ldots, b_n)$ בסיס סדור של $V$.
+\end{definition}
+\begin{proposition}
+	בהינתן מערכת יחוס $(O, \Bb)$ לכל $P \in E$ קיימת הצגה יחידה $P = O + \sum_{i = 1}^n b_i x^i$ עבור $x \in \FF^n$.
+\end{proposition}
+\begin{definition}[קורדינטה]
+	ל־$x = (x^1, \ldots, x^n)$ היחיד כך ש־$P = O + \Bb x$ נקרא הקורדינטות של $P$ במערכת הייחוס $(O, \Bb)$.
+\end{definition}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
