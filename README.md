@@ -138,7 +138,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">בלמידה</th>
-        <th>19</th>
+        <th>27</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80616">תורת המודלים 1</a></td>
@@ -153,12 +153,17 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80560">גיאומטריה דיפרנציאלית אלמנטרית</a></td>
         <td>2026א'</td>
-        <td>2</td>
+        <td>4</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6178">קוגניציה אנושית למלאכותית</a></td>
         <td>2026א'</td>
         <td>3</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6119">חישוביות וקוגניציה</a></td>
+        <td>2026א'</td>
+        <td>6</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6178">פרספקטיבות חדשות על הוראת מתמטיקה</a></td>
