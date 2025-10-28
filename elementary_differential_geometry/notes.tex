@@ -432,6 +432,77 @@
 	ל־$x = (x^1, \ldots, x^n)$ היחיד כך ש־$P = O + \Bb x$ נקרא הקורדינטות של $P$ במערכת הייחוס $(O, \Bb)$.
 \end{definition}
 
+\section{שיעור 4 --- 28.10.2025}
+\subsection{קורדינטות --- המשך}
+\begin{definition}[מפה ופרמטריזציה למרחב וקטורי]
+	אם $V$ מרחב וקטורי מעל $\FF$ כך ש־$\dim V = n$, אז נכנה את ההעתקה $x : V \to \FF^n$ מפה, העתקה כמובן תלויה בקורדינטה.
+	המיפוי ההפוך $\FF^n \to V$ יכונה פרמטריזציה של $V$.
+\end{definition}
+\begin{theorem}[מרחב וקטורי מושרה]
+	תהי $V$ קבוצה ותהי $\operatorname{Coor}(V) = \{ f : V \to \FF^n \mid f \text{ is bijection} \}$ עבור $n \in \NN$ כלשהו,
+	כך שמתקיים שלכל $x, y \in \operatorname{Coor}(V)$ מתקיים,
+	\[
+		y \circ x^{-1} \in GL_n(\FF)
+	\]
+	בתנאים אלה ניתן להגדיר על הקבוצה $V$ מבנה של מרחב וקטורי מעל $\FF$ יחיד עם התכונה שלכל $x \in \operatorname{Coor}(V)$ הוא איזומורפיזם לינארי.
+\end{theorem}
+\begin{proof}
+	תהי $x \in \operatorname{Coor}(V)$.
+	נגדיר את החיבור על־ידי,
+	\[
+		+_V : V \times V \to V,
+		\quad
+		v +_V u = x^{-1}(x(v) +_{F^n} x(u))
+	\]
+	וכן,
+	\[
+		\cdot_V : \FF \times V \to V,
+		\quad
+		\alpha \cdot_V u = x^{-1}(\alpha x(u))
+	\]
+	נזכור ש־$x$ הוא איזומורפיזם לינארי ולכן,
+	\[
+		x(v + w)
+		= x(x^{-1}(x(w) + x(v)))
+		= x(v) + x(w)
+	\]
+	ובאופן דומה,
+	\[
+		x(\alpha u)
+		= x(x^{-1}(\alpha x(u)))
+		= \alpha \cdot x(u)
+	\]
+	ונשאר לנו להראות שהפונקציות שקיבלנו הן יחידות, כלומר שאין משמעות לבחירת $x$.
+	נניח ש־$y \in \operatorname{Coor}(V)$, ונרצה להראות שמתקיים,
+	\[
+		x^{-1}(x(v) + x(w))
+		= y^{-1}(y(v) + y(w))
+	\]
+	ובאופן דומה שוויון של הכפל.
+	נסמן $y \circ x^{-1} = \lambda_Q$.
+	נפעיל על שני הצדדים את הפונקציה $y$ ונקבל,
+	\[
+		y(v) + y(w)
+		= y(x^{-1}(x(v) + x(w)))
+		= \lambda_Q(x(v) + x(w))
+	\]
+	אבל $\lambda_Q$ היא לינארית ולכן נקבל,
+	\[
+		y(v) + y(w)
+		= \lambda_Q(x(v)) + \lambda_Q(x(w))
+		= y(v) + y(w)
+	\]
+	ומצאנו שאכן יש שוויון.
+\end{proof}
+\begin{definition}[מפה אפינית]
+	יהי $(E, V)$ מרחב אפיני $n$־מימדי.
+	מערכת קורדינטות על $A$ היא איזומורפיזם $x : E \to \AAA^n$ אפיני. \\
+	במקרה זה $x(u) = b + A u$ עבור $b \in \AAA^n$ ו־$A \in \aut(V, \FF^n)$.
+	נגדיר גם את הקבוצה $GA_n(\FF)$ כקבוצת ה־$x$־ים הללו.
+\end{definition}
+למשפט שראינו יש אנלוגיה לגרסה האפינית.
+הפעם במקום נקבע שתי נקודות כנקודות האפס ובכך נקבל שמתקיימים תנאי המשפט עבור המרחבים הווקטוריים.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
