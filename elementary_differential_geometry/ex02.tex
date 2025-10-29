@@ -1,0 +1,100 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 2 --- גאומטריה דיפרנציאלית אלמנטרית, 80560}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\question{}
+יהי $(E, V, t)$ מרחב אפיני ממימד $n$ מעל $\FF$.
+
+\subquestion{}
+נראה שהאוסף ${\{ P_i \}}_{i \in I} \subseteq E$ בלתי־תלוי אפינית אם ורק אם לכל $i \in I$ האוסף ${\{ P_j - P_i \}}_{i \ne j \in I} \subseteq V$ בלתי־תלויה לינארית מעל $V$.
+\begin{proof}
+	נניח ש־$\{ P_i \}$ בלתי־תלוי אפינית ויהי $i \in I$.
+	נניח בשלילה גם ש־$B = {\{ P_j - P_i \}}_{i \ne j \in I}$ היא תלויה לינארית, ובפרט נניח שמתקיים,
+	\[
+		P_0 - P_i
+		\in \Sp\{ P_j - P_i \mid j \in I \setminus \{0, i\} \}
+	\]
+	כאשר $i \ne 0 \in I$ בלי הגבלת הכלליות.
+	נזכור שמתקיים $P_0 \notin \langle P_j \mid j \ne i \rangle = P_i + W$ מאי־התלות האפינית, כאשר $W \le V$.
+	אבל $P_0 - P_i \in W$ מהטענה שראינו זה עתה, ולכן בפרט $P_0 \notin P_i + W$ בסתירה, ולכן הקבוצה לא תלויה לינארית.
+
+	נניח עתה את הכיוון ההפוך.
+	נראה שמתקיים $P_0 \notin \langle P_j \mid j \ne 0 \rangle = P_i + W$ עבור $W \le V$.
+	נניח בשלילה שאכן $P_0 \in P_i + W$, כלומר קיים $u \in W$ כך שמתקיים $P_0 = P_i + u$, כלומר $P_0 - P_i = u$.
+	אבל הנחנו ש־$u \in \{ P_j - P_i \mid j \ne i \}$ היא בלתי־תלויה לינארית, וזו סתירה.
+\end{proof}
+
+\subquestion{}
+נראה ש־${\{ P_i \}}_{0 \le i \le k}$ בלתי־תלויה אפינית אם ורק אם $\dim{\langle P_i \rangle}_{i \le k} = k$.
+\begin{proof}
+	נניח שהקבוצה בלתי־תלויה אפינית, ולכן $\langle P_i \mid i \le k \rangle = P_0 + W$ עבור $W \le V$ ומהסעיף הקודם $\dim W = k$.
+
+	בכיוון ההפוך נניח ש־$\dim W = k$.
+	אבל בקבוצה $\{ P_i - P_0 \mid 0 < i \le k \} = B$ יש בדיוק $k$ איברים ולכן $W = \Sp B$ מקיים את תנאי סעיף א' ונקבל ש־$\{ P_i \mid i \le k \}$ בלתי־תלויה אפינית.
+\end{proof}
+
+\subquestion{}
+נראה ש־${\{ P_i \}}_{0 \le i \le n}$ בסיס אפיני של $E$ אם ורק אם לכל $i \in I$ מתקיים,
+\[
+	(P_i, (P_0 - P_i, \ldots, P_n - P_i))
+\]
+היא מערכת יחוס של $E$.
+\begin{proof}
+	נניח ש־$(P_0, \ldots, P_n)$ בסיס אפיני ולכן $\langle P_0, \ldots, P_n \rangle = P + V$ עבור $P_i \in E$ כלשהי (נובע מסעיף ב'), עבור $i \in I$ נתון.
+	נסיק מסעיף א' ש־$V = \Sp\{ P_0 - P_i, \ldots, P_n - P_i \}$\ ולכן נקבל מערכת יחוס.
+
+	בכיוון ההפוך מהגדרת מערכות יחוס נקבל ש־$\Sp\{ P_0 - P_i, \ldots, P_n - P_i \} = V$ ולכן $P_i + V = E$, ובפרט מהנתון אודות כל $i$ נקבל מסעיף א' ש־$\{ P_i \}$ בסיס אפיני של $E$.
+\end{proof}
+
+\question{}
+יהיו $(E, V), (F, U), (G, W)$ שלושה מרחבים אפיניים מעל השדה $\FF$.
+תהיינה $f : E \to F, g : F \to G$ העתקות אפיניות. \\
+נראה ש־$g \circ f : E \to G$ העתקה אפינית המקיימת $d(g \circ f) = (dg) \circ (df)$.
+\begin{proof}
+	נסמן $g \circ f$, נתחיל להראות ש־$dh$ מוגדרת היטב, כלומר שלכל $u \in V$ מתקיים $h(P + u) - h(P) = h(Q + u) - h(Q)$.
+	\[
+		h(P + u) - h(P)
+		= g(f(P + u)) - h(P)
+		= g(f(P) + df(u)) - h(P)
+		= g(f(P)) + dg(df(u)) - h(P)
+		= dg(df(u)) 
+	\]
+	הביטוי לא תלוי ב־$P$ ולכן הפונקציה מוגדרת היטב ונבחין כי היא גם לינארית כהרכבת העתקות לינאריות.
+	נסיק בהתאם ש־$h$ היא העתקה אפינית, וישירות מהגדרת $dh$ נקבל מהחישוב שעשינו ש־$dh = (dg) \circ (df)$.
+\end{proof}
+
+\question{}
+תהיינה $f^1, \ldots, f^m : \FF^n \to \FF$ ותהי $f : \FF^n \to \FF^m$ המוגדרת על־ידי $f(x) = {(f^1(x), \ldots, f^m(x))}^t$.
+
+\subquestion{}
+נוכיח ש־$f$ לינארית אם ורק אם $f^1, \ldots, f^m$ העתקות לינאריות.
+\begin{proof}
+	נגדיר את ההעתקה הלינארית $H_k : \FF^m \to \FF$ המוגדרת על־ידי $H_k(x_1, \ldots, x_m) = x_k$.
+	זוהי העתקת הטלה וידוע שהיא לינארית.
+	נבחין כי מתקיים $H_k \circ f \equiv f^k$ לכל $k$, אבל $f$ לינארית מהנחה ו־$H_k$ לינארית ולכן ההרכבה שלהן היא לינארית, כלומר $f^k$ לינארית לכל $1 \le k \le n$.
+
+	נניח ש־$f^1, \ldots, f^n$ לינאריות.
+	נראה ש־$f$ לינארית ישירות מהגדרה.
+	נניח ש־$x, y \in \FF^n$ וכן ש־$\alpha, \beta \in \FF$, אז מתקיים,
+	\[
+		f(\alpha x + \beta y)
+		= \begin{pmatrix} f^1(\alpha x + \beta y) \\ \vdots \\ f^m(\alpha x + \beta y) \end{pmatrix} 
+		= \begin{pmatrix} \alpha f^1(x) + \beta f^1(y) \\ \vdots \\ \alpha f^m(x) + \beta f^m(y) \end{pmatrix} 
+		= \alpha \begin{pmatrix} f^1(x) \\ \vdots \\ f^m(x) \end{pmatrix} + \beta \begin{pmatrix} f^1(y) \\ \vdots \\ f^m(y) \end{pmatrix} 
+		= \alpha f(x) + \beta f(y)
+	\]
+	ולכן $f$ לינארית.
+\end{proof}
+
+\subquestion{}
+נוכיח ש־$f$ העתקה אפינית אם ורק אם $f^1, \ldots, f^m$ העתקות אפיניות.
+\begin{proof}
+	נניח ש־$f$ אפינית.
+	
+	TODO
+\end{proof}
+
+\end{document}
