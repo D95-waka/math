@@ -1,0 +1,253 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 2 --- תורת המידה, 80517}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+יהי מרחב מידה $(X, \Bb, \mu)$.
+נאמר שתכונה מתקיימת כמעט תמיד ב־$X$ אם מספר הנקודות שלא מקיימות את התכונה הוא ממידה 0.
+תהי ${\{ A_n \}}_{n = 1}^{\infty} \subseteq \Bb$ סדרה מדידות המקיימת,
+\[
+	\sum_{n = 1}^\infty \mu(A_n) < \infty
+\]
+נוכיח כי התכונה $\varphi(x) = |\{ n \in \NN \mid x \in A_n \}| < \infty$ מתקיימת כמעט תמיד.
+\begin{proof}
+	תהי $B = \{ x \in X \mid \lnot \varphi(x) \} \subseteq X$.
+	נבחין כי $x \in B$ אם ורק אם $x \in \bigcup_{n = k}^\infty A_n = B_k$ לכל $k \in \NN$.
+	במילים אחרות, מתקיים $B = \bigcap_{k = 1}^\infty \bigcup_{n = k}^\infty A_n = \bigcap_{k = 1}^\infty B_k$.
+	נשים לב שמהגדרה $B_1 \supseteq B_2 \supseteq \cdots$, ולכן מתקיים,
+	\[
+		\mu(B)
+		= \mu(\bigcup_{k = 1}^\infty B_k)
+		= \lim_{k \to \infty} \mu(B_k)
+		\le \lim_{k \to \infty} \sum_{n = k}^\infty \mu(A_n)
+		= 0
+	\]
+	כאשר השוויון האחרון נובע מהנתון אודות הסדרה $\{ A_n \}$ והטענה אודות התאפסות סדרת זנבות של טור מתכנס בהחלט.
+\end{proof}
+
+\question{}
+יהי מרחב מידה $(X, \Bb, \mu)$ ונגדיר,
+\[
+	\Nn = \{ E \subseteq X \mid \exists N \in \Bb, \mu(N) = 0, E \subseteq N \}
+\]
+וכן את האוסף $\bar{\Bb} = \{ A \cup E \mid A \in \Bb, E \in \Nn \}$ ואת $\bar{\mu} : \bar{\Bb} \to [0, \infty]$ על־ידי $\bar{\mu}(A \cup E) = \mu(A)$ לכל $A \in \Bb, E \in \Nn$.
+
+\subquestion{}
+נוכיח כי $\bar{\Bb}$ היא $\sigma$־אלגברה.
+\begin{proof}
+	ידוע כי $X \in \Bb$ ולכן גם $X \in \bar{\Bb}$, באופן דומה ידוע ש־$\mu(\emptyset) = 0$ ולכן $\emptyset \in \Nn$, וכמובן גם $\emptyset \in \Bb$, ונסיק שגם $\emptyset \in \bar{\Bb}$.
+
+	נראה ש־$\bar{\Bb}$ סגור למשלים.
+	נניח ש־$A \cup E \in \bar{\Bb}$ עבור $A \in \Bb, E \in \Nn$, ולכן מתקיים $X \setminus (A \cup E) = (X \setminus A) \cap (X \setminus E)$.
+	ידוע ש־$\Bb \subseteq \bar{\Bb}$ ולכן $X \setminus A \in \bar{\Bb}$, וכן כל קבוצה המכילה קבוצה מדידה חיובית מכילה קבוצה מקסימלית כזו ולכן גם $X \setminus E \in \bar{\Bb}$ ומספיק להראות שהקבוצה סגורה לחיתוך סופי.
+	\[
+		(A \cup E) \cap (A' \cup E')
+		= (A \cap A') \cup (E \cap E')
+	\]
+	אבל $\Bb$ היא $\sigma$־אלגברה וחיתוך מידות 0 הוא מידה 0 ולכן $\bar{\Bb}$ סגורה למשלים.
+
+	מסגירות לחיתוך סופי נסיק שמספיק להוכיח סגירות לאיחוד בן־מניה של קבוצות זרות, ולכן נניח ש־${\{ A_i \cup E_i \}}_{n = 1}^\infty \subseteq \bar{\Bb}$, אז,
+	\[
+		\bigcup_{n = 1}^\infty A_n \cup E_n
+		= (\bigcup_{n = 1}^\infty A_n) \cup (\bigcup_{n = 1}^\infty E_n)
+	\]
+	ומסגירות של $\Bb$ לאיחוד בן־מניה ומהעובדה שמתקיים,
+	\[
+		\mu(\bigcup_{n = 1}^\infty E_n)
+		= \sum_{n = 1}^\infty \mu(E_n)
+		= 0
+	\]
+	נסיק סגירות לאיחוד בן־מניה, ולכן $\bar{\Bb}$ היא $\sigma$־אלגברה.
+\end{proof}
+
+\subquestion{}
+נוכיח ש־$\bar{\mu}$ מוגדרת היטב.
+\begin{proof}
+	נניח שמתקיים $A \cup E = A' \cup E' \in \bar{\Bb}$ עבור $A, A' \in \Bb, E, E' \in \Nn$, ונראה שמתקיים,
+	\[
+		\bar{\mu}(A \cup E) = \bar{\mu}(A' \cup E')
+	\]
+	נניח בשלילה שמתקיים $\bar{\mu}(A \cup E) \ne \bar{\mu}(A' \cup E')$ ולכן מהגדרה $\mu(A) \ne \mu(A')$.
+	בלי הגבלת הכלליות נניח ש־$\mu(A) > \mu(A')$ ולכן גם $\mu(A \setminus A') > 0$.
+	ידוע ש־$A \cup E = A' \cup E'$ ולכן מהנתון הקודם,
+	\[
+		(A \setminus A') \cup (E \setminus A')
+		(A \cup E) \setminus A'
+		= (A' \cup E') \setminus A'
+		= E' \setminus A'
+	\]
+	אבל $E \setminus A'$ מוכלת בקבוצה ממידה 0 ולכן נסיק,
+	\[
+		0
+		< \bar{\mu}(A \setminus A')
+		= \bar{\mu}(E' \setminus A')
+		= \mu(\emptyset)
+		= 0
+	\]
+	וקיבלנו סתירה, לכן $\bar{\mu}$ מוגדרת היטב.
+
+	נראה ש־$\bar{\mu}$ היא $\sigma$־אדיטיבית ולכן פונקציית מידה.
+	נניח ש־${\{ A_n \cup E_n \}}_{n = 1}^\infty \subseteq \bar{\Bb}$ זרות, ונבדוק,
+	\[
+		\bar{\mu}(\bigcup_{n = 1}^\infty A_n \cup E_n)
+		= \bar{\mu}((\bigcup_{n = 1}^\infty A_n) \cup (\bigcup_{n = 1}^\infty E_n))
+		= \mu(\bigcup_{n = 1}^\infty A_n)
+		= \sum_{n = 1}^\infty \mu(A_n)
+		= \sum_{n = 1}^\infty \bar{\mu}(A_n \cup E_n)
+	\]
+	ומצאנו כי $\bar{\mu}$ אכן פונקציית מידה.
+\end{proof}
+
+\subquestion{}
+נראה שאם $\hat{\mu}$ פונקציית מידה כך ש־$\hat{\mu}(A) = \mu(A)$ מקיימת $\hat{\mu} \equiv \bar{\mu}$.
+\begin{proof}
+	תהי $A \cup E \in \bar{\Bb}$, ונניח בלי הגבלת הכלליות שהאיחוד הוא זר (אחרת נצמצם את $E$).
+	אז מתקיים $\hat{\mu}(A \cup E) = \hat{\mu}(A) + \hat{\mu}(E) = \mu(A) + \hat{\mu}(E)$.
+	כלומר, הטענה שקולה לטענה ש־$\hat{\mu}(E) = 0$ לכל $E \in \Nn$.
+
+	נניח בשלילה שקיים $E \in \Ll$, ובהתאם $E' \supseteq E$ ממידה 0, כך ש־$\hat{\mu}(E) > 0$.
+	נבחין כי $E' \in \Bb$ ולכן $\hat{\mu}(E) < \hat{\mu}(E') = \mu(E) = 0$ בסתירה.
+\end{proof}
+
+\question{}
+יהי מרחב מידה $(X, \Sigma, \mu)$ וסדרת קבוצות מדידות ${\{ A_n \}}_{n = 1}^\infty \subseteq \Sigma$.
+נזכיר את ההגדרה,
+\[
+	\liminf A_n = \bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty A_k,
+	\quad
+	\limsup A_n = \bigcap_{n = 1}^\infty \bigcup_{k = n}^\infty A_k
+\]
+
+\subquestion{}
+נראה שמתקיים $\liminf A_n, \limsup A_n \in \Sigma$.
+\begin{proof}
+	נבחין כי נתון ש־$A_n \in \Sigma$ לכל $n$, ולכן מסגירות לאיחוד בן־מניה גם $\bigcup_{k = n}^\infty A_k \in \Sigma$.
+	באופן דומה מסגירות לחיתוך בן־מניה נקבל שגם $\limsup A_n \in \Sigma$.
+	ההוכחה עבור $\liminf$ זהה.
+\end{proof}
+
+\subquestion{}
+נראה ש־$\mu(\liminf A_n) \le \liminf \mu(A_n)$.
+\begin{proof}
+	נסמן $B_n = \bigcup_{k = n}^\infty A_k$, אז $\{ B_n \}$ היא סדרה יורדת, ולכן מטענה שראינו,
+	\[
+		\mu(\bigcap_{n = 1}^\infty B_n)
+		= \lim_{n \to \infty} \mu(B_n)
+		\le \liminf A_n
+	\]
+	כאשר המעבר האחרון נובע מהגדרת הגבול התחתון.
+\end{proof}
+
+\subquestion{}
+נראה שאם מרחב המידה הוא סופי אז מתקיים גם $\mu(\limsup A_n) \ge \limsup \mu(A_n)$.
+\begin{proof}
+	נבחין כי מחוקי דה־מורגן מתקיים,
+	\[
+		\liminf A_n^C = {(\limsup A_n)}^C
+	\]
+	ולכן הטענה נובעת מהטענה של הסעיף הקודם, אבל רק בהנחה שעדיין חלה הטענה אודות שקילות מידה לגבול, והיא מתקיימת במקרה זה רק כאשר המידה של איחוד הקבוצות סופי, זה נובע כמובן מהטענה ש־$\mu(X) < \infty$.
+\end{proof}
+
+\question{}
+יהי $(X, \Sigma)$ מרחב מדיד.
+
+\subquestion{}
+נניח ש־$f_n : X \to [-\infty, \infty]$ סדרה של פונקציות מדידות.
+נגדיר $f(x) = \lim_{n \to \infty} f_n(x)$ וכן $E = \dom f$. \\
+נראה ש־$E \in \Sigma$ וכן ש־$f$ היא מדידה.
+\begin{proof}
+	נבחין כי $x \in E \iff \liminf f_n(x) = \limsup f_n(x)$ ולכן נגדיר $G = \limsup f_n, g = \liminf f_n$, הוכחנו בהרצאה ששתי הפונקציות מוגדרות ומדידות, וכן מתקיים $E = \dom g \cap \dom G$.
+	נתון כי מותר להניח ש־$E$ מדידה במצב הזה כקבוצה המקיימת,
+	\[
+		E = \{ x \in X \mid g(x) = G(x) \}
+	\]
+	נגדיר את $f : E \to [-\infty, \infty]$ על־ידי $f(x) = \liminf f_n(x)$, אבל מהגדרה מתקיים $f(x) = \limsup f_n(x) = \lim f_n(x)$ כרצוי.
+	בהכרח $f$ מדידה בתחומה.
+\end{proof}
+
+\subquestion{}
+נגדיר את הפונקציה $d_n : [0, 1] \to \{0, 1\}$ כפונקציה המחזירה את ערך הספרה ה־$n$ לאחר לאחר הנקודה העשרונית של $x$ בפיתוח בינארי. \\
+נגדיר את הקבוצה,
+\[
+	A = \left\{ \lim_{n \to \infty} \sum_{i = 1}^n \frac{d_i(x)}{n} = \frac{1}{2} \mid x \in [0, 1] \right\}
+\]
+ונוכיח שהיא מדידה בורל.
+\begin{proof}
+	נראה ש־$d_n$ רציפה לכל $n$.
+	נבחן את $d_n^{-1}(\{ 0 \})$, כלומר אוסף המספרים שבייצוג בינארי שלהם הספרה ה־$n$ אחרי הנקודה היא $0$.
+	ידוע כי $[0, 1]$ היא פתוחה, וכפל הוא פונקציה רציפה, ולכן $2^{-n} \cdot [0, 1]$ היא רציפה.
+	חיבור היא פונקציה רציפה גם כן ולכן $e + 2^{-n} [0, 1]$ פתוחה לכל $e$ מספר שלו יש ייצוג בינארי על־ידי $n - 1$ ספרות, ולכן נסיק ש־$d_n$ רציפה.
+	נובע שהיא גם מדידה בורל.
+
+	נגדיר $f_n : [0, 1] \to \{0, 1\}$ על־ידי $f_n(x) = \sum_{i = 1}^n \frac{d_i(x)}{n}$, מרציפות $d_n$ נסיק ש־$f_n$ מדידה לכל $n$.
+	נגדיר את $f : [0, 1] \to [0, 1]$ על־ידי $f(x) = \lim_{n \to \infty} f_n(x)$, אז מסעיף א' היא מדידה בורל גם כן.
+
+	ידוע כי $[0, 1]$ הוא מרחב האוסדורף ולכן יחידונים הם סגורים, ונסיק עם סגירות למשלים שיחידונים הם קבוצות מדידות, ולכן $f^{-1}(\{ \frac{1}{2} \})$ מדידה.
+\end{proof}
+
+\question{}
+נגדיר את ה־$\sigma$־אלגברה הבאה,
+\[
+	\Aa = \{ E \subseteq \RR \mid |E| \le \aleph_0 \lor |E^C| \le \aleph_0 \}
+\]
+
+\subquestion{}
+נגדיר פונקציה $\mu : \Aa \to [0, \infty]$ על־ידי,
+\[
+	\mu(E)
+	= \begin{cases}
+		0 & |E| \le \aleph_0 \\
+		1 & \text{otherwise}
+	\end{cases}
+\]
+נראה ש־$\mu$ היא מידה על $(\RR, \Aa)$.
+\begin{proof}
+	עלינו להראות ש־$\mu$ היא $\sigma$־אדיטיבית. \\
+	יהיו ${\{ E_n \}}_{n = 1}^\infty \subseteq \Aa$ קבוצות מדידות זרות ובנות־מניה, אז מאקסיומת הבחירה מתקיים $|\bigcup_{n = 1}^\infty A_n| = \aleph_0$ בלבד, נסיק,
+	\[
+		\mu(\bigcup_{n = 1}^\infty A_n)
+		= 0
+		= \sum_{n = 1}^\infty 0
+		= \sum_{n = 1}^\infty \mu(A_n)
+	\]
+	אילו נניח שלפחות שתיים מן הקבוצות לא בנות־מניה, אז המשלים שלהן בן־מניה ומשיקולי עוצמה הן לא יכולות להיות זרות, לכן המקרה היחיד האפשרי שהוא לא המקרה שהוצג הוא שקבוצה אחת לא בת־מניה, ללא הגבלת הכלליות $|E_1^C| \le \aleph_0$.
+	במקרה זה מתקיים $|\bigcup A_n| = |\RR|$ ולכן $\mu(\bigcup A_n) = 1$, ומהצד השני,
+	\[
+		\sum_{n = 1}^\infty \mu(A_n)
+		= \mu(A_1) + \sum_{n = 2}^\infty \mu(A_n)
+		= 1 + 0
+	\]
+	ולכן $\mu$ היא אכן פונקציית מידה.
+\end{proof}
+
+\subquestion{}
+נמצא את כל הפונקציות המדידות $(\RR, \Aa) \to \RR$ ונחשב את האינטגרל שלהן.
+\begin{solution}
+	נזכור כי $\RR$ מרחב האוסדורף ולכן יחידונים הם מדידים. \\
+	תהי פונקציה $f : (\RR, \Aa) \to \RR$ ונניח שקיימות שתי נקודות שונות $a, b \in \RR$ כך ש־$|f^{-1}(\{a\})| = |f^{-1}(\{b\})| = |\RR|$.
+	אז נובע ש־$f^{-1}(\{a\}) \subseteq \RR \setminus f^{-1}(\{b\})$, כלומר $f^{-1}(\{b\}) \notin \Aa$ ולכן $f$ לא מדידה.
+
+	נסיק שאם $f$ מדידה אז קיימת לכל היותר נקודה יחידה $a \in \RR$ כך ש־$|A| = |\RR|$ עבור $A = f^{-1}(\{a\})$.
+	ידוע כי $\RR \setminus A$ קבוצה בת־מניה, ולכן התמונה ההפוכה של כל נקודה ב־$f(\RR \setminus A)$ היא לכל היותר בת־מניה.
+	לכן נסיק שקבוצת הפונקציות המדידות $(\RR, \Aa) \to \RR$ הן קבוצת הפונקציות שאינן קבועות לכל היותר בכמות בת־מניה של נקודות.
+
+	נניח ש־${\{ A_n \}}_{n = 1}^\infty \subseteq \Aa$ סדרת הקבוצות שעליהן $f$ קבועה וש־$|A_n| \le \aleph_0$.
+	נסמן גם ${\{ a_n \}}_{n = 1}^\infty \subseteq \RR$ כך ש־$f(A_n) = \{ a_n \}$. \\
+	אז מתקיים $A \cup \bigcup_{n = 1}^\infty A_n = \RR$, וזהו איחוד זר בן־מניה.
+	בהתאם נובע שבדיוק,
+	\[
+		f = a \cdot \indicator_A + \sum_{n = 1}^\infty \alpha_n \cdot \indicator_{A_n}
+	\]
+	כלומר $f$ היא פונקציה מדידה פשוטה, ולכן מהגדרה,
+	\[
+		\int f\ d\mu
+		= a \cdot \mu(A) + \sum_{n = 1}^\infty a_n \cdot \mu(A_n)
+		= a \cdot 1 + \sum_{n = 1}^\infty a_n \cdot 0
+		= a
+	\]
+\end{solution}
+
+\end{document}

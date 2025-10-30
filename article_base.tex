@@ -1,7 +1,7 @@
 \documentclass{article}
 
 % packages
-\usepackage{amsmath, amsthm, thmtools, amsfonts, amssymb, luacode, catchfile, hyperref, ifthen, graphicx}
+\usepackage{amsmath, amsthm, thmtools, amsfonts, amssymb, luacode, catchfile, hyperref, ifthen, graphicx, bbm}
 \ifcsname c@kobocompile\endcsname
 	\usepackage[a5paper, total={1072pt, 1448pt}, margin=10pt, includeheadfoot]{geometry} % set page margins
 \else
@@ -60,6 +60,7 @@
 % commands
 \newcommand{\cupdot}{\mathbin{\mathaccent\cdot\cup}}
 \newcommand{\bigcupdot}{\mathbin{\mathaccent\cdot\bigcup}}
+\newcommand{\indicator}{\mathbbm{1}}
 \newcommand{\AAA}[0]{\mathbb{A}}
 \newcommand{\Aa}[0]{\mathcal{A}}
 \newcommand{\BB}[0]{\mathbb{B}}
