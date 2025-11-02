@@ -520,6 +520,213 @@
 \end{proof}
 למעשה מצאנו אפיון סינטקטי שמאפיין את ההבדל האפשרי בין מבנים ותתי־מבנים.
 
+\section{שיעור 3 --- 2.11.2025}
+\subsection{משפט ווש}
+נעסוק בבנייה חשובה מאוד בעולם המודלים.
+\begin{definition}[מסנן]
+	אוסף $\Ff \subseteq \Pp(X)$ של תתי־קבוצות של קבוצה $X$ יקרא מסנן אם מתקיימות התכונות:
+	\begin{enumerate}
+		\item $\emptyset \notin \Ff$
+		\item אם $A \in \Ff$ ו־$A \subseteq B$ אז $B \in \Ff$
+		\item אם $A, B \in \Ff$ אז גם $A \cap B \in \Ff$
+	\end{enumerate}
+\end{definition}
+ההגדרה הזו באה לתאר לנו מהן קבוצות ''גדולות'', כלומר איך אנחנו יכולים לדבר באופן אבסטרקטי על המובן הגאומטרי שחלק מאוסף נחשב לגדול וחלק לא.
+לכן נרצה להניח שאוסף ריק לא יכול להיות גדול, וכן סגירות ללקיחת קבוצות גדולות יותר וסגירות לחיתוך.
+חשוב להסתכל על מסנן בתור אוסף של קבוצות שגדולות במובן של תורת המידה, כלומר אוסף שמכיל כמעט כל איבר.
+\begin{example}
+	$\Ff = \{ X \}$ עבור $X$, האוסף שבו רק הקבוצה בשלמותה תיחשב לקבוצה גדולה.
+\end{example}
+\begin{example}
+	נניח ש־$\emptyset \ne x \subseteq X$, אז $\Ff_x = \{ y \subseteq X \mid x \subseteq y \}$ הוא מסנן, ואף נקרא המסנן הראשי.
+\end{example}
+\begin{example}
+	נניח ש־$Y \subseteq \Pp(X)$ עם תכונת החיתוך הסופי, ונגדיר,
+	\[
+		\Hh = \{ y \subseteq X \mid x_1, \ldots, x_n \in X, \bigcap_{1 \le i \le n} x_i \subseteq y \}
+	\]
+	אף הוא מסנן.
+\end{example}
+נעבור להגדרה המשלימה והחשובה מאוד.
+\begin{definition}[על־מסנן]
+	תהי $X$ קבוצה ויהי $\Uu \subseteq \Pp(X)$ מסנן, אז הוא נקרא על־מסנן אם בנוסף לכל $x \subseteq X$ או ש־$x \in \Uu$ או ש־$X \setminus x \in \Uu$.
+\end{definition}
+זהו למעשה מסנן שמקיים את התכונה המהותית שכל קבוצה היא או גדולה, או קטנה במובן שהמשלים שלה הוא גדול.
+\begin{definition}[מכפלה]
+	תהי $\langle \Mm_i \mid i \in I \rangle$ סדרת מבנים בשפה $L$.
+	נגדיר את המכפלה,
+	\[
+		\Nn = \prod_{i \in I} \Mm_i
+	\]
+	כך שמתקיים $N = \prod_{i \in I} M_i$, כלומר העולם מורכב מהמכפלה הקרטזית של העולמות של סדרת המבנים. \\
+	לכל $R \in L$ יסמן יחס $n$־מקומי נגדיר,
+	\[
+		\langle f_0, \ldots, f_{n - 1} \rangle \in R^{\Nn}
+		\iff \forall i \in I,\ \langle f_0(i), \ldots, f_{n - 1}(i) \rangle \in R^{\Mm_i}
+	\]
+	וכן לכל $F \in L$ סימן פונקציה $n$־מקומית, אז מתקיים,
+	\[
+		(F^{\Nn}(f_0, \ldots, f_{n - 1}))(i)
+		= F^{\Mm_i}(f_0(i), \ldots, f_{n - 1}(i))
+	\]
+\end{definition}
+נסיק אם כך שמכפלה היא מודל שמהווה בצורה ישירה מכפלה של מודלים אחרים.
+אבל מבנה זה לא בהכרח משמר את התורה של המודלים המוכפלים, נראה דוגמה.
+\begin{example}
+	נניח ש־$F_0, F_1$ מודלים של שדות, ונניח גם שהשדות לא טריוויאליים. \\
+	נגדיר את $F_0 \times F_1$, אז מודל זה הוא לא שדה, זאת שכן לאיבר $\langle 0_{F_0}, 1_{F_1} \rangle$ הוא שונה מאפס ואין לו הופכי.
+\end{example}
+המטרה שלנו היא למצוא דרך להכפיל שתשמר את המבנה והתורה באיזשהו אופן.
+המטרה שלנו היא למצוא דרך ליצור מכפלה ככה שהצורה נשמרת אבל שאנחנו לא מורידים יותר מדי איברים, אלא כמות שמספיקה כדי לא לשבור את התורה.
+ווש (Łoś) הצליח במשימה זו, זאת על־ידי שימוש במסננים.
+\begin{definition}[יחס שקילות על מסנן]
+	יהי $\Ff \subseteq \Pp(I)$ מסנן, ונניח ש־$\langle \Mm_i \mid i \in I \rangle$ סדרה של $L$־מבנים, ו־$\Nn$ מכפלתם. \\
+	נאמר ש־$f \sim_{\Ff} g$ עבור $f, g \in N$ אם,
+	\[
+		\{ i \in I \mid f(i) = g(i) \} \in \Ff
+	\]
+\end{definition}
+\begin{proposition}
+	היחס $\sin_{\Ff}$ הוא יחס שקילות.
+\end{proposition}
+\begin{definition}[מכפלה מושרית מחלוקה]
+	תהי $\langle \Mm_i \mid i \in I \rangle$ סדרת $L$־מבנים, ונגדיר את המודל $\Nn / \Ff$ כך שהעולם הוא $N / \sim_{\Ff}$. \\
+	נגדיר גם שאם $R$ יחס $n$־מקומי, אז מתקיים,
+	\[
+		\langle [f_0], \ldots, [f_{n - 1}] \rangle \in R^{\Nn / \Ff}
+		\iff \{ i \in I \mid \langle f_0(i), \ldots, f_{n - 1}(i) \rangle \in R^{\Mm_i} \} \in \Ff
+	\]
+	אם $F \in L$ סימן פונקציה $n$־מקומית, אז נגדיר,
+	\[
+		F^{\Nn / \Ff}([f_0], \ldots, [f_{n - 1}])
+		= [F^{\Nn}(f_0, \ldots, f_{n - 1})]
+	\]
+\end{definition}
+כלומר הפעם איחדנו חלק מהאיברים על־ידי הגדרה של שקילות עליהם, והשתמשנו במסנן כדי לייצג את החלוקה הזאת. אנחנו מדברים באיזשהו מובן על קבוצות האיברים הגדולים ומסתכלים על קבוצות אלה כאיברים שלנו.
+לא ראינו שהגדרה זו בכלל תקפה, יכול להיות שהיא לא מוגדרת היטב.
+\begin{proposition}
+	$R^{\Nn / \Ff}, F^{\Nn / \Ff}$ מוגדרות היטב.
+\end{proposition}
+\begin{notation}
+	אם $f, g \in N$ אז נסמן $e_{fg} = \{ i \in I \mid f(i) = g(i) \}$.
+\end{notation}
+\begin{exercise}
+	הוכיחו את הטענה.
+\end{exercise}
+ראינו כי ההגדרה החדשה של מכפלה מרחיבה את ההגדרה הראשונה שלנו, וראינו גם שההגדרה הראשונה לא מצליחה לשמר את המבנה של המודל.
+המסקנה שלנו היא שאם אנחנו רוצים לשמר את המבנה, אנחנו צריכים ללכת לכיוון ההפוך.
+\begin{definition}[על־מכפלה וחזקה]
+	תהיינה $\langle \Mm_i \mid i \in I \rangle$ סדרת של $L$־מבנים, ויהי על־מסנן $\Uu \subseteq \Pp(I)$, אז $\Nn = \prod_{i \in I} \Mm_i / \Uu$ נקרא על־מכפלה. \\
+	אם $\Mm_i = \Mm_j$ לכל $i, j \in I$ אז נקרא ל־$\Nn$ על־חזקה.
+\end{definition}
+\begin{lemma}
+	תהי $M_i$ סדרת מודלים ו־$\Uu$ על־מסנן.
+	נניח ש־$f_0, \ldots, f_{n - 1} \in N$ ו־$t(x_0, \ldots, x_{n - 1})$ שם עצם מעל $L$.
+	אז מתקיים,
+	\[
+		t^{\Nn / \Uu}([f_0], \ldots, [f_{n - 1}])
+		= {[ t^{\Nn}(f_0, \ldots, f_{n - 1}) ]}_{\Uu}
+	\]
+\end{lemma}
+\begin{proof}
+	באינדוקציה על $t$.
+	אם $t = x$ אז,
+	\[
+		t^{\Nn / \Uu}([f])
+		= [f]
+		= [t^{\Nn}(f)]
+	\]
+	אם $t = F^{\Nn / \Uu}(t_0, \ldots, t_{n - 1})$ אז מתקיים,
+	\begin{align*}
+		t^{\Nn / \Uu}([f_0], \ldots, [f_{n - 1}])
+		& = F^{\Nn / \Uu}(t_0^{\Nn / \Uu}([f_0], \ldots, [f_{n - 1}]), \ldots, t_0^{\Nn / \Uu}([f_0], \ldots, [f_{n - 1}])) \\
+		& = F^{\Nn / \Uu}([t_0^{\Nn}(f_0, \ldots, f_{n - 1})], \ldots, [t_{n - 1}^{\Nn}(f_0, \ldots, f_{n - 1})]) \\
+		& = [F^{\Nn}(t_0^{\Nn}(f_0, \ldots, f_{n - 1}))] \\
+		& = [t^{\Nn}(f_0, \ldots, f_{n - 1})]
+	\end{align*}
+	והשלמנו את מהלך האינדוקציה.
+\end{proof}
+\begin{theorem}[ווש]
+	נניח ש־$\langle \Mm_i \mid i \in I \rangle$ סדרת $L$־מודלים ו־$\Uu \subseteq \Pp(I)$ על־מסנן. \\
+	אז אם $\varphi(x_0, \ldots, x_{n - 1})$ אז,
+	\[
+		\Nn / \Uu \models \varphi([f_0], \ldots, [f_{n - 1}])
+		\iff \{ i \in I \mid \Mm_i \models \varphi(f_0(i), \ldots, f_{n - 1}(i)) \} \in \Uu
+	\]
+\end{theorem}
+\begin{proof}
+	באינדוקציה על מבנה הנוסחה. \\
+	נתחיל בנוסחה אטומית, $\varphi = R(t_0(x), \ldots, t_{n - 1}(x))$, אז מתקיים,
+	\begin{align*}
+		& \Nn / \Uu \models \varphi([f_0], \ldots, [f_{n - 1}]) \\
+		\iff & (t_0^{\Nn / \Uu}([f_0], \ldots, [f_{n - 1}]), \ldots, t_{n - 1}^{\Nn / \Uu}([f_0], \ldots, [f_{n - 1}])) \in R^{\Nn / \Uu} \\
+		\iff & ([t_0^{\Nn}(f_0, \ldots, f_{n - 1})], \ldots, [t_{n - 1}^{\Nn}(f_0, \ldots, f_{n - 1})]) \in R^{\Nn / \Uu} \\
+		\iff & \{ i \in I \mid (t_0^{\Nn}(f_0, \ldots, f_{n - 1})(i), \ldots, t_{n - 1}^{\Nn}(f_0, \ldots, f_{n - 1})(i)) \in R^{\Mm_i} \} \in \Uu \\
+		\iff & \{ i \in I \mid t^{\Mm_i}(f_0(i), \ldots, f_{n - 1}(i)) \in R^{\Mm_i} \} \in \Uu
+	\end{align*}
+	נניח שהטענה נכונה ל־$\varphi$ ונבדוק את $\lnot \varphi$,
+	\begin{align*}
+		& \Nn / \Uu \models \varphi([f_0], \ldots, [f_{n - 1}]) \\
+		\iff & \{ i \in I \mid \Mm_i \models \varphi(f_0(i), \ldots, f_{n - 1}(i)) \} \in \Uu \\
+		\iff & \{ i \in I \mid \Mm_i \models \lnot \varphi(f_0(i), \ldots, f_{n - 1}(i)) \} \notin \Uu
+	\end{align*}
+	נניח שהטענה נכונה ־$\varphi, \psi$, אז,
+	\[
+		\Nn / \Uu \models (\varphi \land \psi)([f_0], \ldots, [f_{n - 1}])
+		\iff (\Nn / \Uu \models \varphi(\ldots)) \land (\Nn / \Uu \models \psi(\ldots))
+	\]
+	וזה נכון אם ורק אם $\{ i \in I \mid \varphi(\ldots) \} \in \Uu$ וגם עבור $\psi$, אבל $\Uu$ סגורה לחיתוך ולכן גם $\{ i \in I \mid \Mm_i \models (\varphi \land \psi)(\ldots) \} \in \Uu$. \\
+	נעבור לחלק האחרון ונניח ש־$\psi(x_0, \ldots, x_{n - 1}) = \exists x_n\ \varphi(x_0, \ldots, x_n)$. \\
+	נניח ש־$\Nn / \Uu \models \psi([f_0], \ldots, [f_{n - 1}])$ ולכן קיים $[g] \in N / \Uu$ כך ש־$\varphi^{\NN / \Uu}([f_0], \ldots, [f_{n - 1}], [g])$.
+	אז מהנחת האינדוקציה,
+	\[
+		A = \{ i \in I \mid \Mm_i \models \varphi(f_0(i), \ldots, f_{n - 1}(i), g(i)) \} \in \Uu
+	\]
+	לכל $i \in A$ נקבל ש־$\Mm_i \models \exists v\ \varphi(f_0(i), \ldots, f_{n - 1}(i), v)$ ולכן גם,
+	\[
+		\{ i \in I \mid \Mm_i \models \psi(f_0(i), \ldots, f_{n - 1}(i)) \} \in \Uu
+	\]
+	וסיימנו את הכיוון הראשון. \\
+	נניח בכיוון ההפוך ש־$B = \{ i \in I \mid \Mm_i \models \psi([f_0], \ldots, [f_{n - 1}]) \} \in \Uu$.
+	לכל $i \in B$ נבחר $g_i \in \Mm_i$ כך שמתקיים,
+	\[
+		\Mm_i \models \psi(f_0(i), \ldots, f_{n - 1}(i), g_i)
+	\]
+	עבור $i \in I \setminus B$ נבחר $b_i$ שרירותי.
+	נגדיר את הפונקציה $g(i) = g_i$ לכל $i \in I$ ולכן $g \in \Nn$, אז מהנחת האינדוקציה,
+	\[
+		\Nn / \Uu \models \varphi([f_0], \ldots, [f_{n - 1}], [g])
+		\implies \Nn / \Uu \models \psi([f_0], \ldots, [f_{n - 1}])
+	\]
+	והטענה נובעת.
+\end{proof}
+\begin{theorem}[הקומפקטיות]
+	אם $T$ תורה ספיקה סופית אז היא ספיקה.
+\end{theorem}
+\begin{proof}
+	נסמן $I = \{ S \subseteq T \mid |S| < \omega \}$.
+	לכל $S \in I$ נגדיר את המודל $\Mm_S$, קיים כזה מהספיקות הסופית.
+	לכל $t \in I$ נסמן $Y_t = \{ w \in I \mid w \supseteq t \}$.
+	לאוסף $\{ X_s \mid s \in I \}$ יש את תכונת החיתוך הסופי.
+	יהי $\Uu$ על־מסנן מעל $I$ כך ש־$X_S \in \Uu$ לכל $S \in I$. \\
+	נגדיר את $\Nn = \prod_{S \in I} \Mm_S / \Uu$ ונטען ש־$\Nn \models T$. \\
+	יהי $\varphi \in T$ אז $X_{\{ \varphi \}} \in \Uu$ ולכן $X_{\{ \varphi \}} \subseteq \{ t \in I \mid M_t \models \varphi \} \in \Uu$.
+	ממשפט ווש $\Nn \models \varphi$.
+\end{proof}
+\begin{corollary}
+	יהי $\kappa$ מונה אינסופי ויהי $\Aa$ מודל. נסמן $\Aa_i = \Aa$ לכל $i \in \kappa$.
+	יהי $\Uu$ על־מסנן מעל $\kappa$, ויהי $\iota : \Aa \to \Aa^{\kappa} / \Uu$ על־ידי $\iota(a) = [c_a]$. \\
+	אז $\iota$ שיכון אלמנטרי.
+\end{corollary}
+\begin{proof}
+	עבור נוסחה $\varphi$ מתקיים,d
+	\[
+		\Aa^{\kappa} / \Uu \models \varphi(\iota(a_0), \ldots, \iota(a_{n - 1}))
+		\iff \{ i \in I \mid \Aa_i \models \varphi(a_0, \ldots, a_{n - 1}) \} \in \Uu
+		\iff \Aa \models \varphi(a_0, \ldots, a_{n - 1})
+	\]
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
