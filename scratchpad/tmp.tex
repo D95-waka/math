@@ -1,6 +1,120 @@
 \input{../article_base.tex}
+\setcounter{secnumdepth}{2}
+
+\DeclareMathOperator{\trf}{trf}
 
 \begin{document}
 
+\section{מבוא}
+
+המטרה שלנו היא להתייחס למושג המספר כמורכב מרצף ספרות, ולכן נתחיל בהגדרה הבאה.
+\begin{definition}[עולם מספרים מוכללים]
+	נאמר כי קבוצה $X$ היא עולם מספרים מוכללים אם קיים $b \in \NN \setminus \{ 0 \}$ כך ש־$X = {[b]}^{\ZZ}$ כאשר $[b] = \{0, \ldots, b - 1\} = b$.
+\end{definition}
+\begin{notation}
+	בהינתן קבוצת מספרים מוכללים $X$ נסמן $\Bb(X) = b$ עבור $b \in \NN \setminus \{ 0 \}$ היחיד עבורו $X = {[b]}^{\ZZ}$.
+	במקרה זה גם נסמן $X_b$.
+\end{notation}
+\begin{exercise}
+	הוכיחו כי קיים $b$ יחיד כזה.
+\end{exercise}
+\begin{definition}
+	תהי $c_0 \in X_b$, אז נאמר ש־$c_0 = 0_b = 0$ ונקרא לו אפס.
+\end{definition}
+עתה נרצה להגדיר את החיבור והכפל.
+\begin{definition}
+	תהי $A_0 : X_b^2 \to X_b^2$ הפונקציה המוגדרת,
+	\[
+		A_0(f, g)(n) = \left\langle (f(x) + g(x)) \mod b, \begin{cases}
+			1 & f(x) + g(x) \ge b \\
+			0 & \text{otherwise}
+		\end{cases} \right\rangle
+	\]
+	ונגדיר את $+ : X_b^2 \to X$ כך ש־$f + g = h$ אם $A_0^n(f, g) = \langle h, 0 \rangle$ עבור הרכבת פונקציות $n$ פעמים.
+\end{definition}
+\begin{theorem}[חיבור מוגדר היטב]\label{theorem_addition_is_total}
+	אם $X_b$ עולם מספרים מוכלל אז $\dom(+) = X_b^2$, כלומר שהחיבור מוגדר לכל ערך.
+\end{theorem}
+\begin{proof}
+	נבחין כי מהגדרה נובע ש־$A_0(f, g) = \langle f', g' \rangle$ אז $g' \in X_2$ וכן $f' \in X_{b - 1}$, ולכן באינדוקציה על $b$ נקבל ש־$A_0^b(f, g) = A_0^{b + 1}(f, g)$.
+\end{proof}
+\begin{exercise}
+	הגדירו את הכפל באופן דומה.
+\end{exercise}
+עתה כשיש לנו ערכים ופעולות, נרצה להגדיר מהו מספר סופי, נתחיל בסגור לפעולות.
+\begin{notation}
+	עבור $A \subseteq X_b$נסמן $\trf(A) = \tr_{\{+, \cdot\}}(A)$ כקבוצה המינימלית $A \subseteq A'$ כך ש־$\forall x, y \in A', x + y, x \cdot y \in A'$.
+\end{notation}
+\begin{definition}[עולם מספרים סופיים]
+	יהי $X_b$ עולם מספרים מוכללים.
+	נגדיר את הקבוצה $A_b \subseteq X_b$ על־ידי,
+	\[
+		A_b = \{ f \in X_b \mid \exists N \in \NN \forall n > N,\ f(n) = 0 \}
+	\]
+\end{definition}
+\begin{proposition}
+	$\trf A_b = A_b$.
+\end{proposition}
+\begin{proof}
+	נובע ישירות ממשפט\ \ref{theorem_addition_is_total}.
+\end{proof}
+\begin{definition}[אורך של מספר סופי]
+	עבור $f \in A_b$ נסמן $L(f) = N$ אם $N \in \NN$ מינימלי כך ש־$f(n) = $ לכל $n > N$.
+\end{definition}
+
+\section{ייצוג של מספרים סופיים}
+בחלק זה נעסוק תחילה בייצוג של מספרים טבעיים, ולכן נעבור להגדרה על מהו מספר טבעי מוכלל.
+\begin{definition}
+	תהי הקבוצה $Z_b \subseteq X_b$ הקבוצה המוגדרת על־ידי,
+	\[
+		N_b = \{ f \in X_b \mid \forall n < 0,\ f(n) = 0 \}
+	\]
+	נסמן $N_b = Z_b \cap A_b$.
+\end{definition}
+\begin{exercise}
+	הוכיחו ש־$N_b = \trf N_b$.
+\end{exercise}
+\begin{definition}
+	תהי $T : N_b \to \NN$ המוגדרת על־ידי
+	\[
+		T(f) = \sum_{n \in \supp f} b^n \cdot f(n)
+	\]
+	ונקרא לה פונקציית פענוח הטבעיים.
+\end{definition}
+\begin{lemma}
+	$T$ משמרת חיבור,
+	\[
+		T(f + g)
+		= T(f) + T(g)
+	\]
+	לכל $f, g \in N_b$.
+\end{lemma}
+\begin{exercise}
+	הוכיחו זאת.
+\end{exercise}
+\begin{theorem}[ייצוג טבעי יחיד]
+	יהי $b \in \NN \setminus \{ 0 \}$, ונגדיר את הפונקציה,
+	לכל $x \in \NN$ קיימת $f \in N_b$ יחידה כך שמתקיים $x = T(f)$.
+\end{theorem}
+\begin{proof}
+	המקרה ש־$x = 0$ טריוויאלי על־ידי בחירת $f = 0$, ולכן נניח ש־$x > 0$.
+
+	נוכיח את הטענה באינדוקציה על $x$.
+	נניח ש־$x = 1$.
+	נגדיר את $f_1 \in N_b$ כך שמתקיים,
+	\[
+		f(n) = \begin{cases}
+			1 & n = 0 \\
+			0 & \text{otherwise}
+		\end{cases}
+	\]
+	אז הטענה מתקיימת ונשאר לראות יחידות, לכן נניח ש־$f_1 \ne g \in N_b$, לכן או ש־$g(0) > f_1(0)$ ולכן $T(g) \ne 1$.
+	אחרת קיים $n > 0$ כך ש־$g(n) \ne 0$ ונסיק ש־$T(g) > 1$.
+
+	נניח שהטענה נכונה ל־$x \in \NN$ ונראה שהיא נכונה גם ל־$x + 1$.
+	נניח ש־$T(f) = x$ ונסמן $g = f + f_1$, לכן מלינאריות של $T$ (צריך להוכיח) הטענה נובעת.
+	צריך גם להראות שיחידות נשארת.
+\end{proof}
+עתה נרצה להוכיח את הטענה עבור $\QQ$.
 
 \end{document}
