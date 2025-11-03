@@ -503,6 +503,144 @@
 למשפט שראינו יש אנלוגיה לגרסה האפינית.
 הפעם במקום נקבע שתי נקודות כנקודות האפס ובכך נקבל שמתקיימים תנאי המשפט עבור המרחבים הווקטוריים.
 
+\section{שיעור 5 --- 3.11.2025}
+
+\subsection{מרחבים אפיניים ממשיים}
+בחלק זה והלאה נעסוק בממשיים, כלומר מעתה $\FF = \RR$.
+הדבר הראשון שנעסוק בו יהיה הנורמה.
+\begin{definition}[נורמה]
+	יהי $V$ מרחב וקטורי מעל $\RR$.
+	נורמה מעל $V$ היא פונקציה $\lVert \cdot \rVert : V \to \RR_{\ge 0}$ המקיימת את התכונות,
+	\begin{enumerate}
+		\item חיוביות בהחלט: $\forall v \in V,\ 0 \le \lVert v \rVert$ וכן $v = 0 \iff \lVert v \rVert = 0$
+		\item הומוגניות: $\forall v \in V, \alpha \in \RR,\ \lVert \alpha v \rVert = |\alpha| \cdot \lVert v \rVert$
+		\item אי־שוויון המשולש: $\forall v, u \in V,\ \lVert v + u \rVert \le \lVert v \rVert + \lVert u \rVert$
+	\end{enumerate}
+\end{definition}
+נראה מספר דוגמות לנורמות במקרה $V = \RR^p$.
+\begin{example}
+	${\lVert x \rVert}_{\infty} = \max\{ |x_1|, \ldots, |x_p| \}$, נורמת הסופרימום או נורמת אינסוף.
+\end{example}
+\begin{example}
+	${\lVert x \rVert}_1 = |x_1| + \cdots + |x_p|$ היא נורמת 1.
+\end{example}
+\begin{example}
+	הנורמה האוקלידית, ${\lVert x \rVert}_2 = \sqrt{x_1^2 + \cdots + x_p^2}$.
+\end{example}
+במרחבים סופיים מעל $\RR$ ישנו משפט הגורס כי כל הנורמות שקולות, כלומר לדוגמה ${\lVert x \rVert}_{\infty} \le {\lVert x \rVert}_1 \le p {\lVert x \rVert}_{\infty}$. \\
+באופן אנלוגי גם ${\lVert x \rVert}_{\infty} \le {\lVert x \rVert}_2 \le \sqrt{p} {\lVert x \rVert}_{\infty}$.
+\begin{definition}[מטריקה]
+	עבור קבוצה $X$ נגדיר פונקציית מרחק, או מטריקה, כפונקציה $\rho : X^2 \to \RR_{\ge 0}$ כפונקציה המקיימת את התכונות:
+	\begin{enumerate}
+		\item חיוביות בהחלט: $\rho(x, y) = 0 \iff x = y$
+		\item סימטריה: $\forall x, y \in X,\ \rho(x, y) = \rho(y, x)$
+		\item אי־שוויון המשולש: $\forall x, y, z \in X,\ \rho(x, z) \le \rho(x, y) + \rho(y, z)$
+	\end{enumerate}
+\end{definition}
+כל נורמה משרה מטריקה, כלומר כל מרחב נורמי הוא בפרט מרחב מטרי.
+יהי $(E, V)$ מרחב אפיני מעל $\RR$.
+אם על $V$ מוגדרת נורמה אז על $E$ מוגדרת פונקציית מרחק.
+כלומר, נוכל להשרות מרחק גם על מרחב אפיני.
+\begin{definition}[כדור]
+	במרחב מטרי כללי $(X, \rho)$ נגדיר כדור (פתוח) על־ידי,
+	\[
+		B(x, r) = \{ y \in X \mid \rho(x, y) < r \}
+	\]
+	ונסמן לעתים את הכדור גם על־ידי $B_r(x) = B(x, r)$.
+\end{definition}
+במקרה של נורמה כמובן נקבל את הטענה השקולה שמתקיים,
+\[
+	B(x, r) = \{ y \in \RR^p \mid \lVert x - y \rVert < r \}
+\]
+נזכיר גם את ההגדרות המשלימות לכדור פתוח.
+\begin{definition}[כדור סגור וספירה]
+	נגדיר את הכדור הסגור על־ידי, $\overline{B}(x, r) = \overline{B(x, r)} = \{ y \in X \mid \rho(x, y) \le r \}$. \\
+	באופן דומה נגדיר את הספירה, $S(x, r) = \partial B(x, r) = \{ y \in X \mid \rho(x, y) = r \}$.
+\end{definition}
+נגדיר גם התכנסות במרחב אפיני.
+\begin{definition}[סדרה וסדרה מתכנסת]
+	אם $(E, V)$ מרחב אפיני מעל $\RR$ וכן ${\{ P_n \}}_{n = 1}^\infty \subseteq E$ סדרת נקודות. \\
+	נאמר שהסדרה מתכנסת לנקודה $P \in E$ כאשר $\lim_{n \to \infty} \lVert P_n - P \rVert = 0$ במובן הממשי.
+\end{definition}
+ובהתאם נצטט משפט חשוב שיעזור לנו.
+\begin{theorem}[התכנסות והתכנסות קורדינטה קורדינטה]
+	במקרה ש־$E = \RR^p$ אם ${\{ x_n \}}_{n = 1}^\infty, l \subseteq \RR^p$ סדרה ונקודה, אז מתקיים,
+	\[
+		x_n \to l
+		\iff \forall i \le p,\ x_n^i \to l^i
+	\]
+	כלומר, הסדרה מתכנסת אם ורק אם היא מתכנסת קורדינטה קורדינטה.
+\end{theorem}
+המשפט נובע ישירות מהטענה כי $|x_n^i - l^i| \le \lVert x_n - l \rVert \le C |x_n^i - l^i|$.
+
+\subsection{עקומים במרחב אפיני ממשי}
+הקונספט של עקומים במרחב הוא קונספט שקצת קשה לעתים לדבר עליו. עקום הרי הוא רעיון מאוד כללי.
+בשל כך, נתחיל בדיון על מסילות. לפני שניגש להגדרה הפורמלית נאמר שהמטרה שלנו היא לאפיין אובייקטים שהם קשירים מסילתית במרחב, וכן מהווים באיזשהו מובן תמונה של קטע, זאת אומרת שהם מתנהגים בערך כמו חוט שזז במרחב.
+\begin{definition}[מסילה]
+	מסילה (עקום פרמטרי) ב־$\AAA^n$ היא פונקציה $\alpha : I \to \AAA^n$, עבור $I \subseteq \RR$ קטע וכך ש־$\alpha$ גזירה. \\
+	כלומר כשלכל $t \in I$ מתקיים,
+	\[
+		\lim_{s \to 0} \frac{\alpha(t + s) - \alpha(t)}{s} = L
+	\]
+	הוא גבול מוגדר וסופי.
+	נסמן גבול זה ב־$\dot{\alpha}(t) = \alpha'(t)$ את ערך הנגזרת בנקודה כפונקציה של $t \in I$. \\
+	המסילה תיקרא \textbf{רגולרית} כאשר $\alpha'(t) \ne 0$ לכל $t \in I$.
+\end{definition}
+כמובן, עתה משראינו את ההגדרה, נעבור לדוגמות.
+\begin{example}
+	כל הבאים הם מסילות:
+	\begin{enumerate}
+		\item ישרים (פרמטריים):
+			אם $L \le E$ ישר אז $L = P + \{ t v \mid t \in \RR \}$ עבור $P \in E, v \in V$. \\
+			בהתאם נוכל להגדיר פונקציה $\alpha : \RR \to \RR^n$ כך ש־$\alpha(t) = P + t v$.
+			נבחין כי,
+			\[
+				\alpha'(t)
+				= \lim_{s \to 0} \frac{\alpha(t + s) - \alpha(t)}{s}
+				= \lim_{s \to 0} \frac{P + (t + s) v - P - t v}{s}
+				= v
+			\]
+			ולכן המסילה רגולרית ובפרט $\alpha'(t) = v$.
+		\item נגדיר את $\alpha : \RR \to \RR^2$ על־ידי $\alpha(t) = (r \cos t, r \sin t)$ כאשר $0 < r \in \RR$. זוהי מסילה כך שתמונתה היא מעגל ברדיוס $r$ במישור.
+			הפעם נקבל ש־$\alpha'(t) = (-r \sin t, r \cos t)$, כלומר גם הפעם המסילה היא רגולרית. \\
+			דרך פשוטה במיוחד לראות זאת היא על־ידי בחינת $\lVert \alpha'(t) \rVert = r$. \\
+			באותו אופן נקבל שגם $\ddot{\alpha}(t) = \alpha''(t) = -r(\cos t, \sin t)$.
+		\item במרחב נגדיר את המסילה $\alpha : \RR \to \RR^3$ על־ידי $\alpha(\cos t, \sin t, t)$, זוהי למעשה ספירלה.
+			גם הפעם נוכל לראות כי זוהי מסילה רגולרית.
+	\end{enumerate}
+\end{example}
+בעולם של יריעות, בפרט של מסילות, לא מעניינות אותנו תכונות שתלויות בפרמטריזציה, כלומר במסילה כפונקציה התלויה ב־$t$.
+אנו מבקשים לעסוק בתמונה, במסלול של המסילה, כלומר באובייקט $\im \alpha \subseteq E$.
+המקרה הראשון שנתרכז בו הוא האורך של עקומה.
+\begin{definition}[אורך של מסילה]
+	תהי $\alpha : [a, b] \to \RR^n$ מסילה רגולרית.
+	נגדיר את האורך של המסילה באופן הבא,
+	\[
+		L(\alpha)
+		= \int_{a}^{b} \lVert \alpha'(t) \rVert\ dt
+	\]
+\end{definition}
+זוהי הגדרה שאולי הגיונית גאומטרית, אבל נרצה להראות שהיא אכן מקיימת את הקונספט של מרחק.
+נגדיר הגדרה שבהמשך תוכיח את עצמה כשקולה.
+\begin{definition}
+	תהי $\Pp = (t_0, \ldots, t_k)$ חלוקה של $[a, b]$, כלומר $t_0 = a, t_k = b$ ומתקיים $t_n < t_{n + 1}$.
+	בהינתן $\alpha : [a, b] \to \RR^p$ מסילה, אז נגדיר את הישר הפוליגונלי כמסילה שנוצרת על־ידי סדרת הנקודות $(\alpha(t_0), \ldots, \alpha(t_k))$.
+	אז נגדיר את האורך בהינתן החלוקה $\Pp$ על־ידי,
+	\[
+		L_{\alpha}(\Pp)
+		= \sum_{j = 1}^k \lVert \alpha(t_j) - \alpha(t_{j - 1}) \rVert
+	\]
+\end{definition}
+ובהתאם ננסח את המשפט שמקשר את ההגדרות.
+\begin{theorem}
+	אם $\alpha : [a, b] \to \RR^p$ אז מתקיים,
+	\[
+		\forall \varepsilon > 0 \exists \delta > 0, \forall \Pp,\ (\lambda(\Pp) < \delta) \implies (|L(\alpha) - L_{\alpha}(\Pp)| < \varepsilon)
+	\]
+	כלומר עבור על חלוקה $\Pp$ של $[a, b]$ כך ש־$\Delta(\Pp) < \delta$ המרחק בין שני סוגי המרחק חסומים על־ידי $\varepsilon$.
+\end{theorem}
+אומנם את ההוכחה לא נביא, אך נרמוז ונגיד שאם נבחן את ההגדרה של האינטגרל לפי קושי, ונשתמש במשפט לגרנז', נוכל להוכיח את הטענה.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
