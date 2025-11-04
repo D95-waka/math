@@ -641,6 +641,32 @@
 \end{theorem}
 אומנם את ההוכחה לא נביא, אך נרמוז ונגיד שאם נבחן את ההגדרה של האינטגרל לפי קושי, ונשתמש במשפט לגרנז', נוכל להוכיח את הטענה.
 
+\section{שיעור 6 --- 4.11.2025}
+
+\subsection{קמירות במרחבים אפיניים}
+\begin{definition}[קמירות במרחב אפיני]
+	עבור מרחב אפיני $(E, V)$ מעל הממשיים, צירוף אפיני $\lambda^0 P_0 + \cdots + \lambda^k P_k$ עבור $\lambda^i \in \RR, P_i \in E$ וכך ש־$\lambda^0 + \cdots + \lambda^k = 1$,
+	יקרא קמור (convex) כאשר $0 \le \lambda^i$ לכל $0 \le i \le k$.
+\end{definition}
+\begin{definition}[קטע אפיני]
+	בהינתן $P, Q \in E$ הקטע $[P, Q] \subseteq E$ המוגדר על־ידי,
+	\[
+		[P, Q]
+		= \{ R \in E \mid R = \lambda P + \mu Q \mid \lambda + \mu = 1, 0 \le \lambda, \mu \}
+	\]
+\end{definition}
+\begin{definition}[קבוצה קמורה]
+	קבוצה $C \subseteq E$ של נקודות תיקרא קמורה (convex) אם $[P, Q] \subseteq C$ לכל $P, Q \in C$.
+\end{definition}
+באופן טבעי נוכל להגדיר קטע $I \subseteq \RR$ כקבוצה קמורה של ממשיים.
+נרצה להגדיר הגדרה גאומטרית לקונספט של קמירות אפינית, ואז בהתאם להוכיח שהיא שקולה לסגור הקטעים של קבוצה.
+\begin{definition}[סגור קמור אפיני]
+	אם $A \subseteq E$ קבוצה של נקודות, אז נאמר שהקבוצה $C \subseteq E$ המקיימת,
+	\[
+		C = \bigcap_{\substack{A \subseteq K \subseteq E \\ \text{$K$ is convex}}} K
+	\]
+\end{definition}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
