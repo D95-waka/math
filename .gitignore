@@ -5,6 +5,7 @@
 !README.md
 !**/*.tex
 !**/*.lua
+!**/*.py
 !**/bin/*.pdf
 !Discrete_mathematics/פתרון ממ"ן *.odt
 !images/*
