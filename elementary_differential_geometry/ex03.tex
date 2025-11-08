@@ -1,0 +1,171 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 3 --- גאומטריה דיפרנציאלית אלמנטרית, 80560}
+
+\DeclareMathOperator{\Con}{Con}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\section{שאלה 0}
+\subquestion{}
+יהי $(E, V, t)$ מרחב אפיני ותהיינה $P_1, \ldots, P_n \in E$ נקודות ולכל $1 \le j \le n$ נגדיר גם $\lambda_j^1 + \cdots + \lambda_j^n = \eta^1 + \cdots + \eta^n = 1$. \\
+נגדיר את $R_j = \sum_{i = 1}^n \lambda_j^i P_i$. \\
+נראה ש־$Q = \sum_{j = 1}^n \eta^j R_j$ צירוף אפיני של הנקודות $P_1, \ldots, P_n$.
+\begin{proof}
+	מתקיים,
+	\[
+		Q
+		= \sum_{j = 1}^n \eta^j R_j
+		= \sum_{j = 1}^n \eta^j \sum_{i = 1}^n \lambda_j^i P_i
+		= \sum_{j = 1}^n \sum_{i = 1}^n \eta^j \lambda_j^i P_i
+		= \sum_{i = 1}^n \sum_{j = 1}^n \eta^j \lambda_j^i P_i
+		= \sum_{i = 1}^n P_i \cdot \sum_{j = 1}^n \eta^j \lambda_j^i
+	\]
+	נגדיר $\mu^i = \sum_{j = 1}^n \eta^j \lambda_j^i$ ועלינו להוכיח ש־$\mu^1 + \cdots + \mu^n = 1$.
+	נראה,
+	\[
+		\sum_{i = 1}^n \mu^i
+		= \sum_{i = 1}^n \sum_{j = 1}^n \eta^j \lambda_j^i
+		= \sum_{j = 1}^n \sum_{i = 1}^n \eta^j \lambda_j^i
+		= \sum_{j = 1}^n \eta^j
+		= 1
+	\]
+	מהנתונים.
+\end{proof}
+
+\subquestion{}
+יהי $(E, V, t)$ מרחב אפיני ממימד $n$ ונניח ש־$(P_0, \ldots, P_n)$ בסיס אפיני סדור. \\
+לכל $P \in E$ קיימים $(x^0, \ldots, x^n) \subseteq V$ יחידים כך ש־$x^0 + \cdots + x^n = 1$ וכן $P = x^0 P_0 + \cdots + x^n P_n$. \\
+נקרא ל־$(x_0, \ldots, x_n)$ הקורדינטות הבריצנטריות של $P$ בבסיס הנתון.
+
+נראה שהאוסף הסדור $(Q_0, \ldots, Q_k) \subseteq E$ הוא בלתי־תלוי אפינית אם ורק אם מטריצת הקורדינטות הבריצנטריות של הנקודות ביחס לבסיס אפיני היא $k + 1$.
+\begin{proof}
+	נסמן $Q_i = y_0^i P_0 + \cdots + y_n^i P_n$ עבור $1 \le i \le k$. \\
+	נניח ש־$(Q_0, \ldots, Q_k)$ בלתי־תלוי אפינית ונניח בשלילה שמטריצת הקורדינטות הבריצנטריות שלה תלויה לינארית, ללא הגבלת הכלליות נניח שמתקיים,
+	אז נובע שמתקיים,
+	\[
+		(x_k^0, \ldots, x_k^k) = \sum_{i = 0}^{k - 1} \lambda_i (x_i^0, \ldots, x_i^k)
+	\]
+	עבור $\lambda_i \in \FF$.
+	אז מהגדרה,
+	\[
+		Q_k = \sum_{i = 0}^{k - 1} \lambda_i Q_i
+	\]
+	וזו סתירה להנחה ש־$(Q_0, \ldots, Q_k)$ בלתי־תלוי אפינית.
+
+	בכיוון ההפוך נניח שהמטריצה היא בלתי־תלוי לינארית, ונניח שהאוסף כן תלוי, לכן בלי הגבלת הכלליות מתקיים,
+	\[
+		Q_k = \lambda_0 Q_0 + \cdots + \lambda_{k - 1} Q_k
+	\]
+	אבל בהתאם נוכל לעבור לקורדינטות הבריצנטריות ולקבל סתירה זהה.
+\end{proof}
+
+\question{}
+יהי $\FF$ שדה סדור ויהי $(E, V, t)$ מרחב אפיני.
+נאמר שצירוף קמור של $P_1, \ldots, P_n$ הוא $\lambda_1 P_1 + \cdots + \lambda_n P_n$ כך ש־$0 \le \lambda_i, \lambda_1 + \cdots + \lambda_n = 1$.
+נסמן $\Con\{ P_1, \ldots, P_n \}$ קבוצת כל הצירופים הקמורים של הנקודות $P_1, \ldots, P_n$. \\
+קבוצה $C \subseteq E$ תיקרא קמורה אם לכל $P, Q \in C$ מתקיים $[P, Q] \subseteq C$.
+
+\subquestion{}
+נראה שקבוצה $C \subseteq E$ היא קמורה אם ורק אם היא מכילה את כל הצירופים הקמורים של נקודות שלה, כלומר $C = \cl_{\Con} C$.
+\begin{proof}
+	נניח ש־$C$ קמורה ונניח ש־$P_1, \ldots, P_n \in C$.
+	נניח גם ש־$0 \le \lambda_1, \ldots, \lambda_n \in \FF$ וכן $\lambda_1 + \cdots + \lambda_n = 1$.
+	נגדיר $Q_1 = P_1$ וכן $Q_{k + 1} = \mu_{k + 1} P_{k + 1} + (1 - \mu_k{k + 1}) Q_k$, כך שמתקיים $\mu_i (1 - \mu_{i - 1}) \cdots (1 - \mu_1) = \lambda_i$, קיימת כזאת כפתרון של המשוואה.
+	בהתאם נקבל ש־$\lambda_1 P_1 + \cdots + \lambda_n P_n = \mu_1 P_1 + \cdots + \mu_n P_n$, ומספיק להראות ש־$Q_i \in C$ לכל $i$.
+	עבור $i = 1$ הטענה טריוויאלית, ואם הטענה נכונה עבור $Q_i$ אז $[Q_i, P_{i + 1}] \subseteq E$ ולכן גם $Q_{i + 1} \in E$ והטענה נובעת מאינדוקציה.
+
+	נניח ש־$C = \cl_{\Con}C$, ונניח ש־$P, Q \in C$, נרצה להראות שגם $[P, Q] \subseteq C$.
+	נבחין כי $[P, Q] = \{ \lambda P + \mu Q, \lambda + \mu = 1, \lambda, \mu \ge 0 \}$, אבל מההנחה מתקיים $\lambda P + \mu Q \in C$ לכל בחירה כזו, כלומר $[P, Q] \subseteq C$ כרצוי.
+\end{proof}
+
+\subquestion{}
+נראה שחיתוך של קמורות הוא קמור.
+\begin{proof}
+	נניח ש־${(C_i)}_{i \in I} \subseteq \Pp(E)$ קמורות ונגדיר את הקבוצה $C = \bigcap_{i \in I} C_i$, נראה כי $C$ קמורה.
+	נניח ש־$P, Q \in C$, אז נובע ש־$P, Q \in C_i$ לכל $i \in I$.
+	בהתאם נובע ש־$[P, Q] \subseteq C_i$ ולכן גם $[P, Q] \subseteq C$ מהגדרת החיתוך.
+\end{proof}
+
+\question{}
+תהי $\alpha : [a, b] \to \RR^n$ מסילה.
+לכל $\Pp \subseteq [a, b]$ חלוקה נסמן $L(\Pp)$ את אורך הפוליגון המושרה מהחלוקה.
+
+\subquestion{}
+נראה ש־$L(\Pp) \le L(\alpha)$.
+\begin{proof}
+	נזכור כי הגדרנו,
+	\[
+		L(\alpha)
+		= \int_{a}^{b} \lVert\alpha'(t)\rVert\ dt
+		= \underline{\int}_{a}^{b} \lVert\alpha'(t)\rVert\ dt
+		= \overline{\int}_{a}^{b} \lVert\alpha'(t)\rVert\ dt
+	\]
+	וכן אם $\Pp = \{ t_0, \ldots, t_n \}$ כך ש־$t_0 = a, t_n = b$ אז מתקיים,
+	\[
+		L(\Pp)
+		= \sum_{i = 1}^n \lVert \alpha(t_i) - \alpha(t_{i - 1}) \rVert
+		= \sum_{i = 1}^n (t_i - t_{i - 1}) \frac{\lVert \alpha(t_i) - \alpha(t_{i - 1}) \rVert}{t_i - t_{i - 1}}
+		\le \overline{S}(\alpha, \Pp)
+	\]
+	כאשר $\overline{S}$ סכום דרבו עליון.
+	נובע ממונוטוניות של $\overline{S}$ שמתקיים $L(\Pp) \le L(\alpha)$.
+\end{proof}
+
+\subquestion{}
+נוכיח שמתקיים $L(\alpha) = \sup_{\Pp}L (\Pp)$.
+\begin{proof}
+	נבחין כי מתקיים $\sup_{\Pp} L(\Pp) = \lim_{\lambda(\Pp) \to 0} L(\Pp)$ וכן,
+	\[
+		L(\Pp)
+		= \sum_{i = 1}^n (t_i - t_{i - 1}) \left\lVert \frac{\alpha(t_i) - \alpha(t_{i - 1})}{(t_i - t_{i - 1})} \right\rVert
+	\]
+	הוא סכום רימן ומהעובדה שמתקיים $\lambda \Pp \to 0$ נסיק שמתקיים,
+	\[
+		L(\Pp)
+		\xrightarrow{\lambda \Pp \to 0} \int_{a}^{b} \lVert \alpha'(t) \rVert\ dt
+	\]
+	כאשר הערך שואף לנגזרת ישירות מהגדרת הנגזרת והעובדה ש־$\lambda \Pp$ מתאפס.
+\end{proof}
+
+\subquestion{}
+נוכיח ש־$L(\alpha) \ge L([\alpha(a), \alpha(b)])$.
+\begin{proof}
+	נבחין כי $\Pp = \{a, b\}$ היא החלוקה כך ש־$L(\Pp) = L([\alpha(a), \alpha(b)])$ וכן מתקיים $\lambda \Pp = b - a$, ולכן הטענה נובעת מהסעיף הקודם.
+\end{proof}
+
+\question{}
+\subquestion{}
+נגדיר $\alpha : [0, b] \to \RR^2$ על־ידי $\alpha(t) = (t, \cosh t)$ ונחשב את אורכה.
+\begin{solution}
+	מתקיים,
+	\[
+		L(\alpha)
+		= \int_{0}^{b} \lVert \alpha'(t) \rVert\ dt
+		= \int_{0}^{b} \lVert 1 + \sinh t \rVert\ dt
+		= \int_{0}^{b} \sqrt{1 + \sinh^2 t}\ dt
+		= \int_{0}^{b} \cosh t\ dt
+		= \sinh t |_0^b
+		= \sinh(b)
+	\]
+	כלומר $L(\alpha) = \sinh(b)$.
+\end{solution}
+
+\subquestion{}
+נגדיר את $\alpha : [0, 2 \pi] \to \RR^2$ המוגדרת על־ידי $\alpha(t) = a(t - \sin t, 1 - \cos t)$ עבור $a > 0$.
+נחשב את $L(\alpha)$.
+\begin{solution}
+	הפעם,
+	\begin{align*}
+		L(\alpha)
+		& = \int_{0}^{2 \pi} \lVert a(1 - \cos t, \sin t) \rVert\ dt \\
+		& = \int_{0}^{2 \pi} a \sqrt{1 - 2 \cos t + \cos^2 t + \sin^2 t}\ dt \\
+		& = \int_{0}^{2 \pi} 2 \sqrt{2} a \sqrt{1 - \cos t}\ dt \\
+		& = 2 \sqrt{2} a \int_{0}^{2 \pi} \sin(\frac{t}{2})\ dt \\
+		& = \left. 2 \sqrt{2} a \cdot (-2) \cos(\frac{t}{2})\ dt \right\lvert_0^{2 \pi} \\
+		& = 8 \sqrt{2} a
+	\end{align*}
+\end{solution}
+
+\end{document}
