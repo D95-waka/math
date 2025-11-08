@@ -150,11 +150,45 @@
 יהי $(X, \Aa, \mu)$ מרחב מידה סופי.
 נראה שלכל $f : X \to \RR_+$ מדידה וחסומה מתקיים,
 \[
-	\int f\ d \mu
+	S_+ 
+	= \int f\ d \mu
 	= \inf\left\{ \int \varphi\ d \mu \mid f \le \varphi, \varphi \text{ is simple} \right\}
+	= S_-
 \]
 \begin{proof}
-	TODO
+	נבחין תחילה כי לכל $s \ge f$ פשוטה מתקיים מהנתון $0 \le \int s\ d \mu < \infty$ ולכן $S_-$ מוגדר ובפרט $0 \le S_- < \infty$. \\
+	נרצה להראות ש־$S_+ \le S_-$.
+	תהיינה $s \le f \le \varphi$ פשוטות.
+	בלי הגבלת הכלליות קיימים ${\{ E_n \}}_{n = 1}^N \subseteq \Aa$ כך ש־$s \restriction E_n, \varphi \restriction E_n$ קבועות לכל $n$, אחרת נבחר את התחומים של שתי הפונקציות ונחתוך אותם חיתוכים סופיים.
+	נסמן $s = \sum_{n = 1}^N \alpha_n \indicator_{E_n}, \varphi = \sum_{n = 1}^N \beta_n \indicator_{E_n}$, אז מתקיים,
+	\[
+		S_- - S_+
+		= \int \varphi\ d \mu - \int s\ d \mu
+		= \int \varphi - s\ d \mu
+		= \int \sum_{n = 1}^N E_n (\beta_n - \alpha_n)\ d \mu
+		= \sum_{n = 1}^N \mu(E_n) (\beta_n - \alpha_n)
+		\ge 0
+	\]
+	ולכן נובע ש־$S_- \ge S_+$. \\
+	נעבור להראות שגם $S_- \le S_+$.
+	מטענה שקולה לקיום סדרת פשוטות מתכנסת נקודתית נסיק שקיימת סדרת פשוטות מונוטונית יורדת $\varphi_n : X \to \RR_+$ המתכנסת נקודתית ל־$f$.
+	יהי $\varepsilon > 0$, אז מתקיים ש־$\{ n \in \NN \mid {\lVert f - \varphi_n \rVert}_{\infty} < \varepsilon \}$ אינסופית לכל $\varepsilon$, נבחין כי זהו ניסוח שקול של התכנסות נקודתית.
+	בהתאם נובע גם שקיימת $n$ כך ש־$\lvert \int f\ d \mu - \int \varphi_n\ d \mu \rvert < \varepsilon$ ולכן בהכרח $\inf_{n \in \NN} \int \varphi_n\ d \mu \le S_+$ ובפרט $S_- = S_+$.
 \end{proof}
+
+\question{}
+נמצא דוגמה למרחב מידה $(X, \Aa, \mu)$, פונקציה מדידה $f : X \to (0, \infty)$ וסדרת פונקציות אי־שליליות $f_n \to f$ כך שהסדרה $\int f_n\ d \mu$ לא מתכנסת ל־$\int f\ d \mu$.
+\begin{solution}
+	נגדיר את $X = [0, 1], \Aa = \Bb X$ וכן את המידה $\mu = \lambda$ מידת לבג שרנו מניחים שקיימת. \\
+	נגדיר $f_n = n \cdot \indicator_{(0, \frac{1}{n})}$, וכן את $f = 0$.
+	אז לכל $x \in X$ קיים $n \in \NN$ כך ש־$\frac{1}{n} < x$ ולכן לכל $m > n$ מתקיים $f_n(x) = 0$, נסיק ש־$f_n \to f$.
+	בנוסף $f_n$ פשוטה לכל $n$ ומתקיים,
+	\[
+		\int f_n\ d \mu
+		= n \cdot \frac{1}{n}
+		= 1
+	\]
+	אבל $f$ פשוטה אף היא ומתקיים $\int f\ d \mu = 0 \ne 1$, ובפרט $1 \not\to 0$.
+\end{solution}
 
 \end{document}
