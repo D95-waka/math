@@ -1,0 +1,160 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 3 --- תורת המידה, 80517}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+נניח ש־$(X, \Aa, \mu)$ מרחב מידה.
+
+\subquestion{}
+נוכיח שאם $0 \le f \le g$ מדידות אז $\int_E f\ d \mu \le \int_E g\ d \mu$ לכל $E \in \Aa$.
+\begin{proof}
+	בלי הגבלת הכלליות $X = E$ אחרת נוכל לקחת $f \cdot \indicator_E, g \cdot \indicator_E$. \\
+	מהגדרה מתקיים,
+	\[
+		\int f\ d \mu
+		= \sup \{ \int s\ d \mu \mid s \le f, s \text{ is simple} \}
+	\]
+	אבל לכל $s$ כזאת נקבל ש־$s \le f \le g$, כלומר,
+	\[
+		\{ \int s\ d \mu \mid s \le f, s \text{ is simple} \}
+		\subseteq \{ \int s\ d \mu \mid s \le g, s \text{ is simple} \}
+	\]
+	ולכן נקבל שגם,
+	\[
+		\sup \{ \int s\ d \mu \mid s \le f, s \text{ is simple} \}
+		\le \sup \{ \int s\ d \mu \mid s \le g, s \text{ is simple} \}
+	\]
+	ובהתאם נסיק $\int f\ d \mu \le \int g\ d \mu$.
+\end{proof}
+
+\subquestion{}
+נוכיח שאם $A \subseteq B$ מדידות ו־$0 \le f$ אז,
+\[
+	\int_A f\ d \mu
+	\le \int_B f\ d \mu
+\]
+\begin{proof}
+	נניח ש־$B = X$ שכן נוכל לקחת כמו בסעיף הקודם מציינים בהתאם. \\
+	נניח ש־$s \le f$ פשוטה ולכן,
+	\[
+		s(x)
+		= \sum_{n = 1}^N \alpha_n \indicator_{E_n}
+	\]
+	עבור $\alpha_n \in \RR^+, E_n \in \Aa$, ובהתאם להגדרה,
+	\[
+		\int_A s\ d \mu
+		= \sum_{n = 1}^N \alpha_n \cdot \mu(E_n \cap A)
+		\le \sum_{n = 1}^N \alpha_n \cdot \mu(E_n)
+		= \int s\ d \mu
+	\]
+	ולכן נסיק שגם $\int_A f\ d \mu \le \int f\ d \mu$.
+\end{proof}
+
+\subquestion{}
+יהי $0 \le c \le \infty$ ו־$0 \le f$, אז נראה ש־$\int_E cf\ d \mu = c \int_E f\ d \mu$.
+\begin{proof}
+	נניח ש־$E = X$ וכן תהי $s \le f$ פשוטה המסומנת כבסעיף הקודם.
+	אז מתקיים,
+	\[
+		\int cs\ d \mu
+		= \sum_{n = 1}^N c \alpha \cdot \mu(E_n)
+		= c \sum_{n = 1}^N \alpha \cdot \mu(E_n)
+		= c \int s\ d \mu
+	\]
+	כלומר התכונה מתקיימת לכל $s$ פשוטה, ובפרט נסיק,
+	\begin{align*}
+		\int cf\ d \mu
+		& = \sup\{ \int cs\ d \mu \mid s \le f, s \text{ is simple} \} \\
+		& = \sup\{ c \int s\ d \mu \mid s \le f, s \text{ is simple} \} \\
+		& = c \sup\{ \int s\ d \mu \mid s \le f, s \text{ is simple} \} \\
+		& = c \int f\ d \mu
+	\end{align*}
+	כלומר הטענה מתקיימת.
+\end{proof}
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב מידה ונניח ש־$N \subseteq X$ מוכלת בקבוצה ממידה אפס, וכן ש־$f : N^C \to \CC$ פונקציה.
+נראה שאם $f_1, f_2 : X \to \CC$ הרחבות מדידות של $f$ אז מתקיים,
+\[
+	\int f_1\ d \mu
+	= \int f_2\ d \mu
+\]
+\begin{proof}
+	נניח בלי הגבלת הכלליות ש־$N \in \Aa$ ממידה אפס, כלומר נבחר את הקבוצה שמעידה ש־$N$ מוכלת בקבוצה כזו.
+	נבחן גם את $f : N^C \to [0, \infty]$, שכן אם הטענה נכונה עבורה, אז מהגדרת האינטגרל על פונקציה מרוכבת, הטענה נובעת ישירות.
+	נניח ש־$s \le f_1$ פשוטה כך ש־$s = \sum_{n = 1}^N \alpha_n \indicator_{E_n}$, אז מתקיים,
+	\[
+		\int s\ d \mu
+		= \sum_{n = 1}^N \alpha_n \mu(E_n)
+		= \sum_{n = 1}^N \alpha_n \mu((E_n \cap N^C) \cupdot (E_n \cap N))
+		= \sum_{n = 1}^N \alpha_n \mu(E_n \cap N^C)
+		= \int_{N^C} s\ d \mu
+	\]
+	ולכן נסיק שגם,
+	\[
+		\int f_1\ d \mu
+		= \sup\{ \int s\ d \mu \mid s \le f_1, s \text{ is simple} \}
+		= \sup\{ \int_{N^C} s\ d \mu \mid s \le f_1, s \text{ is simple} \}
+		= \int_{N^C} f_1\ d \mu
+	\]
+	אבל נתון כי $f_1 \equiv f_2$ על $N^C$, ולכן נובע $\int f_1\ d \mu = \int f_2\ d \mu$.
+\end{proof}
+
+\question{}
+נעסוק עתה בדחיפה קדימה של מידה.
+יהי $(X, \Aa, \mu)$ מרחב מידה ונניח ש־$(Y, \Bb)$ מרחב מדיד.
+ותהי $\rho : X \to Y$ העתקה מדידה.
+נגדיר את הדחיפה קדימה של $\mu$ על־ידי $\rho$ על־ידי,
+\[
+	\forall E \in \Bb,\ \rho_* \mu(E) = \mu(\rho^{-1}(E))
+\]
+
+\subquestion{}
+נראה ש־$\rho_* \mu$ היא מידה.
+\begin{proof}
+	נניח ש־${\{ E_n \}}_{n = 1}^\infty \subseteq \Bb$ סדרת מדידות זרות.
+	אז מהגדרת תמונה הפוכה מתקיים $\rho^{-1}(\biguplus_{n = 1}^\infty E_n) = \biguplus_{n = 1}^\infty \rho^{-1}(E_n)$.
+	מהגדרת $\mu$ כמידה נובע $\mu(\bigcup \rho^{-1}(E_n)) = \sum_{n = 1}^\infty \mu(\rho^{-1}(E_n))$, כלומר קיבלנו שבדיוק $\rho_* \mu(\bigcup E_n) = \sum_{n = 1}^\infty \rho_* \mu(E_n)$ כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נראה שלכל $f : Y \to [0, \infty]$ מדידה מתקיים,
+\[
+	\int_X (f \circ \rho)\ d \mu
+	= \int_Y f\ d \rho_* \mu
+\]
+\begin{proof}
+	תהי $s \le f$ פשוטה ונניח ש־$s = \sum_{n = 1}^N \alpha_n \indicator_{E_n}$, אז מתקיים,
+	\[
+		\int_Y s\ d\ \rho_* \mu
+		= \sum_{n = 1}^N \alpha_n \rho_* \mu(E_n)
+		= \sum_{n = 1}^N \alpha_n \mu(\rho^{-1}(E_n))
+		= \int_X (s \circ \rho)\ d \mu
+	\]
+	כלומר הטענה מתקיימת עבור פונקציות פשוטות, ולכן מהגדרת הסופרימום והאינטגרל נסיק שהטענה נכונה גם עבור $f$ מדידה כללית.
+\end{proof}
+
+\subquestion{}
+נניח ש־$X = [0, 2 \pi]$ ו־$Y = S^1$ עם מרחבים מדידים בורל, ונניח שגם $\rho : X \to Y$ מוגדרת על־ידי $\rho(x) = e^{ix}$.
+נניח שקיימת מידת לבג על $X$, מידה המחזירה עבור קטע את אורכו, ונסמן אותה ב־$\lambda$.
+נתאר את $\rho_* \lambda$.
+\begin{solution}
+	המידה $\rho_* \lambda$ היא מידה על $S^1$, ונניח ש־$E \subseteq Y$ קבוצה קשירה מסילתית, אז $\rho^{-1}(E)$ הוא קטע ולכן $\lambda(\rho^{-1}(E))$ הוא אורך הקטע המושרה מהקבוצה.
+	כלומר גאומטרית $\rho_* \lambda$ מחזירה עבור קשת במעגל היחידה את האורך שלה.
+\end{solution}
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב מידה סופי.
+נראה שלכל $f : X \to \RR_+$ מדידה וחסומה מתקיים,
+\[
+	\int f\ d \mu
+	= \inf\left\{ \int \varphi\ d \mu \mid f \le \varphi, \varphi \text{ is simple} \right\}
+\]
+\begin{proof}
+	TODO
+\end{proof}
+
+\end{document}
