@@ -20,94 +20,100 @@ class LinearPerceptron(object):
     def update(self, example: np.array, example_prediction: np.array) -> bool:
         # example is of the form of matrix such that each column is an example vector
         # example_prediction is a matrix such that each column is a desired result
+        logger.debug(f"Update Linear Perceptron called, X = {example}, y = {example_prediction}")
         P = len(example)
-        C = (1 / P) * np.matmult(example, example.transpose())
-        u = (1 / P) * np.matmult(example.transpose(), y)
-        a = (1 / (2 * P)) * np.matmult(y.transpose(), y)
-        w = np.matmult(np.linalg.inv(C), u)
+        C = (1 / P) * np.matmul(example, example.transpose())
+        u = (1 / P) * np.matmul(example, example_prediction)
+        # TODO: Is this part necessary?
+        a = (1 / (2 * P)) * np.matmul(example_prediction.transpose(), example_prediction)
+        logger.debug(f"Updating Linear Perceptron, C = {C}")
+        w = np.matmul(np.linalg.inv(C), u)
         self._weights = w
+        return True
 
 class LinearPerceptronTrainer(object):
     def __init__(self):
         pass
 
     def fit(self, examples: list[np.array], example_predictions: list[float]):
-        lp = LinearPerceptron(initial_weights)
-        X = np.array(examples).transpose()
-        y = np.array(number).transpose()
+        lp = LinearPerceptron(np.array([[]]))
+        X = np.column_stack(examples)
+        y = np.column_stack(example_predictions).transpose()
         lp.update(X, y)
         return lp
 
 def tests_run(perceptron: LinearPerceptron, tests):
     for vector, classification in tests:
         actual = perceptron.predict(vector)
-        if np.array_equal(classification, actual):
+        if np.allclose(classification, actual):
             print(f"{np.transpose(vector)} was classified correctly")
         else:
-            print(f"Vector: {np.transpose(vector)}, Correct: {classification}, Actual: {perceptron.predict(vector)}")
+            print(classification - perceptron.predict(vector))
+            print(f"Vector: {np.transpose(vector)}, Correct: {classification}, Actual: {actual}")
 
 def colvec(*values: list[float]) -> np.array:
     return np.array([values]).transpose()
 
 def tests():
     print(" --- BEGIN Single Neuron Manual Test Section ---")
-    perceptron = LinearPerceptron(np.array([[2], [3]]))
+    perceptron = LinearPerceptron(colvec(2, 3))
     print("weights:\n", perceptron._weights)
     tests = [
             (colvec(1, 0), colvec(2)),
             (colvec(0, 2), colvec(6)),
+            (colvec(2, 2), colvec(10)),
             (colvec(1, -1), colvec(-1)) ]
     tests_run(perceptron, tests)
-    return
     print("\n --- BEGIN Single Neuron Train Section ---")
-    binary_perceptron_factory = BinaryPerceptronTrainer()
-    perceptron = binary_perceptron_factory.fit(
+    trainer = LinearPerceptronTrainer()
+    perceptron = trainer.fit(
             [
-                np.transpose([[2, 1]]),
-                np.transpose([[-1, -2]]),
-                np.transpose([[1, -1]])],
-            [
-                np.transpose([[0]]),
-                np.transpose([[0]]),
-                np.transpose([[0]])])
-    print("weights:\n", perceptron._weights)
+                colvec(1, -1),
+                colvec(2, 2)
+            ], [
+                colvec(-1),
+                colvec(10),
+            ])
+    expected_weights = colvec(2., 3.)
+    print("expected weights:\n", expected_weights)
+    print("actual weights:\n", perceptron._weights)
+    print(f"Match: {np.allclose(expected_weights, perceptron._weights)}")
     print("\n --- BEGIN Single Neuron Trained Test Section ---")
     tests = [
-            (np.transpose([[2, 1]]), np.transpose([[0]])),
-            (np.transpose([[-1, 1]]), np.transpose([[1]])),
-            (np.transpose([[-2, -1]]), np.transpose([[1]])),
-            (np.transpose([[-1, -2]]), np.transpose([[0]])),
-            (np.transpose([[1, -1]]), np.transpose([[0]]))]
+            (colvec(1, 0), colvec(2.)),
+            (colvec(0, 2), colvec(6.)),
+        ]
     tests_run(perceptron, tests)
     print("\n --- BEGIN Manual Test Section ---")
-    perceptron = LinearPerceptron(np.array([[-1, 0], [1, 1]]))
+    perceptron = LinearPerceptron(np.array([[2, -1], [3, 1]]))
     print("weights:\n", perceptron._weights)
     tests = [
-            (np.transpose([[2, 1]]), np.transpose([[0, 1]])),
-            (np.transpose([[-1, 1]]), np.transpose([[1, 1]])),
-            (np.transpose([[-2, -1]]), np.transpose([[1, 0]])),
-            (np.transpose([[-1, -2]]), np.transpose([[0, 0]])),
-            (np.transpose([[1, -1]]), np.transpose([[0, 0]]))]
+            (colvec(1, 1), colvec(5, 0)),
+            (colvec(2, 1), colvec(7, -1)),
+            (colvec(-1, 2), colvec(4, 3)),
+        ]
     tests_run(perceptron, tests)
     print("\n --- BEGIN Train Section ---")
-    binary_perceptron_factory = BinaryPerceptronTrainer()
-    perceptron = binary_perceptron_factory.fit(
+    perceptron = trainer.fit(
             [
-                np.transpose([[2, 1]]),
-                np.transpose([[-1, -2]]),
-                np.transpose([[1, -1]])],
-            [
-                np.transpose([[0, 1]]),
-                np.transpose([[0, 0]]),
-                np.transpose([[0, 0]])])
-    print("weights:\n", perceptron._weights)
+                colvec(1, 0),
+                colvec(0, 1),
+                colvec(1, 1),
+            ], [
+                colvec(2, -1),
+                colvec(3, 1),
+                colvec(5, 0),
+            ])
+    expected_weights = np.array([[2, -1], [3, 1]])
+    print("expected weights:\n", expected_weights)
+    print("actual weights:\n", perceptron._weights)
+    print(f"Match: {np.allclose(expected_weights, perceptron._weights)}")
     print("\n --- BEGIN Trained Test Section ---")
     tests = [
-            (np.transpose([[2, 1]]), np.transpose([[0, 1]])),
-            (np.transpose([[-1, 1]]), np.transpose([[1, 1]])),
-            (np.transpose([[-2, -1]]), np.transpose([[1, 0]])),
-            (np.transpose([[-1, -2]]), np.transpose([[0, 0]])),
-            (np.transpose([[1, -1]]), np.transpose([[0, 0]]))]
+            (colvec(1, 1), colvec(5, 0)),
+            (colvec(-1, -1), colvec(-5, 0)),
+            (colvec(-3, 2), colvec(0, 5)),
+        ]
     tests_run(perceptron, tests)
 
 if __name__ == "__main__":
