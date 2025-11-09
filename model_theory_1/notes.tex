@@ -8,7 +8,7 @@
 
 \begin{document}
 \maketitle
-\maketitleprint[purple]
+\maketitleprint[yellow]
 
 \tableofcontents
 
@@ -71,7 +71,7 @@
 	נניח ש־$f : \mu \to \omega_1$ עבור $\mu < \omega_1$ וכן $\sup \rng f = \bigcup \{ f(\delta) \mid \delta < \mu \}$ כאשר $f(\delta)$ בן־מניה.
 	אבל מאקסיומת הבחירה איחוד בן־מניה של קבוצות בנות־מניה הוא גם בן־מניה.
 \end{example}
-\begin{definition}
+\begin{definition}[מונה סדיר וחריג]
 	מונה $\kappa$ יקרא חריג אם הוא אינסופי ואינו סדיר.
 \end{definition}
 \begin{example}
@@ -116,8 +116,6 @@
 
 \section{שיעור 1 --- 19.10.2025}
 \subsection{רקע}
-שעת קבלה בימי ראשון בשתיים־עשרה.
-יהיו כשישה תרגילים ומטלה מסכמת.
 תורת המודלים היא תחום בלוגיקה שעוסקת בניתוח של תורות ושל מודלים המתקבלים מהם.
 נראה דוגמה למשפט שנובע מתחום זה.
 \begin{example}
@@ -450,7 +448,7 @@
 \end{proof}
 
 \subsection{כותרת כלשהי}
-\begin{lemma}[הפרדה]
+\begin{lemma}[הפרדה]\label{separation-lemma}
 	נניח ש־$T_1, T_2$ תורות בשפה $L$.
 	$\Sigma$ אוסף פסוקים ב־$L$ שסגור תחת גימום ואיווי ומכיל את $\perp, \top$ (כאשר ההכלה הזו חשובה רק למקרה הלא עקבי).
 	אז התנאים הבאים שקולים:
@@ -725,6 +723,189 @@
 		\iff \{ i \in I \mid \Aa_i \models \varphi(a_0, \ldots, a_{n - 1}) \} \in \Uu
 		\iff \Aa \models \varphi(a_0, \ldots, a_{n - 1})
 	\]
+\end{proof}
+
+\section{שיעור 4 --- 9.11.2025}
+\subsection{חילוץ כמתים}
+\begin{definition}[תורה מחלצת כמתים]
+	תהי $T$ תורה בשפה $L$, נאמר ש־$T$ מחלצת כמתים אם לכל נוסחה $\varphi(x_0, \ldots, x_{n - 1})$ קיימת נוסחה חסרת כמתים $\psi(x_0, \ldots, x_{n - 1})$,
+	כך ש־$T \models \forall x_0 \ldots \forall x_{n - 1}\ (\varphi \leftrightarrow \psi)$.
+\end{definition}
+\begin{remark}
+	יתכן שנגיע למצב שסתירה או טאוטולוגיה שקולות לפסוק חסר כמתים, אבל לא בהכרח השפה עשירה מספיק כדי לדבר על הפסוקים הללו.
+	בהתאם החל מעכשיו נניח ש־$\perp$ חסרת כמתים, ולעשה כאיווי ריק של נוסחות אטומיות.
+\end{remark}
+\begin{remark}
+	נשים לב שאם בשפה אין קבועים אז כשנפעיל את הגדרה על פסוק $\varphi$ נקבל ש־$\psi \in \{ \perp, \lnot \perp \}$.
+\end{remark}
+\begin{example}
+	נניח ש־$T = \operatorname{DLO}$, תורת הסדרים הקוויים הצפופים ללא נקודות קצה.
+	$T$ מחלצת כמתים ואין לה קבועים ולכן היא שלמה. \\
+	תהי נוסחה $\varphi(x_0, \ldots, x_{n - 1})$, ונבחן את $\Sigma$ קבוצת הנוסחות מהצורה,
+	\[
+		\bigwedge_{i, j} {(x_i = x_j)}^{\varepsilon_{ij}}
+		\land \bigwedge_{i, j} {(x_i \le x_j)}^{\varepsilon_{ij}}
+	\]
+	כאשר $\varepsilon_{ij}$ הם הנוסחה או שלילתה, נבחין כי האוסף הזה הוא סופי.
+	נגדיר גם את $\Sigma_\varphi \subseteq \Sigma$ תת־האוסף כך שמתקיים $\psi \in \Sigma_\varphi \iff T \models \forall \bar{x}\ (\psi \to \varphi)$.
+	אז מתקיים $T \models \forall \bar{x}\ (\bigvee \Sigma_\varphi \to \varphi)$ ונרצה לבדוק את הכיוון ההפוך.
+	כלומר עלינו להראות שאם $\varphi(a_0, \ldots, a_{n - 1})$ מתקיים אז יש $\psi \in \Sigma_\varphi$ עבורו $\psi(a_0, \ldots, a_{n - 1})$ נכון.
+	נשים לב כי כל זוג נוסחות שונות מ־$\Sigma$ סותרות זו את זו ולכן ל־$(a_0, \ldots, a_{n - 1})$ יש $\psi \in \Sigma$ יחיד כך ש־$\psi(a_0, \ldots, a_{n - 1})$ נכון.
+	נניח בשלילה ש־$\psi \notin \Sigma_\varphi$ ושהוא בן־מניה.
+	בלי הגבלת הכלליות אנו דנים במודל בו קיימים $b_0, \ldots, b_{n - 1}$ כך שמתקיים $\psi(b_0, \ldots, b_{n - 1})$ אבל $\lnot \varphi(a_0, \ldots, a_{n - 1})$ אבל קיימת $\sigma : a_i \mapsto b_i$ כסתירה.
+\end{example}
+\begin{remark}
+	חילוץ כמתים תלוי בבחירת השפה $L$.
+	לדוגמה אם $L$ שפה כלשהי ונגדיר את,
+	\[
+		\tilde{L} = L \cup \{ R_\varphi(x_0, \ldots, x_{n - 1}) \mid \varphi(x_0, \ldots, x_{n - 1}) \text{ is a formula} \}
+	\]
+	(הרחבת מורלי) ונגדיר את התורה,
+	\[
+		\tilde{T} = T \cup \{ \forall \bar{x}\ \varphi \leftrightarrow R_\varphi \mid \varphi \in \form_L \}
+	\]
+	אז נקבל תורה מחלצת כמתים.
+\end{remark}
+\begin{definition}[נוסחת קיים פרימיטיבית]
+	נוסחת $\exists$ פרימיטיבית היא נוסחה מהצורה $\exists x \bigwedge_{i < n} \psi_i^{\varepsilon_i}$ כאשר $\psi_i$ אטומית.
+\end{definition}
+\begin{lemma}
+	$T$ מחלצת כמתים אם ורק אם לכל נוסחת $\exists$ פרימיטיבית $\varphi$ יש נוסחה חסרת כמתים $\psi$ כך שמתקיים,
+	\[
+		T \models \forall \bar{x}\ (\varphi \leftrightarrow \psi)
+	\]
+\end{lemma}
+\begin{proof}
+	נוכיח באינדוקציה על מבנה הנוסחה. לנוסחות אטומיות הטענה טריוויאלית. גם להוספת שלילה הטענה נובעת ישירות, וכך גם לגימום. \\
+	נבחן את המקרה של הוספת כמת, כלומר $\exists x \varphi$.
+	לפי הנחת האינדוקציה $\varphi$ שקולה לנוסחה $\psi$ חסרת כמתים.
+	אז $\psi$ שקולה לאיווי סופי של נוסחות מהצורה $\bigwedge \psi_i^{\varepsilon_i}$.
+	ואז מתקבל,
+	\[
+		\exists x\ \bigvee_{i < m} \rho_i
+		\equiv \bigvee_{i < m} \exists x\ \rho_i
+	\]
+	ולכן $\exists x\ \psi$ שקולה לאיווי של נוסחות $\exists$ פרימיטיבית.
+\end{proof}
+עתה נוכל לעבור למבחן כללי לחילוץ כמתים.
+\begin{notation}
+	יהי $\Mm$ מבנה של $L$ ויהי $A \subseteq M$, אז נסמן $\langle A \rangle \subseteq \Mm$ תת־המבנה הנוצר על־ידי $A$.
+	במידה שאין קבועים ו־$A = \emptyset$ אז נגדיר $\langle \emptyset \rangle = \emptyset$, למרות שהו לא תת־מבנה.
+\end{notation}
+\begin{theorem}
+	התנאים הבאים שקולים,
+	\begin{enumerate}
+		\item $T$ מחלצת כמתים
+		\item לכל זוג מודלים $\Mm, \Nn \models T$ ו־$\langle A \rangle$ תת־מבנה נוצר סופית משותף (כולל $A = \emptyset$) ולכל פסוק קיים פרימיטיבי $\varphi$ ב־$L(\langle A \rangle)$, \\
+			מתקיים $\Mm_A \models \varphi \iff \Nn_A \models \varphi$ (כלומר העשרת המבנים על־ידי קבועים ל־$A$).
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$1 \implies 2$:
+	אם $\varphi$ פסוק $\exists$ פרימיטיבי אז $\varphi$ הוא מהצורה $\tilde{\varphi}(d_{a_0}, \ldots, d_{a_{n - 1}})$ עבור $\tilde{\varphi} \in \form_L$.
+	עם המשתנים $x_0, \ldots, x_{n - 1}$, הנחנו ש־$T$ מחלצת כמתים ולכן $\tilde{\varphi}$ שקולה לנוסחה חסרת כמתים $\tilde{\psi}$ כך ש־$\tilde{\psi} \in \form_L$. \\
+	אז נובע ש־$\varphi$ שקולה ל־$\tilde{\psi}(d_{a_0}, \ldots, d_{a_{n - 1}})$, אז,
+	\[
+		\Mm_A \models \tilde{\psi}(d_{a_0}, \ldots, d_{a_{n - 1}})
+		\iff \langle A \rangle \models \tilde{\psi}(a_0, \ldots, a_{n - 1})
+		\iff \Nn_A \models \tilde{\psi}(d_{a_0}, \ldots, d_{a_{n - 1}})
+	\]
+	ומצאנו שהטענה חלה.
+
+	$2 \implies 1$:
+	יהי פסוק קיים פרימיטיבי $\varphi$ ונבחן את התורות נבחן את $T_1 = T \cup \{ \varphi \}$ ו־$T_2 = T \cup \{ \lnot \varphi \}$.
+	אם נמצא פסוק חסר כמתים ב־$L(A)$, $\psi$, כך שמתקיים $T_1 \models \psi$ וכן $T_2 \models \lnot \psi$ אז סיימנו.
+	\[
+		T_1 \models \psi \iff T \models \varphi \to \psi
+	\]
+	בפסוקים $\varphi, \psi$ יש קבועים מתוך $A$ ואנו נרצה להראות ש־$T \models \forall \bar{x}\ (\tilde{\varphi} \to \tilde{\psi})$.
+	זוהי הכללה על־ידי קבועים שתעבוד כאשר הקבועים אינם בשפה. \\
+	באופן דומה,
+	\[
+		T_2 \models \lnot \psi
+		\iff T \models \lnot \varphi \to \lnot \psi
+		\iff T \models \psi \to \varphi
+	\]
+	לכן נרצה להראות הוא שלכל $\Mm \models T_1$ ו־$\Nn \models T_2$ יש פסוק חסר כמתים $\psi$ כך ש־$\Mm \models \psi$ ו־$\Nn \models \lnot \psi$.
+	נניח ש־$c_0, \ldots, c_{n - 1}$ קבועים חדשים שנציב במקום המשתנים של $\varphi$ (ובהמשך נשתמש בהם ב־$A$). \\
+	אם בשלילה אכן אין פסוק $\psi$ חסר כמתים בשפה $L(c_0, \ldots, c_{n - 1})$ המפריד בין $\Mm$ ל־$\Nn$ אז מתקיים,
+	\[
+		\langle A \rangle = \langle c_0^\Mm, \ldots, c_{n - 1}^\Mm \rangle
+		\cong \langle c_0^\Nn, \ldots, c_{n - 1}^\Nn \rangle
+	\]
+	נבחין כי האינדוקציה על ידי רקורסיה של שמות עצם ב־$L(\{c_0, \ldots, c_{n - 1}\})$ כאשר בכל שלב הפונקציה אכן מוגדרת היטב וחד־חד ערכית בזכות הסכמה בין $\Mm$ ו־$\Nn$ על נוסחות חסרות כמתים בשפה המועשרת.
+	לכן בלי הגבלת הכלליות $A \subseteq N$ ונוכל להניח את הנחות המשפט.
+	לכן $\Mm_A \models \varphi \iff \Nn_A \models \varphi$ בסתירה להגדרת $T_1, T_2$.
+	נובע שבהכרח יש הפרדה על־ידי $\psi \in \Sigma$ מלמה\ \ref{separation-lemma} ונקבל ש־$T_1$ ו־$T_2$ מופרדות על־ידי פסוק מ־$\Sigma$.
+	במקרים בהם יש ל־$\varphi$ משתנים חופשיים או שיש ל־$L$ קבועים, ובמקרה שנותר $\varphi$ פסוק ב־$L$ ול־$L$ אין קבועים.
+	במקרה זה נפעיל את ההנחה ל־$A = \emptyset$ ונקבל ש־$\varphi \in T$ או $\lnot \varphi \in T$ ולכן $T \models \varphi \leftrightarrow \perp$ או $T \models \varphi \leftrightarrow (\lnot \perp)$.
+\end{proof}
+נעבור לשימוש במשפט.
+\begin{definition}
+	$\operatorname{ACF}$ היא התורה בשפה $L = \{0, 1, +, \cdot\}$ של שדות סגורים אלגברית.
+	היא מורכבת מאקסיומות השדה, אקסיומת השדה הסגור אלגברית,
+	\[
+		\forall a_0 \ldots \forall a_n (a_n \ne 0 \to \exists x\ a_n x^n + a_{n - 1} x^{n - 1} + \cdots + a_0 = 0)
+	\]
+	עבור מציין $p$ נוסיף את האקסיומה $c_p = \overbrace{1 + \cdots + 1}^{p \text{ times}} = 0$ ועבור מציין 0 נוסיף את $\{ \lnot c_p \mid p \text{ is prime}\}$. \\
+	נסמן ב־$\operatorname{ACF}_p$ את התורה הנוצרת עבור מציין $p$.
+\end{definition}
+\begin{theorem}
+	$\operatorname{ACF}$ מחלצת כמתים.
+\end{theorem}
+\begin{proof}
+	נוכיח שאם $\Mm, \Nn \models \operatorname{ACF}$ ו־$\Aa \subseteq \Mm, \Nn$ נוצר סופית ו־$\varphi$ פסוק $\exists$ פרימיטיבי ב־$L(A)$ אז $\Mm_A \models \varphi \iff \Nn_A \models \varphi$.
+	נשים לב שיש תת־שדה $F_A \subseteq \Mm$ ואיזומורפיזם $f : F_A \to \tilde{F}_A$ כך ש־$\tilde{F}_A \subseteq \Nn$ וכן $f \restriction A = \id_A$.
+	איברי $F_A$ הם מהצורה $\frac{p(a_0, \ldots, a_{n - 1})}{q(a_0, \ldots, a_{n - 1})}$ כאשר $p, q$ פולינומים ממעלה $n$ עם מקדמים שלמים.
+	כעת נגדיר את $f$ על־ידי,
+	\[
+		{\left(\frac{p(a_0, \ldots, a_{n - 1})}{q(a_0, \ldots, a_{n - 1})}\right)}^\Mm
+		\mapsto {\left(\frac{p(a_0, \ldots, a_{n - 1})}{q(a_0, \ldots, a_{n - 1})}\right)}^\Nn
+	\]
+	$f$ מוגדרת היטב היא שניתן לחשב פורמלית סכום של פונקציות רציונליות והתאפסות של המכנה $q$ שקולה לשוויון של שני פולינומים ב־$\Aa$.
+	ידוע ש־$\Aa$ תת־מבנה משותף ל־$\Mm$ ול־$\Nn$ החישוב הוא זהה ולכן $f$ היא אכן איזומורפיזם.
+	בלי הגבלת הכלליות נניח שגם $\Aa$ שדה.
+	נסיק ש־$\varphi$ היא מהצורה $\exists x\ \bigwedge_{i < n} (p_i(x) = 0) \land \bigwedge_{i < m} (q_i(x) \ne 0)$, שכן אחרת נוכל להעביר אגפים.
+	נניח ש־$n > 0$ ונניח ש־$\Mm \models \varphi$ וש־$b \in M$ מעיד על כך.
+	נסמן את $m(x)$ הפולינום המינימלי של $b$ ב־$A[x]$, אז לכל $i < n$ מתקיים $m \mid p_i$.
+	בנוסף $m \nmid \prod_{i < n} q_i$, זאת שכן $m \nmid q_i$ לכל $i < n$ והוא אי־פריק.
+	ב־$\Nn$ יש שורש ל־$m$, נסמן אותו ב־$\tilde{b}$, איבר זה לא מאפס את $\prod q_i$, אחרת הפולינום המינימלי של $\tilde{b}$, $\tilde{m}$, יחלק את $m$ וגם את $\prod q_i$ ולכן בהכרח יהיה שונה מ־$m$ בסתירה לאי־פריקות $m$. \\
+	אם $n = 0$ אז נשתמש בכך שיש אינסוף איברים בשדה סגור אלגברית ורק מספר סופי שלהם מאפס את $\prod q_i$.
+\end{proof}
+\begin{remark}
+	הטיעון למעשה מניב אלגוריתם להמרת נוסחת $\exists$ פרימיטיבית לנוסחה חסרת כמתים.
+\end{remark}
+\begin{corollary}
+	נניח ש־$\FF$ שדה סגור אלגברית ונניח ש־$X \subseteq X$ תת־קבוצה גדירה עם פרמטרים, כלומר $X = \{ x \in \FF \mid \FF \models \varphi(x) \}$ עבור נוסחה $\varphi \in \form_{L_{\operatorname{ACF}}(\FF)}$.
+	אז במקרה זה $X$ סופית או שמשלימתה סופית.
+\end{corollary}
+עתה נרצה לעבור לדבר על ממשיים במטרה להראות שגם שם אפשר לחלץ כמתים.
+\begin{definition}[תורת השדות הסגורים ממשית]
+	RCF היא תורה מעל $L = \{0, 1, +, \cdot, \le\}$, תורת השדות הסגורים ממשית היא התורה של שדה סדור ובנוסף,
+	\begin{enumerate}
+		\item משפט ערך הביניים לפולינומים: אם $f$ פולינום ו־$f(a) \cdot f(b) \le 0$ אז קיים $a \le c \le b$ כך ש־$f(c) = 0$
+		\item משפט רול לפולינומים:
+			אם $f$ פולינום ו־$f(a) = f(b)$ ($a < b$) אז קיים $a < b < c$ כך ש־$f'(c) = 0$,
+			כאשר $f'$ היא הנגזרת הפורמלית של $f$
+	\end{enumerate}
+	אקסיומות השדה הסדור הן:
+	\begin{enumerate}
+		\item אם $a \le b$ אז $a + c \le b + c$
+		\item אם $0 \le a, b$ אז $0 \le a \cdot b$
+	\end{enumerate}
+	בנוסף לאקסיומות השדה.
+\end{definition}
+\begin{remark}
+	בספרות מקובלת ההגדרה השקולה ששדה סגור ממשית הוא שדה סדור בו לכל איבר חיובי יש שורש ריבועי ולכל פולינום ממעלה אי־זוגית יש שורש.
+\end{remark}
+\begin{theorem}
+	$\operatorname{RCF}$ מחלצת כמתים.
+\end{theorem}
+\begin{proof}
+	כמו במקרה הקודם נבחר $\Aa \subseteq \Mm, \Nn$ תת־שדה של $\Mm, \Nn \models \operatorname{RCF}$, ותהי $\varphi$ נוסחה $\exists$ פרימיטיבית.
+	אז $\varphi$ מהצורה $\exists x\ \bigwedge \psi_i^{\varepsilon_i}$ עבור $\psi_i$ אטומיות.
+	אז $\psi_i$ מהצורה $p_i(x) = 0$ או $\ne 0$ או $\ge 0$.
+	בנוסף $p_i(x) \ne 0$ שקול ל־$p_i(x) > 0 \lor p_i(x) < 0$ ולכן ניתן להציג את $\varphi$ כך ש־$\psi_i$ הוא $p_i(x) = 0$ או $p_i(x) > 0$.
 \end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
