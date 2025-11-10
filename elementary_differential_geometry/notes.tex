@@ -667,6 +667,77 @@
 	\]
 \end{definition}
 
+\section{שיעור 7 --- 10.11.2025}
+\subsection{פרמטריזציה לפי אורך}
+אנו עוסקים בעקומים פרמטריים רגולריים, קרי במסילות רגולריות, $\alpha : I \to \AAA^n$.
+הדרישה שלנו היא ש־$\alpha$ תהיה גזירה אינסוף פעמים, כלומר חלקה, ונדרוש ש־$\alpha'(t) \ne 0$ לכל $t \in I$.
+נוכל גם לדבר על $A = \alpha(I) \subseteq \AAA^n$, וזהו למעשה העקום עצמו, נקרא לאובייקט זה גם מסלול.
+בהינתן שתי מסילות אנו רוצים להבין מתי מתקיים $\im(\alpha) = \im(\tilde{\alpha})$ עבור שתי מסילות, כלומר אנחנו מנסים להבין מתי שתי מסילות הלכה למעשה מייצגות אותו אובייקט ביקום.
+\begin{definition}[דיפאומורפיזם]
+	פונקציה $\varphi : X \to Y$ תיקרא דיפאומורפיזם אם היא הפיכה, גזירה, והפיכתה גזירה. \\
+	דיפאומורפיזם חלק יהיה דיפאומורפיזם כך שהוא גזיר אינסוף פעמים.
+\end{definition}
+\begin{remark}
+	ממשפט ההעתקה ההפוכה נובע שאם דיפאומורפיזם הוא חלק אז גם הפונקציה ההפיכה שלו היא דיפאומורפיזם חלק. \\
+	באופן דומה רגולריות של הדיפאומורפיזם הוא תכונה שחלה על הפונקציה ההפיכה גם כן.
+\end{remark}
+\begin{definition}[רפרמטריזציה]
+	בהינתן $\alpha : I \to \AAA^n$ ו־$\varphi : J \to I$ מסילה חלקה רגולרית, $I, J$ קטעים, ו־$\varphi$ דיפאומורפיזם.
+	במצב זה נאמר ש־$\tilde{\alpha} = \alpha \circ \varphi$ היא פרמטריזציה שקולה ל־$\alpha$, עוד נאמר ש־$\tilde{\alpha}$ היא רפרמטריזציה של $\alpha$.
+\end{definition}
+\begin{example}
+	נניח ש־$\alpha : I \to \AAA^2$ נתונה על־ידי $\alpha(t) = {(\alpha^1(t), \alpha^2(t))}^T$.
+	נגדיר $\varphi : J \to I$ על־ידי $u \mapsto 2 u$.
+	אז $\tilde{\alpha} : J \to \AAA^2$ פונקציה המוגדרת על־ידי $\tilde{\alpha}(t) = {(\alpha^1(2t), \alpha^2(2t))}^2$.
+	בהתאם נקבל שגם $\tilde{\alpha}'(t) = 2 \alpha'(2t)$.
+\end{example}
+\begin{remark}
+	במקרה הדו־מימדי אם $\psi = \varphi^{-1}$ אז מתקיים, $1 = (\varphi \circ \psi)' = \varphi(\psi(t)) \cdot \psi'(t)$. ולכן בפרט $\psi'$ לא מתאפסת ושומרת על סימן.
+\end{remark}
+\begin{notation}
+	אם $\psi' > 0$ אז נאמר שהיא שומרת על כיוון, אחרת נאמר שהיא משנה כיוון.
+\end{notation}
+\begin{theorem}[קיום פרמטריזציה לפי אורך]
+	יהי עקום פרמטרי $c : I \to \AAA^n$ עקום חלק רגולרי.
+	אז קיימת $\tilde{c} : J \to \AAA^n$ פרמטריזציה שקולה ל־$c$ כך ש־$\lVert \tilde{c}' \rVert \equiv 1$.
+	פרמטריזציה זו נקראת פרמטריזציה לפי אורך.
+\end{theorem}
+\begin{proof}
+	נסמן $t_0 \in I$ שרירותי.
+	נגדיר את $\psi(t) = \int_{t_0}^{t} \lVert c'(u) \rVert\ du$, ונקבל כך את פונקציית האורך מ־$t_0$ בכל נקודה.
+	לפי FTC (המשפט היסודי של החשבון האינפיניטסימלי) $\psi$ גזירה ומתקיים ומתקיים $\psi'(t) = \lVert c'(t) \rVert > 0$.
+	כלומר $\psi$ רגולרית ומונוטונית, ולכן הפיכה.
+	נגדיר $J = \psi(I)$, אז $J$ קטע כתמונה של פונקציה רציפה בקטע.
+	יתר־על־כן, $\psi$ היא דיפאומורפיזם, ואף דיפאומורפיזם חלק, נסמן $\varphi = \psi^{-1}$.
+	נגדיר $\tilde{c} = c \circ \varphi$, זוהי רפרמטריזציה של $c$, ונותר לבדוק ש־$\lVert \tilde{c}'(t) \rVert = 1$ לכל $t \in J$.
+	מהגדרת $\tilde{c}$ מתקיים,
+	\[
+		\tilde{c}'(t)
+		= c'(\varphi(t)) \cdot \varphi'(t)
+		= c'(\varphi(t)) \cdot \frac{1}{\psi'(\varphi(t))}
+	\]
+	ולכן $\lVert \tilde{c}'(t) \rVert = \lVert c'(\varphi(t)) \rVert \cdot \frac{1}{\lVert \psi'(\varphi(t)) \rVert} = 1$.
+\end{proof}
+\begin{example}
+	נגדיר את $c : [0, 2 \pi] \to \AAA^2$ על־ידי $c(t) = {(r \cos t, r \sin t)}^t$ כאשר $r > 0$.
+	אז מתקיים $c'(t) = {(- r \sin t, r \cos t)}^t$ ולכן $\lVert c'(t) \rVert = r$ לכל $t$.
+	בהתאם גם $L(c) = \int_{0}^{2 \pi} \lVert c'(t) \rVert\ dt = 2 \pi r$ ולכן נגדיר את $J = [0, 2 \pi r]$ ובהתאם נקבל מהמשפט שאם $\varphi(t) = \frac{t}{r}$,
+	אז נוכל להגדיר את $\tilde{c}(s) = (c \circ \varphi)(s) = c(\varphi(s)) = c(\frac{s}{r})$, כלומר $\tilde{c}(t) = {(r \cos(\frac{t}{r}), r \sin(\frac{t}{r}))}^t$.
+\end{example}
+
+\subsection{עקמומיות}
+עתה נרצה לדון בהבדל שבין אובייקטים במישור לבין אובייקטים בעקומות.
+אם $c : I \to \AAA^2$ לדוגמה רגולרית, אז נשים לב שנוכל להגדיר את הישר המשיק בנקודה, $l(t) = c(t_0) + t c'(t_0)$ לכל $t \in \RR$, ולקבל מישור אפיני.
+אם $c$ פרמטריזציה לפי אורך, אז בפרט נקבל שהווקטור המגדיר את המשיק הוא נורמלי.
+נרצה למצוא את הווקטור האורתוגונלי שלו, במטרה להבין את ההתנהגות של הפונקציה ביחס לשני הווקטורים הללו.
+בהתאם נוכל להבין כמה עקום מתעקם בהתאם לקשר בין הנגזרת השנייה לבין האורתוגונלי לנגזרת.
+\begin{definition}[בסיס אורתוגונלי של נגזרת]
+	תהי מסילה $c : I \to \AAA^2$ רגולרית לפי אורך ותהי $t_0 \in I$. \\
+	נסמן $v(t) = c'(t)$ וכן $n(t) = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} c'(t)$, אז $(v(t), n(t))$ הוא בסיס אורתוגונלי של הנגזרת בנקודה.
+	אז $\lVert c'(t) \rVert = 1$ וכן $c'(t) \cdot c'(t) = 1$, אז $c''(t) \cdot c'(t) + c'(t) \cdot c''(t) \equiv 0$, ונסיק ש־$2 c''(t) c'(t) \equiv 0$ אם ורק אם $c''(t) \perp c'(t)$.
+	אז נגדיר $k : I \to \RR$ על־ידי $c''(t) = k(t) n(t)$, פונקציה זו נקראת העקמומיות (המכוונת) של $c$.
+\end{definition}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
