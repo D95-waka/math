@@ -6,26 +6,24 @@ import numpy as np
 logger = logging.getLogger(__name__)
 
 class LinearPerceptron(object):
-    def __init__(self, weights: np.array):
+    def __init__(self, weights: np.ndarray):
         if weights.ndim != 2:
             raise Exception('Supports weight matrix only')
 
         self._weights = weights
 
-    def predict(self, x: np.array) -> np.array:
+    def predict(self, x: np.ndarray) -> np.ndarray:
         prod = np.matmul(self._weights.transpose(), x)
         logger.debug(f"Liner Perceptron Predict called for w = {self._weights}, x = {x}, wx = {prod}")
         return prod
 
-    def update(self, example: np.array, example_prediction: np.array) -> bool:
+    def update(self, example: np.ndarray, example_prediction: np.ndarray) -> bool:
         # example is of the form of matrix such that each column is an example vector
         # example_prediction is a matrix such that each column is a desired result
         logger.debug(f"Update Linear Perceptron called, X = {example}, y = {example_prediction}")
         P = len(example)
         C = (1 / P) * np.matmul(example, example.transpose())
         u = (1 / P) * np.matmul(example, example_prediction)
-        # TODO: Is this part necessary?
-        a = (1 / (2 * P)) * np.matmul(example_prediction.transpose(), example_prediction)
         logger.debug(f"Updating Linear Perceptron, C = {C}")
         w = np.matmul(np.linalg.inv(C), u)
         self._weights = w
@@ -35,7 +33,7 @@ class LinearPerceptronTrainer(object):
     def __init__(self):
         pass
 
-    def fit(self, examples: list[np.array], example_predictions: list[float]):
+    def fit(self, examples: list[np.ndarray], example_predictions: list[np.ndarray]):
         lp = LinearPerceptron(np.array([[]]))
         X = np.column_stack(examples)
         y = np.column_stack(example_predictions).transpose()
@@ -51,7 +49,7 @@ def tests_run(perceptron: LinearPerceptron, tests):
             print(classification - perceptron.predict(vector))
             print(f"Vector: {np.transpose(vector)}, Correct: {classification}, Actual: {actual}")
 
-def colvec(*values: list[float]) -> np.array:
+def colvec(*values: float) -> np.ndarray:
     return np.array([values]).transpose()
 
 def tests():
