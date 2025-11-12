@@ -34,9 +34,12 @@ class LinearPerceptronTrainer(object):
         pass
 
     def fit(self, examples: list[np.ndarray], example_predictions: list[np.ndarray]):
-        lp = LinearPerceptron(np.array([[]]))
         X = np.column_stack(examples)
         y = np.column_stack(example_predictions).transpose()
+        return self.inner_fit(X, y)
+
+    def inner_fit(self, X: np.ndarray, y: np.ndarray):
+        lp = LinearPerceptron(np.array([[]]))
         lp.update(X, y)
         return lp
 

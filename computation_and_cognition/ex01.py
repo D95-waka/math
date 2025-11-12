@@ -36,7 +36,7 @@ if __name__ == "__main__":
     ax.scatter([x for x, y in mat if x > y], [y for x, y in mat if x > y], color = "blue")
     ax.scatter([x for x, y in mat if x <= y], [y for x, y in mat if x <= y], color = "red")
     ax.quiver(weights[0][0], weights[1][0], color = 'green')
-    plt.savefig('bin/out.jpg')
+    plt.savefig('bin/out1-3.jpg')
 
     # Question 4:
     optimal_weights = np.array([[1], [-1]])
@@ -57,4 +57,4 @@ if __name__ == "__main__":
     fig, ax = plt.subplots(layout='constrained')
     bars = ax.bar([f"P={x}" for x in data[0]], data[1])
     ax.bar_label(bars, labels = [f"{x:.4f}" for x in data[1]], padding=3)
-    plt.savefig('bin/out4.jpg')
+    plt.savefig('bin/out1-4.jpg')
