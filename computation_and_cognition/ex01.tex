@@ -18,27 +18,31 @@
 \subquestion{}
 נניח ש־$w_2 = 0$ וכן ש־$\bar{x} = {(7, 2)}^T$ אז $y(\bar{x}) = 0$, אז ננתח את תוצאת $\bar{z} = {(5, -10)}^T$.
 \begin{solution}
-	מתקיים $y(\bar{x}) = H(w_1 \cdot 7) = 0$ ולכן נסיק $w_1 < 0$, בהתאם נובע $y(\bar{x}) = H(5 \cdot w_1) = 0$.
+	מתקיים $y(\bar{x}) = H(w_1 \cdot 7) = 0$ ולכן נסיק $w_1 < 0$, בהתאם נובע $y(\bar{x}) = H(5 \cdot w_1) = 0$ (תשובה ב').
 \end{solution}
 
 \subquestion{}
 כאשר $\bar{w} = {(1, 1)}^T$ אז נמצא את $y^{-1}(\{ 1 \})$.
 \begin{solution}
 	נבחין כי מתקיים $y(\bar{x}) = 1 \iff H(\bar{w} \cdot \bar{x}) = 1 \iff 0 \le x_1 + x_2$ מהגדרה. \\
-	כלומר כאשר $-x_1 \le x_2$.
+	כלומר כאשר $-x_1 \le x_2$ (תשובה ג')
 \end{solution}
 
 \subquestion{}
 נניח ש־$\bar{x}, \bar{z} \in \RR^2$ דוגמות כך שמתקיים $\bar{w} \cdot \bar{x}, \bar{w} \cdot \bar{z} \ne 0$. \\
 נבדוק מתי נקבל $y(\bar{x}) \ne y(\bar{z})$.
 \begin{solution}
-	כאשר הדוגמות מקיימות $\bar{x} = \alpha \bar{w}, \bar{z} = \beta \bar{w}$ עבור $\alpha, \beta > 0$ נקבל שהווקטורים תלויים לינארית ובפרט,
+	נניח ש־$\bar{w} \cdot \bar{x} = \alpha \bar{w} \cdot \bar{z}$ עבור $\alpha < 0$.
+	במקרה זה מתקיים,
 	\[
-		H(\bar{w} \cdot \bar{x}) = 1
-		\iff 0 \le \alpha {\lVert w \rVert}^2
-		\iff 0 \le \beta {\lVert w \rVert}^2
-		\iff H(\bar{w} \cdot \bar{z}) = 1
+		y(\bar{x}) = \varepsilon
+		\iff H(\bar{w} \cdot \bar{x})
+		\iff \indicator_{(0, \infty)}(\bar{w} \cdot \bar{x}) = \varepsilon
+		\iff \indicator_{(0, \infty)}(\alpha \bar{w} \cdot \bar{x}) \ne \varepsilon
+		\iff \indicator_{(0, \infty)}(\bar{w} \cdot \bar{z}) \ne \varepsilon
+		\iff y(\bar{z}) \ne \varepsilon
 	\]
+	כלומר נקבל שהתוצאות בהכרח שונות (תשובה ג').
 \end{solution}
 
 \question{}
@@ -178,10 +182,16 @@ $y = 1 \iff x_1 - 3x_2 < 4$.
 \end{solution}
 
 \question{}
+בשאלה זו נציג את התוצאות של הרצה של מבחן ממוחשב שבו מוגרלות $P$ דוגמות לנקודות בתחום ${[-10, 10]}^2$, עבור כל נקודה נגדיר את הסיווג $y = x_1 > x_2$.
+המבחן הממוחשב מקבל את הנקודות והסיווגים ועליו לאמן פרספטרון בינארי מתאים.
+
 \subquestion[3]
-\includegraphics[width=9cm]{bin/out}
+עבור $P = 1000$ נציג את כלל הנקודות שהצגנו לצד הפרספטרון המאומן, נציג את וקטור המשקולות ואת הקו המגדיר אותו. \\
+\includegraphics[width=9cm]{bin/out1_3}
 
 \subquestion[4]
-\includegraphics[width=9cm]{bin/out4}
+עבור $P \in \{ 5, 20, 30, 50, 100, 150, 200, 500 \}$ דוגמות נריץ את המבחן $M = 100$ ונחשב את השגיאה הממוצעת של הפרספטרון שאומן. \\
+\includegraphics[width=9cm]{bin/out1_4} \\
+נבחין שככל שיש יותר דוגמות ככה השגיאה הממוצעת יורדת ושואפת לאפס.
 
 \end{document}
