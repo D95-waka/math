@@ -1,0 +1,48 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Solution to Exercise 0 --- Model Theory (1), 80616}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+\begin{definition}
+	A formula $\varphi$ is called \textit{basic Horn} formula if,
+	\[
+		\varphi = (\theta_0(\bar{x}) \land \cdots \land \theta_{m - 1}(\bar{x})) \to \theta_m(\bar{x})
+	\]
+	where $\theta_i$ is atomic for $i \le m$.
+\end{definition}
+\begin{remark}
+	In the case $m = 0$ we get $\varphi = \theta_0(\bar{x})$.
+	In the case that $\theta_m = \perp$, $\varphi \equiv \lnot \theta_0(\bar{x}) \lor \cdots \lnot \theta_{m - 1}(\bar{x})$.
+\end{remark}
+\begin{definition}
+	The set of Horn formulas is the minimal set of formulas containing the basic Horn formulas and closed under conjugation and quantification.
+\end{definition}
+
+\subquestion{}
+Let $\psi(x_0, \ldots, x_{n - 1})$ be a Horn formula and let $F \subseteq \Pp(I)$ be a filter.
+Let $\langle \Mm_i \mid i \in I \rangle$ be a sequence of structures and $a_j \in \prod_{i \in I} \Mm_i$ for $j < n$ such that,
+\[
+	\{ i \in I \mid \Mm_i \models \psi(a_0(i), \ldots, a_{n - 1}(i)) \} \in F
+\]
+We will show that $\Nn = \prod_{i \in I} \Mm_i / F \models \psi({[a_0]}_F, \ldots, {[a_{n - 1}]}_F)$.
+\begin{proof}
+	Let us prove by induction over Horn set.
+
+	Assume that $\varphi(\bar{x}) = P(\bar{x})$ and $\{ i \in I \mid \Mm_i \models P(\bar{x}) \} \in F$, then by definition $\Nn \models \varphi$.
+	Let us assume that $\varphi = (\theta_0 \land \cdots \land \theta_{n - 1}) \to \theta_n$ for atomic $\theta_n$, then the claim holds directly from definition as in the last part.
+
+	We will now check the case when $\theta_m = \perp$.
+\end{proof}
+
+\subquestion{}
+We will find a language and a sentence $\varphi$ such that for any set $I$ and filter $F$,
+there is $\langle \Mm_i \mid i \in I \rangle$ such that $\prod_{i \in I} \Mm_i / F \models \varphi$ if and only if $F$ is an ultrafilter.
+\begin{solution}
+	
+\end{solution}
+
+\end{document}
