@@ -1,0 +1,179 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 4 --- גאומטריה דיפרנציאלית אלמנטרית, 80560}
+
+\DeclareMathOperator{\Con}{Con}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\question{}
+תהי $c : I \to \AAA^2$ מסילה לפי אורך ותהי $f : \AAA^2 \to \AAA^2$ העתקה משמרת מרחק וכיוון, כלומר $f(x) = Ax + b$ עבור $A \in SO(2)$. \\
+נוכיח ש־$\varphi \circ c$ בעלת אותה עקמומיות.
+\begin{proof}
+	נזכור כי עבור $t \in I$ הגדרנו את העקמומיות $k(t)$ כך שמתקיים $c''(t) = k(t) \cdot (-c_2'(t), c_1'(t))$. \\
+	נבחין כי $f' \equiv A$ מטריצה אורתוגונלית המקיימת $\det A = 1$.
+	נחשב את רכיבים אלה עבור ההרכבה $f \circ c$,
+	\[
+		(f \circ c)'(t)
+		= f'(c(t)) \cdot c'(t)
+		= A \cdot c'(t)
+		\implies 
+		n_{f \circ c}(t)
+		= \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} A \cdot c'(t)
+	\]
+	בנוסף גם,
+	\[
+		(f \circ c)''(t)
+		= (A \cdot c'(t))'
+		= A c''(t)
+	\]
+	ולכן,
+	\[
+		k_{f \circ c}(t)
+		= \frac{(f \circ c)''(t)}{n_{c \circ f}(t)}
+		= \frac{A c''(t)}{\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} A \cdot c'(t)}
+		= \frac{c''(t)}{\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \cdot c'(t)}
+		= k_c(t)
+	\]
+	כלומר מהגדרה מצאנו שהעקמומיות נשמרת תחת הרכבה של $f$. \\
+	נבחין שכל עוד $f$ איזומטריה אז העקמומיות, תכונה יחסית למישור משיק, לא תשתנה.
+\end{proof}
+
+\question{}
+תהי $c : I \to \AAA^2$ מסילה רגולרית, נוכיח כי מתקיים,
+\[
+	k_c(t)
+	= \frac{\det \begin{pmatrix} c'(t) & c''(t) \end{pmatrix}}{{\lVert c'(t) \rVert}^3}
+\]
+\begin{proof}
+	נבחין כי בשונה מהמקרה של פרמטריזציה לפי אורך, הפעם $\lVert c' \rVert$ לא קבועה, ולכן אם נגדיר את הבסיס האורתוגונלי $(c'(t), n(t))$ אז $c''(t) = k(t) n(t) + l(t) c'(t)$.
+	בהתאם מהגדרה נקבל ש־$l(t) = \lVert c'(t) \rVert'$, אבל,
+	\[
+		\lVert c' \rVert'
+		= \sqrt{c' \cdot c'}'
+		= \frac{c'' c' + c' c''}{2 \sqrt{c' c'}}
+		= \frac{c' \cdot c''}{\lVert c' \rVert}
+	\]
+	אז נקבל,
+	\[
+		k
+		= \frac{c'' - l c'}{n}
+		= \frac{c'' - \frac{c' c''}{\lVert c' \rVert} c'}{(\begin{smallmatrix} 0 & -1 \\ 1 & 0 \end{smallmatrix}) c'}
+		= \frac{(\begin{smallmatrix} 0 & 1 \\ -1 & 0 \end{smallmatrix})(c'' \lVert c' \rVert - c' c'' c')}{c' \lVert c' \rVert}
+	\]
+	ומכאן המסקנה נובעת מיידית.
+\end{proof}
+
+\question{}
+תהי $c : I \to \AAA^2$ מסילה לפי אורך ותהי $t_0 \in I$ כך ש־$k(t_0) \ne 0$.
+נגדיר את המעגל הנושק את $c$ ב־$t_0$ כמעגל סביב $c(t_0) + \frac{n(t_0)}{k(t_0)}$ ועם הרדיוס $\frac{1}{|k(t_0)|}$. \\
+נראה שאם $d : J \to \AAA^2$ פרמטריזציה של המעגל בכיוון המתאים, אז למעגל ולמסילה יש נגזרות מסדר ראשון ושני זהות ב־$t_0$.
+\begin{proof}
+	נגדיר את המעגל,
+	\[
+		d(t)
+		= c(t_0) + \frac{n(t_0)}{k(t_0)} + (\cos t, \sin t) \frac{1}{|k(t_0)|}
+	\]
+	ולכן גם,
+	\[
+		d'(t)
+		= (-\sin t, \cos t) \frac{1}{|k(t_0)|},
+		\quad
+		d''(t) = (-\cos t, -\sin t) \frac{1}{|k(t_0)|}
+		\iff d''(t) = -d(t) + c(t_0) + \frac{n(t_0)}{k(t_0)}
+	\]
+	קיימת נקודה מהגדרה כך שמתקיים $d(s_0) = c(t_0)$, אז נסיק יחד עם $c'' = k n$,
+	\[
+		d(s_0) = c(t_0)
+		\iff \frac{n(t_0)}{k(t_0)} + (\cos s_0, \sin s_0) \frac{1}{|k(t_0)|} = 0
+	\]
+	ולכן,
+	\[
+		d''(s_0)
+		= \frac{n(t_0)}{k(t_0)}
+		= \frac{c''(t_0)}{k^2(t_0)}
+	\]
+	כלומר כיוון הנגזרות זהה, ולכן משיקולי גודל נקבל שגם זהה.
+	מהמשוואות נסיק שגם הנגזרות שקולות.
+\end{proof}
+
+\question{}
+תהי מסילה רגולרית $c : I \to \AAA^2$, נראה שהמסילה בעלת עקמומיות קבועה אם ורק אם המסילה היא מעגל עם רדיוס $\frac{1}{|k|}$ או קטע ישר.
+\begin{proof}
+	נניח שהעקמומיות קבועה, כלומר $c''(t) = k n(t)$. אם $k = 0$ אז נקבל $c''(t) = 0$ ולכן $c'(t) = u$ עבור $\lVert u \rVert = 1$, ובהתאם $c$ היא קטע.
+	אחרת כפתרון של המשוואה הדיפרנציאלית $c''(t) = k {c'(t)}^t$ נקבל שהמסילה היא מעגל.
+
+	בכיוון השני נניח ש־$c$ קטע לפי אורך, אז $\lVert c' \rVert = 1$ קבועה ולכן $k = 0$.
+	נניח שהמסילה היא מעגל (בלי הגבלת הכלליות) ולכן $c(t) = (\cos \frac{t}{r}, \sin \frac{t}{r}) r$ ולכן $\lVert c' \rVert = 1$ וכן,
+	\[
+		c''(t) = - \frac{1}{r} c(t)
+	\]
+	ולכן,
+	\[
+		k(t)
+		= \frac{n(t)}{c''(t)}
+		= \frac{c''(t)}{r c'(t)}
+		= \frac{1}{r}
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\question{}
+נחשב את העקמומיות של המסילות הבאות.
+
+\subquestion{}
+נגדיר את $c(t) = (a \cos t, b \sin t)$ עבור $0 < a, b$.
+\begin{solution}
+	נחשב,
+	\[
+		c'(t) = (-a \sin t, b \cos t),
+		\quad
+		c''(t) = (-a \cos t, -b \sin t)
+	\]
+	ולכן,
+	\[
+		k(t)
+		= \frac{\det(c'(t)\ c''(t))}{{\lVert c'(t) \rVert}^3}
+		= \frac{\begin{vmatrix} -a \sin t & -a \cos t \\ b \cos t & -b \sin t \end{vmatrix}}{{(\sqrt{a^2 \sin^2 t + b^2 \cos^2 t})}^3}
+		= \frac{ab \sin^2 t + ab \cos^2 t}{{(\sqrt{a^2 \sin^2 t + b^2 \cos^2 t})}^3}
+		= \frac{ab}{{(a^2 \sin^2 t + b^2 \cos^2 t)}^\frac{3}{2}}
+	\]
+\end{solution}
+
+\subquestion{}
+נגדיר $c(t) = (t, \cosh t)$.
+\begin{solution}
+	הפעם,
+	\[
+		c'(t) = (1, \sinh t),
+		\quad
+		c''(t) = (0, \cosh t)
+	\]
+	ולכן,
+	\[
+		k(t)
+		= \frac{\begin{vmatrix} 1 & 0 \\ \sinh t & \cosh t \end{vmatrix}}{{(1 + \sinh^2 t)}^\frac{3}{2}}
+		= \frac{\cosh t}{{(\cosh t)}^\frac{3}{2}}
+		= \cosh^{-\frac{1}{2}} t
+	\]
+\end{solution}
+
+\subquestion{}
+אם $\theta : \RR \to \RR$ אז $c(s) = \int_{0}^{s} (\cos \theta, \sin \theta)\ ds$.
+\begin{solution}
+	הפעם מתקיים,
+	\[
+		c'(t) = (\cos \theta(t), \sin \theta(t)),
+		\quad
+		c''(t) = \theta'(t) \cdot (-\sin \theta(t), \cos \theta(t))
+	\]
+	ולכן,
+	\[
+		k(t)
+		= \frac{\theta'(t) \cdot \cos^2 \theta(t) + \theta'(t) \sin^2 \theta(t)}{{(\cos^2 \theta(t) + \sin^2 \theta(t))}^\frac{3}{2}}
+		= \theta'(t)
+	\]
+\end{solution}
+
+\end{document}
