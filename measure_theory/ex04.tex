@@ -1,0 +1,183 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 4 --- תורת המידה, 80517}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב מידה.
+
+\subquestion{}
+נראה שאם $f_n$ סדרת פונקציות מתכנסות במידה לפונקציה $f$ אז קיימת תת־סדרה המתכנסת ל־$f$ כמעט תמיד.
+\begin{proof}
+	נתון כי $\mu(\{ x \in X \mid |f_n(x) - f(x)| \ge \varepsilon \}) \xrightarrow{n \to \infty} 0$ לכל $\varepsilon > 0$.
+	נגדיר $E_{n, k} = \{ x \in X \mid |f_n(x) - f(x)| \ge \frac{1}{k} \}$ לכל $n, k \in \NN$.
+	לכל $k$ יהי $n_k$ המינימלי כך ש־$\mu(E_{n_k, k}) < 2^{-k}$, אז מהנתון של התכנסות במידה $f_{n_k}$ היא תת־סדרה של $f_n$.
+	יהי $x \in X \setminus \bigcap_{k = 1}^\infty E_{n_k, k}$, נבחין כי זוהי קבוצה שמשלימה ממידה אפס מההנחות.
+	אז $|f_{n_k} - f| < \varepsilon$ עבור $\varepsilon = 2^{-k}$ ובהתאם נובע ש־$f_{n_k}(x) \xrightarrow{k \to \infty} f(x)$ נקודתית.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $f_n$ סדרה מתכנסת כמעט תמיד ל־$g_1$ וב־$L^1$ ל־$g_2$ אז $g_1 =_{\mu} g_2$.
+\begin{proof}
+	נראה שהתכנסות ב־$L^1$ גוררת התכנסות במידה.
+	נניח ש־$\int |f - f_n|\ d \mu \to 0$, ונגדיר את הקבוצה $E_n = \{ x \in X \mid |f - f_n| \ge \varepsilon \}$.
+	נניח בשלילה ש־$\mu(E_n) \to L$ עבור $L > 0$, אז הטענה שקולה לטענה $\int \indicator_{E_n}\ d \mu \to L$.
+	ובהתאם להגדרה נקבל שגם $\int |f - f_n|\ d \mu \ge \int \indicator_{E_n} \cdot \varepsilon \to L \varepsilon > 0$, אז קיבלנו סתירה להתאפסות $\int |f - f_n|$ ולכן התכנסות ב־$L^1$ גוררת התכנסות במידה.
+
+	עתה נעבור להוכיח את הטענה הראשית.
+	ההוכחה שראינו זה עתה מראה שאם $f$ גבול ב־$L^1$ של $f_n$ אז גם $f$ הגבול במידה.
+	ראינו גם בסעיף הקודם שאם $f$ גבול במידה של $f_n$ אז גם $f$ גבול נקודתי כמעט תמיד של $f_n$.
+	לכן אם $f_n \to f$ וגם $f_n \to \tilde{f}$ כמעט תמיד, אז מספיק להראות ש־$f =_{\mu} \tilde{f}$.
+
+	נניח ש־$E = \{ x \in X \mid f_n(x) \to f(x) \}$ וכן $E' = \{ x \in X \mid f_n(x) \to \tilde{f} \}$.
+	אז $X \setminus E, X \setminus E'$ שתיהן ממידה אפס, ולכן גם $X \setminus (E \cup E')$ ממידה אפס, ונבחין ש־$f_n(x)$ מתכנסת נקודתית בכל נקודה מחוץ לקבוצה זו, מיחידות הגבול נקבל $f(x) = \tilde{f}(x)$ ב־$E \cap E'$, ולכן כמעט תמיד.
+\end{proof}
+
+\subquestion{}
+נניח ש־$X$ מרחב מידה סופי, ונראה שאם $f_n \to f$ כמעט תמיד, אז גם $f_n \to f$ במידה.
+\begin{proof}
+	נסמן $\mu(X) = K$.
+	נבחין כי אם מרחב המידה סופי אז התכנסות במידה מתקיימת אם ורק אם,
+	\[
+		K - \mu(\{ x \in X \mid |f_n(x) - f(x)| \ge \varepsilon \}) \to K - 0
+		\iff \mu(\overbrace{\{ x \in X \mid |f_n(x) - f(x)| < \varepsilon \}}^{E_{n, \varepsilon}}) \to K
+	\]
+	יהי $y \in X$, אז או שקיים $N$ כך ש־$y \in E_{n, \varepsilon}$ לכל $n > N$, או ש־$y \notin \bigcup_{n = 1}^\infty E_{n, \varepsilon}$.
+	במקרה השני נבחין שזוהי קבוצה שמשלימה ממידה אפס, ולכן נוכל להתעלם ממקרה זה.
+	במקרה הראשון בהתאם מתקיים לכמעט כל $y$ ובהתאם $\mu(E_{n, \varepsilon}) \xrightarrow{n \to \infty} K$, כלומר יש התכנסות במידה.
+\end{proof}
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב מידה ונניח ש־$f, f_n$ פונקציות מדידות אי־שליליות כך ש־$f_n \to f$ במידה. \\
+נראה שמתקיים,
+\[
+	\int f\ d \mu \le \liminf \int f_n\ d \mu
+\]
+\begin{proof}
+	נגדיר סדרה חדשה $g_n(x) = \min\{ f_n(x), f(x) \}$, אז מתקיים $g_n \le f$ לכל $n$ וכן $g_n \to f$ במידה ולכן גם כמעט תמיד.
+	ממשפט ההתכנסות המונוטונית מתקיים $\int f\ d \mu = \lim_{n \to \infty} \int g_n\ d \mu$.
+	אבל $g_n \le f_n$ ולכן $\int g_n \le \int f_n$ לכל $n$, ובעוד הגבול של $\int f_n$ איננו בהכרח מוגדר, כן מתקיים $\int g \le \liminf \int f_n$.
+\end{proof}
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב מידה, ותהי $f : X \to [0, \infty]$ אינטגרבילית. \\
+נראה שלכל $\varepsilon > 0$ קיים $\delta > 0$ כך שלכל $E \in \Aa$ כך ש־$\mu(E) < \delta$ מתקיים $\int_E f\ d \mu < \varepsilon$.
+\begin{proof}
+	נגדיר $s_n \le f$ סדרת פשוטות מתכנסת כך ש־$\int f = \lim \int s_n$. \\
+	נניח ש־$s_n = \sum_{k = 1}^{K_n} \alpha_k^n \indicator_{E_k^n}$.
+	אז מתקיים $s_n(x) \le \max\{ \alpha_1^n, \ldots, \alpha_{K_n}^n \} = \beta^n$ לכל $x \in X$, ובהתאם נרצה למצוא $\delta$ כך שמתקיים,
+	\[
+		\int_E s\ d \mu
+		\le \mu(\indicator_E \cdot \beta^n)
+		\le \delta \beta^n
+		< \varepsilon
+	\]
+	ולכן נבחר $\delta = \frac{1}{2} \min\{ \sup_{n \in \NN} \frac{\varepsilon}{\beta^n}, 1 \}$.
+\end{proof}
+
+\question{}
+יהי $(X, \rho)$ מרחב מטרי קומפקטי מקומית.
+עבור $X \supseteq E \ne \emptyset$ נגדיר $\rho_E(x) = \inf\{ \rho(x, y) \mid y \in E \}$.
+
+\subquestion{}
+נראה שלכל $E$ כזו $\rho_E : X \to \im \rho_E$ רציפה.
+\begin{proof}
+	תהי $U \subseteq \im \rho_E$ פתוחה, ונסמן $V = \rho_E^{-1}(U)$, נראה שהיא פתוחה גם כן.
+	נניח ש־$x \in V$, ותהי $z \in B(x, \varepsilon)$ אז,
+	\[
+		\rho(y, z) \le \rho(z, x) + \rho(x, y) \le \varepsilon + \rho(x, y)
+	\]
+	אבל ידוע ש־$\inf_{y \in E} \rho(x, y) \in U$ ולכן $\inf_{y \in E} \rho(y, z) \in U$ עבור $\varepsilon > 0$ מספיק קטן והעובדה ש־$U$ פתוחה.
+	אז מצאנו שקיים $\varepsilon > 0$ כך ש־$x \in B(x, \varepsilon) \subseteq V$ ולכן $V$ פתוחה, ובהתאם $\rho_E$ רציפה.
+\end{proof}
+
+\subquestion{}
+תהי $K \subseteq X$ תת־קבוצה קומפקטית ו־$U$ קבוצה פתוחה כך ש־$K \subseteq U$.
+נמצא פונקציה רציפה $f$ המקיימת $f \restriction K = 1$ ו־$f \restriction U^C = 0$, תוך שימוש ב־$\rho_E$.
+\begin{solution}
+	ניקח $D = \inf\{ \rho_K(y) \mid y \in U^C \}$, אז מרחק זה מתקבל, ונגדיר $f = 1 - \max\{\frac{\rho_K}{D}, 1\}$.
+	נבחין כי $\rho_K(x) = 0$ כש־$x \in K$, ולכן $f(x) = 1$, כלומר $f \restriction K = 1$.
+	אם $x \in U^C$ אז $\rho_K(x) \ge D$ ולכן $f(x) = 0$ בדיוק.
+\end{solution}
+
+\question{}
+יהי $(\RR, \Bb_\RR, \lambda)$ הישר הממשי עם מידת לבג.
+בכל סעיף נגדיר סדרת פונקציות ונבדוק אם היא מתכנסת כמעט תמיד, במידה או ב־$L^1$.
+
+\subquestion{}
+נגדיר,
+\[
+	f_n(x)
+	= \begin{cases}
+		n e^{-nx} & x \ge 0 \\
+		0 & x < 0
+	\end{cases}
+\]
+\begin{solution}
+	נבחין כי $f_n(x) \to 0$ עבור $x < 0$.
+	עבור $x = 0$ נקבל $f_n(x) = n$ ולכן $f_n(x) \to \infty$, וכאשר $x > 0$ אז $f_n(x) \to 0$, כלומר $f_n \to 0$ כמעט תמיד.
+	\[
+		\int |f - 0|\ d \mu
+		= \int f\ d \mu
+		= \int_{-\infty}^{\infty} f(x)\ dx
+		= n \int_0^{\infty} e^{-nx}\ dx
+		= -e^{-nx} |_0^{\infty}
+		= 0 - (-1)
+		= 1
+		\to 1
+	\]
+	כלומר $f_n$ לא מתכנסת ב־$L^1$. \\
+	נותר לבדוק התכנסות במידה,
+	\[
+		\lambda(\{ x \in \RR \mid |f_n(x) - f(x)| \ge \varepsilon \})
+		= \lambda(\{ x \in \RR_+ \mid x \le -\frac{1}{n}\ln \varepsilon \})
+		= -\frac{1}{n}\ln \varepsilon - 0
+		\to 0
+	\]
+	לכל $\varepsilon > 0$ ולכן $f_n \to f$ במידה.
+\end{solution}
+
+\subquestion{}
+נגדיר,
+\[
+	f(x)
+	= \begin{cases}
+		n e^{-n^2 x} & x \ge 0 \\
+		0 & x < 0
+	\end{cases}
+\]
+\begin{solution}
+	\[
+		\int |f - 0|\ d \mu
+		= n \int_0^{\infty} e^{-n^2 x}\ dx
+		= -\frac{1}{n} e^{-n^2 x} |_0^\infty
+		= -\frac{1}{n} (0 - 1)
+		= \frac{1}{n} \to 0
+	\]
+	ולכן $f_n \to 0$ ב־$L^1$ ולכן גם במידה וכמעט תמיד.
+\end{solution}
+
+\subquestion{}
+נגדיר,
+\[
+	f(x)
+	= \begin{cases}
+		\frac{x^2}{n^2} & -1 \le x \le 1 \\
+		0 & \text{otherwise}
+	\end{cases}
+.\]
+\begin{solution}
+	נבחין כי $f(x) = 0 \to 0$ עבור $|x| > 1$, ועבור $|x| \le 1$ נקבל $|f(x)| \le \frac{1}{n^2}$ ולכן $f(x) \to 0$, כלומר $f \to 0$ כמעט תמיד.
+	\[
+		\int f\ d \mu
+		= \frac{1}{n^2} \int_{-1}^{1} x^2\ dx
+		= \frac{1}{n^2} \left. \frac{x^3}{3} \right\rvert_{-1}^{1}
+		= \frac{2}{3 n^2}
+		\to 0
+	\]
+	ולכן $f_n \to 0$ גם ב־$L^1$ ובמידה.
+\end{solution}
+
+\end{document}
