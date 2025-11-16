@@ -908,6 +908,187 @@
 	בנוסף $p_i(x) \ne 0$ שקול ל־$p_i(x) > 0 \lor p_i(x) < 0$ ולכן ניתן להציג את $\varphi$ כך ש־$\psi_i$ הוא $p_i(x) = 0$ או $p_i(x) > 0$.
 \end{proof}
 
+\section{שיעור 5 --- 16.11.2025}
+\subsection{שדות סגורים ממשית}
+מטרתנו היא הוכחת המשפט בו סיימנו את השיעור הקודם.
+\begin{notation}
+	עבור $a \in F$ איבר בשדה סדור, נסמן $\operatorname{sgn}(a) \in \{0, -1, 1\}$ להיות $0$ אם $a = 0$, וכן $1$ אם $a > 0$ ובשאר המקרים $-1$.
+\end{notation}
+\begin{proposition}
+	נניח ש־$f = \sum_{i = 0}^n a_i x^i$ פולינום.
+	אז יש $A_0$ כך שלכל $A_0 < x$ מתקיים $\operatorname{sgn}(f(x)) = \operatorname{sgn}(a_n)$ ועבור $x < -A_0$ מתקיים $\operatorname{sgn}(f(x)) = {(-1)}^n \operatorname{sgn}(a_n)$.	
+\end{proposition}
+כלומר החל ממרחק מסוים מהראשית הסימן של פולינום נקבע רק על־ידי המונום המוביל שלו.
+\begin{proof}
+	נבחר $A_0 > \sum_{i = 0}^n \frac{|a_i|}{|a_n|} \cdot 2$ ונניח ש־$a_n > 0$.
+	אז במקרה זה,
+	\[
+		a_n x^n + a_{n - 1} x^{n - 1} + \cdots
+		> a_n x^{n - 1} \cdot \left(\sum_{i = 0}^n \frac{|a_i|}{|a_n|} \cdot 2\right) + a_{n - 1} x^{n - 1} + \cdots
+		> a_n x^{n - 1} \cdot \left(\sum_{i = 0}^n \frac{|a_i|}{|a_n|}\right) + \sum_{i = 0}^{n - 1} (|a_i| + a_i) x^i
+		\ge A_0
+		> 0
+	\]
+	הצד השני זהה.
+\end{proof}
+\begin{lemma}
+	נניח ש־$f \in F[x]$ פולינום בשדה סגור ממשית, ונניח ש־$a < b$ ושלכל $c \in (a, b)$ אז $f'(c) \ne 0$.
+	אז אם $f(a) \cdot f(b) > 0$ אז הסימן של $f(c)$ קבוע לכל $c \in (a, b)$ ושווה לאחד הסימנים של $f(a), f(b)$.
+	במקרה זה גם $f$ מונוטונית ממש ב־$[a, b]$.
+	אם $f(a) \cdot f(b) < 0$ אז לכל סימן $s \in \{-1, 0, 1\}$ קיים $c \in (a, b)$ כך ש־$\operatorname{sgn}(f(c)) = s$.
+\end{lemma}
+כדי להוכיח את הטענה נראה קודם את משפט לגרנז'.
+\begin{theorem}
+	אם $a < b$ אז יש $c \in (a, b)$ כך ש־$f'(c) = \frac{f(b) - f(a)}{b - a}$.
+\end{theorem}
+\begin{proof}
+	נגדיר $g(x) = \frac{f(b) - f(a)}{b - a}(x - a) - (f(x) - f(a))$.
+	אז מתקיים $g(a) = g(b) = 0$ ולכן קיים $c \in (a, b)$ כך ש־$g'(c) = 0$.
+	אבל $g'(c) = \frac{f(b) - f(a)}{b - a} - f'(c) = 0$ מהגדרת הנגזרת הפורמלית.
+\end{proof}
+נעבור להוכחת הלמה.
+\begin{proof}
+	הסימן של $f'(x)$ קבוע ל־$x \in (a, b)$ אחרת מערך הביניים הייתה נקודת איפוס.
+	אם הסימן חיובי אז לכל $c < d$ בקטע,
+	\[
+		0 < \frac{f(d) - f(c)}{d - c}
+	\]
+	ולכן $f(d) > f(c)$ והטענה דומה בכיוון ההפוך.
+
+	נניח ש־$f(a), f(b) > 0$, אז ממונוטוניות לכל $c \in (a, b)$ נקבל $0 \le f(a) \le f(c)$ ולכן לא יכולה להיות התאפסות.
+
+	ההוכחה לחלק האחרון של הלמה דומה.
+\end{proof}
+נעבור להוכחת המשפט.
+\begin{proof}
+	נניח ש־$K, L$ שדות סגורים ממשית ונניח ש־$F \subseteq K, L$ תת־שדה משותף.
+	תהי $\varphi$ נוסחה $\exists$ פרימיטיבית ב־$L_F$.
+	אז נסמן,
+	\[
+		\varphi = \exists x\ \left(\bigwedge_{i = 0}^{m - 1} f_i(x) = 0\right) \land \left(\bigwedge_{j = 0}^{n - 1} g_j > 0\right)
+	\]
+	בלי הגבלת הכלליות.
+
+	נוכיח באינדוקציה את הטענה:
+	נניח ש־$F$ שדה סדור כך ש־$F \subseteq K, L$ סגורים ממשית.
+	נניח ש־$f_0, \ldots, f_n \in F[x]$ ואיברים $x_0 < \cdots < x_m$ איברים ב־$K$, אז קיימים $y_1 < \cdots < y_m$ ב־$L$ כך שלכל $0 \le i \le n$ ו־$0 \le j \le m$ מתקיים,
+	\[
+		\operatorname{sgn}_K(f_i(x_j))
+		\operatorname{sgn}_L(f_i(x_j))
+	\]
+	המקרה ש־$m = 0$ מוכיח את חילוץ הכמתים. \\
+	נוכיח את הטענה באינדוקציה על $d$ הדרגה המקסימלית של $f_1, \ldots, f_n$ ו־$\delta$ מספר הפולינומים בעלי דרגה $d$ באותה רשימה. \\
+	עבור $d = 0$ הפולינומים קבועים והטענה טריוויאלית.
+	נניח עתה ש־$d \ge 1$ וכן שהנחת האינדוקציה מתקיימת עבור $\delta - 1$.
+	המקרה ש־$\delta = 1$ טענת האינדוקציה מתקיימת ל־$d' < d$.
+	נניח שנתונה לנו הרשימה $f_0, \ldots, f_n$ ונניח בלי הגבלת הכלליות ש־$\deg f_0 = d$ וכן ש־$f_n = 0$, וכן,
+	\[
+		\forall i\ f_i' \in \{ f_0, \ldots, f_n \}
+	\]
+	ואף ש־$f_0 \mod f_i$ שייכת לרשימה.
+	לבסוף גם נניח ש־$f_i \ne f_j$ לכל $i \ne j$.
+
+	נבחין כי אם הלמה מתקיימת ל־$\langle g_i \mid i < n \rangle$ וניקח את $x_0 < \cdots < x_m$ להיות כל השורשים של $g_* = \prod_{g_i \ne 0} g_i$ ב־$K$ אז $y_0 < \cdots < y_m$ הם על השורשים של $g_*$ ב־$L$. \\
+	נניח אחרת, ש־$y$ שורש נוסף ב־$L$ ונפעיל את הלמה מ־$L$ ל־$K$, אז $y_0 < \cdots y_j < y < y_{j + 1} < \cdots < y_m$ ונקבל ש־$x_0' < \cdots < x_{m + 1}'$ הם שורשי $g_*$ בסתירה.
+
+	נניח שהנחת האינדוקציה חלה עבור $(f_1, \ldots, f_n)$ ויהיו $x_0 < \cdots < x_m$, אז בלי הגבלת הכלליות, רשימה זו מכסה את שורשי $f_* = \prod_{1 \le i < n} f_i$,
+	וכן $x_0$ קטן מספיק כך שלכל $0 \le i$ הוא ${(-1)}^{\deg f_i}$ כפול סימן המקדם המוביל.
+	נניח שגם $x_m$ גדול מספיק כך ש־$\operatorname{sgn}(f_i(x_m))$ סימן המקדם המוביל של $f_i$ לכל $i$. \\
+	נבחן את האוסף $\{ x_i \mid \forall 0 \le j < n,\ f_j(x_i) \ne 0 \} \iff f_*(x_i) \ne 0$.
+	נסמן ב־$N$ את גודל האוסף הזה, אז $N \ge 2$.
+	אם $N = 2$, אז מהנחת האינדוקציה עבור $(f_1, \ldots, f_n)$ נתאים להם $y_1 < \cdots < y_{m - 1}$ שהם כל שורשי $f_*$ ב־$L$.
+	נבחר $y_0$ מאוד קטן ו־$y_m$ מספיק גדול שיתאימו ל־$x_0, x_m$ בכל סימני הפולינומים.
+	עבור $0 < j < m$ יש $0 \le i < n$ כך ש־$f_i(x_j) = 0$,
+	\[
+		f_0(x_j) = \overbrace{f_i(x_j) g(x_j)}^{= 0} + f_{i'}(x_j)
+	.\]
+	ולכן $\operatorname{sgn}^K f_0(x_j) = \operatorname{sgn}^K f_{i'}(x_j) = \operatorname{sgn}^L f_{i'}(y_j) = \operatorname{sgn}^L f_0(y_j)$.
+
+	נעשה אינדוקציה פנימית על $N$.
+	נניח ש־$x_j$ שאיננו $x_0$ או $x_m$ ואיננו שורש של $f_*$.
+	לכל $0 \le i < n$ לא יתכן ש־$f_i(x_{j - 1}) = f_i(x_{j + 1}) = 0$, יתר על כן $f$ מונוטונית ממש בקטע $(x_{j - 1}, x_{j + 1})$.
+	מהאינדוקציה על $N$ יש $y_0 < \cdots < y_{j - 1}$ עם סימנים מתואמים.
+	נסתכל על הנקודות $y \in (y_{j - 1}, y_{j + 1})$.
+	אם $i \ne 0$ אז $\operatorname{sgn} f_i(y)$ קבוע ושווה לסימן השונה מאפס של אחת הקצוות ואותו דבר קורה ל־$x_j$.
+	ל־$i = 0$ יתכן כי מוחלף סימן באמצע.
+	אם אכן $f_0(y_{j - 1}) \cdot f_0(y_{j + 1}) < 0$ אז לכל סימן $s$ יש $y_{j - 1} < y < y_{j + 1}$ כך ש־$\operatorname{sgn} f_0(y) = s$ בפרט עבור $\operatorname{sgn} f_0(x_i)$.
+	אחרת הסימן קבוע וכל $y$ יעבוד.
+\end{proof}
+\begin{corollary}
+	RCF תורה שלמה, שכן $\QQ$ מבנה משותף.
+	למעשה התורה אפילו כריעה, אבל בסיבוכיות גבוהה מאוד.
+\end{corollary}
+\begin{remark}
+	נניח ש־$K$ RCF, אז כל תת־קבוצה של $K$ גדירה אם ורק אם היא איחוד סופי של קטעים (לא בהכרח חסומים) וקבוצה סופית.
+	תכונה זו נקראת O־מינימליות.
+\end{remark}
+
+\subsection{טיפוסים}
+\begin{definition}[טיפוס]
+	תהי $T$ תורה, $p \in S_n(T)$ הוא אוסף של נוסחות עם משתנים חופשיים $\varphi(x_0, \ldots, x_{n - 1})$ כך שהתורה,
+	\[
+		T \subseteq \{ \varphi(c_0, \ldots, c_{n - 1}) \mid \varphi \in p \}
+	\]
+	כאשר $c_0, \ldots, c_{n - 1}$ קבועים חדשים, היא תורה שלמה ועקבית.
+	נקרא ל־$p$ כזה טיפוס שלם עם $n$ משתנים חופשיים. \\
+	$p$ יקרא טיפוס חלקי אם $T \cup \{ \varphi(c_0, \ldots, c_{n - 1}) \mid \varphi \in p \}$ היא עקבית.
+\end{definition}
+\begin{remark}
+	כל טיפוס חלקי ניתן להרחבה לטיפוס מלא.
+\end{remark}
+\begin{example}
+	$S_0(T)$ הוא כל ההשלמות של $T$.
+	$S_1(T)$ טיפוסים מעל $T$.
+	בתורה $T = \Th(\QQ)$ אין טיפוסים, אבל ב־$\Th(\QQ_\QQ) = \diag(\QQ)$ יש $2^{\aleph_0}$ טיפוסים.
+	טיפוס $p$ בתורה של $\QQ$ עם פרמטרים מ־$\QQ$ הוא מהצורה,
+	\[
+		\{ x < d_q \mid q \in H \} \cup \{ d_r < x \mid r \in L \}
+	\]
+	או שהוא מהצורה $x = d_q$.
+\end{example}
+\begin{example}
+	נבחן את שדה ACF, לדוגמה על $\FF = \overline{\QQ}$ ונבחן את הטיפוסים ב־$S_1$ ב־$T = \diag(\FF)$.
+	אז הטיפוסים הם המקרים $x = d_a$ או $P(x) \ne 0$ לכל $P \in \FF[x]$.
+	נוכל גם לבחון את הטיפוסים מעל $T = \operatorname{ACF}$, במקרה זה או ש־$Q(x) = 0$, או הטיפוס שאומר ש־$x$ איננו אלגברי, כלומר שלכל $Q \in \FF[x]$ גדיר מתקיים $Q(x) \ne 0$.
+\end{example}
+\begin{definition}[מימוש והשמטת טיפוסים]
+	נניח ש־$\Mm \models T$ ו־$p \in S_n(T)$, נאמר ש־$\Mm$ מממש את $p$ אם קיים $a \in M$ כך ש־$\Mm \models \varphi(a)$ לכל $\varphi \in p$, אחרת נאמר ש־$\Mm$ משמיט את $p$.
+\end{definition}
+\begin{remark}
+	נאמר ש־$p$ טיפוס עם פרמטרים מ־$A \subseteq M$ כאשר $p$ טיפוס בשפה המועשרת על־ידי $A$ ביחס ל־$\Th(\Mm_A)$.
+\end{remark}
+\begin{definition}[נוסחה מבודדת]
+	נאמר שנוסחה $\varphi(x)$ מבודדת את הטיפוס $p$ אם מתקיים $T \models \forall x\ (\varphi(x) \to  \psi(x))$ לכל $\psi \in p$,
+	ובנוסף $T \cup \{ \exists x\ \varphi \}$ עקבית. \\
+	טיפוס $p$ יקרא מבודד אם יש נוסחה שמבודדת אותו.
+\end{definition}
+\begin{remark}
+	אם $T$ שלמה אז לכל $\Mm \models T$ כל טיפוס מבודד מתממש.
+\end{remark}
+\begin{theorem}[השמטת טיפוסים]
+	תהי $T$ תורה שלמה ועקבית בשפה בת־מניה ו־$p \in S_1(T)$ טיפוס לא מבודד אז יש מודל $\Mm \models T$ שמשמיט את $p$. \\
+	יתר על־כן, גם אם $\langle p_n \mid n < \omega \rangle$ סדרת טיפוסים לא מבודדים, אז יש מודל של $T$ שמשמיט את כולם.
+\end{theorem}
+\begin{proof}
+	נתחיל מהעשרת השפה $L$ על־ידי אינסוף קבועים הנקין, כלומר הקבועים $c_{\varphi}$ לכל $\varphi$ נוסחה.
+	תהי $T_H$ הרחבה של $T$ יחד עם $\exists x\ \varphi \to \varphi(c_\varphi)$.
+	ונרחיב בעדינות את $T_H$ לתורה שלמה כך שלכל קבוע $d$ ולכל $p_n$ יהיה $\psi \in p_n$ כך ש־$\lnot \psi(d)$ מתקיים.
+
+	תהי $\langle \langle d_n, p_{k_n} \rangle \mid n < \omega \rangle$ מניה של כל הזוגות של קבועים וטיפוס מהרשימה.
+	בשלב ה־$n$ נתונה לנו תורה $T_n$, כאשר $T_0 = T_H$.
+	נטען כי יש $\psi \in p_{k_n}$ כך ש־$T \cup \{ \lnot \psi(d_n) \}$ עקבית.
+	אחרת יש $\varphi_0, \ldots, \varphi_{n - 1} \in T_n$ כך שמתקיים,
+	\[
+		T_H \cup \{ \varphi_0, \ldots, \varphi_{n - 1} \} \models \psi(d_n)
+	\]
+	לכל $\psi \in p_{k_n}$, כלומר,
+	\[
+		T_H \models \bigwedge \varphi_i \to \psi(d_n)
+	\]
+	לכל $\psi \in p_{k_n}$.
+	אז יש פסוק $\varphi$ כך ש־$T \models \forall x\ (\varphi(x) \to \psi(x))$ לכל $\psi \in p_{k_n}$ בסתירה.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
