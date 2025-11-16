@@ -35,14 +35,39 @@ We will show that $\Nn = \prod_{i \in I} \Mm_i / F \models \psi({[a_0]}_F, \ldot
 	Assume that $\varphi(\bar{x}) = P(\bar{x})$ and $\{ i \in I \mid \Mm_i \models P(\bar{x}) \} \in F$, then by definition $\Nn \models \varphi$.
 	Let us assume that $\varphi = (\theta_0 \land \cdots \land \theta_{n - 1}) \to \theta_n$ for atomic $\theta_n$, then the claim holds directly from definition as in the last part.
 
-	We will now check the case when $\theta_m = \perp$.
+	The case where $\theta_m = \perp$ is equivalent as $\varphi \equiv \theta_0 \lor \cdots \lor \theta_{m - 1}$.
+
+	We move to assume that the claim holds for $\varphi, \psi$ and prove for $\varphi \land \psi$.
+	This part of the proof is identical to the proof of Łoś theorem,
+	\[
+		\{ i \in I \mid \Mm_i \models \varphi(\bar{a}) \land \psi(\bar{a}(i)) \}
+		= \{ i \in I \mid \Mm_i \models \varphi(\bar{a}(i)) \} \cap \{ i \in I \mid \Mm_i \models \psi(\bar{a}(i)) \} \in F
+		\implies \Nn \models \varphi, \psi
+		\implies \Nn \models \varphi \land \psi
+	\]
+	where the second equation is derived from filter definition.
+
+	We move to the case $\varphi = \exists x\ \psi$ for $\psi$ that fulfills the claim.
+	If $J = \{ i \in I \mid \Mm_i \models \varphi(\bar{a}(i)) \} \in F$ then for $j \in J$ we define $b_j \in M_j$ as a witness to $\Mm_j \models \psi(b_j, \bar{a}(j))$, meaning that,
+	\[
+		\{ i \in I \mid \Mm_i \models \psi(b(i), \bar{a}(i)) \} = J \in F
+	\]
+	where $b(i) = b_i$ for $i \in J$ and arbitrary otherwise.
+	Then by the induction hypothesis $\Nn \models \psi([b], \bar{[a]})$ and therefore $\Nn \models \varphi(\bar{[a]})$.
+
+	Lastly we will assume that $\varphi = \forall x\ \psi$ for $\psi$ that fulfills the claim and show that $\varphi$ does as well. \\
+	If $J = \{ i \in I \mid \Mm_i \models \varphi(\bar{a}(i)) \} \in F$, then if $b : I \to \bigcup M_i$ some choice function then,
+	\[
+		\{ i \in I \mid \Mm_i \models \psi(b(i), \bar{a}) \} \supseteq J \in F
+	\]
+	therefore $\Nn \models \psi([b], \bar{[a]})$, then $\Nn \models \varphi(\bar{[a]})$ as required.
 \end{proof}
 
 \subquestion{}
-We will find a language and a sentence $\varphi$ such that for any set $I$ and filter $F$,
-there is $\langle \Mm_i \mid i \in I \rangle$ such that $\prod_{i \in I} \Mm_i / F \models \varphi$ if and only if $F$ is an ultrafilter.
+We will find a language and a sentence $\varphi$ such that for any set $I$ and filter $F$, \\
+there is $\langle \Mm_i \mid i \in I \rangle$ such that $\Nn = \prod_{i \in I} \Mm_i / F \models \varphi$ if and only if $F$ is an ultrafilter.
 \begin{solution}
-	
+	Let $L$ be the language of equality, and. Maybe some theory that is $\omega$-categorical.
 \end{solution}
 
 \end{document}
