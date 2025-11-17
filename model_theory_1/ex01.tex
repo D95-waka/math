@@ -67,7 +67,69 @@ We will show that $\Nn = \prod_{i \in I} \Mm_i / F \models \psi({[a_0]}_F, \ldot
 We will find a language and a sentence $\varphi$ such that for any set $I$ and filter $F$, \\
 there is $\langle \Mm_i \mid i \in I \rangle$ such that $\Nn = \prod_{i \in I} \Mm_i / F \models \varphi$ if and only if $F$ is an ultrafilter.
 \begin{solution}
-	Let $L$ be the language of equality, and. Maybe some theory that is $\omega$-categorical.
+	Define $L = \{ = \}$ as the trivial language, and $\varphi = \exists x \exists y\ (x \ne y \land \forall z\ (z = x \lor z = y))$. \\
+	Let $I$ be some indices set and $F \subseteq \Pp(F)$.
+	Let $M = \{0, 1\}$ and $\Nn = \Mm^I / F$.
+
+	If $F$ is an ultrafilter then by Łoś theorem $\Nn \models \varphi$.
+	Otherwise there is a set $J \subseteq I$ such that $J \notin F, I \setminus J \notin F$.
+	Define,
+	\[
+		f(x)
+		= \begin{cases}
+			0 & x \in J \\
+			1 & x \in I \setminus J
+		\end{cases}
+	\]
+	then $\Nn \models [f] \ne [c_0]$ as well $\Nn \models [f] \ne [c_1]$, and thus $\Nn \models \lnot \varphi$.
 \end{solution}
+
+\subquestion{}
+Let $\Mm_n$ be finite models in the language of equality, let $\Uu \subseteq \Pp(\omega)$ be a non-principal ultrafilter, and define $\Mm_{\omega} = \prod \Mm_n / \Uu$.
+We will show that $M_{\omega}$ is either finite or uncountable.
+\begin{proof}
+	Let us assume for contradiction that $|M_{\omega}| = \omega$ and let $\langle f_n : \omega \to \bigcup M_i \mid n < \omega \rangle$ be sequence such that $\{ [f_n] \} = M_{\omega}$.
+	Let $B_0 = \{ n < \omega \mid f_0(n) \ne f_1(n) \} \in \Uu$, and by recursion for each $B_k$ we define,
+	\[
+		B_{k + 1} = B_k \cap \{ n < \omega \mid \forall i \le k,\ f_i(n) \ne f_{k + 1}(n) \} \in \Uu
+	\]
+	Then $\{ B_k \} \subseteq \Uu$ and $B_k \supseteq B_{k + 1}$ for any $k$, and let $B = \inf B_n$.
+	If $B = \emptyset$ then there is minimal $k < \omega$ such that $B_k \ne \emptyset$, but $B_k, B_{k + 1} \in \Uu$, therefore $\emptyset \in \Uu$, a contradiction.
+	Then there is $b \in B$, then $S = \{ f_n(b) \mid n < \omega \}$ is a set such that $|S| = \aleph_0$, but $S \subseteq M_b$ and $|M_b| < \aleph_0$.
+	We conclude that $|M_{\omega}|$ cannot be countable.
+
+	We will show that $|M_{\omega}|$ if and only if $|M_n| < K$ for $n \in J \in \Uu$ and $K < \omega$.
+	Let us assume that $\forall n \in J,\ |M_n| < K$, and define,
+	\[
+		\varphi_K = \forall x_0 \cdots \forall x_{K - 1}\ \left(\bigvee_{i < j < K} x_i = x_j\right)
+	\]
+	then $\Mm_n \models \varphi_K$ for any $n \in J$, therefore by Łoś we get $\Mm_{\omega} \models \varphi_K$ as well, in particular $|M_{\omega}| < K$. \\
+	In the other direction the claim holds similarly by Łoś.
+
+	We will show that $|M_{\omega}| = 2^{\aleph_0}$ if $|M_{\omega}|$ is uncountable.
+	By the last claim, $\Mm_{\omega} \models \lnot \varphi_K$ for any $K < \omega$, meaning that $|M_{\omega}|$ is unbounded.
+	Let us assume that $h : \omega \to \omega$ is a function such that $|M_{h(n)}| \ge n$.
+	We can also define $h_n : n \to M_n$ by the last cardinality inequality (and more choice).
+	It is known that the cardinality of functions $\omega \to \omega$ that strictly increasing is $2^{\aleph_0}$, then it suffices to show that any such function $g$ can be mapped uniquely to $[f] \in M_{\omega}$.
+	We can define $f' = \{ \langle h(g(n)), h_{h(g(n))}(g(n)) \}$ and,
+	\[
+		f(n)
+		= \begin{cases}
+			f'(n) & n \in \dom f' \\
+			h_n(0) & \text{otherwise}
+		\end{cases}
+	\]
+	Then $[f] \in M_{\omega}$.
+	If $g, g'$ are two different strictly increasing functions, and $f, f'$ are their respective constructions, then $[f] \ne [f']$ directly from definition.
+	We deduce that $2^{\aleph_0} \le |M_{\omega}| \le |\omega^{\omega}| = |2^{\aleph_0}|$.
+\end{proof}
+
+\question{}
+\subquestion{}
+Suppose that $T$ has quantifier elimination and that there us a model $\Mm_0$ that embeds in every model of $T$. \\
+We will show that $T$ is complete.
+\begin{proof}
+	
+\end{proof}
 
 \end{document}
