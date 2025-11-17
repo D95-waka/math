@@ -126,10 +126,47 @@ We will show that $M_{\omega}$ is either finite or uncountable.
 
 \question{}
 \subquestion{}
-Suppose that $T$ has quantifier elimination and that there us a model $\Mm_0$ that embeds in every model of $T$. \\
+Suppose that $T$ has quantifier elimination and that there is a model $\Mm_0$ that embeds in every model of $T$. \\
 We will show that $T$ is complete.
 \begin{proof}
+	Let's assume for sake of contradiction that $T$ is not complete, meaning that there is a sentence $\varphi$ such that $T_- = T \cup \{ \lnot \varphi \}, T_+ = T \cup \{ \varphi \}$ are both consistent.
+	Let $\Mm_- \models T_-, \Mm_+ \models T_+$ be two models to witness that, then $\Mm_0$ embeds in both $\Mm_-$ and $\Mm_+$.
+	$T$ has quantifier elimination then let $\psi \equiv \varphi$ be a quantifier-free sentence.
+	It follows that $\Mm_- \models \lnot \psi$ and $\Mm_+ \models \psi$, but $\Mm_0 \subseteq \Mm_-, \Mm_+$, and by embedding properties we deduce that $\Mm_0 \models \psi, \lnot \psi$, a contradiction.
+\end{proof}
+
+\subquestion{}
+Let $T$ be the theory of torsion free divisible Abelian groups, meaning that the language is $\{0, +\}$ with the axioms,
+\[
+	\forall n > 0,\ \operatorname{tor}_n = \forall x\ (x \ne 0 \to \underline{n} \cdot x \ne 0),
+	\quad
+	\operatorname{div}_n = \forall x\ (\exists y\ \underline{n} \cdot y = x)
+\]
+We will show that $T \cup \{ \exists x\ x \ne 0 \}$ has quantifier elimination, and describe its completion.
+\begin{proof}
+	By the equivalency to quantifier elimination theorem,
+	it is suffices to show that for any $\Mm, \Nn \models T$ and $A \subseteq M \cap N$ finite and $\exists$-primitive sentence $\varphi \in \sent_{L(A)}$, $\Mm_A \models \varphi \iff \Nn_A \models \varphi$.
+	If $\Aa = \langle A \rangle$ then $\Aa \subseteq \Mm, \Nn$, and in particular $\Aa$ is also torsion-free Abelian group, and subgroup of both $\Mm$ and $\Nn$.
+	It follows that $\Aa \trianglelefteq \Mm, \Nn$ as well, but I don't see a way its important.
+
+	assume that $a \in \Aa$, then $\underline{n} \cdot a \in \Aa$ as well, and by $\operatorname{div}_m$ also $\frac{\underline{n}}{\underline{m}} \cdot a \in \Aa$.
+	We deduce that $\langle A \rangle = \cl_+ (\QQ \cdot A)$, meaning that any $a \in \Aa$ can be expressed as $\sum_{i < N} \frac{p_i}{q_i} a_i$ where $A = \{ a_i \mid i < N \}$.
+	If $t(x)$ is a term in $L(\langle A \rangle)$ then as result, $t = q x + a$ for $q \in \QQ, a \in \Aa$.
+	It follows that if $t(x), t'(x) \in \term_{L(\langle A \rangle)}$ then $t = t' \iff t - t' = 0$ where $t - t'$ is a valid term as well.
+	If $\theta(x)$ is an atomic formula, then $\theta \equiv t = 0$ or $\theta \equiv t \ne 0$ for $t(x)$ term as described above.
+
+	$\varphi$ is a $\exists$-primitive formula, then without loss of generality,
+	\[
+		\varphi = \exists x\ \left(\bigwedge_{i < n} t_i = 0\right) \land \left(\bigwedge_{j < m} s_{n + j} \ne 0\right)
+	\]
+	where $t_i(x) = q_i x + b_i$ is a term for $i < n + m$.
 	
+	Let us assume that $\Mm \models \varphi$, then there exists $\alpha \in M$ such that $q_i \alpha + b_i = 0 \iff \alpha = -\frac{b_i}{q_i}$, meaning that $\alpha$ is fixed by each $i < n$.
+	but $b_i \in N$ and by $\Nn$ properties $-\frac{b_i}{q_i}$ is definable and thus $\alpha \in \Nn$ (in its sense as definable term) and $\Nn \models \varphi$ as testified by $\alpha$.
+	note that we did not cover the case of $n = 0, m > 0$, in this case we can construct explicit witness in each model.
+
+	We have shown that $\Mm \models \varphi \implies \Nn \models \varphi$, then by symmetry of the proof we can conclude that $\Mm \models \varphi \iff \Nn \models \varphi$, meaning that $T$ has quantifier elimination.
+	As a side-note, we have also shown that $0 \le n \le 1$ for $\varphi$.
 \end{proof}
 
 \end{document}
