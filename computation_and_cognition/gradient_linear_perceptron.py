@@ -13,40 +13,58 @@ class LinearPerceptron(object):
         self.weights = weights
 
     def predict(self, x: np.ndarray) -> np.ndarray:
-        prod = np.matmul(self.weights.transpose(), x)
+        prod = self.weights.transpose() @ x
         logger.debug(f"Liner Perceptron Predict called for w = {self.weights}, x = {x}, wx = {prod}")
         return prod
 
     def gradient(self, sample: np.ndarray, label: np.ndarray) -> np.ndarray:
-        logger.debug(f"In gradient, prediction - label: {self.predict(sample) - label}")
-        return 2 * ((self.predict(sample) - label) @ sample.transpose()).transpose()
+        logger.debug(f"Gradient called, prediction-label: {self.predict(sample) - label}, sample: {sample}")
+        return ((self.predict(sample) - label) @ sample.transpose()).transpose()
 
 class LinearPerceptronTrainer(object):
     def __init__(self):
         pass
 
-    def fit(self, samples: list[np.ndarray], labels: list[np.ndarray]) -> LinearPerceptron:
-        eta = 0.01
-        max_iterations = 100
+    def fit_batch(self, samples: list[np.ndarray], labels: list[np.ndarray], eta = lambda _: 0.01, max_iterations: int = 500, collect = lambda m, i: None) -> LinearPerceptron:
+        logger.debug(f"Starting batch fit for {len(samples)} samples, eta(0): {eta(0)}")
         perceptron = LinearPerceptron(np.zeros((len(samples[0]), len(labels[0]))))
-        logger.debug(f"Current weights: {perceptron.weights}")
+        logger.info(f"Current weights: {perceptron.weights}")
+        for i in range(max_iterations):
+            logger.info(f"Batch fit moving to next iteration ({i}/{max_iterations})")
+            delta = sum([perceptron.gradient(sample, label) for sample, label in zip(samples, labels)])
+            if np.allclose(delta, 0):
+                break
+
+            perceptron.weights -= eta(i) * delta / len(samples)
+            collect(perceptron.weights, i)
+
+        return perceptron
+
+    def fit_online(self, samples: list[np.ndarray], labels: list[np.ndarray], eta = lambda _: 0.01, collect = lambda m, i: None) -> LinearPerceptron:
+        logger.info(f"Starting online fit for {len(samples)} samples, eta(0): {eta(0)}")
+        perceptron = LinearPerceptron(np.zeros((len(samples[0]), len(labels[0]))))
+        i = 0
         for sample, label in zip(samples, labels):
-            iteration = 0
-            while iteration < max_iterations:
+            logger.info(f"Online fit moving to next example ({i}/{len(samples)})")
+            j = 0
+            while True:
                 gradient = perceptron.gradient(sample, label)
                 if np.allclose(gradient, 0):
-                    iteration = max_iterations
-                    continue
+                    break
 
-                logger.debug(f"Error for sample: {sample}, label: {label}, error: {gradient}")
-                perceptron.weights -= eta * gradient
+                logger.debug(f"Error for sample: {sample}, label: {label}, error: {gradient}, weights: {perceptron.weights}")
+                perceptron.weights -= eta(j) * gradient
+                j += 1
+
+            collect(perceptron.weights, i)
+            i += 1
 
         return perceptron
 
 def tests_run(perceptron: LinearPerceptron, tests):
     for vector, classification in tests:
         actual = perceptron.predict(vector)
-        if np.allclose(classification, actual):
+        if np.allclose(classification, actual, atol = 0.001):
             print(f"{np.transpose(vector)} was classified correctly")
         else:
             print(classification - perceptron.predict(vector))
@@ -67,7 +85,7 @@ def tests():
     tests_run(perceptron, tests)
     print("\n --- BEGIN Single Neuron Train Section ---")
     trainer = LinearPerceptronTrainer()
-    perceptron = trainer.fit(
+    perceptron = trainer.fit_online(
             [
                 colvec(1, -1),
                 colvec(2, 2)
@@ -95,7 +113,7 @@ def tests():
         ]
     tests_run(perceptron, tests)
     print("\n --- BEGIN Train Section ---")
-    perceptron = trainer.fit(
+    perceptron = trainer.fit_online(
             [
                 colvec(1, 0),
                 colvec(0, 1),
