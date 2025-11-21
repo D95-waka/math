@@ -1,0 +1,173 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 5 --- תורת המידה, 80517}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+נגדיר תוך שימוש במשפט ההצגה של ריס את מידת לבג על $(\RR, \Bb_\RR)$ כמידה המרחיבה את הפונקציונל הלינארי המוגדר על־ידי אינטגרל רימן. \\
+נסמן אותה ב־$\lambda$.
+
+\subquestion{}
+נראה ש־$\lambda$ אינווריאנטית להזזה.
+\begin{proof}
+	תהי קבוצה $E \in \Bb_\RR$ מדידה, ונניח ש־$r \in \RR$ מספר כלשהו, נראה שמתקיים $\lambda(E) = \lambda(E + r)$. \\
+	מ־$\sigma$־אדיטיביות נוכל להניח ש־$E$ קשירה מסילתית ובפרט קטע $E = [a, b]$ (אחרת נחלק את $E$ למספר בן־מניה של מחלקות קשירות).
+	נבחין כי עתה $E$ היא קבוצה קומפקטית ולכן $\lambda(E) < \infty$.
+	ידוע שמתקיים $\Lambda f = \int f\ d \lambda$, ולכן בפרט עבור $\indicator_E$ נקבל,
+	\[
+		\lambda(E)
+		= \int \indicator_E\ d \lambda
+		= \Lambda \indicator_E
+		= \int_{\RR} \indicator_E(x)\ dx
+		= \int_{a}^{b} 1\ dx
+		= b - a
+	\]
+	אבל בהתאם נקבל,
+	\[
+		\lambda(E + r)
+		= \int_{a + r}^{b + r} 1\ dx
+		= b - a
+	\]
+	ולכן נסיק שלכל $E$ מדידה כללית מתקיים גם $\lambda(E) = \lambda(E + r)$.
+
+	בפרט נסיק $\lambda([0, 1]) = 1 - 0 = 0$.
+\end{proof}
+
+\subquestion{}
+תהי $f : [0, 1] \to \RR_+$ חסומה ואינטגרבילית רימן.
+נראה כי $\int f\ d \lambda = \int f\ dx$.
+\begin{proof}
+	תהי פונקציית מדרגות $s$ המקרבת את $f$ עד כדי $\varepsilon > 0$.
+	נסמן את החלוקה שלה ב־$P = (p_0, \ldots, p_n)$ ולכן,
+	\[
+		s(x)
+		= \sum_{k = 1}^n \indicator_{(p_{k - 1}, p_k)} s_k
+	\]
+	עבור $s_k \in \RR$ סקלרים.
+	אז $s \restriction (p_{k - 1}, p_k)$ קבועה ולכן בפרט רציפה ואינטגרבילית ולכן אינטגרל רימן ולבג שלה מזדהים.
+	מאדיטיביות האינטגרלים נקבל שגם עבור $s$ האינטגרלים מזדהים.
+	נניח עתה ש־${\{ s^i \}}_{i = 1}^\infty$ סדרת פונקציות מדרגות המקיימות $f = \lim_{i \to \infty} s^i$, ונניח בלי הגבלת הכלליות שהסדרה היא מונוטונית עולה,
+	זאת שכן נוכל להגדיר את $s^i$ כך שהחלוקה של $s^{k + 1}$ היא עידון החלוקה של $s^k$ לכל $k$.
+	נקבל שמתקיים,
+	\[
+		\int f\ dx
+		= \lim \int s^k\ dx
+		= \lim \int s^k\ d \lambda
+		= \int f\ d \lambda
+	\]
+	וקיבלנו הזדהות של האינטגרלים לפונקציה אינטגרבילית כללית.
+\end{proof}
+
+\subquestion{}
+נניח ש־$\mu$ היא מידת רדון אינווריאנטית להזזה על $(\RR, \Bb_\RR)$, ונסיק ש־$\mu = \alpha \lambda$ עבור $\alpha > 0$.
+\begin{proof}
+	נבחין כי מאינווריאנטיות להזזה של $\mu$, אם $[a, b]$ קטע, אז $\mu([a, \frac{b - a}{2}]) = \mu([\frac{b - a}{2}, b])$ שכן האורכים שווים עד כדי הזזה ב־$\frac{b - a}{2}$,
+	באינדוקציה נסיק שמתקיים $\mu([0, \beta]) = \beta \mu([0, 1])$ עבור $\beta \in [0, 1] \cap \QQ$.
+	באופן דומה $\mu([0, 2]) = \mu([0, 1]) + \mu([1, 2]) = 2 \mu([0, 1])$ ולכן באינדוקציה $\mu([a, b]) = \mu([0, 1]) \cdot (b - a)$ לכל $a, b \in \QQ$, ומסגירות לגבולות גם ל־$a, b \in \RR$.
+	נסמן $\alpha = \mu([0, 1])$ ונקבל ש־$\mu([a, b]) = \alpha \lambda([a, b])$.
+\end{proof}
+
+\subquestion{}
+יהי $x_0 \in \RR$ ונגדיר את הפונקציונל הלינארי $\operatorname{ev_{x_0}} : C_c(\RR) \to \CC$ המוגדר על־ידי,
+\[
+	\operatorname{ev_{x_0}}(f) = f(x_0)
+\]
+נראה כי קיימת מידה המושרית ממשפט ריס יחד עם $\operatorname{ev_{x_0}}$ ונמצא את המידה $\mu$ הנוצרת.
+\begin{proof}
+	אילו $f \ge 0$ אז $f(x_0) \ge 0$ מהגדרה ולכן גם $\operatorname{ev_{x_0}}(f) = f(x_0) \ge 0$, כלומר $\operatorname{ev_{x_0}}$ פונקציונל לינארי חיובי.
+	בהתאם תנאי משפט ההצגה של ריס מתקיים ו־$\mu$ מידה יחידה המקיימת,
+	\[
+		\forall f \in C_c(\RR),\ \operatorname{ev_{x_0}}(f) = \int f\ d \mu
+	\]
+	נניח ש־$E$ קבוצה מדידה, אז מתקיים,
+	\[
+		\mu(E)
+		= \int \indicator_E\ d \mu
+		= \operatorname{ev_{x_0}}(\indicator_E)
+		= \indicator_E(x_0)
+	\]
+	כלומר $\mu = \delta_{x_0}$, מידת דיראק.
+\end{proof}
+
+\question{}
+נחשב את הגבולות הבאים.
+
+\subquestion{}
+\[
+	\lim_{n \to \infty} \int_{0}^{n} f_n\ dx
+\]
+כאשר $f_n(x) = {(1 - \frac{x}{n})}^n e^{x / 2}$
+\begin{solution}
+	נבחין כי נתקיים ${(1 - \frac{x}{n})}^n \xrightarrow{n \to \infty} e^{-x}$, ולכן גם $f \to e^{-x / 2} = f$.
+	נבחין כי גם $f_n$ מונוטונית יורדת וכן $f_n(0) = 1, f_n(n) = 0$, ולכן $f_n$ נשלטות על־ידי $c_2$, וממשפט ההתכנסות הנשלטת,
+	\[
+		\lim_{n \to \infty} \int_0^n f_n\ dx
+		= \lim_{n \to \infty} \int_0^n f_n\ d \lambda
+		= \int_{(0, \infty)} f\ d \lambda
+		= \int_{0}^{\infty} e^{-x / 2}\ dx
+		= -2 \cdot (0 - 1)
+		= 2
+	\]
+\end{solution}
+
+\subquestion{}
+נסמן $f_n(x) = {(1 + \frac{x}{n})}^n e^{-\frac{x}{2}}$ ונמצא את $\lim_{n \to \infty} \int_{0}^{n} f_n\ dx$.
+\begin{solution}
+	נבחין כי הפעם $f_n$ היא מונוטונית עולה מהגדרה, וכן $f_n(0) = 1$, לכן נוכל להניח שמתקיים $\int_0^n f_n\ dx \ge n$. \\
+	בהתאם $\lim_{n \to \infty} \int_0^n f_n\ dx = \infty$.
+\end{solution}
+
+\question{}
+תהי $\mu$ מידת בורל על מרחב טופולוגי $X$, ונגדיר,
+\[
+	\supp(\mu)
+	= \{ x \in X \mid \forall U \in \tau_X, x \in U \implies \mu(U) > 0 \}
+\]
+כלומר קבוצת הנקודות שכל סביבה פתוחה שלהן ממידה חיובית.
+נאמר ש־$\mu$ נתמכת ב־$\supp(\mu)$.
+
+\subquestion{}
+נניח ש־$X = \RR^d$ עם הטופולוגיה הסטנדרטית, ונראה ש־$C = \supp(\mu)$ היא הקבוצה הסגורה הקטנה ביותר כך ש־$\mu(C^C) = 0$.
+\begin{proof}
+	נבחין כי $W = X \setminus C$ היא קבוצת הנקודות $x \in X$ כך שקיימת פתוחה $x \in U$ כך ש־$\mu(U) = 0$, כלומר $W$ קבוצת הנקודות ששייכות לקבוצה ממידה אפס כלשהי.
+	בהתאם אם נסמן $x \in U_x$ קבוצה פתוחה ממידה אפס, אז נקבל $W = \bigcup_{x \in W} U_x$, כלומר $W$ פתוחה ולכן $C$ סגורה. \\
+	מספיק שנראה ש־$W$ מקסימלית כך ש־$\mu(U) = 0$.
+	נניח שקיימת $V$ פתוחה ממידה אפס כך ש־$V \not\subseteq W$, אז $V = \bigcup_{x \in V} U_x \cap V$, אבל לכל $x \in V$ כזה $x \in W$ מהגדרה ולכן גם $U_x \subseteq W$ וכן $V \subseteq W$ בסתירה.
+\end{proof}
+
+\subquestion{}
+תהי $\varphi : [0, 1] \to \RR^2$ מסילה רציפה, נבדוק איפה הדחיפה קדימה $\varphi_* \lambda$ נתמכת.
+\begin{solution}
+	נסמן $I = [0, 1]$.
+	תהי $x \in \varphi(I)$, אז $C_x = \{ x \}$ היא סגורה שכן $\varphi(I)$ האוסדורף, אבל $\varphi_* \lambda(C_x) = \lambda(\varphi^{-1}(x))$.
+	מהגדרת בסיס לסגורות נוכל להסיק ש־$\lambda(\varphi^{-1}(x)) > 0 \iff \exists 0 \le a < b \le 1,\ [a, b] \subseteq \varphi^{-1}(x)$, כלומר אם קיים קטע סגור לא מנוון כך ש־$\varphi \restriction [a, b] = c_x$.
+\end{solution}
+
+\subquestion{}
+תהי ${\{ q_n \}}_{n = 1}^{\infty} = \QQ$ מניה, ונגדיר,
+\[
+	\mu = \sum_{n = 1}^\infty 2^{-n} \delta_{q_n}
+\]
+כאשר $\delta_{q_n}$ מידת דיראק, ונבדוק איפה $\mu$ נתמכת.
+\begin{solution}
+	תהי נקודה $x \in \QQ$ ונבדוק אם לכל $C \ni x$ סגורה מתקיים $\mu(C) > 0$.
+	לכל $C \ni x$ סגורה נסיק מנורמליות שגם $C \setminus \{ x \} = C' \uplus \{ x \}$ שתי סגורות, וכן,
+	\[
+		\mu(C)
+		= \mu(C') + \mu(\{ x \})
+		> 2^{-n}
+	\]
+	עבור $n \in \NN$ כך ש־$x = q_n$, לכן נסיק ש־$x \in \supp(\mu)$, כלומר $\supp(\mu) = \QQ$.
+\end{solution}
+
+\subquestion{}
+נראה שלכל קבוצה קומפקטית $K \subseteq \RR$ קיימת מידת הסתברות בורל הנתמכת עליה.
+\begin{proof}
+	בשאלה 1 סעיף ב' ראינו שכל מידת רדון על $\RR$ היא מהצורה $\alpha \lambda$ עבור $\alpha > 0$ ו־$\lambda$ מידת לבג.
+	$\lambda$ הוא רדון ולכן $\alpha := \lambda(K) < \infty$ ממשי חיובי.
+	אם נסמן $\mu' = \frac{1}{\alpha} \lambda$ אז נקבל ש־$\mu(K) = 1$, כלומר $\mu = \mu' \restriction \Pp(K) \cap \Bb_\RR$ היא מידה (כצמצום של מידה) המקיימת $\mu(K) = 1$ וכן $\supp(\mu) = K$ בדיוק.
+\end{proof}
+
+\end{document}
