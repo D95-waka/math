@@ -1,0 +1,91 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Solution to Exercise 2 --- Model Theory (1), 80616}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+\subquestion{}
+Let $\FF$ be a field and let $T_{\operatorname{vec}}$ be the theory of infinite vector space over the field $\FF$ with the language $L = \{0, +\} \cup \{ \lambda_a \mid a \in \FF \}$,
+such that $\lambda_a$ represents multiplication by scalar $a \in \FF$.
+We will show that $T_{\operatorname{vec}}$ satisfies quantifier elimination.
+\begin{proof}
+	Let $\Vv, \Ww$ are vector spaces over $\FF$ such that there exists $A \subseteq V \cap W$ and $\langle A \rangle = V \cap W$, and let $\Aa$ be the model over $\langle A \rangle$.
+
+	Let $t(x)$ be a term over $L(A)$ (as every $a \in \langle A \rangle$ is definable in $L(A)$).
+	Any definable $v(x) : \Aa \to \Aa$ is of the form $v = u + a x$, then $t(x) = u + \lambda_a x$ for some $u \in A$ and $a \in \FF$.
+
+	Any atomic formula with single free variable is of the form $t(x) = s(x)$ or $t(x) \ne s(x)$, or equivalently $t(x) = 0$ or $t(x) \ne 0$ for some term.
+	In turn, any $\exists$-primitive formula is of one of the forms,
+	\[
+		\varphi(x)
+		= \exists x\ t(x) = 0,
+		\quad
+		\varphi(x)
+		= \exists x\ \bigwedge_{i < n} t_i(x) \ne 0
+	\]
+
+	We know that $u \in V, W$ for each $u \in \langle A \rangle$, as a linear combination it follows that $\Vv \models u + a v = 0$ for $v \in V$ if and only if $\Vv \models v = \frac{u}{-a}$.
+	But $\lambda_{-1 / a} \in \FF$ as it is a field, and it follows that $v$ is definable in $L(A)$ if $\Vv \models u + a v = 0$, we deduce that $v \in \Ww$ as well.
+	Then if $\varphi$ is of the first form, then $\Vv \models \varphi \iff \Ww \models \varphi$, and it remains to check the second form.
+
+	If $\varphi$ is of the second form, then for any $i < n$, $t_i(x) \ne 0$ is equivalent to $x \ne \frac{u_i}{- a_i} = c_i$ for $u_i \in A, a_i \in \FF$,
+	and by the assumption that $T$ is of infinite we infer that $T \models \exists x\ (\bigwedge_{i < n} x \ne c_i)$, meaning that if $\Vv, \Ww \models \varphi$.
+
+	By quantifier elimination equivalently theorem, $T$ is eliminating quantifiers.
+
+	If $\Vv$ was not infinite (and we would change $T$ as well) then the last step won't hold.
+	In turn, we would have to divide into cases by the character of $\FF$, if it would be $0$ then the proof will hold.
+	If on the other hand $\operatorname{char} \FF < \infty$, then the claim would not be true anymore.
+\end{proof}
+
+\subquestion{}
+Let $L = \{ \le \} \cup \{ c_n \mid n < \omega \}$ be a language,
+and let $T = \operatorname{DLO} \cup \{ c_n < c_{n + 1} \mid n < \omega \}$. \\
+We will show that $T$ has quantifier elimination, and find all non-isolated types in $S_1(T)$.
+\begin{proof}
+	The proof is identical to the case of DLO, using back and forth method on two models $\Mm, \Nn \models T$.
+	The key difference is that if $A \subseteq M \cap N$ with $|A| < \omega$ then the back and forth isomorphism construction has to start with,
+	\[
+		(\{ c_i^\Mm \mid i < \omega \} \cup \{ c_i^\Nn \mid i < \omega \}) \cap A
+	\]
+	This way we get an isomorphism $\varphi : \Mm \to \Nn$ over $L(A)$, and in particular $\Mm_A \models \psi \iff \Nn_A \models \psi$ as $\psi$ is existential primitive and being preserved by $\varphi$.
+\end{proof}
+We will find all non-isolated types in $S_1(T)$.
+\begin{solution}
+	Let $p \in S_1(T)$ be some type, and let $c$ be new constant such that $\varphi(c)$ is true.
+	Then $\varphi(x) = c = c_i$ for some $i < \omega$ is a type, but it is (by definition) isolated, and thus we can assume $p$ does not consist of such formulas.
+	$T$ has only $c_i$ as constant symbols, then any type such that $c_i \le x \le c_{i + 1} \in p$ is isolated, but if all of the formulas are of the form $c_i \le x$ we get partial type.
+	We can deduce that there are no non-isolated types in $S_1(T)$.
+\end{solution}
+
+\question{}
+Let $T_{EQ}$ be the theory of equivalence relation.
+We will show that $T_{EQ}^*$, the model companion of $T_{EQ}$, is the theory of equivalence relation with infinitely many infinite equivalence classes.
+Moreover, we will show that $T_{EQ}^*$ has quantifier elimination.
+\begin{proof}
+	TODO
+\end{proof}
+
+\question{}
+We will show that there is a complete theory $T$ over a countable language, and a collection of $2^{\aleph_0}$ non-isolated types in $S_1(T)$ such that every model $\Mm \models T$ satisfies at least one of these types.
+\begin{proof}
+	Let $L = \{ P_i \mid i < \omega \}$ be a language consists of countable many unary relation symbols.
+	Let,
+	\[
+		T = \left\{ \varphi_{A, B} = \exists x\ \left(\bigwedge_{i \in A} P_i(x)\right) \land \left(\bigwedge_{j \in B} \lnot P_j(x)\right) \mid A, B \subseteq \omega, |A|, |B| < \omega, A \cap B = \emptyset \right\}
+	\]
+	be the theory such that for any finite selection of predicates, there is an element that is true for them for any choice.
+
+	We will show that $T$ is complete.
+	Assuming otherwise, there is $\varphi \in \sent_L$ such that both $T \cup \{ \lnot \varphi \}$ and $T \cup \{ \varphi \}$ are consistent.
+	Let $L' \subseteq L$ be the maximal language such that $\varphi \in \sent_{L'}$, and let $T' \subseteq T$ be the maximal theory over $L'$.
+	Without loss of generality $L' = \{ P_i \mid i < N \}$ for $N < \omega$, and $T' = \{ \varphi_{A, B} \mid A, B \subseteq N, A \cap B = \emptyset \}$.
+
+	Every sentence $\varphi \in \sent_L$ is equivalent to sentence over $\varphi_{A, B}$ for some amount of them.
+	Prove that.
+\end{proof}
+
+\end{document}
