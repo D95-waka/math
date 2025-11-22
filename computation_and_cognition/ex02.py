@@ -14,11 +14,17 @@ def calculate_training_error(x, y0, weights) -> np.float64:
     training_error = (1 / 2) * (weights.transpose() @ C @ weights) - (weights.transpose() @ u) + a
     return training_error[0][0]
 
-def calculate_generalization_error(weights) -> np.float64:
-    w1 = weights[0][0]
-    w2 = weights[1][0]
-    generalization_error = w1**2 / 6 + w2**2 / 2 - w1/5 + w2/3 - w2/3
-    return generalization_error
+def calculate_generalization_error(from_value: float, to_value: float, trained_func, actual_func) -> np.float64:
+    P = 0.01
+    sum: np.ndarray = np.zeros((1, 1))
+    p = from_value
+    c = 0
+    while p < to_value:
+        sum += (trained_func(p) - actual_func(p)) ** 2
+        p += P
+        c += 1
+
+    return (sum / (2 * c))[0][0]
 
 if __name__ == "__main__":
     logging.basicConfig(
@@ -54,7 +60,7 @@ if __name__ == "__main__":
     print(f"Training error: {training_error}")
 
     # This formula is given by the calculation of question 1:
-    generalization_error = calculate_generalization_error(weights)
+    generalization_error = calculate_generalization_error(-1, 1, lambda z: weights.transpose() @ np.array([[z], [1]]), lambda z: z ** 3 - z ** 2)
     print(f"Generalization error: {generalization_error}")
 
     # Question 5:
@@ -69,7 +75,7 @@ if __name__ == "__main__":
             y0 = np.array([[ x1 ** 3 - x1 ** 2 for x1, _ in x.transpose()]]).transpose()
             weights = trainer.inner_fit(x, y0)._weights
             sum_training_error += calculate_training_error(x, y0, weights)
-            sum_generalization_error += calculate_generalization_error(weights)
+            sum_generalization_error += calculate_generalization_error(-1, 1, lambda z: weights.transpose() @ np.array([[z], [1]]), lambda z: z ** 3 - z ** 2)
 
         sum_training_error /= M
         sum_generalization_error /= M
