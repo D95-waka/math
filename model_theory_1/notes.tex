@@ -447,8 +447,8 @@
 	נגדיר $\sigma = \bigcup_{k < \omega} \sigma_k$, זוהי פונקציה משמרת סדר חד־חד ערכית ועל.
 \end{proof}
 
-\subsection{כותרת כלשהי}
-\begin{lemma}[הפרדה]\label{separation-lemma}
+\subsection{הפרדה}
+\begin{lemma}[הפרדה]\label{separation-lemma-1}
 	נניח ש־$T_1, T_2$ תורות בשפה $L$.
 	$\Sigma$ אוסף פסוקים ב־$L$ שסגור תחת גימום ואיווי ומכיל את $\perp, \top$ (כאשר ההכלה הזו חשובה רק למקרה הלא עקבי).
 	אז התנאים הבאים שקולים:
@@ -484,7 +484,7 @@
 		\implies \Nn \models \psi(f(a_0), \ldots, f(a_{n - 1}))
 	\]
 \end{notation}
-\begin{lemma}
+\begin{lemma}\label{separation-lemma-2}
 	תהי $\Delta$ קבוצת פסוקים סגורה תחת גימום, איווי הוספת כמת קיים והחלפת שמות משתנים.
 	נניח ש־$\Mm$ מודל ו־$T$ תורה, אז התנאים הבאים שקולים:
 	\begin{enumerate}
@@ -500,7 +500,7 @@
 	אז ממשפט הכללה על־ידי קבועים נסיק ש־$T \models \forall x_0 \cdots \forall x_{n - 1}\ \lnot \rho$, כלומר $T \models \lnot \exists x_0 \cdots \exists x_{n - 1}\ \rho(x_0, \ldots, x_{n - 1})$.
 	אבל $\Mm \models \exists x_0 \cdots \exists x_{n - 1}\ \rho$ בסתירה ל־1.
 \end{proof}
-\begin{corollary}
+\begin{corollary} %\label{lemma-of-separation-3}
 	יהיו $T_1, T_2$ תורות,
 	אז התנאים הבאים שקולים:
 	\begin{enumerate}
@@ -836,7 +836,7 @@
 	נבחין כי האינדוקציה על ידי רקורסיה של שמות עצם ב־$L(\{c_0, \ldots, c_{n - 1}\})$ כאשר בכל שלב הפונקציה אכן מוגדרת היטב וחד־חד ערכית בזכות הסכמה בין $\Mm$ ו־$\Nn$ על נוסחות חסרות כמתים בשפה המועשרת.
 	לכן בלי הגבלת הכלליות $A \subseteq N$ ונוכל להניח את הנחות המשפט.
 	לכן $\Mm_A \models \varphi \iff \Nn_A \models \varphi$ בסתירה להגדרת $T_1, T_2$.
-	נובע שבהכרח יש הפרדה על־ידי $\psi \in \Sigma$ מלמה\ \ref{separation-lemma} ונקבל ש־$T_1$ ו־$T_2$ מופרדות על־ידי פסוק מ־$\Sigma$.
+	נובע שבהכרח יש הפרדה על־ידי $\psi \in \Sigma$ מלמה\ \ref{separation-lemma-1} ונקבל ש־$T_1$ ו־$T_2$ מופרדות על־ידי פסוק מ־$\Sigma$.
 	במקרים בהם יש ל־$\varphi$ משתנים חופשיים או שיש ל־$L$ קבועים, ובמקרה שנותר $\varphi$ פסוק ב־$L$ ול־$L$ אין קבועים.
 	במקרה זה נפעיל את ההנחה ל־$A = \emptyset$ ונקבל ש־$\varphi \in T$ או $\lnot \varphi \in T$ ולכן $T \models \varphi \leftrightarrow \perp$ או $T \models \varphi \leftrightarrow (\lnot \perp)$.
 \end{proof}
@@ -1088,6 +1088,236 @@
 	לכל $\psi \in p_{k_n}$.
 	אז יש פסוק $\varphi$ כך ש־$T \models \forall x\ (\varphi(x) \to \psi(x))$ לכל $\psi \in p_{k_n}$ בסתירה.
 \end{proof}
+
+\section{שיעור 6 --- 23.11.2025}
+\subsection{שלמות מודלית}
+נשים לב להערה הבאה.
+\begin{remark}
+	נניח ש־$T$ מחלצת כמתים ו־$\Mm, \Nn \models T$, אז אם $\Mm \subseteq \Nn$ אז גם $\Mm \prec \Nn$.
+\end{remark}
+נרצה אם כך לבחון את המקרה הזה ולהבינו.
+\begin{definition}[שלמות מודלית]
+	$T$ שלמה מודלית אם לכל $\Mm, \Nn \models T$ אם $\Mm \subseteq \Nn$ אז $\Mm \prec \Nn$.
+\end{definition}
+ועתה נוכל לנסות לאפיין מקרה זה.
+\begin{definition}[עמיתה מודלית]
+	נניח ש־$T$ ו־$T^*$ תורות מעל השפה $L$.
+	נאמר ש־$T^*$ היא עמיתה מודלית של $T$ אם מתקיימים התנאים הבאים,
+	\begin{enumerate}
+		\item כל מודל של $T$ הוא תת־מבנה של מודל של $T^*$
+		\item כל מודל של $T^*$ הוא תת־מודל של מודל של $T$
+		\item $T^*$ שלמה מודלית
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	אם $L$ שפת תורת החוגים ו־$T$ תורת החוגים הקומוטטיביים בלי מחלקי אפס, או אפשר לבחור את תורת השדות, אז נוכל לקחת את $T^*$ להיות ACF\@.
+\end{example}
+\begin{example}
+	בשפת תורת הגרפים ותורת הגרפים אז $T^*$ תהיה תורת הגרפים המקריים, זו המקיימת,
+	\[
+		\forall x_0 \cdots \forall x_{n - 1} \forall y_0 \cdots \forall y_{n - 1} \exists z\ (\bigwedge_{i < j} x_i \ne y_i) \to \bigwedge E(x_i, z) \land \bigwedge \lnot E(y_j, z)
+	\]
+\end{example}
+\begin{example}
+	עבור $T$ תורת החבורות האבליות ללא פיתול, אז $T^*$ תהיה תורת החבורות האבליות חלוקה ללא פיתול.
+\end{example}
+נבחין כי במקרה יש חילוץ כמתים בכל הדוגמות, זהו לא באמת מקרה.
+\begin{definition}[השלמה מודלית]
+	במידה ש־$T^*$ מחלצת כמתים נאמר שהיא השלמה מודלית של $T$.
+\end{definition}
+ניזכר בלמה\ \ref{separation-lemma-2}, ונסמן,
+\begin{notation}
+	אם $T$ תורה אז נסמן $T_\forall = \{ \varphi \in \sent \mid \varphi = \forall x_0 \cdots \forall x_{n - 1} \psi, \psi \text{ is quantifier-free}, T \models \varphi \}$ קבוצת הפסוקים הכוללים ב־$T$.
+\end{notation}
+נעבור ללמה שתשמש אותנו.
+\begin{lemma}
+	נניח ש־$T_1, T_2$ תורות בשפה $L$, אז התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item יש פסוק כולל $\varphi$ כך ש־$T_1 \models \varphi$ ו־$T_2 \cup \{ \lnot \varphi \}$ עקבית
+		\item יש מודל של $T_2$ שלא ניתן לשכן במודל של $T_1$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	$1 \implies 2$:
+	ברור, אם $\Mm \models T_2 \cup \{ \lnot \varphi \}$ אז לא ניתן לשכנו ל־$\Nn$ שמקיים את $T_1$,
+	אחרת הוא יקיים את $\varphi$ ובפרט אם $c_0, \ldots, c_{n - 1}$ מעידים על $\lnot \varphi$ ב־$\Mm$ אז הם יעידו על $\lnot \varphi$ גם ב־$\Nn$.
+
+	$2 \implies 1$:
+	נניח את שלילת התנאי הראשון.
+	לכל פסוק כולל $\varphi$ כך ש־$T_1 \models \varphi$ מתקיים ש־$T_2 \models \varphi$.
+	נניח ש־$\Nn \models T_2$ מודל, ונניח ש־$\Mm \models \psi$ נוסחת קיים.
+	אם $T_1 \cup \{ \psi \}$ לא עקבית אז $T_1 \models \lnot \psi$ ולכן $T_2 \models \lnot \psi$ בסתירה.
+\end{proof}
+המשמעות היא ששאלת קיום השיכון ניתנת לתרגום לשאלה על קבוצת הפסוקים הכוללים שהיא מוכיחה.
+\begin{corollary}
+	כל מודל של $T_\forall$ ניתן לשיכון במודל של $T$.
+\end{corollary}
+\begin{proof}
+	נבחר $T_1 = T$ ו־$T_2 = T_\forall$ ונשתמש בלמה.
+\end{proof}
+\begin{definition}
+	נניח ש־$\Mm \subseteq \Nn$ בשפה $L$, נאמר ש־$\Mm$ סגורה קיומית ביחס ל־$\Nn$,
+	אם לכל נוסחה מהצורה $\exists x_0 \cdots \exists x_{n - 1}\ \psi$ עבור $\psi \in \form_{L(M)}$ חסרת כמתים,
+	אז אם $\Nn \models \varphi$ אז גם $\Mm \models \varphi$.
+\end{definition}
+\begin{theorem}
+	התנאים הבאים שקולים עבור תורה $T$:
+	\begin{enumerate}
+		\item $T$ שלמה מודלית
+		\item $T$ סגורה קיומית, בין מודלים של $T_\forall$
+		\item כל שיכון בין מודלים של $T$ משמר נוסחות כוללות
+		\item כל נוסחה כוללת שקולה (ביחס ל־$T$) לנוסחת קיים
+		\item כל נוסחה שקולה (ביחס ל־$T$) לנוסחת קיים
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$1 \implies 2$:
+	נניח ש־$T$ שלמה מודלית ונניח ש־$\Mm \models T, \Nn \models T_\forall$, אז יש מודל $\Mm^* \models T$ כך ש־$\Nn \subseteq \Mm^*$.
+	נובע ש־$\Mm \subseteq \Mm^*$ ולכן $\Mm \prec \Mm^*$.
+	נניח ש־$\Nn \models \exists x_0 \cdots \exists x_{n - 1}\ \psi$ עבור נוסחה חסרת כמתים, כל שיכון הוא שיכון $\exists$ ולכן,
+	\[
+		\Mm^* \exists x_0 \cdots \exists x_{n - 1}\ \psi
+		\implies \Mm \exists x_0 \cdots \exists x_{n - 1}\ \psi
+	\]
+
+	$2 \implies 3$:
+	יהי שיכון $f : \Mm \to \Nn$ מודלים של $T$.
+	אם יש נוסחה כוללת עם פרמטרים ב־$M$ שמתקיימת ב־$\Mm$, בלי הגבלת הכלליות $f = \id$, אם היא לא מתקיימת ב־$\Nn$ אז שלילתה, שהיא נוסחת קיים, מתקיימת ב־$\Nn$ ומההנחה שלנו אותה נוסחה תתקיים ב־$\Mm$.
+
+	$3 \implies 4$:
+	נניח ש־$\varphi(x_0, \ldots, x_{n - 1})$ היא נוסחה כוללת.
+	נבחן את התורות $T \cup \{ \varphi(c_0, \ldots, c_{n - 1}) \}, T \cup \{ \lnot \varphi(c_0, \ldots, c_{n - 1}) \}$.
+	נשתמש בלמה\ \ref{separation-lemma-2}, כל שיכון הוא שיכון $\forall$, אז לכל מודל של $T \cup \{ \varphi(c_0, \ldots, c_{n - 1}) \}$ יש פסוק קיים $\psi_M$,
+	עבורו $T \cup \{ \lnot \varphi(c_0, \ldots, c_{n - 1}) \}$ ומקומפקטיות ניתן למצוא $\psi$ יחיד.
+	אז נובע ש־$T \cup \{ \varphi(c_0, \ldots, c_{n - 1}) \} \models \psi$ וגם $T \cup \{ \lnot \varphi(c_0, \ldots, c_{n - 1}) \} \models \lnot \psi$.
+	מתקיים בהתאם גם $T \models \varphi \leftrightarrow \psi$ וכן $T \models \forall z_0 \cdots \forall z_{n - 1}\ (\varphi(z_0, \ldots, z_{n - 1}) \leftrightarrow \psi(z_0, \ldots, z_{n - 1}))$.
+
+	$4 \implies 5$:
+	באינדוקציה על מבנה הנוסחה תוך שימוש בכך שאם $\varphi$ נוסחת קיים אז גם $\exists x\ \varphi$ נוסחת קיים.
+
+	$5 \implies 1$:
+	נניח ש־$\Mm \subseteq \Nn$ מודלים של $T$.
+	אז,
+	\[
+		\Mm \models \varphi(a_0, \ldots, a_{n - 1}) \iff \Mm \models \exists z_0 \cdots \exists z_{n - 1}\ \psi(z_0, \ldots, z_{n - 1}, a_0, \ldots, a_{n - 1})
+	\]
+	אז נובע שגם $\Nn \models \exists z_0 \cdots \exists z_{n - 1}\ \psi(z_0, \ldots, z_{n - 1}, a_0, \ldots, a_{n - 1})$,
+	אז גם $\Nn \models \varphi(a_0, \ldots, a_{n - 1})$.
+	נסיק ש־$\diag(\Mm) \subseteq \Th(\Nn_M)$.
+\end{proof}
+\begin{lemma}
+	התנאים הבאים שקולים עבור $T$,
+	\begin{enumerate}
+		\item $T$ שלמה מודלית
+		\item $T$ היא התורה של אוסף המודלים של $T_\forall$ סגורה קיומית ביחס ל־$T_\forall$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	נניח כי $\Mm \models T_\forall$ הסגור קיומית ביחס למודלים של $T_\forall$.
+	נבחן את $\Mm \subseteq \Nn \models T$ מודל כלשהו, ונרצה להשתמש במבחן טרסקי־ווט כדי להראות ש־$\Mm \prec \Nn$.
+	נניח ש־$\Nn \models \exists x\ \psi(x, a_0, \ldots, a_{n - 1})$, עלינו להראות כי יש עדות לכך על־ידי איבר של $\Mm$.
+	קיימת נוסחה $\rho$ כך שהיא נוסחת קיים וגם מתקיים,
+	\[
+		\Nn \models \forall z\ \psi(z, \ldots) \leftrightarrow \rho(z, \ldots)
+	\]
+	אבל $\Mm$ סגור קיומית ולכן,
+	\[
+		\Nn \models \exists x\ \rho(x, a_0, \ldots, a_{n - 1})
+		\implies \Mm \models \exists x\ \rho(x, a_0, \ldots, a_{n - 1})
+	\]
+	נבחר את $b \in M$ להעיד על כך ולכן,
+	\[
+		\Mm \models \rho(b, a_0, \ldots, a_{n - 1})
+		\implies \Nn \models \rho(b, a_0, \ldots, a_{n - 1})
+	\]
+	ולכן $\Nn \models \psi(b, a_0, \ldots, a_{n - 1})$ כרצוי.
+
+	בכיוון ההפוך כך מודל של $T$ סגור קיומית ביחס למודלים של $T_\forall$ ולכן מהמשפט הקודם $T$ שלמה מודלית.
+\end{proof}
+\begin{corollary}
+	אם תורה $T_0$ מכילה רק פסוקים כוללים, אז העמיתה המודלית שלה קיימת ויחידה.
+\end{corollary}
+
+\subsection{חזרה לטיפוסים}
+הגדרנו טיפוסים כקבוצות של נוסחות עקביות ושלמות במשתנים חופשיים $x_0, \ldots, x_{n - 1}$.
+טיפוס מעל תורה $T$ הוא טיפוס שמכיל את $T$.
+אם נסיר את דרישת השלמות נקבל טיפוס חלקי.
+טיפוס מבודד אם יש נוסחה $\psi$ כך ש־$\forall \varphi \in p,\ T \models \forall x_0 \cdots \forall x_{n - 1}\ \varphi \to \varphi$ כאשר $T \cup \{ \exists \bar{x}\ \psi \}$ עקבית.
+
+נניח ש־$L$ שפה בת־מניה, נעשיר את $L$ על־ידי $\aleph_0$ קבועים חדשים ונסמן את השפה ב־$\tilde{L}$.
+נניח ש־$T$ תורה עקבית ב־$L$, נגדיר טופולוגיה על האוסף $\Tt = \{ \tilde{T} \mid T \subseteq \tilde{T}, \tilde{T} \text{ is consistent and complete} \}$ על־ידי בסיס הפתוחות $U_\varphi$ כאשר $\varphi \in \sent_{\tilde{L}}$,
+\[
+	U_\varphi = \{ \tilde{T} \in \Tt \mid \varphi \in \tilde{T} \}
+\]
+\begin{proposition}
+	$\Tt$ האוסדורף קומפקטי.
+\end{proposition}
+\begin{proof}
+	נניח ש־$C = \{ U_{\varphi_i} \mid i \in I \}$ כיסוי של $\Tt$, כלומר לכל $\tilde{T} \in \Tt$ יש $i$ כך ש־$\tilde{T} \models \varphi_i$.
+	אם אין תת־כיסוי סופי אז לכל $I_0 \subseteq I$ סופית, $T \cup \{ \lnot \varphi \mid i \in I_0 \}$ עקבית.
+	מקומפקטיות נובע ש־$T \cup \{ \lnot \varphi_i \mid i \in I \}$ עקבית בסתירה, וזו סתירה לכך ש־$C$ כיסוי, ובהתאם $\Tt$ קומפקטי.
+
+	נניח ש־$S_0, S_1 \in \Tt$ שונות, אז קיים $\varphi \in S_0$ כך ש־$\lnot \varphi \in S_1$ ולכן $S_0 \in U_\varphi$ וכן $S_1 \in U_{\lnot \varphi}$.
+\end{proof}
+ניזכר במשפט הבא מטופולוגיה,
+\begin{theorem}[משפט הקטגוריה של בייר]
+	נניח ש־$X$ מרחב האוסדורף קומפקטי ונניח כי $D_n \subseteq X$ צפופה ופתוחה ל־$n < \omega$, אז $\bigcap_{n < \omega} D_n \ne \emptyset$.
+\end{theorem}
+\begin{corollary}
+	נניח ש־$\langle p_n \mid n < \omega \rangle$ סדרת טיפוסים חלקיים ולא מבודדים עם משתנים חופשיים $x_0, \ldots, x_{n - 1}$ מעל $T$.
+	אז יש מודל $\Mm \models T$ שמשמיט את $p_n$ לכל $n$.
+\end{corollary}
+\begin{proof}
+	נרצה להגדיר קבוצות פתוחות צפופות, לכל נוסחה $\psi(x)$ ב־$\tilde{L}$, נגדיר,
+	\[
+		E_\psi
+		= \bigcup_{n < \omega} U_{(\exists x\ \psi \to \psi(c_n))}
+	\]
+	כאשר $c_n$ קבועים חדשים ב־$\tilde{L}$ שלא מופיעים ב־$\psi$.
+	נראה ש־$E_{\psi}$ צפופה.
+	תהי $U_\varphi$ פתוחה ולא ריקה, אז $U_\varphi \cap E_{\psi}$ היא קבוצת כל התורות שמכילות את $\varphi$ ומכילות פסוק מהצורה $\exists x\ \psi \to \psi(c_n)$ ל־$n$ כלשהו.
+	אם $T \cup \{ \varphi \} \models \lnot (\exists x\ \psi \to \psi(c_n))$ לכל $n$ אז נבחר $c_n$ שלא מופיע ב־$\varphi$, ולכן,
+	\[
+		T \cup \{ \varphi \} \models \forall y\ (\lnot \exists x\ \psi \to \psi(y))
+		\equiv \forall y\ (\exists x\ \psi \land \lnot \psi(y))
+	\]
+	נובע ש־$T \cup \{ \varphi \}$ לא עקבית, כלומר $U_\varphi = \emptyset$.
+	עבור $k < \omega$ וקבועים $c_{i_0}, \ldots, c_{i_{m_k - 1}}$ נגדיר,
+	\[
+		D
+		= D_{km, c_{1_0}, \ldots, c_{i_{m_k - 1}}}
+		= \bigcup_{\psi \in p_k} U_{\lnot (c_{i_0}, \ldots, c_{i_{m_k - 1}})}
+	\]
+	נראה ש־$D$ צפופה.
+	נניח ש־$U_\varphi$ קבוצה פתוחה ולא ריקה ונניח ש־$U_\varphi \cap D$ ריקה.
+	אז לכל $\psi \in p_n$ מתקיים $T \cup \{ \varphi \} \models \psi(c_{i_0}, \ldots, c_{i_{m_k - 1}})$ ולכן גם,
+	\[
+		T \models \varphi \to \psi(c_{i_0}, \ldots, c_{i_{m_k - 1}})
+	\]
+	נניח שהקבועים המופיעים ב־$\varphi$ (מתוך $\tilde{L} \setminus L$) הם $c_{i_0}, \ldots, c_{i_{m_k - 1}}, d_0, \ldots, d_{r - 1}$,
+	\[
+		T \models \overline{\varphi}(d_0, \ldots, d_{r - 1}, c_{i_0}, \ldots, c_{i_{m_k - 1}}) \to \psi(c_{i_0}, \ldots, c_{i_{m_k - 1}})
+	\]
+	כך שמתקיים,
+	\[
+		T \models \forall x_0 \cdots \forall x_{n - 1}\ ((\exists y_0 \cdots \exists y_{n - 1}\ \overline{\varphi}(y_0, \ldots, y_{r - 1}, x_0, \ldots, x_{m_k - 1})) \to \psi(x_0, \ldots, x_{m_k - 1}))
+	\]
+	וכן הטיפוס $p_k$ מבודד על־ידי הנוסח $\exists y_0 \cdots \exists y_{r - 1}\ \overline{\varphi}$.
+	בהתאם,
+	\[
+		E_n = \{ E_\psi \mid \psi \in \form_{\tilde{L}} \} \cup \{ D_{k, c_{i_0}, \ldots, c_{i_{m_k - 1}}} \mid \{ i_0, \ldots, i_{m_k - 1} \} \in {[w]}^{\le m_k} \}
+	\]
+	ולכן $\exists \tilde{T} \in \cap E_{\psi} \cap \bigcap D_{k, i_0, \ldots, i_{m_k - 1}}$.
+\end{proof}
+עבור $n$ טבעי נגדיר טופולוגיה על $S_n(T)$ באותו אופן, אבל בשפה $L \cup \{ c_0, \ldots, c_{n - 1} \}$ קבועים חדשים.
+כלומר,
+\[
+	U_\varphi = \{ p \in S_n(T) \mid \varphi_{x_0, \ldots, x_{n - 1}}^{c_0, \ldots, c_{n - 1}} \in p \}
+\]
+טיפוס כך ש־$\{ p \}$ הוא טיפוס מבודד, ובהתאם המרחב שהגדרנו הוא דיסקרטי אם כל הטיפוסים מבודדים.
+\begin{corollary}
+	אם כל טיפוס הוא מבודד אז יש מספר סופי של טיפוסים.
+\end{corollary}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
