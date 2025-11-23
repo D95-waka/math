@@ -80,12 +80,58 @@ We will show that there is a complete theory $T$ over a countable language, and 
 	be the theory such that for any finite selection of predicates, there is an element that is true for them for any choice.
 
 	We will show that $T$ is complete.
-	Assuming otherwise, there is $\varphi \in \sent_L$ such that both $T \cup \{ \lnot \varphi \}$ and $T \cup \{ \varphi \}$ are consistent.
-	Let $L' \subseteq L$ be the maximal language such that $\varphi \in \sent_{L'}$, and let $T' \subseteq T$ be the maximal theory over $L'$.
-	Without loss of generality $L' = \{ P_i \mid i < N \}$ for $N < \omega$, and $T' = \{ \varphi_{A, B} \mid A, B \subseteq N, A \cap B = \emptyset \}$.
+	We will prove by induction over the number of quantifiers $n$.
+	For $n = 0$ the claim is trivial, then let us move to the case $n = 1$.
+	We can reduce the case of $\forall$ using negation, then is suffices to show for $\exists$.
+	If $\varphi = \exists x\ \psi$ for atomic $\psi$, then we can assume that $\psi$ is in normal disjunction form, meaning that $\varphi \equiv \exists x\ (\varphi_0 \lor \cdots \lor \varphi_{m - 1})$,
+	where $\varphi_i \in T$ for $i < m$. We can deduce that $\varphi$ is decidable in $T$.
+	Addition of more quantifiers is trivial as well, as we can use proof tree and reduce the number of quantifiers to one.
+	$T$ is complete.
 
-	Every sentence $\varphi \in \sent_L$ is equivalent to sentence over $\varphi_{A, B}$ for some amount of them.
-	Prove that.
+	Let $f : \omega \to 2$ be a function, and let us consider the type,
+	\[
+		p_f(x)
+		= \{ \varphi_{A, B} \mid A = f^{-1}(1) \cap [n], B = f^{-1}(0) \cap [n], n < \omega \}
+	\]
+	type such that $T_{\{ c \}} \models \varphi(c)$ is true if and only if $P_n(c) \iff f(n) = 1$.
+	$T$ is complete and $c$ has a sentence defining its value for any $P_n$, therefore $p_f \in S_1(T)$.
+
+	We will now show that $p$ is not isolated.
+	Let $M = N = \{ f \in {\{0, 1\}}^{[m]} \mid m < \omega \}$ and,
+	\[
+		P_i^\Mm(f)
+		\iff i \in \dom f \land f(i) = 1,
+		\quad
+		P_i^\Nn(f)
+		\iff i \in \dom f \lor f(i) = 1
+	\]
+	We now define the types $p_{c_0}$ and $p_{c_1}$, then $f = \{ \langle 0, 0 \rangle \}$ is $\in M, N$, and,
+	\[
+		\Mm \models p_{f \cup \{ \langle n, 0 \rangle \mid 0 < n < \omega \}}(f),
+		\Mm \not\models p_{f \cup \{ \langle n, 1 \rangle \mid 0 < n < \omega \}}(f),
+		\Nn \not\models p_{f \cup \{ \langle n, 0 \rangle \mid 0 < n < \omega \}}(f),
+		\Nn \models p_{f \cup \{ \langle n, 1 \rangle \mid 0 < n < \omega \}}(f)
+	\]
+	Then $p_f$ cannot be isolated, as otherwise there would be undecidable sentence in $T$.
+	The above claim can be extended to any arbitrary function using appropriate construction of models, we infer that $p_f$ is non-isolated for all $f \in {\{0, 1\}}^{\omega}$.
+
+	Let $\Mm \models T$ be some model.
+	$\Mm \models \exists x\ \varphi_{\{0\}, \emptyset}$, and let $d \in M$ be a witness.
+	Let $f : \omega \to \{0, 1\}$ be a function such that $f(n) = 1 \iff P_n^\Mm(d)$ ($f(0) = 1$ by definition).
+	$\Mm \models p_f(d)$ directly from the definition of $p_f$.
+\end{proof}
+
+\question{}
+Let $L$ and $T$ be as in the last question.
+We will show that $T$ is complete and that there is no isolated type in $S_1(T)$.
+\begin{proof}
+	Was proved in the last question.
+\end{proof}
+
+\question{}
+We will show that there is a complete theory $T$ over the language $L$ such that $|L| = \aleph_1$ and a non-isolated type $p(c)$ that cannot be omitted.
+\begin{proof}
+	
 \end{proof}
 
 \end{document}
