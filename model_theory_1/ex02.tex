@@ -62,11 +62,29 @@ We will find all non-isolated types in $S_1(T)$.
 \end{solution}
 
 \question{}
-Let $T_{EQ}$ be the theory of equivalence relation.
+Let $T_{EQ}$ be the theory of equivalence relation over $L = \{ E \}$.
 We will show that $T_{EQ}^*$, the model companion of $T_{EQ}$, is the theory of equivalence relation with infinitely many infinite equivalence classes.
 Moreover, we will show that $T_{EQ}^*$ has quantifier elimination.
 \begin{proof}
-	TODO
+	Notice that,
+	\[
+		T_{EQ} = \{ \forall x\ E(x, x), \forall x \forall y\ (E(x, y) \leftrightarrow E(y, x)), \forall x \forall y \forall z\ (E(x, y) \land E(y, z)) \to E(x, z) \}
+	\]
+	meaning that $T_{EQ}$ consists of global sentences only, as a corollary from class $T_{EQ}^*$ exists uniquely.
+
+	By proposition from class we know that $T_{EQ}^*$ is closed existentially closed over $T_{\forall} = T$.
+	Let us observe,
+	\[
+		\varphi_n = \exists x_0 \cdots \exists x_{n - 1}\ (\bigwedge_{i < j < n} x_i \ne x_j \land E(x_i, x_j))
+	\]
+	then $\varphi_n \in T_{EQ}^*$ for any $n < \omega$, meaning that any equivalence class is infinite.
+	We also define,
+	\[
+		\psi_n = \exists x_0 \cdots \exists x_{n - 1}\ (\bigwedge_{i < j < n} \lnot E(x_i, x_j))
+	\]
+	then $T_{EQ}^* \models \psi_n$ as well for any $n < \omega$, meaning that there are infinite equivalence classes.
+
+	Notice that $T_{EQ}^*$ was proved to be complete in previous courses and thus model complete, it follows that indeed $T_{EQ}^*$ is the unique model companion of $T$.
 \end{proof}
 
 \question{}
@@ -80,13 +98,16 @@ We will show that there is a complete theory $T$ over a countable language, and 
 	be the theory such that for any finite selection of predicates, there is an element that is true for them for any choice.
 
 	We will show that $T$ is complete.
-	We will prove by induction over the number of quantifiers $n$.
-	For $n = 0$ the claim is trivial, then let us move to the case $n = 1$.
-	We can reduce the case of $\forall$ using negation, then is suffices to show for $\exists$.
-	If $\varphi = \exists x\ \psi$ for atomic $\psi$, then we can assume that $\psi$ is in normal disjunction form, meaning that $\varphi \equiv \exists x\ (\varphi_0 \lor \cdots \lor \varphi_{m - 1})$,
-	where $\varphi_i \in T$ for $i < m$. We can deduce that $\varphi$ is decidable in $T$.
-	Addition of more quantifiers is trivial as well, as we can use proof tree and reduce the number of quantifiers to one.
-	$T$ is complete.
+	In intention of showing quantifier elimination, let $\Mm, \Nn \models T$ be some models and let $A \subseteq M, N$ be some finite set such that $\Aa \subseteq \Mm, \Nn$.
+	Let $\varphi(x)$ be some primitive existential formula over $L(A)$, then,
+	\[
+		\varphi = \exists x\ (\bigwedge_{i < n_0} P_i(x)) \land (\bigwedge_{j < n_1} \lnot P_j(x)) \land (\bigwedge_{k < n_2} x = a_k) \land (\bigwedge_{l < n_3} x \ne a_l)
+	\]
+	which means that $\varphi \equiv \varphi_{C, B}$ or $\varphi \equiv \exists x\ x = a$ or $\varphi \equiv \exists x, x \ne a_0 \land \cdots \land x \ne a_{n - 1}$.
+	$\Mm, \Nn \models \varphi_{C, B}, \exists x\ x = a$ for any $C, B, a$ from $T$ and $\Aa$ definition.
+	The last case is achieved by choosing a witness in each model of $\varphi_{C, B}$, such that $C \supsetneq \bigcup C_i, B \supsetneq \bigcup B_i$,
+	when $a_i$ are witnesses of $\varphi_{C_i, B_i}$ for $i < n$.
+	By equivalently to quantifier elimination $T$ is such theory, and has no constant symbols, then it is complete.
 
 	Let $f : \omega \to 2$ be a function, and let us consider the type,
 	\[
