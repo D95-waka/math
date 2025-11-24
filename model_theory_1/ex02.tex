@@ -84,7 +84,10 @@ Moreover, we will show that $T_{EQ}^*$ has quantifier elimination.
 	\]
 	then $T_{EQ}^* \models \psi_n$ as well for any $n < \omega$, meaning that there are infinite equivalence classes.
 
-	Notice that $T_{EQ}^*$ was proved to be complete in previous courses and thus model complete, it follows that indeed $T_{EQ}^*$ is the unique model companion of $T$.
+	We move to show that $T_{EQ}^*$ eliminating quantifiers.
+	The proof is by using the equivalence theorem and by defining $A \subseteq M, N$ as in other proofs.
+	In this case the primitive existential formula over $L(A)$ will be of the form $\exists x\ E(x, a_0) \land \cdots \land E(x, a_{n - 1}) \land \lnot E(x, a_{n}) \land \cdots \land \lnot E(x, a_{n + m - 1})$,
+	and formulas over equation symbols. In turn we can use the properties of $T_{EQ}^*$ to show $\Mm \models \varphi \iff \Nn \models \varphi$ in the exact way of question 1.
 \end{proof}
 
 \question{}
@@ -152,7 +155,17 @@ We will show that $T$ is complete and that there is no isolated type in $S_1(T)$
 \question{}
 We will show that there is a complete theory $T$ over the language $L$ such that $|L| = \aleph_1$ and a non-isolated type $p(c)$ that cannot be omitted.
 \begin{proof}
-	
+	Let $c_i$ be constants for $i < \omega$ and $d_i$ constants for $i < \omega_1$, and let $P(x)$ be relation, we define $P(c_i)$ for all $i$, as well $\lnot P(d_i)$ for all $i$.
+	Let us denote $P(x)$ if $x \in X$, otherwise $x \in Y$, these are for readability only.
+	Let $E$ be 2-place relation.
+	We define $T$ as the theory such that $\Mm \models T$ if and only if $E : X \to Y$ is a bijection, namely, if $x \in X$ and $y \in M$ such that $E(x, y)$ then $y \in Y$,
+	for any $x \in X$ there is a single $y \in Y$ such that $P(x, y)$, and vice versa for $y \in Y$.
+	We also define $c_i \in X, d_i \in Y$, and $c_i \ne c_j, d_i \ne d_j$ for any $i < j$.
+	To complete $T$ we also define $T \models E(c_i, d_i)$ for all $i < \omega$. \\
+	We can now define $p(x) = \{ P(x) \} \land \{ x \ne c_i \mid i < \omega \}$.
+	$p$ is complete (as in not partial) as we could define $c_{\omega}$ as the constant such that $p(c_{\omega})$, and $c_i < \omega + 1$ is still countable and equivalent to $T$.
+	The key difference is that there is a constant such that $\lnot E(c_{\omega}, d_i)$ for all $i < \omega_1$, we use the fact that there is a single such constant to show that $T \cup \{ p(c_{\omega}) \}$ is complete. \\
+	Lastly, if $\Mm \models T$ then $|\{ x \in M \mid P^\Mm(x) \}| \ge \omega_1$, meaning that there has to be (very large amount) of elements $x \in X^M$ that realizes $p$.
 \end{proof}
 
 \end{document}
