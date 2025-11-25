@@ -6,6 +6,8 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 
+\DeclareMathOperator\eval{eval}
+
 \begin{document}
 \maketitle
 \maketitleprint[purple]
@@ -744,7 +746,104 @@
 אז $c'(t) = {(1, -2t)}^t$ ובהתאם $\lVert c'(t) \rVert = \sqrt{1 + 4t^2}$ ובאופן דומה $c''(t) = {(0, 2)}^t$.
 אבל $c$ היא לא לפי אורך ולכן לא נוכל להשתמש בה בפשטות.
 
-% \subsection{משוואות פרנה}
+\section{שיעור 9 --- 17.11.2025}
+\subsection{עקמומיות}
+
+\section{שיעור 10 --- 18.11.2025}
+\begin{theorem}
+	תהי $k : I \to \RR$ פונקציה גזירה $r \ge 0$ פעמים.
+	בהינתן נקודה $s_0 \in I$ ונקודה $P_0 = (P^1, P^2) \in \EE^2$ ו־$v_0 = {(v_0^1, v_0^2)}^t \in \RR^2$ כך ש־$\lVert v_0 \rVert = 1$,
+	אז קיימת מסילה $c : I \to \EE^2$ לפי אורך עם פונקציית עקמומיות הנתונה על־ידי $k$.
+	אם $c(s_0) = P_0, c'(s_0) = v_0$ אז $c$ גם יחידה.
+	יתר־כל־כן,
+	\[
+		c(s)
+		= \begin{pmatrix}
+			P^1 + \int_{s_0}^{s} \left(\cos\left( \int_{s_0}^{t} k(u)\ du + \theta_0\right)\right)\ dt \\
+			P^2 + \int_{s_0}^{s} \left(\sin\left( \int_{s_0}^{t} k(u)\ du + \theta_0\right)\right)\ dt
+		\end{pmatrix}
+	\]
+	כאשר $0 \le \theta_0 < 2 \pi$.
+\end{theorem}
+\begin{proof}
+	נתחיל בהוכחת הקיום.
+	נגדיר $c(s_0) = P_0$ ונגדיר את הנגזרת בהתאם לדרישות המופיעות במשפט.
+	נשים לב ש־$\lVert c'(s) \rVert = 1$ לכל $s \in I$ ו־$c''(s) = l(s) n(s)$ ישירות מחישוב.
+
+	נניח כי גם $d : I \to \EE^2$ עומדת בתנאים, ונתבונן בפונקציה $f(s) = (c^1)'(s) - (d^1)'(s)$ וב־$g(s) = (c^2)'(s) - (d^2)'(s)$.
+	אז נקבל ש־$f'(s) = -k(s) g(s)$ ו־$g'(s) = k(s) f(s)$, ולכן $\frac{1}{2} (f^2 + g^2)(s) = 0$ ולכן $f^2 + g^2$ פונקציה קבועה.
+	אבל $f(s_0) = g(s_0) = 0$ ולכן גם $f = 0 = g$ בלבד.
+\end{proof}
+\begin{theorem}
+	תהי $c : I \to \EE^2$ מסילה רגולרית לפי אורך.
+	אז קיימת $\theta : I \to \RR$ כך שמתקיים $c'(s) = {(\cos \theta(s), \sin \theta(s))}^t$, כך ש־$\theta$ יחידה עד כדי הזזות ב־$2 \pi k$.
+\end{theorem}
+
+\section{שיעור 11 --- 24.11.2025}
+\subsection{תרגילים}
+
+\section{שיעור 12 --- 25.11.2025}
+\subsection{מרחבים דואליים}
+\begin{definition}[מרחב דואלי]
+	יהי $V$ מרחב וקטורי ממימד $n \in \NN$ מעל שדה $\FF$.
+	נגדיר,
+	\[
+		V^{\vee} = \hom_\FF(V, \FF)
+	\]
+	ונקרא ל־$V^\vee$ המרחב הדואלי של $V$.
+	לאיבר במרחב הדואלי נקרא תבנית לינארית (linear form) או פונקציונל (functional).
+\end{definition}
+\begin{example}
+	$V^\vee = {(\FF_{\operatorname{col}^n})}^\vee = \{ M_{n \times 1}(\FF) \}$, ההעתקות הלינאריות ממימד $n$ למימד $1$.
+\end{example}
+\begin{proposition}
+	במקרה זה אם $l \in V^\vee$ אז קיים וקטור $a = {(a_1, \ldots, a_n)}^t \in V$ כך שמתקיים $l(x) = a^t x$ ונוכל לסמן $l = l_a$.
+\end{proposition}
+\begin{proof}
+	נסמן $a_j = l(e_j)$ עבור $1 \le j \le n$.
+	נגדיר $a = {(a_j)}_{i = 1}^n$, אז,
+	\[
+		l(x)
+		= l(e_1 x^1 + \cdots + e_n x^n)
+		= x^1 l(e_1) + \cdots + x^n l(e_n)
+		= x^1 a_1 + \cdots + x^n a_n
+		= a^t x
+		= l_a(x)
+	\]
+	ומצאנו שאכן $l = l_a$.
+\end{proof}
+\begin{remark}
+	בהתאם נקבל $\FF_{\operatorname{row}}^n \simeq {(\FF_{\operatorname{col}}^n)}^\vee$.
+	כלומר באיזשהו מובן מרחב דואלי הוא גם דואלי במובן הסימון.
+\end{remark}
+\begin{example}
+	יהי $V$ ו־$\Bb = (b_1, \ldots, b_n) \subseteq V$ בסיס סדור.
+	אם $v = \Bb x$ אז נוכל להגדיר $l^j(v) = x_j$, כאשר $l^j$ היא תבנית לכל $j$.
+\end{example}
+\begin{example}
+	עבור $S \ne 0$ כלשהי נגדיר את הקבוצה,
+	\[
+		\Ff
+		= \Ff(S, \FF)
+		= \{ f : S \to \FF \}
+	\]
+	עבור $f, g \in \Ff$ נגדיר $(f + g)(s) = f(s) + g(s)$ ובאופן דומה $(k \cdot f)(s) = k \cdot g(s)$ עבור $k \in \FF$.
+	נקבל אם כך ש־$(\Ff, +, \cdot)$ מרחב לינארי מעל $\FF$.
+	
+	עבור $s_0 \in S$ נגדיר,
+	\[
+		\eval_{s_0} : \Ff(S) \to \FF,
+		\quad
+		f \mapsto f(s_0)
+	\]
+	אז $\eval_{s_0} \in \Ff^\vee$.
+\end{example}
+\begin{example}
+	נניח ש־$S = I \subseteq \RR$ ונניח ש־$V = C^1(I)$,
+	אז $f \mapsto f'(s_0)$ אף היא פונקציונל לינארי.
+
+	באופן דומה אם $V = \Rr([a, b])$ מרחב הפונקציות האינטגרביליות רימן, נוכל להגדיר גם את $f \mapsto \int_a^b f\ dx$, גם זו תבנית.
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
