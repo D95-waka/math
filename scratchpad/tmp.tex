@@ -76,4 +76,31 @@
 	ולכן הטענה נובעת.
 \end{proof}
 
+\pagebreak
+
+נוכיח שלכל סדרה מתכנסת $a_n \to L$ יש מקסימום או מינימום.
+\begin{proof}
+	נניח שמתקיים $A < L$.
+	במקרה זה יש גם מינימום וגם מקסימום, אבל נראה קיום מינימום בלבד מטעמי סימטריה.
+	נגדיר $\varepsilon = \frac{L - A}{2}$ ויהיה $N \in \mathbb{N}$ כך שלכל $n > N$,
+	\begin{align*}
+		& |a_n - L| < \varepsilon = \frac{L - A}{2} \\
+		\iff & - \frac{L - A}{2} < a_n - L < \frac{L - A}{2} \\
+		\iff & -(L - A) < 2a_n - 2L < L - A \\
+		\iff & A - L < 2a_n - 2L < L - A \\
+		\implies & A + L < 2a_n \\
+		\iff & \frac{A + L}{2} < a_n
+	\end{align*}
+	כלומר מצאנו שלכל $n > N$ מתקיים $\frac{A + L}{2} < a_n$.
+
+	נגדיר $M = \min_{1 \le n \le N} a_n$, אז לכל $1 \le n \le N$ מתקיים $M \le a_n$ מהגדרת $M$.
+	נוכל להסיק ש־$A \le M \le \frac{A + L}{2}$ אחרת $\frac{A + L}{2}$ מהווה מינימום של הסדרה.
+	אז $a_n \le M$ לכל $n > N$, אבל גם עבור $1 \le n \le N$ מצאנו ש־$a_n \ge M$ ולכן $a_n \ge M$ לכל $n \in \mathbb{N}$.
+	נשים לב שבמקרה זה גם נובע $A = M$.
+
+	נעבור למקרה בו $A = L$.
+	אם $L < B$ אז נוכל להשתמש בטיעון זהה עם $\varepsilon = \frac{B - L}{2}$.
+	אחרת נקבל $A = L = B$, כלומר $(a_n)$ היא קבועה ולכן $A = \min a_n$.
+\end{proof}
+
 \end{document}
