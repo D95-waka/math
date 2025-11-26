@@ -155,17 +155,51 @@ We will show that $T$ is complete and that there is no isolated type in $S_1(T)$
 \question{}
 We will show that there is a complete theory $T$ over the language $L$ such that $|L| = \aleph_1$ and a non-isolated type $p(c)$ that cannot be omitted.
 \begin{proof}
-	Let $c_i$ be constants for $i < \omega$ and $d_i$ constants for $i < \omega_1$, and let $P(x)$ be relation, we define $P(c_i)$ for all $i$, as well $\lnot P(d_i)$ for all $i$.
-	Let us denote $P(x)$ if $x \in X$, otherwise $x \in Y$, these are for readability only.
-	Let $E$ be 2-place relation.
-	We define $T$ as the theory such that $\Mm \models T$ if and only if $E : X \to Y$ is a bijection, namely, if $x \in X$ and $y \in M$ such that $E(x, y)$ then $y \in Y$,
-	for any $x \in X$ there is a single $y \in Y$ such that $P(x, y)$, and vice versa for $y \in Y$.
-	We also define $c_i \in X, d_i \in Y$, and $c_i \ne c_j, d_i \ne d_j$ for any $i < j$.
-	To complete $T$ we also define $T \models E(c_i, d_i)$ for all $i < \omega$. \\
-	We can now define $p(x) = \{ P(x) \} \land \{ x \ne c_i \mid i < \omega \}$.
-	$p$ is complete (as in not partial) as we could define $c_{\omega}$ as the constant such that $p(c_{\omega})$, and $c_i < \omega + 1$ is still countable and equivalent to $T$.
-	The key difference is that there is a constant such that $\lnot E(c_{\omega}, d_i)$ for all $i < \omega_1$, we use the fact that there is a single such constant to show that $T \cup \{ p(c_{\omega}) \}$ is complete. \\
-	Lastly, if $\Mm \models T$ then $|\{ x \in M \mid P^\Mm(x) \}| \ge \omega_1$, meaning that there has to be (very large amount) of elements $x \in X^M$ that realizes $p$.
+	Let $L = \{ P, E \} \cup \{ c_i \mid i < \omega \} \cup \{ d_i \mid i < \omega_1 \}$, where $P$ is an unary predicate, $E$ is binary predicate, $c_i, d_i$ are constant symbols for any $i$.
+	Let us define the theory,
+	\begin{align*}
+		T = & \{ \forall x\ (P(x) \to \exists! y (\lnot P(y) \land E(x, y))),
+			\forall y\ (\lnot P(y) \to \exists! x (P(x) \land E(x, y))) \} \\
+			& \cup \{ c_i \ne c_j \mid i < j < \omega \}
+			\cup \{ d_i \ne d_j \mid i < j < \omega_1 \} \\
+			& \cup \{ \lnot E(c_i, d_j) \mid i < \omega, j < \omega_1 \}
+			\cup \{ P(c_i) \mid i < \omega \}
+			\cup \{ \lnot P(d_i) \mid i < \omega_1 \}
+	\end{align*}
+	the theory such that if $\Mm \models T$ then $E^\Mm : A_M \to B_M$, for $A_M = \{ x \in M \mid P^\Mm(x) \}, B_M = \{ y \in M \mid \lnot P^\Mm(y) \}$, is a bijection.
+	It also follows from definition that $\{ c_i^\Mm \mid i < \omega \} \subseteq A_M$ and $\{ d_i^\Mm \mid i < \omega_1 \} \subseteq B_M$, therefore $|B_M| \ge \aleph_1$.
+	$E^\Mm$ is a bijection, implying that $|A_M| = |B_M|$.
+
+	We will show that $T$ is complete as an $\aleph_1$-categorical theory with no models of size $< \aleph_1$.
+	As was shown in the last part $|M| \ge |B_M| \ge \aleph_1$. \\
+	Let $\Mm, \Nn \models T$ be some models such that $|M| = |N| = \aleph_1$, and let $f = E^\Mm$ and $g = E^\Nn$.
+	$A_M \cup B_M = M$ then $|A_M| = |B_M| = \aleph_1$.
+	$|A_M| \ge \aleph_1, |\{ c_i^\Mm \}| = \aleph_0$ therefore $|A_M \setminus \{ c_i^\Mm \}| \ge \aleph_1$ as well, the claim holds for $\Nn$ as well.
+	It follows that $|A_M \setminus \{ c_i^\Mm \}| = |A_N \setminus \{ c_i^\Nn \}|$ and let $h : A_M \setminus \{ c_i \} \to A_N \setminus \{ c_i \}$ be a bijection witnessing that.
+	We can define now $F : M \to N$ by,
+	\[
+		F(x)
+		= \begin{cases}
+			c_i^\Nn & x = c_i^\Mm \\
+			d_i^\Nn & x = d_i^\Mm \\
+			h(x) & x \in A_M \setminus \{ c_i^\Mm \} \\
+			(g \circ h \circ f^{-1})(x) & x \in B_M \setminus \{ d_i^\Mm \}
+		\end{cases}
+	\]
+	$F$ is a bijection by its definition as composition of bijections, $F$ is also constant preserving between $\Mm$ and $\Nn$.
+	By $A_M, A_N, B_M, B_N$ definitions $F$ also preserves $P$, and by $f, g$ it preserves $E$ as well, implying that $F : \Mm \to \Nn$ is a model isomorphism. \\
+	We found that $T$ has single model of size $\aleph_1$ up to isomorphism, therefore $T$ is complete.
+
+	We move to define a type that cannot be isolated nor being omitted.
+	Let,
+	\[
+		p(x)
+		= \{ P(x) \} \cup \{ x \ne c_i \mid i < \omega \}
+	\]
+	% $T \cup p(e)$ in $L(\{ e \})$ is complete as a result of the proof that $T$ is complete;
+	% We define $c_{\omega} = e$, therefore $|\{ c_i \mid i < \omega + 1 \}|$ is of cardinality $\omega$ and the proof holds.
+	$p$ cannot be omitted, as to be so it must be omitted by sentence of the form $E(x, d_i)$ for some $i$. \\
+	If $\Mm \models T$ then we take $e \in M$ such that $\Mm \models E(e, d_0)$.
 \end{proof}
 
 \end{document}
