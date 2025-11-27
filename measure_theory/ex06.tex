@@ -1,0 +1,322 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 6 --- תורת המידה, 80517}
+
+\newcommand{\weakto}[0]{\overset{*}{\rightharpoonup} }
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+נגדיר את מידת קנטור עבור $0 < Q_1 < Q_2 < 1$ על־ידי $C_0 = [0, 1]$ וכן $C_{n + 1} = Q_1 C_n \cup (Q_2 + (1 - Q_2) C_n)$ ולבסוף $C = \bigcap_{n = 1}^\infty C_n$.
+לכן כל $C_n$ היא איחוד זר של $2^n$ קטעים, נסמן אותם ב־$\Tt_n$.
+
+\subquestion{}
+נגדיר $Q_1 = \frac{1}{3}, Q_2 = \frac{2}{3}$.
+נגדיר,
+\[
+	E_0 = \{ 0 \},
+	\quad
+	E_n = \left\{ \sum_{k = 1}^n \frac{a_k}{3^k} \mid a_k \in \{0, 2\} \right\}
+\]
+ונוכיח שמתקיים,
+\[
+	E_{n + 1}
+	= \frac{E_n}{3} \cup \left(\frac{2}{3} + \frac{E_n}{3}\right)
+\]
+ונסיק כי לכל $n$ הקבוצה $E_n$ היא הקצוות השמאליים של הקטעים ב־$\Tt_n$.
+\begin{proof}
+	נוכיח את הטענה באינדוקציה על $n$.
+	עבור $n = 0$ הטענה טריוויאלית כהגדרה.
+
+	נניח ש־$E_n$ מקיים את הטענה ונבדוק את $E_{n + 1}$.
+	\[
+		\frac{E_{n + 1}}{3}
+		= \left\{ \frac{1}{3} \sum_{k = 1}^{n + 1} \frac{a_k}{3^k} \mid a_k \in \{0, 2\} \right\}
+		= \left\{ \sum_{k = 1}^{n + 1} \frac{a_k}{3^k} \mid a_1 = 0, a_k \in \{0, 2\} \right\}
+	\]
+	ולכן גם,
+	\[
+		\frac{2}{3} + \frac{E_{n + 1}}{3}
+		= \left\{ \sum_{k = 1}^{n + 1} \frac{a_k}{3^k} \mid a_1 = 2, a_k \in \{0, 2\} \right\}
+	\]
+	ולכן נקבל בדיוק,
+	\[
+		\frac{E_n}{3} \cup \left(\frac{2}{3} + \frac{E_n}{3}\right)
+		= \left\{ \sum_{k = 1}^{n + 1} \frac{a_k}{3^k} \mid a_k \in \{0, 2\} \right\}
+		= E_{n + 1}
+	\]
+	וסיימנו את מהלך האינדוקציה.
+
+	מצאנו ש־$E_{n + 1}$ מוגדר באותו אופן כמו $C_{n + 1}$ אבל מוגבל לקצה השמאלי של הקטע הראשון ולכן באינדוקציה נובע שגם $E_n$ קבוצת הקצוות השמאליים.
+\end{proof}
+
+\subquestion{}
+יהי $n \in \NN$ ו־$t = \sum_{k = 1}^n \frac{b_k}{3^k} \in E_n$ ונניח ש־$T \in \Tt_n$ הקטע כך ש־$t \in T$ הקצה השמאלי שלו.
+עבור $m > n$ נבדוק כמה איברים $\sum_{k = 1}^n \frac{a_k}{3^k} \in E_m$ מקיימים $a_k = b_k$ לכל $1 \le k \le n$.
+נסיק שמספר זה הוא $|T \cap E_m|$.
+\begin{proof}
+	למעשה השאלה שקולה לשאלת גודל הפיתוח של $E_m$ כאשר $E_n$ הוא הצעד הראשון, זאת שכן אם $a_k = b_k$ לכל $k \le n$ אז רק $a_k$ עבור $n < k \le m$ לא קבועים.
+	בהתאם נסיק שהמספר הוא $2^{m - n}$.
+	מאופן הבנייה שתואר לעיל נוכל להסיק שמספר זה הוא בדיוק $|T \cap E_m|$, כאשר הוכחה פורמלית תהיה באינדוקציה ושימוש בנוסחה המתארת את $E_m$ ו־$T$ מהסעיף הקודם.
+\end{proof}
+
+\subquestion{}
+לכל $n \in \NN$ נגדיר את הפונקציונל $\Lambda_n$ על $C_c(\RR)$ על־ידי,
+\[
+	\Lambda_n f
+	= \frac{1}{2^n} \sum_{x \in E_n} f(x)
+\]
+נראה שלכל $f \in C_c(\RR)$ הסדרה $\Lambda_n f$ מתכנסת.
+\begin{proof}
+	נניח ש־$m > n$.
+	נגדיר את $g |_T = \sup_{x \in T} f(x)$ ואת $h |_T = \inf_{x \in T} f(x)$ לכל $T \in \Tt$.
+	אז מתקיים,
+	\[
+		\Lambda_n g
+		= 2^{-n} \sum_{x \in E_n} g(x)
+		= 2^{-n} \sum_{T \in \Tt} \sum_{x \in E_n \cap T} g(x)
+		= 2^{-n} \sum_{T \in \Tt} 2^{n - m} g(x)
+		= 2^{-m} \sum_{T \in \Tt} g(x)
+		= \Lambda_m g
+	\]
+	ובאופן דומה נקבל שגם $\Lambda_n h = \Lambda_m h$.
+	נבחין גם כי $h \le f \le g$ מהגדרה ואף $g - h < \varepsilon$ שכן נוכל לבחור $T \in \Tt$ עם קוטר מספק.
+	אם $n < m_1, m_2$ אז נקבל בהתאם,
+	\[
+		\Lambda_n h \le \Lambda_{m_i} \le \Lambda_n g
+	\]
+	ולכן כדי להראות את תכונת קושי מספיק שנראה שמתקיים $\Lambda_n (g - h) < \varepsilon \cdot \vol(T)$.
+	אבל בסעיף א' ראינו שמתקיים $\vol(T) \le {(\frac{2}{3})}^{-N}$ עבור $\frac{1}{\varepsilon} < N$ בלי הגבלת הכלליות.
+	אז נקבל,
+	\[
+		\Lambda_n (g - h)
+		= 2^{-n} \sum_{x \in E_n} g(x) - h(x)
+		= 2^{-n} \varepsilon
+		\le \varepsilon \vol(T)
+	\]
+	כפי שרצינו, ולכן הטענה נובעת.
+\end{proof}
+
+\subquestion{}
+נגדיר $\Lambda f = \lim_{n \to \infty} \Lambda_n f$.
+נראה שזהו פונקציונל לינארי חיובי, נגדיר מידה יחד איתו, נחשב את התומך של המידה ואת מידת הקטע $[\frac{2}{9}, \frac{1}{3}]$.
+\begin{proof}
+	מהסעיף הקודם הפונקציונל מוגדר היטב, נניח ש־$f \ge 0$, אז לכל $n \in \NN$ מתקיים,
+	\[
+		\Lambda_n f
+		= \frac{1}{2^n} \sum_{x \in E_n} f(x)
+		\ge 0
+	\]
+	ולכן נסיק שגם הגבול משמר את החיוביות ובהתאם הפונקציונל הוא חיובי.
+	בהתאם ממשפט ההצגה של ריס קיימת ויחידה מידה $\mu$ המקיימת,
+	\[
+		\forall f \in C_c(\RR),\ 
+		\int f\ d \mu
+		= \Lambda f
+	\]
+
+	נעבור לחישוב $\supp \mu$, כלומר נחשב את קבוצת הנקודות $A \in \RR$ כך שלכל סגורה סביב אחת הנקודות יש מידה לא אפס.
+	נניח ש־$x \in \RR$ ונניח ש־$x \in D$ סגורה כלשהי.
+	אז מתקיים,
+	\[
+		\mu(D)
+		= \int \indicator_D\ d \mu
+		= \Lambda \indicator_D
+		= \lim_{n \to \infty} \Lambda_n \indicator_D
+		= \lim_{n \to \infty} 2^{-n} \sum_{x \in E_n} \indicator_D
+		= \lim_{n \to \infty} 2^{-n} |E_n \cap D|
+	\]
+	אבל מהסעיפים הקודמים נסיק שאם קיים $T \in \Tt$ כך ש־$T \subseteq D$ אז $|E_n \cap D| \ge 2^m$ עבור $m$ כך ש־$T$ מאורך $3^{-m}$.
+	נניח שלא קיים $T$ כזה, אז נקבל $\mu(D) = 0$, כלומר $\mu(D) = C$ בדיוק.
+
+	נעבור לחישוב של $\mu(T)$ עבור $T = [\frac{2}{9}, \frac{1}{3}]$.
+	נשים לב כי $T \subseteq C_2$ וכי הוא מחלקת קשירות מסילתית שם, כלומר $T \in \Tt$ בדיוק.
+	בהתאם נקבל שגם $\Lambda_n \indicator_T = 2^{-n} \cdot 2^{n - 2} = \frac{1}{4}$ מסעיף ב', ולכן גם $\Lambda \indicator_T = \frac{1}{4}$ ואף $\mu(T) = \frac{1}{4}$.
+\end{proof}
+
+\subquestion{}
+נגדיר $\varphi_0(x) = \frac{x}{3}, \varphi_2(x) = \frac{2}{3} + \frac{x}{3}$ ונראה ש־$\mu = \frac{1}{2} {(\varphi_0)}_* \mu + \frac{1}{2} {(\varphi_2)}_* \mu$.
+\begin{proof}
+	נזכור כי ${(\varphi_i)}_* \mu(E) = \mu(\varphi_i^{-1}(E))$ עבור $i \in \{0, 2\}$.
+	נסמן $A_i = \varphi_i^{-1}(E)$ ולכן,
+	\[
+		{(\varphi_i)}_* \mu(E)
+		= \mu(A_i)
+		= \int \indicator_{A_i}\ d \mu
+		= \Lambda \indicator_{A_i}
+		= \lim_{n \to \infty} \Lambda_n \indicator_{A_i}
+		= \lim_{n \to \infty} 2^{-n} \sum_{x \in E_n} \indicator_{A_i}
+		= \lim_{n \to \infty} 2^{-n} |E_n \cap \varphi_i^{-1}(E)|
+	\]
+	אבל מהגדרת $\varphi_i$ התמונות ההפוכות שלהם לקבוצה נתונה זרות, כלומר  $\varphi_0^{-1}(E) \cap \varphi_2^{-1}(E) = \emptyset$ וכן,
+	\begin{align*}
+		{(\varphi_0)}_* \mu(E) + {(\varphi_2)}_* \mu(E)
+		& = \lim_{n \to \infty} 2^{-n} |E_n \cap \varphi_0^{-1}(E)| + |E_n \cap \varphi_2^{-1}(E)| \\
+		& = \lim_{n \to \infty} 2^{-n} |E_n \cap (\varphi_0^{-1}(E) \cup \varphi_2^{-1}(E))| \\
+		& = \lim_{n \to \infty} 2^{-n} |E_n \cap E| \\
+		& = \mu(E)
+	\end{align*}
+	כפי שרצינו, כאשר המעבר האחרון נובע מבדיקה ישירה של $\varphi_i$.
+\end{proof}
+
+\question{}
+יהי $X$ מרחב האוסדורף קומפקטי מקומית ו־$\sigma$־קומפקטי.
+נניח ש־$\varphi : C_c(X) \to \CC$ פונקציונל לינארי חיובי.
+נסמן $\Mm$ היא $\sigma$־אלגברה ו־$\mu$ המידה הנובעות עבור $\varphi$ ממשפט ההצגה של ריס.
+
+\subquestion{}
+נראה שאם $E \in \Mm$ ו־$\varepsilon > 0$ אז קיימות סגורה $F$ ופתוחה $V$ כך ש־$F \subseteq E \subseteq V$ ומתקיים $\mu(V \setminus E) < \varepsilon$.
+\begin{proof}
+	נשתמש בהגדרה כסופרימום ואינפימום כדי לקבל שתי קבוצות כאלה עם $\frac{\varepsilon}{2}$.
+
+	ידוע שהמרחב הוא קומפקטי מקומית ו־$\sigma$־קומפקטי ולכן קיים כיסוי ${\{ K_n \}}_{n = 1}^\infty \subseteq \Mm$ של קומפקטיות כך ש־$E \subseteq \bigcup K_n$.
+	מסגירות לחיתוך סופי נוכל להוכיח את הטענה אם כך על $\{ E \cap K_n \}$, כלומר מספיק להוכיח את הטענה על קבוצות חסומות.
+
+	ממהלך הוכחת משפט ההצגה אנו גם יודעים שמתקיים,
+	\[
+		\mu(E)
+		= \sup\{ \mu(K) \mid K \subseteq E, K \text{ is compact} \}
+	\]
+	ולכן קיימת $K \subseteq E$ סגורה (וקומפקטית) כך ש־$\mu(E \setminus K) < \frac{\varepsilon}{2}$.
+
+	מהצד השני אנו גם יודעים שמתקיים,
+	\[
+		\mu(E)
+		= \inf\{ \mu(V) \mid V \supseteq E, V \text{ is open} \}
+	\]
+	ולכן בפרט קיימת פתוחה $E \subseteq V$ כך ש־$\mu(V \setminus E) < \frac{\varepsilon}{2}$.
+
+	משילוב שתי הטענות ו־$\omega$־אדיטיביות של $\mu$ מתקיים,
+	\[
+		\mu(V \setminus K)
+		= \mu(E \setminus K) + \mu(V \setminus E)
+		< \frac{\varepsilon}{2} + \frac{\varepsilon}{2}
+		= \varepsilon
+	\]
+	ולבסוף נוכל לבחור איחודים של קבוצות אלה ולקבל את המבוקש.
+\end{proof}
+
+\subquestion{}
+נראה שאם $E \in \Mm$ אז קיימות $A, B \subseteq X$ כך ש$A$ היא $F_{\sigma}$ ו־$G_{\delta}$ המקיימות $A \subset E \subset B$ וכן,
+\[
+	\mu(A \setminus A) = 0
+\]
+\begin{proof}
+	לכל $n \in \NN$ נגדיר $A_n \subseteq E \subseteq B_n$ להיות הקבוצות הפתוחות והסגורות מסעיף א' המקיימות,
+	\[
+		\mu(B_n \setminus A_n) \le \frac{1}{n}
+	\]
+	נגדיר בהתאם $A = \bigcup_{n = 1}^\infty$ ו־$B = \bigcap_{n = 1}^\infty B_n$, אז $A$ היא $F_{\sigma}$ ו־$B$ היא $G_{\delta}$ ומתקיים,
+	\[
+		\mu(B \setminus A)
+		= \lim_{n \to \infty} \mu(B_n \setminus A_n)
+		= 0
+	\]
+	ישירות מהגדרת $\mu$ כמידת רדון.
+\end{proof}
+
+\question{}
+יהי $X$ מרחב האוסדורף קומפקטי, ונסמן ב־$P(X)$ את קבוצת מידות ההסתברות על $(X, \Bb_X)$.
+תהי ${\{ f_n \}}_{n = 1}^\infty \subseteq C(X)$ צפופה, אז ראינו שהפונקציה $d : {(P(X))}^2 \to \RR$ המוגדרת,
+\[
+	d(\mu, \nu)
+	= \sum_{n = 1}^\infty \frac{1}{2^n {\lVert f_n \rVert}_\infty} \left\lvert \int f_n\ d \mu - \int f_n\ d \nu \right\rvert
+\]
+היא מטריקה.
+
+\subquestion{}
+הגדרנו ש־$\mu_n \weakto \mu$ (מתכנס חלש) אם לכל $f \in C(X)$ מתקיים,
+\[
+	\int f\ d \mu_n \xrightarrow{n \to \infty} \int f\ d \mu
+\]
+נראה שהתכנסות חלשה־$*$ שקולה להתכנסות במטריקה $d$.
+\begin{proof}
+	תהי סדרת מידות ${\{ \mu_n \}}_{n = 1}^\infty \subseteq P(X)$ ו־$\mu \in P(X)$.
+	\[
+		\mu_n \weakto \mu
+		\iff \forall f \in C(X),\ \int f\ d \mu_n \xrightarrow{n \to \infty} \int f\ d \mu
+	\]
+	אבל $f \in \overline{\{ f_n \}}$ ולכן הטענה נכונה אם ורק אם קיימת ${\{ f^n \}}_{n = 1}^\infty \subseteq \{ f_n \}$ כך ש־$\lim_{n \to \infty} f_n = f$ במטריקת סופרימום.
+	אז,
+	\[
+		\iff \forall f \in C(X),\ \int f^m\ d \mu_n \xrightarrow[m \to \infty]{n \to \infty} \int f\ d \mu
+		\iff \left\lvert \int f^m\ d \mu_n - \int f\ d \mu \right\rvert \xrightarrow[m \to \infty]{n \to \infty} 0
+		\iff \mu_n \to_d \mu
+	\]
+	כאשר המעבר האחרון נובע ממשפט המטריזביליות.
+\end{proof}
+
+\subquestion{}
+נגדיר את ההעתקה $\Delta : X \to P(X)$ על־ידי $\Delta x = \delta_x$, ונראה שהיא רציפה.
+\begin{proof}
+	עלינו להראות שעבור $x_0 \in X$ וסדרה ${\{ x_n \}}_{n = 1}^\infty \subseteq X$ כך ש־$x_n \to x$ מתקיים $\Delta x_n \to \Delta x$.
+	מסעיף א' הטענה שקולה ל־$\delta_x \weakto \delta_x$.
+	תהי $f \in C(X)$, אז,
+	\[
+		\int f\ d \delta_{x_n}
+		= f(x_n)
+	\]
+	מהגדרה, אבל $x_n \to x$ וגם $f$ רציפה ולכן $f(x_n) \to f(x_0)$, אבל $f(x_0) = \int f\ d \delta_{x_0}$.
+	לכן $\int f\ d \delta_{x_n} \to \int f\ d \delta_{x_0}$ לכל $f \in C(X)$ ולכן הסדרה מתכנסת גם ב־$d$ וקיבלנו רציפות.
+\end{proof}
+
+\question{}
+יהי $X$ מרחב האוסדורף קומפקטי מקומית.
+
+\subquestion{}
+נראה ש־$P(X)$ קמורה.
+\begin{proof}
+	נניח ש־$0 < t < 1$ ו־$\mu, \nu \in P(X)$.
+	אז מתקיים,
+	\[
+		(\mu (1 - t) + \nu t)(X)
+		= \mu(X) (1 - t) + \nu(X) t
+		= 1 - t + t
+		= 1
+	\]
+	ולכן מהגדרה $P(X)$ קמורה.
+\end{proof}
+
+\subquestion{}
+נניח ש־$T : X \to X$ רציפה.
+נראה שאם $\mu, \nu$ שתי מידות הסתברות $T$־אינווריאנטיות שונות, אז יש אינסוף כאלה.
+\begin{proof}
+	נתון ש־$\mu, \nu$ הן $T$־אינווריאנטיות, כלומר,
+	\[
+		\forall E \in \Bb_X,
+		\quad
+		\mu(E) = \mu(T^{-1}(E)),
+		\quad
+		\nu(E) = \nu(T^{-1}(E))
+	\]
+	תהי $t \in (0, 1)$ ונגדיר $\xi = \mu (1 - t) + \nu t$, אז $\xi \in P(X)$ מהסעיף הקודם.
+	בנוסף,
+	\[
+		\xi(T^{-1}(E))
+		= \mu(T^{-1}(E)) (1 - t) + \nu(T^{-1}(E)) t
+		= \mu(E) (1 - t) + \nu(E) t
+		= \xi(E)
+	\]
+	ומצאנו ש־$\xi$ היא $T$־אינווריאנטית.
+	בהתאם מצאנו $2^{\aleph_0}$ מידות $T$־אינווריאנטיות, לכל $t \in (0, 1)$.
+\end{proof}
+
+\subquestion{}
+נניח ש־$X = [0, 1]$ ו־$T(x) = x^2$.
+נתאר את כל מידות ההסתברות ה־$T$־אינווריאנטיות.
+\begin{solution}
+	נסמן $E_\varepsilon = [0, \varepsilon]$ עבור $\varepsilon \in (0, 1)$.
+	תהי $\mu$ מידת הסתברות $T$־אינווריאנטית, אז מתקיים,
+	\[
+		\mu(E_\varepsilon)
+		= \mu(T^{-1}(E_\varepsilon))
+		= \mu(T^{-n}(E_\varepsilon))
+		= \mu([0, \varepsilon^{\frac{1}{2^n}}])
+		\xrightarrow{n \to \infty} \mu([0, 1])
+		= 1
+	\]
+	כלומר מצאנו ש־$\mu(E_\varepsilon) = 1$ לכל $\varepsilon$, ולכן בהכרח $\mu = \delta_0$ בלבד.
+\end{solution}
+
+\end{document}
