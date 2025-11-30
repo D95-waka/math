@@ -1315,9 +1315,213 @@
 	U_\varphi = \{ p \in S_n(T) \mid \varphi_{x_0, \ldots, x_{n - 1}}^{c_0, \ldots, c_{n - 1}} \in p \}
 \]
 טיפוס כך ש־$\{ p \}$ הוא טיפוס מבודד, ובהתאם המרחב שהגדרנו הוא דיסקרטי אם כל הטיפוסים מבודדים.
+
+\section{שיעור 7 --- 30.11.2025}
+\subsection{מרחב הטיפוסים}
+ניזכר ש־$S_n(T)$ הוא מרחב טופולוגי האוסדורף קומפקטי.
 \begin{corollary}
-	אם כל טיפוס הוא מבודד אז יש מספר סופי של טיפוסים.
+	אם כל טיפוס ב־$S_n(T)$ מבודד אז $|S_n(T)|$ סופי.
 \end{corollary}
+נניח ש־$T$ שלמה. אם $p$ טיפוס מבודד על־ידי $\psi$ אז $T \models \exists \bar{x}\ \psi(\bar{x})$ ולכן בכל מודל של $T$ נקבל ש־$p$ מתממש.
+\begin{definition}[רוויה]
+	מבנה $\Mm \models T$ נקרא $\omega$־רווי ($\omega$-saturated) אם לכל $A \subseteq M$ סופית ולכל $p \in S_1(T(A))$ מתממש ב־$\Mm$. \\
+	מבנה $\Mm$ בן־מניה נקרא רווי אם הוא $\omega$־רווי.
+\end{definition}
+\begin{example}
+	נבחר את $\Mm = \langle \NN, +, \cdot, 0, 1 \rangle$ אז $S_1(\emptyset)$ היא מעוצמת הרצף.
+	אם $P$ קבוצת הראשוניים אז לכל $X \subseteq P$ היה טיפוס חלקי $P_X(x) = \{ \exists y\ (y \cdot \underline{p} = x) \mid p \in X \} \cup \{ \lnot \exists y\ (y \cdot \underline{p} = x) \mid p \notin X \}$.
+\end{example}
+\begin{example}
+	הפעם נגדיר את $\Mm = \langle \QQ, < \rangle$, מודל זה יהיה רווי.
+	נניח ש־$A \subseteq \QQ$ סופית, אם $\psi \in \form_{L(A)}$ עם משתנה חופשי $x$,
+	אז מחילוץ כמתים $\psi$ שקולה לנוסחה חסרת כמתים,
+	\[
+		\psi = \bigvee_{i < m} \bigwedge_{j < n_i} \rho_{ij}
+	\]
+	עבור $\rho_{ij}$ אטומיות או שלילתן.
+	אם $p$ טיפוס אז בהכרח הוא גימום מהצורה,
+	\[
+		\bigwedge {(a_i < x)}^{\varepsilon_i^0}
+		\land \bigwedge {(a_i = x)}^{\varepsilon_i^1}
+		\land \bigwedge {(x < a_i)}^{\varepsilon_i^2}
+	\]
+	ולכן $p$ מבודד על־ידי נוסח מהצורה $x = a_i$ או $a_i < x < a_j$ או $a_i < x$ עבור $a_i$ מקסימלי או באופן דומה עבור מינימלי.
+	כלומר מצאנו שיש כמות סופית של טיפוסים, כלומר $|S_1(A)| < \omega$ ולמעשה יש מספר סופי של נוסחות שאינו תלוי ב־$A$ שהצבת $A$ בהן מניבה את הנוסחה המבודדת.
+\end{example}
+\begin{theorem}[איזומורפיזם מודלים רוויים בני־מניה]
+	נניח ש־$\Mm, \Nn \models T$ מודלים בני־מניה רווים ו־$T$ שלמה.
+	אז $\Mm \cong \Nn$ ואף אם $A \subseteq M$ ו־$B \subseteq N$ סופיות ו־$f : A \to B$ שיכון אלמנטרי חלקי
+	(כלומר לכל נוסחה $\psi(x_0, \ldots, x_{n - 1})$ ו־$a_0, \ldots, a_{n - 1} \in A$ מתקיים $\psi^\Mm(a_0, \ldots, a_{n - 1}) = \psi^\Nn(f(a_0), \ldots, f(a_{n - 1}))$) יש הרחבה לאיזומורפיזם של המבנים.
+\end{theorem}
+משפט זה מזכיר מאוד את משפט קנטור והוכחתו מאוד דומה.
+\begin{proof}
+	החלק הנוסף גורר את הטענה כי $f = \emptyset$ היא שיכון אלמנטרי חלקי.
+	נניח ש־$f : A \to B$ שיכון אלמנטרי חלקי ו־$a \in M$, אז יש $f \subseteq f'$ כך ש־$\dom f' = B \cup \{ a \}$ ולכל $b \in N$ יש $f \subseteq f'$ כך ש־$\rng f' = B \cup \{ b \}$.
+	בלי הגבלת הכלליות נניח גם ש־$|A| = |B|$.
+
+	נבחן את $S_1(A) \ni p = tp(a / A) = \{ \varphi(x) \mid \Mm \models \varphi(a), \varphi \in \form_{L_A} \}$
+	ואת $q = f_x(p) = \{ \psi \mid \psi = \varphi \in p, \psi = \varphi_{d_{f(x)}}^{d_x}, \forall x \in A \}$.
+	אז $q$ עקבי שכן אם $\psi \in q$ אז $\Nn \models \exists x\ \psi$ כיוון ש־$f$ אלמנטרית ($q$ סגור לגימום).
+	לכל נוסחה ב־$L_B$, $\psi$, או ש־$\psi \in q$ או ש־$\lnot \psi \in q$ כל עוד המשתנה החופשי הוא $x$.
+	אז קיים $b \in B$ שמממש את $q$ כי $\Nn$ רווי, כעת $f' = f \cup \{ \langle a, b \rangle \}$ אלמנטרית חלקית.
+\end{proof}
+\begin{corollary}
+	אם יש לתורה שלמה $T$ מודל בן־מניה רווי, אז הוא יחיד עד כדי איזומורפיזם.
+\end{corollary}
+\begin{theorem}[Ryll-Nardzewzki]
+	תהי $T$ תורה שלמה בשפה בת־מניה ללא מודלים סופיים, אז התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item $T$ היא $\aleph_0$־קטגורית
+		\item כל טיפוס $p \in S_n(T)$ מבודד
+		\item $S_n(T)$ היא סופית
+		\item לכל $n < \omega$ יש מספר סופי של נוסחות במשתנים חופשיים $x_0, \ldots, x_{n - 1}$ עד כדי שקילות ב־$T$
+		\item כל מודל בן־מניה של $T$ הוא רווי
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	ראינו כי $2 \iff 3$.
+
+	$1 \implies 2$,
+	נניח בשלילה שיש טיפוס $p$ לא מבודד, אז $p$ טיפוס ולכן עקבי קיים מודל של $T$ שמממש אותו, אבל ממשפט השמטת טיפוסים יש מודל של $T$ שמשמיט אותו, שניהם בני־מניה.
+	הם כמובן לא איזומורפיים בסתירה.
+
+	$2 + 3 \implies 4$,
+	נניח ש־$p_0, \ldots, p_{m - 1}$ הם הטיפוסים ב־$S_n(T)$ ונניח ש־$\psi_0, \ldots, \psi_{m - 1}$ נוסחות מבודדות.
+	נניח ש־$\psi$ נוסחה כלשהי ב־$n$ משתנים.
+	אם $\psi$ לא עקבית אז סיימנו ולכן נניח אחרת, כלומר $\{ \psi \}$ מתרחב לטיפוס שלם ונבחן את $I = \{ i \mid \psi \in \pi_i \}$.
+	אז נקבל ש־$\forall \bar{x}\ (\bigvee_{i \in I} \psi_i \to \psi)$. \\
+	בכיוון ההפוך אם $\Nn \models T$ ו־$a_0, \ldots, a_{n - 1}$ מספקים את $\psi$ אז $p_j = tp^\Nn(a_0, \ldots, a_{n - 1})$ אבל $\psi_j \in p_j$ ולכן $\Nn \models \psi_j(a_0, \ldots, a_{n - 1})$.
+	נקבל ש־$\Nn \models (\psi \to \bigvee_{i \in I} \psi_i)(\bar{a})$ אבל $\bar{a}$ שרירותית ולכן,
+	\[
+		\Nn \models \forall \bar{x}\ (\psi \to \bigvee_{i \in I} \psi_i)
+	\]
+	ולכן $T \models \forall \bar{x} (\psi \to \bigvee_{i \in I} \psi_i)$.
+
+	$4 \implies 3$,
+	נניח ש־$p_0, \ldots, p_{m - 1}$ נציגי מחלקות של נוסחות ב־$x_0, \ldots, x_{n - 1}$.
+	טיפוס $p$ הוא איחוד של מחלקות שקילות ולכן יש לכל היותר $2^m$ טיפוסים.
+
+	$2 \implies 5$,
+	נראה שלכל טיפוס ב־$S_1(A)$ כאשר $A \subseteq \Mm \models T$ סופית, מבודד.
+	טיפוס ב־$S_1(A)$ הוא מהצורה,
+	\[
+		p = \{ \varphi(x_0, a_1, \ldots, a_n) \mid \varphi(x_0, \ldots, x_n) \}
+	\]
+	נטען כי $q = \{ \varphi(x_0, \ldots, x_n) \mid \varphi(x_0, a_1, \ldots, a_n) \in p \}$ טיפוס.
+	$q$ סגור לגימום כי $p$ סגור לגימום.
+	לכל נוסחה $\varphi$ מתקיים $\varphi \in q$ או $\lnot \varphi \in q$, שכן $p$ מקיים טענה זו.
+	לכל $\varphi \in q$ מתקיים גם $T \models \exists x_0 \exists \bar{x}\ \varphi(x_0, \bar{x})$ שכן זהו המצב ב־$\Mm$. \\
+	$q$ מבודד, ונניח ש־$\psi$ מבודדת את $q$.
+	\[
+		T \models \forall \bar{x} \forall x_0\ (\psi(x_0, \bar{x}) \to \varphi(x_0, \bar{x}))
+	\]
+	לכל $\varphi \in q$ ו־$\psi$ עקבית.
+	\[
+		T \models \exists \bar{x} \exists x_0 \psi(x_0, \bar{x})
+	\]
+	ויתר־על־כן,
+	\[
+		T \models \forall \bar{x} \exists x_0\ \psi(x_0, \bar{x})
+	\]
+	אם נוסחה $\varphi(x_0, a_1, \ldots, a_n) \in p$ אז $\Mm_A \models \exists x_0\ \varphi(x_0, a_1, \ldots, a_n)$ ולכן,
+	\[
+		\exists x_0\ \varphi(x_0, \ldots, x_n) \in tp^\Mm(a_1, \ldots, a_n)
+	\]
+	זאת שכן $\varphi(x_0, \ldots, x_n) \in q$ גורר $\exists x_0\ \varphi(x_0, \ldots, x_n) \in q$.
+	במקרה שלנו נקבל נוסחה ב־$tp(a_1, \ldots, a_n)$.
+	כל $\varphi$ בטיפוס $q$ כנביעה מ־$\psi$ ו־$\psi$ עקבית, אז נובע ש־$\psi \in q$ ולכן $\exists x_0\ \psi \in tp(\bar{a})$. \\
+	נרצה להראות ש־$\psi(x_0, a_1, \ldots, a_n)$ עקבית.
+	זה נכון שכן $\exists x_0\ \psi(x_0, \ldots, x_n)$ שייכת לטיפוס של $\bar{a}$ ולכן $p$ מממומש. \\
+	כהערה נאמר שהראינו שאם כל טיפוס ב־$S_n(T)$ מבודד ו־$|A| = n - 1$ אז כל טיפוס ב־$S_n(A)$ מבודד.
+
+	$5 \implies 1$,
+	נובע מהמשפט שכל שני מודלים בני־מניה רוויים איזומורפיים.
+\end{proof}
+\begin{definition}[גדירות]
+	יהי $\Mm$ מודל ו־$A \subseteq M$.
+	קבוצה $D \subseteq M^n$ נקראת $A$־גדירה אם קיימת $\varphi \in \form_{L(A)}$ כך שמתקיים,
+	\[
+		D = \{ (b_0, \ldots, b_{n - 1}) \in M^n \mid \Mm_A \models \varphi(b_0, \ldots, b_{n - 1}) \}
+	\]
+	$D$ היא $0$־גדירה אם היא $\emptyset$־גדירה.
+\end{definition}
+\begin{definition}[אינווריאנטיות]
+	קבוצה $D$ היא $G$־אינווריאנטית אם לכל $g \in G$ ולכל $(b_0, \ldots, b_{n - 1}) \in D$ מתקיים $(g b_0, \ldots, g b_{n - 1}) \in D$.
+\end{definition}
+\begin{proposition}
+	תהי $T$ תורה שלמה ללא מודלים סופיים מעל שפה בת־מניה.
+	אז התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item $T$ היא $\aleph_0$־קטגורית
+		\item לכל $n < \omega$ יש מודל בן־מניה $\Mm \models T$ בו כל $D \subseteq M^n$ שהיא אינווריאנטית תחת $\aut(\Mm)$ היא $A$־גדירה ל־$A \subseteq M$ סופית
+		\item לכל $n < \omega$ יש מודל בן־מניה $\Mm \models T$ בו כל קבוצה $D \subseteq M^n$ כך שהיא $\aut(\Mm)$־אינווריאנטית היא גם $0$־גדירה
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	$1 \implies 3$,
+	נניח ש־$\bar{a} \in D$ ויהי $p \in tp(\bar{a})$.
+	אם $\bar{b} \in M^n$ ו־$p = tp(\bar{b})$ אז העתקה ששולחת את $a_i$ ל־$b_i$ היא שיכון אלמנטרי חלקי, אז היא מתרחבת לאוטומורפיזם.
+	אז יש $g \in \aut(\Mm)$ כך ש־$\bar{b} = g(\bar{a})$ ולכן $\bar{b} \in D$.
+	לכן $D = \bigcup_{p \in \{ p_0, \ldots, p_{n - 1} \}} \{ \bar{a} \mid tp(\bar{a}) = p_i \}$ אבל כל אחד מהטיפוסים הללו מבודדים על־ידי $\psi_i$ ולכן,
+	\[
+		D = \left\{ \bar{a} \mid \Mm \models \bigvee_i \mid \psi_i(\bar{a}) \right\}
+	\]
+
+	$3 \implies 2$ טריוויאלי ולכן נעבור ל־$3 \implies 1$.
+	נבחין כי כל גדירות היא אוטומטית על־ידי מספר סופי של פרמטרים.
+	נבחר $\Mm$ שמקיים את ההנחה. לכל טיפוס $p \in S_n(T)$ נגדיר,
+	\[
+		D_p = \{ \bar{a} \in M^n \mid \Mm \models p(\bar{a}) \}
+	\]
+	נטען כי $P = \{ p \in S_n(T) \mid D_p \ne \emptyset \}$ סופית.
+	אם $X \subseteq P$ אז $\bigcup_{p \in X} D_p$ היא $\aut(\Mm)$־אינווריאנטית.
+	אם $|P| \ge \aleph_0$ אז מתקבלות באופן הזה לפחות $2^{\aleph_0}$ קבוצות אינווריאנטיות שונות.
+	זה בלתי־אפשרי שכן יש מספר בן־מניה של הגדרות אפשריות. \\
+	בהתאם קיבלנו מודל $\Mm \models T$ שבו יש מספר סופי של טיפוסים ממומשים $\{ p_0, \ldots, p_{n - 1} \}$ כל אחד מהם מבודד על־ידי נוסחה $\psi_i(\bar{x}, \bar{a})$.
+	הסיבה לכך היא ש־$D_p$ היא גדירה ולכן ישנה נוסחה $\psi \in \form_{L(A)}$ כך ש־$D_p = \{ \bar{b} \mid \Mm \models \psi(\bar{b}) \}$,
+	\[
+		\Mm \models \forall \bar{x}\ (\psi_i(\bar{x}, \bar{a}) \to \varphi(\bar{x}))
+	\]
+	לכל $\varphi \in p$.
+	\[
+		\rho_{\varphi}
+		= \exists \bar{y}\ (( \forall \bar{x}\ \bigvee_{i < n} \psi_i(\bar{x}, \bar{y}))
+		\land \bigwedge_{i < n} (\forall \bar{x}\ \psi_i(\bar{x}, \bar{y}) \to \varphi(\bar{x})))
+	\]
+	בתוספת הטענה שהחלוקה זרה, לכל $i < n$ $T \models \rho_{\varphi}$. \\
+	נניח ש־$\Nn \models T$ וכן ש־$q$ טיפוס אחר ש־$\Nn$ מממש.
+	אז קיימת נוסחה $\varphi_q \in q$ כך ש־$\lnot \varphi_q \in p_i$ לכל $i < n$.
+	נניח ש־$\bar{b}$ מממש את $q$.
+	נסתכל על הפסוק $\rho$ ב־$\Nn$, יש $\bar{a}^N$ עבור $\bar{y}$.
+	נציב ב־$\bar{x}$ את $\bar{b}$, יש $i$ עבורו $\psi_i(\bar{a}^N, \bar{b})$ מתקיים ולכן $\lnot \varphi_i(\bar{b})$ בסתירה.
+	נסיק שאין טיפוסים נוספים ולכן $S_n(T)$ סופית.
+\end{proof}
+\begin{notation}
+	נאמר כי $\Mm$ הוא $\aleph_0$־קטגורי אם $\Th(\Mm)$ היא $\aleph_0$־קטגורית.
+\end{notation}
+\begin{corollary}
+	אם $\Mm$ הוא $\aleph_0$־קטגורי ו־$A \subseteq M$ סופית אז גם $\Mm_A$ הוא $\aleph_0$־קטגורי.
+\end{corollary}
+\begin{proof}
+	אם $\Mm$ אכן $\aleph_0$־קטגורי ו־$n < \omega$, $|A| = m$ אז יש מספר סופי של נוסחות עד־כדי שקילות בנות $n + m$ משתנים.
+	נובע שיש מספר סופי של נוסחות ב־$L(A)$ בנות $n$ משתנים עד־כדי שקילות.
+
+	בכיוון ההפוך אם $\Mm_A$ הוא $\aleph_0$־קטגורי.
+	אז מהמשפט הקודם כל קבוצה $\aut(\Mm)$־אינווריאנטית היא גדירה עם פרמטרים ב־$A$ במודל $\Mm$.
+	בפרט $\aut(\Mm_A)$־אינווריאנטית ולכן $\Th(\Mm)$ היא $\aleph_0$־קטגורית.
+\end{proof}
+\begin{theorem}[שני המודלים של ווט]
+	נניח ש־$T$ תורה שלמה בשפה בת־מניה.
+	אז לא יתכן של־$T$ יש בדיוק שני מודלים בני־מניה עד־כדי איזומורפיזם.
+\end{theorem}
+\begin{proof}
+	אם יש $n$ עבורו $S_n(T)$ לא בן־מניה אז יש מספר לא בן־מניה של מודלים שונים.
+	לכן $|S_n(T)| \le \aleph_0$, במקרה זה יש מודל רווי.
+	התורה לא $\aleph_0$־קטגורית אז יש טיפוס $p$ לא מבודד.
+	לכן יש מודל $\Mm_0$ שמשמיט את $p$ ומודל $\Mm_1$ שמממש את $p$ על־ידי $\bar{a}$.
+	אם בהכרח $\Mm_1$ רווי אז $\Th({(\Mm_1)}_{\bar{a}})$ היא $\aleph_0$־קטגורית (כי כל מודל רווי).
+	אבל אז $\Th(\Mm_1)$ היא $\aleph_0$־קטגורית בסתירה להנחה. לכן המודל הרווי שונה משניהם.
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
