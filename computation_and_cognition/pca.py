@@ -31,6 +31,9 @@ class PCAFactory(object):
         pass
 
     def fit_batch(self, samples: np.ndarray, dim: int) -> PCA:
+        return self.inner_fit_batch(samples, dim)[0]
+
+    def inner_fit_batch(self, samples: np.ndarray, dim: int) -> tuple[PCA, np.ndarray, np.ndarray, np.ndarray]:
         '''
         Args:
             samples (np.ndarray): M x N matrix such that each column is a sample vector of size 1 x N
@@ -40,10 +43,10 @@ class PCAFactory(object):
         C = samples @ samples.T
         values, vectors = np.linalg.eig(C)
         sorted_indices = np.argsort(values)[::-1]
-        # values_sorted = values[sorted_indices]
+        values_sorted = values[sorted_indices]
         vectors_sorted = vectors[:,sorted_indices]
         pca_components = vectors_sorted[:, :dim]
-        return PCA(pca_components)
+        return PCA(pca_components), C, values_sorted, vectors_sorted
 
 def tests_run(pca: PCA, tests):
     for vector, classification in tests:
