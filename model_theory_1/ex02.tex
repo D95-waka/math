@@ -12,7 +12,7 @@ Let $\FF$ be a field and let $T_{\operatorname{vec}}$ be the theory of infinite 
 such that $\lambda_a$ represents multiplication by scalar $a \in \FF$.
 We will show that $T_{\operatorname{vec}}$ satisfies quantifier elimination.
 \begin{proof}
-	Let $\Vv, \Ww$ are vector spaces over $\FF$ such that there exists $A \subseteq V \cap W$ and $\langle A \rangle = V \cap W$, and let $\Aa$ be the model over $\langle A \rangle$.
+	Let $\Vv, \Ww$ are vector spaces over $\FF$ such that there is some finite $A \subseteq V \cap W$ and $\langle A \rangle = V \cap W$, and let $\Aa$ be the model over $\langle A \rangle$.
 
 	Let $t(x)$ be a term over $L(A)$ (as every $a \in \langle A \rangle$ is definable in $L(A)$).
 	Any definable $v(x) : \Aa \to \Aa$ is of the form $v = u + a x$, then $t(x) = u + \lambda_a x$ for some $u \in A$ and $a \in \FF$.
@@ -155,40 +155,33 @@ We will show that $T$ is complete and that there is no isolated type in $S_1(T)$
 \question{}
 We will show that there is a complete theory $T$ over the language $L$ such that $|L| = \aleph_1$ and a non-isolated type $p(c)$ that cannot be omitted.
 \begin{proof}
-	Let $L = \{ P, E \} \cup \{ c_i \mid i < \omega \} \cup \{ d_i \mid i < \omega_1 \}$, where $P$ is an unary predicate, $E$ is binary predicate, $c_i, d_i$ are constant symbols for any $i$.
+	Let $L = \{ P \} \cup \{ E_f \mid f : \omega_1 \leftrightarrow \omega_1 \} \cup \{ c_i \mid i < \omega \} \cup \{ d_i \mid i < \omega_1 \}$, where $P$ is an unary predicate,
+	$E_f$ is binary predicate for any $f : \omega_1 \leftrightarrow \omega_1$, $c_i, d_i$ are constant symbols for any $i$.
 	Let us define the theory,
 	\begin{align*}
-		T = & \{ \forall x\ (P(x) \to \exists! y (\lnot P(y) \land E(x, y))),
-			\forall y\ (\lnot P(y) \to \exists! x (P(x) \land E(x, y))) \} \\
+		T = & \{ \forall x\ (P(x) \to \exists! y (\lnot P(y) \land E_f(x, y))),
+			\forall y\ (\lnot P(y) \to \exists! x (P(x) \land E_f(x, y))) \mid f : \omega \hookrightarrow \omega_1 \} \\
 			& \cup \{ c_i \ne c_j \mid i < j < \omega \}
-			\cup \{ d_i \ne d_j \mid i < j < \omega_1 \} \\
-			& \cup \{ \lnot E(c_i, d_j) \mid i < \omega, j < \omega_1 \}
+			\cup \{ d_i \ne d_j \mid i < j < \omega_1 \}
 			\cup \{ P(c_i) \mid i < \omega \}
-			\cup \{ \lnot P(d_i) \mid i < \omega_1 \}
+			\cup \{ \lnot P(d_i) \mid i < \omega_1 \} \\
+			& \cup \{ E_f(c_n, d_{f(n)}) \mid f : \omega_1 \leftrightarrow \omega_1, n < \omega \} \\
+			& \cup \{ \exists x\ E_f(x, d_{\alpha}) \land E_g(x, d_{\beta}) \mid f, g : \omega_1 \leftrightarrow \omega_1, \alpha, \beta < \omega_1, f^{-1}(\alpha) = g^{-1}(\beta) \}
 	\end{align*}
-	the theory such that if $\Mm \models T$ then $E^\Mm : A_M \to B_M$, for $A_M = \{ x \in M \mid P^\Mm(x) \}, B_M = \{ y \in M \mid \lnot P^\Mm(y) \}$, is a bijection.
+	the theory such that if $\Mm \models T$ then $E_f^\Mm : A_M \to B_M$, for $A_M = \{ x \in M \mid P^\Mm(x) \}, B_M = \{ y \in M \mid \lnot P^\Mm(y) \}$, is a bijection.
 	It also follows from definition that $\{ c_i^\Mm \mid i < \omega \} \subseteq A_M$ and $\{ d_i^\Mm \mid i < \omega_1 \} \subseteq B_M$, therefore $|B_M| \ge \aleph_1$.
-	$E^\Mm$ is a bijection, implying that $|A_M| = |B_M|$.
+	$E_f^\Mm$ is a bijection, implying that $|A_M| = |B_M|$.
 
-	We will show that $T$ is complete as an $\aleph_1$-categorical theory with no models of size $< \aleph_1$.
-	As was shown in the last part $|M| \ge |B_M| \ge \aleph_1$. \\
-	Let $\Mm, \Nn \models T$ be some models such that $|M| = |N| = \aleph_1$, and let $f = E^\Mm$ and $g = E^\Nn$.
-	$A_M \cup B_M = M$ then $|A_M| = |B_M| = \aleph_1$.
-	$|A_M| \ge \aleph_1, |\{ c_i^\Mm \}| = \aleph_0$ therefore $|A_M \setminus \{ c_i^\Mm \}| \ge \aleph_1$ as well, the claim holds for $\Nn$ as well.
-	It follows that $|A_M \setminus \{ c_i^\Mm \}| = |A_N \setminus \{ c_i^\Nn \}|$ and let $h : A_M \setminus \{ c_i \} \to A_N \setminus \{ c_i \}$ be a bijection witnessing that.
-	We can define now $F : M \to N$ by,
-	\[
-		F(x)
-		= \begin{cases}
-			c_i^\Nn & x = c_i^\Mm \\
-			d_i^\Nn & x = d_i^\Mm \\
-			h(x) & x \in A_M \setminus \{ c_i^\Mm \} \\
-			(g \circ h \circ f^{-1})(x) & x \in B_M \setminus \{ d_i^\Mm \}
-		\end{cases}
-	\]
-	$F$ is a bijection by its definition as composition of bijections, $F$ is also constant preserving between $\Mm$ and $\Nn$.
-	By $A_M, A_N, B_M, B_N$ definitions $F$ also preserves $P$, and by $f, g$ it preserves $E$ as well, implying that $F : \Mm \to \Nn$ is a model isomorphism. \\
-	We found that $T$ has single model of size $\aleph_1$ up to isomorphism, therefore $T$ is complete.
+	We will show that $T$ is complete as a theory that eliminates quantifiers and has a common embeddable model.
+	Let $\Mm, \Nn \models T$ be some models, $A \subseteq M \cap N$ finite, and $\varphi$ be some primitive existential formula over $L(A)$.
+	If $\varphi$ consists of the formula $x = c_i$ or $x = d_i$ for some $i$ then $\Mm_A \models \varphi \iff \Nn_A \models \varphi$ and we can assume otherwise.
+	In similar manner, if $E_f(c_i, x), E_f(x, d_i)$ are found in $\varphi$ then both models fulfill $\varphi$ together, thus we assume otherwise as well.
+	Any other case is that $\varphi$ consists of conjunction of negated atomic formulas and due to size consideration fulfill the requirement of quantifier elimination equivalence theorem.
+	It follows that $T$ indeed has quantifier elimination. \\
+	Let $\Mm_0 \models T$ be the model such that $M = 2 \times \omega_1$, $\Mm_0 \models P(\langle a, b \rangle) \iff a = 0$, $E_f(x, y) \iff f(x) = y$,
+	and $c_n^{\Mm_0} = \langle 0, n \rangle, d_i^{\Mm_0} = \langle 1, i \rangle$.
+	Each $e \in M_0$ is definable using some sentence, as either $e = d_i^{\Mm_0}$ for some $i < \omega_1$, or $E_f^{\Mm_0}(e, d_i)$, therefore $\Mm_0 \subseteq \Mm$ for any $\Mm \models T$.
+	Therefore $T$ is complete.
 
 	We move to define a type that cannot be isolated nor being omitted.
 	Let,
@@ -196,10 +189,11 @@ We will show that there is a complete theory $T$ over the language $L$ such that
 		p(x)
 		= \{ P(x) \} \cup \{ x \ne c_i \mid i < \omega \}
 	\]
-	% $T \cup p(e)$ in $L(\{ e \})$ is complete as a result of the proof that $T$ is complete;
-	% We define $c_{\omega} = e$, therefore $|\{ c_i \mid i < \omega + 1 \}|$ is of cardinality $\omega$ and the proof holds.
-	$p$ cannot be omitted, as to be so it must be omitted by sentence of the form $E(x, d_i)$ for some $i$. \\
-	If $\Mm \models T$ then we take $e \in M$ such that $\Mm \models E(e, d_0)$.
+	$p$ is complete, $T \cup p$ is equivalent to the theory where there are $c_n$ constant symbols for any $n < \omega + 1$, by the last claim $T \cup p$ is complete.
+	$T$ eliminates quantifiers implying that if $p$ can be isolated then there is a quantifier-free formula $\varphi(x)$ such that $\forall x\ (\varphi \to p)$.
+	We can deduce from the definition of $p$ that $\varphi$ does not consist of $x = c_i$ or $x = d_i$, leaving only the option that $E_f(x, d_i)$ appears in $\varphi$.
+	In this case we can show that there is a contradiction directly by taking $\Mm_0$ and observe that both $\Mm_0$ thinks both $p(\langle 0, \omega \rangle)$ and $p(\langle 0, \omega + 1\rangle)$. \\
+	This fact also shows that $p$ cannot be omitted, as $\Mm_0 \overset{\iota}{\hookrightarrow} \Mm$ and therefore $\Mm \models p(\iota(\langle 0, \omega \rangle))$.
 \end{proof}
 
 \end{document}
