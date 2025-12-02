@@ -1,0 +1,135 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 5 --- גאומטריה דיפרנציאלית אלמנטרית, 80560}
+
+\DeclareMathOperator\eval{eval}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\question{}
+יהי $V$ מרחב וקטורי ממימד $n$ מעל $\FF$.
+
+\subquestion{}
+נראה שלכל $l^1, l^2 \in V^\vee$ ולכל $c \in \FF$ מתקיים,
+\[
+	(l^1 + l^2)(c v) = c (l^1 + l^2)(v)
+\]
+\begin{proof}
+	נבחין תחילה ש־$l^i : V \to \FF$ פונקציונל לינארי ולכן העתקה לינארית ובהתאם $l^i(cv) = c l^i(v)$.
+	מתקיים גם $l^1 + l^2 \in V^\vee$ ולכן זו העתקה לינארית גם כן, וקיבלנו את הטענה.
+\end{proof}
+
+\subquestion{}
+נניח ש־$l \in V^\vee$ וכן $c \in \FF, v_1, v_2 \in V$, ונראה שמתקיים,
+\[
+	(cl)(v_1 + v_2)
+	= (cl)(v_1) + (cl)(v_2)
+\]
+\begin{proof}
+	מהגדרה $cl(u) = l(cu)$ לכל $u \in V$, ולכן בפרט גם,
+	\[
+		(cl)(v_1 + v_2)
+		= l(c(v_1 + v_2))
+		= l(c(v_1)) + l(c(v_2))
+		= (lc)(v_1) + (lc)(v_2)
+	\]
+	ומצאנו שהטענה חלה.
+\end{proof}
+
+\question{}
+תהי $S$ קבוצה לא ריקה ו־$V = \Ff(S) = \{ f : S \to \FF \}$ מרחב הפונקציות.
+יהיו $s_0 \in S$ ו־$\eval_{s_0} : \Ff(S) \to \FF$ המוגדרת על־ידי $\eval_{s_0}(f) = f(s_0)$ לכל $f \in \Ff(S)$. \\
+נראה שלכל $f$ ו־$c \in \FF$ מתקיים $\eval_{s_0}(cf) = c \eval_{s_0}(f)$.
+\begin{proof}
+	\[
+		\eval_{s_0}(cf)
+		= (cf)(s_0)
+		= c \cdot f(s_0)
+		= c \eval_{s_0}(f)
+	\]
+	והטענה אכן חלה.
+\end{proof}
+
+\question{}
+יהי $V$ מרחב וקטורי ממימד סופי מעל $\FF$.
+
+\subquestion{}
+יהי $v \in V$, נוכיח ש־$v = 0$ אם ורק אם לכל $l \in V^\vee$ מתקיים $\langle l, v \rangle = 0$.
+\begin{proof}
+	נניח ש־$v = 0$ ויהי $l \in V^\vee$, כלומר $l : V \to \FF$ העתקה לינארית.
+	אז מתקיים $l(v) = 0$ מהגדרת ההעתקה הלינארית.
+
+	לכיוון ההפוך נניח שלכל $l \in V^\vee$ מתקיים $l(v) = 0$ ונניח בשלילה ש־$v \ne 0$.
+	נרחיב את $( v )$ לבסיס $\Bb = (v, b_2, \ldots, b_n)$ הפורש את $V$.
+	בהתאם קיימת העתקה לינארית $l : V \to \FF$ כך שמתקיים $l(v) = 1$, אבל $l \in V^\vee$ ולכן $\langle l, v \rangle = 0 \ne 1$ בסתירה.
+\end{proof}
+
+\subquestion{}
+יהי $l \in V^\vee$, נוכיח ש־$l = 0$ אם ורק אם לכל $v \in V$ מתקיים $\langle l, v \rangle = 0$.
+\begin{proof}
+	נניח ש־$l = 0$, אז בהגדרה $\langle l, v \rangle = l(v) = 0$ לכל $v$.
+
+	נניח ש־$\langle l, v \rangle = 0$ לכל $v \in V$ ונניח ש־$l \ne 0$, לכן קיים $u \in \im l$ כך ש־$u \ne 0$ וכן $l(u) \ne 0$ בסתירה.
+\end{proof}
+
+\question{}
+נראה שלכל $W \le V^\vee$ מתקיים,
+\[
+	\dim_\FF W + \dim_\FF W_0 = \dim_\FF V
+\]
+\begin{proof}
+	הגדרנו $W_0 = \{ v \in V \mid \forall l \in W,\ l(v) = 0 \}$.
+	נניח ש־$\Bb = (b_1, \ldots, b_n)$ בסיס של $V$ וכן נסמן $\Bb^\vee = (b^1, \ldots, b^n)$.
+	נניח בלי הגבלת הכלליות ש־$(b^1, \ldots, b^k)$ עם $k \le n$ הוא בסיס סדור של $W$.
+	אז מהגדרה מתקיים $l(b^i) = 0$ לכל $l \in W$ ו־$k < i \le n$, ולכן $b_i \in W_0$. באופן דומה נסיק ש־$b_i \notin W_0$ לכל $i \le k$ שכן קיים עד לכך ש־$b^i \in W$.
+	קיבלנו אם כך ש־$(b_{k + 1}, \ldots, b_n)$ בסיס סדור של $W_0$.
+\end{proof}
+
+\question{}
+נראה שלכל $L \subseteq V^\vee$ ו־$S \subseteq V$ מתקיים $S^0 \le V^\vee, L_0 \le V$.
+\begin{proof}
+	הגדרנו $S^0 = \{ l \in V^\vee \mid \forall v \in S,\ l(v) = 0 \}$.
+	אם $l, m \in S^0$ אז $(l + m)(v) = l(v) + m(v) = 0 + 0$ לכל $v \in S$, ונוכל להסיק ש־$l + m \in S^0$ גם כן.
+	באופן דומה נוכל להראות שגם $c l \in S^0$ לכל $c \in \FF$ ו־$l \in S^0$, לכן $S^0$ מרחב וקטורי, וכמובן $S^0 \subseteq V^\vee$ ולכן $S^0 \le V^\vee$.
+	ההוכחה עבור $L_0$ היא זהה.
+\end{proof}
+
+\question{}
+יהי $V$ מרחב וקטורי ממימד סופי מעל $\FF$.
+
+\subquestion{}
+נראה שאם $U \le V$ אז $U \subseteq {(U^0)}_0$ ונסיק שוויון.
+\begin{proof}
+	תהי $u \in U$ ותהי $l \in U^0$, אז $l(u) = 0$ מהגדרה, אבל $l$ שרירותי ולכן $u \in {(U^0)}_0$ ונסיק $U \subseteq {(U^0)}_0 \subseteq U$ ובהתאם יש שוויון.
+\end{proof}
+
+\subquestion{}
+נראה שאם $L \le V^\vee$ אז $L \subseteq {(L_0)}^0$ ונסיק שוויון.
+\begin{proof}
+	באופן דומה לסעיף הקודם נניח ש־$l \in L$ ויהי $v \in L_0$, אז נובע ש־$l(v) = 0$ ולכן $L \subseteq {(L_0)}^0$.
+\end{proof}
+
+\subquestion{}
+יהיו $U_1, U_2 \le V$, נראה ש־$U_1 = U_2$ אם ורק אם $U_1^0 = U_2^0$.
+\begin{proof}
+	נניח ש־$U_1^0 = U_2^0$.
+	נניח ש־$l \in U_1^0$, אז $l(v) = 0$ לכל $v \in U_2^0 = U_1^0$ ולכן $l \in U_2^0$, ומטעמי סימטריה הטענה נובעת. \\
+	הצד השני נובע מסעיף א'.
+\end{proof}
+
+\subquestion{}
+עבור $W^1, W^2 \le V^\vee$ נוכיח ש־$W^1 = W^2$ אם ורק אם $W_0^1 = W_0^2$.
+\begin{proof}
+	נפעל באופן שקול לסעיף הקודם.
+	נניח ש־$W^1 = W^2$ ויהי $v \in W_0^1$, אז לכל $l \in W^2$ מתקיים $l(v) = 0$ ולכן $v \in W_0^2$ וקיבלנו שוויון האפסים. \\
+	בכיוון ההפוך הטענה נובעת ישירות מסעיף ב'.
+\end{proof}
+
+\question{}
+יהיו $S_1, S_2 \le V$ ונראה ש־${(S_1 + S_2)}^0 = S_1^0 \cap S_2^0$.
+\begin{proof}
+	
+\end{proof}
+
+\end{document}

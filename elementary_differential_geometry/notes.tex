@@ -845,6 +845,141 @@
 	באופן דומה אם $V = \Rr([a, b])$ מרחב הפונקציות האינטגרביליות רימן, נוכל להגדיר גם את $f \mapsto \int_a^b f\ dx$, גם זו תבנית.
 \end{example}
 
+\section{שיעור 13 --- 1.12.2025}
+\subsection{מרחבים דואליים}
+נניח ש־$V$ מרחב וקטורי ממימד סופי מעל $\FF$.
+תורה זו מוגדרת גם עבור מקרים של מימד לא סופי, אבל ישנם מספר הבדלים שנציין אך לא נחקור.
+הגדרנו את $V^\vee = \hom(V / \FF)$ כמרחב הדואלי של $V$.
+\begin{definition}[בסיס דואלי]
+	יהי $\Bb = (b_1, \ldots, b_n)$ בסיס של $V$.
+	נגדיר $b^i \in V^\vee$ לכל $i \le n$ על־ידי $b^i(b_j) = \delta_{ij}$ לכל $j \le n$.
+	נקרא אפריורית לקבוצה $\Bb^\vee = (b^1, \ldots, b^n)$ בסיס דואלי של $V$.
+\end{definition}
+\begin{remark}
+	אם $v \in V$ אז מתקיים $v = \Bb x$ עבור $x \in \FF_{\text{col}}^n$.
+	בהתאם $b^i(v) = x^i$.
+\end{remark}
+\begin{theorem}[קיום בסיס דואלי]
+	$\Bb^\vee$ בסיס של $V^\vee$.
+\end{theorem}
+\begin{proof}
+	נתחיל באי־תלות.
+	נניח ש־$a_1, \ldots, a_n \in \FF$ כך ש־$a_1 b^1 + \cdots + a_n b^n = 0_{V^\vee}$, אז,
+	\[
+		0_\FF
+		= 0_{V^\vee}(b_j)
+		= \left(\sum_{i = 1}^n a_i b^i\right)(b_j)
+		= \sum_{i = 1}^n a_i b^i(b_j)
+		= \sum_{i = 1}^n a_i \delta_{ij}
+		= a_j
+	\]
+	וקיבלנו אי־תלות.
+
+	נעבור להוכיח פרישה.
+	עבור $l \in V^\vee$ תבנית יהיו $a_i = l(b_i)$ לכל $i \le n$.
+	נראה ש־$l = a_1 b^1 + \cdots + a_n b^n$.
+	מספיק לבדוק ששתי הפונקציות מתלכדות על איברי הבסיס $\Bb$, זאת ישירות מלינאריות.
+	\[
+		\left(\sum_{i = 1}^n a_i b^i\right)(b_j)
+		= a_j
+		= l(b_j)
+	\]
+	וקיבלנו שאכן הבסיס $\Bb^\vee$ פורש את $V^\vee$.
+\end{proof}
+נבחין כי נוכל ליצור צימוד $V^\vee \times V \to \FF$ על־ידי $(l, v) \mapsto l(v)$ ונסמן את הפעולה הזאת באופן דומה למכפלה פנימית על־ידי $\langle l, v \rangle$.
+נקבל שמתקיים $b_1 b^1(v) + \cdots + b_n b^n(v) = v = \sum_{i = 1}^n b_i \langle b^i, v \rangle$ וכן $l = b^1 l(b_1) + \cdots + b^n l(b_n) = \sum_{i = 1}^n b^i \langle l, b_i \rangle$.
+\begin{theorem}[שקילות לאיפוס במרחב דואלי]
+	לכל וקטור $v \in V$ מתקיים $v = 0_V \iff \forall l \in V^\vee,\ l(v) = 0_\FF$. \\
+	לכל $l \in V^\vee$ מתקיים $l = 0_{V^\vee} \iff \forall v \in V,\ l(v) = 0_\FF$.
+\end{theorem}
+\begin{theorem}[קיום בסיס לבסיס דואלי]
+	לכל $(b^1, \ldots, b^n)$ בסיס של $V^\vee$ קיים $\Bb = (b_1, \ldots, b_n)$ בסיס של $V$ כך שמתקיים,
+	\[
+		\Bb^\vee = (b^1, \ldots, b^n)
+	\]
+\end{theorem}
+\begin{proof}
+	תהי תבנית $\varphi : V \to \FF_{\text{col}}^n$ המוגדרת על־ידי $\varphi(v) = {(b^1(v), \ldots, b^n(v))}^t$.
+	נבחין כי $v \in \ker \varphi$ אם ורק אם $b^i(v) = 0$ לכל $i \le n$, אבל בהתאם הטענה מתקיימת רק כאשר $v = 0$, לכן $\dim \ker \varphi = 0$ ונובע ש־$\varphi$ איזומורפיזם לינארי.
+	לכן אם $(b_1, \ldots, b_n)$ תמונתה $(e_1, \ldots, e_n)$ כך שהאחרון הוא הבסיס הסטנדרטי של $\FF^n$ אז $b^i(b_j) = \delta_{ij}$ בדיוק כפי שרצינו.
+\end{proof}
+\begin{definition}[מאפסים]
+	לכל $S \subseteq V$ נגדיר,
+	\[
+		S^0 = \{ l \in V^\vee \mid \forall s \in S,\ l(s) = 0 \} \subseteq V^\vee
+	\]
+	ונקרא ל־$S^0$ המאפס של $S$.
+\end{definition}
+\begin{theorem}[תכונות מאפס]
+	לכל $S, T \subseteq V$ מתקיים:
+	\begin{enumerate}
+		\item $S^0 \subseteq V^\vee$, כלומר זהו אופרטור למרחב הדואלי
+		\item $S^0 = \Sp^0(S)$, ולכן מספיק לדבר על קבוצה פורשת במקום על תתי־מרחבים
+		\item $S \subseteq T \implies T^0 \subseteq S^0$
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}
+	יהי $U \le V$, אז $\dim U + \dim U^0 = \dim V$.
+\end{theorem}
+\begin{proof}
+	יהי $(b_1, \ldots, b_n)$ בסיס של $V$ כך שגם $(b_1, \ldots, b_k)$ בסיס של $U$, כאשר $k \le n$. \\
+	נתבונן ב־$B^\vee = (b^1, \ldots, b^n)$, ונטען ש־$(b^{k + 1}, \ldots, b^n)$ בסיס של $U^0$.
+	יהי $l \in V^0$ אז $l = b^1 l(b_1) + \cdots + b^n l(b_n)$ אבל $l(b_i) = 0$ לכל $i \le k$ ונובע ש־$l \in \Sp(b^{k + 1}, \ldots, b^n)$.
+	נובע אם כך ש־$\dim U + \dim U^0 = \dim V$.
+\end{proof}
+\begin{definition}[קבוצת האפסים]
+	תהי $L \subseteq V^\vee$, אז נגדיר,
+	\[
+		L_0 = \{ v \in V \mid \forall l \in L,\ l(v) = 0 \}
+	\]
+	קבוצה זו תיקרא קבוצת האפסים של $L$.
+\end{definition}
+\begin{theorem}
+	לכל $L, M \subseteq V^\vee$ מתקיים,
+	\begin{enumerate}
+		\item $L_0 \le V$
+		\item $L_0 = \Sp_0(L)$
+		\item $L \subseteq M \implies M_0 \subseteq L_0$
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}
+	יהי $W \subseteq V^\vee$, אז מתקיים $\dim W + \dim W_0 = \dim V$.
+\end{theorem}
+אם $S \subseteq V$ אז מהו ${(S^0)}_0$?
+נקבל $S \subseteq {(S^0)}_0 = \Sp S$.
+בהתאם נקבל שמתקיים $L \subseteq {(L_0)}^0 = \Sp(L)$.
+\begin{definition}[העתקה דואלית]
+	תהי $f : V \to W$ העתקה לינארית בין מרחבים, ותהי $l \in W^\vee$ תבנית.
+	אז נגדיר את ההעתקה הדואלית של $f$ להיות $f^\vee = l \circ f$, כאשר בהתאם $f^\vee : W^\vee \to V^\vee$. \\
+	בשפת סימון מכפלה פנימית נקבל $\langle f^\vee(l), v \rangle = \langle l, f(v) \rangle$.
+\end{definition}
+
+\section{שיעור 14 --- 2.12.2025}
+\subsection{מאפסים}
+נמשיך לדון במאפסים ותכונותיהם.
+\begin{corollary}
+	אם $W_1, W_2 \le V$ אז מתקיים $W_1 = W_2 \iff W_1^0 = W_2^0$.
+\end{corollary}
+כלומר אנו יכולים לדון בתתי־מרחבים על־ידי שימוש במאפסים, ישנה שקילות שמאפשרת לנו להרחיב את הדיון שלנו גם בתתי־מרחבים באופן כללי.
+\subsection{העתקות דואליות}
+נמשיך את הדיון שלנו על העתקות אלה.
+\begin{theorem}
+	יהיו $V, W$ מרחבים לינאריים כך ש־$\Bb = (b_1, \ldots, b_n), \Dd = (d_1, \ldots, d_m)$ בסיסים בהתאמה ו־$\Bb^\vee, \Dd^\vee$ הבסיסים הדואליים בהתאמה.
+	אם $f : V \to W$ לינארית ו־$A = [f]$ בבסיסים $\Bb, \Dd$ בהתאמה אז $[f^\vee] = A^t$ בבסיסים $\Dd^\vee, \Bb^\vee$.
+\end{theorem}
+יהי $V$ מרחב אוקלידי, כלומר מרחב לינארי ממימד סופי מעל $\RR$ עם מכפלה פנימית $\langle \cdot, \cdot \rangle : V \times V \to \RR$.
+לכל $v \in V$ קיימת העתקה,
+\[
+	l_v : V \to \RR,
+	\quad
+	l_v(w) = \langle v, w \rangle
+\]
+כלומר $l_v = \langle v, \cdot \rangle$.
+נשים לב ש־$l_v \in V^\vee$.
+המשמעות היא שקיים צימוד מלא בין $V$ ל־$V^\vee$, על־ידי $v \mapsto l_v$, ולכן $V \simeq V^\vee$. \\
+בהתאם לדוגמה ב־$\RR^3$ אם נגדיר $l(v) = \det(x\ y\ v)$ עבור $x, y \in \RR_{\text{col}}^3$ קבועים, נקבל העתקה לינארית ולכן לכל $z \in \RR^3$ קיים $x \wedge y \in \RR^3$ יחיד כך ש־$l(z) = 0$.
+זוהי למעשה המכפלה החיצונית, המכפלה הווקטורית.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
