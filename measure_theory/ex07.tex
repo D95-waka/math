@@ -1,0 +1,226 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 7 --- תורת המידה, 80517}
+
+\DeclareMathOperator{\esssup}{ess\,sup}
+\DeclareMathOperator{\essinf}{ess\,inf}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+נקרא את ההוכחה של משפט אי־שוויון הולדר ואי־שוויון מינקובסקי.
+\begin{solution}
+	קראתי.
+\end{solution}
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב מידה ו־$0 < r < 1$, נגדיר לכל $f : X \to \CC$ את הפונקציה,
+\[
+	\lVert f \rVert_r = {\left(\int {|f|}^r\ d \mu\right)}^\frac{1}{r}
+\]
+ואת $\Ll^r(\mu) = \{ f : X \to \CC \mid \lVert f \rVert_r < \infty, f \text{ is measurable} \}$.
+נראה שאם ב־$X$ יש שתי תתי־קבוצות זרות ממידה סופית וחיובית אז $\lVert \cdot \rVert_r$ לא מקיימת את אי־שוויון המשולש.
+\begin{proof}
+	נניח ש־$A, B \in \Aa$ וכן ש־$A \cap B = \emptyset,\ 0 < \mu(A), \mu(B) < \infty$.
+	עבור $c_a, c_b \in \RR_+$ נגדיר $f = c_a \indicator_A + c_b \indicator_B$ ונחשב,
+	\[
+		\lVert c_a \indicator_A \rVert_r
+		= {\left(\int {|c_a \indicator_A|}^r\ d \mu\right)}^\frac{1}{r}
+		= {\left(c_a^r \int \indicator_A^r\ d \mu\right)}^\frac{1}{r}
+		= c_a \mu^{\frac{1}{r}}(A)
+	\]
+	ולכן נסיק שגם $\lVert c_b \indicator_B \rVert_r = c_b \mu^\frac{1}{r}(B)$.
+	נגדיר $0 < c < 1$ מספר כלשהו וכן $c_a = c, c_b = 1 - c$ ולכן נקבל,
+	\[
+		{(c_a + c_b)}^r
+		= 1^r
+		= 1
+		\qquad
+		c_a^r + c_b^r
+		> 1
+	.\]
+	ולכן בהתאמה ${(c_a + c_b)}^r > c_a^r + c_b^r$, ועתה נגיש לחישוב,
+	\[
+		\lVert f \rVert_r
+		= {\left(\int {(c_a \indicator_A + c_b \indicator_B)}^r\ d \mu\right)}^\frac{1}{r}
+		> {\left(\int {(c_a \indicator_A)}^r + {(c_b \indicator_B)}^r\ d \mu\right)}^\frac{1}{r}
+		= c_a \mu^\frac{1}{r}(A) + c_b \mu^\frac{1}{r}(B)
+		= \lVert c_a \indicator_A \rVert_r + \lVert c_b \indicator_B \rVert_r
+	\]
+	כלומר אי־שוויון המשולש לא מתקיים עבור $f$.
+\end{proof}
+
+\question{}
+נניח ש־$(X, \Aa, \mu)$ מרחב מידה $\sigma$־סופי וכן ש־$1 \le s \le t \le \infty$.
+
+\subquestion{}
+נראה ש־$L^t(\mu) \subseteq L^s(\mu)$ אם ורק אם $\mu(X) < \infty$.
+\begin{proof}
+	נניח ש־${\{ E_n \}}_{n = 1}^\infty \subseteq \Aa$ כך ש־$X = \biguplus E_n$ וכן ש־$\mu(E_n) < \infty$ לכל $n$.
+
+	נניח ש־$L^t(\mu) \subseteq L^s(\mu)$ לכל $t, s$ כאלה.
+	כלומר אם $\lVert f \rVert_t < \infty$ אז גם $\lVert f \rVert_s < \infty$ לכל $f : X \to \CC$ מדידה.
+	נגדיר את הסדרה,
+	\[
+		a_n^t = \int_{E_n} {|f|}^t\ d \mu
+	\]
+	ונבחן את $\sum_{n = 1}^k a_k$, נקבל,
+	\[
+		\lim_{n \to \infty} a_n^t
+		= \int {|f|}^t\ d \mu
+	\]
+	כלומר אם הטור מתכנס אז גם $\sum_{n = 1}^\infty a_n^s$ מתכנס לכל $s \ge t$.
+	נבחין כי מחוקי טורי חזקות נובע שמתקיים $a_n^t \xrightarrow{t \to \infty} 0$ לכמעט כל $n$.
+	בפרט אם נבחר $f \equiv 1$ נקבל שמתקיים $\mu(X) < \infty$ כפי שרצינו.
+
+	נניח ש־$\mu(X) < \infty$, לכן $\sum_{n = 1}^\infty \mu(E_n) < \infty$.
+	נבחין כי מתקיים,
+	\[
+		\lVert f \rVert_r
+		= {\left(\int {| f |}^r\ d \mu\right)}^\frac{1}{r}
+		= {\left(\sum_{n = 1}^\infty \int_{E_n} {| f |}^r\ d \mu\right)}^\frac{1}{r}
+		< \infty
+		\iff \sum_{n = 1}^\infty \int_{E_n} {| f |}^r\ d \mu
+		< \infty
+	\]
+	אבל גם,
+	\[
+		\int_{E_n} {|f|}^t\ d \mu
+		\le \int_{E_n} {|f|}^s\ d \mu
+	\]
+	ולכן אם $f \in L^t(\mu)$ אז נובע ש־$f \in L^s(\mu)$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$L^s(\mu) \subseteq L^t(\mu)$ אם ורק אם אין ב־$\Aa$ קבוצות ממידה $< \varepsilon$ לכל $0 > \varepsilon$.
+\begin{proof}
+	נניח ש־$L^s(\mu) \subseteq L^t(\mu)$.
+	נניח ש־$f = \sum_{n = 1}^N \alpha_n \indicator_{A_n}$ פשוטה אי־שלילית כלשהי, מותר לנו להניח כן משלמות המרחב ומהעובדה שלכל פונקציה נוכל לקחת את ערכה המוחלט.
+	אז מתקיים,
+	\[
+		\lVert f \rVert_s
+		\le \sum_{n = 1}^N \lVert \lVert \alpha_n \indicator_{A_n} \rVert_s
+		\le \sum_{n = 1}^N \alpha_n \mu^{\frac{1}{s}}(A_n)
+		\le c \lVert f \rVert_t
+	.\]
+	כאשר המעבר הראשון נובע מאי־שוויון מינקובסקי והמעבר האחרון נובע משקילות נורמות ב־$\RR$ (והעובדה שנורמה של פונקציה היא ערך ממשי).
+	נסיק שמתקיים,
+	\[
+		\mu^{\frac{1}{s}}(E_n) \le c \mu^{\frac{1}{t}}(E_n)
+		\implies \mu^{\frac{1}{s} - \frac{1}{t}}(E_n) \le c
+		\implies \mu(E_n) \ge c^{\frac{st}{s - t}}
+	\]
+	ונסיק את הטענה.
+
+	בכיוון ההפוך תהי $f \in L^s(\mu)$, ונסמן $A_n = \{ x \in X \mid {|f(x)|} > n \}$, אז נובע ש־$\mu(A_n) \to 0$.
+	אבל לא קיימות קבוצות ממידה חיובית קטנות מ־$\varepsilon$ ולכן $\mu(A_n) = 0$ החל מ־$n$ מסוים.
+	כלומר $f$ פונקציה חסומה ולכן נוכל להסיק ש־$f \in L^t(\mu)$ לכל $t \ge s$.
+\end{proof}
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב מידה, לכל $f : X \to \RR$ מדידה נגדיר את הסופרימום והאינפימום ההכרחיים שלה להיות,
+\[
+	\esssup f
+	= \inf\{ x \in \RR \mid \mu(f^{-1}((x, \infty))) = 0 \},
+	\qquad
+	\essinf f
+	= \inf\{ x \in \RR \mid \mu(f^{-1}((-\infty, x))) = 0 \}
+\]
+נגדיר לכל $f: X \to \CC$ מדידה גם $\lVert f \rVert_\infty = \esssup |f|$.
+
+\subquestion{}
+תהי $f : X \to \RR$ מדידה, ונסמן $K \subseteq \RR$ את התומך של $f_* \mu$ המוגדרת על $(\RR, \Bb_\RR)$. \\
+נראה שהאינפימום והסופרימום של $K$ הם $\essinf f, \esssup f$.
+\begin{proof}
+	נסמן $\alpha = \esssup f$, אז נובע ש־$\alpha \in \RR$ כך שמתקיים $\mu(f^{-1}(x, \infty)) = f_* \mu((x, \infty)) > 0$ לכל $x < \alpha$.
+	כלומר לכל קבוצה סגורה $\alpha \subseteq C$ מתקיים ש־$f_* \mu(C) > 0$ ולכן $\alpha \in K$.
+	עוד מהגדרה לכל $\beta > \alpha$ קיימת פתוחה כך ש־$f_* \mu(U) = 0$, לכן $\beta \notin K$ ונובע ש־$\sup K = \alpha$ בדיוק.
+	הטענה סימטרית עבור $\essinf$.
+\end{proof}
+
+\subquestion{}
+נראה שלכל $f$ מדידה מתקיים $\lVert f \rVert_1 \le \mu(X) \cdot \lVert f \rVert_\infty$. 
+\begin{proof}
+	עבור פונקציה פשוטה $f = \sum_{n = 1}^N \alpha_n \indicator_{E_n}$ נקבל,
+	\begin{align*}
+		\lVert f \rVert_1
+		& = \int \left\lVert \sum_{n = 1}^N \alpha_n \indicator_{E_n} \right\rVert_1\ d \mu \\
+		& = \int \left\lvert \sum_{n = 1}^N \alpha_n \indicator_{E_n} \right\rvert_1\ d \mu \\
+		& = \int \sum_{n = 1}^N |\alpha_n| \indicator_{E_n}\ d \mu \\
+		& = \sum_{n = 1}^N |\alpha_n| \mu(E_n) \\
+		& \le \mu(X) \cdot \max\{ \alpha_n \} \\
+		& = \mu(X) \lVert f \rVert_\infty
+	\end{align*}
+	ולכן ממשפט ההתכנסות המונוטונית והעובדה שנורמה היא רציפה ולכן מדידה נקבל את הטענה.
+\end{proof}
+
+\subquestion{}
+נניח ש־$f_n, f$ מדידות כך ש־$\lVert f_n - f \rVert_\infty \to 0$. \\
+נראה של־$( f_n )$ תת־סדרה המתכנסת נקודתית ל־$f$.
+\begin{proof}
+	מהגדרת נורמת סופרימום נקבל שלכל $\varepsilon > 0$ קיים $N > 0$ כך שלכל $n > N$ מתקיים $\esssup |f_n - f| < \varepsilon$, כלומר $|f_n(x) - f(x)| < \varepsilon$ $\mu$־כמעט תמיד.
+	זוהי כמובן התכנסות במידה שווה של $f_n$ ל־$f$ כמעט תמיד ולכן משלמות נורמת סופרימום על $\RR_{\ge 0}$ נסיק שקיימת תת־סדרה המתכנסת נקודתית ל־$f$ כמעט תמיד.
+\end{proof}
+
+\question{}
+נניח ש־$(X, \Aa, \mu)$ מרחב מידה סופי וש־$f : X \to \CC$ מדידה.
+
+\subquestion{}
+נראה שאם $\lVert f \rVert_\infty = 1$ אז הסדרה $a_n = \int {|f|}^n\ d \mu$ מתכנסת.
+\begin{proof}
+	מהשאלה הקודמת מתקיים,
+	\[
+		\lVert f \rVert_1 \le \mu(X) \lVert f \rVert_\infty = \mu(X) < \infty
+	\]
+
+	משאלה 3 והטענה כי $\mu(X) < \infty$ נובע שלכל $1 \le t \le \infty$ מתקיים $L^\infty(\mu) \subseteq L^t(\mu)$ וכן נתון ש־$f \in L^\infty(\mu)$ ולכן גם $\lVert f \rVert_t < \infty$.
+	נתון גם $\lVert f \rVert_\infty = 1$ וראינו ש־$\lVert f \rVert_t < 1$ לכל $t < \infty$ בשאלה 3, ולכן גם $\lVert f \rVert_t^t < 1$, ובפרט נסיק משיקולי חסימות שמתקיים $\lVert f \rVert_t^t \to 0$ כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+תהי $f$ מדידה המקיימת $0 < \lVert f \rVert_\infty < \infty$ ונראה שמתקיים,
+\[
+	\lVert f \rVert_\infty
+	= \lim_{n \to \infty} \frac{{\lVert f \rVert}_{n + 1}^{n + 1}}{{\lVert f \rVert}_n^n}
+\]
+\begin{proof}
+	\[
+		\lim_{n \to \infty} \frac{{\lVert f \rVert}_{n + 1}^{n + 1}}{{\lVert f \rVert}_n^n}
+		= \lim_{n \to \infty} \int \frac{{|f|}^{n + 1}}{{|f|}^n}\ d \mu
+		= \lim_{n \to \infty} \int {|f|}^{1 + \frac{1}{n}}\ d \mu
+	.\]	
+
+	נסמן $M = \lVert f \rVert_\infty$, אז מהגדרה מתקיים $|f| \le M$ כמעט תמיד, ולכן,
+	\[
+		\lVert f \rVert_n^n
+		= \int {|f|}^n\ d \mu
+		\le \int M^n\ d \mu
+		= M^n \mu(X)
+	\]
+	ובהתאם,
+	\[
+		\frac{{\lVert f \rVert}_{n + 1}^{n + 1}}{{\lVert f \rVert}_n^n}
+		\le \frac{M^{n + 1} \mu(X)}{M^n \mu(X)}
+		= M
+	\]
+	מהצד השני מתקיים $M = \esssup |f| = \inf\{ x \in \RR \mid \mu(f^{-1}((x, \infty))) = 0 \}$.
+	אז נגדיר $A = f^{-1}((M, \infty))$ ולכן $\mu(A) = 0$.
+	בהתאם נגדיר $A_\varepsilon = f^{-1}((M - \varepsilon, \infty))$ ונקבל $\mu(A_\varepsilon) \xrightarrow{\varepsilon \to \infty} 0$ וכן,
+	\[
+		\lVert f \rVert_n^n
+		= \int {|f|}^n\ d \mu
+		\ge \int_{A_\varepsilon} {|f|}^n\ d \mu
+		\ge \int_{A_\varepsilon} {(M - \varepsilon)}^n\ d \mu
+		= {(M - \varepsilon)}^n \mu((M - \varepsilon, \infty))
+	\]
+	ונקבל,
+	\[
+		\frac{{\lVert f \rVert}_{n + 1}^{n + 1}}{{\lVert f \rVert}_n^n}
+		\ge \frac{{(M - \varepsilon)}^{n + 1} \mu((M - \varepsilon, \infty))}{{(M - \varepsilon)}^n \mu((M - \varepsilon, \infty))}
+		= M - \varepsilon
+	\]
+	ולכן נובע $\lVert f \rVert_n^n \to M$.
+\end{proof}
+
+\end{document}
