@@ -1,0 +1,84 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Solution to Exercise 3 --- Model Theory (1), 80616}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+\subquestion{}
+We will show that there is a collection $X \subseteq \Pp(\omega)$ such that $|X| = \aleph_1$ and if $x \ne y \in X$ then $x \cap y$ is bounded.
+\begin{proof}
+	For any $A \subseteq \omega$ infinite let us define $Y(A) = \{ \sum_{n \in A \cap m} 2^n \mid m < \omega \}$, then $X(A) \in \Pp(\omega)$.
+	It follows that $Y : \omega^\omega \to \Pp(\omega)$ is a function, note that it is injective, as if $A \ne B \in \dom Y$ then there is $m \in A \setminus B$, witnessing $Y(A) \ne Y(B)$.
+	The injectivity of $Y$ implies that $|\im Y| = |\Pp(\omega)|$, and let $X = \im Y$.
+
+	We move to show that if $A' \ne B' \in X$ then $A' \cap B' < \alpha$ for some $\alpha < \omega$.
+	Let $A, B \subseteq \omega$ be elements such that $Y(A) = A', Y(B) = B'$.
+	$A \ne B \implies \exists m < \omega,\ k \in A, k \notin B$ without loss of generality.
+	Let $k < m < \omega$, then it suffices to show that $\sum_{n < m} 2^n (\indicator_A(n) - \indicator_B(n)) \ne 0$,
+	but as a result from number theory and by the fact that $A \cap m \ne B \cap m$ the expression indeed does not nullify.
+	We deduce that $|A' \cap B'| \le k < \omega$ as wished.
+\end{proof}
+
+\subquestion{}
+Let $\Ll = \{0, S, \le\} \cup \{ R_X \mid X \subseteq \omega \}$ be an uncountable language such that $0$ is constant symbol, $S$ is unary function symbol,
+$\le$ is binary relation symbol and $R_X$ is an unary relation symbol for all $X \subseteq \omega$. \\
+Let $\Aa$ be a model over $\Ll$ with $A = \omega, 0^\Aa = 0, S^\Aa(n) = n + 1, x \le^\Aa y \iff x \in y$ and $R_X^\Aa(n) \iff n \in X$, and let $T = \Th(\Aa)$. \\
+We will show that $T$ is $\omega$-categorical, that it has infinitely many nonequivalent formulas and that there are infinitely many non-isolate types in $S_1(T)$.
+\begin{proof}
+	Let $\Mm \models T$ be some countable model, we will show that $\Mm \cong \Aa$.
+	We define recursively $f : A \to M$ by $f(0) = 0^\Mm$ and $f(n + 1) = S^\Mm(f(n))$.
+	It follows that $f$ preserves $0, S$, it remains to show it also preserves $\le, R_X$.
+	The claim that $f$ preserves $\le$ can be shown using double induction by fixing each $n$ and proving $n \le m \implies f(n) \le f(m)$.
+	Definability of $n \in \Aa$ as $S^n(0)$ and the fact for each $X$, $R_X^\Aa(n) \iff S^n(0) \in X$ implies that $R_X$ is preserved under $f$ as well. \\
+	$\Aa$ fulfills the axiom scheme of induction, meaning that $T$ does as well. Each $X \subseteq A$ is definable using $R_X$,
+	meaning that the sentence $(0 \in \NN \land (x \in \NN \to S(x) \in \NN)) \to \forall x \in \NN$ exists in $T$ (to be precise it is symbolically appears and not the actual form written) where $\NN$ is some $X$.
+	$f$ is defined as injection, let $m \in M$ be some element. If $m \in \NN$ then by the recursive definition of $f$, $m \in \im f$.
+	Otherwise, $\Mm \models m \notin \NN$, a contradiction to the sentence $\in T$. $f$ is bijection and thus a model isomorphism, thus $T$ is $\omega$-categorical.
+
+	Let $\varphi_n(x) = (x = S^{\underline{n}}(0))$, as an informal way to define that $\varphi_0(x) = (x = 0), \varphi_1 = (x = S(0))$ and so on.
+	$\Aa \models \forall x\ x \ne S(x)$, then we can deduce that $\varphi_n \not\equiv \varphi_m$ for all $n < m < \omega$.
+	Then $\{ \varphi_n \mid n < \omega \} \subseteq T$ is a set of non-equivalent formulas.
+
+	Let $p(x) = \{ \underline{n} \le x \mid n < \omega \}$ be a partial type, and let $A \in X$ for $X$ of the previous part.
+	$T \models \forall x\ (x = 0 \lor \exists y\ S(y) = x)$ therefore if $S = T \cup p(\gamma)$ for new constant symbol $\gamma$ then $\exists x\ x = S^{z}(\gamma)$ for any $z \in \ZZ$.
+	Let $p_A(x) = \cl_\vdash p(x) \cup \{ R_A(S^a(x)) \mid a \in A \} \cup \{ \lnot R_Y(S^z(x)) \mid A \ne Y \subseteq \omega, z \in \ZZ \}$.
+	$S_A = T \cup p_A(\gamma)$ is complete as a closure under consequences.
+	It can be shown using induction over the structure of the formula that $p_A$ cannot be omitted for any $A \in X$.
+
+	We want to show that there are infinitely many different types $p_A$.
+	Let $A \ne B \in X$ and let us consider $S_A, S_B$.
+	If $\Mm \models S_A \cap S_B$ then $\Mm$ thinks that there is a maximal element in $A \cap B$, meaning that the class is bounded, in oppose to the fact that $S_A, S_B$ think that $A, B$ are unbounded.
+	It follows that $S_A \ne S_B$ and that there is no common theory such that it contain $T$.
+	We conclude that there are $2^{\aleph_0}$ such types.
+\end{proof}
+
+\question{}
+Let $\omega \le \kappa$ be some cardinal.
+We say that a model $\Mm$ is $\kappa$-saturated if for every $A \subseteq M$ with $|A| < \kappa$, any type in $S_1(A)$ is realized.
+
+\subquestion{}
+Let $T$ be a consistent complete theory over a language of size $\le \kappa$ with an infinite model. \\
+We will show that there is a $\kappa^+$ saturated model of $T$ of cardinality $2^\kappa$.
+\begin{proof}
+	By Löwenheim-Skolem theorem we can assume that there is a model $\Mm \models T$ of cardinality $\kappa$.
+	Let,
+	\[
+		K = \{ p \subseteq \form_{L(A)} \mid A \subseteq M, \forall \varphi \in p,\ \operatorname{FV}(\varphi) = \{ x \}, T \cup p(c) \text{ is complete} \}
+	\]
+	Note that $\form_{L(M)}$ is of size $2^\kappa$ therefore $K$ is bounded by $2^\kappa$ as well.
+	Let $\Nn' \models T \cup \bigcup K$ be enrichment of $\Mm$ by up to $2^\kappa$ new constants such that each type is realized and let $\Nn$ be its reduction to $\Mm$'s language.
+	Then $\Nn \models T$, is saturated and $\kappa^+$ saturated directly by its construction.
+	Lastly, if $|N| < 2^\kappa$, we can use upwards Löwenheim-Skolem again on $\Nn'$.
+\end{proof}
+
+\subquestion{}
+We will show that if $\Mm$ and $\Nn$ are elementary equivalent $\kappa$-saturated models of cardinality $\kappa$ then $\Mm \cong \Nn$,
+and that any partial elementary map $f : A \to B$ with $A \subseteq M, B \subseteq N, |A| < \kappa$ can be extended to an isomorphism.
+\begin{proof}
+	TODO
+\end{proof}
+
+\end{document}
