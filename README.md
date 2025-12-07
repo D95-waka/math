@@ -187,7 +187,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">עתידיים</th>
-        <th>18</th>
+        <th>21</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
@@ -220,8 +220,13 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80650">תורת הקבוצות האקסיומטית</a></td>
-        <td>2027א'</td>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6170">קוגניציה וחישוביות של בעלי חיים</a></td>
+        <td>2026ב'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6115">תהליכים קוגניטיביים למדעי הקוגניציה</a></td>
+        <td>2026ב'</td>
         <td>3</td>
     </tr>
 </table>

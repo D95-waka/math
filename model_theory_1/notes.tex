@@ -1510,7 +1510,7 @@
 	אז מהמשפט הקודם כל קבוצה $\aut(\Mm)$־אינווריאנטית היא גדירה עם פרמטרים ב־$A$ במודל $\Mm$.
 	בפרט $\aut(\Mm_A)$־אינווריאנטית ולכן $\Th(\Mm)$ היא $\aleph_0$־קטגורית.
 \end{proof}
-\begin{theorem}[שני המודלים של ווט]
+\begin{theorem}[שני המודלים של ווט]\label{theorem-two-models-of-vaught}
 	נניח ש־$T$ תורה שלמה בשפה בת־מניה.
 	אז לא יתכן של־$T$ יש בדיוק שני מודלים בני־מניה עד־כדי איזומורפיזם.
 \end{theorem}
@@ -1522,6 +1522,163 @@
 	אם בהכרח $\Mm_1$ רווי אז $\Th({(\Mm_1)}_{\bar{a}})$ היא $\aleph_0$־קטגורית (כי כל מודל רווי).
 	אבל אז $\Th(\Mm_1)$ היא $\aleph_0$־קטגורית בסתירה להנחה. לכן המודל הרווי שונה משניהם.
 \end{proof}
+
+\section{שיעור 8 --- 7.12.2025}
+\subsection{שני המודלים}
+נמשיך לדבר על משפט שני המודלים של ווט.
+נניח שהשפה שלנו היא בת־מניה בחלק זה.
+\begin{definition}[תורה קטנה]
+	תורה $T$ תיקרא קטנה אם לכל $n < \omega$ מתקיים $|S_n(T)| \le \omega$.
+\end{definition}
+\begin{remark}
+	אם $T$ איננה קטנה אז יש ל־$T$ מספר לא בן־מניה של מודלים בני־מניה, כאשר $T$ שלמה עקבית ובעלת מודל אינסופי.
+\end{remark}
+\begin{proof}
+	נניח ש־$\aleph_1 \le |S_n(T)|$. לכל $p \in S_n(T)$ נתאים מודל $\Mm_p$ בן־מניה שמממש את $p$.
+	לכל $\Mm_p$ נסמן $A_p = \{ q \in S_n(T) \mid \Mm \text{ realizes } q \}$, ולכן $A_p = \{ tp^{\Mm_p}(\bar{b}) \mid \bar{b} \in \Mm_p^n \}$.
+	אם $\Mm_p \cong \Mm_q$ אז גם $A_p = A_q$ וכן,
+	\[
+		\bigcup \{ A_p \mid {[ \Mm_p ]}_{\cong} \} = S_n(T)
+	\]
+	ולכן מספר מחלקות השקילות הוא לא בן־מניה.
+	בהינתן $p$ מדוע יש מודל של $T$ בן־מניה המממש את $p$: נעשיר את השפה $L$ בסימן קבוע ונסתכל על $T \cup p(c)$ העקבית.
+\end{proof}
+\begin{proposition}
+	נניח ש־$T$ קטנה שלמה ועקבית ללא מודלים סופיים, אז יש מודל רווי ובן־מניה ל־$T$.
+\end{proposition}
+\begin{proof}
+	יהי $\Mm_0 \models T$ בן־מניה.
+	לכל טיפוס $p \in \bigcup_{n < \omega} S_n(T)$ נוסיף סדרת קבועים $\bar{a}_p$ ונבחן את התורה $\diag(\Mm_0) \cup \{ p(\bar{a}_p) \}$.
+	\[
+		\exists \bar{x}_0\ \varphi(\bar{x}_0) \land \exists \bar{x}_1\ \varphi_1(\bar{x}_1), \ldots \in T
+	\]
+	מתקיים ב־$\Mm$ לכן התורה עקבית.
+	יהי $\Mm_1$ שמקיים תורה זו, אז $\Mm_0 \prec \Mm_1$ ונבחן את $\bigcup_{|A| < \aleph_0, A \subseteq \Mm_1} S_n(A)$, אוסף בן־מניה.
+	אז קיים $\Mm_2$ שמממש את כולם ומרחיב אלמנטרית את $\Mm_1$, נחזור על כך $\omega$ פעמים ונסמן $\Mm_{\omega} = \bigcup \Mm_n$.
+	אז $\Mm_{\omega}$ מודל רווי.
+	נשים לב ש־$S_n(A)$ בן־מניה עבור $A \subseteq M$ סופית ולכן $S_n(A) \hookrightarrow S_{n + |A|}(T)$ על־ידי התאמת טיפוסים מהצורה $p = \{ \varphi(a_0, \ldots, a_{k - 1}, x_0, \ldots, x_{n - 1}) \mid \varphi \in \form \}$,
+	על־ידי $q = \{ \varphi(y_0, \ldots, y_{k - 1}, x_0, \ldots, x_{n - 1}) \mid \varphi \}$.
+	$q$ הוא טיפוס שכן הוא סגור לגימום ושלם, ו־$q$ עקבי שכן אם $\varphi \in q$ אז,
+	\[
+		\Mm \models \exists \bar{x}\ \varphi(a_0, \ldots, a_{k - 1}, \bar{x})
+		\implies \Mm \models \exists \bar{y} \exists \bar{x}\ \varphi(\bar{y}, \bar{x})
+		\in T
+	\]
+\end{proof}
+\begin{remark}
+	למעשה $T$ קטנה אם ורק אם יש מודל רווי בן־מניה.
+\end{remark}
+נחזור למשפט\ \ref{theorem-two-models-of-vaught}.
+\begin{proof}
+	אם $T$ לא קטנה אז יש לפחות $\aleph_1$ טיפוסי איזומורפיזם, בפרט יש לפחות $3$.
+	אחרת קיים מודל רווי $\Mm_0$.
+	נניח ש־$p_0 \in S_n(T)$, ממשפט השמטת הטיפוסים $\Mm_1$ משמיט את $p$.
+	קיים $\bar{a} \in \Mm_0^n$ כך ש־$\Mm_0 \models p(\bar{a})$ ונסמן $\Th({(\Mm_0)}_{\bar{a}}) = T_{\bar{a}}$ אז $T_{\bar{a}}$ לא $\aleph_0$־קטגורית ולכן קיים $q \in S_m(T_{\bar{a}})$ לא מבודד.
+	$\Mm_0$ מממש את $q$ עם $\bar{b}$ ולכן $T_{\bar{a} \bar{b}}$ לא $\aleph_0$־קטגורית.
+	נניח ש־$r$ טיפוס לא מבודד נוסף, אז קיים $\Mm_3$ שמשמיט את $r$ ומממש את $p, q$.
+\end{proof}
+\begin{remark}
+	במהות החלוקה היא שאם $\Mm_0$ רווי אז $\Mm_0 \models p(a)$ ו־$\Mm_1$ משמיט את $p$.
+	אז יש טיפוס כך ש־$\Mm \models q(b)$ וכן קיים $\Mm_2$ משמיט את $q$, ונניח ש־$q \in S(a)$ אז קיים $\Mm_3$ שמשמיט את $r$.
+\end{remark}
+\begin{example}
+	נבחר את $T = \operatorname{DLO} \cup \{ c_n < c_{n + 1} \mid n < \omega \}$.
+	ראינו ש־$T$ מחלצת כמתים ושלמה וכן ש־$p(x) \supseteq \{ c_n < x \mid n < \omega \}$.
+	במקרה זה לדוגמה $M_1 = \QQ_{< 0}$ כאשר $c_n = -\frac{1}{n}$ ונגדיר $a = 0$ כלשהו.
+	אז $q = \{ c_n < x \mid n < \omega \} \cup \{ x < a \}$.
+	במקרה זה נקבל $\Mm_2$ מודל מעל $\QQ$ ובהתאם $\Mm_0 = \QQ \setminus \{ 0 \}$.
+	מדוע $\Mm_0$ רווי? מחילוץ הכמתים.
+	$\Mm_3$ מקיים של־$c_n$ יש גבול (יש מינימום לחסמים עליונים של $\{ c_n^\Mm \mid n < \omega \}$).
+\end{example}
+\begin{definition}[מודל אטומי וראשוני]
+	מודל $\Mm$ הוא אטומי אם לכל $\bar{a} \in M^n$ כך ש־$tp^\Mm(\bar{a})$ מבודד.
+	מודל $\Mm$ לתורה $T$ יקרא ראשוני אם לכל $\Nn \models T$ יש שיכון אלמנטרי $j : \Mm \to \Nn$.
+\end{definition}
+\begin{example}
+	המודל הסטנדרטי של האריתמטיקה הוא ראשוני.
+\end{example}
+\begin{remark}
+	נשים לב שבאופן טריוויאלי אם $T$ היא $\aleph_0$־קטגורית אז המודל היחיד שלה הוא אטומי וראשוני.
+\end{remark}
+\begin{proof}
+	אטומי ממשפטים שכבר מצאנו על שקילות ל־$\aleph_0$־קטגוריות. \\
+	$\Mm_0 \prec \Nn \models T$ כש־$\Mm_0$ בן־מניה אז $\Mm_0 \cong \Mm$ ומשרשור נקבל את $j$.
+\end{proof}
+\begin{proposition}
+	אם $\Mm$ אטומי ובן־מניה לתורה שלמה אז $\Mm$ ראשוני.
+\end{proposition}
+\begin{proof}
+	נמנה את איברי $\Mm$ על־ידי $M = \{ a_n \mid n < \omega \}$, ויהי $\Nn \models T$.
+	נבנה באינדוקציה $f_n : \{ a_0, \ldots, a_{n - 1} \} \to N$ שיכון אלמנטרי חלקי באופן הבא:
+	עבור $n = 0$ אז $\Nn \equiv \Mm$ וסיימנו.
+	נניח כי בנינו את $f_n$ ונבחן את הטיפוס $tp(a_0, \ldots, a_{n - 1}) = p_n$, אז $p_n$ מבודד על־ידי $\psi_n$ כלשהו.
+	הנוסחה $\exists x_{n - 1}\ \psi_n(x_0, \ldots, x_{n - 2}, x_{n - 1})$ שייכת ל־$p_{n - 1}$ שכן $\Mm \models \exists x_{n - 1}\ \psi_n(a_0, \ldots, a_{n - 2}, x_{n - 1})$.
+	לכן $T \models \forall x_0 \cdots \forall x_{n - 0}\ \psi_{n - 1}(x_0, \ldots, x_{n - 2}) \to \exists x_{n - 1}\ \psi_n(x_0, \ldots, x_{n - 1})$.
+	אז נובע ש־$\Nn \models \psi_{n - 1}(f_{n - 1}(a_0), \ldots, f_{n - 1}(a_{n - 2}), x_{n - 1})$.
+	יהי $b$ המעיד על כך ונגדיר $f_n = f_{n - 1} \cup \{ \langle a_{n - 1}, b \rangle \}$.
+	אכן $\psi_n \in tp(f_{n - 1}(a_0), \ldots, f_{n - 1}(a_{n - 2}), b) = \bar{p}_n$, אבל לכל נוסחה $\varphi \in p_n$ מתקיים $T \models \forall \bar{x}\ (\psi_n(\bar{x}) \to \varphi(\bar{x}))$,
+	נובע ש־$p_n \subseteq \bar{p}_n$ ולכן שווה לו ונסיק ש־$j = \bigcup f_n$ ולכן $j : \Mm \to \Nn$ שיכון אלמנטרי.
+\end{proof}
+\begin{example}
+	נסתכל על $T = \operatorname{ACF}_0$ אז $\bar{\QQ}$ מודל אטומי.
+	אז לפחות ל־$a \in \bar{\QQ}$ נקבל ש־$tp(a)$ מבודד על־ידי נוסחה מהצורה $p(x) = 0$ כאשר $p$ הפולינום המינימלי.
+\end{example}
+\begin{corollary}
+	נניח ש־$\Mm, \Nn$ מודלים בני־מניה לתורה $T$ שלמה אז $\Mm \cong \Nn$.
+\end{corollary}
+\begin{proof}
+	כמו קודם אבל הפעם עם back and forth.
+\end{proof}
+\begin{corollary}
+	אם $\Mm$ מודל ראשוני של $T$ אז $\Mm$ אטומי ובן־מניה.
+\end{corollary}
+\begin{proof}
+	אם יש $\bar{a} \in M^n$ כך ש־$p_n = tp(\bar{a})$ לא מבודד אז יש מודל של $T$ שמשמיט אותו ולא יתכן שיש שיכון אלמנטרי מ־$\Mm$ לאותו מודל.
+\end{proof}
+\begin{corollary}
+	מודל בן־מניה הוא אטומי אם ורק אם הוא ראשוני.
+\end{corollary}
+\begin{example}
+	נניח ש־$L = \{ B_n \mid n < \omega \}$ עבור $B_n$ יחסים חד־מקומיים יחד עם התורה,
+	\[
+		\left\{ \bigwedge_{n \in Z} B_n(x) \land \bigwedge_{n \in Y} \lnot B_n(x) \mid Z, Y \subseteq \omega \text{ disjoint and finite} \right\}
+	\]
+	הוכחנו ש־$T$ היא שלמה.
+	לכל $a$ במודל של $T$ נקבל $tp(a) = \{ B_n(a) \mid n \in X \} \cup \{ \lnot B_m \mid m \notin X \}$ כאשר $X \subseteq \omega$ מחילוץ כמתים שהוכחנו, והוא לא מבודד.
+	נסיק בהתאם שאין מודל אטומי.
+\end{example}
+\begin{theorem}[שקילות לקיום מודל ראשוני]
+	בשפה בת־מניה, ל־$T$ שלמה יש מודל ראשוני אם ורק אם לכל $n$ אוסף הטיפוסים המבודדים צפוף ב־$S_n(T)$.
+\end{theorem}
+\begin{proof}
+	נניח ש־$\Mm$ ראשוני ונניח ש־$\varphi$ נוסחה כך ש־$U_\varphi = \{ q \in S_n(T) \mid \varphi \in q \} \ne \emptyset$,
+	אז יש מודל $\Nn \models T$ כך ש־$\Nn \models q(c)$ לאיזשהו $q \in U_\varphi$.
+	טענה זו נכונה אם ורק אם $\exists \bar{x}\ \varphi(x) \in T \iff \Nn \models \exists \bar{x}\ \varphi(\bar{x})$.
+	נובע ש־$\Mm \models \varphi(\bar{x})$ ונסמן את העד ב־$\bar{a}$.
+	$tp(\bar{a})$ מבודד שכן $\Mm$ אטומי ולכן $\varphi \in tp(\bar{a})$, כלומר $tp(\bar{a}) \in U_\varphi$.
+
+	בכיוון ההפוך נניח שלכל $n$ הטיפוסים המבודדים צפופים ב־$S_n(T)$.
+	$p \in S_n(T)$ מבודד אם ורק אם יש נוסחה $\psi(x_0, \ldots, x_{n - 1})$ כך ש־$\psi \in p$ ולכל $\theta \in p$ מתקיים $T \models \forall \bar{x}\ (\psi \to \theta)$.
+	כלומר $\psi$ מבודדת טיפוס אם לכל נוסחה $\theta(x_0, \ldots, x_{n - 1})$ מתקיים $\forall \bar{x}\ (\psi \to \theta)$ או $\forall \bar{x}\ (\psi \to (\lnot \theta))$.
+	נאמר כי $\psi$ \textbf{שלמה} אם $\{ \theta \mid \forall \bar{x}\ (\psi \to \theta) \} \in S_n(T)$,
+	ונסתכל על הטיפוס החלקי $p_n = \{ \lnot \psi \mid \psi(x_0, \ldots, x_{n - 1}) \text{ is complete} \}$.
+	בלי הגבלת הכלליות $p_n$ עקבית (שכן מטרתנו להשמיט כל $p_n$) ונטען ש־$p_n$ לא מבודדת.
+	אחרת נניח ש־$\varphi$ נוסחה עקבית המבודדת את $p_n$.
+	$\varphi$ עקבית ולכן $U_\varphi \ne 0$ אז מההנחה יש טיפוס שלם מבודד ב־$U_\varphi$.
+	נאמר ש־$\psi$ מבודדת אותו, אז לכל $\lnot \tilde{\psi} \in p_n$ מתקיים,
+	\[
+		T \models \forall \bar{x}\ (\varphi \to (\lnot \tilde{\psi}))
+	\]
+	בפרט ל־$\tilde{\psi} = \psi$ ולכן, $T \models \forall \bar{x}\ (\varphi \to (\lnot \psi))$.
+	אך מצד שני $T \models \exists \bar{x}\ (\psi \land \varphi)$ וזו סתירה. \\
+	לכן קיבלנו שכל $p_n$ לא מבודד אז יש מודל $\Mm$ של $T$ שמשמיט את $p_n$ לכל $n$ (משפט השמטת טיפוסים המורכב),
+	כלומר לכל $\bar{a} \in M^n$ בהכרח $tp(\bar{a})$ מבודד, שכן יש $\psi$ שלמה ששייכת אליו ולכן מבודדת אותו.
+	לכן $\Mm$ מודל בן־מניה ואטומי.
+\end{proof}
+
+\subsection{גבולות פרייסה}
+תורות $\aleph_0$־קטגוריות עם חילוץ כמתים, הומוגניות וומהותית נכונות מתוך תת־מבנים סופיים.
+טענה זו שקולה לתכונת הומוגניות של הרחבת איזומורפיזם, האוסף $\operatorname{Age}(\Mm)$ של תת־מודלים סופיים של $\Mm$ עד כדי איזומורפיזם יקיים תכונות על הדיאגרמה של $A, B \in \operatorname{Age}$.
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
