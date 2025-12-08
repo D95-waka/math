@@ -980,6 +980,92 @@
 בהתאם לדוגמה ב־$\RR^3$ אם נגדיר $l(v) = \det(x\ y\ v)$ עבור $x, y \in \RR_{\text{col}}^3$ קבועים, נקבל העתקה לינארית ולכן לכל $z \in \RR^3$ קיים $x \wedge y \in \RR^3$ יחיד כך ש־$l(z) = 0$.
 זוהי למעשה המכפלה החיצונית, המכפלה הווקטורית.
 
+\section{שיעור 15 --- 8.12.2025}
+\subsection{תבניות בי־לינאריות}
+יהי $V$ מרחב וקטורי מעל שדה $\FF$.
+\begin{definition}[תבנית בי־לינארית]
+	תבנית בי־לינארית על $V$ היא פונקציה $g : V \times V \to \FF$ כך שהפונקציות $x \mapsto g(v, x), x \mapsto g(x, v)$ עבור $v \in V$ כאשר הן $V \to \FF$ הן לינאריות.
+\end{definition}
+\begin{example}
+	אם $l^1, l^2 \in \hom(V, \FF)$ אז גם $(v, w) \mapsto l_{1}(v) l^2(w)$ אף היא תבנית בי־לינארית.
+\end{example}
+\begin{example}
+	עבור $V = M_{n \times m}(\FF)$, ו־$A \in M_m(\FF)$ נגדיר $g_A(X, Y) = \tr(X^t A Y)$, זוהי פונקציה משמרת לינאריות מורכבת על־ידי פונקציונל לינארי, ולכן תבנית בי־לינארית.
+\end{example}
+\begin{example}
+	כאשר $V = \FF_{\operatorname{col}}^n$ ו־$A \in M_n(\FF)$ אז $g_A(x, y) = x^t A y$, אז זוהי תבנית בי־לינארית כמקרה פרטי של הדוגמה הקודמת.
+\end{example}
+במקרה שבו $n = 2$ ו־$A = \diag(1, 1) = \id$ אז נקבל $g_E(x, y) = x^t y = x \cdot_E y = x^1 y^1 + x^2 y^2$, זוהי המכפלה הפנימית הסטנדרטית כאשר $\FF = \RR$ או $\FF = \CC$.
+אם לעומת זאת $A = \diag(1, -1)$ נקבל $g_L(x, y) = x \cdot_L y = x^1 y^1 - x^2 y^2$, זוהי מכפלה פנימית חשובה בפיזיקה.
+ישנו גם המקרה $A = (\begin{smallmatrix} 0 & 1 \\ 1 & 0 \end{smallmatrix})$ אז נקבל $g_H(x, y) = x^1 y^2 + x^2 y^1$, נקראת התבנית ההיפרבולית.
+אם נגדיר $A = (\begin{smallmatrix} 0 & 1 \\ -1 & 0 \end{smallmatrix})$ אז נקבל $g_S(x, y) = x^1 y^2 - x^2 y^1 = \det(x\ y)$, כלומר זוהי דטרמיננטה של מטריצה ריבועית כאשר עמודותיה הן הווקטורים $x, y$.
+
+\subsection{מטריצת גרם}
+או באנגלית מטריצת Gram.
+אם $V$ מרחב וקטורי ממימד סופי מעל $\FF$ ו־$\Bb = (b_1, \ldots, b_n)$ בסיס סדור, $g : V \times V \to \FF$ תבנית בי־לינארית.
+\begin{definition}[מטריצת גרם]
+	אם $g_{ij} = g(b_i, b_j)$ אז המטריצה $G = [g_{ij}] \in M_n(\FF)$ נקראת מטריצת גרם של $g$ בבסיס $\Bb$.
+\end{definition}
+אם $v \in V$ אז נוכל לכתוב $v = \Bb x$ עבור וקטור קורדינטות $x$, באופן דומה אם $w \in V$ אז נוכל לסמן $w = \Bb y$.
+במצב זה,
+\[
+	g(v, w)
+	= g\left(\sum_{i = 1}^n b_i x^i, \sum_{j = 1}^n b_j y^j\right)
+	= \sum_{i = 1}^n \sum_{j = 1}^n x^i y^j g(b_i, b_j)
+	= x^t G y
+\]
+\begin{proposition}
+	אם $g$ תבנית בי־לינארית ו־$G$ מטריצת גרם בבסיס $\Bb$ שלה, אז לכל $v = \Bb x, w = \Bb y$ מתקיים $g(v, w) = x^t G y$ ובהתאם $G$ מגדירה ביחידות את $g$.
+\end{proposition}
+עתה נרצה לשאול את השאלה המתבקשת מה קורה ל־$G$ כאשר אנו משנים את הבסיס.
+תהי $P \in GL_n(\FF)$, היא תהיה מטריצת מעבר $\Bb P = \Bb'$ כלומר לכל וקטור קורדינטות $x$ נקבל $x = P x'$.
+אז במקרה זה $g(v, w) = x^t G y = {(P x')}^t G (P y') = {(x')}^t (P^t G P) y'$.
+\begin{proposition}
+	אם $\Bb, \Bb'$ בסיסים כך ש־$\Bb P = \Bb'$ מטריצת מעבר, וכן $g$ תבנית בי־לינארית, אז אם $G$ מטריצת גרם מעל $\Bb$ של $g$, אז $P^t G P$ היא מטריצת גרם בבסיס $\Bb'$.
+\end{proposition}
+\begin{definition}[מטריצות חופפות]
+	נאמר ששתי מטריצות $A, B \in M_n(\FF)$ הן חופפות (congruent) אם קיימת $P \in GL_n(\FF)$ כך ש־$B = P^t A P$.
+\end{definition}
+\begin{exercise}
+	הוכיחו כי זהו יחס שקילות.
+\end{exercise}
+אם $g$ תבנית בי־לינארית על $V$ אז נגדיר $g^t(v, w) = g(w, v)$.
+\begin{definition}[תבנית בי־לינארית סימטרית]
+	$g$ נקראת סימטרית אם $g = g^t$ ואנטי־סימטרית כאשר $g = - g^t$.
+\end{definition}
+\begin{exercise}
+	$g$ היא סימטרית אם ורק אם $G$ סימטרית וכן ואנטי־סימטרית אם ורק אם $G$ אנטי־סימטרית.
+\end{exercise}
+\begin{definition}[תבנית אורתוגונלית]
+	תהיינה $V$ מרחב וקטורי ו־$g : V \times V \to \FF$ תבנית בי־לינארית סימטרית.
+	נסמן $u \perp v$ כאשר $g(v, w) = 0$, ונאמר ש־$u, v$ אורתוגונליות ביחס ל־$g$. \\
+	אם $U, W \subseteq V$ אז נסמן $U \perp W$ כאשר $\forall u \in U, w \in W,\ u \perp w$. \\
+	נסמן אף $U^\perp = \{ w \in V \mid \forall u \in V,\ u \perp w \}$
+\end{definition}
+\begin{definition}[גרעין של תבנית בי־לינארית]
+	הגרעין של $g$ מוגדר על־ידי $V^\perp = \ker g$.
+\end{definition}
+\begin{definition}[ניוון]
+	נאמר ש־$g$ לא מנוונת כאשר $\ker g = \{ 0 \}$. \\
+	$U \le V$ נקרא לא מנוון כאשר $g |_{U \times U}$ לא מנוונת, אחרת $U$ נקרא איזוטרופי.
+\end{definition}
+נניח ש־$V = \RR^2$ ו־$g = g_L$, כלומר $g(x, y) = x^1 y^1 - x^2 y^2$.
+במקרה זה נקבל $g(x, x) = {(x^1)}^2 - {(x^2)}^2$, ובהתאם $g(x, x) = 0$ כאשר $x_1 = x_2$, לכן $U = \{ x \mid |x_1 - x_2| = 0 \}$ מנוונת (מאוד).
+אם נבחן את $U = \{ x \mid x_1 = 0 \lor x_2 = 0 \}$ אז נקבל שרק $g(0) = 0$ ולכן זוהי קבוצה לא מנוונת.
+
+\subsection{תבנית ריבועית}
+נניח ש־$V$ ו־$g$ תבנית בי־לינארית סימטרית על $V$.
+\begin{definition}[תבנית ריבועית]
+	נגדיר את התבנית הריבועית $q : V \to \FF$ על־ידי $q(v) = g(v, v)$.
+	$q$ זו נקראת התבנית הריבועית המתאימה ל־$g$.
+\end{definition}
+נשים לב שאם $k \in \FF, v \in V$ אז $q(k v) = k^2 q(v)$.
+אם $G = {[g]}_\Bb = [ g_{ij} ]$, אז מתקיים $q(v) = x^t G x = \sum_{1 \le i, j \le n} x^i x^j g_{ij}$.
+
+בדוגמות שראינו קודם נקבל $q_E(x) = {(x^1)}^2 + {(x^2)}^2$.
+נקבל כך גם $q_L(x) = {(x^1)}^2 - {(x^2)}^2$, ולבסוף גם $q_H(x) = 2 x^1 x^2$.
+בפרט אנו רואים שבמקרה של $g_H$ ישנם וקטורים שמקבלים $0$ ב־$q_H$, כלומר היא באמת לא מתנהגת כמו נורמה.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
