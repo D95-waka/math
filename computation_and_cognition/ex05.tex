@@ -40,7 +40,114 @@
 נגדיר במצב הנתון מה היא המערכת הלומדת, מה הפרמטרים הפנימיים, מה הקלט הפלט והגמול.
 נבין גם מה מפת התלויות במקרה הנתון.
 \begin{solution}
-	TODO
+	במקרה זה המערכת הלומדת היא $\hat{y}$ כפונקציה של $\mu, \sigma$, לכן בהתאם הפרמטרים הפנימיים הם $\mu, \sigma$.
+	הקלט הוא $y$ הפלט הוא $\hat{y}$ כערך והתלויות הן $\hat{y}(y)$ כאשר $\sigma, \mu$ נלמדים כחלק מהליך הלמידה ותלויים ב־$s, m$.
 \end{solution}
+
+\subquestion{}
+נמצא את כלל העדכון המפורש של $\mu, \sigma$ כתלות ב־$r, \eta$ כפונקציית גמול וקבוע אימון.
+\begin{solution}
+	באלגוריתם למידת reinforce מוגדר $\Delta w_i = \eta e_i r$ וכן מהגדרה $e_i = \frac{\partial}{\partial w_i} \ln \hat{y}(y; w)$ כאשר $w = (\mu, \sigma)$.
+	אבל נתון $\hat{y} \sim N(\mu, \sigma^2)$ ולכן,
+	\[
+		\hat{y}(y)
+		= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(- \frac{{(y - \mu)}^2}{2 \sigma^2}\right)
+	\]
+	כפונקציית צפיפות,
+	\[
+		e_{\mu}
+		= \frac{\partial}{\partial \mu} \ln\left(\frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(- \frac{{(y - \mu)}^2}{2 \sigma^2}\right)\right)
+		= \frac{\partial}{\partial \mu} \left( - \frac{{(y - \mu)}^2}{2 \sigma^2} + \sqrt{2 \pi \sigma^2} \right)
+		= - \frac{\partial}{\partial \mu} \frac{{(y - \mu)}^2}{2 \sigma^2}
+		= \frac{y - \mu}{2 \sigma^2}
+	\]
+	וכן,
+	\[
+		e_{\sigma}
+		= \frac{\partial}{\partial \sigma} \left( - \frac{{(y - \mu)}^2}{2 \sigma^2} + \sqrt{2 \pi \sigma^2} \right)
+		= \frac{{(y - \mu)}^2}{\sigma^3} + \sqrt{2 \pi} \operatorname{sign}(\sigma)
+	\]
+\end{solution}
+
+\subquestion{}
+נחשב את השינוי הממוצע של $\sigma, \mu$.
+\begin{solution}
+	ידוע ש־$y \sim N(m, s)$, ומצאנו בסעיף הקודם את השינוי בסעיף הקודם.
+	נחשב,
+	\begin{align*}
+		\EE(\Delta \mu)
+		& = \eta \EE(e_{\mu} \cdot r) \\
+		& = - \eta \EE(\frac{y - \mu}{2 \sigma^2} {(\hat{y} - y)}^2) \\
+		& = - \frac{\eta}{2 \sigma^2} \EE((y - \mu) (\hat{y}^2 - 2 y \hat{y} + y^2)) \\
+		& = - \frac{\eta}{2 \sigma^2} ( \EE(\hat{y}^2 y) - 2 \EE(y^2 \hat{y}) + \EE(y^3) - \mu \EE(\hat{y}^2) + 2 \mu \EE(y \hat{y}) - \mu \EE(y^2)) \\
+		& = - \frac{\eta}{2 \sigma^2} ( \hat{y}^2 m - 2 m^2 \hat{y} + \EE(y^3) - \mu \hat{y}^2 + 2 m \mu \hat{y} - \mu \EE(y^2)) \\
+		& = - \frac{\eta}{2 \sigma^2} ( \sigma^2 m + \mu^2 m - 2 m^2 \sigma^2 - 2 m^2 \mu^2 + m^3 + 3 \mu \sigma^2 - \mu \sigma^2 - \mu^3 + 2 m \mu^2 - \mu m^2 - \mu s^2)
+	\end{align*}
+	החישוב עבור $\EE(\Delta \sigma)$ דומה.
+\end{solution}
+
+\subquestion{}
+נבדוק לאילו ערכים הפרמטרים מתכנסים בממוצע.
+\begin{solution}
+	אפשר לראות (על־ידי פתרון המשוואה הדיפרנציאלית) שההתכנסות היא $\mu \to m, \sigma \to s$, הגיוני שכן הטורף לומד את התנהגות הטרף.
+\end{solution}
+
+\question{}
+נתון פרספטרון בינארי $y = H(w x)$ עברו $w, x \in \RR^N$ כך ש־$y$ משתנה מקרי המקיים,
+\[
+	\PP(y = 1 \mid x, w)
+	= \frac{1}{1 + \exp(- w^t x)}
+\]
+נסמן $R$ פונקציית גמול על תוצאת $y$ בלמידת חיזוק.
+
+\subquestion{}
+נתאר את חלקי הבעיה.
+\begin{solution}
+	המערכת הלומדת היא $y(x \mid w)$, הפרמטרים הפנימיים הם $w$, הקלט הוא $x$ הפלט הוא המשתנה המקרי $y$ והגמול הוא $R$.
+	$R$ תלוי ב־$y$, והוא בתורו תלוי ב־$w, x$.
+\end{solution}
+
+\subquestion{}
+נחשב את ערך הזכאות כתלות ב־$y$.
+\begin{solution}
+	כאשר $y = 0$ ועבור $1 \le i \le N$,
+	\[
+		e_i
+		= \frac{\partial}{\partial w_i} \ln \PP(y \mid x, w)
+		= - \frac{\partial}{\partial w_i} \ln(1 + \exp(- w^t x))
+		= \frac{x_i \exp(- w^t x)}{1 + \exp(- w^t x)}
+	\]
+	עבור $y = 1$ נקבל $\PP(y = 1 \mid x, w) = 1 - \PP(y = 0 \mid x, w)$ וכן,
+	\[
+		e_i
+		= \frac{\partial}{\partial w_i} \ln(\exp(- w^t x)) - \frac{\partial}{\partial w_i} \ln(1 + \exp(- w^t x))
+		= - x_i + \frac{x_i \exp(- w^t x)}{1 + \exp(- w^t x)}
+	\]
+\end{solution}
+
+\subquestion{}
+נמצא ביטוי כללי ל־$e_i$.
+\begin{solution}
+	מהסעיף הקודם,
+	\[
+		e_i
+		= -x_i y + \frac{x_i \exp(- w^t x)}{1 + \exp(- w^t x)}
+	\]
+\end{solution}
+
+\subquestion{}
+נתון שבניסוי מסוים הגמול הוא $R$, נמצא את כלל העדכון של $w_i$ ונבדוק אם הכלל הוא מקומי.
+\begin{solution}
+	נתון שקיבלנו את תוצאת ניסוי בודד, ולכן נוכל לבחון את שינוי כלל הלמידה רק בהקשר של למידת אונליין, כלומר ב־reinforce.
+	במקרה זה נתון $\Delta w_i = \eta e_i R$, כלומר,
+	\[
+		\Delta w_i
+		= \eta R \left(-x_i y + \frac{x_i \exp(- w^t x)}{1 + \exp(- w^t x)}\right)
+		= \eta R x_i \frac{-y + (1 - y) \exp(- w^t x)}{1 + \exp(- w^t x)}
+	\]
+	נשים לב שלצורך כלל העדכון אנו צריכים את התוצאה, את $R$ ואת תוצאת כלל הנוירונים באותה שכבה, ולכן הוא לא מקומי.
+\end{solution}
+
+\question{}
 
 \end{document}
