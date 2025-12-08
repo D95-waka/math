@@ -13,8 +13,8 @@ class LinearPerceptron(object):
         self.weights = weights
 
     def predict(self, x: np.ndarray) -> np.ndarray:
-        prod = self.weights.transpose() @ x
-        logger.debug(f"Liner Perceptron Predict called for w = {self.weights}, x = {x}, wx = {prod}")
+        prod = self.weights.T @ x
+        logger.debug("Liner Perceptron Predict called for w = %s, x = %s, wx = %s", self.weights, x, prod)
         return prod
 
     def gradient(self, sample: np.ndarray, label: np.ndarray) -> np.ndarray:

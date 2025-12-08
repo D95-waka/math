@@ -2,23 +2,24 @@
 
 import logging
 import numpy as np
+from typing import Callable
 logger = logging.getLogger(__name__)
 
 class BinaryPerceptron(object):
-    def __init__(self, weights: np.array):
+    def __init__(self, weights: np.ndarray, predicate: Callable[[np.ndarray], np.ndarray] = lambda prod: np.array([int(i[0] >= 1) for i in prod])):
         if weights.ndim != 2:
             raise Exception('Supports weight matrix only')
 
         self._weights = weights
+        self.predicate = predicate
 
-    def predict(self, x: np.array) -> bool:
-        prod = np.matmul(np.transpose(self._weights), x)
-        for i in prod:
-            i[0] = int(i[0] >= 0)
+    def predict(self, x: np.ndarray) -> np.ndarray:
+        logger.debug(f"Predict init with: x.dim: {x.ndim}, x.shape: {x.shape}, weights.shape: {self._weights.shape}")
+        prod = self._weights.T @ x
+        logger.debug(f"Predict called with: x: {x}, prod: {prod}")
+        return self.predicate(prod)
 
-        return prod
-
-    def update(self, example: np.array, example_prediction: np.array) -> bool:
+    def update(self, example: np.ndarray, example_prediction: np.ndarray) -> bool:
         current_prediction = self.predict(example)
         if np.array_equal(current_prediction, example_prediction):
             return True
@@ -27,12 +28,13 @@ class BinaryPerceptron(object):
         b = np.tile(example, (1, len(example_prediction)))
         added_value = np.matmul(b, a)
         self._weights += added_value
+        return False
 
 class BinaryPerceptronTrainer(object):
     def __init__(self):
         pass
 
-    def fit(self, examples: list[np.array], example_predictions: list[np.array]):
+    def fit(self, examples: list[np.ndarray], example_predictions: list[np.ndarray]):
         initial_weights = np.ones((len(examples[0]), len(example_predictions[0])))
         bp = BinaryPerceptron(initial_weights)
         keep_iterating = True
@@ -51,7 +53,7 @@ def tests_run(bp: BinaryPerceptron, tests):
         if np.array_equal(classification, actual):
             print(f"{np.transpose(vector)} was classified correctly")
         else:
-            print(f"Vector: {np.transpose(vector)}, Correct: {classification}, Actual: {binary_perceptron.predict(vector)}")
+            print(f"Vector: {np.transpose(vector)}, Correct: {classification}, Actual: {actual}")
 
 def tests():
     print(" --- BEGIN Single Neuron Manual Test Section ---")
