@@ -8,7 +8,7 @@
 
 \question{}
 \subquestion{}
-We will show that there is a collection $X \subseteq \Pp(\omega)$ such that $|X| = \aleph_1$ and if $x \ne y \in X$ then $x \cap y$ is bounded.
+We will show that there is a collection $X \subseteq \Pp(\omega)$ such that $|X| = 2^{\aleph_0}$ and if $x \ne y \in X$ then $x \cap y$ is bounded.
 \begin{proof}
 	For any $A \subseteq \omega$ infinite let us define $Y(A) = \{ \sum_{n \in A \cap m} 2^n \mid m < \omega \}$, then $X(A) \in \Pp(\omega)$.
 	It follows that $Y : \omega^\omega \to \Pp(\omega)$ is a function, note that it is injective, as if $A \ne B \in \dom Y$ then there is $m \in A \setminus B$, witnessing $Y(A) \ne Y(B)$.
@@ -35,24 +35,31 @@ We will show that $T$ is $\omega$-categorical, that it has infinitely many noneq
 	Definability of $n \in \Aa$ as $S^n(0)$ and the fact for each $X$, $R_X^\Aa(n) \iff S^n(0) \in X$ implies that $R_X$ is preserved under $f$ as well. \\
 	$\Aa$ fulfills the axiom scheme of induction, meaning that $T$ does as well. Each $X \subseteq A$ is definable using $R_X$,
 	meaning that the sentence $(0 \in \NN \land (x \in \NN \to S(x) \in \NN)) \to \forall x \in \NN$ exists in $T$ (to be precise it is symbolically appears and not the actual form written) where $\NN$ is some $X$.
-	$f$ is defined as injection, let $m \in M$ be some element. If $m \in \NN$ then by the recursive definition of $f$, $m \in \im f$.
-	Otherwise, $\Mm \models m \notin \NN$, a contradiction to the sentence $\in T$. $f$ is bijection and thus a model isomorphism, thus $T$ is $\omega$-categorical.
 
 	Let $\varphi_n(x) = (x = S^{\underline{n}}(0))$, as an informal way to define that $\varphi_0(x) = (x = 0), \varphi_1 = (x = S(0))$ and so on.
 	$\Aa \models \forall x\ x \ne S(x)$, then we can deduce that $\varphi_n \not\equiv \varphi_m$ for all $n < m < \omega$.
 	Then $\{ \varphi_n \mid n < \omega \} \subseteq T$ is a set of non-equivalent formulas.
 
-	Let $p(x) = \{ \underline{n} \le x \mid n < \omega \}$ be a partial type, and let $A \in X$ for $X$ of the previous part.
-	$T \models \forall x\ (x = 0 \lor \exists y\ S(y) = x)$ therefore if $S = T \cup p(\gamma)$ for new constant symbol $\gamma$ then $\exists x\ x = S^{z}(\gamma)$ for any $z \in \ZZ$.
-	Let $p_A(x) = \cl_\vdash p(x) \cup \{ R_A(S^a(x)) \mid a \in A \} \cup \{ \lnot R_Y(S^z(x)) \mid A \ne Y \subseteq \omega, z \in \ZZ \}$.
-	$S_A = T \cup p_A(\gamma)$ is complete as a closure under consequences.
-	It can be shown using induction over the structure of the formula that $p_A$ cannot be omitted for any $A \in X$.
+	We have shown that $f$ is model embedding, and now we will show that it is also surjective.
+	Let $\gamma \in M$ be a non-standard element, namely $\Mm \models \lnot \varphi_n(\gamma)$ for all $n < \omega$.
+	By $f$'s construction, $\gamma \notin \im f$, and therefore also $\underline{n} \gamma \in M \setminus \im f$ as well.
+	Let $X_0 \in X$ where $X$ is from the last part, then $X_0' = \{ \underline{n} \gamma \mid n \in X_0 \}$ is subset of $M$.
+	Let $X_0 \ne X_1 \in X$ be some other set, and let us define $X_1'$ accordingly.
+	Let $g : X \to M^{< \omega}$ by $X_1 \mapsto X_0' \cap X_1'$, but $|M^{< \omega}| = |M| = \omega$ but $g$ is injective and $|X| = 2^{\omega}$, a contradiction.
+	We deduce that $f$ is a bijection.
 
-	We want to show that there are infinitely many different types $p_A$.
-	Let $A \ne B \in X$ and let us consider $S_A, S_B$.
-	If $\Mm \models S_A \cap S_B$ then $\Mm$ thinks that there is a maximal element in $A \cap B$, meaning that the class is bounded, in oppose to the fact that $S_A, S_B$ think that $A, B$ are unbounded.
-	It follows that $S_A \ne S_B$ and that there is no common theory such that it contain $T$.
-	We conclude that there are $2^{\aleph_0}$ such types.
+	Let $g : \omega \to \{0, 1\}$, $|g^{-1}(1)| = |g^{-1}(0)| = \omega$ be a function and let $Q = {\{ q_n \}}_{n = 1}^\infty$ be the set of the primes.
+	Let $X_q$ be the set such that $x \in X_q \iff q | x$, note that divisibility is definable, and let $R^i = R_{X_{q_i}}$ for any $i < \omega$.
+	\[
+		p_g'(x)
+		= \{ x \ne \underline{n} \mid n < \omega \}
+		\cup \{ R^i(x) \mid g(i) = 1 \}
+		\cup \{ \lnot R^i(x) \mid g(i) = 0 \}
+	\]
+	$p_g'$ is consistent from the compactness theorem, and let $p_g$ be its closure, such that $p_g$ is complete and consistent.
+	$p_g$ cannot be isolated as otherwise $p_g'$ can be isolated as well, a contradiction to $g$'s definition by taking the minimal $i < \omega$ such that $R^i$ does not show up in isolating formula.
+	There are infinitely many such functions $g$, implying that there are also infinitely many such types $p_g$.
+	To be precise there are $2^{\aleph_0}$ such functions, then $2^{\aleph_0}$ such non-isolated types.
 \end{proof}
 
 \question{}
@@ -64,19 +71,39 @@ Let $T$ be a consistent complete theory over a language of size $\le \kappa$ wit
 We will show that there is a $\kappa^+$ saturated model of $T$ of cardinality $2^\kappa$.
 \begin{proof}
 	By Löwenheim-Skolem theorem we can assume that there is a model $\Mm \models T$ of cardinality $\kappa$.
-	Let,
+	We will construct recursively a $\kappa$-saturated model, by recursion on $|A|$ for $A \subseteq M$.
+	For $|A| = \emptyset$ we get $A = \emptyset$, $|\form| \le \kappa$ implies that $S_1(\emptyset) = S_1(T)$ is of cardinality $\le 2^\kappa$ as well.
+	Let $\Mm_0' \models T \cup \{ p(c_p) \mid p \in S_1(\emptyset) \}$ be a model of the language $\Ll \cup \{ c_p \mid p \in S_1(\emptyset) \}$ and let $\Mm_0$ be its reduction to $\Ll$.
+	$|M_0| \le 2^{\kappa}$ and it is $1$-saturated.
+
+	Let us assume that $\alpha < \kappa$ is some cardinal and that $\Mm_{\alpha} \models T$ is a $\alpha^+$-saturated model with $|M_{\alpha}| \le 2^{\kappa}$.
+	$|\Pp_{= \alpha}(M_{\alpha})| < \kappa$ and $|\form_{\Ll(A)}| < 2^\kappa$ then $|S_1(A)| < 2^\kappa$ for any such $A$ as well, meaning that,
 	\[
-		K = \{ p \subseteq \form_{L(A)} \mid A \subseteq M, \forall \varphi \in p,\ \operatorname{FV}(\varphi) = \{ x \}, T \cup p(c) \text{ is complete} \}
+		\Sigma_{\alpha} = \bigcup_{\substack{A \subseteq M_{\alpha} \\ |A| = \alpha}} S_1(A)
 	\]
-	Note that $\form_{L(M)}$ is of size $2^\kappa$ therefore $K$ is bounded by $2^\kappa$ as well.
-	Let $\Nn' \models T \cup \bigcup K$ be enrichment of $\Mm$ by up to $2^\kappa$ new constants such that each type is realized and let $\Nn$ be its reduction to $\Mm$'s language.
-	Then $\Nn \models T$, is saturated and $\kappa^+$ saturated directly by its construction.
-	Lastly, if $|N| < 2^\kappa$, we can use upwards Löwenheim-Skolem again on $\Nn'$.
+	is of cardinality $\le 2^\kappa$ as well.
+	We enrich $\Ll$ by $\{ c_p \mid p \in \Sigma_{\alpha} \}$ and define $\Mm_{\alpha^+}' \models T \cup \{ p(c_p) \mid p \in \Sigma_{\alpha} \}$ be a models, $\Mm_{\alpha^+}$ be its reduction to $\Ll$.
+	Then $\Mm_{\alpha^+}$ is $\alpha^{++}$-saturated and $|M_{\alpha^+}| \le 2^\kappa$.
+
+	$\kappa^+$ is regular, thus $\Mm_{\kappa^+} = \bigcup_{\alpha < \kappa^+} \Mm_{\alpha}$ is of cardinality $2^\kappa$ and $\kappa^+$-saturated as wished.
 \end{proof}
 
 \subquestion{}
 We will show that if $\Mm$ and $\Nn$ are elementary equivalent $\kappa$-saturated models of cardinality $\kappa$ then $\Mm \cong \Nn$,
 and that any partial elementary map $f : A \to B$ with $A \subseteq M, B \subseteq N, |A| < \kappa$ can be extended to an isomorphism.
+\begin{proof}
+	The proof is similar to the case of $\omega$-saturation, the second statement implies the first one and it suffices to show it.
+	The proof is by induction on ordinals $< \kappa$, the proof for the case of $\kappa = \omega$ can be used as a base for the induction.
+
+	Without loss of generality we can assume $A, B = \alpha$ for $\alpha < \kappa$ by the well order principle.
+	The case of successor ordinal is trivial from the case $\omega$.
+	Let us assume that the statement is true for any $\alpha < \beta < \kappa$.
+	Then there exists $f_{\alpha}$ and if $\alpha < \gamma < \beta$, $f_{\gamma} \restriction \alpha = f_{\alpha}$, then let us define $f_{\beta} = \bigcup_{\alpha < \beta} f_{\alpha}$.
+	The induction step is completed therefore the statement holds for any $\alpha < \kappa$, and by an identical step there is also a function $f = f_{\kappa}$ fulfilling our requirements.
+\end{proof}
+
+\subquestion{}
+We will show that if $\Mm \models T$ is $\kappa$-saturated model of a complete theory $T$, then every model $\Nn \models T$ of size $\kappa$ can be embedded into $\Mm$.
 \begin{proof}
 	TODO
 \end{proof}
