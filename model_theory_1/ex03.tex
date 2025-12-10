@@ -105,18 +105,20 @@ and that any partial elementary map $f : A \to B$ with $A \subseteq M, B \subset
 \subquestion{}
 We will show that if $\Mm \models T$ is $\kappa$-saturated model of a complete theory $T$, then every model $\Nn \models T$ of size $\kappa$ can be embedded into $\Mm$.
 \begin{proof}
-	We will construct an embedding by recursion.
-	Let $f_0 = \{ \langle d^\Nn, d^\Mm \rangle \mid d \in L, d \text{ is constant symbol} \}$, this is an embedding by $T$'s completeness.
+	We will construct an elementary embedding by recursion.
+	Let $f_0 = \{ \langle d^\Nn, d^\Mm \rangle \mid d \in L, d \text{ is constant symbol} \}$, this is an elementary embedding by $T$'s completeness.
 
-	Let $f_{\delta} : A \to B$ be a partial embedding, $A \subseteq N, B \subseteq M$, $A = {\{ a_i \}}_{i < \delta}$.
+	Let $f_{\delta} : A \to B$ be a partial elementary embedding, $A \subseteq N, B \subseteq M$, $A = {\{ a_i \}}_{i < \delta}$.
 	Let $a \in N \setminus A$ and let $p = tp(a / N_A)$	be the complete type such that $\Nn \models p(a)$.
-	Then $q = p_{f(a_0), \ldots}^{a_0, \ldots}$ is a type $\in S_1(B)$, it is consistent by compactness and complete as closure under inference.
+	Then $q = f_{\delta}(p) =  p_{f(a_0), \ldots}^{a_0, \ldots}$ is a type $\in S_1(B)$.
+	$p$ is consistent, therefore any $p' \subseteq p$ finite is consistent, $f_{\delta}(p') \subseteq q$ is consistent by truth-value perseverance of $f_{\delta}$, then $q$ is finitely satisfiable and therefore satisfiable.
+	$f_{\delta}$ preserves truth-value of sentences in $L(A)$ and $p$ is complete, then $q$ is complete as well.
 	By $\kappa$-saturation of $\Mm$ there exists $b \in M$ such that $\Mm \models q(b)$, let $f_{\delta + 1} = f_{\delta} \cup \{ \langle a, b \rangle \}$.
 
 	Let $\delta$ be a limit ordinal and let us assume that $f_{\alpha}$ is defined for $\alpha < \delta$, such that $f_{\alpha} \subseteq f_{\beta}$ for all $\alpha < \beta < \delta$.
-	Then $f_{\delta} = \bigcup_{\alpha < \delta} f_{\alpha}$ is defined and acts as embedding as any term or formula are of finite length and thus embedded correctly in some $\alpha < \delta$.
+	Then $f_{\delta} = \bigcup_{\alpha < \delta} f_{\alpha}$ is defined and acts as elementary embedding as any term or formula are of finite length and thus embedded correctly in some $\alpha < \delta$.
 
-	We get that $f_{\alpha}$ exists for each $\alpha \le \kappa$, note that by the definition of $\kappa$-saturation this process cannot be extended after reaching $\kappa$.
+	We get that $f_{\alpha}$ exists for each $\alpha \le \kappa$, note that by the definition of $\kappa$-saturation this process is not guaranteed continue after reaching $\kappa$.
 	Note that by using the well order principle we can assume that $N = \kappa$ and therefore $f_{\kappa}$ is a total function, and therefore an embedding $\Nn \hookrightarrow \Mm$.
 \end{proof}
 
