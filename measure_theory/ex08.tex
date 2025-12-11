@@ -1,0 +1,80 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 8 --- תורת המידה, 80517}
+
+\DeclareMathOperator{\esssup}{ess\,sup}
+\DeclareMathOperator{\essinf}{ess\,inf}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+נניח ש־$(X, \Aa)$ מרחב מדיד ו־$T : X \to X$ מדידה.
+הגדרנו מידה על $X$ להיות $T$־אינווריאנטית אם מתקיים $T_* \mu = \mu$.
+נאמר גם שמידה $T$־אינווריאנטית היא ארגודית אם לכל $A \in \Aa$ המקיימת $T^{-1}(A) = A$ מתקיים ש־$A$ היא $\mu$־טריוויאלית, כלומר $\mu(A) = 0 \lor \mu(A^C) = 0$.
+
+\subquestion{}
+תהי $A \in \Aa$ ונגדיר את סדרת הקבוצות $A_1 = A$ ו־$A_{n + 1} = T^{-1}(A_n)$. \\
+נראה ש־$A^- = \liminf A_n, A^+ = \limsup A_n$ הן $T$־אינווריאנטיות.
+\begin{proof}
+	מהגדרה עלינו להראות ש־$T^{-1}(A^-) = A^-, T^{-1}(A^+) = A^+$.
+	\[
+		T^{-1}(A^-)
+		= T^{-1}\left(\bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty A_k\right)
+		\overset{(1)}{=}  \bigcup_{n = 1}^\infty T^{-1}\left( \bigcap_{k = n}^\infty A_k \right)
+		\overset{(2)}{=}  \bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty T^{-1}\left( A_k \right)
+		= \bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty A_{k + 1}
+		= A^-
+	\]
+	כאשר $(1), (2)$ נובעים מתכונות תמונה הפוכה והמעבר האחרון נובע מתכונות הגבול התחתון.
+	המהלך עבור $A^+$ שקול.
+\end{proof}
+
+\subquestion{}
+נניח ש־$\mu$ מידת הסתברות ארגודית.
+נראה שאם $T^{-1}(A) = A$ כמעט תמיד אז $\mu(A) \in \{0, 1\}$.
+\begin{proof}
+	נתון ש־$\mu$ ארגודית, כלומר אם $E \in \Aa$ וכן $E$ היא $T$־אינווריאנטית אז $\mu(A) \in \{0, 1\}$.
+	נגדיר $A_1 = A, A_{n + 1} = T^{-1}(A_n)$, מתקיים $A_1 = A_2$ כמעט תמיד, וכן אם $A_1 = A_n$ כמעט תמיד אז גם $A_n = A_{n + 1}$ כמעט תמיד ולכן $A_1 = A_{n + 1}$ כמעט תמיד, נסיק ש־$A = A_n$ כמעט תמיד לכל $n$.
+	מהסעיף הקודם $A^- = \liminf A_n, A^+ = \limsup A_n$ הן $T$־אינווריאנטיות ולכן $\mu(A^+), \mu(A^-) \in \{0, 1\}$.
+	\[
+		\mu(A^-)
+		= \mu(\liminf A_n)
+		\le \liminf \mu(A_n)
+		= \liminf \mu(A)
+		= \mu(A)
+	\]
+	אבל $\mu(A^-) \in \{0, 1\}$ ואם $\mu(A^-) = 1$ אז נקבל $\mu(A) = 1$ וסיימנו, לכן נניח ש־$\mu(A^-) = 0$.
+	המרחב הוא מרחב הסתברות ולכן,
+	\[
+		\mu(A^+)
+		= \mu(\limsup A_n)
+		\ge \limsup \mu(A_n)
+		= \mu(A)
+	\]
+	אם $\mu(A^+) = 0$ אז שוב נקבל $\mu(A) = 0$ ולכן נניח ש־$\mu(A^+) = 1$.
+	אם $A = A_n$ כמעט תמיד אז גם $A = A \cap A = A_n \cap A_{n + 1}$ כמעט תמיד ובאינדוקציה $A = \bigcap_{n = 1}^k A_n$ כמעט תמיד, נסיק שגם $\mu(A) = \mu(\lim_{n \to \infty} \bigcap_{n = 1}^k A_n)$.
+	\[
+		0
+		= \mu(A^-)
+		= \mu(\bigcup_{n = 1}^\infty \bigcap_{k = n}^\infty A_k)
+		= \lim_{n \to \infty} \mu(\bigcap_{k = n}^\infty A_k)
+	\]
+	ולכן נקבל שבמצב זה $\mu(A) = 0$ כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נאמר שפונקציה $f : X \to \RR$ היא $T$־אינווריאנטית אם $f = f \circ T$. \\
+נראה שמידה $T$־אינווריאנטית $\mu$ היא ארגודית אם ורק אם כל הפונקציות ה־$T$־אינווריאנטיות המדידות שוות לפונקציה קבועה כלשהי כמעט בכל מקום.
+\begin{proof}
+	נניח ש־$\mu$ ארגודית ותהי $f : X \to \RR$ פונקציה מדידה ו־$T$־אינווריאנטית כלשהי, נראה ש־$f$ קבועה כמעט תמיד.
+	נניח בשלילה שלא, כלומר קיימים $a, b \in \RR$ מתקיים $\mu(f^{-1}(a)) > 0, \mu(f^{-1}(b)) > 0$.
+	נבחין כי $T^{-1}(f^{-1}(a)) = f^{-1}(a)$ ולכן $f^{-1}(a) \subseteq X$ קבוצה $T$־אינווריאנטית ובהתאם $\mu(f^{-1}(a)) = 0$ או $\mu(X \setminus f^{-1}(a)) = 0$, אבל $\mu(f^{-1}(a)) > 0$ ולכן $\mu(X \setminus f^{-1}(a)) = 0$.
+	אבל $f^{-1}(b) \subseteq X \setminus f^{-1}(a)$ ולכן $0 < \mu(f^{-1}(b)) \le \mu(X \setminus f^{-1}(a)) = 0$ בסתירה.
+
+	נניח עתה שכל $f$ כזו קבועה כמעט תמיד ונראה ש־$\mu$ ארגודית.
+	תהי $A \in \Aa$ המקיימת $T^{-1}(A) = A$, נראה ש־$\mu(A) = 0$ או $\mu(A^C) = 0$.
+	TODO
+\end{proof}
+
+\end{document}
