@@ -74,7 +74,149 @@
 
 	נניח עתה שכל $f$ כזו קבועה כמעט תמיד ונראה ש־$\mu$ ארגודית.
 	תהי $A \in \Aa$ המקיימת $T^{-1}(A) = A$, נראה ש־$\mu(A) = 0$ או $\mu(A^C) = 0$.
-	TODO
+	נגדיר $g = \indicator_A$ ולכן $g(x) = 1 \iff x \in A \iff x \in T^{-1}(A) \iff T(x) \in A \iff g(T(x)) = 1$, אז $g$ היא $T$־אינווריאנטית ולכן קבועה.
+	אבל אז נובע $g =_{\mu} 0$ או $g =_{\mu} 1$ ובפרט $\mu(A) = 0$ או $g(A^C) = 0$ כמו שרצינו.
+\end{proof}
+
+\question{}
+נוכיח בשלבים את המשפט הבא:
+יהי $X$ מרחב מדיד ו־$T : X \to X$ מדידה, אז כל שתי מידות הסתברות $T$־אינווריאנטיות ארגודיות שונות הן סינגולריות אחת לשנייה, ונניח ש־$T$ הפיכה וכן ש־$T^{-1}$ מדידה.
+
+\subquestion{}
+תהיינה שתי מידות הסתברות $\mu, \nu$ כך שהן $T$־אינווריאנטיות.
+נסמן את הפירוק של $\nu$ לפי $\mu$ על־פי משפט לבג־רדון־ניקודים ב־$\nu = \nu_a + \nu_s$.
+נראה ש־$\nu_a, \nu_s$ הן גם $T$־אינווריאנטיות.
+\begin{proof}
+	מהגדרת $T$־אינווריאנטיות נקבל ש־$T_* \mu = \mu$ ו־$T_* \nu = \nu$.
+	לכן אם $T_* \nu = \lambda_a + \lambda_s$ פירוק של $T_* \nu$ לפי $T_* \mu$ אז למעשה $\nu = \lambda_a + \lambda_s$.
+	אבל $T_* \mu = \mu$ ולכן $\lambda_a + \lambda_s$ פירוק רדון־ניקודים של $\nu$ מעל $\mu$ ומיחידות הפירוק נקבל $\lambda_s = \nu_s, \lambda_a = \nu_a$.
+	אז נקבל $T_* \nu = T_* (\nu_a + \nu_s) = T_* \nu_a + T_* \nu_s = \lambda_a + \lambda_s = \nu_a + \nu_s = \nu$ ובהתאם $\nu_a, \nu_s$ שתיהן $T$־אינווריאנטיות.
+\end{proof}
+
+\subquestion{}
+נסיק שאם $\nu$ ארגודית אז $\nu = \nu_a$ או $\nu = \nu_s$.
+\begin{proof}
+	נניח בשלילה שלא, לכן קיימת קבוצה מדידה $A$ שעבורה $\nu_s(A), \nu_a(A) > 0$.
+	משאלה 1 סעיף א' נוכל לקחת את $\limsup T^{n}(A)$ ולכן נניח בלי הגבלת הכלליות ש־$A$ היא קבוצה $T$־אינווריאנטית.
+	אם מתקיים $\nu(A) = 0$ אז נקבל סתירה להנחה ולכן נניח ש־$\nu(A^C) = 0$.
+	נשים לב ש־$\nu_a  \ll \mu$ ולכן $\mu(E) = 0 \implies \nu_a(E) = 0$ ולכן באופן שקול גם $\nu_a(E) > 0 \implies \mu(E) > 0$ ונסיק ש־$\mu(A) > 0$.
+	אבל $\nu_s \perp \mu$, כלומר קיימות $B, C$ מדידות וזרות כך ש־$\mu(B^C) = 0, \nu_s(C^C) = 0$, אבל $\mu(A) > 0$ ולכן $A \subseteq B$ ונסיק ש־$\nu_s(A) = 0$ בסתירה.
+\end{proof}
+
+\subquestion{}
+נניח ש־$\mu$ ארגודית וש־$\nu = \nu_a$.
+נגדיר את $h$ להיות נגזרת רדון־ניקודים $\frac{d \nu_a}{d \mu}$. \\
+נראה שמתקיים $\int_A h\ d \mu = \int_A h \circ T\ d \mu$ לכל $A$ מדידה, ונסיק ש־$h =_{\mu} h \circ T$.
+\begin{proof}
+	הפונקציה $h$ מקיימת את התכונה $\nu_a(E) = \int_E h\ d \mu$.
+	אבל מסעיף א' נובע ש־$\nu_a$ היא $T$־אינווריאנטית ולכן $\nu_a(E) = T_* \nu_a(E) = \nu_a(T^{-1}(E))$ ולכן,
+	\[
+		\int_E h\ d \mu
+		= \nu_a(E)
+		= \nu_a(T^{-1}(E))
+		= \int_{T^{-1}(E)} h\ d \mu
+		= \int_{T^{-1}(E)} h\ d T_* \mu
+		= \int_E h \circ T\ d \mu
+	\]
+	כפי שרצינו.
+
+	נניח בשלילה שלא $h =_{\mu} h \circ T$ ולכן $E = \{ x \in X \mid h(x) \ne h(T(x)) \} = \{ x \mid h(x) < h(T(x)) \} \uplus \{ x \mid h(x) > h(T(x)) \}$ היא קבוצה ממידה חיובית.
+	נניח בלי הגבלת הכלליות ש־$E = \{ h(x) < h(T(x)) \}$ היא ממידה חיובית ולכן נקבל ש־$\int_E h \circ T - h\ d \mu > 0$ בסתירה, לכן $h =_{\mu} h \circ T$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$h =_{\mu} 1$ ונסיק ש־$\nu = \mu$.
+\begin{proof}
+	נזכור כי $h$ היא פונקציה מדידה, ובסעיף הקודם הראינו שגם $T$־אינווריאנטית כמעט תמיד, בלי הגבלת הכלליות תמיד על־ידי הגדרת הפונקציה,
+	\[
+		x \mapsto \begin{cases}
+			x & h(x) = h(T(x)) \\
+			0 & \text{otherwise}
+		\end{cases}
+	\]
+	ולכן משאלה 1 סעיף ג' והעובדה ש־$\mu$ מידת הסתברות ארגודית נסיק ש־$h$ היא קבועה כמעט תמיד.
+	נתון כי $1 = \nu(X) = \nu_a(X) = \int h\ d \mu = h \int 1\ d \mu = h \cdot 1$ ובהתאם $h =_{\mu} 1$.
+	אז נקבל $\nu(E) = \nu_a(E) = \int_E h\ d \mu = \int_E 1\ d \mu = \mu(E)$ ובהתאם $\mu = \nu$.
+\end{proof}
+
+\question{}
+\subquestion{}
+תהיינה $f, g \in L^1(\RR)$ פונקציות אינטגרביליות לבג.
+נגדיר,
+\[
+	\mu(E) = \int_E f\ d \lambda,
+	\quad
+	\nu(E) = \int_E g\ d \lambda,
+\]
+המידות המתקבלות כאינטגרל על הפונקציות הללו. \\
+נמצא תנאי מספיק והכרחי לכך ש־$\mu \perp \nu$.
+\begin{proof}
+	מתקיים $\mu \perp \nu$ אם ורק אם $A, B \subseteq \RR$ מדידות לבג וזרות כך ש־$\mu(A^C) = \nu(B^C) = 0$.
+	לכן בהתאם נקבל,
+	\[
+		0
+		= \int_{A^C} f\ d \lambda
+	\]
+	אבל $f \ge 0$ ולכן $f \restriction A^C =_{\lambda} 0$.
+	נסיק אם כך ש־$\supp f \subseteq A, \supp g \subseteq B$ ובפרט ש־$\supp f \cap \supp g = \emptyset$.
+
+	מהצד השני נניח ש־$\supp f \cap \supp g = \emptyset$ ולכן נסמן את הקבוצות הללו בהתאמה $A, B$ ונקבל ש־$A \cap B = \emptyset$ וכן,
+	\[
+		\mu(A^C)
+		= \int_{A^C} f\ d \mu
+		= 0
+	\]
+	כלומר $\mu \perp \nu$ לפי הגדרה.
+\end{proof}
+
+\subquestion{}
+נניח ש־$\mu, \nu$ מידות כך ש־$d \nu = h\ d \mu$ כאשר $h$ פונקציה מדידה חיובית ממש.
+נראה ש־$\mu$ ו־$\nu$ שקולות.
+\begin{proof}
+	נזכיר כי $\mu, \nu$ שקולות כאשר $\forall E \in \Aa,\ \mu(E) = 0 \iff \nu(E) = 0$.
+	מהגדרה מתקיים,
+	\[
+		\nu(E)
+		= \int_E h\ d \mu
+	\]
+	נניח ש־$E \in \Aa$ מדידה כלשהי וכן ש־$\mu(E) = 0$.
+	אז מתקיים גם $\int_E f\ d \mu = 0$ מהגדרת אינטגרל לבג ולכל $f$ מדידה, בפרט הטענה נכונה גם ל־$h$ ולכן $\nu(E) = 0$.
+
+	נניח בכיוון השני ש־$\nu(E) = 0$ ונניח בשלילה ש־$\mu(E) > 0$, אז מחיוביות בהחלט של $h$ נקבל ש־$\int_E h\ d \mu > 0$ בסתירה.
+\end{proof}
+
+\question{}
+תהיינה $\mu, \nu_1, \nu_2, \ldots$ מידות על $X$ ונגדיר $\nu = \sum_{i = 1}^\infty \nu_i$.
+
+\subquestion{}
+נראה שאם $\nu_i \perp \mu$ לכל $i \ge 1$ אז $\nu \perp \mu$.
+\begin{proof}
+	לכל $i \ge 1$ נגדיר $A_i, B_i$ מדידות זרות כך ש־$\mu(A_i^C) = \nu_i(B_i^C) = 0$.
+	נגדיר $A = \bigcap_{i = 1}^\infty A_i$.
+	אז $A$ מדידה אף היא וכן,
+	\[
+		\mu(A^C)
+		= \mu(\bigcup_{i = 1}^\infty A_i^C)
+		\le \sum_{i = 1}^\infty \mu(A_i^C) = 0
+	\]
+	ולכן $A, B_i$ הן קבוצות זרות ומדידות המעידות על $\mu \perp \nu_i$.
+	נגדיר גם $B = \bigcup_{i = 1}^\infty B_i$ ולכן,
+	\[
+		\nu(B^C)
+		= \sum_{i = 1}^\infty \nu_i(B^C)
+		= \sum_{i = 1}^\infty \nu_i\left(\bigcap_{i = 1}^\infty B_i^C\right)
+		\le \sum_{i = 1}^\infty \nu_i(B_i^C)
+		\le \sum_{i = 1}^\infty 0
+		= 0
+	\]
+	כלומר מצאנו ש־$\mu(A^C) = 0, \nu(B^C) = 0$ ונותר להראות ש־$A, B$ זרות כדי לקבל שהן מעידות על $\mu \perp \nu$, אבל זה נובע ישירות מהגדרתן כאיחודים וחיתוכים של קבוצות זרות.
+\end{proof}
+
+\subquestion{}
+נראה שאם $v_i \ll \mu$ לכל $i \ge 1$ אז $\nu \ll \mu$.
+\begin{proof}
+	נתון כי $\mu(E) = 0 \implies \nu_i(E) = 0$ לכל $E$ מדידה.
+	אז נובע גם $\nu(E) = \sum_{i = 1}^\infty \nu_i(E) = \sum_{i = 1}^\infty 0 = 0$ ובהתאם $\nu \ll \mu$.
 \end{proof}
 
 \end{document}
