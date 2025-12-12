@@ -1,0 +1,77 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 6 --- גאומטריה דיפרנציאלית אלמנטרית, 80560}
+
+\DeclareMathOperator\eval{eval}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\question{}
+תהי $\wedge : \RR^3 \times \RR^3 \to \RR^3$ המכפלה החיצונית, כלומר ההעתקה המתאימה עבור $(x, y)$ ל־$\varphi = z \mapsto \det(x, y, z)$ את הווקטור היחיד $v$ המקיים $l_v = \varphi$.
+
+\subquestion{}
+נראה ש־$\wedge$ בי־לינארית.
+\begin{proof}
+	נזכור כי מתקיים $\det(x + x', y, z) = \det(x, y, z) + \det(x', y, z)$ ולכן אם $(x \wedge y) = u, (x' \wedge y) = u'$ אז,
+	\[
+		u \cdot z = \det(x, y, z),
+		\quad
+		u' \cdot z = \det(x', y, z)
+		\implies
+		(u + u') \cdot z
+		= \det(x + x', y, z)
+	\]
+	התהליך זהה עבור $y$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$x \wedge y = - y \wedge x$.
+\begin{proof}
+	ידוע שמתקיים $\det(x, y, z) = - \det(y, x, z)$ ולכן הטענה נובעת ישירות תוך שימוש במהלך של הסעיף הקודם.
+\end{proof}
+
+\subquestion{}
+נראה ש־$x \cdot (x \wedge y) = 0 = (x \wedge y) \cdot y$.
+\begin{proof}
+	ידוע כי $(x \wedge y) \cdot y = \det(x, y, y) = 0$ כדטרמיננטה של מטריצה לא הפיכה.
+	הצד השני נובע מסימטריה של מכפלה פנימית ממשית.
+\end{proof}
+
+\subquestion{}
+נראה ש־$x \wedge y = 0$ אם ורק אם $\{ x, y \}$ תלויה לינארית.
+\begin{proof}
+	נניח ש־$x \wedge y = 0$, אז נקבל $\det(x, y, z) = 0$ לכל $z$, אם נבחר $z \notin \Sp\{ x, y \}$ נקבל שבהכרח $x, y$ פרופורציונליים.
+
+	בכיוון ההפוך הטענה נובעת ישירות מדטרמיננטה של מטריצה לא הפיכה.
+\end{proof}
+
+\subquestion{}
+נוכיח שאם $x \wedge y \ne 0$ אז $(x, y, x \wedge y)$ בסיס סדור חיובי.
+\begin{proof}
+	נבחין כי $\lVert x \wedge y \rVert \ne 0$ ולכן $\det(x, y, x \wedge y) \ne 0$ ולכן מטריצה זו הפיכה ובהתאם מרחב העמודות שלה הוא בלתי־תלוי לינארית.
+\end{proof}
+
+\subquestion{}
+נראה ש־$(x \wedge y) \wedge z = (x \cdot z) y - (y \cdot z) x$.
+\begin{proof}
+	מתקיים $(x \wedge y) \cdot w = \det(x, y, w)$ וכן $((x \wedge y) \wedge z) \cdot w = \det(x \wedge y, z, w)$, נפתח את הגדרת הדטרמיננטה ונסיים.
+\end{proof}
+
+\subquestion{}
+נראה שתקיים,
+\[
+	(x \wedge y) \cdot (z \wedge w)
+	= \begin{vmatrix}
+		x \cdot z & x \cdot w \\
+		y \cdot z & y \cdot w
+	\end{vmatrix}
+\]
+\begin{proof}
+	ישירות מפתיחת הדטרמיננטה.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+
+\end{document}
