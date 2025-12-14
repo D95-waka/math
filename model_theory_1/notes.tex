@@ -6,6 +6,8 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 
+\DeclareMathOperator\Age{Age}
+
 \begin{document}
 \maketitle
 \maketitleprint[yellow]
@@ -1679,6 +1681,153 @@
 \subsection{גבולות פרייסה}
 תורות $\aleph_0$־קטגוריות עם חילוץ כמתים, הומוגניות וומהותית נכונות מתוך תת־מבנים סופיים.
 טענה זו שקולה לתכונת הומוגניות של הרחבת איזומורפיזם, האוסף $\operatorname{Age}(\Mm)$ של תת־מודלים סופיים של $\Mm$ עד כדי איזומורפיזם יקיים תכונות על הדיאגרמה של $A, B \in \operatorname{Age}$.
+
+\section{שיעור 9 --- 14.12.2025}
+נשאל את השאלה איך אפשר לתאר את $\QQ$ כגבול של סדרים קוויים סופיים.
+ננסה לענות על שאלה זו בהרצאה הנוכחית.
+\begin{definition}[גיל של מבנה]
+	יהי $\Mm$ מבנה, $\Age(\Mm)$, הגיל של $\Mm$, הוא אוסף כל המבנים הנוצרים סופית ב־$L$ שאיזומורפיים לתת־מבנה של $\Mm$.
+\end{definition}
+\begin{remark}
+	אם $\Aa \subseteq \Bb \in \Age(\Mm)$ אז גם $\Aa \in \Age(\Mm)$.
+\end{remark}
+\begin{definition}[מבנה אולטרה־הומוגני]
+	מבנה $\Mm$ נקרא אולטרה־הומוגני אם לכל $\Aa, \Bb \subseteq \Mm$ נוצרים סופית ואיזומורפיזם $f : \Aa \to \Bb$ יש אוטומורפיזם $\sigma$ של $\Mm$ כך ש־$f \subseteq \sigma$.
+\end{definition}
+\begin{definition}[מבנה הומוגני בחלש]
+	מבנה $\Mm$ נקרא הומוגני בחלש אם לכל $\Aa, \Bb \subseteq \Mm$ נוצרים סופית של $\Mm$ ושיכון $g : \Aa \to \Bb$ אז קיים שיכון $h$ מ־$\Bb$ ל־$\Mm$ כך ש־$h \circ g \restriction A = \id_A$.
+\end{definition}
+\begin{remark}
+	אין משמעות להנחה ש־$\Bb$ תת־מבנה של $\Mm$ וזה שקול ל־$\Bb \in \Age(\Mm)$.
+\end{remark}
+\begin{proposition}
+	יהי $\Mm$ מבנה לשפה $L$.
+	אם $\Mm$ הוא אולטרה־הומוגני, אז $\Mm$ הוא הומוגני בחלש.
+\end{proposition}
+\begin{proof}
+	נניח ש־$g : \Aa \to \Bb$ שיכון, ונניח ש־$f : \Bb \to \Mm$ שיכון אף הוא, אז $f \circ g : \Aa \to (f \circ g)(A)$ שיכון אף הוא.
+	אלו שני תתי־מבנים נוצרים סופית ב־$\Mm$ ולכן יש $\sigma \in \aut(\Mm)$ כך ש־$\sigma \restriction A = f \circ g$.
+	אז במקרה זה $\sigma^{-1} \circ f \circ g \restriction A = \id_A$.
+\end{proof}
+\begin{theorem}[שוויון גיליים]
+	נניח ש־$\Mm_1, \Mm_2$ מבנים בני־מניה כך ש־$\Age(\Mm_1) = \Age(\Mm_2)$ והומוגניים בחלש, אז $\Mm_1 \cong \Mm_2$. \\
+	יתר־על־כן אם $f : \Aa \to \Bb$ שיכון, $\Aa \subseteq \Mm_1, \Bb \subseteq \Mm_2$ נוצרים סופית אז ניתן להרחיב את $f$ לאיזומורפיזם.
+\end{theorem}
+\begin{proof}
+	נניח ש־$\Mm_1 = \bigcup_{n < \omega} \Aa_n$ איחוד של תתי־מבנים נוצרים סופית, ונניח ש־$\Mm_2 = \bigcup_{n < \omega} \Bb_n$ באופן דומה, בלי הגבלת הכלליות.
+	נרצה להגדיר ברקורסיה פונקציות $f_n$ שמרחיבות זו את זו, נגדיר,
+	\[
+		f_0 = f,
+		\qquad
+		f_n : \Aa_{k_n} \to \Bb_{k_n'}
+	\]
+	עבור $k_n, k_n'$ עולים ממש. $f_n$ יהיה שיכון.
+	נתון לנו שקיימת $g$ המרחיבה את $f_n$ לזהות $\Aa_{k_n} \to \Mm_1$.
+	מהבנייה גם $g(\Bb_{k_{n' + 1}}) \subseteq \Aa_{k_{n + 1}}$.
+	נקבל כך ש־$f_{n + 1} \restriction A_{k_n} = f_n$ וכן,
+	\[
+		\Bb_{k_{n + 1}'} \supseteq \im f_{n + 1} \supseteq \Bb_{k_{n + 1}'}
+	\]
+	ולכן $k_n' < k_{n + 1}'$ ובהתאם אם נסמן $f_{\omega} = \bigcup f_n$ וכן $\Mm_2 \subseteq \im f_{\omega}$.
+	נסיק ש־$f_{\omega}$ איזומורפיזם כרצוי.
+\end{proof}
+\begin{corollary}
+	במקרה ש־$\Mm$ בן־מניה, אם $\Mm$ הומוגני בחלש אז הוא גם אולטרה־הומוגני (נבחר $\Mm_1 = \Mm_2 = \Mm$).
+\end{corollary}
+\begin{definition}[מחלקת פרייסה]
+	$K$ נקראת מחלקת פרייסה אם מתקיימות התכונות:
+	\begin{enumerate}
+		\item כל איברי $K$ נוצרים סופית
+		\item יש ב־$K$ מספר בן־מניה של טיפוסי איזומורפיזם
+		\item HP\@: אם $\Aa \subseteq \Bb \in K$ ו־$\Aa$ נוצר סופית אז $\Aa \in K$
+		\item JEP (שיכון משותף): אם $\Aa, \Bb \in K$ אז יש $\Cc \in K$ כך ש־$f : \Aa \to \Cc, g : \Bb \to \Cc$ שיכונים
+		\item AP (תכונת התצרופת): אם $\Aa, \Bb, \Cc \in K$ עם $g_A : \Cc \to \Aa, g_B: \Cc \to \Bb$ שיכונים, אז גם יש $f_A : \Aa \to \Dd \in K, f_B : \Bb \to \Dd$ כך שההרכבה מתחלפת, כלומר $f_A \circ g_A = f_B \circ g_B$
+	\end{enumerate}
+\end{definition}
+\begin{proposition}
+	אם $\Mm$ מבנה בן־מניה אולטרה־הומוגני אז $K = \Age(\Mm)$ הוא מחלקת פרייסה.
+\end{proposition}
+\begin{proof}
+	הכול טריוויאלי למעט AP\@ (ו־JEP שהוא מקרה פרטי של AP).
+
+	יהיו $g_A : \Cc \to \Aa, g_B : \Cc \to \Bb$ ובלי הגבלת הכלליות נניח ש־$g_A = g_B = \id$, על־ידי מעבר לעותק איזומורפי של $\Aa, \Bb$.
+	יהיו $f : \Aa \to \Mm, g : \Bb \to \Mm$ שיכונים נבחן את $f(\Cc) \cong g(\Cc)$ תתי־מבנים של $\Mm$ ולכן מאולטרה־הומוגניות של$\Mm$ יש $\sigma \supseteq g \circ f^{-1}$ אוטומורפיזם של $\Mm$.
+	נגדיר את $\Dd = \langle \sigma \circ f(A), g(B) \rangle$, אז $\Dd$ תת־מבנה נוצר סופית של $\Mm$.
+	אם $c \in C$ אז $g \circ \id(c) = \sigma \circ f \circ \id(c)$ שכן $\sigma \supseteq g \circ f^{-1} \restriction f(C)$.
+\end{proof}
+\begin{theorem}[משפט פרייסה]
+	אם $K$ מחלקת פרייסה אז יש מודל $\Mm$ בן־מניה אולטרה־הומוגני כך ש־$K = \Age(\Mm)$ והוא יחיד עד־כדי איזומורפיזם.
+\end{theorem}
+\begin{proof}
+	נבנה סדרת מבנים עולה בהכלה $\langle \Mm_n \mid n < \omega \rangle$ כך ש־$\Mm_n \in K$.
+	תהי $\langle \langle \Aa_l, \Bb_l \rangle \mid l < \omega \rangle$ סדרת כל הזוגות $\Aa, \Bb \in K$ כך ש־$\Aa \subseteq \Bb$ עד כדי איזומורפיזם.
+	בהינתן $\Mm_n$ ממנה את כל השיכונים ־$\Aa_l$ ל־$\Mm_n$ על־ידי סדרה $\langle f_{n, l, i} \mid i < \omega \rangle$, נבחין כי קבוצה זו אכן בת־מניה שכן $\Aa_l$ נוצר סופית ו־$\Mm_n$ בן־מניה.
+	נתחיל מ־$\Mm_0 \in K$ שרירותי.
+	נניח כי קיים $\Mm_n$ ונבנה את $\Mm_{n + 1}$ בסדרת צעדים סופית כך שלכל $m, l, i < n$ אם $\Aa_l \xrightarrow{\id} \Bb_l \xrightarrow{g} \Mm_{n, k}$,
+	כאשר $\Aa \xrightarrow{f_{m, l, i}} \Mm_m \subseteq \Mm_n \subseteq \Mm_{n, k}$.
+	נבנה כך ש־$g \supseteq f_{m, l, i}$ ו־$\Mm_{n + 1} = \Mm_{n, k^*}$ עבור $k^*$ הצעד האחרון.
+	נגדיר $\Mm = \bigcup_{n < \omega} \Mm_n$ ונטען ש־$\Mm$ אולטרה־הומוגני ו־$\Age(\Mm) = K$.
+	כאשר $\Aa_l = \langle \emptyset \rangle$ קיבלנו ש־$\Bb_l$ משוכן לתוך $\Mm_n$ ולכן לתוך $\Mm$.
+	כמניה של $\langle \Aa_l, \Bb_l \rangle$ עברנו גם על כל הזוגות מהצורה $\langle \langle \emptyset, \Bb \rangle$ כאשר $\Bb \in K$ עד כדי איזומורפיזם ולכן $\Age(\Mm) \supseteq K$.
+	מצד שני אם $\Bb \subseteq \Mm$ נוצר סופית אז $\Bb \subseteq \Mm_n$ נוצר סופית ל־$n < \omega$ מהתורשתיות של $K$ ולכן $\Bb \in K$. \\
+	נניח כעת ש־$\Aa \subseteq \Mm$ נוצר סופית ו־$\Bb \in K$, $f : \Aa \to \Bb$ שיכון.
+	אז $Aa_l = f(A) \subseteq \Bb = \Bb_l$ תת־מבנה נוצר סופית ולכן יש $l$ כך ש־$\Bb \in K$ ולכן בלי יש שיכון של $\Bb$ ל־$\Mm$ ובהתאם יש $\Bb \hookrightarrow \Mm_n$.
+	הרכבת השיכונים הוא $f_{n, l, i}$ לאיזשהו $i$, $f_{n, l, i} : f(A_l) \to M_n$ ולכן יש $f_{n, l, i} \subseteq g$ כך ש־$g : \Bb \to \Mm_k \subseteq \Mm$.
+	נקבל בהתאם ש־$\Aa \xrightarrow{f} \Bb \xrightarrow{g} \Mm$ כך ש־$\id : \Aa \to \Mm$ כנדרש, כאשר $g$ מרחיב את $f : f(A) \to \Mm$.
+\end{proof}
+\begin{definition}[מחלקת פרייסה סופית מקומית באופן אחיד]
+	תהי $K$ מחלקת פרייסה.
+	נאמר ש־$K$ סופית מקומית באופן אחיד אם לכל $n < \omega$ יש $f(n)$ טבעי כך שלכל $\Aa \in K$ הנוצר על־ידי $n$ איברים מתקיים $|A| < f(n)$.
+\end{definition}
+\begin{proposition}
+	יהי $\Mm$ מודל בן־מניה מעל שפה בת־מניה כך שתתי־המבנים הנוצרים סופית שלו סופיים. \\
+	אז אם $\Th(\Mm)$ היא $\omega$־קטגורית אז $\Age(\Mm)$ סופי מקומית באופן אחיד.
+\end{proposition}
+\begin{proof}
+	יהי $n < \omega$ ונסתכל על $tp(a_0, \ldots, a_{n - 1})$ עבור $a_0, \ldots, a_{n - 1} \in M$.
+	הטיפוס יכיל בין השאר שוויונות מהצורה $t_0(\bar{x}) = t_1(\bar{x})$ עבור $t_0, t_1$ שמות עצם ולקבל שמספר מחלקות השקילות הוא כגודל תת־המבנה $\langle \bar{a} \rangle$.
+	אם $\Mm$ היא $\omega$־קטגורית אז $|S_n(\Th(\Mm))|$ סופית ולכן $f(n)$ יהיה מקסימום המגדלים על הטיפוסים.
+\end{proof}
+\begin{proposition}
+	נניח ש־$\Mm$ מבנה כך ש־$\Age(\Mm)$ סופי מקומית באופן אחיד, $L$ סופית.
+	אז לכל $n < \omega$ יש מספר סופי של טיפוסי איזומורפיזם לתת־מבנים הנוצרים על־ידי $n$ איברים.
+\end{proposition}
+\begin{proof}
+	ברור, שכן גודל המבנה חסום ולכן יש מספר סופי של מימושים של סימני השפה.
+\end{proof}
+נעיר כי למעשה יש נוסחה חסרת כמתים $\psi_{\bar{a}}(\bar{x})$ שקובעת את טיפוס האיזומורפיזם של $\langle \bar{a} \rangle$.
+\begin{remark}
+	למעשה מ־$\omega$־קטגוריות נובע כי אין תת־מבנה שהוא נוצר סופית ואינסופי, אחרת היו אינסוף נוסחות מהצורה $t(\bar{x}) = y$ שאינן שקולות.
+\end{remark}
+\begin{lemma}
+	יהי $\Mm$ מבנה אולטרה־הומוגני וסופי מקומית (השפה לא חייבת להיות סופית) כך שיש מספר סופי של טיפוסי איזומורפיזם של תת־מבנים נוצרים על־ידי $n$ איברים,
+	אז $\Mm$ היא $\omega$־קטגורית ומחלצת כמתים.
+\end{lemma}
+\begin{proof}
+	נוכיח קודם לשפה סופית.
+	אם $\bar{a}, \bar{b}$ הן $n$־יות של איברים ב־$M$ ו־$\langle \bar{a} \rangle \cong \langle \bar{b} \rangle$,
+	אז מאולטרה־הומוגניות $tp(\bar{a}) = tp(\bar{b})$ כי יש $\sigma : \Mm \to \Mm$ אוטומורפיזם $\sigma \supseteq f$ עבור $f(a_i) = b_i$.
+	לכן ב־$\Mm$ מתממשים מספר סופי של טיפוסים. \\
+	יתר־על־כן לכל $\bar{a} \in M^n$ מתאימה נוסחה חסרת כמתים $\psi_{\bar{a}}$ שקובעת את טיפוס האיזומורפיזם יחד עם מניה של היוצרים.
+	כלומר אם $\bar{b} \in M^n$ מקיים $\psi_{\bar{a}}(\bar{b})$ אז הפונקציה $f(a_i) = b_i$ מתרחבת לאיזומורפיזם $\langle \bar{a} \rangle \cong \langle \bar{b} \rangle$. \\
+	נובע שיש מספר סופי של נוסחות שמגדירות את טיפוסי $\Mm$ מסדר $n$.
+	לכן כל נוסחה ב־$n$ משתנים חופשיים ב־$\Mm$ שקולה לצירוף בולאני של אותן נוסחות. נשים לב כי נוסחות אלה הן חסרות כמתים ולכן יש חילוץ כמתים.
+\end{proof}
+\begin{remark}
+	אם $L$ אינסופית זה עדיין עובד כי לכל $n$ תהיה תת־תורה סופית $L'$ כך שקיים $L$־איזומורפיזם בין $\langle \bar{a} \rangle$ ל־$\langle \bar{b} \rangle$ שקול לקיום $L'$־איזומורפיזם.
+\end{remark}
+\begin{remark}
+	נניח ש־$\langle \bar{a} \rangle, \langle \bar{b} \rangle$ ונניח ש־$f(a_i) = b_i$ לא מתרחב לאיזומורפיזם.
+	אז יש שמות עצם $s_0, \ldots, s_{k - 1}$ וסימן יחס $n$ שמעידים על כך,
+	\[
+		\lnot R(s_0(\bar{a}), \ldots, s_{k - 1}(\bar{a}))
+		\leftrightarrow R(s_0(\bar{b}), \ldots, s_{k - 1}(\bar{b}))
+	\]
+\end{remark}
+\begin{corollary}
+	תהי $K$ מחלקת פרייסה כך שלכל $n$ טבעי יש מספר סופי של מחלקות איזומורפיזם בתוך $K$ של תת־מבנים הנוצרים על־ידי $n$ איברים, כך שהם כולם סופיים.
+	אז גבול פרייסה הוא $\omega$־קטגורי ומחלץ כמתים.
+\end{corollary}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
