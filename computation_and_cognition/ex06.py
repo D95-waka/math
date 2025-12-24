@@ -77,9 +77,45 @@ if __name__ == "__main__":
 
     print(V)
     fig, ax = plt.subplots(layout='constrained')
-    ax.set_title("Heatmap of trained perceptron weights")
-    ax.plot(range(T), data_VO, alpha = 0.6, label = 'V(O)')
-    ax.plot(range(T), data_VH, alpha = 0.6, label = 'V(H)')
-    plt.axhline(4, color = 'black', linestyle = 'dashed', label = 'Correlation Matrix Generalization')
-    plt.show()
+    ax.set_title("TD-Learning of V")
+    ax.plot(range(T), data_VO, alpha = 0.6, label = 'V(O)', color = 'blue')
+    ax.plot(range(T), data_VH, alpha = 0.6, label = 'V(H)', color = 'red')
+    plt.axhline(4, color = 'blue', linestyle = 'dashed', label = 'V*(O)')
+    plt.axhline(2.88, color = 'red', linestyle = 'dashed', label = 'V*(H)')
+    plt.xlabel('Iteration number')
+    plt.ylabel('value')
+    plt.legend()
     plt.savefig('bin/out6_1.jpg')
+
+    # Question 2.6
+    Q = {
+        ('H', 0): 0.0,
+        ('H', 1): 0.0,
+        ('O', 0): 0.0,
+        ('O', 1): 0.0
+    }
+    eta = 0.01
+    T = 5000
+    s = 'H'
+    data_VH = []
+    data_VO = []
+    for i in range(T):
+        data_VH.append(max(Q[('H', b)] for b in [0, 1]))
+        data_VO.append(max(Q[('O', b)] for b in [0, 1]))
+        a = random.choice([0, 1])
+        sn, r = R(s, a)
+        Qn = max(Q[(sn, b)] for b in [0, 1])
+        Q[(s, a)] += eta * (r + gamma * Qn - Q[(s, a)])
+        s = sn
+
+    print(Q)
+    fig, ax = plt.subplots(layout='constrained')
+    ax.set_title("Q-Learning of V")
+    ax.plot(range(T), data_VO, alpha = 0.6, label = 'V(O)', color = 'blue')
+    ax.plot(range(T), data_VH, alpha = 0.6, label = 'V(H)', color = 'red')
+    plt.axhline(4, color = 'blue', linestyle = 'dashed', label = 'V*(O)')
+    plt.axhline(2.88, color = 'red', linestyle = 'dashed', label = 'V*(H)')
+    plt.legend()
+    plt.xlabel('Iteration number')
+    plt.ylabel('value')
+    plt.savefig('bin/out6_2.jpg')
