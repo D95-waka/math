@@ -1,0 +1,213 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 9 --- תורת המידה, 80517}
+
+\DeclareMathOperator{\inv}{inv}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+יהי $(X, \Aa, \nu)$ מרחב מידה $\sigma$־סופי עם הפירוק $X = \biguplus_{n = 1}^\infty X_n$ עם $\nu(X_n) < \infty$, ונגדיר,
+\[
+	\mu(E)
+	= \sum_{n = 1}^\infty \frac{\nu(E \cap X_n)}{2^n (\nu(X_n) + 1)}
+\]
+ראינו כי $\mu$ סופית וכן ש־$\mu \ll \nu$.
+
+\subquestion{}
+נראה ש־$\mu$ ו־$\nu$ שקולות.
+\begin{proof}
+	מהגדרת שקילות מספיק להוכיח שגם $\nu \ll \mu$, כלומר ש־$\mu(E) = 0 \implies \nu(E) = 0$.
+
+	תהי $E \in \Aa$ כך ש־$\mu(E) = 0$.
+	מאי־שליליות נובע שמתקיים,
+	\[
+		\forall n \in \NN,\ 
+		\frac{\nu(E \cap X_n)}{2^n (\nu(X_n) + 1)} = 0
+	\]
+	אבל המכנה חיובי בהחלט לכל $n$ ולכן בפרט נובע ש־$\nu(E \cap X_n) = 0$.
+	לבסוף מ־$\sigma$־אדיטיביות נקבל,
+	\[
+		\nu(E)
+		= \nu(\biguplus_{n = 1}^\infty E \cap X_n)
+		= \sum_{n = 1}^\infty \nu(E \cap X_n)
+		= 0
+	\]
+	כמבוקש.
+\end{proof}
+
+\subquestion{}
+נחשב את נגזרות רדון־ניקודים $\frac{d \nu}{d \mu}$ ו־$\frac{d \mu}{d \nu}$.
+\begin{solution}
+	נסמן $h = \frac{d \nu}{d \mu}$, כלומר,
+	\[
+		\int f\ d \nu
+		= \int f h\ d \mu
+	\]
+	לכל $f$ מדידה. \\
+	אם נבחר $f = \indicator_{X_n}$ אז בפרט נקבל,
+	\[
+		\nu(X_n)
+		= \int f\ d \nu
+		= \int f h\ d \mu
+		= \int_{X_n} \frac{h}{2^n (\nu(X_n) + 1)}\ d \nu
+	\]
+	כאשר המעבר האחרון נובע ממעבר דרך פשוטות.
+	אז קיבלנו שמתקיים,
+	\[
+		\int_{X_n} h\ d \nu
+		= \nu(X_n) 2^n (\nu(X_n) + 1)
+	\]
+	ובאותו אופן נובע שגם,
+	\[
+		\int_{E} h\ d \mu
+		= \nu(E) 2^n (\nu(X_n) + 1)
+	\]
+	כלומר,
+	\[
+		\int_{E} 2^n (\nu(X_n) + 1)\ d \nu
+		= \int_{E} h\ d \nu
+	\]
+	עבור $E \subseteq X_n$ ולכן נסיק ש־$h(x) = 2^n (\nu(X_n) + 1)$ עבור $x \in X_n$.
+
+	מהצד השני נוכל להסיק שגם,
+	\[
+		\frac{d \mu}{d \nu}(x)
+		= \frac{1}{2^n (\nu(X_n) + 1)}
+	\]
+	עבור $n$ כך ש־$x \in X_n$.
+\end{solution}
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב מידה ותהי $T : X \to X$ העתקה משמרת מידה, כלומר $\mu = T_* \mu$.
+תהי $f \in L^1(\mu)$ ונגדיר $\sigma$־אלגברה $\inv(T) \subseteq \Aa$ על־ידי,
+\[
+	\inv(T)
+	= \{ E \in \Aa \mid T^{-1}(E) = E \}
+\]
+נזכיר את הגדרת התוחלת המותנית, אם $f \in L^1$ ובהינתן $\Bb \subseteq \Aa$ $\sigma$־אלגברה אז נגדיר את $\EE(f \mid \Bb)$ להיות הפונקציה היחידה המדידה לפי $\Bb$ המקיימת,
+\[
+	\forall B \in \Bb,\ 
+	\int_B \EE(f \mid \Bb)\ d \mu
+	= \int_B f\ d \mu
+\]
+וכן שמתקיים $\EE(f \mid \Bb) = \frac{d \mu_f}{d \mu}$ ב־$(X, \Bb)$.
+
+\subquestion{}
+נראה ש־$g = \EE(f \mid \inv(T))$ היא $T$־אינווריאנטית.
+\begin{proof}
+	עלינו להראות ש־$g = g \circ T$ כמעט תמיד.
+	נגדיר $E = \{ x \mid g(x) \ne g(T(x)) \}$ ונקבל שהטענה שקולה לטענה,
+	\[
+		\mu(E) = 0
+	.\]
+	נבחין שמתקיים $E = \{ x \mid g(T^{-1}(x)) \ne g(x) \}$, כלומר $E \in \inv(T)$.
+	בהתאם נובע,
+	\[
+		\int_E |g - g \circ T|\ d \mu
+		= \int_E |f - f \circ T|\ d \mu
+		= \int_{E} |f - f \circ T|\ d T_* \mu
+		= \int_E |f \circ T - f \circ T^2|\ d \mu
+		= \int_{\limsup E} |f - f \circ T|\ d \mu
+		= 0
+	\]
+	כאשר המעבר האחרון נובע ממעבר לפונקציה פנימית.
+\end{proof}
+
+\subquestion{}
+נניח ש־$T$ היא הפיכה וכי $T^{-1}$ מדידה,
+ונראה שכל $N$ ממידה $0$ מוכלת בקבוצה אינווריאנטית ממידה $0$.
+\begin{proof}
+	נגדיר $N_0 = N$ וכן $N_{n + 1} = T^{-1}(N_n)$.
+	בהתאם נובע ש־$\mu(N_n) = 0$ לכל $n$.
+	נסיק אם כך שגם $M = \limsup N_n$ היא קבוצה מדידה וש־$\mu(M) = 0$, אבל מהמטלה הקודמת נובע שהיא $T$־אינווריאנטית.
+\end{proof}
+
+\subquestion{}
+נניח ש־$\mu$ שלמה ותהי $\Cc = \overline{\inv(T)}$ ההשלמה של $\inv(T)$.
+נמצא את הקבוצות המרכיבות אותה.
+\begin{solution}
+	תהי $E \in \Aa$.
+	אז $\liminf E_n, \limsup E_n \in \Cc$ עבור $E_n = T^n(E)$.
+	אם $\limsup E_n \setminus E$ ממידה 0 אז נוכל להסיק ש־$E \in \Cc$, ונרצה להראות שהטענה נכונה לכיוון ההפוך גם.
+	תהי $E \in \Cc$, אז קיימת $E \supseteq E^1 \in \inv(T)$ כך ש־$E^0 = E \setminus E^1$ היא קבוצה ממידה 0.
+	נבחין כי מהסעיף הקודם נובע ש־$E^0 \subseteq \limsup E_n$ וכן מהפיכות $T$ נוכל להסיק שמתקיים $\limsup E_n = \limsup E_n^0 + \limsup_n^1$, לכן הטענה נובעת.
+\end{solution}
+
+\question{}
+יהי $(X, \Aa, \mu)$ מרחב הסתברות ו־$\Bb \subseteq \Aa$ תת־$\sigma$־אלגברה.
+
+\subquestion{}
+נראה ש־$L^2(\Bb) \subseteq L^2(\Aa)$.
+\begin{proof}
+	תהי $[f] \in L^2(\Bb)$, אז $f : X \to \CC$ מדידה ב־$\Bb$ וכן ${\lVert f \rVert}_2 < \infty$.
+	אבל $\BB \subseteq \Aa$ ולכן גם $f$ מדידה ב־$\Aa$, אבל ${\lVert f \rVert}_2 < \infty$ כנביעה מיחידות האינטגרל ולכן $[f] \in L^2(\Aa)$ כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נניח ש־$f \in L^2(\Aa)$ ו־$g \in L^2(\Bb)$ חיוביות, ונגדיר את $\mu_f, \mu_{fg}$ להיות מידות האינטגרציה המתאימות ל־$f, fg$. \\
+נראה ש־$\mu_{fg} \ll \mu_f$ וכן ש־$\frac{d \mu_{fg}}{d \mu_f} = g$.
+\begin{proof}
+	תהי $E \in \Aa$ כך ש־$\mu_f(E) = 0$ ונראה ש־$\mu_{fg}(E) = 0$.
+	\[
+		0
+		= \mu_f(E)
+		= \int_E f\ d \mu
+	\]
+	נתון כי $f, g > 0$ ולכן אם $s \le f$ פשוטה אז $\int_E s\ d \mu = 0$, כלומר $s \restriction E =_{\mu} 0$.
+	אם כך נסיק שאם $r \le g$ פשוטה, אז $s r \restriction E =_{\mu} 0$ ובהתאם משרירותיות $s, r$ נובע ש־$\mu_{fg}(E) = 0$.
+
+	נעבור לחלק השני של הטענה, תהי $0 \le h$ מדידה כלשהי.
+	\[
+		\int h\ d \mu_{fg}
+		= \int h f g\ d \mu
+		= \int h g\ d \mu_f
+	\]
+	כלומר קיבלנו שישירות מהגדרת נגזרת רדון־ניקודים מתקיים $g = \frac{d \mu_{fg}}{\mu_f}$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$f, g$ הן $L^1$ (בהתאמה) וכן נראה שמתקיים,
+\[
+	\EE(f g \mid \Bb)
+	= g \EE(f \mid \Bb)
+\]
+\begin{proof}
+	ניזכר ש־$\mu$ מידת הסתברות וכן ש־$0 < f, g$ ולכן ${\lVert f \rVert}_2 < \infty \iff {\lVert f \rVert}_1 < \infty$, כלומר שתי הפונקציות הן אכן $L^1$.
+
+	נניח ש־$h = \EE(fg \mid \Bb)$.
+	\[
+		\int_E h\ d \mu_{fg}
+		= \int_E hg\ d \mu_f
+		= \int_E h g f\ d \mu
+	.\]
+
+	נבחין כי אם $E \in \Aa$ אז מתקיים,
+	\[
+		\int_E \EE(f \mid \Bb)\ d \mu
+		= \int_E f\ d \mu
+		\implies \int_E g \EE(f \mid \Bb)\ d \mu
+		= \int_E g f\ d \mu
+		= \int_E 1\ d \mu_{fg}
+	\]
+	וגם,
+	\[
+		\int_E \EE(f g \mid \Bb)\ d \mu
+		= \int_E fg\ \mu
+		= \int_E g\ \mu_f
+	\]
+	ומשילוב השוויונות הטענה נובעת.
+\end{proof}
+
+\subquestion{}
+נראה ש־$\EE(f g \mid \Bb) = g \EE(f \mid \Bb)$ גם ללא ההנחה ש־$f, g > 0$ ונסיק שלכל $f \in L^2(\Aa)$ הפונקציה $\EE_f = \EE(f \mid \Bb)$ היא ההטלה האורתוגונלית של $f$ על $L^2(\Bb)$.
+כלומר נראה שמתקיים,
+\[
+	\forall g \in L^2(\Bb),\ \langle f - E_f, g \rangle = 0
+\]
+\begin{proof}
+	TODO
+\end{proof}
+
+\end{document}
