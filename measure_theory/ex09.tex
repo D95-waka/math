@@ -204,10 +204,81 @@
 נראה ש־$\EE(f g \mid \Bb) = g \EE(f \mid \Bb)$ גם ללא ההנחה ש־$f, g > 0$ ונסיק שלכל $f \in L^2(\Aa)$ הפונקציה $\EE_f = \EE(f \mid \Bb)$ היא ההטלה האורתוגונלית של $f$ על $L^2(\Bb)$.
 כלומר נראה שמתקיים,
 \[
-	\forall g \in L^2(\Bb),\ \langle f - E_f, g \rangle = 0
+	\forall g \in L^2(\Bb),\ \langle f - \EE_f, g \rangle = 0
 \]
 \begin{proof}
-	TODO
+	נוכל להשתמש בהגדרת מדידות ל־$\CC$ כפירוק של פונקציות $\le 0$ כדי לחזק את הטענה להיות נכונה עבור $f : X \to \CC \setminus \{ 0 \}$, אך נותר להראות את נכונותה גם עבור $f : X \to \CC$, כלומר עלינו לאפשר מיפוי לאפס.
+	נוכל לעשות זאת על־ידי הגדרה דומה לזו שראינו עבור שימוש במדידות $\le 0$ כדי להגדיר את $\CC$ אבל כך שאם $f = u^+ - u^- + i v^+ - i v^-$ אז נבחר את $u^+ + 1, u^- + 1$ ובכך נקבל את המבוקש.
+
+	מצאנו שמתקיים $\EE(f g \mid \Bb) = g \EE(f \mid \Bb)$ לכל $f \in L^2(\Aa), g \in L^2(\Bb)$.
+	נחשב,
+	\[
+		\langle f - \EE_f, g \rangle
+		= \int (f - \EE_f) g\ d \mu
+		= \int fg - \EE_f g\ d \mu
+		= \int fg - \EE(fg \mid \Bb)\ d \mu
+		= \int fg - fg\ d \mu
+		= 0
+	\]
+	ונסיק ש־$\EE_f$ היא ההעתקה האורתוגונלית של $f$ על $L^2(\Bb)$.
+\end{proof}
+
+\question{}
+\subquestion{}
+נניח ש־$\mu, \nu$ מידות רדון על מרחב טופולוגי קומפקטי מקומית ו־$\sigma$־קומפקטי. \\
+נראה שאם לכל $U$ פתוחה מתקיים $\nu(U) = \mu(U)$ אז $\mu = \nu$.
+\begin{proof}
+	מתקיים $\mu = \nu \iff \forall E \in \Aa,\ \mu(E) = \nu(E)$ ולכן תהי $E \in \Aa$ מדידה.
+	מרגולריות חיצונית של מידות רדון מתקיים,
+	\[
+		\mu(E)
+		= \inf\{ \mu(U) \mid E \subseteq U, U \text{ is open} \}
+		= \inf\{ \nu(U) \mid E \subseteq U, U \text{ is open} \}
+		= \nu(E)
+	\]
+	וקיבלנו שוויון.
+\end{proof}
+
+\subquestion{}
+תהי $f : \RR^n \to \RR^n$ פונקציה $C^1$, חד־חד ערכית ועל כך ש־$\det(D f |_x) \ne 0$ לכל $x \in \RR^n$.
+נסמן $\lambda_f = f_* \lambda$ עבור $\lambda$ מידת לבג. \\
+נראה ש־$\lambda_f \ll \lambda$ ונחשב את $h = \frac{d \lambda_f}{d \lambda}$.
+\begin{proof}
+	ממשפט הפונקציה ההפוכה נובע ש־$f$ היא דיפאומורפיזם $C^1$, ובפרט ניתן להשתמש בה במשפט החלפת משתנה.
+	תהי $E \subseteq \RR^n$ מדידה עם $\lambda(E) = 0$.
+	אז מתקיים,
+	\begin{align*}
+		\lambda_f(E)
+		& = \lambda(f^{-1}(E)) \\
+		& = \int_{f^{-1}(E)} 1\ d \lambda \\
+		& = \inf\left\{ \int_{f^{-1}(U)} 1\ dx \mid E \subseteq U \in \tau \right\} \\
+		& = \inf\left\{ \int_{f^{-1}(f(U))} |J(x)|\ dx \mid E \subseteq U \in \tau \right\} \\
+		& = \inf\left\{ \int_U |J(x)|\ dx \mid E \subseteq U \in \tau \right\} \\
+		& = 0
+	\end{align*}
+	כנביעה מהתכנסות אינטגרל רימן בקבוצות ממידה אפס.
+
+	נעבור לחישוב $h$.
+	אנו רוצים למצוא פונקציה המקיימת לכל $g$ מדידה,
+	\[
+		\int g\ d \lambda_f
+		= \int g h\ d \lambda
+	\]
+	בפרט עבור פתוחה $U$ מתקיים,
+	\[
+		\int_U g\ d \lambda_f
+		= \int_U g\ d f_* \lambda
+		\overset{(1)}{=} \int_{f^{-1}(U)} g \circ f\ d \lambda
+		= \int_{f^{-1}(U)} g \circ f\ dx
+		\overset{(2)}{=} \int_U g \cdot |J^{-1}|\ dx
+		= \int_U g \cdot |J^{-1}|\ d \lambda
+	\]
+	כאשר,
+	\begin{enumerate}
+		\item נובע מטענה שהוכחה במטלה 2
+		\item החלפת משתנה
+	\end{enumerate}
+	אז קיבלנו שעבור פתוחות $d \lambda_f = |J^{-1}|\ d \lambda$, ומסעיף א' והנכונות עבור פתוחות נוכל להסיק ש־$h = |J^{-1}|$ בדיוק.
 \end{proof}
 
 \end{document}
