@@ -1829,6 +1829,198 @@
 	אז גבול פרייסה הוא $\omega$־קטגורי ומחלץ כמתים.
 \end{corollary}
 
+\section{שיעור 10 --- 28.12.2025}
+\subsection{רוויה ואוניברסליות}
+\begin{definition}[קפא־קוויה]
+	מודל $\Mm$ נקרא $\kappa$־רווי אם לכל $\Aa \subseteq \Mm$ עם $|A| < \kappa$ ולכל $p \in S_1(A)$, $p$ מתממש ב־$\Mm$. \\
+	אם $|M| = \kappa$ נאמר גם ש־$\Mm$ רווי.
+\end{definition}
+\begin{definition}[רוויה ללא פרמטרים]
+	$\Mm$ הוא רווי לטיפוסים בלי פרמטרים אם לכל $n < \omega$ ולכל $p \in S_n(\Th(\Mm))$, $p$ ממומש ב־$\Mm$. \\
+	במקרה זה נסמן $< \aleph_0$־רווי.
+\end{definition}
+\begin{definition}[מודל אוניברסלי]
+	מודל $\Mm$ הוא $\kappa$־אוניברסלי (כולל) אם לכל $\Nn$ כל ש־$\Nn \equiv \Mm$ ו־$|N| < \kappa$ יש שיכון אלמנטרי $f : \Nn \to \Mm$.
+\end{definition}
+\begin{definition}[קפא־הומוגניות]
+	$\Mm$ הוא $\kappa$־הומוגני אם לכל $\Aa \subseteq \Mm, |A| < \kappa$ ושיכון אלמנטרי חלקי $f : A \to B$, לכל $a \in M$ יש $b \in M$ כך ש־$f \cup \{ \langle a, b \rangle \}$ שיכון אלמנטרי.
+\end{definition}
+\begin{remark}
+	אם $|M| = \kappa$ אז ניתן יהיה להרחיב את $f$ לאוטומורפיזם של $\Mm$.
+\end{remark}
+\begin{theorem}[שקילות לתכונות של מודלים רוויים]
+	התכונות הבאות שקולות עבור מודל $\Mm$ מעל שפה $L$ ומונה $\kappa$:
+	\begin{enumerate}
+		\item $\Mm$ הוא $\kappa$־רווי
+		\item $\Mm$ הוא $\kappa$־הומוגני ומקיים לכל $\Nn \equiv \Mm$ ו־$\Aa \subseteq \Nn, |A| \le \kappa$ יש שיכון אלמנטרי חלקי $f : \Aa \to \Mm$
+		\item $\Mm$ הוא $\kappa$־הומוגני ורווי לטיפוסים בלי פרמטרים
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$1 \implies 2$:
+	נניח ש־$f : \Aa \to \im f$ שיכון אלמנטרי חלקי ו־$|A| < \kappa$, ותהי $a \in \Mm$.
+	נסמן $p = tp(a / A) \in S_1(A)$ ו־$q = f_*(p) \in S_1(\im f)$, ולכן יש $b \in M$ שמממש את $q$ ואז $f \cup \{ \langle a, b \rangle \}$ שיכון חלקי. \\
+	נניח את התכונה הראשונה וכן ש־$\Nn \equiv \Mm$ ו־$\Aa \subseteq \Nn, |A| \le \kappa$.
+	נמנה את $A = \{ a_{\alpha} \mid \alpha < \alpha_* \}$ עבור $\alpha_* \le \kappa$.
+	נבנה רקורסיבית את $f_{\alpha} : \{ a_{\beta} \mid \beta < \alpha \} \to \Mm$ שיכון אלמנטרי.
+	נגדיר $f_0 = \emptyset$. נניח שבנינו את $f_{\beta}$ לכל $\beta < \alpha$, אם $\alpha$ גבולי אז נגדיר $f_{\alpha} = \bigcup_{\beta < \alpha} f_{\beta}$.
+	אם $\alpha = \gamma + 1$ אז $p = tp(a / \{ a_{\beta} \mid \beta < \gamma \})$ ובהתאם $q = {(f_{\alpha})}_*(p)$ ממומש ב־$\Mm$.
+
+	$2 \implies 3$:
+	אם $p \in S_n(\Th(\Mm))$ אז יש $\Nn \equiv \Mm$ מממש את $p$.
+	ניקח את $A = \{ a_0, \ldots, a_{n - 1} \}$ כך ש־$\bar{a}$ מממש את $p$.
+	אם $f : \Aa \to \Mm$ שיכון אלמנטרי אז $\Mm \models p(f(a_0), \ldots, f(a_{n - 1}))$.
+
+	$3 \implies 1$:
+	נתונה לנו $\kappa$־הומוגניות ורוויה לטיפוסים ללא פרמטרים, ונראה $\kappa$־רוויה. \\
+	באינדוקציה על מונים $\lambda < \kappa$ נוכיח שאם $|A| = \lambda$ ו־$p \in S_1(A)$ אז $p$ ממומש. \\
+	עבור $n = \lambda < \aleph_0$ נניח ש־$A = \{a_0, \ldots, a_{\lambda - 1}\}$ ונניח,
+	\[
+		p = \{ \varphi(x, a_0, \ldots, a_{\lambda - 1}) \},
+		\qquad
+		q(x, a_0, \ldots, a_{n - 1})
+	\]
+	עבור $q \in S_{n + 1}(\Th(\Mm))$.
+
+	כל יש $(b_0, \ldots, b_n)$ שמממשת את $q$ ב־$\Mm$.
+	$tp(b_1, \ldots, b_n) = tp(a_0, \ldots, a_{n - 1})$ ולכן $f = \{ (a_i, b_{i + 1}) \mid i < n \}$ שיכון אלמנטרי ולכן ניתן להרחיבו על־ידי הוספת $b_0$ לתחומו ואותה ההרחבה תשלח את $b_n$ ל־$c$ עבור $\Mm \models p(c)$. \\
+	נניח ש־$\aleph_0 \le \lambda$, מהנחת האינדוקציה $\Mm$ הוא $\lambda$־רווי ולכן טענה 2 מתקיימת עם $\lambda$.
+	נניח כעת ש־$p \in S_1(A)$ ויהי $\Mm \prec \Nn$ שבה $p$ מתממש, כאשר $|A| = \lambda$.
+	מתכונה 2 יש שיכון אלמנטרי חלקי $f : A \cup \{ b \} \to \Mm$ ואז נוכל להסתכל על $f(A) \subseteq M$ ונקבל ש־$f : A \to f(A)$ שיכון אלמנטרי חלקי.
+	בהתאם $f(b)$ מממש את $f_*(p)$.
+	מהומוגניות נרחיב את $f \restriction A$ על־ידי הוספת הערך $f(b)$ לתחום וכעת תמונת $f(b)$ תממש את $p$.
+\end{proof}
+\begin{corollary}
+	אם יש $\kappa$ גדול בהרבה מ־$|T|$ עבורו $|\bigcup \{ 2^{\lambda} \mid \lambda < \kappa \}| = 2^{< \lambda} = \kappa$,
+	אז יש מודל רווי מעוצמה $\kappa$ ל־$T$ יחיד עד כדי איזומורפיזם שהוא $\kappa$־אוניברסלי.
+	למודל הזה נקרא $\Cc_T$ והוא נקרא מודל המפלצת של $T$.
+\end{corollary}
+\begin{theorem}[קיום מודל מפלצת]
+	אם $2^{\lambda} = \lambda^+$ ואינסופי, $\Mm$ מודל אינסופי כך ש־$|M| \le \lambda^+$ כלשהו, אז יש מודל רווי $\Nn$ כך ש־$\Mm \prec \Nn$ ו־$|N| = \lambda^+$.
+\end{theorem}
+טענה זו הוכחה בתרגילי הבית.
+\begin{corollary}
+	אם $\Mm_1, \Mm_2$ מודלים רוויים ו־$\Mm_1 \equiv \Mm_2, |M_1| = |M_2|$ אז $\Mm_1 \cong \Mm_2$.
+\end{corollary}
+\begin{proof}
+	נסמן $\kappa = |M_1| = |M_2|$ ובלי הגבלת הכלליות $\aleph_0 \le \kappa$.
+	לכן שניהם $\kappa$־הומוגניים ונוכל לבנות ברקורסיה $\langle f_{\alpha} \mid \alpha < \kappa \rangle$ סדרה עולה של שיכונים אלמנטריים חלקיים.
+	נוכל לוודא ש־$\bigcup_{\alpha < \kappa} f_{\alpha}$ איזומורפיזם.
+	בהינתן $f_{\alpha}$ ו־$a \in M_1$, מ־$\kappa$־הומוגניות ניתן להרחיב את $f_{\alpha}$ ל־$f_{\alpha + 1}$ כך ש־$a \in \dom f_{\alpha + 1}$.
+	באופן שקול אם $b \in M_2$ אז נרחיב את $f_{\alpha}^{-1}$ ל־$f_{\alpha + 1}^{-1}$ כך ש־$b \in \dom f_{\alpha + 1}^{-1}$.
+\end{proof}
+\begin{remark}
+	קיבלנו שאם $\Mm$ רווי אז הוא הומוגני בחזק, כלומר כל $f : A \to B$ עבור $A, B \subseteq M$ מעוצמה קטנה מ־$\kappa$ אלמנטרי חלקי ניתן להרחיב לאוטומורפיזם.
+\end{remark}
+\begin{remark}
+	עקבי עם ZFC שאין מונה $\lambda$ אינסופי בו $2^{\lambda} = \lambda^+$ אבל לכל מונה $\kappa$ יש תת־מודל של העולם (שמקיים ZFC) מכיל את $V_{\kappa}$ או את הקבוצות שעוצמתן ועוצמת איבריה $< \kappa$.
+	אותו מודל מקיים כי לכל $\lambda$ מספיק גדול, $2^{\lambda} = \lambda^+$.
+\end{remark}
+\begin{corollary}
+	$T$ שלמה אם יש $\lambda$ עבורו יש ל־$T$ מודל רווי יחיד מעוצמה $\lambda$.
+\end{corollary}
+\begin{proof}
+	אם $\Nn_0, \Nn_1 \models T$ ו־$\Nn_0 \not\equiv \Nn_1$ אז $\Nn_0 \prec \Mm_0$ וכן $\Nn_1 \prec \Mm_1$ מרוויה אבל $\Mm_0 \cong \Mm_1$ ולכן שקולים אלמנטרית.
+\end{proof}
+\begin{theorem}[שקילות רוויים וחילוץ כמתים]
+	התנאים הבאים שקולים עבור תורה $T$:
+	\begin{enumerate}
+		\item $T$ מחלצת כמתים
+		\item אם $\Mm, \Nn \models T$ רוויים ומאותה עוצמה ו־$\Aa$ תת־מבנה נוצר סופית משותף ו־$\varphi$ נוסחת קיים פרימיטיבית אז $\Mm_A \models \varphi \implies \Nn_A \models \varphi$
+	\end{enumerate}
+	אם נניח בנוסף ש־$T$ שלמה נקבל שגם:
+	\begin{enumerate}
+		\item[3.] אם $\Mm \models T$ רווי, $\Aa \subseteq \Mm$ תת־מבנה נוצר סופית, $\Bb$ נוצר סופית, $f : \Aa \to \Bb$ איזומורפיזם אז לכל $a \in M$ ניתן להרחיב את $f$ ל־$\langle A \cup \{ a \} \rangle$
+		\item[4.] אותו הדבר ל־$|A| < |M|$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$1 \implies 2$: ראינו.
+
+	$2 \implies 1$:
+	אם $\Nn_0, \Nn_1$ מודלים כלשהם של $T$ אז ניתן להחריב אותו ל־$\Mm_0 \prec \Mm, \Nn_0 \prec \Nn$ רוויים.
+	לכן טענה 2 למעשה גוררת את המקרה בלי ההנחה על רוויה של $\Mm, \Nn$.
+
+	$4 \implies 3$:
+	נראה ש־$1 \implies 4$, QE גורר כי כל איזומורפיזם של תתי־מבנים הוא שיכון אלמנטרי חלקי.
+	מרוויה יש הומוגניות ולכן ניתן להרחיב את $f$.
+
+	$3 \implies 1$:
+	נניח ש־$\Mm, \Nn$ רוויים ו־$\Aa$ תת־מבנה משותף.
+	אז האיזומורפיזם $f : \Mm \leftrightarrow \Nn$ נותן בפרט איזומורפיזם בין $\Aa$ ל־$f^{-1}(A)$.
+	נניח כי $a \in M$ מעיד על כך ש־$\varphi$ מתקיימת ב־$\Mm$.
+	נרצה להרחיב את $g = f^{-1} \restriction A$ כך ש־$a$ יהיה בתחומה.
+	נטען כי $b = f(g(a))$ מעיד על $\Nn$ מקיים את $\varphi$ עם הפרמטרים מ־$A$. \\
+	$\varphi = \exists x\ \psi(x, c_0, \ldots, c_{n - 1})$ עבור $c_i \in A$.
+	\[
+		\Mm \models \psi(a, c_0, \ldots, c_{n - 1})
+		\implies \Mm \models \psi(g(a), g(c_0), \ldots, g(c_{n - 1}))
+	\]
+	ולכן,
+	\[
+		\Nn \models \psi(f(g(a)), f(g(c_0)), \ldots, f(g(c_{n - 1})))
+		\iff \Nn \models \psi(f(g(a)), c_0, \ldots, c_{n - 1})
+		\implies \Nn \models \varphi(c_0, \ldots, c_{n - 1})
+	\]
+	כאשר $b = f(g(a))$.
+\end{proof}
+\begin{definition}[סדרת אי־בחינים]
+	נניח ש־$\langle I, <_I \rangle$ סדר קווי ו־$\Mm$ מבנה. \\
+	סדרה $\langle \bar{a}_i \mid i \in I \rangle$ עבור $\bar{a}_i \in M^k$ תיקרא סדרת אי־בחינים אם לכל נוסחה $\varphi$ ולכל $i_0 < \cdots < i_{n - 1}, j_0 < \cdots < j_{n - 1}$ ב־$I$ מתקיים,
+	\[
+		\Mm \models \varphi(\bar{a}_{i_0}, \ldots, \bar{a}_{i_{n - 1}})
+		\leftrightarrow \varphi(\bar{a}_{j_0}, \ldots, \bar{a}_{j_{n - 1}})
+	\]
+\end{definition}
+\begin{definition}[תת־קבוצות מגודל]
+	נסמן ב־${[A]}^n$ את $\{ X \subseteq A \mid |X| = n \}$.
+	$\mu \to {(\kappa)}_{\lambda}^r$ אם,
+	לכל $f : {[\mu]}^r \to \lambda$ יש $A \subseteq \mu$ עם $|A| = \kappa$ כך ש־$f \restriction {[A]}^r$ קבועה.
+\end{definition}
+\begin{theorem}[רמזי]
+	$\omega \to {(\omega)}_k^r$ לכל $r, k \in \NN$.
+	כלומר לכל $f : {[\omega]}^r \to k$ יש תת־קבוצה $A \subseteq \omega$ עם $|A| = \aleph_0$ כך ש־$f \restriction {[A]}^r$ קבועה.
+\end{theorem}
+\begin{remark}
+	$\omega_1 \not\to {(\omega_1)}_2^2$.
+\end{remark}
+\begin{proof}
+	באינדוקציה על $r$.
+	עבור $r = 0$ הטענה נכונה.
+	ל־$r = 1$ שובך היונים. \\
+	נניח כי הטענה מתקיימת ל־$r$ ונבחן את $f : {[\omega]}^{r + 1} \to k$.
+	נגדיר ברקורסיה סדרת קבוצות $B_n \subseteq \omega$ אינסופיות ל־$n$ טבעי באופן הבא: לשם הסימון $B_{-1} = \omega$ ונבחן את $g : {[B_{n - 1} \setminus (n + 1)]}^r \to k$ המוגדרת על־ידי $g(a) = f(a \cup \{n\})$.
+	מהנחת האינדוקציה $B_n \subseteq B_{n - 1}$ אינסופית ו־$c_n < k$ כך ש־$g \restriction {[B_n]}^r$ פונקציה קבועה ערך $c_1$. \\
+	קיבלנו שאם $n_0, \ldots, n_r$ מקיימים $n_0 < \cdots < n_r$ ו־$n_1, \ldots, n_r \in B_{n_0}$ אז $f(\{n_0, \ldots, n_r\}) = c_{n_0}$. \\
+	נגדיר באינדוקציה את הסדרה של האיברים $s_0 = 0$ וכן $s_{n + 1} = \min(B_{s_n} \setminus (s_n + 1))$ ולבסוף $S = \{ s_n \mid n < \omega \}$.
+	נגדיר $s_n \rightharpoonup c_{s_n}$, זו קבוצה אינסופית ב־$k$ ולכן יש תת־קבוצה אינסופית קבועה. \\
+	נסמן את תת־הקבוצה הזו ב־$A$ ונקבל ש־$f \restriction {[A]}^{r + 1}$ קבועה.
+\end{proof}
+\begin{theorem}[a]
+	יהי $\Mm$ מבנה ו־$\langle I, <_I \rangle$ סדר קווי, $\langle J, <_J \rangle$ קווי.
+	נניח ש־$\langle \bar{a}_i \mid i \in I \rangle$ סדרה של איברים מ־$M^n$.
+	אז יש הרחבה אלמנטרית $\Mm \prec \Nn$ וסדרת איברים $\langle \bar{b}_j \mid j \in J \rangle$ עבור $\Nn$ כל שלכל נוסחה $\varphi$ אם יש $j_0 < \cdots < j_{k - 1}$ ב־$J$,
+	כך ש־$\Nn \models \varphi(\bar{b}_{j_0}, \ldots, \bar{b}_{j_{k - 1}})$ אז יש $i_0 < \cdots < i_{k - 1}$ ב־$I$ כך ש־$\Mm \models \varphi(\bar{a}_{i_0}, \ldots, \bar{a}_{i_{k - 1}})$.
+\end{theorem}
+\begin{proof}
+	בלי הגבלת הכלליות $n = 1$, נוסיף קבועים $\langle c_j \mid j \in J \rangle$ ונסתכל על,
+	\begin{align*}
+		\Sigma
+		= & \diag(\Mm) \\
+		& \cup \{ \varphi(c_{j_0}, \ldots, c_{j_{k - 1}}) \leftrightarrow \varphi(c_{j_0'}, \ldots, c_{j_{k - 1}'}) \mid j_0 < \cdots < j_{k - 1}, j_0' < \cdots < j_{k - 1}', \varphi \in \form \} \\
+		& \cup \{ \varphi(c_{j_0}, \ldots, c_{j_{k - 1}}) \mid \forall i_0 < \cdots < i_{k - 1},\ \Mm \models \varphi(a_{i_0}, \ldots, a_{i_{k - 1}}) \}
+	\end{align*}
+	נראה כי $\Sigma$ ספיקה סופית.
+	תהי $\Sigma_0 \subseteq \Sigma$ סופית.
+	מורכבת מאי־בחינות של מספר סופי של צבעים איתם לנוסחות $\rho_0, \ldots, \rho_{k - 1}$ לכל היותר עם $r$ משתנים חופשיים.
+	נגדיר צביעה על $I$, $f(i_0, \ldots, i_{r - 1})$ הוא ערכי האמת של $(\rho_j(c_{i_0}, \ldots, c_{i_{k - 1}}) \mid j < k)$.
+	לכן יש $I_0 \subseteq I$ אינסופית חדגונית ולכן יש דרך להתאים את הדברים שהופיעו ב־$\Sigma_0$ לאיברים מ־$(a_i \mid i \in I)$ כך ש־$\Sigma_0$ תתקיים.
+\end{proof}
+\begin{definition}[טיפוס סקולם]
+	בהינתן $(I, <)$ סדר קווי וסדרת אי־בחינים $\langle a_i \mid i \in I \rangle$,
+	הטיפוס EM הוא כל הנוסחות מהצורה $\varphi(x_0, \ldots, x_{n - 1})$ כך שיש לכל $i_0 < \cdots < i_{n - 1}$ ב־$I$, $\Mm \models \varphi(a_{i_0}, \ldots, a_{i_{n - 1}})$.
+\end{definition}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
