@@ -1175,6 +1175,54 @@
 	אם $U \subseteq \EE^2$ פתוחה ו־$f : U \to \EE^1$ חלקה אז $S = \{ (x, y, z) \in \EE^3 \mid z = f(x, y) \}$.
 \end{example}
 
+\section{שיעור 18 --- 16.12.2025}
+\subsection{משטחים רגולריים}
+\begin{theorem}[שקילות למשטח רגולרי]
+	$S \subseteq \EE^3$ תיקרא משטח רגולרי אם מתקיימים אחד מבין התנאים הבאים:
+	\begin{enumerate}
+		\item לכל $P \in S$ קיימת $P \in V \subseteq \EE^2$ סביבה פתוחה ו־$V \subseteq \EE^2$ פתוחה כך ש־$f : U \to \EE^3$ המקיימת,
+			\begin{enumerate}
+				\item $f(U) \cong V \cap S$, כלומר $f$ היא הומיאומורפיזם
+				\item $\forall u \in U,\ \deg D f |_u = 2$ לכל $x \in \dom f$
+			\end{enumerate}
+		\item לכל $P \in S$ קיימות $P \in V \subseteq \EE^3$ סביבה פתוחה כך שמתקיים,
+			\[
+				S = \{ (x, y, z) \in \EE^3 \mid F(x, y, z) = 0 \}
+			\]
+			עבור פונקציה המקיימת,
+			\begin{enumerate}
+				\item $F$ חלקה ב־$V$
+			\end{enumerate}
+		\item לכל $P \in S$ קיימת $P \in V \subseteq \EE^3$ סביבה פתוחה וקיימת $U \subseteq \EE^3$ קבוצה פתוחה כך ש־$g : U \to S \cap V$ חלקה כך שלכל $(x, y, z) \in S \cap V$ מתקיים $z = g(x, y)$
+	\end{enumerate}
+\end{theorem}
+\begin{example}
+	עבור $S = S(0, 1)$ ספירת היחידה נבין שנוכל לכסות את הקבוצה על־ידי $f(x, y) = \pm \sqrt{x^2 + y^2}$ ולכן זהו משטח רגולרי.
+	מהצד השני נוכל גם להגדיר את $F(x, y, z) = x^2 + y^2 + z^2 - 1$ ולקבל מהאפיון השקול למשטח שהספירה היא אכן משטח.
+\end{example}
+
+\section{שיעור 19 --- 29.12.2025}
+\subsection{מישור משיק}
+נבחן את השלשה הסדורה $(U, f, V)$ אשר מהווה פרמטריזציה מקומית של משטח רגולרי, אז $U \subseteq \EE^2$ וכן $V \subseteq \EE^3$.
+אם נבחן את $T_u V = \{ u \} \times \RR^2$ אז נקבל קבוצה ב־$\EE^3$, זהו המישור המשיק של הנקודה $u \in U$.
+נוכל באופן שקול להסתכל על $T_P \EE^3$, ואם $f : U \to S \cap V$ כך ש־$f(u) = P$, אז נרצה לבחון את $T_P S = D f |_u(T_u V)$, אבל זוהי הצגה פרמטרית ולא גאומטרית.
+\begin{definition}[מישור משיק]
+	אם $S \subseteq \EE^3$ משטח רגולרי, אז נגדיר את המישור המשיק לנקודה $P \in S$ על־ידי $T_P S = D f |_u (T_u V)$ עבור $P \in U \subseteq \EE^2$ פתוחה, $V \subseteq \EE^3$ פתוחה ו־$f : U \to V$ פרמטריזציה.
+	במקרה זה גם $P = f(u)$ וכן $T_u V = \RR^2$.
+\end{definition}
+\begin{theorem}[אפיון שקול למישור משיק]
+	אם $S$ משטח רגולרי וכן $P \in S$ אז מתקיים,
+	\[
+		T_P S
+		= \{ c'(t_0) \mid c : I \to S \text{ regular path}, c(t_0) = P \}
+	\]
+	כלומר מישור משיק מתלכד עם ערכי הנגזרות של מסילות העוברות דרך הנקודה.
+\end{theorem}
+
+\section{שיעור 20 --- 30.12.2025}
+\subsection{התבנית היסודית הראשונה}
+TODO
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
