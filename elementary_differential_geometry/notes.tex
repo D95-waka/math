@@ -1221,7 +1221,24 @@
 
 \section{שיעור 20 --- 30.12.2025}
 \subsection{התבנית היסודית הראשונה}
-TODO
+\begin{definition}[התבנית היסודית הראשונה]
+	נניח ש־$S \subseteq \EE^3$ משטח רגולרי ו־$P \in S$.
+	נגדיר את התבנית היסודית הראשונה בתור המישור היחיד העובר ב־$P$ ובעל דיפרנציאל זהה ל־$P$ ב־$S$. \\
+	עבור $\langle , \rangle : \RR^3 \times \RR^3 \to \RR$ המכפלה הפנימית הסטנדרטית,
+	נגדיר $I_p = \langle , \rangle \restriction_{T_P S \times T_P S}$ להיות התבנית היסודית הראשונה של $S$ ב־$P$.
+	כאשר,
+	\[
+		T_P(S)
+		= \{ P + f'(t_0) \mid f : I \to S, f(t_0) = P \}
+	\]
+	המישור המשיק ל־$P$ ב־$S$.
+\end{definition}
+\begin{example}
+	אם $f : \EE^2 \to \EE^3$ המוגדרת על־ידי $f(u^1, u^2) = P + u^1 \xi + u^2 \eta$ כאשר $\xi, \eta$ בלתי־תלויים ב־$\RR^3$.
+\end{example}
+\begin{example}
+	אם $S$ נתון על־ידי המשוואה $z = 0$ אז נוכל להגדיר $U = \EE^2, V = \EE^3$ וכן $f : (u^1, u^2) \mapsto u^1 e_1 + u^2 e_2$ ונקבל שהתבנית ניתנת להצגה עם מטריצת גרם $G = I_2$.
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
