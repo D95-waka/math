@@ -1,0 +1,194 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- תורת המידה, 80517}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+נמצא קבוצה $E \subseteq \RR$ כך שאם $\lambda_E = \lambda |_E$, כלומר המידה המקיימת $\lambda_E(A) = \lambda(E \cap A)$, אז מתקיים,
+\[
+	\overline{D}(\lambda_E, \lambda, 0) = 1,
+	\qquad
+	\underline{D}(\lambda_E, \lambda, 0) = 0
+\]
+\begin{solution}
+	אם נגדיר $f = \indicator_E$ אז נקבל $\lambda_E(A) = \lambda(A \cap E) = \int_A f\ d \lambda$ ואם $A = [a, b]$ אז בפרט $\lambda_E(A) = \int_a^b f(x)\ dx$. \\
+	אם $r > 0$ אז נקבל $B = \overline{B}(0, r) = [-r, r]$ ובהתאם,
+	\[
+		\frac{\lambda_E(B)}{\lambda(B)}
+		= \frac{1}{2r} \int_{-r}^{r} f(x)\ dx
+	\]
+	
+	נגדיר $a_n = \frac{1}{n^n}$ וכן $E = \bigcup_{k \in \NN} [a_{2k + 1}, a_{2k}]$.
+	נקבל אם כך עבור $r = a_n$,
+	\[
+		\frac{1}{2r} \int_{-r}^{r} f(x)\ dx
+		= \frac{1}{2 a_n} \int_0^{a_n} f(x)\ dx
+		= \frac{1}{2 a_n} \left( \int_0^{a_{n + 1}} f(x)\ dx + \int_{a_{n + 1}}^{a_n} f(x)\ dx \right)
+	\]
+	אם $n = 2k$ אז בהתאם,
+	\[
+		\frac{1}{2 a_n} \left( \int_0^{a_{n + 1}} f(x)\ dx + \int_{a_{n + 1}}^{a_n} f(x)\ dx \right)
+		\ge \frac{n^n}{2} \left(\frac{1}{n^n} - \frac{1}{{(n + 1)}^{n + 1}}\right)
+		\xrightarrow{n \to \infty} \frac{1}{2}
+	\]
+	מהצד השני עבור $n = 2k + 1$ נקבל,
+	\[
+		\frac{1}{2 a_n} \left( \int_0^{a_{n + 1}} f(x)\ dx + \int_{a_{n + 1}}^{a_n} f(x)\ dx \right)
+		= \frac{1}{2 a_n} \int_0^{a_{n + 1}} f(x)\ dx
+		\xrightarrow{n \to \infty} 0
+	\]
+	ובהתאם נובע שעבור $E' = E \cup (-E)$ מתקיים $\underline{D}(\lambda_{E'}, \lambda, 0) = 0$ וכן $\overline{D}(\lambda_E, \lambda, 0) = 2 \overline{D}(\lambda_{E'}, \lambda, 0) = 1$.
+\end{solution}
+
+\question{}
+תהי $\mu$ מידת רדון על $\RR^d$ ותהי $\lambda$ מידת לבג במרחב זה. \\
+נבחן את הנגזרת העליונה,
+\[
+	\overline{D}(\mu, \lambda, \cdot) : \RR^d \to [-\infty, \infty],
+	\qquad
+	\overline{D}(\mu, \lambda, x) = \limsup_{r \to 0} \frac{\mu(\overline{B}(x, r))}{\lambda(\overline{B}(x, r))}
+\]
+ונראה שהיא מדידה בורל.
+
+\subquestion{}
+נראה שהפונקציה $f(x) = \mu(\overline{B}(x, r))$ היא רציפה מלמעלה, כלומר שאם $x_i \to x$ סדרה, אז מתקיים,
+\[
+	\limsup_{i \to \infty} f(x_i) \le f(x)
+\]
+\begin{proof}
+	נזכור כי $\mu$ היא רדון ולכן מקיימת רגולריות חיצונית, כלומר,
+	\[
+		\mu(E)
+		= \sup\{ \mu(U) \mid E \subseteq U, U = U^\circ \}
+	\]
+	תהי $\overline{B}(x, r) \subseteq U$ פתוחה כלשהי ונראה שכמעט לכל $i$ מתקיים $\overline{B}(x_i, r) \subseteq U$.
+	יהי $\varepsilon > 0$ ונניח שלכל $i > M$ מתקיים $\lVert x_i - x \rVert < \varepsilon$, אז נקבל שגם $p \in \overline{B}(x_i, r)$ אז $\lVert p - x \rVert \le \lVert p - x_i \rVert + \lVert x_i - x \rVert \le r + \varepsilon$.
+	אם $U$ לא מקיימת את הטענה אז לכל $\varepsilon > 0$ קיים $p \notin U$ עבור $\lVert p - x \rVert \le r + \varepsilon$ ולכן $U$ לא פתוחה בסתירה. \\
+	נסיק שאם $U$ פתוחה כזו ו־$M$ חסם כזה, אז $\\lim_{i \to \infty} f(x_i) \le \mu(\bigcup_{i = M}^{\infty} f(x_i)) \le \mu(U)$ ומשרירותיות $U$ הטענה נובעת.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\overline{D}(\mu, \lambda, x) = \limsup_{r \to 0, r \in \QQ} \frac{\mu(\overline{B}(x, r))}{\lambda(\overline{B}(x, r))}
+\]
+כלומר שניתן לקבל את $\overline{D}(\mu, \lambda, x)$ על־ידי ערכי $r$ רציונליים.
+\begin{proof}
+	ניזכר שלכל $r > 0$ מתקיים,
+	\[
+		\lambda(\overline{B}(x, r))
+		= \int_{\lVert p - x \rVert \le r} 1\ dx
+	\]
+	ונוכל להראות באינדוקציה על $d$ ומבער עם משפט פוביני שפונקציה זו רציפה ביחס ל־$r$.
+
+	תהי $r_i \to 0$ סדרת חיוביים ונגדיר $|q_i - r_i| < 2^{-i}$ לכל $i$, קיימים כאלה מצפיפות, וכן נובע ש־$q_i \to 0$.
+	נראה שמתקיים,
+	\[
+		\frac{\mu(\overline{B}(x, r_i))}{\lambda(\overline{B}(x, r_i))} \xrightarrow{i \to \infty} L
+		\iff 
+		\frac{\mu(\overline{B}(x, q_i))}{\lambda(\overline{B}(x, q_i))} \xrightarrow{i \to \infty} L
+	\]
+	מרציפות $\lambda$ שמצאנו נובע,
+	\[
+		\frac{\mu(\overline{B}(x, r_i))}{\lambda(\overline{B}(x, r_i))} \xrightarrow{i \to \infty} L
+		\iff 
+		\frac{\mu(\overline{B}(x, r_i))}{\lambda(\overline{B}(x, q_i))} \xrightarrow{i \to \infty} L
+	\]
+	ונותר להראות עבור המונה.
+	נזכור כי $\mu$ מידה ולכן מקיימת מונוטוניות יורדת, כלומר,
+	\[
+		\mu(\cap_{n = 1}^\infty E_n) = \inf \mu(E_n)
+	\]
+	עבור $E_n$ סדרת מדידות יורדת.
+	אם כך ומהגדרת $q_i$ נקבל,
+	\[
+		\inf \mu(\overline{B}(x, r_i))
+		= \inf \mu(\overline{B}(x, q_i))
+	\]
+	ונסיק משילוב הטענות שנובע,
+	\[
+		\frac{\mu(\overline{B}(x, r_i))}{\lambda(\overline{B}(x, r_i))} - \frac{\mu(\overline{B}(x, r_i))}{\lambda(\overline{B}(x, q_i))} \xrightarrow{i \to \infty} 0
+	\]
+	כלומר $\overline{D}$ מקיימת את הטענה.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$\overline{D}$ היא מדידה בורל.
+\begin{proof}
+	בסעיף הקודם מצאנו שההגדרה של $\overline{D}$ חלה גם עם שימוש ברציונליים, ולכן משיקולי עוצמת הסדרות הרציונליות נסיק שלכל $x \in \RR^d$ קיימת סדרה $q_i \to 0$ המקיימת,
+	\[
+		\overline{D}(\mu, \lambda, x)
+		= \lim_{i \to \infty} \frac{\mu(\overline{B}(q_i, x))}{\lambda(\overline{B}(q_i, x))}
+	\]
+	ולכן מסעיף א' ורציפות $\lambda$ נקבל ש־$\overline{D}$ מדידה.
+\end{proof}
+
+\question{}
+לכל $r > 0$ נגדיר,
+\[
+	C(x, r)
+	= \prod_{n = 1}^d [x_n - r, x_n + r]
+\]
+וכן נגדיר,
+\[
+	\Ff
+	= \{ C(x, r) \mid x \in \RR^d, r > 0 \}
+\]
+ונראה ש־$\Ff$ מקיימת את תכונת כיסוי בסיקוביץ' החלשה, כלומר נראה שקיים $N = N(d)$ כך שאם $C(x^1, r_1), \ldots, C(x^k, r_k) \subseteq \Ff$ מקיימות,
+\[
+	\bigcap_{i = 1}^k C(x^i, r_i) \ne \emptyset
+\]
+ו־$x^j \notin C(x^i, r_i)$ לכל $j \ne i$, אז מתקיים $k \le N$.
+\begin{proof}
+	נגדיר $N = 2^d$ ונראה שהטענה מתקיימת.
+	נניח בלי הגבלת הכלליות ש־$0 \in \bigcap C(x^i, r_i)$.
+	נגדיר את ההעתקה,
+	\[
+		\xi : \RR^d \to {\{-1, 1\}}^d,
+		\quad
+		\xi_n(x) = 2 \indicator_{\RR_{\ge 0}}(x) - 1
+	\]
+	כלומר $\xi$ מסווגת לכל נקודה באיזה ''רביע'' היא.
+
+	נניח ש־$\xi(x^i) = \xi(x^j)$ עבור $i \ne j$ כלשהם.
+	מהנתון $0 \in C(x^i, r_i) \cap C(x^j, r_j)$ נסיק שקיים אינדקס $n \le k$ כך ש־$\xi_n(x^i - r_i) \ne \xi_n(x^i + r_i)$, וכך גם עבור $j$.
+	אבל בלי הגבלת הכלליות אפשר להניח ש־$0 \le x_n^i, x_n^j$ ולכן בהכרח $x^i \in C(x^j, r_j)$ או $x^j \in C(x^i, r_i)$ בסתירה, ולכן נסיק שמתקיים,
+	\[
+		i \ne j
+		\implies \xi(x^i) \ne \xi(x^j)
+	\]
+	כלומר $\zeta = \xi \restriction \{ x^i \mid i \le k \}$ חד־חד ערכית, ולכן $k = |\{ x^i \}| \le |\im \zeta| \le |\rng \zeta| = |\rng \xi| = 2^d$.
+\end{proof}
+
+\question{}
+נעסוק במקרים בהם משפט הכיסוי של בסיקוביץ' לא מתקיים.
+
+\subquestion{}
+נראה שמשפט הכיסוי של בסיקוביץ' לא מתקיים עבור קבוצות לא חסומות ב־$\RR^d$.
+\begin{proof}
+	נמצא דוגמה לקבוצה $A \subseteq \RR^d$ עם כיסוי בסיקוביץ' ללא תת־כיסוי סופי.
+
+	נגדיר $A = \RR^d$ וכן $\Ff = \{ \overline{B}(x, 1) \mid x \in \RR^d \}$.
+	נבחין כי $\Ff$ מוגדר להיות כיסוי בסיקוביץ' ל־$A$, ולכן נותר להראות שאין לו תת־כיסוי סופי.
+
+	נניח ש־$\Uu \subseteq \Ff$ תת־כיסוי סופי, אז אם $\Uu = \{ \overline{B}(x^i, 1) \mid i \le k \}$ נבחר $y = x^i$ כך ש־$\lVert y \rVert$ מקסימלי, ולכן $U = B(2y, 0)$ סביבה פתוחה וחסומה כך ש־$\bigcup \Uu \subseteq U$.
+	זוהי כמובן סתירה ל־$\RR^d \subseteq \bigcup \Uu$.
+\end{proof}
+
+\subquestion{}
+נניח ש־$d = 2$ ונגדיר את המלבן $R(x, a, b) = [x_1 - a, x_1 + a] \times [x_2 - b, x_2 + b]$.
+נראה שמשפט הכיסוי של בסיקוביץ' לא מתקיים עבור קבוצות של מלבנים ב־$\RR^2$.
+\begin{proof}
+	יהי $N \in \NN$ ויהי $1 > \varepsilon > 0$, נגדיר,
+	\[
+		\Ff^N
+		= \{ R((3^n, 3^{1 - n}), (1 + \varepsilon) \cdot 3^n, (1 + \varepsilon) \cdot 3^{1 - n}) \mid n \in [N] \}
+	\]
+	לכל $n$ מתקיים $3^n - (1 + \varepsilon) 3^n < 0$ וכן $3^n > 0$ וכן $3^{1 - n} - (1 + \varepsilon) 3^{1 - n} < 0$ אבל $e^{1 - n} > 0$, נסיק ש־$0 \in \Ff_n^N$ לכל $n$ ולכן $0 \in \bigcap \Ff^N$.
+	נניח ש־$i < j \le N$, אז מתקיים $3^i + (1 + \varepsilon) 3^i < 2 \cdot 3^i < 3^j$ וכן באופן דומה $3^{1 - j} < 3^{1 - i} - (1 + \varepsilon) 3^{1 - i}$ ולכן $(3^j, 3^{1 - j}) \notin \Ff_i^N$.
+	מצאנו ש־$\Ff^N$ מקיים את הדרישות של כיסוי בסיקוביץ' חלש לכל $N \in \NN$, ולכן נסיק שמשפט הכיסוי של בסיקוביץ' לא חל על כיסוי במלבנים.
+\end{proof}
+
+\end{document}
