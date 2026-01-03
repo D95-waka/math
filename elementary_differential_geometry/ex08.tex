@@ -1,0 +1,205 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 8 --- גאומטריה דיפרנציאלית אלמנטרית, 80560}
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\question{}
+תהי $S = S^2(0, 1)$ ספירת היחידה, נחשב את התבנית היסודית בהצגה מטריצאלית תוך שימוש בפרמטריזציה,
+\[
+	\varphi(\theta, \phi)
+	= (\sin \phi \cos \theta, \sin \phi \sin \theta, \cos \phi)
+\]
+\begin{solution}
+	\[
+		D \varphi |_{(\theta, \phi)}
+		= \begin{pmatrix}
+			- \sin \phi \sin \theta & \cos \phi \cos \theta \\
+			\sin \phi \cos \theta & \cos \phi \sin \theta \\
+			0 & - \sin \phi
+		\end{pmatrix}
+	\]
+	ונזכור כי הגדרנו,
+	\[
+		g_{ij}
+		= \langle D_i \varphi_{(\theta, \phi)}, D_j \varphi_{(\theta, \phi)} \rangle
+	\]
+	ולכן,
+	\begin{align*}
+		G
+		& = \begin{pmatrix}
+			\langle D_1 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle \\
+			\langle D_1 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			\sin^2 \phi \sin^2 \theta + \sin^2 \phi \cos^2 \theta & 0 \\
+			0 & \cos^2 \phi \cos^2 \theta + \cos^2 \phi \sin^2 \theta + \sin^2 \phi
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			\sin^2 \phi & 0 \\
+			0 & 1
+		\end{pmatrix}
+	.\end{align*}
+\end{solution}
+
+\question{}
+יהיו $0 < r < R$ ממשיים.
+
+\subquestion{}
+נמצא הצגה פרמטרית לטורוס במרחב האוקלידי המתקבל על־ידי סיבוב של המעגל במישור $y, z$ עם מרכז בנקודה $(0, R, 0)$ ורדיוס $r$ סביב ציר $z$.
+\begin{solution}
+	למעשה כבר מצאנו אחת במטלה הקודמת, נצטט,
+	\[
+		\varphi(u, v)
+		= (\cos(v) \cdot (R + r \cos u), \sin(v) \cdot (R + r \cos u), r \sin u)
+	\]
+	אך זוהי פרמטריזציה כך ש־$\varphi(u, 0)$ הוא מעגל סביב $(R, 0, 0)$ ולכן נשנה ונגדיר,
+	\[
+		\varphi(u, v)
+		= (\sin(v) \cdot (R + r \cos u), \cos(v) \cdot (R + r \cos u), r \sin u)
+	\]
+	הפעם מבדיקה ישירה נקבל,
+	\[
+		\varphi(\{ 0 \} \times [0, 2 \pi])
+		= S((0, R, 0), r) \cap \{ 0 \} \times \RR^2
+	\]
+	כמבוקש.
+\end{solution}
+
+\subquestion{}
+נמצא משוואה המגדירה את הטורוס.
+\begin{solution}
+	במטלה הקודמת הראינו כי,
+	\[
+		\varphi({[0, 2 \pi]}^2)
+		= \{ (x, y, z) \in \EE^3 \mid {(x^2 + y^2 + z^2 + R^2 - r^2)}^2 = 4 R^2 (x^2 + y^2) \}
+	\]
+	ולכן המשוואה ${(x^2 + y^2 + z^2 + R^2 - r^2)}^2 = 4 R^2 (x^2 + y^2)$ היא משוואה של הטורוס.
+\end{solution}
+
+\subquestion{}
+נגדיר את הפרמטריזציה,
+\[
+	\varphi(\theta, \phi)
+	= ((R + r \cos \phi) \cos \theta, (R + r \cos \phi) \sin \theta, r \sin \phi)
+\]
+ונחשב את התבנית היסודית הראשונה שלה.
+\begin{solution}
+	\[
+		D \varphi |_{(\theta, \phi)}
+		= \begin{pmatrix}
+			- (R + r \cos \phi) \sin \theta & - r \sin \phi \cos \theta \\
+			(R + r \cos \phi) \cos \theta & -r \sin \phi \sin \theta \\
+			0 & r \cos \phi
+		\end{pmatrix}
+	\]
+	ולכן,
+	\begin{align*}
+		G
+		& = \begin{pmatrix}
+			\langle D_1 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle \\
+			\langle D_1 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			{(R + r \cos \phi)}^2 (\sin^2 \theta + \cos^2 \theta) & (R + r \cos \phi) r \sin \phi (\cos \theta \sin \theta - \sin \theta \cos \theta) \\
+			(R + r \cos \phi) r \sin \phi (\cos \theta \sin \theta - \sin \theta \cos \theta) & r^2 \sin^2 \phi (\cos^2 \theta + \sin^2 \theta) + r^2 \cos^2 \phi
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			{(R + r \cos \phi)}^2 & 0 \\
+			0 & r^2
+		\end{pmatrix} \\
+	\end{align*}
+\end{solution}
+
+\question{}
+יהי $S$ היפרבולואיד הנתון על־ידי המשוואה $x^2 + y^2 - z^2 = 1$. \\
+נחשב את התבנית היסודית הראשונה בהצגה מטריצאלית הפרמטריזציה,
+\[
+	\varphi(t, u)
+	= (\cosh t \cos u, \cosh t \sin u, \sinh t)
+\]
+\begin{solution}
+	\[
+		D \varphi |_{(t, u)}
+		= \begin{pmatrix}
+			\sinh t \cos u & - \cosh t \sin u \\
+			\sinh t \sin u & \cosh t \cos u \\
+			\cosh t & 0
+		\end{pmatrix}
+	\]
+	ולכן,
+	\begin{align*}
+		G
+		& = \begin{pmatrix}
+			\langle D_1 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle \\
+			\langle D_1 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			\sinh^2 t + \cosh^2 t & 0 \\
+			0 & \cosh^2 t
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			\cosh(2t) & 0 \\
+			0 & \cosh^2 t
+		\end{pmatrix}
+	\end{align*}
+\end{solution}
+
+\question{}
+יהי $S$ היפרבולואיד הנתון על־ידי המשוואה $x^2 + y^2 - z^2 = -1$. \\
+נחשב את התבנית היסודית הראשונה בהצגה מטריצאלית הפרמטריזציה,
+\[
+	\varphi(t, u)
+	= (\sinh t \cos u, \sinh t \sin u, \cosh t)
+\]
+\begin{solution}
+	\[
+		D \varphi |_{(t, u)}
+		= \begin{pmatrix}
+			\cosh t \cos u & -\sinh t \sin u \\
+			\cosh t \sin u & \sinh t \cos u \\
+			\sinh t & 0
+		\end{pmatrix}
+	\]
+	ולכן,
+	\begin{align*}
+		G
+		& = \begin{pmatrix}
+			\langle D_1 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle \\
+			\langle D_1 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			\cosh^2 t + \sinh^2 t & 0 \\
+			0 & \sinh^2 t
+		\end{pmatrix} \\
+	\end{align*}
+\end{solution}
+
+\question{}
+יהי $S$ החרוט הנתון על־ידי $x^2 + y^2 = z^2, z > 0$.
+נחשב את התבנית היסודית הראשונה עבור הפרמטריזציה,
+\[
+	\varphi(\theta, r)
+	= (r \cos \theta, r \sin \theta, r)
+\]
+\begin{solution}
+	\[
+		D \varphi |_{(\theta, r)}
+		= \begin{pmatrix}
+			- r \sin \theta & \cos \theta \\
+			r \cos \theta & \sin \theta \\
+			0 & 1
+		\end{pmatrix}
+	\]
+	ולכן,
+	\[
+		G
+		= \begin{pmatrix}
+			r^2 & 0 \\
+			0 & 2
+		\end{pmatrix}
+	\]
+\end{solution}
+
+\end{document}
