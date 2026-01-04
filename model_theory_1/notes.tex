@@ -1831,7 +1831,7 @@
 
 \section{שיעור 10 --- 28.12.2025}
 \subsection{רוויה ואוניברסליות}
-\begin{definition}[קפא־קוויה]
+\begin{definition}[קפא־רוויה]
 	מודל $\Mm$ נקרא $\kappa$־רווי אם לכל $\Aa \subseteq \Mm$ עם $|A| < \kappa$ ולכל $p \in S_1(A)$, $p$ מתממש ב־$\Mm$. \\
 	אם $|M| = \kappa$ נאמר גם ש־$\Mm$ רווי.
 \end{definition}
@@ -1996,7 +1996,7 @@
 	נגדיר $s_n \rightharpoonup c_{s_n}$, זו קבוצה אינסופית ב־$k$ ולכן יש תת־קבוצה אינסופית קבועה. \\
 	נסמן את תת־הקבוצה הזו ב־$A$ ונקבל ש־$f \restriction {[A]}^{r + 1}$ קבועה.
 \end{proof}
-\begin{theorem}[a]
+\begin{theorem}[חילוץ אי־בחינים]
 	יהי $\Mm$ מבנה ו־$\langle I, <_I \rangle$ סדר קווי, $\langle J, <_J \rangle$ קווי.
 	נניח ש־$\langle \bar{a}_i \mid i \in I \rangle$ סדרה של איברים מ־$M^n$.
 	אז יש הרחבה אלמנטרית $\Mm \prec \Nn$ וסדרת איברים $\langle \bar{b}_j \mid j \in J \rangle$ עבור $\Nn$ כל שלכל נוסחה $\varphi$ אם יש $j_0 < \cdots < j_{k - 1}$ ב־$J$,
@@ -2020,6 +2020,230 @@
 	בהינתן $(I, <)$ סדר קווי וסדרת אי־בחינים $\langle a_i \mid i \in I \rangle$,
 	הטיפוס EM הוא כל הנוסחות מהצורה $\varphi(x_0, \ldots, x_{n - 1})$ כך שיש לכל $i_0 < \cdots < i_{n - 1}$ ב־$I$, $\Mm \models \varphi(a_{i_0}, \ldots, a_{i_{n - 1}})$.
 \end{definition}
+
+\section{שיעור 11 --- 4.1.2026}
+\subsection{פונקציות סקולם}
+ניזכר בהגדרת פונקציות סקולם, הן פונקציות המוגדרות עבור נוסחה ומחזירות עבורה איברים שמקיימים אותה.
+\begin{definition}[פונקציות סקולם גדירות]
+	למבנה $\Mm$ יש פונקציות סקולם גדירות אם לכל $\varphi$ יש $f_{\varphi}$ פונקציות סקולם עבור $\varphi$ וגדירה ללא פרמטרים.
+	אם בנוסף ניתן לקחת את $f_{\varphi}$ להיות שם־עצם במבנה אז נאמר של־$\Mm$ יש פונקציות סקולם מובנות (built-in).
+\end{definition}
+\begin{remark}
+	פונקציות סקולם גדירות או מובנות הן תכונות של $\Th(\Mm)$.
+\end{remark}
+\begin{remark}
+	אם לתורה $T$ יש פונקציות סקולם מובנות אז $T$ מחלצת כמתים,
+	\[
+		T \models (\exists x\ \varphi) \leftrightarrow \varphi_{f_{\varphi}(x)}^x
+	\]
+\end{remark}
+\begin{definition}[פונקציה גדירה]
+	פונקציה היא גדירה אם הגרף שלה הוא קבוצה גדירה,
+	כלומר יש נוסחה $\psi$ עם משתנים $y_0, \ldots, y_{k - 1}, z$ כל שמתקיים $f_{\varphi}(\bar{y}) = z \iff \psi(\bar{y}, z)$.
+\end{definition}
+\begin{example}
+	ל־RCF יש פונקציות סקולם גדירות.
+	אם $\varphi$ נוסחה עם משתנים חופשיים $x, y_0, \ldots, y_{k - 1}$ אז מחילוץ כמתים $\varphi$ שקולה לאוסף שוויונות ואי־שוויונות על שמות עצם ב־$x, y$.
+	לכן ניתן למצוא $w_0, w_1$ שתלויים בצורה גדירה ב־$y$ וכך גם ב־$x$ כך ש־$x$ מקיים את $\varphi$ כאשר $x \in (w_0, w_1) \lor x < w_0 \lor x > w_1 \lor x = w_0 = w_1$.
+\end{example}
+\begin{example}
+	ל־PA יש פונקציות סקולם גדירות.
+\end{example}
+\begin{remark}
+	לכל תורה $T$ בשפה $L$ יש הרחבה ל־$L'$ ו־$T'$ כך ש־$|L'| \le |L| + \aleph_0$ ול־$T$ יש פונקציות סקולם מובנות.
+\end{remark}
+\begin{proof}
+	נגדיר סדרת שפות $L_n$ על־ידי $L_0 = L$ וכן $L_n$ מכיל לכל נוסחה ב־$L_{n - 1}$ סימן פונקציה $f_{\varphi}$ ו־$T_n$ מכילה את,
+	\[
+		\forall \bar{y}\ (\exists x\ \varphi(x, \bar{y}) \to \varphi(f_{\varphi}(\bar{y}), \bar{y}))
+	\]
+	ואז $L = \bigcup L_n, T' = \bigcup T_n$.
+\end{proof}
+\begin{remark}
+	אם ל־$T$ יש פונקציות סקולם מובנות ו־$A \subseteq M$ עבור $\Mm \models T$, אז $\langle A \rangle \prec \Mm$.
+\end{remark}
+\begin{theorem}[הרחבות עם מימוש חסום של טיפוסים]
+	נניח ש־$\Mm \models T$ ו־$|M| \ge \aleph_0$, אז לכל $\kappa \ge |T|$ יש מודל $\Nn \models T$ מעוצמה $\kappa$,
+	כך שלכל $A \subseteq N$ בת־מניה $\Nn$ מממש לכל היותר $\aleph_0$ טיפוסים מתוך $S_1(A)$.
+\end{theorem}
+\begin{proof}
+	$\Mm$ אינסופי ולכן ניקח סדרה אינסופית של איברים שונים $\langle a_i \mid i < \omega \rangle$.
+	ממשפט האי־בחינים יש מודל $\Nn$ שקול אלמנטרית על סדרת האי־בחינים הדומים ל־$a_i$ באורך הסודר $\kappa$, $\langle b_i \mid i < \kappa \rangle$.
+	בלי הגבלת הכלליות ל־$T$ יש פונקציות סקולם מובנות.
+	בלי הגבלת הכלליות $\langle b_i \mid i < \kappa \rangle$ שייכת למודל המפלצת של $T$ ולכן נניח ש־$\Nn = \langle \{ b_i \mid i < \kappa \} \rangle$.
+	
+	תחילה נחשב כמה טיפוסים יש מהצורה,
+	\[
+		B \subseteq \{ b_i \mid i < \kappa \},
+		tp(b_{j_0}, \ldots, b_{j_{n - 1}} / B)
+	\]
+	לכל נוסחה $\varphi$ ופרמטרים $b_{k_0}, \ldots, b_{k_{r - 1}}$ מתקיים $\varphi(x_0, \ldots, x_{n - 1}) \in p$, \\
+	תלוי רק במיקום של האינדקסים $j_0, \ldots, j_{n - 1}$ ביחס ל־$k_0, \ldots, k_{n - 1}$.
+	לכן ניתן לחשב את $p$ מתוך המידע,
+	\[
+		\{ j \in \RR \mid j < j_0 \}, \{ j \in \RR \mid j_0 < j < j_1 \}, \ldots
+	\]
+	לכן כמות האפשרויות למקטעים אלו היא בת־מניה.
+	כעת עבור $A \subseteq N$ בת־מניה ו־$A \subseteq Sk(B) = \langle B \rangle$ עבור $Sk$ סגור סקולם ו־$B \subseteq \{ b_i \mid i < \kappa \}$ בת־מניה.
+	אם $a \in N$ אז $a = t(b_{j_0}, \ldots, b_{j_{k - 1}})$ ולכן ניתן לחשב את $tp(a / A)$ מתוך $tp(b_{j_0}, \ldots, b_{j_{k - 1}} / B)$ גורר שמ־$S_1(A)$, $\Nn$ מממש מספר בן־מניה של טיפוסים.
+\end{proof}
+
+\begin{definition}[קפא־יציבה]
+	יהי $\kappa$ מונה אינסופי.
+	תורה $T$ היא $\kappa$־יציבה אם לכל $A \subseteq \Cc_T$ מעוצמה $\le \kappa$ מתקיים $|S_1(A)| \le \kappa$.
+\end{definition}
+\begin{example}
+	DLO איננה $\kappa$־יציבה.
+	נשתמש בעובדה הבאה: לכל מונה $\kappa$ יש סדר קווי צפוף מעוצמה $\kappa$ שכמות החתכים בו גדולה מ־$\kappa$,
+	כאשר חתך $X$ בסדר קווי $\Ll$ הוא קבוצה לא ריקה סגורה כלפי מטה.
+	אם ניקח את $A$ להיות סדר זה אז $A$ משוכן לתוך $\Cc_{\operatorname{DLO}}$ ו־$\kappa < |S_1(A)|$.
+\end{example}
+\begin{remark}
+	יתכן ש־$T$ איננה $\kappa$־יציבה אבל יש $A$ עבורו $S_1(A)$ קטן. \\
+	נבחן את $\{ x < \zeta \mid \zeta > \sqrt{2} \}, \{ x > \zeta \mid \zeta < \sqrt{2} \}, \{ x = \pm \sqrt{2} \}$, אז $(\RR, <)$ מממש $2^{\aleph_0}$ טיפוסים ומשמיט $2^{\aleph_0}$ טיפוסים.
+\end{remark}
+\begin{lemma}
+	התנאים הבאים שקולים:
+	\begin{enumerate}
+		\item $T$ היא $\kappa$־יציבה
+		\item לכל $A \subseteq \Cc_T$ עם $|A| \le \kappa$ מתקיים $|S_n(A)| \le \kappa$ לכל $n < \omega$
+		\item $|S_n(\emptyset)| \le \kappa$ ולכל מודל $\Mm$ של $T$ מעוצמה $\le \kappa$ מתקיים $\forall n < \omega,\ |S_n(M)| \le \kappa$
+		\item $|S_n(\emptyset)| \le \kappa$ ולכל מודל $\Mm$ של $T$ מעוצמה $\le \kappa$ מתקיים $|S_1(M)| \le \kappa$
+	\end{enumerate}
+\end{lemma}
+\begin{remark}
+	אם $\forall n\ |S_n(\emptyset)| \le \kappa$ אז יש $L' \subseteq L$ מעוצמה קטנה מ־$\kappa$ כך שלכל נוסחה ב־$L$ שקולה לנוסחה ב־$L'$.
+\end{remark}
+\begin{proof}
+	$1 \implies 2$:
+	באינדוקציה על $n$.
+	ל־$n = 0, 1$ הטענה נובעת מהגדרה.
+	נניח כי לכל $|A| < \kappa$ מתקיים $|S_n(A)| \le \kappa$ ונניח ש־$\langle p_{\alpha} \mid \alpha < \kappa^+ \rangle$ סדרת טיפוסים ב־$S_{n + 1}(A)$.
+	אם $p_0$ טיפוס ב־$x_0, \ldots, x_n$ משתנים חופשיים ויהי $q_{\alpha}$ הטיפוס ב־$x_1, \ldots, x_n$ המוגדר על־ידי,
+	\[
+		q_{\alpha}
+		= \{ \varphi \mid FV(\varphi) \subseteq \{ x_1, \ldots, x_n \}, \varphi \in p_{\alpha} \}
+	\]
+	עבור $q_{\alpha} \in S_n(A)$.
+	אז יש $I \subseteq \kappa^+$ בעוצמה $\kappa^+$ כך שלכל $\alpha, \beta \in I$ מתקיים $q_{\alpha} = q_{\beta}$.
+	נסמן את הטיפוס המשותף $q_*$.
+	נבחר $b_1, \ldots, b_n \in \Cc_T$ שמממשים את $q_*$ ונגדיר,
+	\[
+		p_{\alpha}'
+		= \{ \varphi(x_0, b_1, \ldots, b_n) \mid \varphi \in p_{\alpha} \}
+	.\]
+	$p_{\alpha}'$ עקבי מכיוון שהנוסחה $\exists x_0\ \varphi(x_0, x_1, \ldots, x_n) \in q_*$ עבור $\varphi \in p_{\alpha}$.
+	מ־$\kappa$־יציבות יש $\alpha < \beta$ ב־$I$ כך ש־$\pi_{\alpha}' = p_{\beta}'$ אז $p_{\alpha} = p_{\beta}$.
+
+	$2 \implies 3 \implies 4$ ברור.
+
+	$4 \implies 1$:
+	אם $A \subseteq \Cc_T$ מעוצמה $\le \kappa$ אז מלוונהיים־סקולם ומכך שהשפה שקולה לשפה קטנה, יש $\Aa \subseteq \Mm \models T, |M| \le \kappa$ ובבירור $|S_1(A)| \le |S_1(M)|$.
+\end{proof}
+השתמשנו בכך שאם מתקיים כי לכל $\varphi$ נוסחה ב־$L$ יש נוסחה $\psi$ ב־$L'$ כך שמתקיים,
+\[
+	T \models \forall \bar{x}\ (\varphi \leftrightarrow \psi)
+\]
+ונתון $\Mm \models T \restriction L'$ אז יש הרחבה יחידה שלו למודל של $T$ בשפה $L$.
+\begin{example}
+	נבחן את $\operatorname{ACF}_p$.
+	הטיפוסים הם או טיפוס אלגברי, נקבע על־ידי הפולינום המינימלי או לא אלגברי, וזה טיפוס יחיד.
+\end{example}
+\begin{remark}
+	תהי $T$ תורה בשפה בת־מניה שהיא $\kappa$־קטגורית ל־$\kappa$ לא בת־מניה. אז $T$ היא $\omega$־יציבה.
+\end{remark}
+\begin{proof}
+	נניח ש־$\Mm$ בן־מניה וצריך להראות שכמות הטיפוסים ב־$S_1(M)$ בת־מניה.
+	נניח בשלילה שלא, כלומר $S_1(M)| > \aleph_0$ ויהי $\Nn_0$ מודל מעוצמה $\kappa$, $\Mm \prec \Nn_0$ ו־$\Nn$ מממש לפחות $\aleph_1$ מתוך הטיפוסים ב־$S_1(M)$.
+	מצד שני מאי־בחינים בנינו מודל $|N_1| = \kappa$ לשם התקיים כי $\forall A \subseteq N_1, |A| \le \aleph_0$.
+	$\Nn_1$ מממש לכל היותר אוסף בן־מניה של טיפוסים מ־$S_1(A)$.
+	מ־$\kappa$־קטגוריות נקבל סתירה, זאת שכן $\Nn_0 \cong \Nn_1$ מועד על־ידי $f$, אבל $A = f(M)$.
+\end{proof}
+\begin{definition}[תורה טרנסצנדטלית לחלוטין]
+	תורה טרנסצנדטלית לחלוטין אם ורק אם לא מתקיימת תכנות העץ הבינארי,
+	כאשר $T$ מקיימת את תכונת העץ הבינארי אם יש נוסחות $\langle \varphi_s(\bar{x}) \mid s \in 2^{< \omega} \rangle$ עם פרמטרים ב־$\Cc_T$ כך שלכל $\eta \in 2^{\omega}$ האוסף,
+	\[
+		\{ \varphi_{\eta \restriction n}(\bar{x}) \mid n < \omega \}
+	\]
+	עקבית, וכן $\varphi_{s \frown \{ 0 \}}(\bar{x}) \land \varphi_{s \frown \{ 1 \}}(\bar{x})$ לא עקבית.
+\end{definition}
+\begin{proposition}
+	אם $T$ היא $\omega$־יציבה, אז $T$ טרנסצנדטלית לחלוטין.
+\end{proposition}
+\begin{proof}
+	אחרת, יהי $A$ אוסף הפרמטרים שמופיעים ב־$\langle \varphi_s \mid s \in 2^{< \omega} \rangle$ מקיים $|A| \le \aleph_0$, ולכן $|S_1(A)| \le \aleph_0$.
+	אבל לכל $\eta \in 2^{\omega}$ הטיפוס החלקי $p_{\eta} = \{ \varphi_{\eta \restriction n} \mid n < \omega \}$ מתרחב באופן שונה כי אם $\eta \ne \eta'$ ו־$n$ נקודת חוסר ההסכמה הראשונה אז,
+	\[
+		\lnot \varphi_{\eta' \restriction n + 1}, \varphi_{\eta \restriction n + 1} \in p_{\eta},
+		\qquad
+		\lnot \varphi_{\eta \restriction n + 1}, \varphi_{\eta' \restriction n + 1} \in p_{\eta}
+	\]
+	וקיבלנו שיש $2^{\aleph_0}$ טיפוסים שונים.
+\end{proof}
+\begin{proposition}
+	אם $T$ טרנסצנדטלית לחלוטין אז $T$ היא $\kappa$־יציבה לכל $|T| \le \kappa$.
+\end{proposition}
+\begin{proof}
+	נניח ש־$T$ איננה $\kappa$־יציבה ויהי $\Mm \models T, |M| = \kappa$ כך ש־$|S_1(M)| > \kappa$.
+	נשים לב כי יש $\kappa$ קבוצות פתוחות $U_{\varphi} = \{ p \mid \varphi \in p \}$ ויש יותר מ־$\kappa$ נקודות במרחב.
+	נאמר שנוסחה $\varphi$ היא גדולה אם $|U_{\varphi}| > \kappa$ ואכן למשל $x = x$ היא גדולה. \\
+	נניח כי $\varphi$ היא נוסחה גדולה ונראה כי יש $\psi$ כך שגם $\varphi \land \psi$ ו־$\varphi \land (\lnot \psi)$ שתיהן גדולות.
+	אחרת נניח ש־$\varphi$ גדולה ולא ניתן לעשות פיצול כזה, אז לכל $\psi$ מתקיים כי בדיוק אחת מבין $\psi, \lnot \psi$ מקיימת כי גימומה עם $\varphi$ גדולה,
+	שהרי $U_{\varphi} = U_{\varphi \land \psi} \cup U_{\varphi \land \lnot \psi}$. \\
+	נגדיר $\Gamma = \{ \psi \mid \varphi \land \psi \text{ is large} \}$, זהו טיפוס כיוון שאם $\psi_0, \ldots, \psi_{n - 1}$ ב־$\Gamma$ אז בהכרח $\varphi \land \psi_0 \land \cdots \land \psi_{n - 1}$ גדולה, שכן,
+	\[
+		U_{\varphi \land \psi_0 \land \cdots \land \psi_{n - 1}}
+		= U_{\varphi} \setminus \bigcup_{i < n} U_{\varphi \land \lnot \psi_i}
+	\]
+	גדולה ובפרט לא ריקה.
+	לכן $\Gamma$ סגורה לגימום, עקבית ודעתנית, אז $\Gamma$ טיפוס.
+	\[
+		U_{\varphi}
+		= \bigcup_{\psi, \varphi \land \psi \text{ are small}} U_{\varphi \land \psi} \cup \{ \Gamma \}
+	\]
+	ולכן $|U_{\varphi}| \le \kappa \cdot \kappa + 1 = \kappa$ בסתירה.
+
+	כעת נגדיר ברקורסיה את $\varphi_s$ על־ידי $\varphi_{\langle \rangle} = x = x$, ובהינתן שהגדרנו את $\varphi_s$ אז יש $\psi$ כך ש־$\varphi_s \land \psi, \varphi_s \land \lnot \psi$ גדולות ונגדיר,
+	\[
+		\varphi_{s \frown \langle 0 \rangle} = \varphi \land \psi,
+		\qquad
+		\varphi_{s \frown \langle 1 \rangle} = \varphi \land (\lnot \psi)
+	\]
+	וכעת לכל $\eta \in 2^{\omega}$ נקבל ש־$\{ \varphi_{\eta \restriction n} \mid n < \omega \}$ עקבית כי כל תת־הקבוצות שלה חלשה מ־$\varphi_{\eta \restriction n}$ עבור $n$ כלשהו.
+\end{proof}
+\begin{corollary}
+	$\omega$־יציבות גוררת טרנסצנדטלית לחלוטין גוררת  $\kappa$־יציבות לכל $\kappa \ge |T|$.
+\end{corollary}
+\begin{example}
+	יתכן ש־$T$ היא $\kappa$־יציבה לאיזושהי $\kappa$ לא בת־מניה ולא $\omega$־יציבה.
+	נגדיר סדרת יחסי שקילות מתעדנים $E_0, E_1, \ldots$ עם מספר אינסופי של מחלקות שקילות אינסופיות ו־$E_{n + 1}$ מחלק כל מחלקת שקילות של $E_n$ לאינסוף חלקים.
+	יש $2^{\aleph_0}$ טיפוסים שונים עם $\aleph_0$ פרמטרים לפי שיוכים למחלקות שקילות.
+
+	מהצד השני אם $\Mm$ מודל בעוצמה $\kappa$ ו־$p \in S_1(M)$ אז $p$ נקבע על־ידי מחלקת השקילות ה־$E_n$ של $x$ ביחס מ־$\Mm$.
+	לכן $|S_1(M)| \le \kappa^{\aleph_0}$ ואם $\kappa = 2^{\aleph_0}$ אז $|S_1(M)| \le \kappa$.
+\end{example}
+\begin{theorem}[קיום מודלים רוויים]
+	אם $T$ ללא מודלים סופיים ו־$|T| \le \kappa$ היא $\kappa$־יציבה אז לכל $\lambda \ge \kappa$ סדיר יש ל־$\Mm$ מודל $\lambda$־רווי מעוצמה $\kappa$.
+\end{theorem}
+\begin{proof}
+	נתחיל מ־$\Mm_0 \models T$ בעוצמה $\kappa$.
+	$|S_1(\Mm_0)| \le \kappa$ ולכן יש $\Mm_0 \prec \Mm_1$ שמממש כל טיפוס מ־$S_1(M)$ בעוצמה $\kappa$.
+	נמשיך כך ונבנה סדרת מודלים $\langle \Mm_{\alpha} \mid \alpha < \lambda \rangle$ כך שלכל $\alpha < \beta$ מתקיים $\Mm_{\alpha} < \Mm_{\beta}$ וכל טיפוס מ־$S_1(\Mm_{\alpha})$ מתממש ב־$\Mm_{\beta}$.
+	$|M_{\alpha}| = \kappa$.
+	נסתכל על $\Mm_{\lambda}$, אם $A \subseteq M_{\lambda}$ עם $|A| < \lambda$ אז מסדירות $\lambda$ יש $\alpha < \lambda$ כך ש־$A \subseteq M_{\alpha}$.
+	לכן אם $p \in S_1(A)$ אז $p$ התממש ב־$\Mm_{\alpha + 1}$ ולכן גם ב־$\Mm_{\lambda}$.
+\end{proof}
+\begin{corollary}
+	לכל מונה $\kappa$ ותורה $T$ בשפה בת־מניה היא $\kappa$־קטגורית אם ורק אם כל מודל בעוצמה $\kappa$ של $T$ רווי.
+\end{corollary}
+\begin{proof}
+	אם $T$ איננה $\kappa$־יציבה אז יש מודל $\Mm$ שעוצמתו $\kappa$ ו־$\kappa < |S_1(M)|$ ומצד שני יש מודל $\Nn$ שנבנה מאי־בחינים שבו זה לא מתרחש.
+	מקטגוריות $T$ נקבל שהיא $\kappa$־יציבה.
+	אז $\kappa$־סדיר גורר שיש מודל רווי ולכן כל מודל $\kappa$־רווי.
+	אם $\kappa$ לא סדיר אז $\kappa$ מונה גבולי.
+	נניח ש־$p \in S_1(A)$ עבור $|A| < \lambda$ אז $|A| < \lambda^+ < \kappa$ ויש מודל $T$ שהוא $\lambda^+$־רווי בעוצמה $\kappa$.
+	נקבל מקטגוריות שכל מודל הוא כזה ולכן $p$ מתממש.
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
