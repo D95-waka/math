@@ -1,0 +1,136 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 8 --- חישוביות וקוגניציה, 6119}
+
+\usepackage{pgfplots, tikz}
+\usetikzlibrary{math}
+\graphicspath{{.}{../images/}}
+\pgfplotsset{compat=1.18}
+
+
+\begin{document}
+\maketitle
+\maketitleprint[beige]
+
+\question{}
+להשלים הקדמה על האוגר.
+
+נגדיר $u(0) = 0, u(1) = 1$, וכן נגדיר את הבחירות,
+\[
+	L_s = \langle (X_s), (1) \rangle,
+	\qquad
+	L_g = \langle (0, X_g), (\frac{1}{2}, \frac{1}{2}) \rangle,
+.\]
+התוחלת היא,
+\[
+	V_s
+	= \PP(x = X_s) u(x = X_s)
+	= u(X_s),
+	\qquad
+	V_g
+	= \PP(x = 0) u(x = 0) + \PP(x = X_g) u(x = X_g)
+	= \frac{1}{2} u(X_g)
+.\]
+אם האוגר אדיש לניסויים, כלומר $L_s \sim L_g$, אז יתקיים
+\[
+	2 u(X_s) = u(X_g)
+	\tag{1}
+.\]
+
+\subquestion{}
+נניח ש־$X_g^1 = X_g = 1$ ונמצא את $X_s^1$ המקיימת את $L_s \sim L_g$ על־ידי מבחן ממוחשב.
+נבחין כי הנקודה שבה האוגר אדיש היא הנקודה בה הוא משנה את דעתו, כלומר בשלב שבו $V_s > V_g$ ולא $V_s < V_g$, ובהתאם נבנה את המבחן הממוחשב כך.
+בהרצה נקבל ש־$X_s^1 = 0.22$ עבור $X_s$ המקיים את הטענה יחד עם $X_g^1$ המוגדר בסעיף זה.
+מ־$(1)$ נסיק,
+\[
+	2 u(X_s^1)
+	= u(X_g^1)
+	= u(1)
+	= 1
+	\implies u(X_s^1) = \frac{1}{2}
+.\]
+
+\subquestion{}
+הפעם נקבע $X_g = X_g^2 = X_s^1$ ונחשב שוב בעזרת מבחן ממוחשב את $X_s^2$ ואת $u(X_s^2)$.
+המבחן הממוחשב מציע שהפעם מתקיים $X_s^2 = 0.05$ כדי שיהיה שיווי משקל, ובהתאם $u(X_s^2) = \frac{1}{2} u(X_g^2) = \frac{1}{2} u(X_s^1) = \frac{1}{4}$.
+
+\subquestion{}
+נמשיך לבנות ככה סדרה של נקודות בגודל $n$ ונקבל את $u$ של האוגר בנקודות אלה.
+התוצאות מופיעות כחלק מהמבחן הממוחשב.
+
+\subquestion{}
+ניצור גרף המתאר את פונקציית ה־utility של האוגר כהמשך של תוצאת הסעיף הקודם.
+\begin{solution}
+	נציג את הגרף,
+	\begin{center}
+		\includegraphics[width=9cm]{bin/out8_1}
+	\end{center}
+	נבחין כי הפונקציה היא פונקציה קעורה, כלומר לפי הנלמד בכיתה האוגר שונא סיכון.
+\end{solution}
+
+\question{}
+נניח שהערך הסובייקטיבי להרוויח $X_g$ שקלים בסיכוי $p$ הוא $\pi(p) u(X_g)$.
+נניח שמתקיים,
+\[
+	u(x) = x^{\sigma},
+	\quad
+	\pi(p) = e^{- {(- \ln p)}^{\alpha}}
+.\]
+עבור $\alpha, \sigma > 0$.
+
+\subquestion{}
+נשרטט את $\pi(p)$ עבור ערכי $\alpha < 1, \alpha = 1, \alpha < 1$ ונבדוק את השפעת הפרמטר על הפונקציה.
+\begin{solution}
+	נציג את הגרף,
+	\begin{center}
+		\includegraphics[width=9cm]{bin/out8_2}
+	\end{center}
+	נבחין כי עבור $\alpha = 1$ הגרף הוא לינארי, עבור $\alpha < 1$ הגרף תלול בקצוות ועבור $\alpha > 1$ הגרף תלול במרכז.
+	בהתאם נוכל להסיק שעבור $\alpha = 1$ יש נטייה נייטרלית להימור, עבור $\alpha < 1$ יש נטייה להימור ועבור $\alpha > 1$ יש נטייה לשנוא הימור.
+	נבחין כי עבור $p \approx 0.4$ הפונקציה תמיד שווה.
+\end{solution}
+
+\subquestion{}
+נשרטט את $u(x)$ עבור $\sigma = 1, \sigma < 1, \sigma > 1$ ונבין את השפעת הפרמטר על הגרף.
+נבין את השפעת הפרמטר על הימורים וכן את המקומות בהם הפונקציה קבועה.
+\begin{solution}
+	נציג את הגרף,
+	\begin{center}
+		\includegraphics[width=9cm]{bin/out8_3}
+	\end{center}
+	עבור $\sigma = 1$ הפונקציה היא לינארית, עבור $\sigma > 1$ היא עולה וקמורה ועבור $\sigma < 1$ היא עולה וקעורה.
+	נבחין כי גם $1^\sigma = 1$ ולכן זו נקודה קבועה, ובהתאם לנלמד בכיתה נסיק שיש שנאת סיכון כאשר הפונקציה קעורה, כלומר כאשר $\sigma < 1$, בהתאם יש נטייה להימור כאשר $\sigma > 1$.
+\end{solution}
+
+\subquestion{}
+נניח שלנבדק ניתנת האפשרות לבחור בין $X_s$ שקלים לבין הימור על $X_g$ שקלים בהסתברות $p$, נראה שבנקודת אי־העדפה מתקיים,
+\[
+	\ln(- \ln \frac{X_s}{X_g})
+	= \alpha \ln( - \ln p) - \ln \sigma
+.\]
+\begin{proof}
+	נחשב את הגמולים,
+	\[
+		V_s
+		= \sum_x \pi(P(x)) u(x)
+		= \pi(P(x = X_s)) u(x = X_s)
+		= 1 \cdot X_s^\sigma
+	.\]
+	ובאופן דומה נציב ונקבל,
+	\[
+		V_g
+		= \pi(P(x = 0)) u(0) + \pi(P(x = X_g)) u(X_g)
+		= 0 + \exp(- {(- \ln p)}^\alpha) \cdot X_g^\sigma
+	.\]
+	ובנקודת שיווי משקל מתקיים $X_g = X_s$, כלומר,
+	\[
+		X_s^\sigma = \exp(- {(- \ln p)}^\alpha) \cdot X_g^\sigma
+		\iff
+		\exp(\sigma \ln X_s) = \exp(- {(- \ln p)}^\alpha + \sigma \ln X_g)
+	.\]
+	ולאחר לקיחת $\ln$ נקבל,
+	\[
+		\sigma \ln X_s = - {(- \ln p)}^\alpha + \sigma \ln X_g
+	.\]
+\end{proof}
+
+\end{document}
