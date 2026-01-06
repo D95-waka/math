@@ -6,6 +6,7 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 
+\DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator\eval{eval}
 
 \begin{document}
@@ -1313,8 +1314,89 @@
 \[
 	\lVert c'(t) \rVert
 	= g_{1 1}(\varphi(t)) {(\varphi^1(t))}^2 + g_{2 1}(\varphi(t)) \varphi^1(t) \varphi^2(t) + g_{2 2}(\varphi(t)) {(\varphi^2(t))}^2
-.\]
+\]
 כלומר ישנו קשר הדוק בין תבנית יסודית ראשונה ובין המרחק של עקום במשטח.
+
+\section{שיעור 22 --- 6.1.2026}
+\subsection{אורך ושטח על משטח}
+נמשיך בדיון שלנו על מדידת מרחקים של עקומים משוכנים במשטחים.
+המטרה שלנו היא במקום לבנות את המסילות מ־$I$ ל־$S$, לבנות אותן לפרמטריזציה $U$.
+בהתאם אם $c = f \circ \varphi$ עבור $f : U \to S$ ו־$\varphi : I \to U$ אז נקבל,
+\[
+	c'(t)
+	= D f |_{\varphi(t)}(\varphi'(t))
+	= \begin{pmatrix}
+		D_1 f (\varphi(t)) & D_2 f (\varphi(t))
+	\end{pmatrix}
+	\begin{pmatrix}
+		\varphi_1'(t) \\
+		\varphi_2'(t)
+	\end{pmatrix}
+\]
+אבל נזכור כי אנו מחפשים את ${\lVert c'(t) \rVert}^2 = \langle c'(t), c'(t) \rangle$, ובהתאם,
+\[
+	{\lVert c'(t) \rVert}^2
+	= {(c'(t))}^t c'(t)
+	= \begin{pmatrix}
+		\varphi_1'(t) &
+		\varphi_2'(t)
+	\end{pmatrix}
+	\begin{pmatrix}
+		D_1 f (\varphi(t)) \\
+		D_2 f (\varphi(t))
+	\end{pmatrix}
+	\begin{pmatrix}
+		D_1 f (\varphi(t)) & D_2 f (\varphi(t))
+	\end{pmatrix}
+	\begin{pmatrix}
+		\varphi_1'(t) \\
+		\varphi_2'(t)
+	\end{pmatrix}
+	= \begin{pmatrix}
+		g_{1 1} \varphi(t) & g_{1 2} \varphi(t) \\
+		g_{2 1} \varphi(t) & g_{2 2} \varphi(t)
+	\end{pmatrix}
+\]
+
+\subsection{שטח של משטח}
+להגדיר שטח זה קשה.
+\begin{remark}
+	נזכור שמתקיים ${|v \wedge w|}^2 = {|v|}^2 {|w|}^2 - {(v \cdot w)}^2$.
+\end{remark}
+נשים לב כי אפשר לייצג שטח על־ידי,
+\[
+	\vol_2(f(R))
+	= \int_R \lVert D_1 f(u) \wedge D_2 f(u) \rVert\ du
+\]
+ולכן,
+\[
+	{\lVert D_1 f(u) \wedge D_2 f(u) \rVert}^2
+	= \langle D_1 f(u), D_1 f(u) \rangle \cdot \langle D_2 f(u), D_2 f(u) \rangle - {\langle D_1 f(u), D_2 f(u) \rangle}^2
+	= E(u) G(u) - F^2(u)
+\]
+עבור $I(p) = (\begin{smallmatrix} E & F \\ F & G \end{smallmatrix})$.
+נסיק שמתקיים,
+\[
+	\vol_2(f(R))
+	= \int_R \sqrt{E(u) G(u) - F^2(u)}\ du
+\]
+\begin{definition}[פונקציה שומרת שטח]
+	יהיו $S_1, S_2 \subseteq \EE^3$ משטחים (פרמטריים).
+	$F : S_1 \to S_2$ נקראת שומרת שטח אם עבור $U \subseteq \EE^2$ ו־$f_1 : U \to S_1, f_2 : U \to S_2$ פרמטריזציות כך ש־$f_2 = F \circ f_1$, מתקיים,
+	\[
+		\forall R \subseteq U,\ 
+		\vol_2(f_1(U)) = \vol_2(f_2(U))
+	\]
+\end{definition}
+במקרה זה נקבל שגם $E_1(u) G_1(u) - F_1^2(u) = F_2(u) G_2(u) - F_2^2(u)$.
+לדוגמה כאשר $S = S^2(\RR)$ ספירת היחידה וכן $U = (0, 2 \pi) \times (0, \pi)$ נגדיר,
+\[
+	f : U \to S,
+	\qquad
+	f(\theta, \phi)
+	= {(\sin \phi \cos \theta, \sin \phi \sin \theta, \cos \phi)}^t
+\]
+בהתאם המטריצה המייצגת את התבנית היסודית הראשונה היא $E = \sin^2 \phi, F = 0, G = 1$.
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
