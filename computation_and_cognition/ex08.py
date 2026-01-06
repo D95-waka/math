@@ -5,6 +5,7 @@ import bz2
 import importlib.machinery
 import matplotlib.pyplot as plt
 import numpy as np
+from itertools import groupby
 
 class SourcelessMemoryLoader(importlib.machinery.SourcelessFileLoader):
     def __init__(self, *args, **kwargs):
@@ -104,4 +105,55 @@ if __name__ == "__main__":
     plt.ylabel('u(x)')
     plt.legend()
     plt.savefig('bin/out8_3.jpg')
+
+    # Question 2.4
+    with open('./ex8_q2_data.csv', 'r') as f:
+        data = f.readlines()
+
+    data = [[float(x) for x in line[:-1].split(',')] for line in data[1:]]
+    data2 = {}
+    for (subject, (Xg, p), h), group in groupby(data, lambda k: (k[3], (k[4], k[2]), k[1])):
+        group = list(group)
+        p = p / 100
+        Xs_max = max([t[5] for t in group if t[0] == 1] or [-1])
+        Xs_min = min([t[5] for t in group if t[0] == 2] or [-1])
+        if Xs_min == -1:
+            Xs_min = Xs_max
+        elif Xs_max == -1:
+            Xs_max = Xs_min
+
+        Xs = (Xs_min + Xs_max) / 2
+        if not (subject, h) in data2:
+            data2[(subject, h)] = []
+
+        data2[(subject, h)].append((Xg, p, Xs))
+
+    sigma_iter1 = {}
+    alpha_iter1 = {}
+    sigma_iter2 = {}
+    alpha_iter2 = {}
+    for (subject, h), a in data2.items():
+        a = np.array(a).T
+        y = np.log(- np.log(a[2] / a[0]))
+        x = np.log(- np.log(a[1]))
+        sigma, alpha = np.polynomial.polynomial.Polynomial.fit(x, y, 1).convert().coef
+        sigma = np.exp(- sigma)
+        if h == 1:
+            sigma_iter1[subject] = sigma
+            alpha_iter1[subject] = alpha
+        else:
+            sigma_iter2[subject] = sigma
+            alpha_iter2[subject] = alpha
+
+    # Question 2.5
+    x = np.arange(0.0, 2.0, 0.01)
+    fig, ax = plt.subplots(layout='constrained')
+    ax.scatter(list(sigma_iter1.values()), list(sigma_iter2.values()), label = 'sigma')
+    ax.scatter(list(alpha_iter1.values()), list(alpha_iter2.values()), label = 'alpha')
+    ax.plot(x, x, linestyle = 'dashed')
+    plt.title('sigma and alpha in second iteration as function of their first iteration value')
+    plt.xlabel('first iteration value')
+    plt.ylabel('second iteration value')
+    plt.legend()
+    plt.savefig('bin/out8_4.jpg')
     plt.show()

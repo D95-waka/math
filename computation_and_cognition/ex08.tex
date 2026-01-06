@@ -12,14 +12,12 @@
 \maketitleprint[beige]
 
 \question{}
-להשלים הקדמה על האוגר.
-
 נגדיר $u(0) = 0, u(1) = 1$, וכן נגדיר את הבחירות,
 \[
 	L_s = \langle (X_s), (1) \rangle,
 	\qquad
 	L_g = \langle (0, X_g), (\frac{1}{2}, \frac{1}{2}) \rangle,
-.\]
+\]
 התוחלת היא,
 \[
 	V_s
@@ -29,12 +27,12 @@
 	V_g
 	= \PP(x = 0) u(x = 0) + \PP(x = X_g) u(x = X_g)
 	= \frac{1}{2} u(X_g)
-.\]
-אם האוגר אדיש לניסויים, כלומר $L_s \sim L_g$, אז יתקיים
+\]
+אם האוגר אדיש לניסויים, כלומר $L_s \sim L_g$, אז יתקיים,
 \[
 	2 u(X_s) = u(X_g)
 	\tag{1}
-.\]
+\]
 
 \subquestion{}
 נניח ש־$X_g^1 = X_g = 1$ ונמצא את $X_s^1$ המקיימת את $L_s \sim L_g$ על־ידי מבחן ממוחשב.
@@ -47,7 +45,7 @@
 	= u(1)
 	= 1
 	\implies u(X_s^1) = \frac{1}{2}
-.\]
+\]
 
 \subquestion{}
 הפעם נקבע $X_g = X_g^2 = X_s^1$ ונחשב שוב בעזרת מבחן ממוחשב את $X_s^2$ ואת $u(X_s^2)$.
@@ -74,7 +72,7 @@
 	u(x) = x^{\sigma},
 	\quad
 	\pi(p) = e^{- {(- \ln p)}^{\alpha}}
-.\]
+\]
 עבור $\alpha, \sigma > 0$.
 
 \subquestion{}
@@ -106,7 +104,7 @@
 \[
 	\ln(- \ln \frac{X_s}{X_g})
 	= \alpha \ln( - \ln p) - \ln \sigma
-.\]
+\]
 \begin{proof}
 	נחשב את הגמולים,
 	\[
@@ -114,23 +112,43 @@
 		= \sum_x \pi(P(x)) u(x)
 		= \pi(P(x = X_s)) u(x = X_s)
 		= 1 \cdot X_s^\sigma
-	.\]
+	\]
 	ובאופן דומה נציב ונקבל,
 	\[
 		V_g
 		= \pi(P(x = 0)) u(0) + \pi(P(x = X_g)) u(X_g)
 		= 0 + \exp(- {(- \ln p)}^\alpha) \cdot X_g^\sigma
-	.\]
+	\]
 	ובנקודת שיווי משקל מתקיים $X_g = X_s$, כלומר,
 	\[
 		X_s^\sigma = \exp(- {(- \ln p)}^\alpha) \cdot X_g^\sigma
 		\iff
 		\exp(\sigma \ln X_s) = \exp(- {(- \ln p)}^\alpha + \sigma \ln X_g)
-	.\]
+	\]
 	ולאחר לקיחת $\ln$ נקבל,
 	\[
 		\sigma \ln X_s = - {(- \ln p)}^\alpha + \sigma \ln X_g
-	.\]
+		\iff \sigma (\ln X_s - \ln X_g) = - {(- \ln p)}^\alpha
+		\iff -\sigma \ln \frac{X_s}{X_g} = {(- \ln p)}^\alpha
+	\]
+	ולבסוף על־ידי עוד $\ln$,
+	\[
+		\ln(-\sigma \ln \frac{X_s}{X_g}) = \ln {(- \ln p)}^\alpha
+		\iff \ln \sigma + \ln(- \ln \frac{X_s}{X_g}) = \alpha \ln(- \ln p)
+	\]
+	וקיבלנו את התוצאה הרצויה.
 \end{proof}
+
+\subquestion[5]
+נציג גרף של $\sigma, \alpha$ באיטרציה השנייה כפונקציה של ערכם באיטרציה הראשונה ונחקור אותו.
+\begin{solution}
+	נציג את הגרף,
+	\begin{center}
+		\includegraphics[width=9cm]{bin/out8_4}
+	\end{center}
+	נוסף קו המגמה $y = x$.
+	נראה שאנשים לא נוטים לשנות את דעתם בין מהלכים שונים.
+\end{solution}
+
 
 \end{document}
