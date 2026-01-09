@@ -1,0 +1,205 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 11 --- תורת המידה, 80517}
+
+% chktex-file 17
+% chktex-file 9
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+תהיינה $\mu, \lambda$ מידות רדון על $\RR^d$, ויהי $0 < t < \infty$. \\
+נראה שאם $A \subseteq \RR^d$ קבוצת בורל המקיימת,
+\[
+	\forall x \in A,\ 
+	\overline{D}(\mu, \lambda, x) \ge t
+\]
+אז מתקיים $\mu(A) \ge t \cdot \lambda(A)$.
+\begin{proof}
+	יהי $x \in A$, מהגדרה מתקיים,
+	\[
+		K
+		= \overline{D}(\mu, \lambda, x)
+		= \limsup_{r \to 0^+} \frac{\mu(\overline{B}(x, r))}{\lambda(\overline{B}(x, r))}
+		\ge t
+	\]
+	יהי $\varepsilon > 0$ וסדרה $r_n \to 0$ כך שמתקיים,
+	\[
+		\limsup_{n \to \infty} \frac{\mu(\overline{B}(x, r_n))}{\lambda(\overline{B}(x, r_n))} > K - \varepsilon
+	\]
+	מהגדרת $\limsup$ נובע שקיימים אינסוף $n$־ים עבורם הטענה מתקיימת, לכן נניח בלי הגבלת הכלליות ש־$r_n$ היא תת־סדרה המקבלת את ערך הגבול ובהתאם,
+	\[
+		\lim_{n \to \infty} \frac{\mu(\overline{B}(x, r_n))}{\lambda(\overline{B}(x, r_n))}
+		> K - \varepsilon
+		\le t - \varepsilon
+	\]
+	נגדיר $r_x = r_n$ עבור $n$ מספיק גדול עבור $\varepsilon$, כלומר מתקיים $\mu(\overline{B}(x, r_x)) \ge (t - \varepsilon) \lambda(\overline{B}(x, r_x))$.
+
+	נגדיר,
+	\[
+		\Ff_A
+		= \{ \overline{B}(x, r_x) \mid x \in A \}
+	\]
+	זהו כיסוי בסיקוביץ'.
+	בנוסף נוכל להגדיר את $r_x$ כך שיתקיים,
+	\[
+		\inf\{ r \mid \overline{B}(x, r) \in \Ff_A \} = 0
+	\]
+	ולכן נסיק שקיים אוסף כדורים זרים $\{ B_n \} \subseteq \Ff_A$ המקיים,
+	\[
+		\mu(A \setminus \bigcup B_n)
+		= \lambda(A \setminus \bigcup B_n)
+		= 0
+	\]
+	אבל גם מצאנו שמתקיים לכל $n \in \NN$,
+	\[
+		\mu(B_n) \ge (t - \varepsilon) \lambda(B_n)
+	\]
+	ולכן הטענה נובעת.
+\end{proof}
+
+\question{}
+תהי $\mu$ מידת קנטור המופיעה במטלה 6, ותהי $C \subseteq [0, 1]$ קבוצת קנטור.
+נגדיר את $F : [0, 1] \to [0, 1]$ על־ידי $F(x) = \mu([0, x))$.
+
+\subquestion{}
+נראה ש־$F$ רציפה ומונוטונית.
+\begin{proof}
+	נניח ש־$x_n \to x_0$ סדרת ערכים $\subseteq [0, 1]$ ונראה שמתקיים $\lim_{n \to \infty} F(x_n) = F(x_0)$.
+	נסמן $f_n = \indicator_{[0, x_n)}$
+	\[
+		F(x_n)
+		= \mu([0, x_n))
+		= \int f_n\ d \mu
+		= \Lambda f_n
+		= \lim_{m \to \infty} \frac{1}{2^m} \sum_{x \in E_m} f_n(x)
+		= \lim_{m \to \infty} \frac{1}{2^m} \sum_{x \in E_m, x < x_n} 1
+	\]
+	ומרציפות של קבוצות מונוטוניות עולות נקבל רציפות.
+	משימוש בנוסחה האחרונה נוכל לקבל ישירות גם מונוטוניות עולה.
+\end{proof}
+
+\subquestion{}
+נראה ש־$F(0) = 0, F(1) = 1$.
+\begin{proof}
+	מתקיים,
+	\[
+		F(0)
+		= \lim_{m \to \infty} \frac{1}{2^m} \sum_{x \in E_m, x < 0} 1
+		= 0
+	\]
+	ולכן נשאר להראות ש־$F(1) = 1$.
+	נראה שאינדוקציה ש־$\forall x \in E_n,\ x < 1$.
+	עבור $n = 0$ הטענה נכונה טריוויאלית.
+	נניח נכונות עבור $n$ ונקבל,
+	\[
+		E_{n + 1}
+		= \frac{E_n}{3} \cup (\frac{2}{3} + \frac{E_n}{3})
+	\]
+	ולכן כמובן $\frac{E_n}{3}$ מקיים את הטענה ישירות מאינדוקציה, ואם $x \in \frac{2}{3} + \frac{E_n}{3}$ אז נקבל $x = \frac{2}{3} + \frac{y}{3}$ עבור $y < 1$ והטענה נובעת.
+	מהנוסחה לגודל $|E_n|$ נובע ש־$F(1) = 1$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$F$ גזירה ב־$\lambda$־כמעט כל $x$, ונחשב את נגזרתה בנקודות אלה.
+\begin{proof}
+	קיימת נגזרת ל־$F$ ב־$x \in [0, 1]$ אם ורק אם,
+	\begin{align*}
+		\lim_{h \to 0^+} \frac{F(x + h) - F(x - h)}{2h}
+		& = \lim_{h \to 0^+} \frac{\Lambda (\indicator_{[0, x + h)} - \indicator_{[0, x - h)})}{\lambda(\overline{B}(x, h))} \\
+		& = \lim_{h \to 0^+} \frac{\Lambda (\indicator_{[x - h, x + h)} - \indicator_{[0, x - h)})}{\lambda(\overline{B}(x, h))} \\
+		& = \lim_{h \to 0^+} \frac{\mu(\overline{B}(x, h))}{\lambda(\overline{B}(x, h))} \\
+		& = D(\mu, \lambda, x)
+	.\end{align*}
+	כלומר נסיק שהנגזרת, אם קיימת, היא שקולה ל־$D(\mu, \lambda, x)$.
+	ממשפט הגזירה של בסיקוביץ' נובע ש־$D(\mu, \lambda, x)$ מוגדרת $\lambda$־כמעט תמיד.
+	נותר אם כך לחשב את ערך הנגזרת.
+
+	נניח ש־$x \notin C$, אז נקבל ש־$\mu(\overline{B}(x, r)) = 0$ לכל $r > 0$ קטן מספיק, לכן נסיק ש־$F'(x) = 0$ במקרים אלה.
+	נבחין גם כי $\lambda(C) = 0$ ולכן מצאנו את ערך הנגזרת $\lambda$־כמעט תמיד.
+\end{proof}
+
+\question{}
+נעסוק במשפט שטיינהאוס.
+תהי $A \subseteq \RR^d$ ונגדיר את קבוצת ההפרש של $A$,
+\[
+	\Dd(A)
+	= \{ x - y \mid x, y \in A \}
+\]
+נניח ש־$\lambda$ היא מידת לבג על $\RR^d$.
+
+\subquestion{}
+נראה שאם $\lambda(A) > 0$ אז קיים $\delta > 0$ כך ש־$B(0, \delta) \subseteq \Dd(A)$.
+\begin{proof}
+	מהגדרת מידת לבג כמידת רדון מתקיים $\lambda(A) = \sup\{ \lambda(C) \mid C \subseteq A, C \text{ is compact} \}$ ולכן תהי $C \subseteq A \subseteq \RR^d$ קומפקטית כך ש־$\lambda(C) > 0$, ונניח ש־$\operatorname{diam} C = r$.
+	תהי $x \in B(0, r)$, אז $x \in \Dd(A) \iff A \cap (A + x) = \emptyset$ ישירות מהגדרת $\Dd(A)$, אבל $\lVert x \rVert < r$ ולכן $A \cap (A + x) \ne \emptyset$ ולכן $x \in \Dd(A)$ ונסיק $B(0, r) \subseteq \Dd(A)$.
+\end{proof}
+
+\subquestion{}
+נראה שאם $A \subsetneq \RR^d$ היא קבוצה מדידה כך ש־$(A, +)$ חבורה חיבורית לא טריוויאלית, אז מתקיים $\lambda(A) = 0$.
+\begin{proof}
+	אם קיים $r > 0$ כך ש־$B(0, r) \subseteq A$ אז נקבל מסגירות לחיבור שלכל $x \in \RR^d$ קיים $n \in \NN$ כך ש־$\frac{x}{n} \in A$ ולכן גם $x \in A$, כלומר $A = \RR^d$ בסתירה להנחה, לכן לא קיים $r$ כזה.
+	מסעיף א' נובע ש־$\lambda(A) = 0$.
+\end{proof}
+
+\question{}
+תהי $\mu$ מידת רדון על $\RR^d$ ונגדיר את $P \subseteq \RR$ על־ידי,
+\[
+	P = \{ r > 0 \mid \mu(\partial B(0, r)) > 0 \}
+\]
+בשאלה זו נראה ש־$|P| = \aleph_0$.
+
+\subquestion{}
+נניח ש־$|P| > \aleph_0$ ולכל $n \in \NN$ נגדיר את $P_n \subsetneq P$ על־ידי,
+\[
+	\mu(\partial B(0, r)) > \frac{1}{n}
+\]
+נראה שקיים $R > 0$ ו־$n \in \NN$ כך ש־$P_n \cap (0, R)$ אינסופית.
+\begin{proof}
+	מעיקרון שובך היונים לסודרים נסיק שקיים $n \in \NN$ כך ש־$|P_n| > \aleph_0$.
+	אילו נניח ש־$P_n \cap (0, R)$ סופית לכל $R$ אז נוכל להגדיר מנייה ל־$P_n$ באופן הבא: נגדיר $p_{n, 1}$ להיות המנייה של הקבוצה הסופית $P_n \cap (0, 1)$,
+	ובאופן אינדוקטיבי לכל $k$ נגדיר $p_{n, k}$ להיות המנייה של הקבוצה הסופית $(P_n \cap (0, k)) \setminus (0, k - 1)$,
+	ובכל נקבל ש־$\{ p_{n, k} \mid n, k < \omega \}$ היא מנייה של $P_n$ ולכן $|P_n| = \aleph_0$ בסתירה, לכן קיים $R > 0$ כך ש־$P_n \cap (0, R)$ לא סופית.
+	נבחין שמההוכחה נובע ש־$|P_n| = |P|$ בדיוק.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$P$ היא לכל היותר בת־מניה.
+\begin{proof}
+	נניח בשלילה ש־$|P| > \aleph_0$ אבל $|\RR| = 2^{\aleph_0}$ ולכן נובע ש־$P_n \cap (0, R)$ מעוצמה $2^{\aleph_0}$ עבור $n, R$ מהסעיף הקודם.
+	אבל,
+	\begin{align*}
+		\mu(B(0, R))
+		& = \mu\left(\bigcup_{0 < r < R} \partial B(0, r)\right) \\
+		& \ge \mu\left(\bigcup_{\substack{0 < r < R \\ r \in P}} \partial B(0, r)\right) \\
+		& \ge \sup\left\{ \sum_{k = 1}^\infty \mu(\partial B(0, r_k)) \mid {\{ r_k \}}_{k = 1}^\infty \subseteq (0, R) \right\} \\
+		& \ge \frac{1}{n} \cdot \infty \\
+		& = \infty
+	.\end{align*}
+	בסתירה לעובדה ש־$\mu(B(0, R)) \le \mu(\overline{B}(0, R)) < \infty$ כקבוצה קומפקטית ב־$\RR^d$.
+\end{proof}
+
+\question{}
+נשתמש במשפט הגזירה של בסיקוביץ' כדי להוכיח את משפט לבג־רדון ניקודים עבור מידות רדון ב־$\RR^d$. \\
+תהיינה $\mu, \lambda$ מידות רדון על $\RR^d$, נראה שקיימות מידות $\mu_a, \mu_s$ כך שמתקיים,
+\[
+	\mu_a \ll \lambda,
+	\quad
+	\mu_s \perp \lambda,
+	\quad
+	\mu = \mu_a + \mu_s
+\]
+וכן נראה שקיימת פונקציה אינטגרבילית מקומית לפי $\lambda$ המקיימת $d \mu_a = f\ d \lambda$.
+\begin{proof}
+	נגדיר את הקבוצות $A = \{ x \in \RR^d \mid \underline{D}(\mu, \lambda, x) < \infty \}, B = \{ x \in \RR^d \mid \underline{D}(\mu, \lambda, x) = \infty \}$. \\
+	נגדיר את המידות $\mu_a = \mu |_A, \mu_s = \mu |_B$, אז מתקיים $A \uplus B = \RR^d$ ולכן $\mu = \mu_a + \mu_s$. \\
+	ממשפט הגזירה של בסיקוביץ' $\mu_a \ll \lambda$ אם ורק אם $\underline{D}(\mu_a, \lambda, x) < \infty$ $\mu$־כמעט תמיד, אבל מהגדרת $\mu_a$ הטענה מתקיימת תמיד. \\
+	נשים לב שמתקיים $\mu_s(A) = 0$ ועלינו להראות ש־$\lambda(B) = 0$ כדי לקבל שגם $\mu_s \perp \lambda$.
+	נבחין כי $\overline{D}(\mu_s, \lambda, x) \ge \underline{D}(\mu_s, \lambda, x) \ge t$ לכל $t \in (0, \infty)$ ו־$x \in B$ ולכן נובע שגם $\mu_s(B) \ge t \cdot \lambda(B)$,
+	נסיק מ־$t \to \infty$ ו־$\sigma$־סופיות של $\RR^d$ שאכן $\lambda(B) = 0$.
+
+	ממשפט הגזירה של בסיקוביץ' נובע ש־$f(x) = D(\mu_a, \lambda, x) = \frac{d \mu_a}{d \lambda}$ $\mu_a$־כמעט־תמיד.
+\end{proof}
+
+\end{document}
