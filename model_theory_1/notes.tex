@@ -1003,7 +1003,7 @@
 	עבור $0 < j < m$ יש $0 \le i < n$ כך ש־$f_i(x_j) = 0$,
 	\[
 		f_0(x_j) = \overbrace{f_i(x_j) g(x_j)}^{= 0} + f_{i'}(x_j)
-	.\]
+	\]
 	ולכן $\operatorname{sgn}^K f_0(x_j) = \operatorname{sgn}^K f_{i'}(x_j) = \operatorname{sgn}^L f_{i'}(y_j) = \operatorname{sgn}^L f_0(y_j)$.
 
 	נעשה אינדוקציה פנימית על $N$.
@@ -2131,7 +2131,7 @@
 	\[
 		p_{\alpha}'
 		= \{ \varphi(x_0, b_1, \ldots, b_n) \mid \varphi \in p_{\alpha} \}
-	.\]
+	\]
 	$p_{\alpha}'$ עקבי מכיוון שהנוסחה $\exists x_0\ \varphi(x_0, x_1, \ldots, x_n) \in q_*$ עבור $\varphi \in p_{\alpha}$.
 	מ־$\kappa$־יציבות יש $\alpha < \beta$ ב־$I$ כך ש־$\pi_{\alpha}' = p_{\beta}'$ אז $p_{\alpha} = p_{\beta}$.
 
@@ -2165,7 +2165,7 @@
 	\[
 		\{ \varphi_{\eta \restriction n}(\bar{x}) \mid n < \omega \}
 	\]
-	עקבית, וכן $\varphi_{s \frown \{ 0 \}}(\bar{x}) \land \varphi_{s \frown \{ 1 \}}(\bar{x})$ לא עקבית.
+	עקבית, וכן $\varphi_{s \smallfrown \{ 0 \}}(\bar{x}) \land \varphi_{s \smallfrown \{ 1 \}}(\bar{x})$ לא עקבית.
 \end{definition}
 \begin{proposition}
 	אם $T$ היא $\omega$־יציבה, אז $T$ טרנסצנדטלית לחלוטין.
@@ -2205,9 +2205,9 @@
 
 	כעת נגדיר ברקורסיה את $\varphi_s$ על־ידי $\varphi_{\langle \rangle} = x = x$, ובהינתן שהגדרנו את $\varphi_s$ אז יש $\psi$ כך ש־$\varphi_s \land \psi, \varphi_s \land \lnot \psi$ גדולות ונגדיר,
 	\[
-		\varphi_{s \frown \langle 0 \rangle} = \varphi \land \psi,
+		\varphi_{s \smallfrown \langle 0 \rangle} = \varphi \land \psi,
 		\qquad
-		\varphi_{s \frown \langle 1 \rangle} = \varphi \land (\lnot \psi)
+		\varphi_{s \smallfrown \langle 1 \rangle} = \varphi \land (\lnot \psi)
 	\]
 	וכעת לכל $\eta \in 2^{\omega}$ נקבל ש־$\{ \varphi_{\eta \restriction n} \mid n < \omega \}$ עקבית כי כל תת־הקבוצות שלה חלשה מ־$\varphi_{\eta \restriction n}$ עבור $n$ כלשהו.
 \end{proof}
@@ -2244,6 +2244,171 @@
 	נניח ש־$p \in S_1(A)$ עבור $|A| < \lambda$ אז $|A| < \lambda^+ < \kappa$ ויש מודל $T$ שהוא $\lambda^+$־רווי בעוצמה $\kappa$.
 	נקבל מקטגוריות שכל מודל הוא כזה ולכן $p$ מתממש.
 \end{proof}
+
+\section{שיעור 12 --- 11.1.2026}
+בשיעור הקודם ראינו שאם $T$ היא תורה $\kappa$־קטגורית ו־$|T| \le \kappa$, אז יש לה מודל רווי מעוצמה $\kappa$.
+
+\subsection{מודלים ראשונים ולא אטומיים}
+\begin{definition}[מודל ראשוני]
+	מודל $\Mm$ הוא ראשוני מעל $A \subseteq M$ אם לכל מודל $\Nn$ ושיכון אלמנטרי חלקי $f : A \to \Nn$ ניתן להרחיב את $f$ לשיכון אלמנטרי מ־$\Mm$ ל־$\Nn$.
+\end{definition}
+\begin{definition}[מודל ניתן לבנייה]
+	$\Mm$ ניתן לבנייה מתוך $A$ אם יש מנייה של $M$, $\langle a_{\alpha} \mid a < \alpha_* \rangle$ כך שמתקיים $tp(a_{\alpha} / A \cup \{ a_{\gamma} \mid \gamma < \alpha \})$ מבודד.
+	במקרה זה נאמר ש־$a_{\alpha}$ אטומי מעל $A \cup \{ a_{\gamma} \mid \gamma < \alpha \}$.
+	קבוצה $B$ תיקרא אטומית מעל $A$ אם לכל $\bar{b} \in B^{< \omega}$ מתקיים ש־$tp(\bar{b} / A)$ מבודד.
+\end{definition}
+\begin{lemma}
+	אם $\Mm$ ניתן לבנייה מתוך $A$ אז $\Mm$ ראשוני.
+\end{lemma}
+\begin{proof}
+	נניח ש־$\Nn$ מודל ו־$f : A \to \Nn$ שיכון אלמנטרי חלקי.
+	נניח ש־$\langle b_{\alpha} \mid \alpha < \alpha_* \rangle$ מעידה על כך ש־$\Mm$ ניתנת לבנייה.
+	בלי הגבלת הכלליות $A = \langle b_{\gamma} \mid \gamma < \gamma_* \rangle$, ונסמן את $f = f_{\gamma_*}$.
+	באינדוקציה יהי $\alpha \le \alpha_*$ ונניח כי $f_{\beta}$ מוגדר לכל $\beta < \alpha$. אם $\alpha$ גבולי אז $f_{\alpha} = \bigcup_{\beta < \alpha} f_{\beta}$.
+	אם $\alpha$ עוקב אז $\alpha = \beta + 1$ ולכן $tp(b_{\beta} / A \cup \{ b_{\gamma} \mid \gamma < \beta + 1 \})$ טיפוס המבודד על־ידי $\psi$.
+	לכן $(f_{\beta_*}) q$ מבודד על־ידי ${(f_{\beta})}_* \psi$ המתממשת מאלמנטריות.
+	יהי $c_{\beta} \in N$ מימוש שלה, אז נגדיר $f_{\alpha} = f_{\beta} \cup \{ \langle b_{\beta}, c_{\beta} \rangle \}$.
+\end{proof}
+\begin{lemma}
+	תהי $T$ תורה טרנסצנדטלית־לחלוטין ו־$A \subseteq \Cc_T$, אז הטיפוסים המבודדים צפופים ב־$S_1(T_A)$, כאשר $T_A = \Th(\Cc_A)$.
+\end{lemma}
+\begin{proof}
+	נניח בשלילה שלא ותהי $\varphi$ נוסחה עקבית כך ש־$U_{\varphi}$ לא מכילה נקודות מבודדות ונבנה ברקורסיה עץ פיצולים של $\varphi$ על־ידי $\varphi_{\langle \rangle} = \varphi$.
+	עבור $\varphi_s$ ל־$s \in 2^{< \omega}$ ידוע ש־$\varphi_s$ לא מבודדת טיפוס אז יש $\psi$ כך ש־$\varphi_s \land \psi, \varphi_s \land \lnot \psi$ עקביות ונגדיר אותן כהמשך העץ.
+\end{proof}
+\begin{corollary}
+	אם $T$ היא טרנסצנדטלית־לחלוטין אז כל $A \subseteq \Cc_T$ ניתנת להרחבה למודל ראשוני מעל $A$.
+\end{corollary}
+\begin{proof}
+	נסמן $A_0 = A$ ונניח ש־$\langle \psi_{0, \alpha}(x) \mid \alpha < \alpha_0 \rangle$ מנייה של הנוסחות עם משתנה חופשי $x$ ופרמטרים מ־$A_0$ שעקביות ב־$\Cc_T$.
+	מהטענה הקודמת לכל $\psi_{0, i}$ יש טיפוס מוגדר המכיל אותה וניקח את $_{0, i}$ לממש אותו ב־$\Cc$, נגדיר $A_0 \subseteq A_1 = \{ b_{0, i} \mid i < \alpha_0 \}$.
+	נמשיך כך ונגדיר את $A_n$ לכל $n < \omega$ ונשים לב שאם $\psi$ נוסחה עם משתנה חופשי $x$ ופרמטרים מ־$A_n$ שמתממשת ב־$\Cc$ אז היא מתממשת ב־$A_{n + 1}$ ולכן $A \subseteq \bigcup_{n < \omega} A_n \prec \Cc$ ניתן לבנייה.
+	הסדרה שמתקבלת מהסרת החזרות השרשור של $\langle \langle b_{i, \alpha} \mid \alpha < \alpha_i \rangle \mid i < \omega \rangle$ מוגדרת כך ש־$\bigcup A_n$ ניתן לבנייה.
+
+	נניח כי $\langle b_{\alpha} \mid \alpha < \alpha_* \rangle$ סדרה המקיימת ש־$tp(b_{\alpha} / A \cup \{ b_{\gamma} \mid \gamma < \alpha \})$ מבודד.
+	הנוסחה המעידה על כך מכילה מספר סופי של פרמטרים $b_{\alpha_0}, \ldots, b_{0_{n - 1}}$. בפרט $tp(b_{\alpha} / A \cup \{ b_{\alpha_i} \mid i < n \})$ מבודד.
+\end{proof}
+\begin{proposition}
+	נניח ש־$\Mm$ ניתן לבנייה מעל $A$, אז $\Mm$ אטומי מעל $A$.
+\end{proposition}
+\begin{proof}
+	נתחיל בהוכחת הלמה הבאה:
+	נניח ש־$\bar{a}, \bar{b}$ סדרות סופיות.
+	אז $tp(\bar{a} \smallfrown \bar{b})$ מבודד אם ורק אם $tp(\bar{a})$ מבודד ו־$tp(\bar{b} / \bar{a})$ מבודד.
+
+	נניח ש־$tp(\bar{a} \smallfrown \bar{b})$ מבודד על־ידי נוסחה $\psi(\bar{x}, \bar{y})$.
+	אם $\varphi(\bar{x}) \in tp(\bar{a})$ אז $\forall \bar{x} \forall \bar{y}\ ( \psi(\bar{x}, \bar{y}) \to \varphi(\bar{x}))$.
+	בנוסף $\exists \bar{x} \exists \bar{y}\ \psi(\bar{x}, \bar{y})$ ולכן $\exists \bar{y}\ \psi(\bar{x}, \bar{y})$ נמצא ב־$tp(\bar{a})$ וגם $\forall \bar{x} ((\exists \bar{y}\ \psi(\bar{x}, \bar{y}) \to \varphi(\bar{x})))$.
+	נסיק שגם $\exists \bar{y}\ \psi(\bar{x}, \bar{y})$ מבודד את $tp(\bar{a})$.
+	$tp(\bar{b} / \bar{a})$ מבודד על־ידי $\psi(\bar{a}, \bar{b})$ כי לכל $\rho(\bar{x}, \bar{y}) \in tp(\bar{a} \smallfrown \bar{b})$ מתקיים $\forall \bar{x} \forall \bar{y}\ (\psi \to \rho)$.
+	בפרט מתקיים $\forall \bar{y}\ (\psi(\bar{a}, \bar{y}) \to \rho(\bar{a}, \bar{y}))$.
+
+	אם $tp(\bar{a})$ מבודד על־ידי $\chi$ ו־$tp(\bar{b} / \bar{a})$ מבודד על־ידי $\xi$,
+	אז $\chi(\bar{x}) \land \xi(\bar{x}, \bar{y})$ מבודד את $tp(\bar{a} \smallfrown \bar{b})$.
+	אם $\psi(\bar{x}, \bar{y})$ בטיפוס $tp(\bar{a} \smallfrown \bar{b})$ אז $\chi(\bar{x}) \to \exists \bar{y}\ \psi(\bar{x}, \bar{y})$ ובנוסף,
+	\[
+		\forall \bar{y}\ (\xi(\bar{a}, \bar{y}) \to \psi(\bar{a}, \bar{y})
+		\implies \chi(\bar{x}) \to \forall \bar{y}\ (\xi(\bar{x}, \bar{y}) \to \psi(\bar{x}, \bar{y})))
+	\]
+
+	נעבור להוכחת הטענה.
+	נניח ש־$\langle b_{\alpha} \mid \alpha < \alpha_* \rangle$ מעידה על כך ש־$\Mm$ ניתן לבנייה מעל $A$.
+	נוכיח באינדוקציה על $\alpha \le \alpha_*$ שאם $babr = \langle \langle b_{\alpha_0}, \ldots, b_{\alpha_{k - 1}} \rangle$.
+	אם $\alpha_0, \ldots, \alpha_{k - 1} < \alpha$ אז $tp(\bar{b})$ מבודד.
+	נניח שהטענה מתקיימת לכל $\beta < \alpha$ אז אם $\alpha$ גבולי אז לכל $\alpha_0, \ldots, \alpha_{k - 1} < \alpha$ יש $\beta < \alpha$ כך ש־$\alpha_0, \ldots, \alpha_{k - 1} < \beta$ ולכן מהנחת האינדוקציה $tp(\bar{b})$ מבודד.
+	אם $\alpha = \beta + 1$ אז גם $\alpha_0, \ldots, \alpha_{k - 1} < \beta$. אחרת בלי הגבלת הכלליות $\alpha_0 = \beta$.
+	$tp(b_{\beta} / A \cup \{ b_{\gamma} \mid \gamma < \beta \})$ מבודד,
+	בפרט יש $\gamma_0, \ldots, \gamma_{n - 1} < \beta$ פרמטרים בנוסחה המבודדת.
+	בהתאם $tp(b_{\gamma} / A \cup \{ b_{\gamma_i} \mid i < n \})$ מבודד.
+	אז מהלמה $tp(\langle b_{\gamma_0}, \ldots, b_{\gamma_{n - 1}} / A)$ מבודד ובנוסף מהנחת האינדוקציה $tp(\langle b_{\alpha_0}, \ldots, b_{\alpha_{n - 1}} / A)$ מבודד.
+	נשים לב שכל הפרמטרים $b_{\gamma_0}, \ldots, b_{\gamma_{n - 1}}$ למעשה מבודדים את כל $tp(b_{\beta} / A \cup \{ b_{\gamma} \mid \gamma < \beta \})$ בפרט מבודדים גם את,
+	\[
+		tp(b_{\beta} / A \cup \{ b_{\alpha_i} \mid 0 < i < k \} \cup \{ b_{\gamma_j} \mid j < n \})
+	\]
+	אז גם,
+	\[
+		tp(\langle b_{\alpha_i} \mid 0 < i < k \rangle \smallfrown \langle b_{\gamma_j} \mid j < n \rangle)
+	\]
+	מבודד.
+	הסיבה לכך היא ש־$tp(b_{\beta}, \bar{a} \cup \bar{c} / A)$ מבודד ומאינדוקציה $tp(\bar{a} \smallfrown \bar{c} / A)$ מבודד.
+	נסיק שגם $tp(\langle b_{\alpha_i} \mid i < k \rangle \smallfrown \langle b_{\gamma_i} \mid j < n \rangle)$ מבודד, ולכן גם $tp(\langle b_{\alpha_i} \mid i < k \rangle / A)$ מבודד.
+\end{proof}
+\begin{corollary}
+	תהי $T$ תורה ו־$A \subseteq \Cc_T$ קבוצה.
+	אז יש מודל ראשוני מעל $A$ והוא יחיד ואטומי.
+\end{corollary}
+מה שצריך להראות זה שאם $\Mm$ הוא ראשוני אז הוא אטומי.
+אכן, קיים מודל אטומי $\Nn$ מעל $A$, אז $\Mm$ משוכן לתוך $\Nn$ ולכן קיימת $\bar{b} \in M^{< \omega}$ הטיפוס שלה לאחר השיכון מבודד מאלמנטריות ולכן $tp(\bar{b} / A)$ מבודד.
+\begin{theorem}[משפט מורלי בכיוון היורד]
+	נניח ש־$T$ היא $\kappa$־קטגורית ל־$\aleph_1 \le \kappa$ ו־$|T| = \aleph_0$, אז $T$ היא $\aleph_1$־קטגורית.
+\end{theorem}
+\begin{lemma}
+	נניח ש־$T$ היא טרנסצנדטלית־לחלוטין בת־מנייה ושלמה.
+	אם $\Mm \models T$ מעוצמה לא בת־מנייה אז לכל $\kappa > |M|$ יש מודל $\Mm \prec \Nn$ כך שלכל טיפוס חלקי $\Sigma(x)$ בן־מנייה שמושמט ב־$\Mm$ יושמט גם ב־$\Nn$, ו־$|N| = \kappa$.
+\end{lemma}
+\begin{proof}
+	נראה כי ניתן להרחיב את $\Mm$ בצעד בודד, כלומר למצוא $\Mm \prec \Mm'$ כך ש־$\Mm \ne \Mm'$ משמיט כל איפוס בן־מניה חלקי שהושמט על־ידי $\Mm$.
+	נחזור על הבנייה $\kappa$ פעמים כדי לבנות את $\Nn$.
+
+	עבור הנוסחה $\varphi$ עם משתנה חופשי $x$ נאמר ש־$\varphi$ היא גדולה אם $|\varphi(M)| > \aleph_0$ כאשר $\varphi(M) = \{ a \in M \mid \varphi^\Mm(a) \}$.
+
+	נוכיח את הלמה הבאה:
+	יש $\varphi$ גדולה כך שלכל נוסחה $\psi(x)$ מתקיים $\varphi \land \psi$ קטנה או $\varphi \land (\lnot \psi)$ קטנה, ולא שני המקרים יחד.
+
+	נוכיח את הלמה.
+	יש נוסחה גדולה $(x = x)$ ואם הלמה לא נכונה, כלומר אפשר לפצל כל נוסחה גדולה לשתיים ולקבל עץ בינארי $\Gamma(x) = \{ \psi \mid \varphi \land \psi \text{ is big} \}$ טיפוס שלם.
+	אכן, מההנחה אם $\varphi \land \psi$ לא גדולה אז $\varphi \land (\lnot \psi)$ גדולה ולכן $\psi_0, \ldots, \psi_{n - 1} \in \Gamma$ אז,
+	\[
+		(\varphi \land \psi_i) \lor (\bigvee_i \varphi \land (\lnot \psi_i)) \equiv \varphi
+	\]
+	מרחיב על־ידי לכל היותר מספר בן־מנייה של איברי $M$.
+	יהי $a \in \Cc_T$ מממש את $\Gamma$.
+	יהי $\Mm'$ מודל אטומי מעל $M_a$. נניח כעת ש־$b \in M'$ שמממש את $\Sigma(x)$, עבור טיפוס חלקי בן־מניה.
+	$\Mm'$ אטומי מעל $\Mm_a$ אז הטיפוס $tp(b / M_a)$ מבודד על־ידי $\psi(x, a)$. כלומר לכל $\rho \in \Sigma$ מתקיים,
+	\[
+		\Mm' \models \forall x\ (\psi(x, a) \to \rho(x))
+	\]
+	כלומר $a$ מספק $\xi(a) = \exists x\ \psi(x, a) \land \forall x\ (\psi(x, a) \to \rho(x))$.
+	לכן הנוסחה $\varepsilon_{\rho} = \varphi(z) \land (\lnot \xi(z))$ היא קטנה.
+	מתקיים $|\varepsilon_{\rho}(M)| \le \aleph_0$ ולכן $|\bigcup_{\rho \in \Sigma} \varepsilon_{\rho}(M)| \le \aleph_0$ ובהתאם יש $c \in \varphi(M)$ ו־$\lnot \varepsilon_{\rho}(c)$ לכל $\rho \in \Sigma$.
+	נסיק ש־$\exists x\ \psi(x, c)$ וגם לכל $\rho \in \Sigma$ מתקיים $\forall x\ (\psi(x, c) \to \rho(x))$ מתקיים ב־$\Nn$.
+	יהי $e \in M$ כך ש־$\Mm \models \psi(e, c)$ ונקבל ש־$\Mm \models \Sigma(e)$ כסתירה להנחה ש־$\Sigma$ הושמט ב־$\Mm$.
+
+	נעבור לאיך הלמה שאם $T$ היא $\kappa$־קטגורית מעל שפה בת־מניה ל־$\kappa \ge \aleph_1$ גוררת שהיא $\aleph_1$־קטגורית.
+	אם נניח אחרת יש מודל $\Mm \models T$ בעוצמה $\aleph_1$ לא רווי, לכן יש טיפוס $\Sigma$ בן־מניה מושמט.
+	מ־$\kappa$־קטגוריות אנו יודעים ש־$T$ טרנסצנדטלית־לחלוטין, מהלמה יש $\Mm \prec \Nn$ בעוצמה $\kappa$ שמשמיט את $\Sigma$.
+	מ־$\kappa$־קטגוריות $\Nn$ חייב להיות רווי בסתירה.
+\end{proof}
+
+מתוך $\aleph_1$־קטגוריות נוכל לקבל $\kappa$־קטגוריות ל־$\kappa > \aleph_1$.
+בצעד הראשון, ל־$T$ אין זוגות ווטיאנים, כלומר מודלים $\Mm \prec \Nn$ שעבור נוסחה $\varphi$ כך ש־$\varphi(M) \ge \aleph_0$, $\varphi(M) = \varphi(N)$ אבל $\Mm \ne \Nn$.
+בצעד השני, להראות שיש נוסחות מינימליות בחזק, כלומר שאם $\varphi$ נוסחה כך שלכל $\psi$ מתקיים ש־$(\varphi \land \psi)(M)$ סופית או $(\varphi \land (\lnot \psi))(M)$ סופית, כאשר $\varphi(M)$ אינסופית.
+זה כמובן מתקיים לכל הרחבה אלמנטרית של $\Mm$.
+אם $B_0, B_1$ בסיסים של $\varphi(M)$ ול־$\varphi(N)$ בהתאמה, ו־$f : B_0 \to B_1$ חד־חד ערכית ועל, אז ניתן להרחיב את $f$ לשיכון אלמנטרי חלקי מ־$\varphi(M)$ ל־$\varphi(N)$.
+נניח ש־$\Nn_1, \Nn_2$ מודלים של $T$ בעוצמה $\kappa$ ו־$\varphi$ מינימלית בחזק.
+נניח ש־$\Mm$ ראשוני בן־מניה ו־$|\varphi(M)| = \aleph_0$, $\Mm \hookrightarrow \Nn_1$ ואם $\varphi(N_1)$ התמונות, אז $\varphi(M)$ זוג ווטיאני.
+יתר־על־כן אם $\varphi(N_1)| < \kappa$ אז $Sk^{\Nn_1}(\varphi(N_1)) \prec \Nn_1$ עם אותו $\varphi$ ולכן זוג ווטיאני.
+$\kappa = |\varphi(N_1)| = |\varphi(N_2)|$ כאשר $B_1 \subseteq N_1, B_2 \subseteq N_2$ הם מעוצמה $\kappa$.
+בלי הגבלת הכלליות $\varphi(N_1) = \varphi(N_2) = A$ ונבנה מודל ראשוני מעל $A$ בתוך $\Nn_1$.
+נטען ש־$\varphi(N_1) = \varphi(M_1)$ ולכן $M_1 = N_1$, וכן $\Nn_1 \hookrightarrow \Nn_2$ ולכן $\Nn_1 \cong \Nn_2$.
+\begin{lemma}
+	נניח ש־$\Mm \prec \Nn$, נעשיר את השפה $L$ על־ידי הוספת יחס חד־מקומי $P$ כך ש־$P(N) = M$.
+	אז קיים $(\Mm, \Nn) \prec (\Mm', \Nn')$ כך שאם $p \in S_n(T)$ שמתממש ב־$\Nn'$ אז הוא מתממש ב־$\Mm'$, ו־$\Mm', \Nn'$ הומוגניים.
+\end{lemma}
+\begin{proof}
+	מספיק להראות שעבור $(\Mm, \Nn)$ ו־$a \in N$ יש הרחבה אלמנטרית ל־$(\Mm', \Nn')$ בה יש $a' \in M'$ עם $tp(a') = tp(a)$, וזה מתקיים מקומפקטיות;
+	לכל $\varphi \in tp(a)$ מתקיים $\Nn \models \varphi(a)$ אז,
+	\[
+		(\Mm, \Nn)
+		\models \exists x\ (P(x) \land \varphi(x))
+	.\]
+
+	נחזור על התהליך הזה $\omega$ צעדים.
+\end{proof}
+\begin{theorem}[ווט]
+	נניח ש־$T$ תורה בשפה בת־מניה שיש לה זוג ווטיאני.
+	אז יש ל־$T$ מודל $\Nn \models T$ המקיים $\Mm \prec \Nn, |N| = \aleph_1, |M| = \aleph_0$ ו־$\varphi(N) = \varphi(M)$.
+\end{theorem}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
