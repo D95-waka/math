@@ -1398,6 +1398,72 @@
 \]
 בהתאם המטריצה המייצגת את התבנית היסודית הראשונה היא $E = \sin^2 \phi, F = 0, G = 1$.
 
+\section{שיעור 23 --- 12.1.2026}
+\subsection{עקמומיות}
+אנו יודעים שבעוד שהנגזרת הראשונה מעידה על סדר השינוי של פונקציה, הנגזרת השנייה היא שערוך טוב לקצב השינוי בשיפוע, כלומר היא מאפשרת לנו לתארך את העקמומיות של גרף.
+נניח ש־$f : U \to \EE^3$ משטח פרמטרי, ותהי $(a, b) \in U$, אז מנוסחת טיילור נקבל,
+\[
+	f((a, b) + (h, k)) - f(a, b)
+	= D_1 f (a, b) \cdot h + D_2 f(a, b) \cdot k + \frac{1}{2} (D_1^2 f(a, b) \cdot h^2 + D_1 D_2 f(a, b) \cdot h k + D_2^2 f(a, b) \cdot k^2) + R(h, k)
+\]
+אבל נוכל לכתוב בפורמט של תבנית ריבועית,
+\[
+	f((a, b) + (h, k)) - f(a, b)
+	= D_1 f (a, b) \cdot h + D_2 f(a, b) \cdot k + \frac{1}{2} (h, k) \begin{pmatrix}
+		D_1^2 f & D_1 D_2 f \\
+		D_2 D_1 f & D_2^2 f
+	\end{pmatrix} 
+	\begin{pmatrix} h \\ k \end{pmatrix} + R(h, k)
+\]
+אם נכתוב $n = \frac{D_1 f \wedge D_2 f}{|D_1 f \wedge D_2 f|}$ אז נקבל,
+\[
+	n (f((a, b) + (h, k)) - f(a, b))
+	= 0 + \frac{1}{2} (n, k) \begin{pmatrix}
+		D_1^2 f & D_1 D_2 f \\
+		D_2 D_1 f & D_2^2 f
+	\end{pmatrix} n + R(h, k) {(n, k)}^t n
+\]
+\begin{definition}[התבנית היסודית השנייה]
+	יהי $f : U \to \EE^3$ משטח פרמטרי (מקומי) רגולרי.
+	התבנית היסודית השנייה על המשטח מוגדרת על־ידי,
+	\[
+		L = D_1^2 f \cdot n,
+		\quad
+		M = D_1 D_2 f \cdot n = D_2 D_1 f \cdot n,
+		\quad
+		N = D_2^2 f \cdot n
+	\]
+	כאשר,
+	\[
+		n : U \to S^2,
+		\qquad
+		n(u)
+		= \frac{D_1 f(u) \wedge D_2 f(u)}{|D_1 f(u) \wedge D_2 f(u)|}
+	\]
+\end{definition}
+\begin{example}
+	נבחן את המישור.
+	נגדיר $f(t, s) = p + t u + s v$ עבור $p \in \EE^3, u, v \in \RR^3$.
+	במקרה זה $D_1 f \equiv u, D_2 f \equiv v$.
+	בהתאם נקבל שגם $D_1^2 f \equiv D_2^2 \equiv D_1 D_2 f \equiv 0$.
+	נקבל שגם $n(t, s) = \frac{u \wedge v}{|u \wedge v|}$ ובהתאם $L = M = N = 0$.
+\end{example}
+\begin{remark}
+	מתקיים $D_i f \cdot n : U \to \EE^1$ ולכן $D_1 f \cdot n = 0$ מהגדרת הנורמל.
+	במצב זה נקבל שגם $D_1^2 f \cdot n + D_1 f \cdot D_1 n = 0$ ולכן נובע ש־$L = -D_1 f \cdot D_1 n$, באופן דומה נקבל שגם $M = - D_1 f \cdot D_2 n = -D_2 f \cdot D_1 n$.
+	לבסוף גם נקבל ש־$N = - D_2 f \cdot D_2 n$.
+\end{remark}
+נעבור לשימוש בכלי חדש זה.
+אם $I \xrightarrow{\phi} U \xrightarrow{f} \EE^3$ פירוק של $c : I \to \EE^3$ מסילה רגולרית, ונניח שזוהי פרמטריזציה לפי אורך שלה.
+במקרה זה מתקיים $\lVert c' \rVert \equiv 1$ וכן $c(0) = P$ ו־$c'' \cdot c' \equiv 0$.
+אז נסיק ש־$n c = 0$ ו־$c'' = a n + b (n \wedge c)$, נובע ש־$c'' = (c'' \cdot n) + (c'' \cdot n \wedge c') n \wedge c'$.
+אבל $c = f \circ \phi$ ולכן $c' = df \circ \phi'$ ולכן,
+\[
+	(D_1 f, D_2 f) \cdot (\phi_1', \phi_2')
+	= D_1 f \phi_1' + D_2 f \phi_2'
+\]
+נקבל לבסוף שמתקיים $c'' = \kappa_{\operatorname{normal}} n + \kappa_{\operatorname{geodesic}}(\cdots)$.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
