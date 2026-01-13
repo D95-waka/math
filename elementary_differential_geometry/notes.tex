@@ -1464,6 +1464,51 @@
 \]
 נקבל לבסוף שמתקיים $c'' = \kappa_{\operatorname{normal}} n + \kappa_{\operatorname{geodesic}}(\cdots)$.
 
+\section{שיעור 24 --- 13.1.2026}
+נמשיך בדיון של השיעור הקודם.
+נניח ש־$S \subseteq \EE^3$ משטח פרמטרי חלק, ותהי $f : U \to \EE^3$ פרמטריזציה מקומית, כלומר $U \subseteq \EE^2$ פתוחה.
+נסמן עבור $P \in S$ את המישור המשיק ב־$T_P S$, את התבנית הראשונה על־ידי $I_P$ ואת התבנית השנייה על־ידי ${I\!I}_P$.
+\begin{example}
+	נעסוק בגרף של פונקציה.
+	נניח ש־$f : U \to \EE^1$ היא פונקציה סקלרית.
+	נגדיר את המשטח $S = G_f = \{ (x, y, f(x, y)) \mid (x, y) \in U \}$.
+	נגדיר $F : U to \EE^3$ הפרמטריזציה של $S$ ולכן נקבל,
+	\[
+		D_1 F = {(1, 0, D_1 f)}^t,
+		\qquad
+		D_2 F = {(0, 1, D_2 f)}^t
+	\]
+	ולכן,
+	\[
+		n = {(-D_1 f, -D_2 f, 1)}^t \cdot \frac{1}{\sqrt{1 + {(D_1 f)}^2 + {(D_2 f)}^2}}
+	\]
+	נעבור לחישוב לקראת התבנית היסודית השנייה,
+	\[
+		D_1^2 F = {(0, 0, D_1^2 f)}^t,
+		\quad
+		D_2^2 F = {(0, 0, D_2^2 f)}^t,
+		\quad
+		D_1 D_2 F = {(0, 0, D_1 D_2 f)}^t
+	\]
+	עתה נצטרך לכפול סקלרית ב־$n$,
+	\[
+		L = D_1^2 f,
+		\quad
+		M = D_1 D_2 f,
+		\quad
+		N = D_2^2 f
+	\]
+	וקיבלנו,
+	\[
+		{I\!I}_F
+		= \begin{pmatrix}
+			D_1^2 f & D_1 D_2 f \\
+			D_2 D_1 f & D_2^2 f
+		\end{pmatrix} \cdot \frac{1}{\sqrt{1 + {(D_1 f)}^2 + {(D_2 f)}^2}}
+	\]
+	וזהו בדיוק ההסיאן של $f$.
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
 \end{document}
