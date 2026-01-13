@@ -1,0 +1,51 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Solution to Exercise 4 --- Model Theory (1), 80616}
+
+\DeclareMathOperator{\acl}{acl}
+\DeclareMathOperator{\dcl}{dcl}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+\begin{definition}[algebraic formula]
+	Let $\Mm$ be a structure. A formula $\varphi(x) \in \form_{L_\Mm}$ is called algebraic if,
+	\[
+		|\{ a \in M \mid \Mm \models \varphi(a) \}| < \aleph_0
+	.\]
+\end{definition}
+\begin{definition}[definable element]
+	An element $a \in M$ is called definable if there is a formula $\psi(x)$ such that $\Mm \models \psi(x) \iff x = a$ for any $x \in M$.
+\end{definition}
+\begin{definition}[acl and dcl]
+	If $\Mm$ is a structure and $A \subseteq M$ a set of elements, then let,
+	\[
+		\acl_\Mm(A) = \bigcup \{ \varphi(M) \mid \varphi \in \form_{L_A}, \varphi \text{ is algebraic} \},
+		\quad
+		\dcl\Mm(A) = \{ a \in M \mid a \text{ is definable using an $L_A$ formula} \}
+	.\]
+	be the set of elements that has a formula with parameters from $A$ that is algebraic and are true for them, and the set of elements uniquely definable by formulas with parameters.
+\end{definition}
+
+\subquestion{}
+Let $A \subseteq M$ for $\Mm \prec \Nn$.
+We will show that $\acl_\Mm(A) = \acl_\Nn(A)$ and $\dcl_\Mm(A) = \dcl_\Mm(A)$.
+\begin{proof}
+	Let $a \in M$ be $\in \acl_\Mm(A)$ and let $\varphi \in \form_{L_A}$ be an algebraic formula to witness it.
+	$\Mm \models \varphi(a) \iff \Nn \models \varphi(a)$ by the given elementary embedding and the fact that $A \subseteq N$. \\
+	Let $a \in \acl_\Nn(A)$ and assume toward contradiction that $a \notin \acl_\Mm(A)$, meaning that there is $\varphi(x)$ over $L_A$ such that $\Nn \models \varphi(a)$ and $\varphi$ is algebraic.
+	Let $B = A \cup \varphi(M)$, denote $\varphi(M) = \{ b_i \mid i < N \}$ for $N < \omega$,
+	\[
+		\psi(x)
+		= \varphi \land \left(\bigwedge_{i < N} x \ne b_i\right)
+	.\]
+	Then $\psi$ is algebraic over both $\Mm$ and $\Nn$ and $\psi(M) = \emptyset$, while $a \in \psi(N)$.
+	Let $\phi = \exists x\ \psi$, then $\Nn \models \phi$ as $a$ witnesses exactly this, while $\Mm \models \lnot \phi$ in contradiction to $\Mm \models \phi \iff \Nn \models \phi$.
+
+	Let us move to $\dcl$.
+	TODO
+\end{proof}
+
+\end{document}
