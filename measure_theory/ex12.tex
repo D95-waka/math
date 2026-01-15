@@ -1,0 +1,116 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 12 --- תורת המידה, 80517}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]
+
+\question{}
+תהי $E \subseteq \RR$ קבוצה מדידה לבג ו־$t \in \RR$.
+נאמר ש־$E$ היא $t$־מחזורית אם $E + t = E$. \\
+נראה שאם $E$ היא $t_n$־מחזורית עבור סדרה ${(t_n)}_{n = 1}^{\infty} \subseteq \RR \setminus \{ 0 \}$ כך ש־$t_n \to 0$, אז אחת מבין הקבוצות $E, E^C$ הן ממידה אפס.
+\begin{proof}
+	מהגדרת מחזוריות מתקיים גם $E + t = E \iff E - t = E \iff E + t n = E$ לכל $n \in \NN$ (באינדוקציה) ולכן נוכל להסיק שקבוצה היא $t$־מחזורית אם ורק אם קיימת קבוצה $A \subseteq [0, t]$ כך ש־$E = \{ A + n \mid n \in \ZZ \}$.
+	בהתאם אם קבוצה $E$ היא $t$־מחזורית ו־$A \subseteq [0, t]$ מקיימת את התכונה שהצגנו, אז מתקיים $E \restriction [0, t] = A$ מהגדרת הקבוצות ובהתאם נסיק שגם,
+	\[
+		\lambda(E \restriction [0, t]) = \lambda(A)
+	\]
+	נוכל אם כך לחלק את $E$ לקבוצות כמעט זרות ולקבל,
+	\[
+		\lambda(E)
+		= \lambda(\bigcup_{n \in \ZZ} n + A)
+		= \sum_{n \in \ZZ} \lambda(A)
+	\]
+	אילו $\lambda(A) = 0$ אז נקבל,
+	\[
+		\lambda(E)
+		= \sum_{n \in \ZZ} 0
+		= 0
+	\]
+	ואחרת נניח ש־$\lambda(A) > 0$, אבל $A \subseteq [0, t]$ ולכן $0 < \lambda(A) \le t$.
+
+	נעבור לטענת השאלה.
+	נסמן $A_n$ הקבוצה שהגדרנו קודם עבור $t_n$, ולכן $A_n \subseteq [0, t_n]$.
+	אילו קיים $n$ כך ש־$\lambda(A_n) = 0$ אז נקבל ש־$\lambda(E) = 0$ וסיימנו, לכן נניח ש־$0 < \lambda(A_n) \le t_n$.
+	בהתאם גם נובע ש־$0 \le \lambda([0, t_n] \setminus A_n) < t_n$.
+	אבל $t_n \to 0$ ולכן נובע שלכל $\varepsilon > 0$ קיים $n$ כך ש־$0 \le \lambda([0, t_n] \setminus A_n) < \varepsilon$,
+	ומשרירותיות נסיק שלכל קטע $[0, s]$ אם $\lambda([0, s] \cap E) > 0$ אז מתקבלת סתירה על־ידי בחירת $\varepsilon$ נקבל ש־$\lambda([0, s] \cap E) = \infty$ בסתירה להגדרת מידת לבג כמידת רדון.
+	נסיק ש־$\lambda(E^C) = 0$ בלבד.
+\end{proof}
+
+\question{}
+תהי $K \subseteq \RR^2$ קומפקטית, ונסמן $\rho : \RR^2 \times \RR^2 \to \RR_+$ את המטריקה האוקלידית.
+נגדיר גם את פונקציית המרחק של נקודה מקבוצה,
+\[
+	d : \RR^2 \times \Pp(\RR^2) \to \RR_+,
+	\qquad
+	d(x, A) = \inf\{ \rho(x, a) \mid a \in A \}
+\]
+עבור קבוצות קומפקטיות המרחק מתקבל עבור $a_0 \in K$ כלשהי, נגדיר,
+\[
+	A = \{ x \in \RR^2 \mid d(x, K) = 1 \}
+\]
+ונגדיר ש־$x$ נקראת נקודת לבג של הפונקציה $\indicator_A$ אם מתקיים,
+\[
+	\lim_{r \to 0} \frac{1}{\lambda(B(x, r))} \int_{B(x, r)} \indicator_A(y)\ d \lambda(y)
+	= \indicator_A(x)
+\]
+
+\subquestion{}
+נראה שאם $x \in A$ אז $x$ היא לא נקודת לבג של $\indicator_A$.
+\begin{proof}
+	נראה שהקבוצה $A$ היא סגורה המקיימת $A = \partial A$.
+	תהי $y \in A$, אז מתקיים $d(y, K) = 1$.
+	בהתאם אם $\varepsilon > 0$ אז $B(y, \varepsilon) \not\subseteq A$ אחרת מאי־שוויון המשולש נוכל למצוא נקודה $z \in A$ המקיימת $d(z, K) \ge 1 + \varepsilon$, נסיק ש־$A$ היא חסרת פנים.
+	כמסקנה מאינפי 3 גם נסיק ש־$A$ סגורה, ולכן אכן $A = \partial A$.
+	ממשפט לבג של אינפי 3 נובע ש־$A$ היא חסרת נפח ביחס ל־$\rho$, ולכן גם $\lambda(A) = 0$, זאת שכן,
+	\[
+		\lambda(A)
+		= \int \indicator_A(y)\ d \lambda(y)
+		= \int \indicator_A(y)\ dy
+	\]
+	ובפרט נובע שגם,
+	\[
+		\lim_{r \to 0} \frac{1}{\lambda(B(x, r))} \int_{B(x, r)} \indicator_A(y)\ d \lambda(y)
+		= \lim_{r \to 0} \frac{1}{\lambda(B(x, r))} \cdot 0
+		= 0
+		\ne 1
+		= \indicator_A(x)
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$\lambda(A) = 0$.
+\begin{proof}
+	השתמשנו בטענה זו כדי להוכיח את הסעיף הקודם.
+\end{proof}
+
+\question{}
+יהי $X$ מרחב מידה ויהי $Y$ מרחב טופולוגי האוסדורף מנייה שנייה.
+נניח ש־$f : X \to Y$ פונקציה מדידה ונגדיר את הגרף של $f$,
+\[
+	G_f = \{ (x, f(x)) \mid x \in X \} \subseteq X \times Y
+\]
+
+\subquestion{}
+נראה שקבוצת האלכסון $\Delta_Y = \{ (y, y) \mid y \in Y \}$ היא סגורה בטופולוגיית המכפלה, ונראה שהיא מדידה ב־$\Bb_Y \times \Bb_Y$.
+\begin{proof}
+	תהיינה $x, y \in Y$, אז קיימות $U_x, U_y \subseteq \Tt_Y$ זרות המקיימות $x \in U_x, y \in U_y$.
+	בהתאם $(x, y) \in U_x \times U_y$, וזו האחרונה קבוצה פתוחה בטופולוגיית המכפלה, נסיק ש־$\Delta_Y$ סגורה.
+
+	בהתאם מהגדרת $\Bb_Y \times \Bb_Y$ נובע ש־$\Delta_Y$ מדידה ב־$\sigma$־אלגברת המכפלה.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$G_f \subseteq X \times Y$ היא מדידה.
+\begin{proof}
+	$G_f = g(X \times Y)$ עבור $g(x, y) = \begin{cases}
+		1 & f(x) = y \\
+		0 & \text{otherwise}
+	\end{cases}$.
+
+	TODO
+\end{proof}
+
+\end{document}
