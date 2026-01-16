@@ -105,12 +105,105 @@
 \subquestion{}
 נסיק ש־$G_f \subseteq X \times Y$ היא מדידה.
 \begin{proof}
-	$G_f = g(X \times Y)$ עבור $g(x, y) = \begin{cases}
-		1 & f(x) = y \\
-		0 & \text{otherwise}
-	\end{cases}$.
-
-	TODO
+	נגדיר את הפונקציה $g : X \times Y \to Y \times Y$ על־ידי,
+	\[
+		g(x, y)
+		= (f(x), y)
+	\]
+	ולכן נובע ש־$G_f = g^{-1}(\Delta_Y)$ ישירות מהדרה, אבל $g$ מדידה כהרכבת מדידות ולכן מסעיף א' נובע ש־$G_f$ מדידה אף היא.
 \end{proof}
+
+\question{}
+תהי $s : \RR^n \times \RR^n \to \RR^n$ כך ש־$s(x, y) = x + y$, כלומר העתקת הסכום.
+תהיינה $\mu, \nu$ מידות בורל סופיות על $\RR^n$ ונגדיר את הקונבולוציה של $\mu$ ו־$\nu$ על־ידי,
+\[
+	\mu * \nu = s_*(\mu \times \nu)
+\]
+
+\subquestion{}
+נראה שלכל $E \subseteq \RR^n$ מדידה בורל מתקיים,
+\[
+	(\mu * \nu)(E)
+	= \int \mu(E - x)\ d \nu(x)
+\]
+וכי אם $\mu \ll \lambda$ עבור $\lambda$ מידת לבג, אז גם $\mu * \nu$.
+\begin{proof}
+	נבחין כי מהגדרה מתקיים $(\mu * \nu)(E) = (\mu \times \nu)(s^{-1}(E))$ וממשפט הגדרת מידות מכפלה נקבל,
+	\[
+		(\mu * \nu)(E)
+		= \int_{\RR^n} \mu({(s^{-1}(E))}^x)\ d \nu(x)
+	\]
+	כאשר,
+	\[
+		{(s^{-1}(E))}^x
+		= \{ a \in \RR^n \mid (a, x) \in s^{-1}(E) \}
+		= \{ a \in \RR^n \mid a + x \in E \}
+		= \{ a \in \RR^n \mid a \in E - x \}
+		= E - x
+	\]
+	ולכן קיבלנו שבדיוק,
+	\[
+		(\mu * \nu)(E)
+		= \int \mu(E - x)\ d \nu(x)
+	\]
+
+	נניח ש־$\mu \ll \lambda$ ונראה שגם $\mu * \nu \ll \lambda$.
+	תהי $E \subseteq \RR^n$ מדידה לבג כך ש־$\lambda(E) = 0$ ולכן גם $\mu(E) = 0$.
+	ידוע שמידת לבג אינווריאנטי להזזות ולכן $\lambda(E - x) = 0$ ובהתאם גם $\mu(E - x) = 0$.
+	נסיק שמתקיים,
+	\[
+		(\mu * \nu)(E)
+		= \int 0\ d \nu
+		= 0
+	\]
+	כלומר מצאנו שגם $\mu * \nu \ll \lambda$.
+\end{proof}
+
+\subquestion{}
+נסיק שלכל $f, g \in L^1(\lambda)$ אי־שליליות, המידה $\mu_f * \mu_g$ רציפה בהחלט ביחס למידת לבג וש־$\frac{d(\mu_f * \mu_g)}{d \lambda} = f * g$, כאשר,
+\[
+	(f * g)(y)
+	= \int_{\RR^n} f(x) g(y - x)\ d \lambda(x)
+\]
+כלומר הקונבולוציה של מידות מתלכדת עם הקונבולוציה של פונקציות.
+\begin{proof}
+	כדי להראות ש־$\lambda_f * \lambda_g \ll \lambda$ מספיק להראות ש־$\lambda_f \ll \lambda$ מהסעיף הקודם.
+	נניח ש־$E \subseteq \RR^n$ מדידה לבג ו־$\lambda(E) = 0$, אז,
+	\[
+		\lambda_f(E)
+		= \int_E f\ d \lambda
+		= 0
+	\]
+	כמסקנה ממטלות קודמות, ולכן $\lambda_f * \lambda_g \ll \lambda$.
+	נסמן $h = \frac{d (\lambda_f * \lambda_g)}{d \lambda}$ ולכן לכל מדידה לבג $E$,
+	\[
+		(\lambda_f * \lambda_g)(E)
+		= \int_E h\ d \lambda
+	\]
+	אבל מהסעיף הקודם גם,
+	\[
+		(\lambda_f * \lambda_g)(E)
+		= \int \lambda_f(E - x)\ d \lambda_g(x)
+		= \int g(x) \lambda_f(E - x)\ d \lambda(x)
+	\]
+	ומשני השוויונות האחרונים נקבל שאכן מתקיים בדיוק,
+	\[
+		h(x) = f * g
+	\]
+	כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+יהי $y \in \RR^n$, נמצא מידה סופית $\nu$ כך שלכל $\mu$ סופית ולכל $E$ מדידה בורל מתקיים $(\mu * \nu)(E) = \mu(E - y)$.
+\begin{solution}
+	נגדיר $\nu = \delta_y$.
+	תהי $\mu$ מידה סופית ותהי $E$ קבוצה מדידה, אז מתקיים,
+	\[
+		(\mu * \nu)(E)
+		= \int \mu(E - x)\ d \nu(x)
+		= \int \mu(E - x)\ d \delta_y
+		= \mu(E - y)
+	\]
+\end{solution}
 
 \end{document}
