@@ -14,7 +14,7 @@
 	Let $\Mm$ be a structure. A formula $\varphi(x) \in \form_{L_\Mm}$ is called algebraic if,
 	\[
 		|\{ a \in M \mid \Mm \models \varphi(a) \}| < \aleph_0
-	.\]
+	\]
 \end{definition}
 \begin{definition}[definable element]
 	An element $a \in M$ is called definable if there is a formula $\psi(x)$ such that $\Mm \models \psi(x) \iff x = a$ for any $x \in M$.
@@ -25,7 +25,7 @@
 		\acl_\Mm(A) = \bigcup \{ \varphi(M) \mid \varphi \in \form_{L_A}, \varphi \text{ is algebraic} \},
 		\quad
 		\dcl\Mm(A) = \{ a \in M \mid a \text{ is definable using an $L_A$ formula} \}
-	.\]
+	\]
 	be the set of elements that has a formula with parameters from $A$ that is algebraic and are true for them, and the set of elements uniquely definable by formulas with parameters.
 \end{definition}
 
@@ -40,7 +40,7 @@ We will show that $\acl_\Mm(A) = \acl_\Nn(A)$ and $\dcl_\Mm(A) = \dcl_\Mm(A)$.
 	\[
 		\psi(x)
 		= \varphi \land \left(\bigwedge_{i < N} x \ne b_i\right)
-	.\]
+	\]
 	Then $\psi$ is algebraic over both $\Mm$ and $\Nn$ and $\psi(M) = \emptyset$, while $a \in \psi(N)$.
 	Let $\phi = \exists x\ \psi$, then $\Nn \models \phi$ as $a$ witnesses exactly this, while $\Mm \models \lnot \phi$ in contradiction to $\Mm \models \phi \iff \Nn \models \phi$.
 
@@ -59,7 +59,7 @@ Let $A \subseteq M$, we will show that $\acl(\acl(A)) = \acl(A)$ and $\dcl(\dcl(
 		\varphi' = \varphi_{y_0, \ldots, y_{N - 1}}^{b_0, \ldots, b_{N - 1}},
 		\quad
 		\phi(x) = \exists y_0 \cdots \exists y_{N - 1}\ \left(\bigwedge_{i < N - 1} \theta(y_i)\right) \land \varphi'
-	.\]
+	\]
 	then $\phi \in \form_{L_A}$ and $\phi(M) = \{ a \}$, therefore $a \in \dcl(A)$ and thus $\dcl(\dcl(A)) = \dcl(A)$.
 
 	The case of $\acl$ is equivalent.
@@ -74,7 +74,7 @@ We will compute $\acl(A)$ and $\dcl(A)$.
 	\[
 		\varphi
 		= (\bigwedge_{i < n} p_i(x) = 0) \land (\bigwedge_{j < m} p_{n + j}(x) \ne 0)
-	.\]
+	\]
 	where $p_i(x)$ is a polynomial over $A$.
 	An element $a \in K$ is $\in \dcl(A)$ if it is the unique solution of some such polynomial.
 	Each polynomial in algebraically closed field can be deconstructed to product of linear polynomials, meaning that $p_i(x)$ has a single solution if $p_i(x) = (x - a)$.
@@ -86,6 +86,94 @@ We will compute $\acl(A)$ and $\dcl(A)$.
 \question{}
 \subquestion{}
 Let $\kappa$ be an infinite cardinal and let $\lambda \le \kappa$ be the minimal cardinal such that $\kappa^\lambda > \kappa$.
-Consider the order $(\kappa^{< \lambda}, <_l)$ the lexicographic order on $\kappa^{< \lambda}$.
+Consider the order $(\kappa^{< \lambda}, <_l)$ the lexicographic order on $\kappa^{< \lambda}$. \\
+We will show that this order has more than $\kappa$ many cuts and construct dense linear order of cardinality $\kappa$ with $> \kappa$ different cuts.
+\begin{proof}
+	A cut is defined as a collection $X \subseteq \kappa^{< \lambda}$ such that if $y \in \kappa^{< \lambda}$ and there is $x \in X$ such that $y < x$, then $y \in X$.
+	Let $\delta \in \kappa^\lambda$ be a sequence, and let,
+	\[
+		\eta_{\delta} = \{ x \in \kappa^{< \lambda} \mid \exists \alpha < \lambda,\ x < \delta \restriction \alpha \}
+	\]
+	notice that if $x < \delta \restriction \alpha$ then for any $\alpha < \beta$ also $x < \delta \restriction \beta$, thus the definition of $\epsilon_{\delta}$ holds.
+	We also note that $\epsilon_{\delta}$ is a cut of $\epsilon^{\delta}$ as $y < x < \delta \restriction \alpha \implies y < \delta \restriction \alpha$. \\
+	Let $\delta \ne \gamma \in \kappa^{\lambda}$ and assume that $\beta$ is the least ordinal such that $\delta(\beta) \ne \gamma(\beta)$ and $\delta(\beta) > \gamma(\beta)$ without loss of generality.
+	It follows that $\delta \restriction \beta \in \eta_{\delta}$ but $\delta \restriction \beta \notin \eta_{\gamma}$, therefore $\eta_{\delta} \ne \eta_{\gamma}$.
+	The injection $\delta \mapsto \epsilon_{\delta}$ witness $|\kappa| < |\kappa^{\lambda}| \le |H|$ for $H \subseteq \kappa^{< \lambda}$ the collection of cuts.
+
+	Let $X = \{ f \in \kappa^{\lambda} \mid \exists \alpha < \lambda \forall \alpha < \beta < \lambda,\ f(\beta) = 0 \}$, then there is a bijection of $X$ and $\kappa^{< \lambda}$ and therefore $|X| = \kappa$.
+	The proof that $|H_X| > \kappa$ remains the same in this case, and we will show that $\langle X, <_l \rangle$ is dense.
+	If $f, g \in X$ with $f <_l g$ then $f$ is not an initial segment of $g$ and therefore there exists least $\alpha$ such that $f(\alpha) < g(\alpha)$.
+	We can define,
+	\[
+		h(x)
+		= \begin{cases}
+			f(x) & x \ne \alpha + 1 \\
+			f(x) + 1 & x = \alpha + 1
+		\end{cases}
+	\]
+	Then $f <_l h$ but $h(\alpha) < g(\alpha)$ therefore $f <_l h <_l g$, as intended.
+\end{proof}
+
+\subquestion{}
+Let $T$ be a theory and let us assume that there is $\Mm \models T$,
+a sequence $\langle \bar{a}_n \mid n < \omega \rangle \subseteq M^k$ and a formula $\varphi(\bar{x}, \bar{y})$ such that for any $n \ne m$, $\Mm \models \varphi(\bar{a}_n, \bar{a}_m) \iff n < m$. \\
+We will show that $T$ is not $\kappa$-stable for any $\kappa \ge |T|$.
+\begin{proof}
+	We will show that there is $A \subseteq \Cc_T$ with $|A| \le \kappa$, such that $\kappa < |S_1(A)|$.
+	Note that $\Mm \prec \Cc_T$, then $\Cc_T \models \varphi(\bar{a}_n, \bar{a}_m) \iff n < m$.
+
+	If $T$ is $\omega$-stable then it is $\kappa$-stable for any $\kappa \ge |T|$, then it is sufficient to show that $T$ is not $\omega$-stable.
+	By the equivalency to $\delta$-stableness theorem, $T$ is $\omega$-stable if and only if $|S_1(\emptyset)| \le \omega$ and $\forall n \in \NN,\ |S_n(N)| \le \omega$ for any $\Nn \models T$.
+	Therefore if $|S_k(M)| > \omega$ then $T$ is not $\kappa$-stable.
+
+	We intend to define lexicographic order over $\Mm$ using $\varphi$, assume that $\langle \bar{b}_n \mid n < m \rangle$ for some $m < \omega$.
+	Let us define the formula that extends $\varphi$'s order to $m$-tuples against $m'$-tuples,
+	\[
+		\psi_{m, m'}(\bar{x}_0, \ldots, \bar{x}_{m - 1}, \bar{y}_0, \ldots, \bar{y}_{m' - 1})
+		= (m < m') \lor \varphi(\bar{x}_0, \bar{y}_0) \lor \cdots \lor \varphi(\bar{x}_{m - 1}, \bar{y}_{m - 1})
+	\]
+	Notice that $\Mm \models \varphi(\langle \bar{a}_{n_i} \mid i < m \rangle, \langle \bar{a}_{n_j} \mid j < m' \rangle) \iff \langle n_i \mid i < m \rangle <_l \langle n_j \mid j < m' \rangle$.
+
+	Let $\langle \omega^{< \omega}, < \rangle$ be a dense linear order from the last part, and let $H$ be the collection of cuts, we saw that $|H| > \omega$.
+	Let $F : \omega \to M^k$ be the map defined by $n \mapsto \bar{a}_n$ and $G : \omega^{< \omega} \to {(M^k)}^{< \omega}$ defined as $G(f)(i) = F(f(i))$. \\
+	Notate $H_\Mm = G(H)$, the collection of cuts of $M^k$ in relation to the order induced by $\psi$.
+	Given $X \in H_\Mm$, let us define $p_X \in S_1(M)$ as,
+	\[
+		p(\bar{x})
+		= \cl_\vdash \{ \varphi(\bar{y}, \bar{x}) \mid \bar{y} \in X \}
+	\]
+	Namely, $\bar{x}$ is an $k$-tuple of elements such that acts as the supremum of $X$.
+	It follows that there are $|H_\Mm| = |H| > \omega$ such types, then $|S_1(M)| > \omega$ as well, concluding our proof.
+\end{proof}
+
+\subquestion{}
+We will show that if $L$ is a language with $|L| \ge \kappa$ and $T$ is a theory such that $\forall n < \omega,\ |S_n(\emptyset)| \le \kappa$,
+then there is $L' \subseteq L$ with $|L'| = \kappa$ such that for any $\varphi(x_0, \ldots, x_{n - 1}) \in \form_L$,
+there is an $L'$-formula $\varphi'(x_0, \ldots, x_{n - 1})$ with $T \models \forall \bar{x}\ (\varphi \leftrightarrow \varphi')$.
+\begin{proof}
+	Let us observe $tp(c) = \{ \varphi(x) \mid T \models \varphi(c) \} \in S_1(\emptyset)$ for some constant symbol $c \in L$.
+	If there were $\{ c_{\alpha} \mid \alpha < \lambda \}$ for $\lambda > \kappa$ then by $|\{ tp(c_{\alpha}) \mid \alpha < \lambda \}| \le |S_1(\emptyset)| \le \kappa$,
+	we would get that up to equality in $T$ there are at least $\kappa$ constants, then let us add those constants to $L'$.
+
+	In similar manner, if $R \in L$ is an $n$-placed relation symbol, we can define $p_R(\bar{x}) = \{ \varphi(\bar{x}) \mid T \models \varphi(\bar{x}) \to R(\bar{x}) \}$.
+	We get up to $\kappa$ $n$-placed relation symbols $\{ R_{\alpha}^n \mid \alpha < \kappa \}$ such that there is $\alpha < \kappa$ for which $T \models \forall \bar{x}\ (R \leftrightarrow R_{\alpha}^n)$.
+	We enrich $L'$ with $\{ R_{\alpha}^n \mid n < \omega, \alpha < \kappa \}$, note that $\kappa \cdot \kappa = \kappa$ therefore $|L'| = \kappa$.
+
+	We move to function symbols. Let $F$ be an $n$-placed function symbol, and let,
+	\[
+		p_F(\bar{x}) = \{ \exists y\ \varphi(\bar{x}, y) \mid T \models \varphi(\bar{x}, y) \to (F(\bar{x}) = y) \}
+	\]
+	and define in the same sense $\{ F_{\alpha}^n \}$, the enrichment of $L'$ by them finishes the proof.
+\end{proof}
+
+\question{}
+We say that $\Mm$ is minimal if $\Mm$ has no proper elementary substructure.
+
+\subquestion{}
+Let $T$ be a countable and complete theory.
+We will show that if $T$ has a prime model, then eny minimal model is prime.
+\begin{proof}
+	TODO
+\end{proof}
 
 \end{document}
