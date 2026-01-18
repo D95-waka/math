@@ -7,6 +7,7 @@
 \renewcommand{\headrulewidth}{0pt}
 
 \DeclareMathOperator\Age{Age}
+\DeclareMathOperator{\acl}{acl}
 
 \begin{document}
 \maketitle
@@ -70,8 +71,8 @@
 \end{proposition}
 \begin{example}
 	$\omega$ הוא סדיר, תחת אקסיומת הבחירה גם $\omega_1$ הוא סדיר.
-	נניח ש־$f : \mu \to \omega_1$ עבור $\mu < \omega_1$ וכן $\sup \rng f = \bigcup \{ f(\delta) \mid \delta < \mu \}$ כאשר $f(\delta)$ בן־מניה.
-	אבל מאקסיומת הבחירה איחוד בן־מניה של קבוצות בנות־מניה הוא גם בן־מניה.
+	נניח ש־$f : \mu \to \omega_1$ עבור $\mu < \omega_1$ וכן $\sup \rng f = \bigcup \{ f(\delta) \mid \delta < \mu \}$ כאשר $f(\delta)$ בן־מנייה.
+	אבל מאקסיומת הבחירה איחוד בן־מנייה של קבוצות בנות־מנייה הוא גם בן־מנייה.
 \end{example}
 \begin{definition}[מונה סדיר וחריג]
 	מונה $\kappa$ יקרא חריג אם הוא אינסופי ואינו סדיר.
@@ -148,8 +149,8 @@
 
 בקורס עצמו אנחנו נוכיח טענות בעולם של תורת המודלים, המשפטים המרכזיים הם:
 \begin{itemize}
-	\item משפט Vaught: תהי $T$ תורה בת־מניה שלמה, אז לא יתכן של־$T$ יש בדיוק שני מודלים לא איזומורפיים בני־מניה עד כדי איזומורפיזם
-	\item משפט מורלי (Morley): יהי $\kappa$ מונה לא בן־מניה, $T$ תורה מעל שפה בת־מניה, אז $T$ היא $\aleph_1$־קטגורית אם ורק אם $T$ היא $\kappa$־קטגורית
+	\item משפט Vaught: תהי $T$ תורה בת־מנייה שלמה, אז לא יתכן של־$T$ יש בדיוק שני מודלים לא איזומורפיים בני־מנייה עד כדי איזומורפיזם
+	\item משפט מורלי (Morley): יהי $\kappa$ מונה לא בן־מנייה, $T$ תורה מעל שפה בת־מנייה, אז $T$ היא $\aleph_1$־קטגורית אם ורק אם $T$ היא $\kappa$־קטגורית
 \end{itemize}
 
 \subsection{תזכורת למושגים והגדרות}
@@ -753,7 +754,7 @@
 	אז מתקיים $T \models \forall \bar{x}\ (\bigvee \Sigma_\varphi \to \varphi)$ ונרצה לבדוק את הכיוון ההפוך.
 	כלומר עלינו להראות שאם $\varphi(a_0, \ldots, a_{n - 1})$ מתקיים אז יש $\psi \in \Sigma_\varphi$ עבורו $\psi(a_0, \ldots, a_{n - 1})$ נכון.
 	נשים לב כי כל זוג נוסחות שונות מ־$\Sigma$ סותרות זו את זו ולכן ל־$(a_0, \ldots, a_{n - 1})$ יש $\psi \in \Sigma$ יחיד כך ש־$\psi(a_0, \ldots, a_{n - 1})$ נכון.
-	נניח בשלילה ש־$\psi \notin \Sigma_\varphi$ ושהוא בן־מניה.
+	נניח בשלילה ש־$\psi \notin \Sigma_\varphi$ ושהוא בן־מנייה.
 	בלי הגבלת הכלליות אנו דנים במודל בו קיימים $b_0, \ldots, b_{n - 1}$ כך שמתקיים $\psi(b_0, \ldots, b_{n - 1})$ אבל $\lnot \varphi(a_0, \ldots, a_{n - 1})$ אבל קיימת $\sigma : a_i \mapsto b_i$ כסתירה.
 \end{example}
 \begin{remark}
@@ -1068,7 +1069,7 @@
 	אם $T$ שלמה אז לכל $\Mm \models T$ כל טיפוס מבודד מתממש.
 \end{remark}
 \begin{theorem}[השמטת טיפוסים]
-	תהי $T$ תורה שלמה ועקבית בשפה בת־מניה ו־$p \in S_1(T)$ טיפוס לא מבודד אז יש מודל $\Mm \models T$ שמשמיט את $p$. \\
+	תהי $T$ תורה שלמה ועקבית בשפה בת־מנייה ו־$p \in S_1(T)$ טיפוס לא מבודד אז יש מודל $\Mm \models T$ שמשמיט את $p$. \\
 	יתר על־כן, גם אם $\langle p_n \mid n < \omega \rangle$ סדרת טיפוסים לא מבודדים, אז יש מודל של $T$ שמשמיט את כולם.
 \end{theorem}
 \begin{proof}
@@ -1076,7 +1077,7 @@
 	תהי $T_H$ הרחבה של $T$ יחד עם $\exists x\ \varphi \to \varphi(c_\varphi)$.
 	ונרחיב בעדינות את $T_H$ לתורה שלמה כך שלכל קבוע $d$ ולכל $p_n$ יהיה $\psi \in p_n$ כך ש־$\lnot \psi(d)$ מתקיים.
 
-	תהי $\langle \langle d_n, p_{k_n} \rangle \mid n < \omega \rangle$ מניה של כל הזוגות של קבועים וטיפוס מהרשימה.
+	תהי $\langle \langle d_n, p_{k_n} \rangle \mid n < \omega \rangle$ מנייה של כל הזוגות של קבועים וטיפוס מהרשימה.
 	בשלב ה־$n$ נתונה לנו תורה $T_n$, כאשר $T_0 = T_H$.
 	נטען כי יש $\psi \in p_{k_n}$ כך ש־$T \cup \{ \lnot \psi(d_n) \}$ עקבית.
 	אחרת יש $\varphi_0, \ldots, \varphi_{n - 1} \in T_n$ כך שמתקיים,
@@ -1246,7 +1247,7 @@
 אם נסיר את דרישת השלמות נקבל טיפוס חלקי.
 טיפוס מבודד אם יש נוסחה $\psi$ כך ש־$\forall \varphi \in p,\ T \models \forall x_0 \cdots \forall x_{n - 1}\ \varphi \to \varphi$ כאשר $T \cup \{ \exists \bar{x}\ \psi \}$ עקבית.
 
-נניח ש־$L$ שפה בת־מניה, נעשיר את $L$ על־ידי $\aleph_0$ קבועים חדשים ונסמן את השפה ב־$\tilde{L}$.
+נניח ש־$L$ שפה בת־מנייה, נעשיר את $L$ על־ידי $\aleph_0$ קבועים חדשים ונסמן את השפה ב־$\tilde{L}$.
 נניח ש־$T$ תורה עקבית ב־$L$, נגדיר טופולוגיה על האוסף $\Tt = \{ \tilde{T} \mid T \subseteq \tilde{T}, \tilde{T} \text{ is consistent and complete} \}$ על־ידי בסיס הפתוחות $U_\varphi$ כאשר $\varphi \in \sent_{\tilde{L}}$,
 \[
 	U_\varphi = \{ \tilde{T} \in \Tt \mid \varphi \in \tilde{T} \}
@@ -1327,7 +1328,7 @@
 נניח ש־$T$ שלמה. אם $p$ טיפוס מבודד על־ידי $\psi$ אז $T \models \exists \bar{x}\ \psi(\bar{x})$ ולכן בכל מודל של $T$ נקבל ש־$p$ מתממש.
 \begin{definition}[רוויה]
 	מבנה $\Mm \models T$ נקרא $\omega$־רווי ($\omega$-saturated) אם לכל $A \subseteq M$ סופית ולכל $p \in S_1(T(A))$ מתממש ב־$\Mm$. \\
-	מבנה $\Mm$ בן־מניה נקרא רווי אם הוא $\omega$־רווי.
+	מבנה $\Mm$ בן־מנייה נקרא רווי אם הוא $\omega$־רווי.
 \end{definition}
 \begin{example}
 	נבחר את $\Mm = \langle \NN, +, \cdot, 0, 1 \rangle$ אז $S_1(\emptyset)$ היא מעוצמת הרצף.
@@ -1350,8 +1351,8 @@
 	ולכן $p$ מבודד על־ידי נוסח מהצורה $x = a_i$ או $a_i < x < a_j$ או $a_i < x$ עבור $a_i$ מקסימלי או באופן דומה עבור מינימלי.
 	כלומר מצאנו שיש כמות סופית של טיפוסים, כלומר $|S_1(A)| < \omega$ ולמעשה יש מספר סופי של נוסחות שאינו תלוי ב־$A$ שהצבת $A$ בהן מניבה את הנוסחה המבודדת.
 \end{example}
-\begin{theorem}[איזומורפיזם מודלים רוויים בני־מניה]
-	נניח ש־$\Mm, \Nn \models T$ מודלים בני־מניה רווים ו־$T$ שלמה.
+\begin{theorem}[איזומורפיזם מודלים רוויים בני־מנייה]
+	נניח ש־$\Mm, \Nn \models T$ מודלים בני־מנייה רווים ו־$T$ שלמה.
 	אז $\Mm \cong \Nn$ ואף אם $A \subseteq M$ ו־$B \subseteq N$ סופיות ו־$f : A \to B$ שיכון אלמנטרי חלקי
 	(כלומר לכל נוסחה $\psi(x_0, \ldots, x_{n - 1})$ ו־$a_0, \ldots, a_{n - 1} \in A$ מתקיים $\psi^\Mm(a_0, \ldots, a_{n - 1}) = \psi^\Nn(f(a_0), \ldots, f(a_{n - 1}))$) יש הרחבה לאיזומורפיזם של המבנים.
 \end{theorem}
@@ -1368,23 +1369,23 @@
 	אז קיים $b \in B$ שמממש את $q$ כי $\Nn$ רווי, כעת $f' = f \cup \{ \langle a, b \rangle \}$ אלמנטרית חלקית.
 \end{proof}
 \begin{corollary}
-	אם יש לתורה שלמה $T$ מודל בן־מניה רווי, אז הוא יחיד עד כדי איזומורפיזם.
+	אם יש לתורה שלמה $T$ מודל בן־מנייה רווי, אז הוא יחיד עד כדי איזומורפיזם.
 \end{corollary}
 \begin{theorem}[Ryll-Nardzewzki]
-	תהי $T$ תורה שלמה בשפה בת־מניה ללא מודלים סופיים, אז התנאים הבאים שקולים:
+	תהי $T$ תורה שלמה בשפה בת־מנייה ללא מודלים סופיים, אז התנאים הבאים שקולים:
 	\begin{enumerate}
 		\item $T$ היא $\aleph_0$־קטגורית
 		\item כל טיפוס $p \in S_n(T)$ מבודד
 		\item $S_n(T)$ היא סופית
 		\item לכל $n < \omega$ יש מספר סופי של נוסחות במשתנים חופשיים $x_0, \ldots, x_{n - 1}$ עד כדי שקילות ב־$T$
-		\item כל מודל בן־מניה של $T$ הוא רווי
+		\item כל מודל בן־מנייה של $T$ הוא רווי
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
 	ראינו כי $2 \iff 3$.
 
 	$1 \implies 2$,
-	נניח בשלילה שיש טיפוס $p$ לא מבודד, אז $p$ טיפוס ולכן עקבי קיים מודל של $T$ שמממש אותו, אבל ממשפט השמטת טיפוסים יש מודל של $T$ שמשמיט אותו, שניהם בני־מניה.
+	נניח בשלילה שיש טיפוס $p$ לא מבודד, אז $p$ טיפוס ולכן עקבי קיים מודל של $T$ שמממש אותו, אבל ממשפט השמטת טיפוסים יש מודל של $T$ שמשמיט אותו, שניהם בני־מנייה.
 	הם כמובן לא איזומורפיים בסתירה.
 
 	$2 + 3 \implies 4$,
@@ -1437,7 +1438,7 @@
 	כהערה נאמר שהראינו שאם כל טיפוס ב־$S_n(T)$ מבודד ו־$|A| = n - 1$ אז כל טיפוס ב־$S_n(A)$ מבודד.
 
 	$5 \implies 1$,
-	נובע מהמשפט שכל שני מודלים בני־מניה רוויים איזומורפיים.
+	נובע מהמשפט שכל שני מודלים בני־מנייה רוויים איזומורפיים.
 \end{proof}
 \begin{definition}[גדירות]
 	יהי $\Mm$ מודל ו־$A \subseteq M$.
@@ -1451,12 +1452,12 @@
 	קבוצה $D$ היא $G$־אינווריאנטית אם לכל $g \in G$ ולכל $(b_0, \ldots, b_{n - 1}) \in D$ מתקיים $(g b_0, \ldots, g b_{n - 1}) \in D$.
 \end{definition}
 \begin{proposition}
-	תהי $T$ תורה שלמה ללא מודלים סופיים מעל שפה בת־מניה.
+	תהי $T$ תורה שלמה ללא מודלים סופיים מעל שפה בת־מנייה.
 	אז התנאים הבאים שקולים:
 	\begin{enumerate}
 		\item $T$ היא $\aleph_0$־קטגורית
-		\item לכל $n < \omega$ יש מודל בן־מניה $\Mm \models T$ בו כל $D \subseteq M^n$ שהיא אינווריאנטית תחת $\aut(\Mm)$ היא $A$־גדירה ל־$A \subseteq M$ סופית
-		\item לכל $n < \omega$ יש מודל בן־מניה $\Mm \models T$ בו כל קבוצה $D \subseteq M^n$ כך שהיא $\aut(\Mm)$־אינווריאנטית היא גם $0$־גדירה
+		\item לכל $n < \omega$ יש מודל בן־מנייה $\Mm \models T$ בו כל $D \subseteq M^n$ שהיא אינווריאנטית תחת $\aut(\Mm)$ היא $A$־גדירה ל־$A \subseteq M$ סופית
+		\item לכל $n < \omega$ יש מודל בן־מנייה $\Mm \models T$ בו כל קבוצה $D \subseteq M^n$ כך שהיא $\aut(\Mm)$־אינווריאנטית היא גם $0$־גדירה
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -1478,7 +1479,7 @@
 	נטען כי $P = \{ p \in S_n(T) \mid D_p \ne \emptyset \}$ סופית.
 	אם $X \subseteq P$ אז $\bigcup_{p \in X} D_p$ היא $\aut(\Mm)$־אינווריאנטית.
 	אם $|P| \ge \aleph_0$ אז מתקבלות באופן הזה לפחות $2^{\aleph_0}$ קבוצות אינווריאנטיות שונות.
-	זה בלתי־אפשרי שכן יש מספר בן־מניה של הגדרות אפשריות. \\
+	זה בלתי־אפשרי שכן יש מספר בן־מנייה של הגדרות אפשריות. \\
 	בהתאם קיבלנו מודל $\Mm \models T$ שבו יש מספר סופי של טיפוסים ממומשים $\{ p_0, \ldots, p_{n - 1} \}$ כל אחד מהם מבודד על־ידי נוסחה $\psi_i(\bar{x}, \bar{a})$.
 	הסיבה לכך היא ש־$D_p$ היא גדירה ולכן ישנה נוסחה $\psi \in \form_{L(A)}$ כך ש־$D_p = \{ \bar{b} \mid \Mm \models \psi(\bar{b}) \}$,
 	\[
@@ -1513,11 +1514,11 @@
 	בפרט $\aut(\Mm_A)$־אינווריאנטית ולכן $\Th(\Mm)$ היא $\aleph_0$־קטגורית.
 \end{proof}
 \begin{theorem}[שני המודלים של ווט]\label{theorem-two-models-of-vaught}
-	נניח ש־$T$ תורה שלמה בשפה בת־מניה.
-	אז לא יתכן של־$T$ יש בדיוק שני מודלים בני־מניה עד־כדי איזומורפיזם.
+	אם $T$ תורה שלמה בשפה בת־מנייה,
+	אז לא יתכן של־$T$ יש בדיוק שני מודלים בני־מנייה עד־כדי איזומורפיזם.
 \end{theorem}
 \begin{proof}
-	אם יש $n$ עבורו $S_n(T)$ לא בן־מניה אז יש מספר לא בן־מניה של מודלים שונים.
+	אם יש $n$ עבורו $S_n(T)$ לא בן־מנייה אז יש מספר לא בן־מנייה של מודלים שונים.
 	לכן $|S_n(T)| \le \aleph_0$, במקרה זה יש מודל רווי.
 	התורה לא $\aleph_0$־קטגורית אז יש טיפוס $p$ לא מבודד.
 	לכן יש מודל $\Mm_0$ שמשמיט את $p$ ומודל $\Mm_1$ שמממש את $p$ על־ידי $\bar{a}$.
@@ -1528,37 +1529,37 @@
 \section{שיעור 8 --- 7.12.2025}
 \subsection{שני המודלים}
 נמשיך לדבר על משפט שני המודלים של ווט.
-נניח שהשפה שלנו היא בת־מניה בחלק זה.
+נניח שהשפה שלנו היא בת־מנייה בחלק זה.
 \begin{definition}[תורה קטנה]
 	תורה $T$ תיקרא קטנה אם לכל $n < \omega$ מתקיים $|S_n(T)| \le \omega$.
 \end{definition}
 \begin{remark}
-	אם $T$ איננה קטנה אז יש ל־$T$ מספר לא בן־מניה של מודלים בני־מניה, כאשר $T$ שלמה עקבית ובעלת מודל אינסופי.
+	אם $T$ איננה קטנה אז יש ל־$T$ מספר לא בן־מנייה של מודלים בני־מנייה, כאשר $T$ שלמה עקבית ובעלת מודל אינסופי.
 \end{remark}
 \begin{proof}
-	נניח ש־$\aleph_1 \le |S_n(T)|$. לכל $p \in S_n(T)$ נתאים מודל $\Mm_p$ בן־מניה שמממש את $p$.
+	נניח ש־$\aleph_1 \le |S_n(T)|$. לכל $p \in S_n(T)$ נתאים מודל $\Mm_p$ בן־מנייה שמממש את $p$.
 	לכל $\Mm_p$ נסמן $A_p = \{ q \in S_n(T) \mid \Mm \text{ realizes } q \}$, ולכן $A_p = \{ tp^{\Mm_p}(\bar{b}) \mid \bar{b} \in \Mm_p^n \}$.
 	אם $\Mm_p \cong \Mm_q$ אז גם $A_p = A_q$ וכן,
 	\[
 		\bigcup \{ A_p \mid {[ \Mm_p ]}_{\cong} \} = S_n(T)
 	\]
-	ולכן מספר מחלקות השקילות הוא לא בן־מניה.
-	בהינתן $p$ מדוע יש מודל של $T$ בן־מניה המממש את $p$: נעשיר את השפה $L$ בסימן קבוע ונסתכל על $T \cup p(c)$ העקבית.
+	ולכן מספר מחלקות השקילות הוא לא בן־מנייה.
+	בהינתן $p$ מדוע יש מודל של $T$ בן־מנייה המממש את $p$: נעשיר את השפה $L$ בסימן קבוע ונסתכל על $T \cup p(c)$ העקבית.
 \end{proof}
 \begin{proposition}
-	נניח ש־$T$ קטנה שלמה ועקבית ללא מודלים סופיים, אז יש מודל רווי ובן־מניה ל־$T$.
+	נניח ש־$T$ קטנה שלמה ועקבית ללא מודלים סופיים, אז יש מודל רווי ובן־מנייה ל־$T$.
 \end{proposition}
 \begin{proof}
-	יהי $\Mm_0 \models T$ בן־מניה.
+	יהי $\Mm_0 \models T$ בן־מנייה.
 	לכל טיפוס $p \in \bigcup_{n < \omega} S_n(T)$ נוסיף סדרת קבועים $\bar{a}_p$ ונבחן את התורה $\diag(\Mm_0) \cup \{ p(\bar{a}_p) \}$.
 	\[
 		\exists \bar{x}_0\ \varphi(\bar{x}_0) \land \exists \bar{x}_1\ \varphi_1(\bar{x}_1), \ldots \in T
 	\]
 	מתקיים ב־$\Mm$ לכן התורה עקבית.
-	יהי $\Mm_1$ שמקיים תורה זו, אז $\Mm_0 \prec \Mm_1$ ונבחן את $\bigcup_{|A| < \aleph_0, A \subseteq \Mm_1} S_n(A)$, אוסף בן־מניה.
+	יהי $\Mm_1$ שמקיים תורה זו, אז $\Mm_0 \prec \Mm_1$ ונבחן את $\bigcup_{|A| < \aleph_0, A \subseteq \Mm_1} S_n(A)$, אוסף בן־מנייה.
 	אז קיים $\Mm_2$ שמממש את כולם ומרחיב אלמנטרית את $\Mm_1$, נחזור על כך $\omega$ פעמים ונסמן $\Mm_{\omega} = \bigcup \Mm_n$.
 	אז $\Mm_{\omega}$ מודל רווי.
-	נשים לב ש־$S_n(A)$ בן־מניה עבור $A \subseteq M$ סופית ולכן $S_n(A) \hookrightarrow S_{n + |A|}(T)$ על־ידי התאמת טיפוסים מהצורה $p = \{ \varphi(a_0, \ldots, a_{k - 1}, x_0, \ldots, x_{n - 1}) \mid \varphi \in \form \}$,
+	נשים לב ש־$S_n(A)$ בן־מנייה עבור $A \subseteq M$ סופית ולכן $S_n(A) \hookrightarrow S_{n + |A|}(T)$ על־ידי התאמת טיפוסים מהצורה $p = \{ \varphi(a_0, \ldots, a_{k - 1}, x_0, \ldots, x_{n - 1}) \mid \varphi \in \form \}$,
 	על־ידי $q = \{ \varphi(y_0, \ldots, y_{k - 1}, x_0, \ldots, x_{n - 1}) \mid \varphi \}$.
 	$q$ הוא טיפוס שכן הוא סגור לגימום ושלם, ו־$q$ עקבי שכן אם $\varphi \in q$ אז,
 	\[
@@ -1568,7 +1569,7 @@
 	\]
 \end{proof}
 \begin{remark}
-	למעשה $T$ קטנה אם ורק אם יש מודל רווי בן־מניה.
+	למעשה $T$ קטנה אם ורק אם יש מודל רווי בן־מנייה.
 \end{remark}
 נחזור למשפט\ \ref{theorem-two-models-of-vaught}.
 \begin{proof}
@@ -1604,10 +1605,10 @@
 \end{remark}
 \begin{proof}
 	אטומי ממשפטים שכבר מצאנו על שקילות ל־$\aleph_0$־קטגוריות. \\
-	$\Mm_0 \prec \Nn \models T$ כש־$\Mm_0$ בן־מניה אז $\Mm_0 \cong \Mm$ ומשרשור נקבל את $j$.
+	$\Mm_0 \prec \Nn \models T$ כש־$\Mm_0$ בן־מנייה אז $\Mm_0 \cong \Mm$ ומשרשור נקבל את $j$.
 \end{proof}
 \begin{proposition}
-	אם $\Mm$ אטומי ובן־מניה לתורה שלמה אז $\Mm$ ראשוני.
+	אם $\Mm$ אטומי ובן־מנייה לתורה שלמה אז $\Mm$ ראשוני.
 \end{proposition}
 \begin{proof}
 	נמנה את איברי $\Mm$ על־ידי $M = \{ a_n \mid n < \omega \}$, ויהי $\Nn \models T$.
@@ -1626,19 +1627,19 @@
 	אז לפחות ל־$a \in \bar{\QQ}$ נקבל ש־$tp(a)$ מבודד על־ידי נוסחה מהצורה $p(x) = 0$ כאשר $p$ הפולינום המינימלי.
 \end{example}
 \begin{corollary}
-	נניח ש־$\Mm, \Nn$ מודלים בני־מניה לתורה $T$ שלמה אז $\Mm \cong \Nn$.
+	נניח ש־$\Mm, \Nn$ מודלים בני־מנייה לתורה $T$ שלמה אז $\Mm \cong \Nn$.
 \end{corollary}
 \begin{proof}
 	כמו קודם אבל הפעם עם back and forth.
 \end{proof}
 \begin{corollary}
-	אם $\Mm$ מודל ראשוני של $T$ אז $\Mm$ אטומי ובן־מניה.
+	אם $\Mm$ מודל ראשוני של $T$ אז $\Mm$ אטומי ובן־מנייה.
 \end{corollary}
 \begin{proof}
 	אם יש $\bar{a} \in M^n$ כך ש־$p_n = tp(\bar{a})$ לא מבודד אז יש מודל של $T$ שמשמיט אותו ולא יתכן שיש שיכון אלמנטרי מ־$\Mm$ לאותו מודל.
 \end{proof}
 \begin{corollary}
-	מודל בן־מניה הוא אטומי אם ורק אם הוא ראשוני.
+	מודל בן־מנייה הוא אטומי אם ורק אם הוא ראשוני.
 \end{corollary}
 \begin{example}
 	נניח ש־$L = \{ B_n \mid n < \omega \}$ עבור $B_n$ יחסים חד־מקומיים יחד עם התורה,
@@ -1650,7 +1651,7 @@
 	נסיק בהתאם שאין מודל אטומי.
 \end{example}
 \begin{theorem}[שקילות לקיום מודל ראשוני]
-	בשפה בת־מניה, ל־$T$ שלמה יש מודל ראשוני אם ורק אם לכל $n$ אוסף הטיפוסים המבודדים צפוף ב־$S_n(T)$.
+	בשפה בת־מנייה, ל־$T$ שלמה יש מודל ראשוני אם ורק אם לכל $n$ אוסף הטיפוסים המבודדים צפוף ב־$S_n(T)$.
 \end{theorem}
 \begin{proof}
 	נניח ש־$\Mm$ ראשוני ונניח ש־$\varphi$ נוסחה כך ש־$U_\varphi = \{ q \in S_n(T) \mid \varphi \in q \} \ne \emptyset$,
@@ -1675,7 +1676,7 @@
 	אך מצד שני $T \models \exists \bar{x}\ (\psi \land \varphi)$ וזו סתירה. \\
 	לכן קיבלנו שכל $p_n$ לא מבודד אז יש מודל $\Mm$ של $T$ שמשמיט את $p_n$ לכל $n$ (משפט השמטת טיפוסים המורכב),
 	כלומר לכל $\bar{a} \in M^n$ בהכרח $tp(\bar{a})$ מבודד, שכן יש $\psi$ שלמה ששייכת אליו ולכן מבודדת אותו.
-	לכן $\Mm$ מודל בן־מניה ואטומי.
+	לכן $\Mm$ מודל בן־מנייה ואטומי.
 \end{proof}
 
 \subsection{גבולות פרייסה}
@@ -1710,7 +1711,7 @@
 	אז במקרה זה $\sigma^{-1} \circ f \circ g \restriction A = \id_A$.
 \end{proof}
 \begin{theorem}[שוויון גיליים]
-	נניח ש־$\Mm_1, \Mm_2$ מבנים בני־מניה כך ש־$\Age(\Mm_1) = \Age(\Mm_2)$ והומוגניים בחלש, אז $\Mm_1 \cong \Mm_2$. \\
+	נניח ש־$\Mm_1, \Mm_2$ מבנים בני־מנייה כך ש־$\Age(\Mm_1) = \Age(\Mm_2)$ והומוגניים בחלש, אז $\Mm_1 \cong \Mm_2$. \\
 	יתר־על־כן אם $f : \Aa \to \Bb$ שיכון, $\Aa \subseteq \Mm_1, \Bb \subseteq \Mm_2$ נוצרים סופית אז ניתן להרחיב את $f$ לאיזומורפיזם.
 \end{theorem}
 \begin{proof}
@@ -1732,20 +1733,20 @@
 	נסיק ש־$f_{\omega}$ איזומורפיזם כרצוי.
 \end{proof}
 \begin{corollary}
-	במקרה ש־$\Mm$ בן־מניה, אם $\Mm$ הומוגני בחלש אז הוא גם אולטרה־הומוגני (נבחר $\Mm_1 = \Mm_2 = \Mm$).
+	במקרה ש־$\Mm$ בן־מנייה, אם $\Mm$ הומוגני בחלש אז הוא גם אולטרה־הומוגני (נבחר $\Mm_1 = \Mm_2 = \Mm$).
 \end{corollary}
 \begin{definition}[מחלקת פרייסה]
 	$K$ נקראת מחלקת פרייסה אם מתקיימות התכונות:
 	\begin{enumerate}
 		\item כל איברי $K$ נוצרים סופית
-		\item יש ב־$K$ מספר בן־מניה של טיפוסי איזומורפיזם
+		\item יש ב־$K$ מספר בן־מנייה של טיפוסי איזומורפיזם
 		\item HP\@: אם $\Aa \subseteq \Bb \in K$ ו־$\Aa$ נוצר סופית אז $\Aa \in K$
 		\item JEP (שיכון משותף): אם $\Aa, \Bb \in K$ אז יש $\Cc \in K$ כך ש־$f : \Aa \to \Cc, g : \Bb \to \Cc$ שיכונים
 		\item AP (תכונת התצרופת): אם $\Aa, \Bb, \Cc \in K$ עם $g_A : \Cc \to \Aa, g_B: \Cc \to \Bb$ שיכונים, אז גם יש $f_A : \Aa \to \Dd \in K, f_B : \Bb \to \Dd$ כך שההרכבה מתחלפת, כלומר $f_A \circ g_A = f_B \circ g_B$
 	\end{enumerate}
 \end{definition}
 \begin{proposition}
-	אם $\Mm$ מבנה בן־מניה אולטרה־הומוגני אז $K = \Age(\Mm)$ הוא מחלקת פרייסה.
+	אם $\Mm$ מבנה בן־מנייה אולטרה־הומוגני אז $K = \Age(\Mm)$ הוא מחלקת פרייסה.
 \end{proposition}
 \begin{proof}
 	הכול טריוויאלי למעט AP\@ (ו־JEP שהוא מקרה פרטי של AP).
@@ -1756,19 +1757,19 @@
 	אם $c \in C$ אז $g \circ \id(c) = \sigma \circ f \circ \id(c)$ שכן $\sigma \supseteq g \circ f^{-1} \restriction f(C)$.
 \end{proof}
 \begin{theorem}[משפט פרייסה]
-	אם $K$ מחלקת פרייסה אז יש מודל $\Mm$ בן־מניה אולטרה־הומוגני כך ש־$K = \Age(\Mm)$ והוא יחיד עד־כדי איזומורפיזם.
+	אם $K$ מחלקת פרייסה אז יש מודל $\Mm$ בן־מנייה אולטרה־הומוגני כך ש־$K = \Age(\Mm)$ והוא יחיד עד־כדי איזומורפיזם.
 \end{theorem}
 \begin{proof}
 	נבנה סדרת מבנים עולה בהכלה $\langle \Mm_n \mid n < \omega \rangle$ כך ש־$\Mm_n \in K$.
 	תהי $\langle \langle \Aa_l, \Bb_l \rangle \mid l < \omega \rangle$ סדרת כל הזוגות $\Aa, \Bb \in K$ כך ש־$\Aa \subseteq \Bb$ עד כדי איזומורפיזם.
-	בהינתן $\Mm_n$ ממנה את כל השיכונים ־$\Aa_l$ ל־$\Mm_n$ על־ידי סדרה $\langle f_{n, l, i} \mid i < \omega \rangle$, נבחין כי קבוצה זו אכן בת־מניה שכן $\Aa_l$ נוצר סופית ו־$\Mm_n$ בן־מניה.
+	בהינתן $\Mm_n$ ממנה את כל השיכונים ־$\Aa_l$ ל־$\Mm_n$ על־ידי סדרה $\langle f_{n, l, i} \mid i < \omega \rangle$, נבחין כי קבוצה זו אכן בת־מנייה שכן $\Aa_l$ נוצר סופית ו־$\Mm_n$ בן־מנייה.
 	נתחיל מ־$\Mm_0 \in K$ שרירותי.
 	נניח כי קיים $\Mm_n$ ונבנה את $\Mm_{n + 1}$ בסדרת צעדים סופית כך שלכל $m, l, i < n$ אם $\Aa_l \xrightarrow{\id} \Bb_l \xrightarrow{g} \Mm_{n, k}$,
 	כאשר $\Aa \xrightarrow{f_{m, l, i}} \Mm_m \subseteq \Mm_n \subseteq \Mm_{n, k}$.
 	נבנה כך ש־$g \supseteq f_{m, l, i}$ ו־$\Mm_{n + 1} = \Mm_{n, k^*}$ עבור $k^*$ הצעד האחרון.
 	נגדיר $\Mm = \bigcup_{n < \omega} \Mm_n$ ונטען ש־$\Mm$ אולטרה־הומוגני ו־$\Age(\Mm) = K$.
 	כאשר $\Aa_l = \langle \emptyset \rangle$ קיבלנו ש־$\Bb_l$ משוכן לתוך $\Mm_n$ ולכן לתוך $\Mm$.
-	כמניה של $\langle \Aa_l, \Bb_l \rangle$ עברנו גם על כל הזוגות מהצורה $\langle \langle \emptyset, \Bb \rangle$ כאשר $\Bb \in K$ עד כדי איזומורפיזם ולכן $\Age(\Mm) \supseteq K$.
+	כמנייה של $\langle \Aa_l, \Bb_l \rangle$ עברנו גם על כל הזוגות מהצורה $\langle \langle \emptyset, \Bb \rangle$ כאשר $\Bb \in K$ עד כדי איזומורפיזם ולכן $\Age(\Mm) \supseteq K$.
 	מצד שני אם $\Bb \subseteq \Mm$ נוצר סופית אז $\Bb \subseteq \Mm_n$ נוצר סופית ל־$n < \omega$ מהתורשתיות של $K$ ולכן $\Bb \in K$. \\
 	נניח כעת ש־$\Aa \subseteq \Mm$ נוצר סופית ו־$\Bb \in K$, $f : \Aa \to \Bb$ שיכון.
 	אז $Aa_l = f(A) \subseteq \Bb = \Bb_l$ תת־מבנה נוצר סופית ולכן יש $l$ כך ש־$\Bb \in K$ ולכן בלי יש שיכון של $\Bb$ ל־$\Mm$ ובהתאם יש $\Bb \hookrightarrow \Mm_n$.
@@ -1780,7 +1781,7 @@
 	נאמר ש־$K$ סופית מקומית באופן אחיד אם לכל $n < \omega$ יש $f(n)$ טבעי כך שלכל $\Aa \in K$ הנוצר על־ידי $n$ איברים מתקיים $|A| < f(n)$.
 \end{definition}
 \begin{proposition}
-	יהי $\Mm$ מודל בן־מניה מעל שפה בת־מניה כך שתתי־המבנים הנוצרים סופית שלו סופיים. \\
+	יהי $\Mm$ מודל בן־מנייה מעל שפה בת־מנייה כך שתתי־המבנים הנוצרים סופית שלו סופיים. \\
 	אז אם $\Th(\Mm)$ היא $\omega$־קטגורית אז $\Age(\Mm)$ סופי מקומית באופן אחיד.
 \end{proposition}
 \begin{proof}
@@ -1808,7 +1809,7 @@
 	אם $\bar{a}, \bar{b}$ הן $n$־יות של איברים ב־$M$ ו־$\langle \bar{a} \rangle \cong \langle \bar{b} \rangle$,
 	אז מאולטרה־הומוגניות $tp(\bar{a}) = tp(\bar{b})$ כי יש $\sigma : \Mm \to \Mm$ אוטומורפיזם $\sigma \supseteq f$ עבור $f(a_i) = b_i$.
 	לכן ב־$\Mm$ מתממשים מספר סופי של טיפוסים. \\
-	יתר־על־כן לכל $\bar{a} \in M^n$ מתאימה נוסחה חסרת כמתים $\psi_{\bar{a}}$ שקובעת את טיפוס האיזומורפיזם יחד עם מניה של היוצרים.
+	יתר־על־כן לכל $\bar{a} \in M^n$ מתאימה נוסחה חסרת כמתים $\psi_{\bar{a}}$ שקובעת את טיפוס האיזומורפיזם יחד עם מנייה של היוצרים.
 	כלומר אם $\bar{b} \in M^n$ מקיים $\psi_{\bar{a}}(\bar{b})$ אז הפונקציה $f(a_i) = b_i$ מתרחבת לאיזומורפיזם $\langle \bar{a} \rangle \cong \langle \bar{b} \rangle$. \\
 	נובע שיש מספר סופי של נוסחות שמגדירות את טיפוסי $\Mm$ מסדר $n$.
 	לכן כל נוסחה ב־$n$ משתנים חופשיים ב־$\Mm$ שקולה לצירוף בולאני של אותן נוסחות. נשים לב כי נוסחות אלה הן חסרות כמתים ולכן יש חילוץ כמתים.
@@ -2064,7 +2065,7 @@
 \end{remark}
 \begin{theorem}[הרחבות עם מימוש חסום של טיפוסים]
 	נניח ש־$\Mm \models T$ ו־$|M| \ge \aleph_0$, אז לכל $\kappa \ge |T|$ יש מודל $\Nn \models T$ מעוצמה $\kappa$,
-	כך שלכל $A \subseteq N$ בת־מניה $\Nn$ מממש לכל היותר $\aleph_0$ טיפוסים מתוך $S_1(A)$.
+	כך שלכל $A \subseteq N$ בת־מנייה $\Nn$ מממש לכל היותר $\aleph_0$ טיפוסים מתוך $S_1(A)$.
 \end{theorem}
 \begin{proof}
 	$\Mm$ אינסופי ולכן ניקח סדרה אינסופית של איברים שונים $\langle a_i \mid i < \omega \rangle$.
@@ -2083,9 +2084,9 @@
 	\[
 		\{ j \in \RR \mid j < j_0 \}, \{ j \in \RR \mid j_0 < j < j_1 \}, \ldots
 	\]
-	לכן כמות האפשרויות למקטעים אלו היא בת־מניה.
-	כעת עבור $A \subseteq N$ בת־מניה ו־$A \subseteq Sk(B) = \langle B \rangle$ עבור $Sk$ סגור סקולם ו־$B \subseteq \{ b_i \mid i < \kappa \}$ בת־מניה.
-	אם $a \in N$ אז $a = t(b_{j_0}, \ldots, b_{j_{k - 1}})$ ולכן ניתן לחשב את $tp(a / A)$ מתוך $tp(b_{j_0}, \ldots, b_{j_{k - 1}} / B)$ גורר שמ־$S_1(A)$, $\Nn$ מממש מספר בן־מניה של טיפוסים.
+	לכן כמות האפשרויות למקטעים אלו היא בת־מנייה.
+	כעת עבור $A \subseteq N$ בת־מנייה ו־$A \subseteq Sk(B) = \langle B \rangle$ עבור $Sk$ סגור סקולם ו־$B \subseteq \{ b_i \mid i < \kappa \}$ בת־מנייה.
+	אם $a \in N$ אז $a = t(b_{j_0}, \ldots, b_{j_{k - 1}})$ ולכן ניתן לחשב את $tp(a / A)$ מתוך $tp(b_{j_0}, \ldots, b_{j_{k - 1}} / B)$ גורר שמ־$S_1(A)$, $\Nn$ מממש מספר בן־מנייה של טיפוסים.
 \end{proof}
 
 \begin{definition}[קפא־יציבה]
@@ -2150,13 +2151,13 @@
 	הטיפוסים הם או טיפוס אלגברי, נקבע על־ידי הפולינום המינימלי או לא אלגברי, וזה טיפוס יחיד.
 \end{example}
 \begin{remark}
-	תהי $T$ תורה בשפה בת־מניה שהיא $\kappa$־קטגורית ל־$\kappa$ לא בת־מניה. אז $T$ היא $\omega$־יציבה.
+	תהי $T$ תורה בשפה בת־מנייה שהיא $\kappa$־קטגורית ל־$\kappa$ לא בת־מנייה. אז $T$ היא $\omega$־יציבה.
 \end{remark}
 \begin{proof}
-	נניח ש־$\Mm$ בן־מניה וצריך להראות שכמות הטיפוסים ב־$S_1(M)$ בת־מניה.
+	נניח ש־$\Mm$ בן־מנייה וצריך להראות שכמות הטיפוסים ב־$S_1(M)$ בת־מנייה.
 	נניח בשלילה שלא, כלומר $S_1(M)| > \aleph_0$ ויהי $\Nn_0$ מודל מעוצמה $\kappa$, $\Mm \prec \Nn_0$ ו־$\Nn$ מממש לפחות $\aleph_1$ מתוך הטיפוסים ב־$S_1(M)$.
 	מצד שני מאי־בחינים בנינו מודל $|N_1| = \kappa$ לשם התקיים כי $\forall A \subseteq N_1, |A| \le \aleph_0$.
-	$\Nn_1$ מממש לכל היותר אוסף בן־מניה של טיפוסים מ־$S_1(A)$.
+	$\Nn_1$ מממש לכל היותר אוסף בן־מנייה של טיפוסים מ־$S_1(A)$.
 	מ־$\kappa$־קטגוריות נקבל סתירה, זאת שכן $\Nn_0 \cong \Nn_1$ מועד על־ידי $f$, אבל $A = f(M)$.
 \end{proof}
 \begin{definition}[תורה טרנסצנדטלית לחלוטין]
@@ -2215,7 +2216,7 @@
 	$\omega$־יציבות גוררת טרנסצנדטלית לחלוטין גוררת  $\kappa$־יציבות לכל $\kappa \ge |T|$.
 \end{corollary}
 \begin{example}
-	יתכן ש־$T$ היא $\kappa$־יציבה לאיזושהי $\kappa$ לא בת־מניה ולא $\omega$־יציבה.
+	יתכן ש־$T$ היא $\kappa$־יציבה לאיזושהי $\kappa$ לא בת־מנייה ולא $\omega$־יציבה.
 	נגדיר סדרת יחסי שקילות מתעדנים $E_0, E_1, \ldots$ עם מספר אינסופי של מחלקות שקילות אינסופיות ו־$E_{n + 1}$ מחלק כל מחלקת שקילות של $E_n$ לאינסוף חלקים.
 	יש $2^{\aleph_0}$ טיפוסים שונים עם $\aleph_0$ פרמטרים לפי שיוכים למחלקות שקילות.
 
@@ -2234,7 +2235,7 @@
 	לכן אם $p \in S_1(A)$ אז $p$ התממש ב־$\Mm_{\alpha + 1}$ ולכן גם ב־$\Mm_{\lambda}$.
 \end{proof}
 \begin{corollary}
-	לכל מונה $\kappa$ ותורה $T$ בשפה בת־מניה היא $\kappa$־קטגורית אם ורק אם כל מודל בעוצמה $\kappa$ של $T$ רווי.
+	לכל מונה $\kappa$ ותורה $T$ בשפה בת־מנייה היא $\kappa$־קטגורית אם ורק אם כל מודל בעוצמה $\kappa$ של $T$ רווי.
 \end{corollary}
 \begin{proof}
 	אם $T$ איננה $\kappa$־יציבה אז יש מודל $\Mm$ שעוצמתו $\kappa$ ו־$\kappa < |S_1(M)|$ ומצד שני יש מודל $\Nn$ שנבנה מאי־בחינים שבו זה לא מתרחש.
@@ -2347,7 +2348,7 @@
 	אם $\Mm \models T$ מעוצמה לא בת־מנייה אז לכל $\kappa > |M|$ יש מודל $\Mm \prec \Nn$ כך שלכל טיפוס חלקי $\Sigma(x)$ בן־מנייה שמושמט ב־$\Mm$ יושמט גם ב־$\Nn$, ו־$|N| = \kappa$.
 \end{lemma}
 \begin{proof}
-	נראה כי ניתן להרחיב את $\Mm$ בצעד בודד, כלומר למצוא $\Mm \prec \Mm'$ כך ש־$\Mm \ne \Mm'$ משמיט כל איפוס בן־מניה חלקי שהושמט על־ידי $\Mm$.
+	נראה כי ניתן להרחיב את $\Mm$ בצעד בודד, כלומר למצוא $\Mm \prec \Mm'$ כך ש־$\Mm \ne \Mm'$ משמיט כל איפוס בן־מנייה חלקי שהושמט על־ידי $\Mm$.
 	נחזור על הבנייה $\kappa$ פעמים כדי לבנות את $\Nn$.
 
 	עבור הנוסחה $\varphi$ עם משתנה חופשי $x$ נאמר ש־$\varphi$ היא גדולה אם $|\varphi(M)| > \aleph_0$ כאשר $\varphi(M) = \{ a \in M \mid \varphi^\Mm(a) \}$.
@@ -2363,7 +2364,7 @@
 	\]
 	מרחיב על־ידי לכל היותר מספר בן־מנייה של איברי $M$.
 	יהי $a \in \Cc_T$ מממש את $\Gamma$.
-	יהי $\Mm'$ מודל אטומי מעל $M_a$. נניח כעת ש־$b \in M'$ שמממש את $\Sigma(x)$, עבור טיפוס חלקי בן־מניה.
+	יהי $\Mm'$ מודל אטומי מעל $M_a$. נניח כעת ש־$b \in M'$ שמממש את $\Sigma(x)$, עבור טיפוס חלקי בן־מנייה.
 	$\Mm'$ אטומי מעל $\Mm_a$ אז הטיפוס $tp(b / M_a)$ מבודד על־ידי $\psi(x, a)$. כלומר לכל $\rho \in \Sigma$ מתקיים,
 	\[
 		\Mm' \models \forall x\ (\psi(x, a) \to \rho(x))
@@ -2374,8 +2375,8 @@
 	נסיק ש־$\exists x\ \psi(x, c)$ וגם לכל $\rho \in \Sigma$ מתקיים $\forall x\ (\psi(x, c) \to \rho(x))$ מתקיים ב־$\Nn$.
 	יהי $e \in M$ כך ש־$\Mm \models \psi(e, c)$ ונקבל ש־$\Mm \models \Sigma(e)$ כסתירה להנחה ש־$\Sigma$ הושמט ב־$\Mm$.
 
-	נעבור לאיך הלמה שאם $T$ היא $\kappa$־קטגורית מעל שפה בת־מניה ל־$\kappa \ge \aleph_1$ גוררת שהיא $\aleph_1$־קטגורית.
-	אם נניח אחרת יש מודל $\Mm \models T$ בעוצמה $\aleph_1$ לא רווי, לכן יש טיפוס $\Sigma$ בן־מניה מושמט.
+	נעבור לאיך הלמה שאם $T$ היא $\kappa$־קטגורית מעל שפה בת־מנייה ל־$\kappa \ge \aleph_1$ גוררת שהיא $\aleph_1$־קטגורית.
+	אם נניח אחרת יש מודל $\Mm \models T$ בעוצמה $\aleph_1$ לא רווי, לכן יש טיפוס $\Sigma$ בן־מנייה מושמט.
 	מ־$\kappa$־קטגוריות אנו יודעים ש־$T$ טרנסצנדטלית־לחלוטין, מהלמה יש $\Mm \prec \Nn$ בעוצמה $\kappa$ שמשמיט את $\Sigma$.
 	מ־$\kappa$־קטגוריות $\Nn$ חייב להיות רווי בסתירה.
 \end{proof}
@@ -2386,7 +2387,7 @@
 זה כמובן מתקיים לכל הרחבה אלמנטרית של $\Mm$.
 אם $B_0, B_1$ בסיסים של $\varphi(M)$ ול־$\varphi(N)$ בהתאמה, ו־$f : B_0 \to B_1$ חד־חד ערכית ועל, אז ניתן להרחיב את $f$ לשיכון אלמנטרי חלקי מ־$\varphi(M)$ ל־$\varphi(N)$.
 נניח ש־$\Nn_1, \Nn_2$ מודלים של $T$ בעוצמה $\kappa$ ו־$\varphi$ מינימלית בחזק.
-נניח ש־$\Mm$ ראשוני בן־מניה ו־$|\varphi(M)| = \aleph_0$, $\Mm \hookrightarrow \Nn_1$ ואם $\varphi(N_1)$ התמונות, אז $\varphi(M)$ זוג ווטיאני.
+נניח ש־$\Mm$ ראשוני בן־מנייה ו־$|\varphi(M)| = \aleph_0$, $\Mm \hookrightarrow \Nn_1$ ואם $\varphi(N_1)$ התמונות, אז $\varphi(M)$ זוג ווטיאני.
 יתר־על־כן אם $\varphi(N_1)| < \kappa$ אז $Sk^{\Nn_1}(\varphi(N_1)) \prec \Nn_1$ עם אותו $\varphi$ ולכן זוג ווטיאני.
 $\kappa = |\varphi(N_1)| = |\varphi(N_2)|$ כאשר $B_1 \subseteq N_1, B_2 \subseteq N_2$ הם מעוצמה $\kappa$.
 בלי הגבלת הכלליות $\varphi(N_1) = \varphi(N_2) = A$ ונבנה מודל ראשוני מעל $A$ בתוך $\Nn_1$.
@@ -2401,14 +2402,202 @@ $\kappa = |\varphi(N_1)| = |\varphi(N_2)|$ כאשר $B_1 \subseteq N_1, B_2 \sub
 	\[
 		(\Mm, \Nn)
 		\models \exists x\ (P(x) \land \varphi(x))
-	.\]
+	\]
 
 	נחזור על התהליך הזה $\omega$ צעדים.
 \end{proof}
+
+\section{שיעור 13 --- 18.1.2026}
+\subsection{משפט מורלי}
+\begin{theorem}[מורלי העולה]
+	אם $T$ היא תורה $\aleph_1$־קטגורית אז $T$ היא $\kappa$־קטגורית לכל $\aleph_1 \le \kappa$.
+\end{theorem}
+\begin{definition}[זוג ווטיאני]
+	זוג ווטיאני היא שלשה $(\Mm, \Nn, \varphi(x))$ עם $\Mm \prec \Nn, \Mm \ne \Nn$ כך ש־$\varphi(M) = \varphi(N)$ וגם $|\varphi(M)| \ge \aleph_0$.
+\end{definition}
 \begin{theorem}[ווט]
-	נניח ש־$T$ תורה בשפה בת־מניה שיש לה זוג ווטיאני.
+	נניח ש־$T$ תורה בשפה בת־מנייה שיש לה זוג ווטיאני.
 	אז יש ל־$T$ מודל $\Nn \models T$ המקיים $\Mm \prec \Nn, |N| = \aleph_1, |M| = \aleph_0$ ו־$\varphi(N) = \varphi(M)$.
 \end{theorem}
+\begin{proof}
+	ניזכר שאם $\Mm_0 \prec \Mm_1$ מודלים של $T$ אז יש $(\Mm_0, \Mm_1) \prec (\Mm_0', \Mm_1')$ כך שלכל $p \in S_n(T)$ מתקיים ש־$p$ מתממש ב־$\Mm_0'$ אם ורק א $p$ מתממש ב־$\Mm_1'$, כאשר כל המודלים הם בני־מנייה.
+	בנוסף $\Mm_0', \Mm_1'$ הם הומוגניים, כלומר אם $tp(\bar{a}) = tp(\bar{b})$ אז ניתן להרחיב את ההעתקה $a_i \mapsto b_i$ לאיזומורפיזם.
+	כל זה הוא מהלך שנובע מקומפקטיות.
+
+	נניח כי $(\Mm_0, \Mm_1, \varphi)$ זוג ווטיאני כלשהו, אז נבחר תת־מודל אלמנטרי בן־מנייה של $(\Mm_0, \Mm_1)$ ונקבל זוג ווטיאני של מודלים בני־מנייה.
+	בלי הגבלת הכלליות הם בני־מנייה מממשים את אותם טיפוסים, והומוגניים.
+	בהתאם נובע ש־$\Mm_0 \cong \Mm_1$.
+	נבנה באינדוקציה סדרת מודלים $(\Mm_{\alpha} \mid \alpha < \omega_1)$ כך שלכל $\alpha < \omega_1$ ולכל טיפוס $p \in S_n(T)$, $\Mm_{\alpha}$ מממש את $p$ אם ורק אם $\Mm_0$ מממש את $p$ והם הומוגניים,
+	וכן $\varphi(M_0) = \varphi(M_{\alpha})$, ו־$\forall \beta < \alpha,\ \Mm_{\beta} \prec \Mm_{\alpha}$. \\
+	נניח שנתון לנו $\Mm_0 \prec \Mm_{\alpha}$ כאשר $\alpha$ בן־מנייה.
+	אז יש איזומורפיזם $f : \Mm_0 \to \Mm_{\alpha}$. המודל $\Cc_T$ הוא הומוגני ולכן ניתן להרחיב את $f$ ל־$\tilde{f} : \Cc_T \to \Cc_T$ אוטומורפיזם.
+	נגדיר $\Mm_{\alpha + 1} = \tilde{f}(\Mm_{\alpha})$ ולכן $\Mm_{\alpha} = f(\Mm_0) = \tilde{f}(\Mm_0) \prec \tilde{f}(\Mm_{\alpha})$.
+	נשים לב ש־$\Mm_{\alpha} \prec \Mm_{\alpha + 1}$.
+	מכיוון ש־$\Mm_0 \prec \Mm_{\alpha} \prec \Mm_{\alpha + 1}$ אז $\Mm_0 \prec \Mm_{\alpha + 1}$ ו־$\varphi(M_0) = \varphi(M_{\alpha + 1})$.
+	אם $y \in \varphi(M_{\alpha + 1})$ אז $y \in \tilde{f}(z)$ ו־$z \in \varphi(M_{\alpha})$ אבל אז $z \in M_0$ ולכן $y = \tilde{f}(z) = f(z) \in M_{\alpha}$, אז נובע ש־$y \in \varphi(M_{\alpha})$ ולכן גם $y \in \varphi(M_0)$.
+	עבור $\alpha$ גבולי נגדיר $\Mm_{\alpha} = \bigcup_{\beta < \alpha} \Mm_{\beta}$, ושוב הוא מודל שמממש רק את הטיפוסים ש־$\Mm_0$ מימש, הומוגני ומתקיים,
+	\[
+		\varphi(M_{\alpha})
+		= \bigcup_{\beta < \alpha} \varphi(M_{\beta})
+		= \varphi(M_0)
+	\]
+	נגדיר $\Nn = \Mm_{\omega_1}$ ונקבל ש־$\varphi(N) = \bigcup_{\alpha < \omega_1} \varphi(M_{\alpha}) = \varphi(M_0)$ כרצוי.
+\end{proof}
+\begin{corollary}
+	אם $T$ היא $\aleph_1$־קטגורית אז אין ל־$T$ זוג ווטיאני.
+\end{corollary}
+\begin{proof}
+	$(\Mm, \Nn, \varphi)$ זוג ווטיאני ו־$|N| = \aleph_1$ אז $\Nn$ איננו רווי, נגדיר,
+	\[
+		p(x) = \{ \varphi(x) \} \cup \{ x \ne a \mid a \in \varphi(M) \}
+	\]
+	נוכל להניח ש־$|M| = \aleph_0, \Mm \prec \Nn$ ולכן זהו טיפוס חלקי שלא ניתן להרחבה לטיפוס שמתממש.
+\end{proof}
+\subsection{חילוץ כמת קיים אינסוף}
+\begin{definition}[חילוץ כמת קיים אינסוף]
+	תורה $T$ מחלצת $\exists^\infty$ אם לכל נוסחה $\varphi(x, \bar{y})$ יש נוסחה $\psi(\bar{y})$ כך שלכל מודל $\Mm \models T$ ו־$\bar{c} \in M^n$ מתקיים,
+	\[
+		|\{ a \in M \mid \Mm \models \varphi(a, \bar{c}) \}| \ge \aleph_0
+		\iff \Mm \models \psi(\bar{c})
+	\]
+	ונסמן זאת ב־$\Mm \models \exists^\infty x\ \varphi(x, \bar{c})$.
+\end{definition}
+\begin{lemma}
+	$T$ מחלצת $\exists^\infty$ אם ורק אם לכל נוסחה $\varphi(x, \bar{y})$ יש $n_\varphi$ כך שהאוסף $\{ a \in M \mid \Mm \models \varphi(a, \bar{c})\}$ אם ורק אם הוא גדול מ־$n_\varphi$.
+\end{lemma}
+\begin{proof}
+	תרגיל בקומפקטיות.
+\end{proof}
+\begin{corollary}
+	אם ל־$T$ אין זוגות ווטיאנים אז $T$ מחלצת את $\exists^\infty$.
+\end{corollary}
+\begin{proof}
+	תהי $\varphi(x, \bar{y})$ נוסחה, ועלינו למצוא $n_\varphi$ מתאים.
+	אז לכל $n$ טבעי יש מודל $\Mm_n \models T$ ופרמטר $\bar{c}_n \in M_n^k$ כך ש־$\{ a \mid \Mm_n \models \varphi(a, \bar{c}_n) \}$ סופי אך קטן מ־$n$.
+	תהי הרחבה אלמנטרית ממש $\Mm_n \prec \Nn_n$ ונבחין כי $\varphi(M_n, \bar{c}_n) = \varphi(N_n, \bar{c}_n)$.
+	עתה נעשיר את השפה ב־$P$ יחס חד־מקומי ונבנה זוג מודלים $(\Mm, \Nn)$ כאשר $\Mm \prec \Nn$ ויש קבוע $\bar{c}$ כך ש־$|\varphi(M, \bar{c})| \ge \aleph_0$ וכן $\varphi(M, \bar{c}) = \varphi(N, \bar{c})$.
+\end{proof}
+\begin{definition}[נוסחה מינימלית ביחס למבנה]
+	נניח ש־$\Mm$ מבנה ו־$\varphi$ נוסחה, אז $\varphi$ מינימלית ביחס ל־$\Mm$ אם לכל נוסחה $\psi$ מתקיים $(\varphi \land \psi)(M)$ סופית או $(\varphi \land \lnot \psi)(M)$ סופית, אבל $\varphi(M)$ אינסופית.
+\end{definition}
+\begin{definition}[נוסחה אלגברית]
+	נוסחה $\varphi(x)$ נקראת אלגברית אם $\varphi(M)$ סופית.
+\end{definition}
+\begin{remark}
+	במבנה $\langle \NN, < \rangle$ הנוסחה $x = x$ היא מינימלית אבל זו לא תכונה של התורה, כלומר ההגדרה הזו לא ממש תופסת את מה שרצינו.
+\end{remark}
+\begin{definition}[נוסחה מינימלית בחזק]
+	נוסחה $\varphi$ נקראת מינימלי בחזק אם לכל $\Nn$ כך ש־$\Mm \prec \Nn$, $\varphi$ מינימלית ב־$\Nn$.
+\end{definition}
+\begin{example}
+	$x = x$ היא מינימלית בחזק ב־ACF\@.
+\end{example}
+\begin{example}
+	ב־DLO אין נוסחה מינימלית.
+\end{example}
+\begin{proposition}
+	נניח ש־$T$ היא טרנסצנדטלית־לחלוטין ללא מודלים סופיים, אז לכל $\psi$ נוסחה מעל $\Mm \models T$ שאיננה אלגברית,
+	יש נוסחה $\varphi$ מינימלית בחזק כך ש־$\Mm \models \forall x\ (\varphi \to \psi)$ ו־$\varphi(M) \subseteq \psi(M)$.
+\end{proposition}
+\begin{proof}
+	אחרת נגדיר באינדוקציה סדרת נוסחות $\varphi_{\langle \rangle} = \psi$,
+	ובשלב $\eta \in 2^{< \omega}$ נניח ש־$\varphi_{\eta}$ מוגדרת ואיננה מינימלית בחזק ולכן יש $\rho$ כך ש־$\varphi_{\eta} \land \rho, \varphi_{\eta} \land \lnot \rho$ שתיהן לא אלגבריות ובפרט עקביות.
+\end{proof}
+\begin{remark}
+	אם $T$ מחלצת $\exists^\infty$ אז לכל $\Mm \models T$ ולכל נוסחה $\varphi$, מתקיים $\varphi$ מינימלית אם ורק אם היא מינימלית בחזק.
+\end{remark}
+\begin{proof}
+	נניח ש־$\varphi(x, c)$ מינימלית ב־$\Mm$.
+	נניח כי קיים $\Mm \preceq \Nn$ בו $\varphi$ איננה מינימלית, אז יש $\psi(x, d)$ עבור $d \in N$ כך שמתקיים,
+	\[
+		\Nn \models \exists^\infty x\ (\varphi(x, c) \land \psi(x, d)) \land \exists^\infty x\ (\varphi(x, c) \land \lnot \psi(x, d))
+	\]
+	אז,
+	\[
+		\Nn \models \exists y\ (\exists^\infty\ \varphi(x, c) \land \psi(x, d)) \land \exists^\infty\ (\varphi(x, c) \land \lnot \psi(x, d))
+	\]
+	ולכן $\Mm$ מקיים זאת בסתירה.
+\end{proof}
+נניח ש־$\varphi$ מינימלי בחזק, ב־$U_\varphi$ ישנם הטיפוסים הבאים:
+\begin{enumerate}
+	\item טיפוסים אלגבריים, אלו הם טיפוסים שמכילים נוסה אלגברית $\psi$
+	\item טיפוס יחיד לא אלגברי
+\end{enumerate}
+$p = \{ \psi \mid \varphi \land \psi \text{ is not algebraic} \}$, הטיפוס הלא אלגברי היחיד.
+הטיפוס הזה למעשה מוגדר על מודל המפלצת $\Cc_T$ באותו אופן בדיוק, ואם $\sigma \in \aut(\Cc_T)$ שמקבע פרמטרים של $\varphi$, אז $\sigma_*(p) = p$.
+זה נכון כי אם $\varphi \land \psi$ אלגבריים אז $\sigma_*(\varphi \land \psi)$ אלגברית.
+
+נגדיר באינדוקציה סדרת איברים ב־$\Cc_T$ בהינתן $A$ על־ידי, $a_{\alpha}$ יממש את $p \restriction (A \cup \{ a_{\beta} \mid \beta < \alpha \})$.
+לסדרה $(a_{\alpha} \mid \alpha < \kappa)$ נקרא סדרת מורלי והיא תהיה סדרת אי־בחינים מעל הפרמטרים $A$.
+נדגים זאת לזוגות.
+נניח ש־$\psi \in tp(a_{\alpha_0}, a_{\alpha_1} / A)$ ונסתכל על $a_{\beta_0}, a_{\beta_1}$ עבור $\beta_0 < \beta_1$,
+\[
+	\Cc_T \models p \restriction A(a_{\alpha_0}), p \restriction A(a_{\beta_0})
+.\]
+לכן $\sigma = \id_A \cup \{ (a_{\alpha_0}, a_{\beta_0}) \}$ שיכון אלמנטרי חלקי וניתן להרחבה לאוטומורפיזם של $\Cc_T$,
+\[
+	\sigma(p \restriction A \cup \{ a_{\alpha_0} \})
+	= p \restriction A \cup \{ a_{\beta_0} \}
+.\]
+ולכן אם $\psi \in tp(a_{\alpha}, a_{\alpha} / A)$ אז $\psi \in tp(a_{\beta_0}, a_{\beta_1} / A)$.
+\begin{proposition}
+	נניח ש־$B$ קבוצה כלשהי ו־$\Cc \models (p \restriction B)(a)$ וכן $\Cc \models (p \restriction B \cup \{ a \})(b)$ אז,
+	\[
+		tp(a, b / B) = tp(b, a / B)
+	.\]
+\end{proposition}
+\begin{proof}
+	תהי סדרת מורלי $a, b, b_2, b_3, \ldots, b_{\omega}$ ונסתכל על נוסחה $\psi$ כך ש־$\psi(b_n, b_{\omega})$.
+	מהאי־בחינות לכל $n$, $\psi(b_n, b_{\omega})$ ולכן הנוסחה $\psi(x, b_{\omega})$ לא אלגברית.
+	נובע שהנוסחה $\psi(x, a) \in p \restriction B \cup \{ a \}$ (בלי הגבלת הכלליות $\psi \to \varphi$) ולכן $\psi(b, a)$.
+	מאי־בחינות קיבלנו שאם $\psi(a, b)$ אז $\psi(b, a)$ עבור $\psi(x, y)$ שגוררת את $\varphi(x)$.
+\end{proof}
+\begin{proposition}
+	יהיו $A, p, \varphi$ כמקודם.
+	אם $_1, B_2$ קבוצות בלתי תלויות ב־$\varphi(\Cc)$ עם $|B_1| = |B_2|$ אז כל העתקה חד־חד־ערכית ועל $f : B_1 \to B_2$ ניתן להרחיב לשיכון אלמנטרי חלקי שמקבע את $A$, $f : \acl(B_1) \to \acl(B_2)$.
+\end{proposition}
+\begin{proof}
+	נגדיר ש־$B$ בלתי תלויה על $A$ אם לכל $b \in B$ מתקיים $b \notin \acl(A \cup B \setminus \{ b \})$.
+	נשים לב ש־קבוצה בלתי תלויה היא סדרת מורלי מעל $A$. לכן אם נמנה אותן כטיפוס סדר זהה $\kappa$ אז ההעתקה $b_i \mapsto b_i'$ כאשר $B_1 = \{ b_i \mid i < \kappa \}$ ו־$B_2 = \{ b_i' \mid i < \kappa \}$,
+	שיכון אלמנטרי חלקי. לכן ניתן להרחיב לאוטומורפיזם של $\Cc$.
+\end{proof}
+\begin{proposition}
+	נניח ש־$\Mm$ מודל של $T$ ו־$\varphi$ מינימלי בחזק,
+	אז יש $B \subseteq \varphi(M)$ בלתי־תלויה ו־$\varphi(M) = \acl(B)$.
+\end{proposition}
+\begin{proof}
+	תהי $B$ בלתי־תלויה ומקסימלית, אם $c \notin \acl(B)$ אז נטען שאין $b \in B$ כך ש־$b \in \acl((B \cup \{ c \}) \setminus\{ b \})$.
+	אחרת נסמן $B' = B \setminus \{ b \}$, ונקבל ש־$b \notin  \acl(B')$ וכן $\Mm \models p \restriction B'(b)$, ו־$\Mm \models p \restriction B' \cup \{ b \}$.
+	נובע ש־$tp(b, c / B') = tp(c, b / B')$ אבל $b \in \acl(B' \cup \{ c \})$ בסתירה.
+\end{proof}
+\begin{exercise}
+	תהי $\varphi$ מינימלית בחזק, אז עוצמת הבסיס ל־$\varphi(M)$ מוגדרת היטב.
+\end{exercise}
+\begin{remark}
+	אם $|\varphi(M)| > |T|$ אז זה טריוויאלי.
+\end{remark}
+\begin{proof}[הוכחת משפט מורלי]
+	נניח ש־$T$ תורה $\aleph_1$־קטגורית, בפרט טרנסצנדטלית־לחלוטין וללא זוגות ווטיאנים.
+	נניח ש־$\Mm$ מודל ראשוני ובן־מנייה.
+	$\varphi$ מינימלית בחזק ב־$\Mm$.
+	נניח ש־$\Nn_1, \Nn_2 \models T$ מעוצמה $\kappa$, בלי הגבלת הכלליות $\Mm \prec \Nn_1, \Nn_2$, לכן ניתן לבחון את $\varphi(N_1), \varphi(N_2)$.
+
+	נוכיח את הטענה ש־$|\varphi(N_1)| = |\varphi(N_1)| = \kappa$.
+	אחרת יש $\varphi(N_1) \subseteq \Nn' \prec \Nn_1$ ולכן $\varphi(N') = \varphi(N_1)$ אבל $|N'| < |N_1|$ ובפרט שונים ונקבל זוג ווטיאני.
+
+	נניח ש־$B_1$ בסיס ל־$\varphi(N_1)$ בעוצמה $\kappa$ ו־$B_2$ בסיס ל־$\varphi(N_2)$ בעוצמה $\kappa$.
+	אז $\kappa \le |\varphi(N_1)| \le {(|B_1|)}^{< \omega} \cdot \aleph_0 \cdot \aleph_0$ ומצד שני $|B_1| \le \kappa$ ולכן $|B_1| = \kappa$.
+	לכן יש אוטומורפיזם של $\Cc$ שמעביר את $\varphi(N_1)$ ל־$\varphi(N_2)$, בלי הגבלת הכלליות נחליף את $\Nn_1$ בתמונתו ולכן $\varphi(N_1) = \varphi(N_2)$.
+	נניח ש־$\Nn$ ניתן לבנייה מעל $\varphi(N_1) = \varphi(N_2)$ ולכן בפרט הוא ראשוני, אז $\Nn \prec \Cc_T$.
+	נזכור כי מודל זה הוא אטומי מעל $A$ ובפרט אם $a \in N$ מקיים $\varphi(a)$ אז $a \in A$, לכן או שהוא אלגברי או שהוא $p \restriction A$.
+	אם הוא אלגברי אז יש נוסחה $\psi$ אלגברית בטיפוס. כל המימושים של $\psi$ כבר שייכים ל־$\Nn_1, \Nn_2$ ולכן ל־ $A = \varphi(N_1) = \varphi(N_2)$.
+	אם הוא $p \restriction A$ אז הוא לא מבודד.
+	אם $\rho(x)$ מבודדת אותו אז $\rho \land \varphi$ לא אלגברית לכן אינסופית ונובע ש־$\rho \in p \restriction A$.
+	$\rho$ מכיל מספר סופי של פרמטרים מ־$A$, נסמן $a_0, \ldots, a_{n - 1}$, ולכן כל איבר ב־$A$ מחוץ ל־$\acl(\bar{a})$ יקיים את $\rho$.
+	ניקח $b$ כזה ונקבל ש־$\lnot (\rho \to x \ne b)$ בסתירה.
+	לכן $\varphi(N) = A$ אבל $N$ ראשוני ולכן $\Nn \prec \Nn_1$.
+	אם $\Nn \ne \Nn_1$ זהו זוג ווטיאני ולכן $\Nn \cong \Nn_1 \cong \Nn_2$ כנדרש.
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition,lemma}]
 
