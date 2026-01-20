@@ -374,7 +374,226 @@
 \subquestion{}
 נראה ש־$f$ היא קונפורמית אם ורק אם $E = G, F = 0$, כאשר$E, F, G$ מקדמי התבנית היסודית הראשונה $I$.
 \begin{proof}
-	נגדיר את הזווית בין שני העקומים ב־$u$ על־ידי הזווית של $\gamma'(0), \phi'(0)$, זווית זו מוגדרת להיות $\cos \theta = $
+	נגדיר את הזווית בין שני העקומים ב־$u$ על־ידי הזווית של $\gamma'(0), \phi'(0)$, זווית זו מוגדרת להיות $\cos \theta = \frac{\langle \gamma'(0), \phi'(0) \rangle}{\lVert \gamma'(0) \rVert \cdot \lVert \phi'(0) \rVert}$.
+
+	נניח ש־$f$ היא קונפורמית, כלומר מתקיים,
+	\[
+		\arccos \frac{\langle c'(0), d'(0) \rangle}{\lVert c'(0) \rVert \cdot \lVert d'(0) \rVert}
+		= \arccos \frac{\langle f'(\gamma((0))) \gamma'(0), f'(\phi((0))) \phi'(0) \rangle}{\lVert c'(0) \rVert \cdot \lVert d'(0) \rVert}
+		= \arccos \frac{\langle \gamma'(0), \phi'(0) \rangle}{\lVert \gamma'(0) \rVert \cdot \lVert \phi'(0) \rVert}
+	.\]
+	לכל שני עקומים $c, d$ כאלה.
+	נבחין כי $\arccos$ חד־חד ערכית ועל, ולכן התנאי שקול לתנאי,
+	\[
+		\frac{\langle c'(0), d'(0) \rangle}{\lVert c'(0) \rVert \cdot \lVert d'(0) \rVert}
+		= \frac{\langle \gamma'(0), \phi'(0) \rangle}{\lVert \gamma'(0) \rVert \cdot \lVert \phi'(0) \rVert}
+	.\]
+	נבחין גם כי מתקיים,
+	\[
+		\langle c'(0), d'(0) \rangle
+		= \langle D f |_{\gamma(0)} \cdot \gamma'(0), D f |_{\phi(0)} \cdot \phi'(0) \rangle
+		= \langle D f |_u \cdot \gamma'(0), D f |_u \cdot \phi'(0) \rangle
+		= I_p(\gamma'(0), \phi'(0))
+	.\]
+	כלומר מתקיים,
+	\[
+		\frac{I_p(\gamma'(0), \phi'(0))}{I_p(\gamma'(0), \gamma'(0)) \cdot I_p(\phi'(0), \phi'(0))}
+		= \frac{\langle \gamma'(0), \phi'(0) \rangle}{{\lVert \gamma'(0) \rVert}^2 \cdot {\lVert \phi'(0) \rVert}^2}
+	.\]
+
+	עתה נציב מספר עקומים בזהות שקיבלנו.
+	עבור עקומים לפי אורך ואנכים נקבל,
+	\[
+		\frac{I_p(\gamma'(0), \phi'(0))}{I_p(\gamma'(0), \gamma'(0)) \cdot I_p(\phi'(0), \phi'(0))}
+		= 0
+		\implies I_p(\gamma'(0), \phi'(0)) = 0
+		\implies F = 0
+	.\]
+	אז עבור עקומים כלליים נקבל שמתקיים,
+	\[
+		\frac{E \gamma_1'(0) \phi_1'(0) + G \gamma_2'(0) \phi_2'(0)}{E({(\gamma_1'(0))}^2 + {(\phi_1'(0))}^2) + G({(\gamma_2'(0))}^2 + {(\phi_2'(0))}^2)}
+		= \frac{\langle \gamma'(0), \phi'(0) \rangle}{{\lVert \gamma'(0) \rVert}^2 \cdot {\lVert \phi'(0) \rVert}^2}
+	.\]
+	אם $E \ne G$ נוכל לבנות עקומים שנגזרתם $(E - G, 1), (1, 1)$ ונקבל סתירה לשוויון האחרון, ולכן בהכרח $E = G$.
+
+	נניח בכיוון ההפוך ש־$E = G, F = 0$ ונקבל תוך שימוש במהלכים זהים למהלך הקודם,
+	\[
+		\frac{\langle c'(0), d'(0) \rangle}{\lVert c'(0) \rVert \cdot \lVert d'(0) \rVert}
+		= \frac{E \gamma_1'(0) \phi_1'(0) + G \gamma_2'(0) \phi_2'(0)}{E({(\gamma_1'(0))}^2 + {(\phi_1'(0))}^2) + G({(\gamma_2'(0))}^2 + {(\phi_2'(0))}^2)}
+		= \frac{\gamma_1'(0) \phi_1'(0) + \gamma_2'(0) \phi_2'(0)}{{(\gamma_1'(0))}^2 + {(\phi_1'(0))}^2 + {(\gamma_2'(0))}^2 + {(\phi_2'(0))}^2}
+	.\]
+	אבל האחרון אינו אלא,
+	\[
+		\frac{\langle \gamma'(0), \phi'(0) \rangle}{{\lVert \gamma'(0) \rVert}^2 \cdot {\lVert \phi'(0) \rVert}^2}
+	.\]
+	ולכן $f$ קונפורמית.
 \end{proof}
+
+\subquestion{}
+נאמר ש־$f : U \to S$ היא שומרת שטח אם לכל $R \subseteq U$ מתקיים $\vol_2(R) = \vol_2(f(R))$. \\
+נראה ש־$f$ שומרת שטח אם ורק אם $EG - F^2 = 1$.
+\begin{proof}
+	נניח ש־$f$ היא שומרת שטח.
+	נזכור שמתקיים,
+	\[
+		\vol_2(f(R))
+		= \iint_{R} {(E G - F^2)}^{\frac{1}{2}}\ dl,
+		\qquad
+		\vol_2(R)
+		= \vol(R)
+		= \iint_R 1\ dl
+	.\]
+	כלומר,
+	\[
+		\vol_2(f(R)) = \vol(R)
+		\iff \iint_R {(EG - F^2)}^{\frac{1}{2}} - 1\ dl = 0
+	.\]
+	ובהתאם ${(EG - F^2)}^\frac{1}{2} = 1$ $\lambda$־כמעט תמיד, עבור $\lambda$ מידת לבג על אופרטור הנפח $\vol_2$ מעל $\EE^3$.
+	נזכור ש־$f$ רציפה ולכן הטענה נכונה תמיד.
+
+	נניח בכיוון ההפוך ש־$EG - G^2 = 1$, אז נקבל שמתקיים,
+	\[
+		\vol_2(R)
+		= \iint_R {(EG - F^2)}^{\frac{1}{2}}\ dl
+		= \iint_R 1\ dl
+		= \vol(R)
+	.\]
+	כלומר $f$ משמרת שטח.
+\end{proof}
+
+\subquestion{}
+נראה ש־$f$ קונפורמית ושומרת שטח אם ורק אם היא איזומטריה מקומית, כלומר שמתקיים,
+\[
+	\forall u \in U \forall v, w \in \RR^2,\ 
+	\langle v, w \rangle = I_{f(u)}(D f |_u v, D f |_u w)
+.\]
+\begin{proof}
+	נניח ש־$f$ קונפורמית ושומרת שטח, אז מתקיים $E = G, F = 0$ וכן $E^2 = 1$, אבל $I$ תבנית חיובית לחלוטין ולכן $E = 1$ בלבד, כלומר $I_p = (\begin{smallmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{smallmatrix})$.
+	אז $E_p = {(D_1 f |_p)}^2 = 1$ ולכן נסיק $D_1 f |_p \in \{ \pm \}$, הטענה נכונה גם על $D_2 f$. \\
+	בהתאם מתקיים,
+	\[
+		I_{f(u)}(D f |_u v, D f |_u w)
+		= v^t I_2 w
+		= \langle v, w \rangle
+	.\]
+	כפי שרצינו.
+
+	בכיוון ההפוך נניח את השוויון ונקבל,
+	\[
+		I_{f(u)}(D f |_u v, D f |_u w)
+		= E v^1 w^1 + F(v^2 w^1 + v^1 w^2) + G v^2 w^2
+		= v^1 w^1 + v^2 w^2
+		= \langle v, w \rangle
+	.\]
+	ונקבל ש־$E = G = 1, F = 0$ ההצבה היחידה שנכונה תמיד, משקילות שמצאנו בסעיפים א' וב' נקבל ש־$f$ היא קונפורמית ומשמרת שטח.
+\end{proof}
+
+\question{}
+\subquestion{}
+יהיו $0 < r < R$ ויהי המשטח הפרמטרי $\varphi : {[0, 2 \pi]}^2 \to \EE^3$ המוגדר על־ידי,
+\[
+	\varphi(\theta, \phi)
+	= ((R + r \cos \phi) \cos \theta, (R + r \cos \phi) \sin \theta, r \sin \phi)
+.\]
+\begin{solution}
+	נחשב את התבנית היסודית הראשונה של $\varphi$,
+	\[
+		D \varphi |_{(\theta, \phi)}
+		= \begin{pmatrix}
+			- (R + r \cos \phi) \sin \theta & - r \sin \phi \cos \theta \\
+			(R + r \cos \phi) \cos \theta & -r \sin \phi \sin \theta \\
+			0 & r \cos \phi
+		\end{pmatrix}
+	\]
+	ולכן,
+	\begin{align*}
+		I
+		& = \begin{pmatrix}
+			\langle D_1 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_1 \varphi_{(\theta, \phi)} \rangle \\
+			\langle D_1 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle & \langle D_2 \varphi_{(\theta, \phi)}, D_2 \varphi_{(\theta, \phi)} \rangle
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			{(R + r \cos \phi)}^2 (\sin^2 \theta + \cos^2 \theta) & (R + r \cos \phi) r \sin \phi (\cos \theta \sin \theta - \sin \theta \cos \theta) \\
+			(R + r \cos \phi) r \sin \phi (\cos \theta \sin \theta - \sin \theta \cos \theta) & r^2 \sin^2 \phi (\cos^2 \theta + \sin^2 \theta) + r^2 \cos^2 \phi
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			{(R + r \cos \phi)}^2 & 0 \\
+			0 & r^2
+		\end{pmatrix} \\
+	\end{align*}
+	עתה נעבור לחישוב השטח על־ידי נוסחת השטח התלויה בתבנית הראשונה,
+	\begin{align*}
+		\vol_2(\im \varphi)
+		& = \int_{0}^{2 \pi} \int_{0}^{2 \pi} \sqrt{EG - F^2}\ d \theta\ d \phi \\
+		& = \int_{0}^{2 \pi} \int_{0}^{2 \pi} \sqrt{{(R + r \cos \phi)}^2 r^2}\ d \theta\ d \phi \\
+		& = \int_{0}^{2 \pi} \int_{0}^{2 \pi} (R + r \cos \phi) r\ d \theta\ d \phi \\
+		& = r \int_{0}^{2 \pi} 1\ d \theta \cdot \int_{0}^{2 \pi} R + r \cos \phi\ d \phi \\
+		& = 2 \pi r \int_{0}^{2 \pi} R + r \cos \phi\ d \phi \\
+		& = 2 \pi r (R \phi + r \sin \phi) \mid_{\phi = 0}^{\phi = 2 \pi} \\
+		& = 4 \pi^2 r R
+	\end{align*}
+	מצאנו ששטח הטורוס הפרמטרי הוא $4 \pi^2 r R$.
+\end{solution}
+
+\subquestion{}
+יהיו $0 \le \phi_0 \le \phi_1 \le \pi$,
+נחשב את השטח של $\varphi : [0, 2 \pi] \times [\phi_0, \phi_1] \to \EE^3$ המוגדר על־ידי,
+\[
+	f(\theta, \phi)
+	= (\sin \phi \cos \theta, \sin \phi \sin \theta, \cos \phi)
+.\]
+\begin{solution}
+	זהו חלק של ספירת היחידה $S^2$ הכלוא בין המישורים $z_0 = \cos \phi_0, z_1 = \cos \phi_1$.
+	נחשב את התבנית היסודית הראשונה,
+	\[
+		D f
+		= \begin{pmatrix}
+			-\sin \phi \sin \theta & \cos \phi \cos \theta \\
+			\sin \phi \cos \theta & \cos \phi \sin \theta \\
+			0 & - \sin \phi
+		\end{pmatrix}
+	.\]
+	ולכן,
+	\begin{align*}
+		& E
+		= {(D_1 f)}^2
+		= {(- \sin \phi \sin \theta)}^2 + {(\sin \phi \cos \theta)}^2 + 0^2
+		= \sin^2 \phi \\
+		& F
+		= (D_1 f)(D_2 f)
+		= - \sin \phi \sin \theta \cos \phi \cos \theta + \sin \phi \cos \theta \cos \phi \sin \theta + 0
+		= 0 \\
+		& G
+		= {(\cos \phi \cos \theta)}^2 + {(\cos \phi \sin \theta)}^2 + \sin^2 \phi
+		= \cos^2 \phi + \sin^2 \phi
+		= 1
+	.\end{align*}
+	כלומר,
+	\[
+		I
+		= \begin{pmatrix}
+			\sin^2 \phi & 0 \\
+			0 & 1
+		\end{pmatrix}
+	.\]
+	נעבור לחישוב השטח,
+	\begin{align*}
+		\vol_2(\im \varphi)
+		& = \int_{\phi_0}^{\phi_1} \int_0^{2 \pi} \sqrt{EG - F^2}\ d \theta\ d \phi \\
+		& = \int_{\phi_0}^{\phi_1} \int_0^{2 \pi} \sqrt{\sin^2 \phi}\ d \theta\ d \phi \\
+		& = \int_{0}^{2 \pi} 1\ d \theta \cdot \int_{\phi_0}^{\phi_1} \sin \phi\ d \phi \\
+		& = 2 \pi \cdot (- \cos \phi) \mid_{\phi = \phi_0}^{\phi = \phi_1} \\
+		& = 2 \pi (-\cos \phi_1 + \cos \phi_0)
+	.\end{align*}
+	כלומר מצאנו ששטח החתך הוא $2 \pi (\cos \phi_0 - \cos \phi_1)$.
+
+	נבחין שקיבלנו שהשטח הוא $2 \pi (z_1 - z_0)$, כלומר השטח לא תלוי בערכם אלא רק בהפרש שלהם, כלומר בגובה שלהם.
+\end{solution}
+
+\question{}
+TODO
 
 \end{document}
