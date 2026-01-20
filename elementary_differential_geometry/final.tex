@@ -1,0 +1,380 @@
+\input{../article_base.tex}
+\title{פתרון מבחן בית --- גאומטריה דיפרנציאלית אלמנטרית, 80560}
+
+% chktex-file 23
+
+\begin{document}
+\maketitle
+\maketitleprint[purple]
+
+\tableofcontents
+
+\question{}
+יהי $(E, V)$ מרחב אפיני.
+
+\subquestion{}
+תהי $S \subseteq E$ קבוצה ותהי $S' = \langle S \rangle$ תת־היריעה הנוצרת על־ידי $S$.
+נראה שמתקיים,
+\[
+	S'
+	= \left\{ \sum_{i = 1}^n \lambda^i P_i \mid \sum_{i}^n \lambda^i = 1, P_1, \ldots, P_n \in S \right\}
+.\]
+\begin{proof}
+	מהגדרת תת־יריעה נניח ש־$S' = Q + W$ עבור $Q \in E$ ו־$W \le E$ תת־מרחב וקטורי.
+	ממשפט מהכיתה נוכל לקבע $Q = P_i$ לאיזשהו $i$, בלי הגבלת הכלליות נניח ש־$Q = P_1$.
+	נבחין ש־$P_i - P_1 \in W$ לכל $1 < i \le n$, יהי וקטור $\lambda^2 (P_2 - P_1) + \cdots + \lambda^n (P_n - P_1) \in W$, אז גם $L = P_1 + \lambda^2 (P_2 - P_1) + \cdots + \lambda^n (P_n - P_1) \in S'$.
+	עתה נקבל ממשפט אינווריאנטיות לבחירת נקודת יחוס שגם $L = P_0 + (1 - (\lambda_2 + \cdots + \lambda_n)) P_1 + \lambda^2 P_2 + \cdots + \lambda^n P_n$, נגדיר $\lambda^1 = 1 - (\lambda^2 + \cdots + \lambda^n)$.
+	קיבלנו שמתקיים $\lambda^1 + \cdots + \lambda^n = 1$ וכן $L = \sum_{i = 1}^n \lambda^i P_i$ ולכן קיבלנו הכלה בכיוון אחד.
+
+	בכיוון ההפוך נניח ש־$P = \sum_{i = 1}^n \lambda^i P_i$ עבור סקלרים מתאימים ונקבל ישירות משימוש בצד השני שבחירת הנקודה $u = \lambda^2 (P_2 - P_1) + \cdots + \lambda^n (P_n - P_1)$ מקיים $u \in W$ ולכן $P = P_1 + u \in S'$.
+\end{proof}
+
+\subquestion{}
+נראה שאם $L \subseteq E$ קבוצת נקודות,
+אז $L$ תת־יריעה אפינית אם ורק אם לכל $P, Q \in L$ מתקיים $\langle P, Q \rangle \subseteq L$.
+\begin{proof}
+	נניח ש־$S$ תת־יריעה אפינית, אז בפרט מתקיים,
+	\[
+		\left\{ \sum_{i = 1}^2 \lambda^i P_i \mid \sum_{i}^2 \lambda^i = 1, P_1, P_2 \in S \right\}
+		\subseteq S
+	.\]
+	בפרט עבור $P, Q \in L$ נקבל ש־$\langle P, Q \rangle \subseteq L$.
+
+	נניח את טענת הכיוון ההפוך.
+	תהי $P_0 \in L$ ונסמן $W = L - P_0$, נראה ש־$W \le V$.
+	יהי $u \in W$, ו־$\alpha \in \FF$, אז $\langle P_0, P_0 + u \rangle \subseteq L$ ולכן $\Sp\{ u \} \in L$ ונובע שגם $\alpha u \in L$.
+	נניח ש־$u, v \in W$ ונראה ש־$u + v \in W$.
+	נסמן $P_1 = P_0 + u$ וכן $P_2 = P_0 + v$, נקבל שגם $\langle P_1, P_2 \rangle \subseteq L$, כלומר $P_1 + (v - u) t \in L$, כלומר $P_0 + u + (v - u) t \in L$ ולכן $u + (v - u) t \in W$.
+	נבחר $t = -1$ ונקבל ש־$2u - v \in W$, ומסגירות לכפל בסקלר נקבל שגם $u + v \in W$ ולכן $W \le V$ תת־מרחב וקטורי כפי שרצינו.
+\end{proof}
+
+\question{}
+יהי $V$ מרחב וקטורי ממימד סופי מעל $\FF$.
+
+\subquestion{}
+נראה שלכל $v \in V$ מתקיים,
+\[
+	\forall l \in V^\vee,\ 
+	\langle l, v \rangle = 0 \iff v = 0
+.\]
+\begin{proof}
+	נניח ש־$v = 0$ ויהי $l \in V^\vee$, כלומר $l : V \to \FF$ העתקה לינארית.
+	אז מתקיים $l(v) = 0$ מהגדרת ההעתקה הלינארית.
+
+	לכיוון ההפוך נניח שלכל $l \in V^\vee$ מתקיים $l(v) = 0$ ונניח בשלילה ש־$v \ne 0$.
+	נרחיב את $( v )$ לבסיס $\Bb = (v, b_2, \ldots, b_n)$ הפורש את $V$.
+	בהתאם קיימת העתקה לינארית $l : V \to \FF$ כך שמתקיים $l(v) = 1$, אבל $l \in V^\vee$ ולכן $\langle l, v \rangle = 0 \ne 1$ בסתירה.
+\end{proof}
+
+\subquestion{}
+יהי $l \in V^\vee$, נוכיח ש־$l = 0$ אם ורק אם לכל $v \in V$ מתקיים $\langle l, v \rangle = 0$.
+\begin{proof}
+	נניח ש־$l = 0$, אז בהגדרה $\langle l, v \rangle = l(v) = 0$ לכל $v$.
+
+	נניח ש־$\langle l, v \rangle = 0$ לכל $v \in V$ ונניח ש־$l \ne 0$, לכן קיים $u \in \im l$ כך ש־$u \ne 0$ וכן $l(u) \ne 0$ בסתירה.
+\end{proof}
+
+\subquestion{}
+נראה שלכל $W \le V^\vee$ מתקיים,
+\[
+	\dim_\FF W + \dim_\FF W_0 = \dim_\FF V
+\]
+\begin{proof}
+	הגדרנו $W_0 = \{ v \in V \mid \forall l \in W,\ l(v) = 0 \}$.
+	נניח ש־$\Bb = (b_1, \ldots, b_n)$ בסיס של $V$ וכן נסמן $\Bb^\vee = (b^1, \ldots, b^n)$.
+	נניח בלי הגבלת הכלליות ש־$(b^1, \ldots, b^k)$ עם $k \le n$ הוא בסיס סדור של $W$.
+	אז מהגדרה מתקיים $l(b^i) = 0$ לכל $l \in W$ ו־$k < i \le n$, ולכן $b_i \in W_0$. באופן דומה נסיק ש־$b_i \notin W_0$ לכל $i \le k$ שכן קיים עד לכך ש־$b^i \in W$.
+	קיבלנו אם כך ש־$(b_{k + 1}, \ldots, b_n)$ בסיס סדור של $W_0$.
+\end{proof}
+
+\subquestion{}
+יהיו $S_1, S_2 \le V$ ונראה ש־${(S_1 + S_2)}^0 = S_1^0 \cap S_2^0$.
+\begin{proof}
+	יהי $l \in {(S_1 + S_2)}^0$, אז $l(v + u) = l(v) + l(u) = 0$ לכל $u \in S_1, v \in S_2$.
+	נבחין כי $0 \in S_1, S_2$ כתת־מרחבים ולכן נקבל שגם $l(v) = 0, l(u) = 0$ לכל $u, v$ כאלה, ונסיק $l \in S_1^0, l \in S_2^0$ ובפרט נמצא בחיתוך.
+
+	מהצד השני נניח ש־$l \in S_1^0 \cap S_2^0$, אז בפרט $l(u) = l(v) = 0$ לכל $u \in S_1, v \in S_2$, ולכן גם $l(u + v) = l(u) + l(v) = 0$ ונסיק ש־$l \in {(S_1 + S_2)}^0$.
+\end{proof}
+
+\subquestion{}
+נראה שאם $L^1, L^2 \le V^\vee$ אז ${(L^1 \cap L^2)}_0 = L_0^1 + L_0^2$.
+\begin{proof}
+	מהסעיף הקודם נסיק $L^1 \cap L^2 = {(L_0^1 + L_0^2)}^0$, ולכן ${(L^1 \cap L^2)}_0 = {(L_0^1 + L_0^2)}^0_0 = L_0^1 + L_0^2$ מזהויות שהוכחנו.
+\end{proof}
+
+\question{}
+עקום חלק עם פרמטריזציה לפי אורך $c : I \to \EE^3$ נקרא בי־רגולרי אם $\forall t \in I,\ c''(t) \ne 0$.
+נסמן $v = c'$ ונגדיר את הנורמל על־ידי $n = \frac{c''}{|c''|}$ ואת הבי־נורמל על־ידי $b = v \wedge n$.
+נבחין כי $(v, n, b)$ בסיס אורתונורמלי.
+
+\subquestion{}
+נראה שקיימים $\kappa, \tau \in \RR$ כך שמתקיים,
+\[
+	\begin{pmatrix}
+		v' \\ n' \\ b'
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 & \kappa & 0 \\
+		- \kappa & 0 & \tau \\
+		0 & - \tau & 0
+	\end{pmatrix}
+	\begin{pmatrix}
+		v \\ n \\ b
+	\end{pmatrix}
+.\]
+\begin{proof}
+	נבחין שהטענה שקולה לשוויון,
+	\[
+		\begin{pmatrix}
+			v' \\ n' \\ b'
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			0 + \kappa n + 0 \\
+			- \kappa v + 0 + \tau b \\
+			0 - \tau n + 0
+		\end{pmatrix}
+	.\]
+	כלומר הטענה שקולה לשוויונות,
+	\[
+		v' = \kappa n,
+		\qquad
+		n' = - \kappa v + \tau b,
+		\qquad
+		b' = - \tau n
+	.\]
+	ראינו בכיתה ש־$\kappa = \kappa(t)$ העקמומיות בנקודה אכן קיימת, וש־$v' = \kappa n$.
+	נזכיר כי טענה זו נובעת מהעובדה ש־$\lVert v' \rVert = 1$ ולכן $v' \perp v$ מהעובדה שהפרמטריזציה היא לפי אורך.
+
+	נבחין שגם $\lVert v \rVert = 1, \lVert n \rVert = 1$ ולכן $\lVert b \rVert = 1 \cdot 1 - | v \cdot n | = 1$, וכן $v \cdot b = 0$ ולכן ניתן להסיק של־$b'$ יש רק רכיב אורתוגונלי.
+	נקבל שגם $(v \cdot b)' = v' \cdot b + v \cdot b' = 0$ אבל $v' \cdot b = n \cdot b \cdot |c''| = 0$ ולכן נסיק ש־$b' \cdot v = 0$, ובהתאם מתקיים $b' = - \tau n$ לאיזשהו $\tau = \tau(t)$.
+	נשים לב כי יכולנו להגדיר גם ללא המינוס.
+
+	מתקיים,
+	\[
+		0
+		= \begin{vmatrix}
+			v & n & b
+		\end{vmatrix}
+		= - \begin{vmatrix}
+			v & b & n
+		\end{vmatrix}
+		= \begin{vmatrix}
+			b & v & n
+		\end{vmatrix}
+	.\]
+	כלומר גם $n = b \wedge v$ ולכן מחוקי גזירה,
+	\[
+		n'
+		= b' \wedge v + b \wedge v'
+		= (-\tau n) \wedge v + b \wedge (\kappa n)
+		= -\tau (n \wedge v) + \kappa (b \wedge n)
+		= \tau b - \kappa v
+	.\]
+	כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+תהי $f : \EE^3 \to \EE^3$ העתקה אפינית שומרת מרחק וכיוון, כלומר $f(x) = Ax + b$ עבור $A \in SO_3(\RR)$ ו־$b \in \RR^3$. \\
+נראה ש־$f \circ c$ ו־$c$ בעלות עקמומיות ופיתול משותפים.
+\begin{proof}
+	נגזור את $f \circ c$ ונסמן ב־$v_1$,
+	\[
+		v_1
+		= (f \circ c)'
+		= (f' \circ c) \cdot c'
+		= A v
+	.\]
+	שכן $f' \equiv A$.
+	בהתאם גם $(f \circ c)'' = A v'$ ולכן אם נסמן $n_1, b_1$ הנורמל והבי־נורמל של $f \circ c$ אז נקבל,
+	\[
+		n_1
+		= \frac{A v'}{|A v'|}
+		= \frac{A v'}{|v'|}
+		= A n
+	.\]
+	נסמן עתה גם $\kappa_1, \tau_1$ העקמומיות והפיתול של $f \circ c$ ונקבל,
+	\[
+		v_1' = \kappa_1 n_1
+		\iff A v' = \kappa_1 A n
+		\iff v' = \kappa_1 n
+	.\]
+	ונסיק ש־$\kappa = \kappa_1$.
+	
+	נעבור לבדיקה של $b_1$,
+	\[
+		b_1
+		= v_1 \wedge n_1
+		= (A v) \wedge (A n)
+	.\]
+	כלומר,
+	\[
+		0
+		= \begin{vmatrix}
+			A v & A n & b_1
+		\end{vmatrix}
+		= A \begin{vmatrix}
+			v & n & A^{-1} b_1
+		\end{vmatrix}
+	.\]
+	כאשר המעבר האחרון נובע ישירות מהגדרת העתקות לינאריות בהצגה מטריצאלית.
+	נשתמש בהפיכות $A$ כדי להסיק,
+	\[
+		A \begin{vmatrix}
+			v & n & A^{-1} b_1
+		\end{vmatrix}
+		= \begin{vmatrix}
+			v & n & A^{-1} b_1
+		\end{vmatrix}
+		= \begin{vmatrix}
+			v & n & b
+		\end{vmatrix}
+	.\]
+	ונקבל ש־$b_1 = A b$ ולכן,
+	\[
+		b_1' = - \tau_1 n_1
+		\iff A b' = - \tau_1 A n
+	.\]
+	ונסיק ש־$\tau_1 = \tau$ כפי שרצינו.
+\end{proof}
+נבחין שאם $f$ משנה כיוון אז לא נוכל לבצע את המעבר $-\tau A n = A (-\tau n)$, ונקבל בהתאם שהעקמומיות והפיתול משנים גם הם סימן.
+
+\subquestion{}
+נראה ש־$c(I)$ ניתנת לשיכון במישור אם ורק אם $\tau = 0$.
+\begin{proof}
+	נניח ש־$c(I)$ ניתנת לשיכון במישור, בלי הגבלת הכלליות נוכל להניח ש־$c(I) \subseteq \EE^2 \times \{ 0 \}$, זאת תוך שימוש בסעיף הקודם והגדרת $A$ מתאימה.
+	בהתאם נובע ש־$v \subseteq \EE^2 \times \{ 0 \}$ אף היא, אחרת נקבל שקיים $t \in I$ כך ש־$c(t) \notin \RR^2 \times \{ 0 \}$.
+	אבל $v' = \kappa n$ ולכן $n$ אף היא משוכנת במישור, כלומר $n(I) \subseteq \RR^2 \times \{ 0 \}$, ובהתאם מהגדרה $b \subseteq \{ (0, 0, \pm 1) \}$ בלבד,
+	שהרי $(v, n, b)$ בסיס אורתונורמלי וגם $(v, n) \subseteq \RR^2 \times \{ 0 \}$ אורתונורמלי.
+	$b$ רציפה למרחב דיסקרטי סופי ולכן קבועה, ובפרט $b' \equiv 0$, אבל $b' = - \tau n$ ולכן $\tau \equiv 0$ בלבד.
+
+	נניח בכיוון ההפוך ש־$\tau \equiv 0$ ולכן $b' \equiv 0$ וגם $n' = - \kappa v$ בלבד, אבל גם $v' = \kappa n$.
+	נובע אם כך ש־$b$ הוא קבוע, נסמן $S \subseteq \RR^3$ המישור הווקטורי האנך ל־$b$ ונקבל ש־$v(I), n(I) \subseteq S$.
+	נניח בלי הגבלת הכלליות ש־$S = \RR^2 \times \{ 0 \}$, אם נסמן $c = {(c^1, c^2, c^3)}^t$ אז נקבל ש־$(c^3)' \equiv 0$, ולכן $c^3(I) = \{ P \}$ עבור $P \in \EE$, כלומר $c(I) \subseteq \EE^2 \times \{ P \}$.
+\end{proof}
+
+\subquestion{}
+יהי $c : I \to \EE^3$ עקום רגולרי כלשהו.
+נראה שמתקיים,
+\[
+	\kappa(t)
+	= \frac{|c'(t) \wedge c''(t)|}{{|c'(t)|}^3}
+.\]
+וכן שאם $c$ הוא בי־רגולרי אז גם,
+\[
+	\tau(t)
+	= \frac{\begin{vmatrix} c'(t) & c''(t) & c^{(3)}(t) \end{vmatrix}}{{| c'(t) \wedge c''(t) |}^2}
+.\]
+\begin{proof}
+	נגדיר רפרמטריזציה לפי אורך של $c$, $\tilde{c} : J \to \EE^3$, ונגדיר את הדיפאומורפיזם $\varphi : J \to I$ כך ש־$c \circ \varphi = \tilde{c}$.
+	בהתאם נובע ש־$\tilde{c}' = (c' \circ \varphi) \cdot \varphi'$ מכלל השרשרת.
+	$\tilde{c}$ היא פרמטריזציה לפי אורך ולכן,
+	\[
+		\tilde{v}' = \tilde{\kappa} \tilde{n}
+		\iff
+		\tilde{c}'' = \tilde{\kappa} \frac{\tilde{c}''}{|\tilde{c}''|}
+		\implies \tilde{\kappa} = \lVert \tilde{c}'' \rVert
+	.\]
+	אז נובע,
+	\[
+		\tilde{\kappa}
+		= \lVert \tilde{c}'' \rVert
+		= \lVert ((c' \circ \varphi) \cdot \varphi')' \rVert
+		= \lVert (c' \circ\varphi)' \varphi' + (c' \circ \varphi) \varphi'' \rVert
+		= \lVert (c'' \circ \varphi) {(\varphi')}^2 + (c' \circ \varphi) \varphi'' \rVert
+	.\]
+	אבל $\varphi' = \frac{1}{\lVert c' \circ \varphi \rVert}$ מהגדרתה ובהתאם $\varphi'' = \frac{- (c'' \circ \varphi) \varphi'}{{\lVert c' \circ \varphi\rVert}^2} = \frac{- (c'' \circ \varphi)}{{\lVert c' \circ \varphi\rVert}^3}$,
+	\[
+		\tilde{\kappa}
+		= \frac{| \lVert c'' \circ \varphi \rVert \lVert c' \circ \varphi \rVert - (c' \circ \varphi) (c'' \circ \varphi) |}{{\lVert c' \circ \varphi \rVert}^3}
+		= \frac{|c' \circ \varphi \wedge c'' \circ \varphi|}{{\lVert c' \circ \varphi \rVert}^3}
+	.\]
+	כאשר הזהות האחרונה הוכחה בתרגיל.
+
+	מסעיף א' $\tilde{b}' = - \tilde{\tau} \tilde{n}$.
+	נחשב,
+	\[
+		\tilde{b}'
+		= (\tilde{v} \wedge \tilde{n})'
+		= \tilde{v}' \wedge \tilde{n} + \tilde{v} \wedge \tilde{n}'
+		= \tilde{\kappa} \tilde{n} \wedge \tilde{n} + \tilde{v} \wedge (- \tilde{\kappa} \tilde{v} + \tilde{\tau} \tilde{b})
+		= \tilde{\kappa} (\tilde{n} \wedge \tilde{n}) - \tilde{\kappa} (\tilde{v} \wedge \tilde{v}) + \tilde{\tau} (\tilde{v} \wedge \tilde{b})
+		= \tilde{\tau} (\tilde{v} \wedge \tilde{b})
+	.\]
+
+	אם הפרמטריזציה היא לפי אורך אז,
+	\[
+		-\tau n = b'
+		\iff \tau n \cdot n
+		= -n \cdot b'
+		= -n (v \wedge n)'
+		= -n (v' \wedge n + v \wedge n')
+		= 0 - n (v \wedge n')
+	.\]
+	כלומר $\tau = -n \cdot (v \wedge n')$.
+	אז,
+	\begin{align*}
+		\tau
+		& = -\frac{c''}{\lVert c'' \rVert} \left(c' \times \left(\frac{c''}{\lVert c'' \rVert}\right)'\right) \\
+		& = -\frac{c''}{\lVert c'' \rVert} \left(c' \times \left( \frac{1}{\lVert c'' \rVert} c''' - \frac{\lVert c'' \rVert'}{{\lVert c'' \rVert}^2} c'' \right) \right) \\
+		& = -\frac{c''}{\lVert c'' \rVert} \left(c' \times \left( \frac{1}{\lVert c'' \rVert} c''' - \frac{\lVert c'' \rVert'}{{\lVert c'' \rVert}^2} c'' \right) \right) \\
+		& \overset{(1)}{=} -\frac{c''}{\lVert c'' \rVert} \left(c' \times \left( \frac{1}{\lVert c'' \rVert} c''' \right) \right) \\
+		& = -\frac{c''}{{\lVert c'' \rVert}^2} (c' \times c''') \\
+		& = \frac{(c' \times c'') \cdot c'''}{{\lVert c'' \rVert}^2} \\
+		& \overset{(2)}{=} \frac{(c' \times c'') \cdot c'''}{{\lVert c' \wedge c'' \rVert}^2} \\
+		& \overset{(3)}{=} \frac{\begin{vmatrix} c' & c'' & c''' \end{vmatrix}}{{\lVert c' \wedge c'' \rVert}^2}
+	.\end{align*}
+	כאשר,
+	\begin{enumerate}
+		\item $c'' \cdot (c' \times c'') = 0$
+		\item מהנוסחה הראשונה וההנחה שהפרמטריזציה לפי אורך
+		\item זהות
+	\end{enumerate}
+	וקיבלנו שהנוסחה נכונה למקרה זה.
+
+	נעבור למקרה הכללי, נניח ש־$\tilde{c} = c \circ \varphi$ רפרמטריזציה לפי אורך, ולכן,
+	\[
+		\tilde{\tau}
+		= \frac{\begin{vmatrix} \tilde{c}' & \tilde{c}'' & \tilde{c}''' \end{vmatrix}}{{\lVert \tilde{c}' \wedge \tilde{c}'' \rVert}^2}
+		= \frac{(\tilde{c}' \times \tilde{c}'') \cdot \tilde{c}'''}{{\lVert (c \circ \varphi)' \wedge (c \circ \varphi)'' \rVert}^2}
+	.\]
+	נזכור כי מצאנו שמתקיים $(c \circ \varphi)' = (c' \circ \varphi) \varphi', \qquad (c \circ \varphi)'' = (c'' \circ \varphi) {(\varphi')}^2 + (c' \circ \varphi) \varphi''$ ולכן,
+	\[
+		(c \circ \varphi)'''
+		= (c''' \circ \varphi) {(\varphi')}^3 + (c'' \circ \varphi) 2 \varphi' \varphi'' + (c'' \circ \varphi) \varphi' \varphi'' + (c' \circ \varphi) \varphi'''
+		= (c''' \circ \varphi) {(\varphi')}^3 + 3 (c'' \circ \varphi) \varphi' \varphi'' + (c' \circ \varphi) \varphi'''
+	.\]
+	ובהתאם נחשב,
+	\[
+		\tilde{c}' \wedge \tilde{c}''
+		= (c \circ \varphi)' \wedge (c \circ \varphi)''
+		= (c' \circ \varphi) \varphi \wedge ((c'' \circ \varphi) {(\varphi')}^2 + (c' \circ \varphi) \varphi'')
+		= {(\varphi')}^3 (c' \circ \varphi) \wedge (c'' \circ \varphi)
+	.\]
+	ולכן גם,
+	\[
+		(\tilde{c}' \times \tilde{c}'') \cdot \tilde{c}'''
+		= {(\varphi')}^3 ((c' \circ \varphi) \wedge (c'' \circ \varphi)) \cdot ((c''' \circ \varphi) {(\varphi')}^3 + 3 (c'' \circ \varphi) \varphi' \varphi'' + (c' \circ \varphi) \varphi''')
+		= {(\varphi')}^6 ((c' \circ \varphi) \wedge (c'' \circ \varphi)) \cdot (c''' \circ \varphi)
+	.\]
+	נציב,
+	\[
+		\tau \circ \varphi
+		= \frac{(\tilde{c}' \times \tilde{c}'') \cdot \tilde{c}'''}{{\lVert (c \circ \varphi)' \wedge (c \circ \varphi)'' \rVert}^2}
+		= \frac{{(\varphi')}^6 ((c' \circ \varphi) \wedge (c'' \circ \varphi)) \cdot (c''' \circ \varphi)}{{(\varphi')}^{2 \cdot 3} {\lVert (c' \circ \varphi) \wedge (c'' \circ \varphi) \rVert}^2}
+	.\]
+	וקיבלנו שהטענה נכונה גם במקרה הכללי.
+\end{proof}
+
+\question{}
+נניח ש־$S \subseteq \EE^3$ משטח רגולרי ו־$f : U \to S$ פרמטריזציה מקומית ל־$p \in S$, ונניח ש־$f(u) = p$.
+יהיו $c, d : I \to S$ עקומים רגולריים ונסמן $c = f \circ \gamma, d = f \circ \phi$, כאשר $\gamma(0) = \phi(0) = u$.
+
+\subquestion{}
+נראה ש־$f$ היא קונפורמית אם ורק אם $E = G, F = 0$, כאשר$E, F, G$ מקדמי התבנית היסודית הראשונה $I$.
+\begin{proof}
+	נגדיר את הזווית בין שני העקומים ב־$u$ על־ידי הזווית של $\gamma'(0), \phi'(0)$, זווית זו מוגדרת להיות $\cos \theta = $
+\end{proof}
+
+\end{document}
