@@ -594,6 +594,297 @@
 \end{solution}
 
 \question{}
-TODO
+יהיו $0 < r < R$ ויהי המשטח הפרמטרי $\varphi : {(0, 2 \pi)}^2 \to \EE^3$ המוגדר על־ידי,
+\[
+	\varphi(\theta, \phi)
+	= ((R + r \cos \phi) \cos \theta, (R + r \cos \phi) \sin \theta, r \sin \phi)
+.\]
+נסמן את הטורוס הנוצר על־ידי הפרמטריזציה ב־$T = \varphi({(0, 2 \pi)}^2)$.
+
+\subquestion{}
+נחשב את מקדמי התבנית היסודית השנייה.
+\begin{solution}
+	מצאנו את ערך הנגזרת והתבנית היסודית הראשונה של הטורוס בשאלה 5,
+	\[
+		D \varphi |_{(\theta, \phi)}
+		= \begin{pmatrix}
+			- (R + r \cos \phi) \sin \theta & - r \sin \phi \cos \theta \\
+			(R + r \cos \phi) \cos \theta & -r \sin \phi \sin \theta \\
+			0 & r \cos \phi
+		\end{pmatrix}
+	\]
+	וכן,
+	\[
+		I
+		= \begin{pmatrix}
+			{(R + r \cos \phi)}^2 & 0 \\
+			0 & r^2
+		\end{pmatrix}
+	.\]
+	וכן
+	ונחשב גם את הנורמל,
+	\[
+		n(u)
+		= \frac{D_1 f(u) \wedge D_2 f(u)}{| D_1 f(u) \wedge D_2 f(u) |}
+	.\]
+	ולכן נחשב את $D_1 f(u) \wedge D_2 f(u)$,
+	\[
+		D_1 f(u) \wedge D_2 f(u)
+		= \begin{pmatrix}
+			r (R + r \cos \phi) \cos \phi \cos \theta \\
+			r (R + r \cos \phi) \cos \phi \sin \theta \\
+			r (R + r \cos \phi) \sin \phi
+		\end{pmatrix}
+	.\]
+	נבחין שדילגנו על שלב הפישוט לצורך הקריאות.
+	בהתאם גם,
+	\[
+		|D_1 f(u) \wedge D_2 f(u)|
+		= r(R + r \cos \phi) \sqrt{\cos^2 \phi \cos^2 \theta + \cos^2 \phi \sin^2 \theta + \sin^2 \phi}
+		= r(R + r \cos \phi)
+	.\]
+	ולכן נקבל,
+	\[
+		n(\theta, \phi)
+		= \begin{pmatrix}
+			\cos \phi \cos \theta \\
+			\cos \phi \sin \theta \\
+			\sin \phi
+		\end{pmatrix}
+	.\]
+	וכן,
+	\[
+		D_1 n
+		= \begin{pmatrix}
+			- \cos \phi \sin \theta \\
+			\cos \phi \cos \theta \\
+			0
+		\end{pmatrix},
+		\qquad
+		D_2 n
+		= \begin{pmatrix}
+			- \sin \phi \cos \theta \\
+			- \sin \phi \sin \theta \\
+			\cos \phi
+		\end{pmatrix}
+	.\]
+	נעבור לחישוב מקדמי התבנית היסודית השנייה,
+	\begin{align*}
+		& L
+		= - D_1 f \cdot D_1 n
+		= - (R + r \cos \phi) \sin \theta \cos \phi \sin \theta - (R + r \cos \phi) \cos \theta \cos \phi \cos \theta
+		= - (R + r \cos \phi) \cos \phi \\
+		& M
+		= - D_1 f \cdot D_2 n
+		= (R + r \cos \phi) \sin \theta \sin \phi \cos \theta - (R + r \cos \phi) \cos \theta \sin \phi \sin \theta + 0
+		= 0 \\
+		& N
+		= - D_2 f \cdot D_2 n
+		= - r \sin^2 \phi \cos^2 \theta - r \sin^2 \phi \sin^2 \theta - r \cos^2 \phi
+		= - r \sin^2 \phi - r \cos^2 \phi
+		= - r
+	.\end{align*}
+	כלומר מצאנו שמתקיים,
+	\[
+		I\!I
+		= \begin{pmatrix}
+			- (R + r \cos \phi) \cos \phi & 0 \\
+			0 & -r
+		\end{pmatrix}
+	.\]
+\end{solution}
+
+\subquestion{}
+נחשב את עקמומיות גאוס ואת העקמומיות הממוצעת.
+\begin{solution}
+	נחשב את עקמומיות גאוס תוך שימוש בנוסחה שהוצגה והתבנית השנייה,
+	\[
+		K
+		= \frac{\det I}{\det I\!I}
+		= \frac{r (R + r \cos \phi) \cos \phi}{r^2 {(R + r \cos \phi)}^2}
+		= \frac{\cos \phi}{r (R + r \cos \phi)}
+	.\]
+	נחשב את העקמומיות הממוצעת באופן דומה,
+	\[
+		\frac{1}{2} \tr(I\!I \cdot I^{-1})
+		= \frac{1}{2} \tr \begin{pmatrix}
+			- (R + r \cos \phi) \cos \phi & 0 \\
+			0 & -r
+		\end{pmatrix}
+		\begin{pmatrix}
+			{(R + r \cos \phi)}^{-2} & 0 \\
+			0 & r^{-2}
+		\end{pmatrix}
+		= -\frac{1}{2} \left(\frac{\cos \phi}{R + r \cos \phi} + \frac{1}{r}\right)
+	.\]
+\end{solution}
+
+\subquestion{}
+נמצא נקודות על הטורוס שבהן עקמומיות גאוס מקיימת $K > 0, K = 0, K < 0$.
+\begin{solution}
+	נשתמש בערך המפורש שמצאנו בסעיף הקודם,
+	\[
+		K = 0
+		\iff \frac{\cos \phi}{r (R + r \cos \phi)} = 0
+		\iff \cos \phi = 0
+	.\]
+	ולכן $\phi = \frac{\pi}{2}$ מקיים את הטענה, נבחר $(\pi, \frac{\pi}{2})$ כנקודה בה העקמומיות היא אפס, נבחין כי יכולנו להגיע לתוצאה זו גם באופן גאומטרי לגמרי, זו נקודה שנמצאת בדיוק במגע שבין טורוס לרצפה, שם העקמומיות מאוזנת.
+
+	נסיק מהחישוב הקודם שגם $K < 0 \iff \cos \phi < 0$ ונבחר את הנקודה $(\pi, \pi)$, זוהי נקודה בחלק הפנימי של הטורוס.
+	לבסוף גם נבחר $(\pi, \frac{\pi}{3})$ כנקודה בה מתקיים $K > 0$, זוהי נקודה בחלק החיצוני של הטורוס.
+\end{solution}
+
+\question{}
+תהי $n : U \to S^2$ העתקת גאוס של $f : U \to \EE^3$, המוגדרת על־ידי,
+\[
+	n = \frac{D_1 f \wedge D_2 f}{| D_1 f \wedge D_2 f |}
+.\]
+ונגדיר $W : T_p S \to T_p S$ על־ידי,
+\[
+	W(D_i f)
+	= -D_i n
+.\]
+עבור $i \in \{1, 2\}$.
+
+\subquestion{}
+נראה ש־$W$ הוא אופרטור צמוד לעצמו של $T_p S$, כלומר,
+\[
+	I_p(W(u), v)
+	= I_p(u, W(v))
+.\]
+לכל $u, v \in T_p S$.
+\begin{proof}
+	נסמן $u = D |_p f (u_x, u_y), v = D |_p f (v_x, v_y)$ ולכן,
+	\[
+		W(u)
+		= W(D |_p f (u_x, u_y))
+		= - D |_p n (u_x, u_y)
+	.\]
+	ולכן גם,
+	\[
+		W(v)
+		= - D |_p n (v_x, v_y)
+	.\]
+	ולכן,
+	\begin{align*}
+		I_p(W(u), v)
+		& = \langle W(u), v \rangle \\
+		& = \langle - D |_p n (u_x, u_y), D |_p f (v_x, v_y) \rangle \\
+		& = \langle -D_1 n(u_x), D_1 f(v_x) \rangle + \langle -D_2 n(u_y), D_1 f(v_x) \rangle + \langle -D_1 n(u_x), D_2 f(v_y) \rangle + \langle -D_2 n(u_y), D_2 f(v_y) \rangle \\
+		& = u_x v_x \langle -D_1 n, D_1 f \rangle + u_y v_x \langle -D_2 n, D_1 f \rangle + u_x v_y \langle -D_1 n, D_2 f \rangle + u_y v_y \langle -D_2 n, D_2 f \rangle \\
+		& = u_x v_x \langle D_1 f, -D_1 n \rangle + u_y v_x \langle D_2 f, -D_1 n \rangle + u_x v_y \langle D_1 f, -D_2 n \rangle + u_y v_y \langle D_2 f, -D_2 n \rangle \\
+		& = \langle - D |_p f (u_x, u_y), D |_p n (v_x, v_y) \rangle \\
+		& = \langle u, W(v) \rangle \\
+		& = I_p(u, W(v))
+	\end{align*}
+	וקיבלנו שהטענה אכן נכונה.
+\end{proof}
+
+\subquestion{}
+נראה כי לכל $u, v \in T_p S$ מתקיים,
+\[
+	I\!I_p(u, v)
+	= I_p(W(u), v)
+	= I_p(u, W(v))
+.\]
+\begin{proof}
+	מספיק להראות את הטענה לכל איבר בנפרד, נסמן,
+	\[
+		I\!I_p
+		= \begin{pmatrix}
+			L & M \\
+			M & N
+		\end{pmatrix},
+		\qquad
+		I_p
+		= \begin{pmatrix}
+			E & F \\
+			F & G
+		\end{pmatrix}
+	.\]
+	ולכן נרצה להראות שמתקיים,
+	\[
+		L(u, v) = E(W(u), v),
+		\quad
+		M(u, v) = F(W(u), v),
+		\quad
+		N(u, v) = G(W(u), v)
+	.\]
+	נשים לב כי $\langle n, D_i f \rangle = 0$ מהגדרת $n$ כאנך של המישור המשיק, אם נגזור את הביטוי נקבל,
+	\[
+		D_j \langle n, D_i f \rangle = D_j 0 = 0
+	.\]
+	אז תוך שימוש בנגזרת מכפלה נקבל,
+	\[
+		D_j \langle n, D_i f \rangle
+		= \langle D_j n, D_i f \rangle + \langle n, D_j D_i f \rangle = 0
+		\implies \langle D_j n, D_i f \rangle = - \langle n, D_j D_i f \rangle
+	.\]
+	עבור $i, j \in \{1, 2\}$.
+	עבור בחירת $i = 1, j = 1$ נקבל,
+	\[
+		E(W( \cdot ), \cdot )
+		= \langle D_1 n, D_1 f \rangle
+		= \langle n, D_1^2 f \rangle
+		= L
+	.\]
+	כלומר מצאנו שהטענה מתקיימת עבור $E, L$, ותוך שימוש בשוויון זה נוכל להסיק את הטענה לכל שאר המקדמים גם כן.
+\end{proof}
+
+\subquestion{}
+נראה כי המטריצה אשר מייצגת את $W$ בבסיס $(D_1 f, D_2 f)$ היא,
+\[
+	{[W]}_{(D_1 f, D_2 f)}
+	= \begin{pmatrix}
+		E & F \\
+		F & G
+	\end{pmatrix}^{-1}
+	\begin{pmatrix}
+		L & M \\
+		M & N
+	\end{pmatrix}
+.\]
+\begin{proof}
+	בסעיף הקודם מצאנו שמתקיים,
+	\[
+		\begin{pmatrix}
+			L & M \\
+			M & N
+		\end{pmatrix}
+		= \begin{pmatrix}
+			E & F \\
+			F & G
+		\end{pmatrix}
+		\begin{pmatrix}
+			W(D_1 f) \\
+			W(D_2 f)
+		\end{pmatrix}
+		\implies
+		\begin{pmatrix}
+			E & F \\
+			F & G
+		\end{pmatrix}^{-1}
+		\begin{pmatrix}
+			L & M \\
+			M & N
+		\end{pmatrix}
+		= \begin{pmatrix}
+			W(D_1 f) \\
+			W(D_2 f)
+		\end{pmatrix}
+	.\]
+	כאשר השתמשנו בחיוביות בהחלט של $I$ במעבר האחרון.
+\end{proof}
+
+\subquestion{}
+יהי $(e_1, e_2)$ בסיס אורתונורמלי של $W$ ונניח שהוא מקבל את הערכים העצמיים $(\kappa_1, \kappa_2)$ בהתאמה.
+נראה שלכל $u = e_1 \cos \theta + e_2 \sin \theta \in T_p S$ מתקיים,
+\[
+	\kappa_{\operatorname{normal}}(u)
+	= \kappa_1 \cos^2 \theta + \kappa_2 \sin^2 \theta
+.\]
+\begin{proof}
+	TODO
+\end{proof}
 
 \end{document}
