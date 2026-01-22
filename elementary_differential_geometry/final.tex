@@ -884,7 +884,172 @@
 	= \kappa_1 \cos^2 \theta + \kappa_2 \sin^2 \theta
 .\]
 \begin{proof}
-	TODO
+	נראה את הטענה בשתי דרכים. הדרך הראשונה היא גאומטרית, אנו יודעים שהתבנית היסודית השנייה מייצגת עקמומיות בנקודה, ואם נשתמש במעבר מדיפרנציאל להצגה כיוונית נקבל בדיוק את הגדרת הנורמל,
+	כלומר,
+	\[
+		\kappa_n(u)
+		= I\!I(u)
+		= I(W(u), u)
+		\tag{1}
+	.\]
+	מתקיים על־פי ההנחה,
+	\[
+		W(e_1)
+		= \kappa_1 e_1,
+		\qquad
+		W(e_2)
+		= \kappa_2 e_2
+	.\]
+	ולכן מלינאריות $W$ גם,
+	\[
+		W(u)
+		= \kappa_1 \cos \theta + \kappa_2 \sin \theta
+	.\]
+	ולכן תוך שימוש בשוויון $(1)$ מתקבל,
+	\[
+		\kappa_n(u)
+		= \langle \kappa_1 e_1 \cos \theta + \kappa_2 e_2 \sin \theta, e_1 \cos \theta + e_2 \sin \theta \rangle
+		= \kappa_1 e_1 e_1 \cos^2 \theta + (\kappa_1 + \kappa_2) e_1 e_2 \sin \theta \cos \theta + \kappa_2 e_2 e_2 \sin^2 \theta
+	.\]
+	אבל $(e_1, e_2)$ בסיס אורתונורמלי ולכן נקבל,
+	\[
+		\kappa_n(u)
+		= \kappa_1 \cos^2 \theta + \kappa_2 \sin^2 \theta
+	.\]
+	וקיבלנו את נכונות הטענה.
+
+	כמובטח, נעבור לדרך השנייה, היא למעשה הבסיס לדרך הראשונה.
+	הגדרנו את הנורמל לעקומה כנורמל $\kappa_n(u)$ העקום הנוצר מחיתוך המשטח עם המישור האפיני הנוצר על־ידי $n$ ו־$u$.
+	אילו נגדיר $c : I \to S$ עקום עם פרמטריזציה לפי אורך בהתאם נקבל שאם $c(0) = p$ אז $c'(0) = u$ ולכן גם $c' \cdot n = 0$, כלומר $n$ מתלכד עם $c''$.
+	אז $c'' = \kappa_n n$ ותוך שימוש בפיתוח טיילור שראינו בכיתה נוכל להסיק שאכן $\kappa_n = I\!I(u)$ בדיוק.
+\end{proof}
+
+\subquestion{}
+נניח ש־$\kappa_1 \ge \kappa_2$ ונסיק שאלו הם ערכי העקמומיות המקסימלית והמינימלית בהתאמה.
+\begin{proof}
+	נבחין כי מהסעיף הקודם קיימת התאמה בין זוויות ווקטורים הנורמליים ב־$T_p S$, לכן מספיק לבחון אותם.
+	נגדיר את,
+	\[
+		h(\theta) = \kappa_n(u(\theta)) = \kappa_n(e_1 \cos \theta + e_2 \sin \theta) = \kappa_1 \cos^2 \theta + \kappa_2 \sin^2 \theta
+	\]
+	נבחין כי בהתאם להגדרתה $h$ מקבלת כל ערך עקמומיות נורמלית ולכן מספיק לחקור אותה כפונקציה $h : [0, 2 \pi] \to \RR$.
+	בנוסף זוהי פונקציה $\pi$־מחזורית ולכן נבדוק רק את התחום $[0, \pi]$.
+	נגזור ונקבל,
+	\[
+		h'(\theta)
+		= -2 \kappa_1 \cos \theta \sin \theta + 2 \kappa_2 \sin \theta \cos \theta
+		= \sin(2 \theta) (\kappa_2 - \kappa_1)
+	.\]
+	ולכן $h' = 0 \iff \theta = 0, \frac{\pi}{2}$ ומבדיקה ישירה נקבל ש־$\theta = 0$ מקסימום ובה מתקבל $h(0) = \kappa_1$ וכן $\theta = \frac{\pi}{2}$ מינימום ושם $h(\frac{\pi}{2}) = \kappa_2$. \\
+	נסיק ש־$\kappa_1, \kappa_2$ הן העקמומיויות הראשיות וכן $e_1, e_2$ הכיוונים הראשיים.
+\end{proof}
+
+\subquestion{}
+נגדיר את עקמומיות גאוס $K$ להיות המכפלה $\kappa_1 \cdot \kappa_2$ עבור העקמומיויות הראשיות.
+נגדיר את העקמומיות הממוצעת $H = \frac{\kappa_1 + \kappa_2}{2}$. \\
+נסיק שמתקיים,
+\[
+	K = \det\left(
+	\begin{pmatrix}
+		E & F \\
+		F & G
+	\end{pmatrix}^{-1}
+	\begin{pmatrix}
+		L & M \\
+		M & N
+	\end{pmatrix}
+	\right)
+	= \frac{LN - M^2}{EG - F^2}
+.\]
+וכן,
+\[
+	H
+	= \frac{1}{2} \tr\left(
+	\begin{pmatrix}
+		E & F \\
+		F & G
+	\end{pmatrix}^{-1}
+	\begin{pmatrix}
+		L & M \\
+		M & N
+	\end{pmatrix}
+	\right)
+	= \frac{1}{2} \cdot \frac{LG - 2MF + NE}{EG - F^2}
+.\]
+\begin{proof}
+	ניזכר בטענה מלינארית 1, אם $M \in M_2(\RR)$ לכסינה עם $\lambda_1, \lambda_2$ ערכים עצמיים, אז מתקיים $\det M = \lambda_1 \cdot \lambda_2$,
+	בפרט אם $T \in \aut(\RR^2)$ אופרטור לינארי ו־$M$ מטריצת הייצוג שלו באיזשהו בסיס, אז $\det M$ עדיין מקיימת את הטענה.
+	מצאנו שבבסיס $(D_1 f, D_2 f)$ המטריצה המייצגת של $W$ היא,
+	\[
+		J
+		= \begin{pmatrix}
+			E & F \\
+			F & G
+		\end{pmatrix}^{-1}
+		\begin{pmatrix}
+			L & M \\
+			M & N
+		\end{pmatrix}
+	.\]
+	וכן מצאנו בסעיף הקודם ש־$K = \kappa_1 \kappa_2$ היא מכפלת הערכים העצמיים, ולכן,
+	\[
+		K
+		= \det J
+	.\]
+	נעבור לחישוב נוסחה ישירה,
+	\[
+		K
+		= \det J
+		= \det \begin{pmatrix}
+			E & F \\
+			F & G
+		\end{pmatrix}^{-1}
+		\det \begin{pmatrix}
+			L & M \\
+			M & N
+		\end{pmatrix}
+		= \frac{LN - M^2}{EG - F^2}
+	.\]
+	כאשר השתמשנו בכפליות הדטרמיננטה ודטרמיננטת מטריצה הופכית.
+	
+	נעבור לעקמומיות הממוצעת.
+	עוד טענה מלינארית היא ש־$\tr(M) = \lambda_1 + \lambda_2$, כלומר העקבה היא תמיד סכום הערכים העצמיים, לכן,
+	\[
+		H
+		= \frac{1}{2} (\kappa_1 + \kappa_2)
+		= \frac{1}{2} \tr J
+	.\]
+	וקיבלנו את המבוקש.
+	נשתמש בנוסחה ידועה למטריצה הופכית מסדר $2$ ונקבל,
+	\begin{align*}
+		\frac{1}{2} \tr J
+		& = \frac{1}{2} \tr \left( \frac{1}{EG - F^2} \begin{pmatrix}
+				G & -F \\
+				-F & E
+			\end{pmatrix}
+			\begin{pmatrix}
+				L & M \\
+				M & N
+			\end{pmatrix}
+		\right) \\
+		& = \frac{1}{2} \frac{1}{EG - F^2} \tr
+		\begin{pmatrix}
+			GL - FM & GM - FN \\
+			-FL + LE & -FM + EN
+		\end{pmatrix} \\
+		& = \frac{1}{2} \frac{LG - 2MF + NE}{EG - F^2}
+	.\end{align*}
+	וקיבלנו את המבוקש.
+\end{proof}
+
+\subquestion{}
+נראה שאם התבנית היסודית השנייה מתאפסת בכל נקודה אז המשטח הוא חלק ממישור.
+\begin{proof}
+	יהי משטח $S$ ו־$f : U \to S$ פרמטריזציה מקומית לפי מרחק שלו.
+	יהי עקום $c : I \to S$ המשוכן ב־$f(U)$, לכן לכל נקודה בו מתקיים $\kappa = \kappa_n = 0$ מההנחה.
+	אבל $\kappa = \lVert c'' \rVert$ ולכן $c'' \equiv 0$ ולכן $c' \equiv \alpha$ קבועה כך ש־$\alpha \in S^2$, שהרי $c$ היא לפי אורך.
+	בהתאם קיבלנו ש־$c(t) = P + \alpha (t - t_0)$ עבור $c(t_0) = P \in f(U) \subseteq S$ ו־$t_0 \in I$.
+	כלומר קיבלנו ש־$c(I)$ ישר ולכן משאלה 1 סעיף ב' נקבל שמקומית $S$ היא תת־יריעה אפינית ממימד 2, כלומר $S$ משוכנת במישור.
 \end{proof}
 
 \end{document}
