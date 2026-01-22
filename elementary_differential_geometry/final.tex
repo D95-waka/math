@@ -18,52 +18,88 @@
 \[
 	S'
 	= \left\{ \sum_{i = 1}^n \lambda^i P_i \mid \sum_{i}^n \lambda^i = 1, P_1, \ldots, P_n \in S \right\}
-.\]
+\]
 \begin{proof}
-	מהגדרת תת־יריעה נניח ש־$S' = Q + W$ עבור $Q \in E$ ו־$W \le E$ תת־מרחב וקטורי.
-	ממשפט מהכיתה נוכל לקבע $Q = P_i$ לאיזשהו $i$, בלי הגבלת הכלליות נניח ש־$Q = P_1$.
-	נבחין ש־$P_i - P_1 \in W$ לכל $1 < i \le n$, יהי וקטור $\lambda^2 (P_2 - P_1) + \cdots + \lambda^n (P_n - P_1) \in W$, אז גם $L = P_1 + \lambda^2 (P_2 - P_1) + \cdots + \lambda^n (P_n - P_1) \in S'$.
-	עתה נקבל ממשפט אינווריאנטיות לבחירת נקודת יחוס שגם $L = P_0 + (1 - (\lambda_2 + \cdots + \lambda_n)) P_1 + \lambda^2 P_2 + \cdots + \lambda^n P_n$, נגדיר $\lambda^1 = 1 - (\lambda^2 + \cdots + \lambda^n)$.
-	קיבלנו שמתקיים $\lambda^1 + \cdots + \lambda^n = 1$ וכן $L = \sum_{i = 1}^n \lambda^i P_i$ ולכן קיבלנו הכלה בכיוון אחד.
+	נראה הכלה דו־כיוונית, נניח תחילה ש־$P = \lambda^1 P_1 + \cdots + \lambda^n P_n$ עבור $P_1, \ldots, P_n \in S, \lambda^1 + \cdots + \lambda^n = 1$, ונראה ש־$P \in S'$.
+	נבחר $Q \in S$ שונה מ־$P_1, \ldots, P_n$, אם אין כזאת אז בכל מקרה סיימנו, ממשפט אינווריאנטיות לצירוף אפיני נקבל,
+	\[
+		P
+		= Q + \lambda^1 (P_1 - Q) + \cdots + \lambda^n (P_n - Q)
+	\]
+	ולכן קיבלנו שמהגדרת $S' = Q + W$ עבור $W \le E$ אכן $P \in S'$.
 
-	בכיוון ההפוך נניח ש־$P = \sum_{i = 1}^n \lambda^i P_i$ עבור סקלרים מתאימים ונקבל ישירות משימוש בצד השני שבחירת הנקודה $u = \lambda^2 (P_2 - P_1) + \cdots + \lambda^n (P_n - P_1)$ מקיים $u \in W$ ולכן $P = P_1 + u \in S'$.
+	לכיוון ההפוך נראה שאם $P \in S'$ אז קיימות $P_1, \ldots, P_n, \lambda^1 + \cdots + \lambda^n = 1$ המקיימות $P = \lambda^1 P_1 + \cdots + \lambda^n P_n$.
+	נקבע נקודה שרירותית $Q \in S$ וכן נסמן שוב $S' = Q + W$, נניח ש־$\dim W = n$ ולכן קיימות $P_1, \ldots, P_n \in S$ כך ש־$((P_1 - Q), \ldots, (P_n - Q)) \subseteq W$ בסיס שלו.
+	נבחין כי אם $Q \in \{P_1, \ldots, P_n\}$ אז המרחב סופי ובפרט גם $P \in \{P_1, \ldots, P_n\}$ ולכן נוכל להניח אחרת. \\
+	עתה נקבל $P \in S' \iff P - Q \in W$ ולכן $P - Q = \alpha^1 (P_1 - Q) + \cdots + \alpha^n (P_n - Q)$ עבור $\alpha^1, \ldots, \alpha^n \in \FF$.
+	נסיק,
+	\[
+		P
+		= (P - Q) + Q
+		= Q + \alpha^1 (P_1 - Q) + \cdots + \alpha^n (P_n - Q)
+	\]
+	נסמן נקודה נוספת $P_{n + 1} \in S$ (שוב נניח שיש כזו אחרת סיימנו) ונבנה את מערכת המשוואות,
+	\[
+		\lambda^1 + \cdots + \lambda^{n + 1} = 1,
+		\quad
+		\sum_{i = 1}^{n + 1} \lambda^i (P_i - Q) = P - Q
+	\]
+	זוהי מערכת משוואות מדרגה מלאה ובשל קיום הצירוף $\alpha^1 P^1 + \cdots + \alpha^n P^n$ נסיק שיש פתרון למשוואה. \\
+	קיבלנו הכלה דו־כיוונית ולכן הטענה חלה.
 \end{proof}
 
 \subquestion{}
 נראה שאם $L \subseteq E$ קבוצת נקודות,
 אז $L$ תת־יריעה אפינית אם ורק אם לכל $P, Q \in L$ מתקיים $\langle P, Q \rangle \subseteq L$.
 \begin{proof}
-	נניח ש־$S$ תת־יריעה אפינית, אז בפרט מתקיים,
+	נניח ש־$L$ תת־יריעה אפינית, אז מהסעיף הקודם נובעת סגירות לצירופים אפיניים, בפרט לצירופים של שתי נקודות,
 	\[
-		\left\{ \sum_{i = 1}^2 \lambda^i P_i \mid \sum_{i}^2 \lambda^i = 1, P_1, P_2 \in S \right\}
-		\subseteq S
-	.\]
-	בפרט עבור $P, Q \in L$ נקבל ש־$\langle P, Q \rangle \subseteq L$.
+		\left\{ \sum_{i = 1}^2 \lambda^i P_i \mid \sum_{i}^2 \lambda^i = 1, P_1, P_2 \in L \right\}
+		\subseteq L
+	\]
+	עבור $P, Q \in L$ נקבל ש־$\langle P, Q \rangle \subseteq L$ כהגדרת קבוצה זו.
 
-	נניח את טענת הכיוון ההפוך.
-	תהי $P_0 \in L$ ונסמן $W = L - P_0$, נראה ש־$W \le V$.
-	יהי $u \in W$, ו־$\alpha \in \FF$, אז $\langle P_0, P_0 + u \rangle \subseteq L$ ולכן $\Sp\{ u \} \in L$ ונובע שגם $\alpha u \in L$.
-	נניח ש־$u, v \in W$ ונראה ש־$u + v \in W$.
-	נסמן $P_1 = P_0 + u$ וכן $P_2 = P_0 + v$, נקבל שגם $\langle P_1, P_2 \rangle \subseteq L$, כלומר $P_1 + (v - u) t \in L$, כלומר $P_0 + u + (v - u) t \in L$ ולכן $u + (v - u) t \in W$.
-	נבחר $t = -1$ ונקבל ש־$2u - v \in W$, ומסגירות לכפל בסקלר נקבל שגם $u + v \in W$ ולכן $W \le V$ תת־מרחב וקטורי כפי שרצינו.
+	נניח בכיוון ההפוך שלכל $P, Q \in L$ גם $\langle P, Q \rangle \subseteq L$. \\
+	תהי $P_0 \in L$ ונסמן $W = L - P_0$, נראה ש־$W \le V$ ובכך נקבל ש־$L$ תת־יריעה אפינית. \\
+	יהי $u \in W$, ו־$\alpha \in \FF$, אז $\langle P_0, P_0 + u \rangle \subseteq L$, אבל $\langle P_0, P_0 + u \rangle = P_0 + \Sp\{ u \}$ ולכן $\Sp\{ u \} \subseteq L$ ו־$\alpha u \in W$.
+	קיבלנו סגירות לכפל בסקלר, נעבור להראות סגירות לחיבור. \\
+	נניח ש־$u, v \in W$ וש־$\operatorname{char} \FF \ne 2$ ונראה ש־$u + v \in W$.
+	נסמן $P_1 = P_0 + u$ וכן $P_2 = P_0 + 2v$, נקבל שגם $\langle P_1, P_2 \rangle \subseteq L$, כלומר $P_1 + (2v - u) t \in L$ לכל $t \in \FF$, לכן גם $P_0 + u + (2v - u) t \in L$ ולכן $u + (v - u) t \in W$.
+	נבחר $t = \frac{1}{2}$ ונקבל ש־$u + \frac{1}{2} v - \frac{1}{2} u = \frac{1}{2}(u + v) \in W$, ומסגירות לכפל בסקלר שמצאנו נקבל שגם $u + v \in W$. \\
+	נסיק ש־$W$ הוא תת־מרחב לינארי, לכן $P_0 + W = L$ מרחב אפיני.
+
+	נעיר שדרשנו בהוכחה זו שמציין השדה יהיה שונה מ־$2$, נראה שהטענה לא חלה במקרה זה.
+	נגדיר $\FF = \FF_2$ וכן $E = V = \FF_2^2$, ולבסוף גם $L = \{ (0, 0), (1, 0), (0, 1) \}$ ונראה שלכל $P, Q \in E$ מתקיים $\langle P, Q \rangle \subseteq L$.
+	הבדיקה נעשית במעבר על כלל האפשרויות,
+	\begin{align*}
+		& \langle (0, 0), (1, 0) \rangle
+		= (0, 0) + \Sp\{ (1, 0) \}
+		= \{ (0, 0), (1, 0) \} \\
+		& \langle (0, 0), (0, 1) \rangle
+		= \{ (0, 0), (0, 1) \} \\
+		& \langle (1, 0), (0, 1) \rangle
+		= \{ (1, 0), (0, 1) \}
+	\end{align*}
+	וקיבלנו ש־$L$ אכן מקיימת את התנאי, נראה ש־$L$ היא לא תת־יריעה אפינית.
+	נניח בשלילה שהיא כן ולכן $L = (0, 0) + W = W$ עבור $W \le \FF^2$, כלומר בשל בחירת מרחב הנקודות נוכל לזהות את $L$ כמרחב לינארי, ובמקרה זה $(1, 0), (0, 1) \in W$ אבל $(1, 0) + (0, 1) = (1, 1) \notin W$ בסתירה.
 \end{proof}
 
 \question{}
-יהי $V$ מרחב וקטורי ממימד סופי מעל $\FF$.
+יהי $V$ מרחב וקטורי ממימד סופי מעל $\FF$ ו־$V^\vee$ המרחב הדואלי של $V$.
 
 \subquestion{}
 נראה שלכל $v \in V$ מתקיים,
 \[
 	\forall l \in V^\vee,\ 
 	\langle l, v \rangle = 0 \iff v = 0
-.\]
+\]
 \begin{proof}
 	נניח ש־$v = 0$ ויהי $l \in V^\vee$, כלומר $l : V \to \FF$ העתקה לינארית.
 	אז מתקיים $l(v) = 0$ מהגדרת ההעתקה הלינארית.
 
 	לכיוון ההפוך נניח שלכל $l \in V^\vee$ מתקיים $l(v) = 0$ ונניח בשלילה ש־$v \ne 0$.
 	נרחיב את $( v )$ לבסיס $\Bb = (v, b_2, \ldots, b_n)$ הפורש את $V$.
-	בהתאם קיימת העתקה לינארית $l : V \to \FF$ כך שמתקיים $l(v) = 1$, אבל $l \in V^\vee$ ולכן $\langle l, v \rangle = 0 \ne 1$ בסתירה.
+	בהתאם קיימת העתקה לינארית $l : V \to \FF$ כך שמתקיים $l(v) = l(b_i) = 1$, אבל $l \in V^\vee$ ולכן מההנחה $\langle l, v \rangle = 0 \ne 1$ בסתירה.
 \end{proof}
 
 \subquestion{}
@@ -122,7 +158,7 @@
 	\begin{pmatrix}
 		v \\ n \\ b
 	\end{pmatrix}
-.\]
+\]
 \begin{proof}
 	נבחין שהטענה שקולה לשוויון,
 	\[
@@ -135,7 +171,7 @@
 			- \kappa v + 0 + \tau b \\
 			0 - \tau n + 0
 		\end{pmatrix}
-	.\]
+	\]
 	כלומר הטענה שקולה לשוויונות,
 	\[
 		v' = \kappa n,
@@ -143,7 +179,7 @@
 		n' = - \kappa v + \tau b,
 		\qquad
 		b' = - \tau n
-	.\]
+	\]
 	ראינו בכיתה ש־$\kappa = \kappa(t)$ העקמומיות בנקודה אכן קיימת, וש־$v' = \kappa n$.
 	נזכיר כי טענה זו נובעת מהעובדה ש־$\lVert v' \rVert = 1$ ולכן $v' \perp v$ מהעובדה שהפרמטריזציה היא לפי אורך.
 
@@ -163,7 +199,7 @@
 		= \begin{vmatrix}
 			b & v & n
 		\end{vmatrix}
-	.\]
+	\]
 	כלומר גם $n = b \wedge v$ ולכן מחוקי גזירה,
 	\[
 		n'
@@ -171,7 +207,7 @@
 		= (-\tau n) \wedge v + b \wedge (\kappa n)
 		= -\tau (n \wedge v) + \kappa (b \wedge n)
 		= \tau b - \kappa v
-	.\]
+	\]
 	כפי שרצינו.
 \end{proof}
 
@@ -185,7 +221,7 @@
 		= (f \circ c)'
 		= (f' \circ c) \cdot c'
 		= A v
-	.\]
+	\]
 	שכן $f' \equiv A$.
 	בהתאם גם $(f \circ c)'' = A v'$ ולכן אם נסמן $n_1, b_1$ הנורמל והבי־נורמל של $f \circ c$ אז נקבל,
 	\[
@@ -193,13 +229,13 @@
 		= \frac{A v'}{|A v'|}
 		= \frac{A v'}{|v'|}
 		= A n
-	.\]
+	\]
 	נסמן עתה גם $\kappa_1, \tau_1$ העקמומיות והפיתול של $f \circ c$ ונקבל,
 	\[
 		v_1' = \kappa_1 n_1
 		\iff A v' = \kappa_1 A n
 		\iff v' = \kappa_1 n
-	.\]
+	\]
 	ונסיק ש־$\kappa = \kappa_1$.
 	
 	נעבור לבדיקה של $b_1$,
@@ -207,7 +243,7 @@
 		b_1
 		= v_1 \wedge n_1
 		= (A v) \wedge (A n)
-	.\]
+	\]
 	כלומר,
 	\[
 		0
@@ -217,7 +253,7 @@
 		= A \begin{vmatrix}
 			v & n & A^{-1} b_1
 		\end{vmatrix}
-	.\]
+	\]
 	כאשר המעבר האחרון נובע ישירות מהגדרת העתקות לינאריות בהצגה מטריצאלית.
 	נשתמש בהפיכות $A$ כדי להסיק,
 	\[
@@ -230,12 +266,12 @@
 		= \begin{vmatrix}
 			v & n & b
 		\end{vmatrix}
-	.\]
+	\]
 	ונקבל ש־$b_1 = A b$ ולכן,
 	\[
 		b_1' = - \tau_1 n_1
 		\iff A b' = - \tau_1 A n
-	.\]
+	\]
 	ונסיק ש־$\tau_1 = \tau$ כפי שרצינו.
 \end{proof}
 נבחין שאם $f$ משנה כיוון אז לא נוכל לבצע את המעבר $-\tau A n = A (-\tau n)$, ונקבל בהתאם שהעקמומיות והפיתול משנים גם הם סימן.
@@ -243,15 +279,16 @@
 \subquestion{}
 נראה ש־$c(I)$ ניתנת לשיכון במישור אם ורק אם $\tau = 0$.
 \begin{proof}
-	נניח ש־$c(I)$ ניתנת לשיכון במישור, בלי הגבלת הכלליות נוכל להניח ש־$c(I) \subseteq \EE^2 \times \{ 0 \}$, זאת תוך שימוש בסעיף הקודם והגדרת $A$ מתאימה.
-	בהתאם נובע ש־$v \subseteq \EE^2 \times \{ 0 \}$ אף היא, אחרת נקבל שקיים $t \in I$ כך ש־$c(t) \notin \RR^2 \times \{ 0 \}$.
-	אבל $v' = \kappa n$ ולכן $n$ אף היא משוכנת במישור, כלומר $n(I) \subseteq \RR^2 \times \{ 0 \}$, ובהתאם מהגדרה $b \subseteq \{ (0, 0, \pm 1) \}$ בלבד,
-	שהרי $(v, n, b)$ בסיס אורתונורמלי וגם $(v, n) \subseteq \RR^2 \times \{ 0 \}$ אורתונורמלי.
-	$b$ רציפה למרחב דיסקרטי סופי ולכן קבועה, ובפרט $b' \equiv 0$, אבל $b' = - \tau n$ ולכן $\tau \equiv 0$ בלבד.
+	נניח ש־$c(I)$ ניתנת לשיכון במישור.
+	נסמן $n_0$ וקטור המקיים $n_0 \perp c(I)$ ונניח ש־$\lVert n_0 \rVert = 1$.
+	נבחין ש־$v \perp n_0$ אחרת מערך הממוצע נקבל שיש ל־$c$ נקודה מחוץ למישור.
+	מאותו שיקול בדיוק נקבל שגם $n \perp n_0$ ולכן $b \equiv \pm n_0$, נניח על־ידי שינוי $n_0$ ש־$b \equiv n_0$.
+	נעיר ש־$b$ רציף ולכן לא יתכן שהוא מקבל גם $n_0$ וגם $- n_0$.
+	אנו יודעים ש־$b' \equiv 0$ כנגזרת של קבועה וכן ש־$0 = b' = - \tau n$, אבל $n$ לא מתאפסת ולכן $\tau \equiv 0$ בלבד.
 
-	נניח בכיוון ההפוך ש־$\tau \equiv 0$ ולכן $b' \equiv 0$ וגם $n' = - \kappa v$ בלבד, אבל גם $v' = \kappa n$.
-	נובע אם כך ש־$b$ הוא קבוע, נסמן $S \subseteq \RR^3$ המישור הווקטורי האנך ל־$b$ ונקבל ש־$v(I), n(I) \subseteq S$.
-	נניח בלי הגבלת הכלליות ש־$S = \RR^2 \times \{ 0 \}$, אם נסמן $c = {(c^1, c^2, c^3)}^t$ אז נקבל ש־$(c^3)' \equiv 0$, ולכן $c^3(I) = \{ P \}$ עבור $P \in \EE$, כלומר $c(I) \subseteq \EE^2 \times \{ P \}$.
+	בכיוון ההפוך נניח ש־$\tau \equiv 0$, אבל $n \ne 0$ ולכן $b' \equiv 0$ בלבד.
+	בהתאם נסיק ש־$b$ קבוע, כלומר קיים וקטור $n_0$ קבוע כך ש־$c', c'' \perp n_0$ בכל $I$.
+	מכאן נובע ש־$c(I)$ משוכן במישור. כדי להראות זאת נניח ש־$0 \in C(I)$ ויהי בסיס אורתוגונלי $(e_1, e_2, n_0)$, אז נקבל ש־$D_{n_0} c = 0$ ולכן $\pi_{n_0}$ פונקציה קבועה ובפרט $\pi_{n_0} \equiv 0$, כאשר $\pi_{n_0}$ ההטלה לציר.
 \end{proof}
 
 \subquestion{}
@@ -260,12 +297,12 @@
 \[
 	\kappa(t)
 	= \frac{|c'(t) \wedge c''(t)|}{{|c'(t)|}^3}
-.\]
+\]
 וכן שאם $c$ הוא בי־רגולרי אז גם,
 \[
 	\tau(t)
 	= \frac{\begin{vmatrix} c'(t) & c''(t) & c^{(3)}(t) \end{vmatrix}}{{| c'(t) \wedge c''(t) |}^2}
-.\]
+\]
 \begin{proof}
 	נגדיר רפרמטריזציה לפי אורך של $c$, $\tilde{c} : J \to \EE^3$, ונגדיר את הדיפאומורפיזם $\varphi : J \to I$ כך ש־$c \circ \varphi = \tilde{c}$.
 	בהתאם נובע ש־$\tilde{c}' = (c' \circ \varphi) \cdot \varphi'$ מכלל השרשרת.
@@ -275,7 +312,7 @@
 		\iff
 		\tilde{c}'' = \tilde{\kappa} \frac{\tilde{c}''}{|\tilde{c}''|}
 		\implies \tilde{\kappa} = \lVert \tilde{c}'' \rVert
-	.\]
+	\]
 	אז נובע,
 	\[
 		\tilde{\kappa}
@@ -283,13 +320,13 @@
 		= \lVert ((c' \circ \varphi) \cdot \varphi')' \rVert
 		= \lVert (c' \circ\varphi)' \varphi' + (c' \circ \varphi) \varphi'' \rVert
 		= \lVert (c'' \circ \varphi) {(\varphi')}^2 + (c' \circ \varphi) \varphi'' \rVert
-	.\]
+	\]
 	אבל $\varphi' = \frac{1}{\lVert c' \circ \varphi \rVert}$ מהגדרתה ובהתאם $\varphi'' = \frac{- (c'' \circ \varphi) \varphi'}{{\lVert c' \circ \varphi\rVert}^2} = \frac{- (c'' \circ \varphi)}{{\lVert c' \circ \varphi\rVert}^3}$,
 	\[
 		\tilde{\kappa}
 		= \frac{| \lVert c'' \circ \varphi \rVert \lVert c' \circ \varphi \rVert - (c' \circ \varphi) (c'' \circ \varphi) |}{{\lVert c' \circ \varphi \rVert}^3}
 		= \frac{|c' \circ \varphi \wedge c'' \circ \varphi|}{{\lVert c' \circ \varphi \rVert}^3}
-	.\]
+	\]
 	כאשר הזהות האחרונה הוכחה בתרגיל.
 
 	מסעיף א' $\tilde{b}' = - \tilde{\tau} \tilde{n}$.
@@ -301,7 +338,7 @@
 		= \tilde{\kappa} \tilde{n} \wedge \tilde{n} + \tilde{v} \wedge (- \tilde{\kappa} \tilde{v} + \tilde{\tau} \tilde{b})
 		= \tilde{\kappa} (\tilde{n} \wedge \tilde{n}) - \tilde{\kappa} (\tilde{v} \wedge \tilde{v}) + \tilde{\tau} (\tilde{v} \wedge \tilde{b})
 		= \tilde{\tau} (\tilde{v} \wedge \tilde{b})
-	.\]
+	\]
 
 	אם הפרמטריזציה היא לפי אורך אז,
 	\[
@@ -311,7 +348,7 @@
 		= -n (v \wedge n)'
 		= -n (v' \wedge n + v \wedge n')
 		= 0 - n (v \wedge n')
-	.\]
+	\]
 	כלומר $\tau = -n \cdot (v \wedge n')$.
 	אז,
 	\begin{align*}
@@ -324,7 +361,7 @@
 		& = \frac{(c' \times c'') \cdot c'''}{{\lVert c'' \rVert}^2} \\
 		& \overset{(2)}{=} \frac{(c' \times c'') \cdot c'''}{{\lVert c' \wedge c'' \rVert}^2} \\
 		& \overset{(3)}{=} \frac{\begin{vmatrix} c' & c'' & c''' \end{vmatrix}}{{\lVert c' \wedge c'' \rVert}^2}
-	.\end{align*}
+	\end{align*}
 	כאשר,
 	\begin{enumerate}
 		\item $c'' \cdot (c' \times c'') = 0$
@@ -338,32 +375,32 @@
 		\tilde{\tau}
 		= \frac{\begin{vmatrix} \tilde{c}' & \tilde{c}'' & \tilde{c}''' \end{vmatrix}}{{\lVert \tilde{c}' \wedge \tilde{c}'' \rVert}^2}
 		= \frac{(\tilde{c}' \times \tilde{c}'') \cdot \tilde{c}'''}{{\lVert (c \circ \varphi)' \wedge (c \circ \varphi)'' \rVert}^2}
-	.\]
+	\]
 	נזכור כי מצאנו שמתקיים $(c \circ \varphi)' = (c' \circ \varphi) \varphi', \qquad (c \circ \varphi)'' = (c'' \circ \varphi) {(\varphi')}^2 + (c' \circ \varphi) \varphi''$ ולכן,
 	\[
 		(c \circ \varphi)'''
 		= (c''' \circ \varphi) {(\varphi')}^3 + (c'' \circ \varphi) 2 \varphi' \varphi'' + (c'' \circ \varphi) \varphi' \varphi'' + (c' \circ \varphi) \varphi'''
 		= (c''' \circ \varphi) {(\varphi')}^3 + 3 (c'' \circ \varphi) \varphi' \varphi'' + (c' \circ \varphi) \varphi'''
-	.\]
+	\]
 	ובהתאם נחשב,
 	\[
 		\tilde{c}' \wedge \tilde{c}''
 		= (c \circ \varphi)' \wedge (c \circ \varphi)''
 		= (c' \circ \varphi) \varphi \wedge ((c'' \circ \varphi) {(\varphi')}^2 + (c' \circ \varphi) \varphi'')
 		= {(\varphi')}^3 (c' \circ \varphi) \wedge (c'' \circ \varphi)
-	.\]
+	\]
 	ולכן גם,
 	\[
 		(\tilde{c}' \times \tilde{c}'') \cdot \tilde{c}'''
 		= {(\varphi')}^3 ((c' \circ \varphi) \wedge (c'' \circ \varphi)) \cdot ((c''' \circ \varphi) {(\varphi')}^3 + 3 (c'' \circ \varphi) \varphi' \varphi'' + (c' \circ \varphi) \varphi''')
 		= {(\varphi')}^6 ((c' \circ \varphi) \wedge (c'' \circ \varphi)) \cdot (c''' \circ \varphi)
-	.\]
+	\]
 	נציב,
 	\[
 		\tau \circ \varphi
 		= \frac{(\tilde{c}' \times \tilde{c}'') \cdot \tilde{c}'''}{{\lVert (c \circ \varphi)' \wedge (c \circ \varphi)'' \rVert}^2}
 		= \frac{{(\varphi')}^6 ((c' \circ \varphi) \wedge (c'' \circ \varphi)) \cdot (c''' \circ \varphi)}{{(\varphi')}^{2 \cdot 3} {\lVert (c' \circ \varphi) \wedge (c'' \circ \varphi) \rVert}^2}
-	.\]
+	\]
 	וקיבלנו שהטענה נכונה גם במקרה הכללי.
 \end{proof}
 
@@ -381,25 +418,25 @@
 		\arccos \frac{\langle c'(0), d'(0) \rangle}{\lVert c'(0) \rVert \cdot \lVert d'(0) \rVert}
 		= \arccos \frac{\langle f'(\gamma((0))) \gamma'(0), f'(\phi((0))) \phi'(0) \rangle}{\lVert c'(0) \rVert \cdot \lVert d'(0) \rVert}
 		= \arccos \frac{\langle \gamma'(0), \phi'(0) \rangle}{\lVert \gamma'(0) \rVert \cdot \lVert \phi'(0) \rVert}
-	.\]
+	\]
 	לכל שני עקומים $c, d$ כאלה.
 	נבחין כי $\arccos$ חד־חד ערכית ועל, ולכן התנאי שקול לתנאי,
 	\[
 		\frac{\langle c'(0), d'(0) \rangle}{\lVert c'(0) \rVert \cdot \lVert d'(0) \rVert}
 		= \frac{\langle \gamma'(0), \phi'(0) \rangle}{\lVert \gamma'(0) \rVert \cdot \lVert \phi'(0) \rVert}
-	.\]
+	\]
 	נבחין גם כי מתקיים,
 	\[
 		\langle c'(0), d'(0) \rangle
 		= \langle D f |_{\gamma(0)} \cdot \gamma'(0), D f |_{\phi(0)} \cdot \phi'(0) \rangle
 		= \langle D f |_u \cdot \gamma'(0), D f |_u \cdot \phi'(0) \rangle
 		= I_p(\gamma'(0), \phi'(0))
-	.\]
+	\]
 	כלומר מתקיים,
 	\[
 		\frac{I_p(\gamma'(0), \phi'(0))}{I_p(\gamma'(0), \gamma'(0)) \cdot I_p(\phi'(0), \phi'(0))}
 		= \frac{\langle \gamma'(0), \phi'(0) \rangle}{{\lVert \gamma'(0) \rVert}^2 \cdot {\lVert \phi'(0) \rVert}^2}
-	.\]
+	\]
 
 	עתה נציב מספר עקומים בזהות שקיבלנו.
 	עבור עקומים לפי אורך ואנכים נקבל,
@@ -408,12 +445,12 @@
 		= 0
 		\implies I_p(\gamma'(0), \phi'(0)) = 0
 		\implies F = 0
-	.\]
+	\]
 	אז עבור עקומים כלליים נקבל שמתקיים,
 	\[
 		\frac{E \gamma_1'(0) \phi_1'(0) + G \gamma_2'(0) \phi_2'(0)}{E({(\gamma_1'(0))}^2 + {(\phi_1'(0))}^2) + G({(\gamma_2'(0))}^2 + {(\phi_2'(0))}^2)}
 		= \frac{\langle \gamma'(0), \phi'(0) \rangle}{{\lVert \gamma'(0) \rVert}^2 \cdot {\lVert \phi'(0) \rVert}^2}
-	.\]
+	\]
 	אם $E \ne G$ נוכל לבנות עקומים שנגזרתם $(E - G, 1), (1, 1)$ ונקבל סתירה לשוויון האחרון, ולכן בהכרח $E = G$.
 
 	נניח בכיוון ההפוך ש־$E = G, F = 0$ ונקבל תוך שימוש במהלכים זהים למהלך הקודם,
@@ -421,11 +458,11 @@
 		\frac{\langle c'(0), d'(0) \rangle}{\lVert c'(0) \rVert \cdot \lVert d'(0) \rVert}
 		= \frac{E \gamma_1'(0) \phi_1'(0) + G \gamma_2'(0) \phi_2'(0)}{E({(\gamma_1'(0))}^2 + {(\phi_1'(0))}^2) + G({(\gamma_2'(0))}^2 + {(\phi_2'(0))}^2)}
 		= \frac{\gamma_1'(0) \phi_1'(0) + \gamma_2'(0) \phi_2'(0)}{{(\gamma_1'(0))}^2 + {(\phi_1'(0))}^2 + {(\gamma_2'(0))}^2 + {(\phi_2'(0))}^2}
-	.\]
+	\]
 	אבל האחרון אינו אלא,
 	\[
 		\frac{\langle \gamma'(0), \phi'(0) \rangle}{{\lVert \gamma'(0) \rVert}^2 \cdot {\lVert \phi'(0) \rVert}^2}
-	.\]
+	\]
 	ולכן $f$ קונפורמית.
 \end{proof}
 
@@ -442,12 +479,12 @@
 		\vol_2(R)
 		= \vol(R)
 		= \iint_R 1\ dl
-	.\]
+	\]
 	כלומר,
 	\[
 		\vol_2(f(R)) = \vol(R)
 		\iff \iint_R {(EG - F^2)}^{\frac{1}{2}} - 1\ dl = 0
-	.\]
+	\]
 	ובהתאם ${(EG - F^2)}^\frac{1}{2} = 1$ $\lambda$־כמעט תמיד, עבור $\lambda$ מידת לבג על אופרטור הנפח $\vol_2$ מעל $\EE^3$.
 	נזכור ש־$f$ רציפה ולכן הטענה נכונה תמיד.
 
@@ -457,7 +494,7 @@
 		= \iint_R {(EG - F^2)}^{\frac{1}{2}}\ dl
 		= \iint_R 1\ dl
 		= \vol(R)
-	.\]
+	\]
 	כלומר $f$ משמרת שטח.
 \end{proof}
 
@@ -466,7 +503,7 @@
 \[
 	\forall u \in U \forall v, w \in \RR^2,\ 
 	\langle v, w \rangle = I_{f(u)}(D f |_u v, D f |_u w)
-.\]
+\]
 \begin{proof}
 	נניח ש־$f$ קונפורמית ושומרת שטח, אז מתקיים $E = G, F = 0$ וכן $E^2 = 1$, אבל $I$ תבנית חיובית לחלוטין ולכן $E = 1$ בלבד, כלומר $I_p = (\begin{smallmatrix}
 		1 & 0 \\
@@ -478,7 +515,7 @@
 		I_{f(u)}(D f |_u v, D f |_u w)
 		= v^t I_2 w
 		= \langle v, w \rangle
-	.\]
+	\]
 	כפי שרצינו.
 
 	בכיוון ההפוך נניח את השוויון ונקבל,
@@ -487,7 +524,7 @@
 		= E v^1 w^1 + F(v^2 w^1 + v^1 w^2) + G v^2 w^2
 		= v^1 w^1 + v^2 w^2
 		= \langle v, w \rangle
-	.\]
+	\]
 	ונקבל ש־$E = G = 1, F = 0$ ההצבה היחידה שנכונה תמיד, משקילות שמצאנו בסעיפים א' וב' נקבל ש־$f$ היא קונפורמית ומשמרת שטח.
 \end{proof}
 
@@ -497,7 +534,7 @@
 \[
 	\varphi(\theta, \phi)
 	= ((R + r \cos \phi) \cos \theta, (R + r \cos \phi) \sin \theta, r \sin \phi)
-.\]
+\]
 \begin{solution}
 	נחשב את התבנית היסודית הראשונה של $\varphi$,
 	\[
@@ -544,7 +581,7 @@
 \[
 	f(\theta, \phi)
 	= (\sin \phi \cos \theta, \sin \phi \sin \theta, \cos \phi)
-.\]
+\]
 \begin{solution}
 	זהו חלק של ספירת היחידה $S^2$ הכלוא בין המישורים $z_0 = \cos \phi_0, z_1 = \cos \phi_1$.
 	נחשב את התבנית היסודית הראשונה,
@@ -555,7 +592,7 @@
 			\sin \phi \cos \theta & \cos \phi \sin \theta \\
 			0 & - \sin \phi
 		\end{pmatrix}
-	.\]
+	\]
 	ולכן,
 	\begin{align*}
 		& E
@@ -570,7 +607,7 @@
 		= {(\cos \phi \cos \theta)}^2 + {(\cos \phi \sin \theta)}^2 + \sin^2 \phi
 		= \cos^2 \phi + \sin^2 \phi
 		= 1
-	.\end{align*}
+	\end{align*}
 	כלומר,
 	\[
 		I
@@ -578,7 +615,7 @@
 			\sin^2 \phi & 0 \\
 			0 & 1
 		\end{pmatrix}
-	.\]
+	\]
 	נעבור לחישוב השטח,
 	\begin{align*}
 		\vol_2(\im \varphi)
@@ -587,7 +624,7 @@
 		& = \int_{0}^{2 \pi} 1\ d \theta \cdot \int_{\phi_0}^{\phi_1} \sin \phi\ d \phi \\
 		& = 2 \pi \cdot (- \cos \phi) \mid_{\phi = \phi_0}^{\phi = \phi_1} \\
 		& = 2 \pi (-\cos \phi_1 + \cos \phi_0)
-	.\end{align*}
+	\end{align*}
 	כלומר מצאנו ששטח החתך הוא $2 \pi (\cos \phi_0 - \cos \phi_1)$.
 
 	נבחין שקיבלנו שהשטח הוא $2 \pi (z_1 - z_0)$, כלומר השטח לא תלוי בערכם אלא רק בהפרש שלהם, כלומר בגובה שלהם.
@@ -598,7 +635,7 @@
 \[
 	\varphi(\theta, \phi)
 	= ((R + r \cos \phi) \cos \theta, (R + r \cos \phi) \sin \theta, r \sin \phi)
-.\]
+\]
 נסמן את הטורוס הנוצר על־ידי הפרמטריזציה ב־$T = \varphi({(0, 2 \pi)}^2)$.
 
 \subquestion{}
@@ -620,13 +657,13 @@
 			{(R + r \cos \phi)}^2 & 0 \\
 			0 & r^2
 		\end{pmatrix}
-	.\]
+	\]
 	וכן
 	ונחשב גם את הנורמל,
 	\[
 		n(u)
 		= \frac{D_1 f(u) \wedge D_2 f(u)}{| D_1 f(u) \wedge D_2 f(u) |}
-	.\]
+	\]
 	ולכן נחשב את $D_1 f(u) \wedge D_2 f(u)$,
 	\[
 		D_1 f(u) \wedge D_2 f(u)
@@ -635,14 +672,14 @@
 			r (R + r \cos \phi) \cos \phi \sin \theta \\
 			r (R + r \cos \phi) \sin \phi
 		\end{pmatrix}
-	.\]
+	\]
 	נבחין שדילגנו על שלב הפישוט לצורך הקריאות.
 	בהתאם גם,
 	\[
 		|D_1 f(u) \wedge D_2 f(u)|
 		= r(R + r \cos \phi) \sqrt{\cos^2 \phi \cos^2 \theta + \cos^2 \phi \sin^2 \theta + \sin^2 \phi}
 		= r(R + r \cos \phi)
-	.\]
+	\]
 	ולכן נקבל,
 	\[
 		n(\theta, \phi)
@@ -651,7 +688,7 @@
 			\cos \phi \sin \theta \\
 			\sin \phi
 		\end{pmatrix}
-	.\]
+	\]
 	וכן,
 	\[
 		D_1 n
@@ -667,7 +704,7 @@
 			- \sin \phi \sin \theta \\
 			\cos \phi
 		\end{pmatrix}
-	.\]
+	\]
 	נעבור לחישוב מקדמי התבנית היסודית השנייה,
 	\begin{align*}
 		& L
@@ -683,7 +720,7 @@
 		= - r \sin^2 \phi \cos^2 \theta - r \sin^2 \phi \sin^2 \theta - r \cos^2 \phi
 		= - r \sin^2 \phi - r \cos^2 \phi
 		= - r
-	.\end{align*}
+	\end{align*}
 	כלומר מצאנו שמתקיים,
 	\[
 		I\!I
@@ -691,22 +728,23 @@
 			- (R + r \cos \phi) \cos \phi & 0 \\
 			0 & -r
 		\end{pmatrix}
-	.\]
+	\]
 \end{solution}
 
 \subquestion{}
 נחשב את עקמומיות גאוס ואת העקמומיות הממוצעת.
 \begin{solution}
-	נחשב את עקמומיות גאוס תוך שימוש בנוסחה שהוצגה והתבנית השנייה,
+	נשתמש בנוסחות שמצאנו בשאלה 7 כדי לחשב את הערכים הללו.
 	\[
 		K
-		= \frac{\det I}{\det I\!I}
+		= \frac{\det I\!I}{\det I}
 		= \frac{r (R + r \cos \phi) \cos \phi}{r^2 {(R + r \cos \phi)}^2}
 		= \frac{\cos \phi}{r (R + r \cos \phi)}
-	.\]
-	נחשב את העקמומיות הממוצעת באופן דומה,
+	\]
+	ועל־ידי שימוש בנוסחה שקיבלנו עבור עקמומיות ממוצעת,
 	\[
-		\frac{1}{2} \tr(I\!I \cdot I^{-1})
+		H
+		= \frac{1}{2} \tr(I\!I \cdot I^{-1})
 		= \frac{1}{2} \tr \begin{pmatrix}
 			- (R + r \cos \phi) \cos \phi & 0 \\
 			0 & -r
@@ -716,7 +754,7 @@
 			0 & r^{-2}
 		\end{pmatrix}
 		= -\frac{1}{2} \left(\frac{\cos \phi}{R + r \cos \phi} + \frac{1}{r}\right)
-	.\]
+	\]
 \end{solution}
 
 \subquestion{}
@@ -727,7 +765,7 @@
 		K = 0
 		\iff \frac{\cos \phi}{r (R + r \cos \phi)} = 0
 		\iff \cos \phi = 0
-	.\]
+	\]
 	ולכן $\phi = \frac{\pi}{2}$ מקיים את הטענה, נבחר $(\pi, \frac{\pi}{2})$ כנקודה בה העקמומיות היא אפס, נבחין כי יכולנו להגיע לתוצאה זו גם באופן גאומטרי לגמרי, זו נקודה שנמצאת בדיוק במגע שבין טורוס לרצפה, שם העקמומיות מאוזנת.
 
 	נסיק מהחישוב הקודם שגם $K < 0 \iff \cos \phi < 0$ ונבחר את הנקודה $(\pi, \pi)$, זוהי נקודה בחלק הפנימי של הטורוס.
@@ -738,12 +776,12 @@
 תהי $n : U \to S^2$ העתקת גאוס של $f : U \to \EE^3$, המוגדרת על־ידי,
 \[
 	n = \frac{D_1 f \wedge D_2 f}{| D_1 f \wedge D_2 f |}
-.\]
+\]
 ונגדיר $W : T_p S \to T_p S$ על־ידי,
 \[
 	W(D_i f)
 	= -D_i n
-.\]
+\]
 עבור $i \in \{1, 2\}$.
 
 \subquestion{}
@@ -751,7 +789,7 @@
 \[
 	I_p(W(u), v)
 	= I_p(u, W(v))
-.\]
+\]
 לכל $u, v \in T_p S$.
 \begin{proof}
 	נסמן $u = D |_p f (u_x, u_y), v = D |_p f (v_x, v_y)$ ולכן,
@@ -759,12 +797,12 @@
 		W(u)
 		= W(D |_p f (u_x, u_y))
 		= - D |_p n (u_x, u_y)
-	.\]
+	\]
 	ולכן גם,
 	\[
 		W(v)
 		= - D |_p n (v_x, v_y)
-	.\]
+	\]
 	ולכן,
 	\begin{align*}
 		I_p(W(u), v)
@@ -786,7 +824,7 @@
 	I\!I_p(u, v)
 	= I_p(W(u), v)
 	= I_p(u, W(v))
-.\]
+\]
 \begin{proof}
 	מספיק להראות את הטענה לכל איבר בנפרד, נסמן,
 	\[
@@ -801,7 +839,7 @@
 			E & F \\
 			F & G
 		\end{pmatrix}
-	.\]
+	\]
 	ולכן נרצה להראות שמתקיים,
 	\[
 		L(u, v) = E(W(u), v),
@@ -809,17 +847,17 @@
 		M(u, v) = F(W(u), v),
 		\quad
 		N(u, v) = G(W(u), v)
-	.\]
+	\]
 	נשים לב כי $\langle n, D_i f \rangle = 0$ מהגדרת $n$ כאנך של המישור המשיק, אם נגזור את הביטוי נקבל,
 	\[
 		D_j \langle n, D_i f \rangle = D_j 0 = 0
-	.\]
+	\]
 	אז תוך שימוש בנגזרת מכפלה נקבל,
 	\[
 		D_j \langle n, D_i f \rangle
 		= \langle D_j n, D_i f \rangle + \langle n, D_j D_i f \rangle = 0
 		\implies \langle D_j n, D_i f \rangle = - \langle n, D_j D_i f \rangle
-	.\]
+	\]
 	עבור $i, j \in \{1, 2\}$.
 	עבור בחירת $i = 1, j = 1$ נקבל,
 	\[
@@ -827,7 +865,7 @@
 		= \langle D_1 n, D_1 f \rangle
 		= \langle n, D_1^2 f \rangle
 		= L
-	.\]
+	\]
 	כלומר מצאנו שהטענה מתקיימת עבור $E, L$, ותוך שימוש בשוויון זה נוכל להסיק את הטענה לכל שאר המקדמים גם כן.
 \end{proof}
 
@@ -843,7 +881,7 @@
 		L & M \\
 		M & N
 	\end{pmatrix}
-.\]
+\]
 \begin{proof}
 	בסעיף הקודם מצאנו שמתקיים,
 	\[
@@ -872,7 +910,7 @@
 			W(D_1 f) \\
 			W(D_2 f)
 		\end{pmatrix}
-	.\]
+	\]
 	כאשר השתמשנו בחיוביות בהחלט של $I$ במעבר האחרון.
 \end{proof}
 
@@ -882,7 +920,7 @@
 \[
 	\kappa_{\operatorname{normal}}(u)
 	= \kappa_1 \cos^2 \theta + \kappa_2 \sin^2 \theta
-.\]
+\]
 \begin{proof}
 	נראה את הטענה בשתי דרכים. הדרך הראשונה היא גאומטרית, אנו יודעים שהתבנית היסודית השנייה מייצגת עקמומיות בנקודה, ואם נשתמש במעבר מדיפרנציאל להצגה כיוונית נקבל בדיוק את הגדרת הנורמל,
 	כלומר,
@@ -891,7 +929,7 @@
 		= I\!I(u)
 		= I(W(u), u)
 		\tag{1}
-	.\]
+	\]
 	מתקיים על־פי ההנחה,
 	\[
 		W(e_1)
@@ -899,23 +937,23 @@
 		\qquad
 		W(e_2)
 		= \kappa_2 e_2
-	.\]
+	\]
 	ולכן מלינאריות $W$ גם,
 	\[
 		W(u)
 		= \kappa_1 \cos \theta + \kappa_2 \sin \theta
-	.\]
+	\]
 	ולכן תוך שימוש בשוויון $(1)$ מתקבל,
 	\[
 		\kappa_n(u)
 		= \langle \kappa_1 e_1 \cos \theta + \kappa_2 e_2 \sin \theta, e_1 \cos \theta + e_2 \sin \theta \rangle
 		= \kappa_1 e_1 e_1 \cos^2 \theta + (\kappa_1 + \kappa_2) e_1 e_2 \sin \theta \cos \theta + \kappa_2 e_2 e_2 \sin^2 \theta
-	.\]
+	\]
 	אבל $(e_1, e_2)$ בסיס אורתונורמלי ולכן נקבל,
 	\[
 		\kappa_n(u)
 		= \kappa_1 \cos^2 \theta + \kappa_2 \sin^2 \theta
-	.\]
+	\]
 	וקיבלנו את נכונות הטענה.
 
 	כמובטח, נעבור לדרך השנייה, היא למעשה הבסיס לדרך הראשונה.
@@ -939,7 +977,7 @@
 		h'(\theta)
 		= -2 \kappa_1 \cos \theta \sin \theta + 2 \kappa_2 \sin \theta \cos \theta
 		= \sin(2 \theta) (\kappa_2 - \kappa_1)
-	.\]
+	\]
 	ולכן $h' = 0 \iff \theta = 0, \frac{\pi}{2}$ ומבדיקה ישירה נקבל ש־$\theta = 0$ מקסימום ובה מתקבל $h(0) = \kappa_1$ וכן $\theta = \frac{\pi}{2}$ מינימום ושם $h(\frac{\pi}{2}) = \kappa_2$. \\
 	נסיק ש־$\kappa_1, \kappa_2$ הן העקמומיויות הראשיות וכן $e_1, e_2$ הכיוונים הראשיים.
 \end{proof}
@@ -960,7 +998,7 @@
 	\end{pmatrix}
 	\right)
 	= \frac{LN - M^2}{EG - F^2}
-.\]
+\]
 וכן,
 \[
 	H
@@ -975,7 +1013,7 @@
 	\end{pmatrix}
 	\right)
 	= \frac{1}{2} \cdot \frac{LG - 2MF + NE}{EG - F^2}
-.\]
+\]
 \begin{proof}
 	ניזכר בטענה מלינארית 1, אם $M \in M_2(\RR)$ לכסינה עם $\lambda_1, \lambda_2$ ערכים עצמיים, אז מתקיים $\det M = \lambda_1 \cdot \lambda_2$,
 	בפרט אם $T \in \aut(\RR^2)$ אופרטור לינארי ו־$M$ מטריצת הייצוג שלו באיזשהו בסיס, אז $\det M$ עדיין מקיימת את הטענה.
@@ -990,12 +1028,12 @@
 			L & M \\
 			M & N
 		\end{pmatrix}
-	.\]
+	\]
 	וכן מצאנו בסעיף הקודם ש־$K = \kappa_1 \kappa_2$ היא מכפלת הערכים העצמיים, ולכן,
 	\[
 		K
 		= \det J
-	.\]
+	\]
 	נעבור לחישוב נוסחה ישירה,
 	\[
 		K
@@ -1009,7 +1047,7 @@
 			M & N
 		\end{pmatrix}
 		= \frac{LN - M^2}{EG - F^2}
-	.\]
+	\]
 	כאשר השתמשנו בכפליות הדטרמיננטה ודטרמיננטת מטריצה הופכית.
 	
 	נעבור לעקמומיות הממוצעת.
@@ -1018,7 +1056,7 @@
 		H
 		= \frac{1}{2} (\kappa_1 + \kappa_2)
 		= \frac{1}{2} \tr J
-	.\]
+	\]
 	וקיבלנו את המבוקש.
 	נשתמש בנוסחה ידועה למטריצה הופכית מסדר $2$ ונקבל,
 	\begin{align*}
@@ -1038,18 +1076,23 @@
 			-FL + LE & -FM + EN
 		\end{pmatrix} \\
 		& = \frac{1}{2} \frac{LG - 2MF + NE}{EG - F^2}
-	.\end{align*}
+	\end{align*}
 	וקיבלנו את המבוקש.
 \end{proof}
 
 \subquestion{}
 נראה שאם התבנית היסודית השנייה מתאפסת בכל נקודה אז המשטח הוא חלק ממישור.
 \begin{proof}
-	יהי משטח $S$ ו־$f : U \to S$ פרמטריזציה מקומית לפי מרחק שלו.
-	יהי עקום $c : I \to S$ המשוכן ב־$f(U)$, לכן לכל נקודה בו מתקיים $\kappa = \kappa_n = 0$ מההנחה.
-	אבל $\kappa = \lVert c'' \rVert$ ולכן $c'' \equiv 0$ ולכן $c' \equiv \alpha$ קבועה כך ש־$\alpha \in S^2$, שהרי $c$ היא לפי אורך.
-	בהתאם קיבלנו ש־$c(t) = P + \alpha (t - t_0)$ עבור $c(t_0) = P \in f(U) \subseteq S$ ו־$t_0 \in I$.
-	כלומר קיבלנו ש־$c(I)$ ישר ולכן משאלה 1 סעיף ב' נקבל שמקומית $S$ היא תת־יריעה אפינית ממימד 2, כלומר $S$ משוכנת במישור.
+	מסעיף ב' נובע שלכל $p \in S$ ולכל $u, v \in T_p S$ מתקיים,
+	\[
+		0
+		= I\!I_p(u, v)
+		= \langle W(u), v \rangle
+		= \langle -n u, v \rangle
+	\]
+	נסיק אם כך ש־$D_1 n, D_2 n \perp D |_p f$, או במילים אחרות $D_1 n, D_2 n \perp T_p S$, אבל הגדרנו את $n$ כך ש־$n \perp T_p S$ ו־$\lVert n \rVert = 1$ ולכן $D_1 n, D_2 n \perp n$ ונקבל ש־$D |_p n = 0$ בלבד.
+	טענה זו נכונה לכל $p \in S$ ולכן $n$ היא קבועה, ונסמן $n \equiv n_0$.
+	בהתאם גם $D_1 f, D_2 f \perp n_0$ בכל נקודה, ותוך שימוש בטיעון שקול לשאלה 3 סעיף ג' נקבל ש־$S$ ניתנת לשיכון במישור.
 \end{proof}
 
 \end{document}
