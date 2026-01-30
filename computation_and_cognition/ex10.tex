@@ -1,0 +1,115 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- חישוביות וקוגניציה, 6119}
+
+\usepackage{pgfplots, tikz}
+\usetikzlibrary{math}
+\graphicspath{{.}{../images/}}
+\pgfplotsset{compat=1.18}
+
+
+\begin{document}
+\maketitle
+\maketitleprint[beige]
+
+\question{}
+\subquestion{}
+\subsubsection{i}
+נקבל מרציפות שהרעש שקול לאפס ולכן התוצאה והמדידה שוות, כלומר $x = r$, ונסיק שאפשר לבחור את $r$.
+
+\subsubsection{ii}
+כאשר השונות שואפת לאינסוף נקבל שהרעש הוא אחיד ואי־אפשר לבדל נקודה שסביר לבחור.
+
+\subsubsection{iii}
+זהו מצב שקול למצב ש־$x = r_0$ ולכן נקבל שתמיד כדאי לבחור את $r_0$.
+
+\subquestion{}
+\subsubsection{i}
+נבחין כי נתון ש־$n \sim N(0, \sigma^2)$ וכן $x = r + n$ ולכן $x \mid r \sim N(0, \sigma^2)$, כלומר,
+\[
+	f(x \mid r)
+	= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{{(x - r)}^2}{2 \sigma^2}\right)
+.\]
+ועתה נשתמש בנוסחת ההסתברות השלמה,
+\[
+	f(x)
+	= \sum_{r \in \supp r} f(x \mid r) \PP(r)
+	= f(x \mid 1) \PP(1) + f(x \mid 0) \PP(0)
+	= \frac{1}{\sqrt{2 \pi \sigma^2}} \left(p \exp\left(- \frac{{(x - 1)}^2}{2 \sigma^2}\right) + (1 - p) \exp\left(- \frac{x^2}{2 \sigma^2}\right)\right)
+.\]
+ונציג את $f(x)$ עבור $p = \frac{3}{4}$ ו־$\sigma \in \{0.1, 1\}$,
+\begin{center}
+	\includegraphics[width=9cm]{bin/out10_1}
+\end{center}
+מהגרף אנו למדים שככל שיש פחות שגיאה כך ניתן לשער מה הנקודה ביתר קלות.
+
+\subsubsection{ii}
+נרצה למצוא את $\hat{r}$ עבור תוצאת מדידה $x$, כלומר נמצא את הסף עבורו $\hat{r} = 1$.
+\begin{solution}
+	נבחין כי ישנן רק שתי אפשרויות, או שנבחר $\hat{r} = 1$ או ש־$\hat{r} = 0$ ולכן עלינו להבין מה ההסתברות בשתי הנקודות האלה בלבד,
+	\[
+		f(r = 1 \mid x)
+		= \frac{f(r = 1) f(x \mid r = 1)}{f(x)}
+		= p \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(- \frac{{(x - 1)}^2}{2 \sigma^2}\right) \frac{1}{f(x)}
+	.\]
+	ונוכל לקבל תוצאה נומרית עבור ערכים אלה.
+	עבור $p = \frac{1}{2}$ נקבל סימטריה ולא תהיה נקודה כזו.
+\end{solution}
+
+\subquestion{}
+נניח ש־$f(r) \sim N(\mu_r, \sigma_r^2)$.
+
+\subsubsection{i}
+נקבל ש־$f(r \mid x) \propto f(r) f(x \mid r) = N(r, \sigma^2) N(\mu_r, \sigma_r^2)$.
+אבל בתרגול ראינו שזוהי גם התפלגות נורמלית עם $\sigma_1^2 = \frac{\sigma^2 \sigma_r^2}{\sigma^2 + \sigma_r^2}$ ו־$\mu_1 = \frac{r \sigma_r^2 + \mu_r \sigma^2}{\sigma^2 + \sigma_r^2}$.
+לכן נקבל ש־$\hat{r} = \mu_1$.
+
+\subsubsection{ii}
+לפי הגרף $\EE(\hat{r} \mid r = 1) = \mu_1 = 1$ וקיבלנו ש־$\sigma_r = 1$ וכשנציב,
+\[
+	1 = \frac{0 + \mu_r \sigma^2}{1 + \sigma^2}
+	\iff (\mu_r - 1) \sigma^2 = 1
+.\]
+ולכן $\sigma^2 = \frac{1}{\mu_r - 1}$ ונשאר למצוא את $\mu_r$.
+קיבלנו שעבור $r = 1$ מתקבל $\EE(\hat{r}) = \frac{3}{2}$ ולכן,
+\[
+	\frac{3}{2} = \frac{1 \cdot 1 + \mu_r \cdot \frac{1}{\mu_r - 1}}{\frac{1}{\mu_r - 1} + 1}
+	\iff 3\frac{1 + \mu_r - 1}{\mu_r - 1} = 2\frac{\mu_r - 1 + \mu_r}{\mu_r - 1}
+	\iff 3 \mu_r = 4 \mu_r - 2
+.\]
+ונחלץ ש־$\mu_r = 2$.
+
+\subsubsection{iii}
+נקבל שהיא פשוט לא שערכה בהקשר לנתונים שהיו לה, שהרי מהשוויונות שמצאנו בסעיפים הקודמים אנו יודעים שהמספר שהיא הייתה אמורה לבחור היה קטן מ־$1$.
+
+\question{}
+\subquestion{}
+נציג את העקומות,
+\begin{center}
+	\includegraphics[width=9cm]{bin/out10_2.jpg}
+\end{center}
+
+\subquestion{}
+נציג את הגרף המתקבל מתהליך החישוב,
+\begin{center}
+	\includegraphics[width=9cm]{bin/out10_3.jpg}
+\end{center}
+
+\subquestion{}
+נציג את העקומות,
+\begin{center}
+	\includegraphics[width=9cm]{bin/out10_4.jpg}
+\end{center}
+
+\subquestion{}
+נציג את הגרף המתקבל מתהליך החישוב,
+\begin{center}
+	\includegraphics[width=9cm]{bin/out10_5.jpg}
+\end{center}
+
+\subquestion{}
+נציג את כרף התאמת סטיית התקן,
+\begin{center}
+	\includegraphics[width=9cm]{bin/out10_6.jpg}
+\end{center}
+
+\end{document}
