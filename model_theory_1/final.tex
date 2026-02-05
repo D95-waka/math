@@ -1,0 +1,156 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Solution to Final Exercise --- Model Theory (1), 80616}
+
+\DeclareMathOperator{\age}{Age}
+
+\begin{document}
+\maketitle
+\maketitleprint[yellow]
+
+\question{}
+Urysohn Space.
+Let $L = \{ D_q \mid q \in \QQ_{\ge 0} \}$ such that $D_q$ is a binary relation symbol for any $q$.
+For any metric space $(X, d)$ we can define $L$-structure $\Xx$ with $|\Xx| = X$ and $(x, y) \in D_q^\Xx \iff d(x, y) = q$.
+
+\subquestion{}
+Let $\Kk$ be the class of all finite metric spaces with rational distances. \\
+We will show that $\Kk$ is a Fraïssé class.
+\begin{proof}
+	We will follow the definition of Fraïssé class.
+
+	\textbf{Closure under isomorphism}\quad
+	If $\Xx \in \Kk$ and $\Yy \cong \Xx$ and notate $(X, d), (Y, \rho)$ the equivalent metric spaces, then $f : \Xx \to \Yy$ that witness the isomorphism fulfills,
+	\[
+		d(x_1, x_2) = q
+		\iff D_q^\Xx(x_1, x_2)
+		\iff D_q^\Yy(f(x_1), f(x_2))
+		\iff \rho(f(x_1), f(x_2)) = q
+	.\]
+	Meaning that $(Y, \rho)$ is a finite metric space with rational distance and therefore $\Yy \in \Kk$ as well.
+
+	\textbf{Essential countability}\quad
+	Let $X_n = [n]$ and $d : X_n^2 \to \QQ$ be a metric, define $\Xx_n^d$ as the equivalent of the metric space $(X_n, d)$.
+	We define the collection,
+	\[
+		\Mm
+		= \{ \Xx_n^d \mid n < \omega, d \text{ is a metric} \}
+	.\]
+	and notice that for each $n < \omega$, the collection of metric functions defined on $X_n$ is countable as it is a subset of $\QQ^{n^2}$.
+	It follows that $\Mm$ is a countable collection, and notice that $\Mm \subseteq \Kk$. \\
+	Let $\Yy \in \Kk$, and let $(Y, \rho)$ be the equivalent metric space, notate $n = |Y|$ and let us define $f : [n] \to Y$ a bijection, then,
+	\[
+		d : X_n^2 \to \QQ,
+		\qquad
+		d(x_1, x_2)
+		= \rho(f(x_1), f(x_2))
+	.\]
+	is a metric on $X_n$ and therefore $\Xx_n^d \in \Mm$ and $\Xx_n^d \cong \Yy$.
+
+	\textbf{Hereditary property}\quad
+	Assume that $\Xx \subseteq \Yy \in \Kk$ and show that $\Xx \in \Kk$, we omit the requirement that $\Xx$ is finitely-generated as there are no function symbols and $|Y| < \omega$.
+	Metric property is closed under restrictions then if $(Y, \rho)$ a metric space and $X \subseteq Y$ then $(X, \rho \restriction X^2)$ is a metric space as well.
+
+	\textbf{The joint embedding property}\quad
+	Suppose that $\Xx, \Yy \in \Kk$ and let $(X, d), (Y, \rho)$ be their respective equivalencies.
+	Assume that $X \cap Y \ne \emptyset$ then let $x_0 \in X \cap Y$ be some element, and let $C = A \cup B$, define,
+	\[
+		f : C^2 \to \QQ_{\ge 0},
+		\qquad
+		f(a, b)
+		= \begin{cases}
+			d(a, b) & a, b \in X \\
+			\rho(a, b) & a, b \in Y \\
+			d(a, x_0) + \rho(b, x_0) & a \in X, b \in Y \\
+			d(b, x_0) + \rho(a, x_0) & b \in X, a \in Y \\
+		\end{cases}
+	.\]
+	Then $(C, f)$ is a metric space and it follows that $\id_X, \id_Y$ are embeddings of $X, Y$ into $C$ respectively. \\
+	If $X \cap Y = \emptyset$ then denote some arbitrary elements $x_0 \in X, y_0 \in Y$,
+	let $f : C^2 \to \QQ_{\ge 0}$ defined by,
+	\[
+		f(a, b)
+		= \begin{cases}
+			d(a, b) & a, b \in X \\
+			\rho(a, b) & a, b \in Y \\
+			d(x_0, a) + \rho(y_0, b) + 1 & a \in X, b \in Y \\
+			d(x_0, b) + \rho(y_0, a) + 1 & \text{otherwise}
+		\end{cases}
+	.\]
+	Thus $f$ is a metric over $C$, as it is symmetric, non-negative and fulfills triangle inequality.
+	If $\Cc$ is the structure of $(C, f)$ then $\Cc \in \Kk$ and $\id_X, \id_Y$ are embedding of $\Xx, \Yy$ into $\Cc$.
+
+	\textbf{The amalgamation property}\quad
+	Let $\Xx, \Yy, \Zz \in \Kk$ with $(X, d_x), (Y, d_y), (Z, d_z)$ such that $g_x : \Zz \to \Xx, g_y : \Zz \to \Yy$ are embeddings.
+	Let $\Cc \in \Kk$ as in the last statement, and assume without loss of generality that $\Cc \subseteq \Xx, \Yy$ (otherwise we can use closure under isomorphism) and therefore $g_x, g_y$ are both identity.
+	Let $f_x : \Xx \to \Cc, f_y : \Yy \to \Cc$ be embeddings, it is implied that,
+	\[
+		f_y \circ g_y
+		= f_y \circ \id_Z
+		= f_x \circ \id_Z
+		= f_x \circ g_x
+	.\]
+	and the property holds as wished.
+\end{proof}
+Let us denote $\UU_\QQ$ the Fraïssé limit of $\Kk$, and let $(U_\QQ, d)$ be its equivalent metric space.
+
+\subquestion{}
+Let $(X, d)$ be a metric space, a Katětov map is a function $f : X \to \RR_{\ge 0}$ such that,
+\[
+	\forall x, y \in X,\ 
+	|f(x) - f(y)| \le d(x, y) \le f(x) + f(y)
+.\]
+A rational Katětov map is a Katětov map such that $\im f \subseteq \QQ$. \\
+We will show that for every finite $A \subseteq U_\QQ$, any rational Katětov map $f : A \to \QQ_{\ge 0}$ is realized, namely there is some $b \in U_\QQ$ such that $\forall x \in U_\QQ,\ f(x) = d(x, b)$.
+\begin{proof}
+	Note that if $\Xx \cong \Yy$ and $f : \Xx \to \Yy$ isomorphism, then $R_q(x, y) \iff R_q(f(x), f(y))$, meaning that $f$ is an isometry of $X, Y$ as metric spaces.
+
+	Let $f$ be some rational Katětov map of $A$.
+	Let $B = A \uplus \{ c \}$ for some element, we define a metric on $B$, $\rho : B^2 \to \QQ_{\ge 0}$ by,
+	\[
+		\rho(x, y)
+		= \begin{cases}
+			d(x, y) & x, y \in A \\
+			d(c, x) = f(x) & x \in A \\
+			d(c, c) = 0
+		\end{cases}
+	.\]
+	$\rho$ is symmetrical and non-negative, and fulfills the triangle inequality for elements of $A$, let us verify that for $c$ as well,
+	\[
+		\rho(c, c)
+		= 0
+		\le 2 f(x)
+		= \rho(c, x) + \rho(x, c)
+	.\]
+	and,
+	\[
+		\rho(x, y)
+		= d(x, y)
+		\le f(x) + f(y)
+		= \rho(x, c) + \rho(c, y)
+	.\]
+	Then $(B, \rho)$ is indeed metric space, but $B$ is finite and thus $\Bb$ is isomorphic to some substructure of $\UU_\QQ$, $\Bb \cong \Cc \in \Kk$, and let $g : \Bb \leftrightarrow \Cc$ be the isomorphism.
+	$\UU_\QQ$ is ultra-homogeneous then the isomorphism of $A \to \Cc \setminus \{ g(c) \}$ can be extended to $\sigma \in \aut(\UU_\QQ)$, and let $e = \sigma^{-1}(c')$.
+	For any $x \in A$, $f(x) = \rho(x, c) = d(g(x), g(c)) = d(\sigma^{-1}(g(x)), \sigma^{-1}(g(c))) = d(x, e)$ as wished.
+\end{proof}
+We will show that $\UU_\QQ$ is the unique countable rational metric space such that for any $A \subseteq X$ finite and rational Katětov map on $A$, there is $b \in X$ realizing $f$.
+\begin{proof}
+	Let $(X, \rho)$ be a metric space with this property, we will show that $(X, \rho) \cong (U_\QQ, d)$.
+	We will show by induction that for every $X_n^f$ (as defined in part 1) there is $Y \subseteq X$ such that $(X_n^f, f) \cong (Y, \rho \restriction Y^2)$.
+	The case of $n = 1$ is trivial as the single metric on single valued space is $0$. \\
+	Let us assume the claim holds for $m < n$ and let $X_n^f$ be some finite and rational metric space.
+	Take $(X_{n - 1}^{f \restriction X_{n - 1}^2}, f \restriction X_{n - 1}^2)$, we get a sub-metric space of size $n - 1$, meaning that there is some such $Y \subseteq X$ and let $\sigma : X_{n - 1} \leftrightarrow Y$.
+	Define $g : Y \to \QQ_{\ge 0}$ by $g(x) = f(n - 1, \sigma^{-1}(x))$, then $g$ is a Katětov map, as a result of the last subpart.
+	There is an element $b \in X$ that realizes $g$, therefore $\rho(x, b) = g(x) = f(n - 1, \sigma^{-1}(x))$, meaning that $f(\sigma^{-1}(\cdot), \sigma^{-1}(\cdot)) = \rho \restriction {(Y \cup \{ b \})}^2$.
+
+	We have shown that $\{ X_n^f \mid n < \omega, f \text{ is a metric} \} \subseteq \age(\Xx)$ for $\Xx$ the equivalent of $(X, \rho)$, therefore $\age(\Xx) = \Kk = \age(\UU_\QQ)$, then $\Xx \cong \UU_\QQ$.
+\end{proof}
+
+\subquestion{}
+Let $\UU$ be the completion of $\UU_\QQ$,
+we will show that any finite metric space $(X, d)$ is isometrically embedded into $\UU$.
+\begin{proof}
+	It is going to be induction over the size of the finite subspace yet again, then using the fact that for given set of points, there is a point in distance $|d - d_0| < \varepsilon$, then taking limit of that.
+\end{proof}
+
+\end{document}
