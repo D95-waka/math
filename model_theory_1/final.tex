@@ -230,4 +230,83 @@ We will show that $\Th(\Gg)$ is not $\omega$-categorical.
 	As a subgroup of $\mu_\infty$, it holds that $\nu_\infty$ also follows the required property, and it is clear that it is countable, therefore we found two such groups that are not isomorphic.
 \end{proof}
 
+\subquestion{}
+Let $\Gg$ be a group and let us assume that $\Th(\Gg)$ is totally transcendental.
+We will show that there is no infinite strictly decreasing sequence of definable subgroups $\langle H_n \mid n < \omega \rangle$.
+\begin{proof}
+	We will show that if $\Gg$ has definable strictly decreasing subgroups then $\Th(\Gg)$ has the binary tree property.
+	Let us assume that $\langle H_n \mid n < \omega \rangle$ is such a sequence, meaning that $\Gg = \Hh_0 > \Hh_1 > \cdots$.
+	$H_n$ is definable and let $\varphi_n(x)$ witness it, meaning that $\Gg \models \varphi_i(x) \to \varphi_j(x)$ for any $i < j < \omega$.
+	Let $\psi_n(x) = \varphi_n(x) \land (\lnot \varphi_{n + 1}(x))$, namely $\Mm \models \psi_n(x)$ if $x \in H_n \setminus H_{n + 1}$, the sequence is strictly decreasing therefore $\Gg \models \exists x\ \psi_n(x)$ for any $n$.
+
+	For any $n$, we denote $h_n$ as a witness of $\varphi_n \land (\lnot \varphi_{n + 1})$, meaning that $h_n \in H_n \setminus H_{n + 1}$, meaning that $h_n H_{n + 1}$ is a proper coset of $H_{n + 1}$ in $H_n$ (and in $G$).
+	We deduce that $H_{n + 1} \cap h_n H_{n + 1} = \emptyset$, and define $\varphi_{n + 1}^{h_n}(x) = \varphi_{n + 1}(h_n^{-1} x)$, hence $\Gg \models \varphi_{n + 1}^g(x) \iff x \in h_n H_{n + 1}$.
+	Given a formula $\varphi_n^g$ for some $g \in H$, we can define the following formulas,
+	\[
+		\varphi_{n + 1}^g(x)
+		= \varphi_{n + 1}(g^{-1} x),
+		\qquad
+		\varphi_{n + 1}^{h_n g}(x)
+		= \varphi(g^{-1} h_n^{-1} x)
+	.\]
+	By $H_{n + 1} \subsetneq H_n$ we get that $g H_{n + 1} \subsetneq g H_n$, therefore $\{ \varphi_n^g, \varphi_{n + 1}^g \}$ is consistent,
+	We also get that $\{ \varphi_n^g, \varphi_{n + 1}^{h_n g} \}$ is consistent as a result of the previous statement, but $\Gg \models \varphi_{n + 1}^g(x) \land \varphi_{n + 1}^{h_n g}(x) \iff x \in g H_n, h_n g H_n$,
+	but $g H_n \cap h_n g H_n \ne \emptyset \iff h_n H_n \cap H_n \ne \emptyset$, implying that $\varphi_{n + 1}^g \land \varphi_{n + 1}^{h_n g}$ is inconsistent.
+
+	We can now get to the construction of the binary tree.
+	Let $T : 2^{< \omega} \to G$ be defined as,
+	\[
+		T(\eta)
+		= \prod_{n \in \eta^{-1}(\{ 1 \})} h_n
+	.\]
+	and let $\Gamma : 2^{< \omega} \to \form$ defined by,
+	\[
+		\forall \eta : 2^n \to G,
+		\quad
+		\Gamma(\eta)
+		= \varphi_{n + 1}^{T(\eta)}
+	.\]
+	$\Gamma$ fulfills the binary tree property, and therefore witnessing that $\Gg$ is not totally transcendental.
+
+	The proposition holds by contra positive principle.
+\end{proof}
+
+\question{}
+\subquestion{}
+Let $(X, \cl)$ be a pre-geometry,
+we will show that there is a basis for $X$ and that every two bases have the same cardinality.
+\begin{proof}
+	We say that a set $B \subseteq X$ is a basis if $\cl(B) = X$ and $\forall b \in B,\ b \notin \cl(B \setminus \{ b \})$ (independent).
+	We will show that $B$ is a basis if and only if $B$ is maximally independent. \\
+	Assume that $B$ is a basis, and let $x \in X \setminus B$, then $x \in \cl(B)$ and therefore $B$ is maximally independent. \\
+	In the other direction, let us assume that $B$ is maximally independent, we will show that $\cl(B) = X$.
+	We assume towards contradiction that there is $x \in X \setminus \cl(B)$, and let $B' = B \cup \{ x \}$, thus $x \in \cl(B')$ but $x \notin \cl(B' \setminus \{ x \}) = \cl(B)$.
+	For any $b \in B$ we already assumed that $b \notin \cl(B \setminus \{ b \})$, therefore $B'$ is independent and $B' \supsetneq B$, a contradiction.
+	
+	Let $\Bb = \{ B \subseteq X \mid B \text{ is independent} \}$, notice that $\emptyset$ is independent then $\Bb$ is not empty.
+	In intention of using Zorn's lemma, let $C \subseteq \Bb$ be a chain under $\subseteq$, and let $B^* = \bigcup C$.
+	If $b \in B^*$, then,
+	\[
+		\cl(B^* \setminus \{ b \})
+		= \bigcup \{ \cl(B_0) \mid B_0 \subseteq B^* \setminus \{ b \}, |B_0| < \omega \}
+		\overset{(1)}{=} \bigcup \{ \cl(B_0) \mid \exists B \in C\ B_0 \subseteq B \setminus \{ b \}, |B_0| < \omega \}
+		= \bigcup_{B \in C} \cl(B \setminus \{ b \})
+	.\]
+	where $(1)$ is following from the fact that if $B_0$ is finite and $B_0 \subseteq \bigcup C$ then there is an element in the chain such that $B_0 \subseteq B \in C$.
+	All $B \in C$ are independent then $b \notin \cl(B \setminus \{ b \})$, it follows that $b \notin \cl(B^* \setminus \{ b \})$ as well, $B^*$ is independent and maximal.
+	The conditions for Zorn's lemma are fulfilled, as a result $\Bb$ has a maximal element, in other words there is $B \in \Bb$ that is maximally independent, and thus a basis.
+
+	Let $B_1, B_2 \subseteq X$ be bases for $(X, \cl)$, we will show that $|B_1| = |B_2|$.
+	Let $B_1 = \{ b_{\alpha} \mid \alpha < \kappa \}$, for any $\alpha$, $\alpha \in \cl(B_2)$, so there is finite set $B_0^{\alpha} \subseteq B_2$ such that $b_{\alpha} \in \cl(B_0^{\alpha})$.
+	Take $C = \bigcup_{\alpha < \kappa} B_0^{\alpha}$, then $B \subseteq \cl(C) \implies X = \cl(B) \subseteq \cl(\cl(C)) = \cl(C) \implies \cl(C) = X$ and $|C| = \kappa$ as a union of finite sets.
+	Notice that $C \subseteq B_2$, then $|B_1| = |C| \le |B_2|$, by symmetry it also follows that $|B_2| \le |B_1|$ and by CSB $|B_1| = |B_2|$.
+\end{proof}
+
+\subquestion{}
+Let $T$ be a countable complete $\aleph_1$-categorical theory.
+We will show that $T$ has at most $\aleph_0$ different isomorphism classes for countable models.
+\begin{proof}
+	
+\end{proof}
+
 \end{document}
