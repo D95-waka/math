@@ -3,6 +3,7 @@
 \title{Solution to Final Exercise --- Model Theory (1), 80616}
 
 \DeclareMathOperator{\age}{Age}
+\DeclareMathOperator{\acl}{acl}
 
 \begin{document}
 \maketitle
@@ -306,7 +307,32 @@ we will show that there is a basis for $X$ and that every two bases have the sam
 Let $T$ be a countable complete $\aleph_1$-categorical theory.
 We will show that $T$ has at most $\aleph_0$ different isomorphism classes for countable models.
 \begin{proof}
-	
+	We assume for the sake of contradiction that $\langle \Mm_{\alpha} \mid \alpha < \omega_1 \rangle$ is a sequence of non-isomorphic countable models.
+	$T$ is $\aleph_1$-categorical and thus its only model is saturated and $\aleph_1$-stable, we infer that $T$ is totally transcendental and that there is a prime countable model $\Mm \models T$.
+	We can also deduce that there is a strongly minimal formula $\varphi(x, a)$ over $\Mm$, where $a \in M$ is a parameter.
+	$\Mm$ is prime then there is an embedding of $\Mm$ into $\Mm_{\alpha}$ for all $\alpha$, by closure to larger models the embedding of $a$,
+	$a \mapsto a_{\alpha}$ holds that $\varphi(x, a_{\alpha})$ is strongly minimal in $\Mm_{\alpha}$.
+
+	We will show the lemma that if $\varphi(x)$ is strongly minimal in a structure $\Mm$, then $\acl_\varphi : \Pp(X) \to \Pp(X)$ defined by $\acl_\varphi(B) = \varphi(M) \cap \acl(B)$ where $X = \varphi(M)$, is a closure. \\
+	If $A \subseteq B \subseteq X$ then,
+	\[
+		\acl_\varphi(A)
+		= \varphi(M) \cap \acl(A)
+		\subseteq \varphi(M) \cap \acl(B)
+		= \acl_\varphi(B)
+	.\]
+	$A \subseteq X = \varphi(M)$ and $A \subseteq \acl(A)$ by $\acl$'s definition, therefore $A \subseteq \acl_\varphi(A)$ as well.
+	$\acl_\varphi$ is also closed as we have shown in former exercise that $\acl(\acl(A)) = \acl(A)$.
+	We deduce that $\acl_\varphi$ is a closure, and it remains to show finite character and exchange properties. \\
+	Let $A \subseteq X$ and let $b \in \acl_\varphi(A)$, then there is a formula $\psi(x)$ with parameters from $A$ such that $\psi(X)$ is finite and $b \in \psi(X)$,
+	therefore $\acl_\varphi(A) \subseteq \bigcup \{ \acl_\varphi(A_0) \mid A_0 \subseteq A, A_0 \text{ is finite} \}$, the other direction is direct. \\
+	Let us assume that $a \in \acl_\varphi(A \cup \{ b \}) \setminus \acl_\varphi(A)$, then there is a formula $\psi(x, y)$ such that $\psi(x, b)$ is algebraic and $\psi(a, b)$ holds.
+	In turn, $b \in \psi(a, X)$ and $\varphi$ is strongly minimal so $\psi(a, y) \land \varphi(y)$ is (without loss of generality) finite and witness $b \in \acl_\varphi(A \cup \{ a \})$.
+	This conclude our lemma.
+
+	Returning to our initial proposition, let us observe $(\varphi(M_{\alpha}, a_{\alpha}), \acl_{\varphi(x, a_{\alpha})})$, this is a pre-geometry according to the lemma,
+	thus it has a basis of constant size, let us denote $n_{\alpha} = \dim (\varphi(M_{\alpha}, a_{\alpha}), \acl_{\varphi(x, a_{\alpha})})$, in particular $n_{\alpha} \le |M_{\alpha}| = \omega$.
+	By the assumption that there are $\omega_1$ equivalency classes we get that there are $\alpha, \beta < \omega_1$ such that $n_{\alpha} = n_{\beta}$.
 \end{proof}
 
 \end{document}
