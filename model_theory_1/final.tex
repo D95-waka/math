@@ -27,7 +27,7 @@ We will show that $\Kk$ is a Fraïssé class.
 		\iff D_q^\Xx(x_1, x_2)
 		\iff D_q^\Yy(f(x_1), f(x_2))
 		\iff \rho(f(x_1), f(x_2)) = q
-	.\]
+	\]
 	Meaning that $(Y, \rho)$ is a finite metric space with rational distance and therefore $\Yy \in \Kk$ as well.
 
 	\textbf{Essential countability}\quad
@@ -36,7 +36,7 @@ We will show that $\Kk$ is a Fraïssé class.
 	\[
 		\Mm
 		= \{ \Xx_n^d \mid n < \omega, d \text{ is a metric} \}
-	.\]
+	\]
 	and notice that for each $n < \omega$, the collection of metric functions defined on $X_n$ is countable as it is a subset of $\QQ^{n^2}$.
 	It follows that $\Mm$ is a countable collection, and notice that $\Mm \subseteq \Kk$. \\
 	Let $\Yy \in \Kk$, and let $(Y, \rho)$ be the equivalent metric space, notate $n = |Y|$ and let us define $f : [n] \to Y$ a bijection, then,
@@ -45,7 +45,7 @@ We will show that $\Kk$ is a Fraïssé class.
 		\qquad
 		d(x_1, x_2)
 		= \rho(f(x_1), f(x_2))
-	.\]
+	\]
 	is a metric on $X_n$ and therefore $\Xx_n^d \in \Mm$ and $\Xx_n^d \cong \Yy$.
 
 	\textbf{Hereditary property}\quad
@@ -65,7 +65,7 @@ We will show that $\Kk$ is a Fraïssé class.
 			d(a, x_0) + \rho(b, x_0) & a \in X, b \in Y \\
 			d(b, x_0) + \rho(a, x_0) & b \in X, a \in Y \\
 		\end{cases}
-	.\]
+	\]
 	Then $(C, f)$ is a metric space and it follows that $\id_X, \id_Y$ are embeddings of $X, Y$ into $C$ respectively. \\
 	If $X \cap Y = \emptyset$ then denote some arbitrary elements $x_0 \in X, y_0 \in Y$,
 	let $f : C^2 \to \QQ_{\ge 0}$ defined by,
@@ -77,7 +77,7 @@ We will show that $\Kk$ is a Fraïssé class.
 			d(x_0, a) + \rho(y_0, b) + 1 & a \in X, b \in Y \\
 			d(x_0, b) + \rho(y_0, a) + 1 & \text{otherwise}
 		\end{cases}
-	.\]
+	\]
 	Thus $f$ is a metric over $C$, as it is symmetric, non-negative and fulfills triangle inequality.
 	If $\Cc$ is the structure of $(C, f)$ then $\Cc \in \Kk$ and $\id_X, \id_Y$ are embedding of $\Xx, \Yy$ into $\Cc$.
 
@@ -90,7 +90,7 @@ We will show that $\Kk$ is a Fraïssé class.
 		= f_y \circ \id_Z
 		= f_x \circ \id_Z
 		= f_x \circ g_x
-	.\]
+	\]
 	and the property holds as wished.
 \end{proof}
 Let us denote $\UU_\QQ$ the Fraïssé limit of $\Kk$, and let $(U_\QQ, d)$ be its equivalent metric space.
@@ -100,7 +100,7 @@ Let $(X, d)$ be a metric space, a Katětov map is a function $f : X \to \RR_{\ge
 \[
 	\forall x, y \in X,\ 
 	|f(x) - f(y)| \le d(x, y) \le f(x) + f(y)
-.\]
+\]
 A rational Katětov map is a Katětov map such that $\im f \subseteq \QQ$. \\
 We will show that for every finite $A \subseteq U_\QQ$, any rational Katětov map $f : A \to \QQ_{\ge 0}$ is realized, namely there is some $b \in U_\QQ$ such that $\forall x \in U_\QQ,\ f(x) = d(x, b)$.
 \begin{proof}
@@ -112,24 +112,24 @@ We will show that for every finite $A \subseteq U_\QQ$, any rational Katětov ma
 		\rho(x, y)
 		= \begin{cases}
 			d(x, y) & x, y \in A \\
-			d(c, x) = f(x) & x \in A \\
-			d(c, c) = 0
+			f(x) & x \in A \\
+			0 & x = y = c
 		\end{cases}
-	.\]
+	\]
 	$\rho$ is symmetrical and non-negative, and fulfills the triangle inequality for elements of $A$, let us verify that for $c$ as well,
 	\[
 		\rho(c, c)
 		= 0
 		\le 2 f(x)
 		= \rho(c, x) + \rho(x, c)
-	.\]
+	\]
 	and,
 	\[
 		\rho(x, y)
 		= d(x, y)
 		\le f(x) + f(y)
 		= \rho(x, c) + \rho(c, y)
-	.\]
+	\]
 	Then $(B, \rho)$ is indeed metric space, but $B$ is finite and thus $\Bb$ is isomorphic to some substructure of $\UU_\QQ$, $\Bb \cong \Cc \in \Kk$, and let $g : \Bb \leftrightarrow \Cc$ be the isomorphism.
 	$\UU_\QQ$ is ultra-homogeneous then the isomorphism of $A \to \Cc \setminus \{ g(c) \}$ can be extended to $\sigma \in \aut(\UU_\QQ)$, and let $e = \sigma^{-1}(c')$.
 	For any $x \in A$, $f(x) = \rho(x, c) = d(g(x), g(c)) = d(\sigma^{-1}(g(x)), \sigma^{-1}(g(c))) = d(x, e)$ as wished.
@@ -170,6 +170,34 @@ we will show that any finite metric space $(X, d)$ is isometrically embedded int
 We will show that for any $A \subseteq \UU$ finite and Katětov map $f$ on $A$ is realized by point $b \in \UU$.
 \begin{proof}
 	The proof is identical to the proof of the last two parts, using induction over the size of $A$ and constructing space using rational Katětov functions and their realization.
+
+	Let $g : A \to \QQ_{\ge 0}$ such that $|f - g| < \varepsilon$, then,
+	\begin{align*}
+		|g(x) - g(y)|
+		& = |g(x) - f(x) + f(x) - g(y) + f(y) - f(y)| \\
+		& \le |g(x) - f(x)| + |g(y) - f(y)| + |f(x) - f(y)| \\
+		& < 2 \varepsilon + |f(x) - f(y)| \\
+		& \le d(x, y)
+	\end{align*}
+	and,
+	\[
+		f(x) + f(y)
+		< \varepsilon + g(x) + \varepsilon + g(y)
+	\]
+	Therefore $g$ is a rational Katětov and thus realized by some $b^{\varepsilon} \in \UU_\QQ$.
+	Consider the sequence $\langle b_n = b^{\frac{1}{n}} \mid n < \omega \rangle \subseteq \UU_\QQ$,
+	\[
+		d(b_m, b_n)
+		\le d(b_m, a) + d(a, b_n)
+		\le g_m(a) + g_n(a)
+		\le \frac{1}{n} + \frac{1}{m} + f(a) + f(a)
+	.\]
+
+	Let us define new finite metric space $Y = \{ y_n \mid n < |A| + 1 \}$ and $\varphi : Y \restriction |A| \to A$ a bijection, and define $Y$'s metric as the one induced by $\varphi$ as an isometry,
+	in other words $\rho(x, y) = d(\varphi(x), \varphi(y))$ for $x, y \in Y \setminus \{ y_n \}$.
+	Let us extend the definition of $\rho$ to $Y$ by setting $\rho(x, y_n) = f(\varphi(x))$ and $\rho(y_n, y_n) = 0$.
+	$(Y, \rho)$ is isometrically embeddable in $\UU$ by part c, let us denote this embedding by $g : (Y, \rho) \hookrightarrow (Z, d)$, as a result of the proof of part b we get $g(Y \setminus \{ y_n \}) = A$.
+	If $c = g(y_n)$ then by our definition $\rho(x, y_n) = f(\varphi(x)) = d(\varphi(x), c)$, meaning that $\forall a \in A,\ f(a) = d(a, c)$ as required.
 \end{proof}
 
 \subquestion{}
@@ -206,12 +234,12 @@ we will show that for every finite $A \subseteq G$, it holds that $\Aa = \langle
 		\quad
 		T(f)
 		= \prod_{i = 0}^{n - 1} f(i)
-	.\]
+	\]
 	and let $p \in S_1(\Gg)$ defined as,
 	\[
 		p(x)
 		= \{ T(f) \ne x \mid f \in A^{< \omega} \}
-	.\]
+	\]
 	$p$ is realized in $\Gg$, but by $p$'s definition it holds that if $c \in G$ witnessing $p$ then $c \notin \langle A \rangle$, a contradiction.
 \end{proof}
 
@@ -224,7 +252,7 @@ We will show that $\Th(\Gg)$ is not $\omega$-categorical.
 	\[
 		\mu_p
 		= \{ z \in \CC \mid z^p = 1 \}
-	.\]
+	\]
 	and $\mu_{\infty} = \bigcup_{0 < n} \mu_p$.
 	Each finite $A \subseteq \mu_{\infty}$ equals to $\mu_{\gcd A}$, in particular $\langle A \rangle$ is finite.
 	Let $\nu_\infty = \langle \bigcup_{2 < p \in P} \mu_n \rangle$ be the subset of $\mu_\infty$ such that it has no elements of order $2$.
@@ -249,7 +277,7 @@ We will show that there is no infinite strictly decreasing sequence of definable
 		\qquad
 		\varphi_{n + 1}^{h_n g}(x)
 		= \varphi(g^{-1} h_n^{-1} x)
-	.\]
+	\]
 	By $H_{n + 1} \subsetneq H_n$ we get that $g H_{n + 1} \subsetneq g H_n$, therefore $\{ \varphi_n^g, \varphi_{n + 1}^g \}$ is consistent,
 	We also get that $\{ \varphi_n^g, \varphi_{n + 1}^{h_n g} \}$ is consistent as a result of the previous statement, but $\Gg \models \varphi_{n + 1}^g(x) \land \varphi_{n + 1}^{h_n g}(x) \iff x \in g H_n, h_n g H_n$,
 	but $g H_n \cap h_n g H_n \ne \emptyset \iff h_n H_n \cap H_n \ne \emptyset$, implying that $\varphi_{n + 1}^g \land \varphi_{n + 1}^{h_n g}$ is inconsistent.
@@ -259,14 +287,14 @@ We will show that there is no infinite strictly decreasing sequence of definable
 	\[
 		T(\eta)
 		= \prod_{n \in \eta^{-1}(\{ 1 \})} h_n
-	.\]
+	\]
 	and let $\Gamma : 2^{< \omega} \to \form$ defined by,
 	\[
 		\forall \eta : 2^n \to G,
 		\quad
 		\Gamma(\eta)
 		= \varphi_{n + 1}^{T(\eta)}
-	.\]
+	\]
 	$\Gamma$ fulfills the binary tree property, and therefore witnessing that $\Gg$ is not totally transcendental.
 
 	The proposition holds by contra positive principle.
@@ -292,7 +320,7 @@ we will show that there is a basis for $X$ and that every two bases have the sam
 		= \bigcup \{ \cl(B_0) \mid B_0 \subseteq B^* \setminus \{ b \}, |B_0| < \omega \}
 		\overset{(1)}{=} \bigcup \{ \cl(B_0) \mid \exists B \in C\ B_0 \subseteq B \setminus \{ b \}, |B_0| < \omega \}
 		= \bigcup_{B \in C} \cl(B \setminus \{ b \})
-	.\]
+	\]
 	where $(1)$ is following from the fact that if $B_0$ is finite and $B_0 \subseteq \bigcup C$ then there is an element in the chain such that $B_0 \subseteq B \in C$.
 	All $B \in C$ are independent then $b \notin \cl(B \setminus \{ b \})$, it follows that $b \notin \cl(B^* \setminus \{ b \})$ as well, $B^*$ is independent and maximal.
 	The conditions for Zorn's lemma are fulfilled, as a result $\Bb$ has a maximal element, in other words there is $B \in \Bb$ that is maximally independent, and thus a basis.
@@ -320,7 +348,7 @@ We will show that $T$ has at most $\aleph_0$ different isomorphism classes for c
 		= \varphi(M) \cap \acl(A)
 		\subseteq \varphi(M) \cap \acl(B)
 		= \acl_\varphi(B)
-	.\]
+	\]
 	$A \subseteq X = \varphi(M)$ and $A \subseteq \acl(A)$ by $\acl$'s definition, therefore $A \subseteq \acl_\varphi(A)$ as well.
 	$\acl_\varphi$ is also closed as we have shown in former exercise that $\acl(\acl(A)) = \acl(A)$.
 	We deduce that $\acl_\varphi$ is a closure, and it remains to show finite character and exchange properties. \\
@@ -332,7 +360,12 @@ We will show that $T$ has at most $\aleph_0$ different isomorphism classes for c
 
 	Returning to our initial proposition, let us observe $(\varphi(M_{\alpha}, a_{\alpha}), \acl_{\varphi(x, a_{\alpha})})$, this is a pre-geometry according to the lemma,
 	thus it has a basis of constant size, let us denote $n_{\alpha} = \dim (\varphi(M_{\alpha}, a_{\alpha}), \acl_{\varphi(x, a_{\alpha})})$, in particular $n_{\alpha} \le |M_{\alpha}| = \omega$.
-	By the assumption that there are $\omega_1$ equivalency classes we get that there are $\alpha, \beta < \omega_1$ such that $n_{\alpha} = n_{\beta}$.
+	By the assumption that there are $\omega_1$ equivalency classes we get that there are $\alpha \ne \beta < \omega_1$ such that $n_{\alpha} = n_{\beta}$. \\
+	Let $B_{\alpha}, B_{\beta}$ be the respective bases, there is $f : B_{\alpha} \to B_{\beta}$ a bijection.
+	For each $t \in M_{\alpha}$ there is an algebraic formula $\phi(x)$ such that $\phi^{\Mm_{\alpha}}(t)$ and therefore $t$ is atomic over $B_{\alpha}$.
+	By our assumption $f(tp(t / B_{\alpha}))$ is realized and let $s \in M_{\beta}$ denote its realization, then $f$ can be extended with $\langle t, s \rangle$,
+	implying that $f$ has an extension to the elementary injection $f' : \acl_{\varphi(x, a_{\alpha})}(B_{\alpha}) \to \acl_{\varphi(x, a_{\beta})}(B_{\beta})$, that is $f' : \Mm_{\alpha} \to \Mm_{\beta}$.
+	By using back and forth we can extend $f'$ to a bijection, thus $\Mm_{\alpha} \cong \Mm_{\beta}$ in contradiction to our assumption that $\alpha = \beta \iff \Mm_{\alpha} \cong \Mm_{\beta}$.
 \end{proof}
 
 \end{document}
