@@ -300,6 +300,49 @@ We will show that there is no infinite strictly decreasing sequence of definable
 	The proposition holds by contra positive principle.
 \end{proof}
 
+\subquestion{}
+Let $G$ be an infinite group and let $L = \{1, \cdot, {}^{-1} \}$.
+We will show that if $\Th(G)$ admits quantifier elimination then $G$ is Abelian.
+\begin{proof}
+	Let $\varphi(x)$ be some formula in $\sent_L$, then $\varphi$ is equivalent to one of the formulas,
+	\[
+		\bigwedge_{n \in A} x^n \ne 1,
+		\qquad
+		\bigvee_{n \in A} x^n = 1
+	.\]
+	as a result of quantifier elimination, where $A \subseteq \omega \setminus \{ 0 \}$ is finite.
+	In other words $T \models \varphi(x) \iff o(x) \in A_\varphi$ such that $A_{\varphi}$ is finite or co-finite, for any $\varphi \in \sent_L$.
+
+	Let $\theta(x) = \forall y\ x \cdot y = y \cdot x$, that is $\theta^G(x) \iff x \in Z(G)$.
+	We get from $o(1) = 1$ that $1 \in A_{\theta}$, as well $2 \in A_{\theta}$ as $o(x) = 2$ if and only if $x = x^{-1}$.
+
+	We assume for contradiction that $G$ is not Abelian. \\
+	Assume that $G$ has an infinite order element $a \in G$.
+	If $a \in Z(G)$ then $o(a) \ne n \iff n \notin A_{\theta}$ for all $n$, then $A_{\theta} = \emptyset$, implying that $o(g) = 0 \iff g \in Z(G)$ for all $g \in G$.
+	If $g \in G$ is of finite order $n$, then if $a \cdot g$ is of finite order $m$ we get,
+	\[
+		{(a g)}^{n m} = 1
+		\iff a^{n m} g^{n m} = 1
+		\iff a^{n m} = 1
+	.\]
+	then $a g$ is of an infinite order and therefore $\in Z(G)$, then $g \in Z(G)$ as well, but $o(g) = n \notin A_{\theta}$ in contradiction, thus there is no element of infinite order in $Z(G)$.
+
+	$Z(G)$ does not contain infinite order element.
+	Let us assume that $a \in G \setminus Z(G)$ is of infinite order, for the same reason as before elements are of infinite order if and only if they are not commutative.
+	There wasn't a lot of types in this theory in the first place, now we know that the single type there is isolated, and therefore each model of $T$ is atomic.
+	Every countable and atomic model is prime, therefore any two countable models of $\Th(G)$ are mutually embedded in each other, in other words $\Th(G)$ is $\omega$-categorical.
+	By part a of the question $\langle a \rangle$ is finite in contradiction, therefore there is no such $a$, it follows that there are no infinite order elements in $G$.
+
+	Let us define $A = \{ n < \omega \mid \exists g \in G,\ o(g) = n \}$.
+	Let us define the partial type $p(x) = \{ x^n = 1 \mid n \in A \}$, then the theory $\Th(G) \cup p(c)$ for new constant symbol $c$ is finitely satisfiable therefore satisfiable by a countable model $H$.
+	if we omit $c$ from the language of $H$ we get $H \models \Th(G)$ and if $A$ is unbound then $H$ has infinite order element in direct contradiction to our last claim.
+	We deduce that $A$ is finite, and denote $M = \max A < \omega$, then $A_{\theta} \subseteq A$, in particular $A_{\theta}$ is bounded by $M$ as well.
+
+	Let us denote $H = Z(G)$ and $K = \langle G \setminus Z(G) \rangle = \{ 1 \} \cup (G \setminus Z(G))$, then $H K = G$, $H \cap K = \{ 1 \}$, $H \triangleleft G$ as its center,
+	and $K \triangleleft G$ as if $g \in K$ then $g K = K = K g$ and if $g \in Z(G)$ then $g K = K g$.
+	Therefore $G \simeq H \times K$, so for any $x \in H, y \in K$ we get $o(x y) = o((x, y)) = \gcd(o(x), o(y)) \in A_{\theta}$, but $A_{\theta}$ is closed under squares, then $A_{\theta} = A$.
+\end{proof}
+
 \question{}
 \subquestion{}
 Let $(X, \cl)$ be a pre-geometry,
