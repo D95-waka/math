@@ -220,7 +220,7 @@ We will show that every complete separable metric space is isometrically embedde
 Groups.
 
 \subquestion{}
-Let $\Gg$ be a group in the language of group theory.
+Let $\Gg$ be a group in the language $L = \{ \cdot \}$ of group theory.
 
 \subsubsection{i}
 Assume that $\Th(\Gg)$ is $\omega$-categorical,
@@ -244,10 +244,9 @@ we will show that for every finite $A \subseteq G$, it holds that $\Aa = \langle
 \end{proof}
 
 \subsubsection{ii}
-Let us assume that for every finite $A \subseteq G$, $|\langle A \rangle|$ is finite as well.
-We will show that $\Th(\Gg)$ is not $\omega$-categorical.
-\begin{proof}
-	Let us construct a counter example.
+Let us assume that for every finite $A \subseteq G$, $|\langle A \rangle|$ is finite as well. \\
+We will find a counter example to the claim that $\Th(G)$ is $\omega$-categorical.
+\begin{solution}
 	Let $\mu_p$ denote Prüfer $p$-group over $\CC$, namely,
 	\[
 		\mu_p
@@ -255,9 +254,15 @@ We will show that $\Th(\Gg)$ is not $\omega$-categorical.
 	\]
 	and $\mu_{\infty} = \bigcup_{0 < n} \mu_p$.
 	Each finite $A \subseteq \mu_{\infty}$ equals to $\mu_{\gcd A}$, in particular $\langle A \rangle$ is finite.
-	Let $\nu_\infty = \langle \bigcup_{2 < p \in P} \mu_n \rangle$ be the subset of $\mu_\infty$ such that it has no elements of order $2$.
-	As a subgroup of $\mu_\infty$, it holds that $\nu_\infty$ also follows the required property, and it is clear that it is countable, therefore we found two such groups that are not isomorphic.
-\end{proof}
+
+	Notice $x^n = 1 \iff x^{n + 1} = x$, meaning that order of elements is definable, and let,
+	\[
+		\varphi_n(x)
+		= x^{n + 1} = x
+	\]
+	Therefore $\varphi_n^G(a) \iff o(a) = n$ for any $a \in G$, each element has a unique order ($T \models \forall x\ \varphi_n(x) \to (\lnot \varphi_m(x))$ for any $n \ne m$), then $\varphi_n \not\equiv_T \varphi_m$.
+	It implies that there are at least countably many non-equivalent formulas over single variable in $T$, by Ryll-Nardzewski theorem $T$ is not $\omega$-categorical.
+\end{solution}
 
 \subquestion{}
 Let $\Gg$ be a group and let us assume that $\Th(\Gg)$ is totally transcendental.
