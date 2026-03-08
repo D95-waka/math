@@ -183,7 +183,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">בלמידה</th>
-        <th>16/23</th>
+        <th>21/23</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
@@ -199,6 +199,16 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80507">תבניות ריבועיות ומספרים P־אדיים</a></td>
         <td>2026ב'</td>
         <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80576">טופולוגיה דיפרנציאלית</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80984">מידות הרמוניות ודינמיקה פרקטלית</a></td>
+        <td>2026ב'</td>
+        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">סקס- רביה מינית ממולקולות עד פילים, באנגלית</a></td>
@@ -231,7 +241,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td>חובה בחוג</td>
         <td>53</td>
-        <td>50</td>
+        <td>48</td>
     </tr>
     <tr>
         <td>חובת בחירה</td>
@@ -241,7 +251,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td>בחירה בחוג</td>
         <td>16</td>
-        <td>11</td>
+        <td>14</td>
     </tr>
     <tr>
         <td>לימודי תכנות</td>
