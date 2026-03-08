@@ -49,7 +49,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">הסתיימו</th>
-        <th>77</th>
+        <th>105</th>
     </tr>
     <tr>
         <td><a href="./discrete_mathematics">מתמטיקה דיסקרטית</a></td>
@@ -137,13 +137,9 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>3</td>
     </tr>
     <tr>
-        <th colspan="2">בלמידה</th>
-        <th>27</th>
-    </tr>
-    <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80616">תורת המודלים 1</a></td>
         <td>2026א'</td>
-        <td>2</td>
+        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80517">תורת המידה</a></td>
@@ -186,8 +182,8 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>2</td>
     </tr>
     <tr>
-        <th colspan="2">עתידיים</th>
-        <th>21</th>
+        <th colspan="2">בלמידה</th>
+        <th>16/23</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
@@ -201,11 +197,6 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80507">תבניות ריבועיות ומספרים P־אדיים</a></td>
-        <td>2026ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80824">תורת המודלים 2</a></td>
         <td>2026ב'</td>
         <td>2</td>
     </tr>
@@ -225,9 +216,8 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>3</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6115">תהליכים קוגניטיביים למדעי הקוגניציה</a></td>
-        <td>2026ב'</td>
-        <td>3</td>
+        <th colspan="2">עתידיים</th>
+        <th>0</th>
     </tr>
 </table>
 
@@ -251,7 +241,7 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td>בחירה בחוג</td>
         <td>16</td>
-        <td>0</td>
+        <td>11</td>
     </tr>
     <tr>
         <td>לימודי תכנות</td>
@@ -261,11 +251,11 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     <tr>
         <td>אבני פינה</td>
         <td>2</td>
-        <td>0</td>
+        <td>2</td>
     </tr>
     <tr>
         <td>לימודים משלימים</td>
         <td>30</td>
-        <td>0</td>
+        <td>15</td>
     </tr>
 </table>
