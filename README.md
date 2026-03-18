@@ -183,10 +183,15 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">בלמידה</th>
-        <th>21/23</th>
+        <th>31/23</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
+        <td>2026ב'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80418">מבנים ב': חוגים ומודולים</a></td>
         <td>2026ב'</td>
         <td>4</td>
     </tr>
@@ -216,6 +221,11 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td>2</td>
     </tr>
     <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/76632">תכנות מתקדם בפייתון</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/38406">הסכסוך הישראלי-פלסטיני ב'</a></td>
         <td>2026ב'</td>
         <td>2</td>
@@ -224,6 +234,16 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6170">קוגניציה וחישוביות של בעלי חיים</a></td>
         <td>2026ב'</td>
         <td>3</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/34073">ממדעים לאמנות</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/34312">מחשבת החינוך</a></td>
+        <td>2026ב'</td>
+        <td>2</td>
     </tr>
     <tr>
         <th colspan="2">עתידיים</th>
@@ -245,12 +265,12 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <td>חובת בחירה</td>
-        <td>23</td>
+        <td>24</td>
         <td>24</td>
     </tr>
     <tr>
         <td>בחירה בחוג</td>
-        <td>16</td>
+        <td>17</td>
         <td>14</td>
     </tr>
     <tr>
