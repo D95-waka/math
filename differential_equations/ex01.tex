@@ -3,7 +3,7 @@
 
 \begin{document}
 \maketitle
-\maketitleprint{}
+\maketitleprint[teal]{}
 
 \question{}
 יהי $J \subseteq \RR$ קטע ותהי $t_0 \in J$, נניח ש־$a, f \in C(J)$.
@@ -38,12 +38,12 @@
 
 	נניח שקיים $c$ כך ש־$(1)$ מתקיים.
 	נגזור את הביטוי תוך שימוש במשפט היסודי,
-	\[
+	\begin{align*}
 		x'(t)
-		= e^{\varphi(t)} \varphi'(t) \left( \int_{t_0}^{t} e^{- \varphi(s)} f(s)\ ds + c \right) + e^{\varphi(t)} (e^{-\varphi(t)} f(t))
-		= e^{\varphi(t)} a(t) \left( \int_{t_0}^{t} e^{- \varphi(s)} f(s)\ ds + c \right) + f(t)
-		= a(t) x(t) + f(t)
-	\]
+		& = e^{\varphi(t)} \varphi'(t) \left( \int_{t_0}^{t} e^{- \varphi(s)} f(s)\ ds + c \right) + e^{\varphi(t)} (e^{-\varphi(t)} f(t)) \\
+		& = e^{\varphi(t)} a(t) \left( \int_{t_0}^{t} e^{- \varphi(s)} f(s)\ ds + c \right) + f(t) \\
+		& = a(t) x(t) + f(t)
+	\end{align*}
 	כאשר לבסוף השתמשנו שוב ב־$(1)$.
 \end{proof}
 
