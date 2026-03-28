@@ -1,0 +1,210 @@
+\documentclass[aspectratio=169]{beamer}
+
+% Presentation settings
+\usetheme{metropolis}
+\usefonttheme[onlymath]{serif}
+
+% Setting docuemnt language and fonts
+\RequirePackage[bidi=basic, layout=tabular, provide=*]{babel}
+\babelprovide[main, import]{hebrew}
+\babelprovide{rl}
+\babelfont[hebrew]{rm}[Renderer=Harfbuzz]{Libertinus Serif}
+\babelfont[hebrew]{sf}{Liberation Sans}
+\babelfont[hebrew]{tt}{Libertinus Mono}
+
+\title{רקע מתמטי קצר על קבוצות ולוגיקה}
+\author{}
+\institute{80177 --- חשבון אינפיניטסימלי לתלמידי הנדסה ומדעים}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{קבוצות}
+\begin{frame}{המושג קבוצה}
+	קבוצה היא אוסף של איברים. אנו מציינים קבוצה בעזרת סוגריים מסולסלים, שביניהם מגדירים מיהם האיברים של הקבוצה, על ידי כתיבה מפורשת שלהם בהפרדת פסיקים.
+
+\end{frame}
+\begin{frame}{דוגמה לקבוצה}
+	$\{1,2,3\}$ היא הקבוצה שאיבריה הם המספרים $1$, $2$ ו־$3$.
+
+	הקבוצה הזו לא מכילה את $5$, כי $5$ שונה מ־$1$, מ־$2$ ומ־$3$ והוא לא רשום בין הצומדיים (סוגריים מסולסלים).
+\end{frame}
+
+
+\begin{frame}{שייכות של איבר לקבוצה}
+	הסימון $x\in A$ מציין שהאובייקט $x$ שייך לקבוצה $A$.
+
+	לדוגמה $1 \in \{1,2,3\}$
+
+	הסימון $y\notin A$ מציין שהאובייקט $y$ לא שייך לקבוצה $A$.
+
+	לדוגמה $5\notin\{1,2,3\}$
+\end{frame}
+
+\begin{frame}{תיאור קבוצה באמצעות כלל}
+	אפשר גם לתאר קבוצה בעזרת כלל. לדוגמה $\{ \text{המספרים השלמים בין $1$ ל־$3$} \} = \{1,2,3\}$
+
+	הכלל שמגדיר מי שייך לקבוצה ומי לא חייב להיות חד־משמעי וברור. 
+
+	יש סימון סטנדרטי כדי לתאר קבוצה שאיבריה נתונים באמצעות כלל המאופיין אותם.
+
+	נדגים את הסימון על הקבוצה לעיל, אותה מסמנים $\{ x \mid 1 \le x \le 3, \text{$x$ מספר שלם} \}$
+	נסביר בשלבים איך לקרוא את השורה הזו:
+	\begin{itemize}
+		\item ראשית זכרו – \textbf{קוראים את התיאור משמאל לימין!}
+		\item שנית, הקו האנכי $\mid$ פירושו ''כך ש־''
+	\end{itemize}
+	לכן כתוב שם, ''הקבוצה של כל האובייקטים $x$ כך ש־$x$ מספר שלם ו־$x$ בין $1$ ל־$3$, כולל''.
+\end{frame}
+
+\begin{frame}{קבוצות מוכרות}
+frameישנן קבוצות  אשר מופיעות כל הזמן במתמטיקה, ולכן נשמרו עבורן סימנים מוסכמים. נציג חלק מהם עכשיו
+	\begin{enumerate}
+		\item \textbf{מספר טבעי }הוא מספר שלם חיובי. קבוצת\textbf{ המספרים הטבעיים } היא הקבוצה $\mathbb{N}=\{1,2,3,4,\ldots\}$.
+			למשל, $1\in\mathbb{N}$ ו־$10234\in\mathbb{N}$ אבל $0\notin\mathbb{N}$, $\:-1\notin\mathbb{N}$ וגם $\frac{3}{4}\notin\mathbb{N}$
+		\item קבוצת ה\textbf{מספרים השלמים} היא הקבוצה $\mathbb{Z}=\{\ldots,-2,-1,0,-1,-2,\ldots\}$
+
+			שימו לב: מספרים שלמים אינם בהכרח חיוביים! למשל, $\:-20\in\mathbb{Z}$
+			וגם $2^{13}\in\mathbb{Z}$, אבל $\frac{3}{4}\notin\mathbb{Z}$
+		\item \textbf{מספר רציונלי} הוא שבר, כלומר מספר מנה $\frac{m}{n}$ עבור
+			$m$ ו־$n$ שלמים ו־$n\neq0$. מסמנים קבוצה זו על־ידי,
+			\begin{center}
+			$\begin{array}[t]{ccc}
+			\mathbb{Q} & \underset{}{=} & \underset{}{\overset{}{\left\{ \left.\frac{m}{n}\right|n\neq0\text{ \:\text{ו־} }n\in\mathbb{Z}\text{ \:\text{ו־} }m\in\mathbb{Z}\right\} }}\end{array}$  
+			\par\end{center}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{שוויון בין קבוצות}
+	שתי קבוצות הן \textbf{שוות} אם יש להן את אותם האיברים.
+
+	כלומר, כל איבר של הקבוצה הראשונה שייך לשניה, וכל איבר של הקבוצה השניה שייך לראשונה.
+\end{frame}
+
+
+
+\begin{frame}{הכלה ותת־קבוצות}
+	אומרים שקבוצה $A$ \textbf{מוכלת }בקבוצה $B$ אם כל איבר של
+	$A$ הוא גם איבר של $B$. 
+	במקרה זה אומרים גם ש־$A$ היא \textbf{תת־קבוצה} של $B$.
+
+	מסמנים זאת $A\subseteq B$.
+
+	לדוגמה, $\{5,11,13\}\subseteq\{2,5,11,12,13,17\}$.\bigskip{}
+
+	\textbf{הערה}: שימו לב שהסמל $\subseteq$ מקשר בין שתי קבוצות והסמל $\in$ מקשר בין קבוצה ואיבר שלה.
+\end{frame}
+
+\begin{frame}{דוגמה}
+	תהיינה $A=\{1,2\},B=\{2,3\}$.
+
+	אז $A\not\subseteq B$ כי $1\in A$ אבל $1 \notin B$.
+
+	באופן דומה $B\not\subseteq A$ כי $3\in B$ אבל $3\notin A$.
+\end{frame}
+
+
+\begin{frame}{שוויון והכלה}
+	קודם אמרנו שקבוצות שוות אם יש להן אותם איברים, לכן בהתאם נקבל $A = B$ אם ורק אם $A \subseteq B$ וגם $B \subseteq A$.
+
+	לעיקרון זה נקרא הכלה דו־כיוונית.
+\end{frame}
+
+\section{השפה המתמטית}
+
+\begin{frame}{פסוקים}
+	היחידה הבסיסית של הלוגיקה היא \textbf{פסוק}. פסוק הוא אמירה שניתן
+	לשייך לה ערך '' אמת'' או '' שקר''{}
+	בצורה חד משמעית. 
+
+	\textbf{דוגמה}: $0=1$ זהו פסוק שקר.
+
+	לא כל מה שכותבים, גם בסימנים מתמטיים, הוא פסוק. למשל ''$x^{4}\ge0$'' איננו פסוק.
+
+	הטענה לא כתובה באופן תקין --- לא נאמר בה מיהו $x$. אי אפשר ליחס לאמירה הזו ערך אמת בלי שיודעים מיהו $x$. יתר על כן, יש גם בחירות של $x$ עבורם לביטוי ''$x^{4}\ge0$'' אין שום משמעות,
+	למשל אם $x$ היא מכונית. לכן כדי להפוך את זה לפסוק יש להבהיר מיהו $x$.
+
+	\textbf{טענה}: לכל $x\in\mathbb{Q}$ מתקיים $x^{4}\ge0$
+
+	זו טענה שמנוסחת באופן תקין!
+\end{frame}
+
+\begin{frame}{כמתים}
+frameמהאמור לעיל נובע ש־$x>0$ איננו פסוק. אפשר להפוך את הביטוי $x>0$
+	לפסוק על ידי \textbf{כימות} על $x$, 
+	\begin{itemize}
+		\item עם \textbf{הכמת האוניברסלי $\left(\forall \right)$}: למשל $x>0$ עבור כל $x$ שלם (בסמלים  $\forall x\in\mathbb{Z}\quad x>0$). 
+			במילים אחרות זהו הפסוק ”כל מספר שלם הינו חיובי''.
+		\item עם\textbf{ הכמת הקיומי $\left(\exists \right)$}: למשל  קיים $x$
+			רציונלי כך ש־$x>0$ (בסמלים  $\exists x\in\mathbb{Q}\quad x>0$)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	באופן כללי תהי $P(x)$ אמירה על משתנה $x$. אפשר להפוך את האמירה
+	לפסוק שאיננו תלוי ב־$x$ על ידי כמתים:
+
+	בהינתן קבוצה $S$, אפשר ליצור את הפסוקים,
+	\begin{itemize}
+		\item לכל $x\in S$ מתקיים $P(x)$. בסימנים, $\forall x\in S\ P(x)$
+		\item קיים $x\in S$ עבורו $P(x)$ מתקיים. בסימנים: $\exists x\in S\ P(x)$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{שלילת כמתים}
+	\textbf{דוגמה, }התבוננו בפסוק הבא: לכל $x\in\mathbb{Q}$ מתקיים
+	$x\cdot x=x+x$.\smallskip{}
+
+	\fcolorbox{black}{white}{\begin{minipage}{\textwidth}
+		כדי להראות שלא נכון ש\textbf{כל איברי }הקבוצה $A$ מקיימים תכונה
+		מסויימת, צריך להראות שיש לפחות \textbf{איבר אחד} ב־$A$ שלא מקיים
+		זאת. כלומר, יש לתת \textbf{דוגמה נגדית}.
+	\end{minipage}}
+
+	שלילת הפסוק בדוגמה שקולה לטענה הבאה\textbf{ }: קיים $x\in\mathbb{Q}$
+	כך ש־$x\cdot x\neq x+x$.
+
+	\textbf{הוכחה}: $x=1\in\mathbb{Q}$ מקיים $1\cdot1=1\neq2=1+1$. 
+
+	באופן כללי, תהי $P(x)$ אמירה על משתנה $x$ ו־$A$ קבוצת
+	איברים. השלילה של הפסוק $\forall x\in AP(x)$ היא $\exists x\in A\neg P(x)$. 
+
+	כלומר: $\neg(\:\forall x\in AP(x)\:)\quad\iff\quad\exists x\in A\neg P(x)$.
+\end{frame}
+
+\begin{frame}{שלילת כמתים}
+	\textbf{דוגמה :} התבוננו בפסוק הבא: קיים $x\in\mathbb{Q}$
+	כך ש־$x+1\leqslant x$.\smallskip{}
+
+	\fcolorbox{black}{white}{\begin{minipage}{\textwidth}
+		כדי להראות ש\textbf{לא קיים} $x$ עם תכונה מסוימת, צריך להראות ש\textbf{כל $x$ }מקיים את שלילת התכונה.
+	\end{minipage}}
+
+	כלומר, שלילת הטענה הקודמת שקולה לטענה הבאה: כל $x\in\mathbb{Q}$
+	מתקיים $x<x+1$.
+
+	\textbf{הוכחה}: יהי $x\in\mathbb{Q}$. נוסיף את $x$ לשני האגפים של אי־השוויון $0<1$ ונקבל $x<x+1$.
+
+	באופן כללי, $\neg(\:\exists x\in AP(x)\:)\quad\iff\quad\forall x\in A\neg P(x)$
+\end{frame}
+
+\begin{frame}{סדר כמתים}
+	\fcolorbox{black}{white}{\begin{minipage}{0.9 \textwidth}
+		כשיש יותר מכמת אחד, \textbf{הסדר בו הם כתובים הוא קריטי}, ושינוי הסדר יכול לשנות לחלוטין את משמעות הפסוק.
+	\end{minipage}}
+
+	התבוננו למשל בפסוקים הבאים,
+	\begin{itemize}
+		\item $\forall x\in\mathbb{Q}\quad\exists y\in\mathbb{Q}\ y>x$
+		\item $\exists y\in\mathbb{Q}\quad\forall x\in\mathbb{Q}\ y>x$
+	\end{itemize}
+
+
+	הפסוק הראשון אומר שעבור כל רציונלי $x$ יש רציונלי $y$ הגדול ממנו. ראינו קודם שהטענה הזו נכונה.
+
+	לעומת זאת הפסוק השני אומר שקיים רציונלי $y$ כך שכל איברי $\mathbb{Q}$ קטנים ממנו. זה בוודאי לא נכון כי למשל $y$ איננו גדול מעצמו, ולכן הטענה נכשלת עבור $x=y$ (וגם עבור $x=y+1$ למשל).
+\end{frame}
+
+\end{document}
