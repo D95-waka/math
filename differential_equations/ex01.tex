@@ -1,0 +1,148 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 01 --- משוואות דיפרנציאליות, 80320}
+
+\begin{document}
+\maketitle
+\maketitleprint{}
+
+\question{}
+יהי $J \subseteq \RR$ קטע ותהי $t_0 \in J$, נניח ש־$a, f \in C(J)$.
+נראה ש־$x : J \to \RR$ פותרת את המשוואה,
+\[
+	x' = a x + f
+\]
+אם ורק אם קיים $c \in \RR$ כך שמתקיים,
+\[
+	x(t)
+	= e^{\varphi(t)} \left( \int_{t_0}^{t} e^{- \varphi(s)} f(s)\ ds + c \right)
+	\tag{1}
+\]
+כאשר $\varphi(t) = \int_{t_0}^{t} a(s)\ ds$.
+\begin{proof}
+	נניח ש־$x$ פתרון של המשוואה ונראה שקיים $c \in \RR$ כזה.
+	נגדיר את הפונקציה $y(t) = e^{- \varphi(t)} x(t)$ ונתבונן בנגזרתה,
+	\[
+		y'(t)
+		= -\varphi'(t) e^{- \varphi(t)} x(t) + e^{- \varphi(t)} x'(t)
+		= -a e^{- \varphi(t)} x(t) + e^{- \varphi(t)} (ax(t) + f)
+		= e^{- \varphi(t)} f(t)
+	\]
+	לכן נוכל לקחת אינטגרל ולקבל,
+	\[
+		y(t) - y(t_0)
+		= \int_{t_0}^t y'(s)\ ds
+		= \int_{t_0}^t e^{- \varphi(s)} f(s)\ ds
+		\iff e^{- \varphi(t)} x(t) = \int_{t_0}^t e^{- \varphi(s)} f(s)\ ds + e^{- \varphi(t_0)} x(t_0)
+	\]
+	כלומר קיבלנו את נכונות $(1)$ עבור $c = y(t_0)$.
+
+	נניח שקיים $c$ כך ש־$(1)$ מתקיים.
+	נגזור את הביטוי תוך שימוש במשפט היסודי,
+	\[
+		x'(t)
+		= e^{\varphi(t)} \varphi'(t) \left( \int_{t_0}^{t} e^{- \varphi(s)} f(s)\ ds + c \right) + e^{\varphi(t)} (e^{-\varphi(t)} f(t))
+		= e^{\varphi(t)} a(t) \left( \int_{t_0}^{t} e^{- \varphi(s)} f(s)\ ds + c \right) + f(t)
+		= a(t) x(t) + f(t)
+	\]
+	כאשר לבסוף השתמשנו שוב ב־$(1)$.
+\end{proof}
+
+\question{}
+נמצא פתרון למשוואה $x'(t) = \frac{t}{t + 1} x(t) + 1$ עם תנאי ההתחלה $x(0) = 1$ בתחום $(-1, \infty)$.
+\begin{solution}
+	נגדיר $a(t) = \frac{t}{t + 1}$ וכן $f(t) = 1$ ונגדיר את,
+	\[
+		\varphi(t)
+		= \int_0^t a(s)\ ds
+		= \int_0^t 1 - \frac{1}{t + 1}\ ds
+		= t - \ln |t + 1|
+	\]
+	אם קיים פתרון אז תנאי שאלה 1 מתקיימים ולכן קיים $c \in \RR$ עבורו,
+	\begin{align*}
+		x(t)
+		& = e^{\varphi(t)} \left( \int_0^t e^{- \varphi(s)} f(s)\ ds + c \right) \\
+		& = e^{t - \ln |t + 1|} \left( \int_0^t e^{- s + \ln |s + 1|}\ ds + c \right) \\
+		& = \frac{1}{t + 1} e^t \left( \int_0^t (s + 1) e^{-s}\ ds + c \right) \\
+		& = \frac{1}{t + 1} e^t \left( -(2 + t) e^{-t} + 2 + c \right)
+	\end{align*}
+	כאשר השתמשנו בעובדה ש־$t + 1$ אי־שלילי בתחום.
+	ידוע כי $x(0) = 1$ ולכן,
+	\[
+		1 = \frac{1}{1 + 0} e^0 ( -(2 + 0) e^{0} + 2 + c)
+		= -2 + 2 + c
+		\implies c = 1
+	\]
+	וקיבלנו שמתקיים,
+	\[
+		x(t)
+		= \frac{-2 - t + 3 e^t}{t + 1}
+	\]
+	מבדיקת הנגזרת נקבל שזהו אכן פתרון של המשוואה.
+\end{solution}
+
+\question{}
+נמצא את הפתרון הכללי למשוואה $x'(t) = x(t) (1 - x(t))$ בתחום $\RR$.
+\begin{solution}
+	נגדיר $f(t) = t(1 - t)$ ונוכל לכתוב את המשוואה מחדש כ־$x'(t) = f(x(t)) \cdot g(t)$ עבור $g \equiv 1$, ולכן ממשפט קיום פתרון נקבל,
+	\[
+		x(t)
+		= \varphi^{-1}(\int g(s)\ ds + C)
+		= \varphi^{-1}(t + C)
+	\]
+	עבור,
+	\[
+		\varphi(t)
+		= \int \frac{1}{f(s)}\ ds
+		= \int \frac{1}{t(1 - t)}\ ds
+		= \int \frac{1}{1 - t} + \frac{1}{t}\ ds
+		= -\ln|1 - t| + \ln|t|
+		\iff e^{\varphi(t)} = \left\lvert \frac{t}{1 - t} \right\rvert
+	\]
+	זוהי לא פונקציה חד־חד ערכית בתחום, נקבל שעבור,
+	\[
+		t = \frac{\pm e^{\varphi(t)}}{1 \pm e^{\varphi(t)}} = g_{\pm}(t)
+	\]
+	מתקיים $\varphi(g_{\pm}(t)) = t$ בשל הערך המוחלט, ובהתאם נקבל שגם $x(t) = g_{\pm}(t + C)$ מקיימת את המשוואה (ישירות מהצבה וגזירה) ולכן מצאנו פתרון כללי.
+\end{solution}
+
+\question{}
+נמצא פתרון למשוואה $x''(t) - 18 x^3(t) = 0$ עם תנאי ההתחלה $x(0) = 1, x'(0) = -3$.
+\begin{solution}
+	נכפיל את המשוואה ב־$x'$ ונקבל $x'' x' - 18 x^3 x' = 0$, לכן,
+	\[
+		\int_0^t x'' x' - 18 x^3 x'\ ds
+		= \frac{1}{2} {(x')}^2 - \frac{9}{2} x^4 - \frac{9}{2} + \frac{9}{2}
+		= 0
+	\]
+	כלומר מצאנו שמתקיים $9 x^4 = {(x')}^2$, כלומר $3 x^2 = \pm x'$, ובפרט $3 x^2(0) = 3 = \pm (-3) = \pm x'(0)$, כלומר $3 x^2 = - x'$ בלבד.
+
+	עתה נגדיר $f(t) = -3 t^2$ ונקבל $x' = f(x)$, ולכן באותה שיטה של התרגיל הקודם,
+	\[
+		\varphi(t)
+		= \int \frac{1}{f(s)}\ ds
+		= \int -\frac{1}{3} \int s^{-2}\ ds
+		= \frac{1}{3 t}
+		\implies \varphi^{-1}(t) = \frac{1}{3 t}
+	\]
+	וכן,
+	\[
+		x(t)
+		= \varphi^{-1}(\int_0^t 1\ ds + C)
+		= \varphi^{-1}(\int_0^t 1\ ds + C)
+		\frac{1}{3t + C}
+	\]
+	ולכן קיבלנו ש־$x(t) = \frac{1}{3t + C}$ פותרת את $x' = -3 x^2$, ובבדיקה ישירה נקבל שהיא פותרת גם את $x'' - 18 x^3 = 0$.
+\end{solution}
+
+\question{}
+תהי $U \subseteq \RR \times \RR^n$ פתוחה ותהי $f : U \to \RR^n$.
+נגדיר את המשוואה הדיפרנציאלית $x'(t) = f(t, x(t))$ עבור $x : U \cap \RR \to \RR^n$.
+נאמר שהמשוואה היא אוטונומית אם $\frac{\partial f}{\partial t} = 0$.
+נראה שפתרון משוואה מהצורה שתיארנו שקול לפתרון משוואה אוטונומית מתאימה.
+\begin{proof}
+	נגדיר את $g : U \to \RR^2$ על־ידי $g(y) = (1, f(y))$ ואת המשוואה $y' = g(y)$ ונראה שהיא מקיימת את הדרוש.
+	אם $y$ פתרון של המשוואה אז נסמן $y = (y_1, y_*)$ כאשר $y_* = (y_2, \ldots, y_n)$, ובהתאם $y_1' = 1$, נקבל ש־$y_1(t) = t + C$.
+	בהתאם מתקיים $y_*'(t) = f(y(t)) = f(t + C, y_*(t))$ ולכן עד כדי קבוע $y_'(t) = f(t, y_*(t))$, ובהתאם $x = y_*$ פותר את המשוואה המקורית.
+\end{proof}
+
+\end{document}
