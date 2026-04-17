@@ -1,0 +1,231 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 02 --- משוואות דיפרנציאליות, 80320}
+% chktex-file 9
+% chktex-file 17
+
+\DeclareMathOperator{\sgn}{sgn}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]{}
+
+\question{}
+תהי תיבה $Q = [a_1, b_1] \times \cdots \times [a_m, b_m] \subseteq \RR^m$ ופונקציה $f : Q \to \RR^n$, נסמן $f = (f_1, \ldots, f_n)$.
+נאמר ש־$f$ אינטגרבילית ב־$Q$ אם $f_1, \ldots, f_n$ אינטגרביליות ב־$Q$ ונגדיר,
+\[
+	\int_Q f(x)\ dx
+	= \left(\int_Q f_1(x)\ dx, \ldots, \int_Q f_n(x)\ dx\right)
+\]
+נוכיח את אי־שוויון המשולש האינטגרלי, כלומר,
+\[
+	\left\lVert \int_Q f(x)\ dx \right\rVert_2
+	\le \int_Q \lVert f(x) \rVert_2\ dx
+\]
+\begin{proof}
+	יהי $\varepsilon > 0$, נסמן $S_i = \int_Q f_i(x)\ dx$ עבור $1 \le i \le n$ ותהי חלוקה $C_\varepsilon$ של $Q$ כך שמתקיים לכל בחירת נקודות ${\{ x_k \}}_{k \in C_\varepsilon}$ כך ש־$x_k \in k$,
+	\[
+		\left\lvert S_i - \sum_{k \in C_\varepsilon} f_i(x_k) \right\rvert
+		< \varepsilon
+	\]
+	נבחין כי קיימת חלוקה יחידה המתאימה לכל $i$ שכן נוכל לבחור $n$ חלוקות ולקחת עידון משותף שקיים מסופיות.
+	בהתאם מתקיים,
+	\[
+		\sum_{k \in C_\varepsilon} f_i(x_k)
+		\xrightarrow{\varepsilon \to 0} S_i
+	.\]
+	לכל $i$ ובחירות $x_k$.
+	בהתאם נקבל שגם,
+	\[
+		\sum_{k \in C_\varepsilon} f(x_k)
+		= \left( \sum_{k \in C_\varepsilon} f_1(x_k), \ldots, \sum_{k \in C_\varepsilon} f_n(x_k) \right)
+		\xrightarrow{\varepsilon \to 0} \int_Q f(x)\ dx
+	.\]
+	אבל מאי־שוויון המשולש של $\lVert \cdot \rVert_2$ נקבל,
+	\[
+		\left\lVert \sum_{k \in C_\varepsilon} f(x_k) \right\rVert_2
+		\le \sum_{k \in C_\varepsilon} \lVert f(x_k) \rVert
+	.\]
+	ומשילוב אי־השוויון האחרון והגבול נקבל את המבוקש.
+\end{proof}
+
+\question{}
+תהי $\delta > 0$ ו־$a, u : [0, \delta) \to \RR$ כך ש־$a$ רציפה ו־$u$ היא $C^1$.
+נניח שלכל $t \in (0, \delta)$ מתקיים,
+\[
+	u'(t) \le a(t) u(t)
+.\]
+
+\subquestion{}
+נראה שהפונקציה,
+\[
+	v(t)
+	= \exp\left(\int_0^t a(s)\ ds\right)
+.\]
+היא פתרון לבעיה,
+\[
+	v'(t) = a(t) v(t),
+	\quad
+	v(0) = 1
+.\]
+\begin{proof}
+	נבדוק בצורה ישירה,
+	\[
+		v(0)
+		= \exp\left(\int_0^0 a(s)\ ds\right)
+		= e^0
+		= 1
+	.\]
+	וכן אם נסמן $A$ קדומה של $a$,
+	\[
+		v'(t)
+		= (A(s) - A(0))' \cdot \exp\left(\int_0^t a(s)\ ds\right)
+		= a(s) v(t)
+	.\]
+	ולכן קיבלנו את המבוקש ואכן $v$ פתרון של המשוואה.
+\end{proof}
+
+\subquestion{}
+נראה את הלמה של גרונוול, לכל $t \in [0, \delta)$ מתקיים,
+\[
+	u(t) \le u(0) v(t)
+.\]
+\begin{proof}
+	נבחין כי $v > 0$ כהרכבה של אקספוננט.
+	נגדיר את הפונקציה $f = \frac{u}{v}$.
+	אז מתקיים,
+	\[
+		f'
+		= \frac{u' v - u v'}{v^2}
+		= \frac{u' v - u a v}{v^2}
+		= \frac{1}{v} (u' - u a)
+		\le \frac{1}{v} (a u - a u)
+		= 0
+	.\]
+	תוך שימוש באי־השוויון הנתון על $u'$ ובסעיף א', קיבלנו ש־$f' \le 0$, כלומר היא מונוטונית יורדת.
+	בהתאם לכל $t \in [0, \delta)$ נקבל,
+	\[
+		f(t) \le f(0)
+		\iff u(t) v(0) \le u(0) v(t)
+	.\]
+	אבל $v(0) = 1$ ולכן קיבלנו בדיוק את הרצוי.
+\end{proof}
+
+\question{}
+\subquestion{}
+תהי $U \subseteq \RR^n$ פתוחה ו־$F : U \to \RR^n$ גזירה ברציפות,
+נראה כי $F$ היא ליפשיץ מקומית.
+\begin{proof}
+	תהי $t_0 \in U$ ו־$\varepsilon > 0$, ידוע כי $D F$ רציפה ולכן קיימת סביבה פתוחה $t_0 \in V \subseteq U$ בה מתקיים $\lVert D F |_{t_0} - D F |_t \rVert < \varepsilon$.
+	בסביבה פתוחה זו נסיק שמתקיים $\lVert D F |_t \rVert \le \varepsilon + \lVert DF |_{t_0} \rVert$, כלומר הנגזרת חסומה בתחום זה ונסמן חסם מספיק גדול $M$.
+	מהגדרת הדיפרנציאל אנו מקבלים יחד עם $\varepsilon$ שמתקיים,
+	\[
+		\frac{\lVert F(t) - F(s) \rVert}{\lVert t - s \rVert}
+		\le M
+	.\]
+	וזוהי בדיוק ליפשיץ מקומי ב־$V$.
+\end{proof}
+
+\subquestion{}
+נבדוק אם קיימת סביבה פתוחה של $0$ בה $F(x) = \frac{1}{1 - x^2}$ היא ליפשיץ.
+\begin{solution}
+	הפונקציה רציפה ב־$(-1, 1)$ ולכן ממשפט קנטור היא רציפה במידה שווה ב־$[-\frac{1}{2}, \frac{1}{2}]$, באופן שקול היא $1$־ליפשיץ בתחום זה.
+	בהתאם הסביבה הפתוחה $(-\frac{1}{2}, \frac{1}{2})$ של $0$ היא סביבה בה $F$ היא $1$־ליפשיץ.
+
+	יכולנו גם להשתמש ישירות בסעיף הקודם ולבדוק שאכן $F$ גזירה ושנגזרתה רציפה, נבחין כי $F'(x) = \frac{2x}{{(1 - x^2)}^2}$ וזוהי פונקציה רציפה בסביבה של $0$, ולכן קיבלנו שוב שהתשובה היא שכן.
+\end{solution}
+
+\subquestion{}
+נבדוק אם קיימת סביבה פתוחה של $0$ בה $F(x) = {|x|}^{\frac{1}{3}}$ היא ליפשיץ.
+\begin{solution}
+	הפעם נבחין כי תנאי סעיף א' לא חלים, מתקיים,
+	\[
+		\lim_{x \to 0} \frac{{|x|}^{\frac{1}{3}} - 0}{x - 0}
+		= \pm \infty
+	.\]
+	ולכן $F$ כלל איננה גזירה ב־$x = 0$.
+
+	מהגבול שקיבלנו קודם נוכל להסיק שערך הנגזרת שואף מימין לאינסוף, כלומר לכל $M \in \RR_+$ קיים $\delta > 0$ כך ש־$F'(x) > M$ לכל $x \in [0, \delta)$.
+	אם נניח שקיימת סביבה $0 \in (-\eta, \eta)$ בה $F$ היא $K$־ליפשיץ, אז נוכל לבחור $\delta$ עבור $M = 2 K$ ואת $x = \frac{\delta}{3}, y = \frac{\delta}{2}$ ונקבל שעבורם מתקיים,
+	\[
+		|F(x) - F(y)|
+		\ge |F(x) - F(x) - \frac{\delta}{6} M|
+		= \frac{\delta}{6} M
+		> \frac{\delta}{6} K
+	.\]
+	וקיבלנו סתירה לליפשיץ, לכן $F$ היא לא ליפשיץ באף סביבה של $0$.
+\end{solution}
+
+\question{}
+נמצא את הסדרת פיקארד עבור הבעיה,
+\[
+	x' = x,
+	\quad
+	x(0) = 1
+.\]
+\begin{solution}
+	הגדרנו את הפונקציה $K x(t) = x_0 + \int_{0}^{t} x(s)\ ds$ במסגרת משפט פיקארד, במקרה הזה $K x(t) = 1 + \int_{0}^{t} x(s)\ ds$.
+	נגדיר את $y_0(t) = 1$, זוהי פונקציה רציפה ולכן $K^n y_0 \to x$ עבור $x$ המהווה פתרון של המשוואה.
+	בהתאם,
+	\[
+		K x(t)
+		= 1 + \int_{0}^{t} y_0(s)\ ds
+		= 1 + \int_{0}^{t} 1\ ds
+		= 1 + t
+	.\]
+	נגדיר את $y_1(t) = 1 + t$, ונגדיר גם $y_{n + 1} = K y_n = K^n y_0$.
+	נקבל אם כך,
+	\[
+		y_2(t)
+		= 1 + \int_{0}^{t} 1 + s\ ds
+		= 1 + t + \frac{t^2}{2}
+	.\]
+	נשתמש בפיתוח זה כבסיס לטענה האינדוקטיבית שמתקיים $y_n(t) = T(\exp, n, t)$, כלומר $y_n$ מזדהה עם פיתוח טיילור מסדר $n$ של $e^t$.
+
+	נניח שמתקיים $y_n(t) = T(\exp, n, t) = \sum_{k = 0}^n \frac{x^k}{k!}$, אז מתקיים,
+	\[
+		y_{n + 1}(t)
+		= 1 + \int_{0}^{t} y_n(s)\ ds
+		= 1 + \sum_{k = 0}^n \int_{0}^{t} \frac{s^k}{k!}\ ds
+		= 1 + \sum_{k = 0}^n \frac{s^{k + 1}}{(k + 1)!}\ ds
+		= T(\exp, n + 1, t)
+	.\]
+	השלמנו את מהלך האינדוקציה ולכן הטענה $y_n(t) = T(\exp, n, t)$ חלה לכל $n \in \NN$ וכן מתקיים,
+	\[
+		y_n(t) \xrightarrow{n \to \infty} e^t
+	.\]
+	לכל $t$ מהתכנסות טור טיילור של $e^t$.
+\end{solution}
+
+\question{}
+יהיו $I \subseteq \RR, U \subseteq \RR^n$ כך ש־$U$ פתוחה ו־$I$ קטע פתוח, ויהי $x_0 \in U$ קבוע.
+תהי $F : U \times I \to \RR^n$ כך שלכל $K \subseteq U$ קומפקטית קיים $C_K$ כך שלכל $x, y \in K$ ולכל $t \in I$ מתקיים,
+\[
+	\lVert F(x, t) - F(y, t) \rVert_2
+	\le C_K \lVert x - y \rVert_2
+.\]
+נראה כי קיים פתרון יחיד למערכת,
+\[
+	x'(t) = F(x(t), t),
+	\quad
+	x(0) = x_0
+.\]
+\begin{proof}
+	נתחיל להראות גרסה מקומית של המשפט, כלומר נראה שהוא נכון ל־$\delta = \delta(F, x_0)$ כלשהי.
+	נוכל לחזור על ההוכחה המשתמשת במשפט העתקה מכווצת.
+	נניח ש־$r > 0$ כך ש־$\overline{B}(x_0, r) \subseteq K$ ו־$T : C((-\delta, \delta); \overline{B}(x_0, r) \times I) \to C((-\delta, \delta); \overline{B}(x_0, C_B \delta r))$,
+	כאשר $C_B$ קבוע ליפשיץ עבור הכדור הסגור (והקומפקטי) המוגדרת על־ידי $T x(t) = x_0 + \int_0^t F(x(s), s)\ ds$.
+	ההוכחה להגדרה היטב וקיום זהה לחלוטין לזו שהוצגה בתרגול תוך שימוש בעובדה שהתכונה היא לא מקומית על $I$.
+	גם ההוכחה לכיווץ נשארת זהה,
+	\[
+		\lVert K x(t) - K y(t) \rVert_2
+		= \left\lVert \int_0^t F(x(s), s) - F(y(s), s)\ ds \right\rVert_2
+		= \int_0^t \lVert F(x(s), s) - F(y(s), s) \rVert_2\ ds
+		\le t \cdot \delta C_B
+	.\]
+	ולכן עבור בחירת $\delta > 0$ קטנה מספיק נקבל שההעתקה היא מכווצת ולכן בעלת נקודת שבת יחידה.
+
+	לכל נקודה $x \in U$ נוכל אם כך להתאים $\delta_x > 0$ כך שבסביבה של $x$ מתקבל פתרון יחיד, ולכן אם נניח שקיימים שני פתרונות $x, y : \RR \to \RR$ שונים נקבל שלנקודת אי־השוויון $t_0 \in \RR$ יש התאמה $x(t_0) \in U \times I$,
+	ולכן גם סביבה שלה בה יש שוויון בסתירה.
+\end{proof}
+
+\end{document}
