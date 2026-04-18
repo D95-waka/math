@@ -183,15 +183,10 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">בלמידה</th>
-        <th>31/23</th>
+        <th>24</th>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
-        <td>2026ב'</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80418">מבנים ב': חוגים ומודולים</a></td>
         <td>2026ב'</td>
         <td>4</td>
     </tr>
@@ -209,11 +204,6 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80576">טופולוגיה דיפרנציאלית</a></td>
         <td>2026ב'</td>
         <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80984">מידות הרמוניות ודינמיקה פרקטלית</a></td>
-        <td>2026ב'</td>
-        <td>3</td>
     </tr>
     <tr>
         <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">סקס- רביה מינית ממולקולות עד פילים, באנגלית</a></td>
