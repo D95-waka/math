@@ -103,4 +103,22 @@
 	אחרת נקבל $A = L = B$, כלומר $(a_n)$ היא קבועה ולכן $A = \min a_n$.
 \end{proof}
 
+נראה שאם $A$ קבוצה חסומה מלעיל ו־$C = \{ a - 5 \mid a \in A \}$ אז $\sup C = \sup A - 5$.
+\begin{proof}
+	נבחין תחילה כי ל־$A$ יש סופרימום ממשפט חסם עליון, נסמן $\alpha = \sup A$.
+	ניזכר כי $\sup C = \alpha - 5$ אם הוא חסם מלעיל והוא מינימלי, פורמלית,
+	\[
+		\sup C = \alpha - 5
+		\iff \overbrace{(\forall x \in C,\ x \le \alpha - 5)}^{\text{חסם מלעיל}}
+		\land \overbrace{(\forall \varepsilon \in \RR, \varepsilon > 0 \exists x \in C,\ \alpha - 5 - \varepsilon < x \le \alpha - 5)}^{\text{מינימלי}}
+	\]
+
+	\textbf{נראה שהוא חסם מלעיל}: יהי $x \in C$ ועלינו להראות ש־$x \le \alpha - 5$.
+	מהגדרת $C$ קיים $y \in A$ כך ש־$x = y - 5$ וכן ידוע כי $y \le \alpha$ שכן $\alpha$ חסם מלעיל של $A$, נחסר ונקבל $x = y - 5 \le \alpha - 5$ כפי שרצינו.
+
+	\textbf{נראה שהוא מינימלי}: יהי $\RR \ni \varepsilon > 0$ ונראה שקיים $\alpha - 5 - \varepsilon < x \le \alpha - 5$ כך ש־$x \in C$.
+	כמו קודם, נוסיף $5$ לכל אגפי אי־השוויון, $\alpha - 5 - \varepsilon + 5 = \alpha - \varepsilon < x + 5 \le \alpha$,
+	נסמן $y = x + 5$ ונקבל מהגדרת $\alpha$ כסופרימום שקיים $y \in A$ כך ש־$\alpha - \varepsilon < y \le \alpha$, בהתאם נקבל ש־$\alpha - 5 - \varepsilon < x \le \alpha - 5$.
+\end{proof}
+
 \end{document}
