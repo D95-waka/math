@@ -276,7 +276,7 @@
 	נבחין כי $A  = \{ (0, 0, \ldots) \} \notin \Tt$, שכן אם $B \in \Tt_2$ ו־$y \in B$ אז גם $y' \in B$ כאשר $y = y'$ מלבד הקורדינטה הראשונה.
 	לעומת זאת, המאורע $B = \{ x \in \Omega \mid \exists m \forall n > m,\ x_n = 0 \}$ מקיים $B \in \Tt_m$.
 \end{example}
-\begin{theorem}[חוק 0,1 של קולמוגורוב]
+\begin{theorem}[חוק 0,1 של קולמוגורוב]\label{theorem_cologomorov_law}
 	אם $(\Omega, \Ff, \PP)$ מרחב הסתברות ו־$\Ff_n$ סדרת תת־$\sigma$־אלגברות בלתי־תלויה, ו־$A \in \Tt$ מאורע זנב, אז,
 	\[
 		\PP(A) \in \{0, 1\}
@@ -286,6 +286,98 @@
 	נבחן את הגרף $\ZZ^2$ עם צביעה אקראית בשני צבעים, ושאלנו בשיעור הקודם מה ההסתברות שיש רכיב קשירות אינסופי באחד הצבעים,
 	עתה נטען שזהו מאורע זנב.
 \end{example}
+
+\section{שיעור 3 --- 29.4.2026}
+נמשיך לעסוק במשפט\ \ref{theorem_cologomorov_law} ונראה דוגמה למקרה שהמשפט מייצג.
+\begin{example}
+	יהי $G = (V, E)$ גרף אינסופי קשיר עם דרגות סופיות, ונגדיר $\Omega = {\{ 0, 1 \}}^E$ כמרחב מכפלה של צביעות, כאשר ההסתברות לצביעה $1$ היא $p$ ו־$1 - p$ עבור $0$.
+	עבור $w \in \Omega$ נגדיר $E' = \{ e \in E \mid w_e = 1 \}$ ונגדיר את תת־הגרף $(V, E')$.
+	נסמן $F_e = \sigma(A_e)$ עבור $A_e = \{ w \in \Omega \mid w_e = 1 \}$.
+	קיים ב־$(V, E')$ רכיב קשירות אינסופי הוא מאורע זנב.
+	נבחין כי $A \in T_n$ אם ורק אם $x, y$ שונים רק ב־$n - 1$ הקורדינטות הראשונות אז או ש־$x, y \in A$ או ש־$x, y \notin A$ (תרגיל).
+	נעבור לדון במקרה של $\ZZ^2$.
+	נסיק שאם $f(p) = \cap_p(B) \cap \{0, 1\}$ אז $f$ פונקציה עולה חלש וכן $f(0) = 0, f(1) = 1$ ולכן קיים $0 \le p_c \le 1$ נקודת אי־רציפות.
+	אם $B^C$ כל המאורעות עם רכיבי קשירות סופיים בלבד ו־$D_v$ המאורע ש־$v$ נמצא ברכיב קשירות סופי אז נקבל ש־$B^C = \bigcap_{v \in V} D_v$ וכן $D_v = \biguplus_{i \in \NN} D_v^i$.
+	נטען ש־$\frac{1}{3} \le p_c$ אם ורק אם לכל $p < \frac{1}{3}$ מתקיים $f(p) = 0$.
+	יהי $p < \frac{1}{3}$, אז הסתברות המאורע שקיים מסלול אינסופי פשוט שמתחיל ב־$v$ ונרצה למצוא את ההסתברות שקיים מסלול כזה באורך $n$.
+\end{example}
+\begin{proposition}
+	תהי $\Ff$ $\sigma$־אלגברה ו־$\Ff_0$ אלגברה כך ש־$\Ff = \sigma(\Ff_0)$.
+	לכל $A \in \Ff$ ולכל $\varepsilon > 0$ קיימת $A_0 \in \Ff_0$ כך ש־$0 \le \PP(A \triangle A_0) < \varepsilon$.
+\end{proposition}
+\begin{exercise}
+	הוכיחו טענה זו.
+\end{exercise}
+יהי $A \in T$ ויהי $\varepsilon > 0$ אז,
+\[
+	A \in \sigma(\bigcup_{m \in \NN} \sigma(\bigcup_{k = 1}^m \Ff_k))
+\]
+לפי הטענה קיימת $A_0 \in \bigcup_{m \in \NN} \sigma(\cdots)$ כך ש־$\PP(A \triangle A_0) < \varepsilon$.
+קיים $m_0$ כך ש־$A_0 \in \sigma(\bigcup_{k = 1}^{m_0} \Ff_k)$ ו־$A \in T_{m_0}$ בהתאם.
+לכן $\PP(A \cap A_0) = \PP(A) \PP(A_0)$, נסמן $p = \PP(A)$ ולכן $\forall \varepsilon > 0, p - \varepsilon \le p(p + \varepsilon) = p^2 + p \varepsilon$.
+
+\begin{theorem}[אינווריאנטיות להזזה בהסתברות]
+	תהי $\Omega = {\{ 0, 1 \}}^\ZZ$ מידת מכפלה, $A \in \Ff$ מאורע אינווריאנטי, אם לכל $x$, $x \in A$ אם ורק אם $S(x) \in A$ כאשר $S(x)$ הזזה של הסדרה.
+	אם $A$ אינווריאנטי אז $\PP(A) \in \{0, 1\}$.
+\end{theorem}
+
+\subsection{משתנים מקריים}
+אם $(\Omega, \Ff, \PP)$ מרחב הסתברות אז משתנה מקרי הוא פונקציה מדידה מ־$\Omega$ ל־$\RR$.
+תנאי מספיק למדידות הפונקציה $X$ הוא שלכל $t \in \RR$ יתקיים $X^{-1}((-\infty, t)) \in \Ff$a.
+אם $X, Y$ משתנים מקריים אז $(X, Y)$ פונקציה מדידה מ־$\Omega$ ל־$\RR^2$, ואם $X_1, X_2, \ldots$ סדרת משתנים מקריים אז גם $(X_1, X_2, \ldots)$ פונקציה מדידה על $\RR^\NN$.
+
+אם נחזור לדוגמה של קודם נוכל להגדיר את $(\Omega, \Ff, \PP)$ לפי הגרף $G = (V, E)$. נניח שלכל $e \in E$ יש משתנה מקרי $X_e$ המקריים $\PP(X^{-1}(\{0, 1\})) = 1$.
+נקבל כך ש־${\{ x_e \}}_{e \in E}$ יוצר וקטור מקרי מ־$\Omega$ ל־${\{ 0, 1 \}}^E$.
+\begin{corollary}
+	כל פונקציה רציפה היא מדידה (בורל), והרכבה משמרת מדידות, לכן נסיק שאם $X, Y$ משתנים מקריים אז גם $X + Y, X \cdot Y$ משתנים מקריים, $\max(X, Y)$ וכן הלאה.
+	אם ${\{ X_n \}}_{n \in \NN}$ סדרת משתנים מקריים אז גם $\sup_n X_n$ משתנה מקרי, שכן $\forall n,\ X_n \le t \iff \sup_n X_n \le t$.
+	נסיק שגם $\limsup_{n \to \infty} X_n$ פונקציה מדידה ולכן משתנה מקרי גם כן.
+	לכן גם $\{ w \in \Omega \mid \limsup_{n \to \infty} X_n = \liminf_{n \to \infty} X_n \}$ מדידה.
+\end{corollary}
+$X$ משתנה מקרי אז ההתפלגות של $X$ היא הדחיפה קדימה של $\PP$ דרך $X$, $\PP_X$.
+נגדיר את התוחלת על־ידי,
+\[
+	\EE(X)
+	= \int_{\Omega} X\ d\PP
+	= \int_\RR x\ d\PP_X(x)
+\]
+ראינו גם מה קורה כשאנחנו מרכיבים פונקציה על $X$ במקרה זה. \\
+אם $X, Y$ משתנים מקריים אז נאמר שהם בלתי־תלויים אם $\sigma(X), \sigma(Y)$ בלתי־תלויות, כאשר $\sigma(X) = \{ X^{-1}(B) \mid B \in \Ff \}$.
+זה שקול ל־$\PP_{(X, Y)} = \PP_X \times \PP_Y$, ואם הם בלתי־תלויים אז גם $\EE(XY) = \EE(X) \EE(Y)$.
+
+נאמר ש־$X_1, \ldots, X_n$ בלתי־תלויים בזוגות אם לכל $i \ne j$ $X_i, X_j$ בלתי־תלויים.
+אם זה מתקיים אז גם $\var(\sum_{i = 1}^n X_i) = \sum_{i = 1}^n \var(X_i)$.
+\begin{lemma}
+	אם ${\{ A_n \}}$ בלתי־תלויים בזוגות ו־$\sum_{n = 1}^\infty \PP(A_n) = \infty$ אז $\PP(\limsup_{n \to \infty} A_n) = 1$.
+\end{lemma}
+\begin{proof}
+	נגדיר $X_n = \indicator_{A_n}$ בלתי־תלויים בזוגות ו־$Y_n = \sum_{i = 1}^n X_i$.
+	נראה שמתקיים,
+	\[
+		\PP({(\bigcup_{i = 1}^n A_i)}^C)
+		= \PP(Y_n = 0)
+		\to 0
+	\]
+	מתקיים מצ'בישב,
+	\[
+		\PP(Y_n = 0)
+		\le \PP(| Y_n - \EE(Y_n) |)
+		\le \frac{\var(Y_n)}{{(\EE(Y_n))}^2}
+	\]
+	וכן,
+	\[
+		\var(Y_n)
+		= \sum_{i = 1}^n \var(Y_i)
+		= \sum_{i = 1}^n p_i(1 - p_i)
+		\le \sum_{i = 1}^n p_i
+		= \EE(Y_n)
+	\]
+	ומשילוב שתי הטענות נקבל ש־$\PP(Y_n = 0) \to 0$, לכן $\PP({(\bigcup_{i = m}^\infty A_i)}^C) = 0$.
+\end{proof}
+\begin{exercise}
+	נניח ש־$A_1, \ldots, A_n$ מאורעות בלתי־תלויים בזוגות כך ש־$\PP(A_i) = \frac{1}{2}$ לכל $i \le n$.
+	מה יכולה להיות $\PP(\bigcap_{i = 1}^n A_i)$?
+\end{exercise}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
