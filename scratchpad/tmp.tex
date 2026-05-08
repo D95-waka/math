@@ -2,61 +2,33 @@
 
 \begin{document}
 
-\begin{enumerate}
-	\item כתבי פרמטריזציות עבור התיאורים הבאים:
-		\begin{enumerate}
-			\item ישר בין $0$ ל־$1$
-			\item ישר בין $0$ ל־$1 + i$
-			\item מעגל היחידה
-			\item מעגל ברדיוס $R$ סביב $z_0$
-			\item ישר בין הנקודה $z_0$ לנקודה $z_1$
-			\item מלבן מקביל לצירים העובר בנקודות $z_0, z_1$
-			\item Keyhole עם פרמטרים $\varepsilon, R$
-			\item מצולע משוכלל עם $n$ קודקודים אשר כל קודקודיו מונחים על מעגל היחידה
-			\item גרף הפונקציה $f : I \to \CC$
-		\end{enumerate}
-	\item פונקציה של מסילה נקראת פרמטריזציה לפי אורך אם $\operatorname{Len}(\gamma(I)) = \operatorname{Len}(I)$ לכל $I$ חלקי ל־$\dom \gamma$, במילים אחרות פרמטריזציה לפי אורך היא המקרה שבו המסילה זזה באותו קצה של הקטע שעליו אנחנו מגדירים אותה.
-		נבחין כי לדוגמה $\gamma : [0, 1] \to \CC, \gamma(t) = t$ היא פרמטריזציה לפי אורך, אבל $\gamma : [0, 1] \to \CC$ המוגדרת על־ידי $\gamma(t) = 10t$ היא לא.
-		עבור הסעיפים הבאים כתבי פרמטריזציה לפי אורך:
-		\begin{enumerate}
-			\item מעגל ברדיוס $R$ סביב $z_0$
-			\item ישר בין הנקודה $z_0$ לנקודה $z_1$
-			\item גרף הפונקציה $f : I \to \CC$ (זה סעיף קשה ממש)
-		\end{enumerate}
-	\item נניח עתה ש־$\gamma : [0, 2 \pi] \to \CC$ היא פרמטריזציה לפי אורך של מעגל היחידה.
-		מצאי ביטוי ל־$\Re \gamma$ ול־$\Im \gamma$, וכתבי פרמטריזציה עבור גרף הפונקציה $t \mapsto \Im \gamma(t)$.
-	\item תארי במילים את הפרמטריזציות הבאות בלי לציירן עם מחשב קודם:
-		\begin{enumerate}
-			\item $t e^{it}$ עבור $t \ge 0$
-			\item $2e^{it} + e^{-2it}$ (סעיף ממש קשה)
-			\item $\gamma_1 \cup \gamma_2 \cup \gamma_3$ עבור $\gamma_k(t) = e^{\frac{2 \pi k}{3}} (1 - t) + e^{\frac{2 \pi (k + 1)}{3}} t$
-			\item $t + i \sin t$
-			\item $it + t^2$
-			\item $\gamma_1 \cup \gamma_2$ עבור $\gamma_1(t) = 1 + e^{it}, \gamma_2(t) = -1 + e^{-it}$
-		\end{enumerate}
-	\item מצאי פרמטריזציה $\gamma : I \to \CC$ גזירה בכל $I$ כך שתמונתה שווה לתמונת המסילה,
-		\[
-			\gamma_0 : [0, 2] \to \CC,
-			\qquad
-			\gamma_0(t) = \begin{cases}
-				1 - t & 0 \le t < 1 \\
-				it & 1 < t \le 2
-			\end{cases}
-		\]
-		מסילה נקראת רגולרית אם $\gamma'(t) \ne 0$ לכל $t \in I$.
-		האם קיימת פרמטריזציה רגולרית של $\gamma$? אם כן מצאי אחת ואם לא הסבירי למה לא.
-	\item קבוצה $E$ נקראת קשירה מסילתית אם לכל $x, y \in E$ קיימת מסילה רציפה $\gamma : [0, 1] \to \CC$ כך ש־$\gamma(0) = x, \gamma(1) = y, \gamma(I) \subseteq E$.
-		הוכיחי שהקבוצות הבאות קשירות מסילתית ישירות מהגדרה:
-		\begin{enumerate}
-			\item $B(0, 1) = \{ z \mid z^2 < 1 \}$
-			\item $L = \{ t + 1 \mid t \in \RR_{\ge 0} \}$
-			\item $H = \{ s e^{it} \mid s \in [1, 2], t \in [0, \pi] \}$ (סעיף קשה)
-		\end{enumerate}
-		אני ממליץ להשתמש (כמובן ללא הוכחה) בטענה שאם יש פרמטריזציה $I \to \CC$ אז קיימת פרמטריזציה $[0, 1] \to \CC$.
-	\item הוכיחי שהקבוצה הבאה \textbf{לא} קשירה מסילתית:
-		\[
-			E = \{ x + i y \mid x \in \RR, y \in \RR, |y| \ge 1 \}
-		.\]
-\end{enumerate}
+נראה שאם $E \subseteq [0, 1]$ קבוצה המקיימת שלכל סדרת איברים שונים ${\{ a_n \}}_{n = 1}^\infty \subseteq E$ מתקיים $\sum a_n < \infty$ אז $E$ בת־מניה או סופית.
+\begin{proof}
+	המטרה שלנו היא למצוא דרך להראות שהקבוצה $E$ היא קטנה מספיק.
+	נבחין כי אם $E$ סופית אז הטענה נכונה באופן ריק, ולכן אנחנו צריכים להראות שאם $E$ אינסופית אז היא בת־מניה.
+
+	יהי $0 < \delta < 1$, ונניח שמתקיים $|[\delta, 1] \cap E| \ge \omega$.
+	במקרה זה נוכל לקחת סדרה ${\{ a_n \}}_{n = 1}^\infty \subseteq [\delta, 1] \cap E$.
+	מתקיים,
+	\[
+		\forall n \in \NN,\ a_n \in E \land \delta \le a_n
+	.\]
+	ולכן,
+	\[
+		\sum_{n = 1}^\infty a_n
+		\ge \sum_{n = 1}^\infty \delta
+		= \delta \sum_{n = 1}^\infty 1
+		= \infty
+	.\]
+	כלומר קיבלנו סתירה לתכונת $E$, לכן יש מספר סופי של איברים ב־$E$ שגדולים מ־$\delta$.
+	נסמן $E_n = [\frac{1}{n}, 1] \cap E$, ונבחין ש־$|E_n| < \omega$ מהטענה על $\delta$ על־ידי בחירת $\delta = \frac{1}{n}$.
+	איחוד בן־מניה של קבוצות סופיות הוא בן־מניה, לכן,
+	\[
+		\left\lvert \bigcup_{n \in \NN} E_n \right\rvert
+		= \omega
+	.\]
+	אבל גם $\bigcup_{n \in \NN} E_n = E \setminus \{ 0 \}$, זאת שכן לכל מספר גדול מ־$0$ קיים $\frac{1}{n}$ שקטן ממנו.
+	נזכור כי איחוד של קבוצה סופית וקבוצה בת־מניה הוא בן־מניה ולכן גם $E = \bigcup E_n \cup \{ 0 \}$ היא בת־מניה כפי שרצינו.
+\end{proof}
 
 \end{document}
