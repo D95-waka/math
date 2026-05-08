@@ -1,0 +1,52 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- משוואות דיפרנציאליות, 80320}
+% chktex-file 9
+% chktex-file 17
+
+\DeclareMathOperator{\sgn}{sgn}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]{}
+
+\question{}
+תהי $U \subseteq \RR^n$ פתוחה ותהי $F : U \times \RR^m \to \RR^n$ ליפשיץ מקומית ותהי $x_0 \in U$.
+לכל $a \in \RR^m$ נגדיר את $x_a : I \to U$ הפתרון המקסימלי לבעיית תנאי ההתחלה,
+\[
+	\begin{cases}
+		x'(t) = F(x(t), a) \\
+		x(0) = x_0
+	\end{cases}
+.\]
+נראה שהפונקציה $(a, t) \mapsto x_a(t)$ מוגדרת בקבוצה פתוחה ב־$\RR^{m + 1}$ ושהיא רציפה.
+\begin{proof}
+	נגדיר את $y_a(t) = (x_a(t), a)$ ונקבל ש־$y_a'(t) = (x_a'(t), 0)$ ולכן $y_a'(t) = (F(x_a(t), a), 0) = (F(y_a(t)), 0)$.
+	אם נגדיר את $G : U \times \RR^{m + m} \to \RR^{n + m}$ על־ידי $G(y) = (F(y), 0)$ ואת תנאי ההתחלה $y(0) = (x_0, a)$ אז נקבל ש־$y_a$ פתרון מקסימלי שלה.
+
+	מהמשפט על זרימה רציפה נקבל ש־$\Phi : \Omega \to \RR^{n + m}$ היא פונקציה רציפה המוגדרת על תת־קבוצה פתוחה $\Omega \subseteq U \times \RR^{2m}$.
+	נגדיר את $\pi : \RR^{n + m} \to \RR^{n}$ כהטלה לקורדינטות הראשונות ולכן $\pi \circ y_a = x_a$ לכל $a$, הטלות הן רציפות ולכן נקבל ש־$\pi \circ \Phi$ העתקה רציפה.
+	לכן מהגדרה $\Phi(t, a) = x_a(t)$ ובהתאם קיבלנו עד כדי סדר המשתנים בדיוק את הטענה.
+\end{proof}
+
+\question{}
+תהי $U \subseteq \RR^n$ פתוחה ותהי $F : U \to \RR^n$ גזירה פעמיים ברציפות. נקבע $x_0 \in U$ ואת בעיית תנאי ההתחלה,
+\[
+	\begin{cases}
+		x'(t) = F(x(t)) \\
+		x(0) = x_0
+	\end{cases}
+.\]
+נסמן $\Omega$ תחום ההגדרה של הזרימה הנוצרת על־ידי $F$ ותהי נקודה $(t_0, x_0) \in \Omega$. \\
+נוכיח ש־$\varphi_{t_0}$ גזירה ברציפות ביחס ל־$x$ ב־$x_0$.
+\begin{proof}
+	יהי $x(t)$ הפתרון לבעיה שהגדרנו, ובהתאם $\varphi_t(x) = x(t)$.
+	נסמן $M(t) = D_{x_0} \varphi_t$ ולכן $M(t_0) = D_{x_0} \varphi_{t_0}$.
+	\[
+		\frac{\partial M}{\partial t} \mid_{(t, x_0)}
+		= \frac{\partial D_{x_0} \Phi}{\partial t} \mid_{(t, x_0)}
+		= D_{\varphi_t(x_0)} F \cdot D_{x_0} \Phi
+		= D_{\Phi(t, x_0)} F \cdot M(t)
+	.\]
+\end{proof}
+
+\end{document}
