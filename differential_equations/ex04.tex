@@ -41,12 +41,202 @@
 \begin{proof}
 	יהי $x(t)$ הפתרון לבעיה שהגדרנו, ובהתאם $\varphi_t(x) = x(t)$.
 	נסמן $M(t) = D_{x_0} \varphi_t$ ולכן $M(t_0) = D_{x_0} \varphi_{t_0}$.
+	מגזירות פעמיים גם נגזרות חלקיות קיימות ובפרט תוך שימוש בנוסחה שמצאנו בתרגול,
 	\[
-		\frac{\partial M}{\partial t} \mid_{(t, x_0)}
+		M'(t)
+		= \frac{\partial M}{\partial t}(t)
 		= \frac{\partial D_{x_0} \Phi}{\partial t} \mid_{(t, x_0)}
 		= D_{\varphi_t(x_0)} F \cdot D_{x_0} \Phi
-		= D_{\Phi(t, x_0)} F \cdot M(t)
+		= D_{\varphi_t(x_0)} F \cdot M(t)
+		= D F(x(t)) \cdot M(t)
 	.\]
+	נגדיר את הפונקציה $G(x, M) = (F(x), DF(x) \cdot M)$,
+	נבחין כי $M(0) = I_n$ מהגדרת הזרימה, ובאופן דומה גם $DF(x(0)) = DF(x_0) = \id$ מאותה סיבה, ולכן גם $G(0, 0) = (F(x(0)), DF(x) \cdot M) = (x_0, I)$.
+	נגדיר את בעיית תנאי ההתחלה,
+	\[
+		\begin{cases}
+			y(y) = G(x(t), M(t)) \\
+			y(0) = (x_0, I)
+		\end{cases}
+	.\]
+	וכן נגדיר את $y(t) = (x(t), M(t))$, אז בסביבה של $(x_0, 0)$ אנו מקבלים כי $y(t)$ היא פתרון של בעיית תנאי ההתחלה וממקסימליות הפתרון למשוואה הקודמת נקבל שגם $y$ מוגדרת ב־$t_0$ וגזירה שם. \\
+	בפרט נקבל ש־$y'$ רציף ולכן גם $M(t)$ רציפה מרציפות ההטלה, בפרט $\varphi_{t_0}$ גזירה ברציפות מהגדרת $M$ בנקודה.
+\end{proof}
+
+\question{}
+עבור $U \subseteq \RR^n$ פתוחה ושדות וקטוריים גזירים $F, G : U \to \RR^n$ נגדיר את סוגרי לי שלהם להיות,
+\[
+	[F, G](x)
+	= D_x G \cdot F(x) - D_x F \cdot G(x)
+.\]
+
+\subquestion{}
+תהיינה $A, B \in M_n(\RR)$ ונגדיר את $F(x) = Ax, G(x) = Bx$,
+נחשב את $[F, G]$.
+\begin{solution}
+	נבחין כי $DF : U \to \hom(\RR^n, \RR^n)$ אופרטור המתאים לנקודה את ההעתקה הלינארית המתאימה לדיפרנציאל, בפרט $D_x F = A$ במקרה זה.
+	בהתאם,
+	\[
+		[F, G](x)
+		= B F(x) - A G(x)
+		= B(Ax) - A(Bx)
+		= BA \cdot x - AB \cdot x
+	.\]
+	כאשר בביטוי האחרון הכוונה היא לכפל מטריצות, בפרט נוכל להסיק $[F, G] : U \to \RR^n$.
+\end{solution}
+
+\subquestion{}
+יהיו $F, G$ שדות וקטוריים גזירים,
+נראה ש־$[F, G] = - [G, F]$.
+\begin{proof}
+	ישירות מהגדרה,
+	\[
+		[F, G](x)
+		= D_x G \cdot F(x) - D_x F \cdot G(x)
+		= -(-D_x G \cdot F(x) + D_x F \cdot G(x))
+		= -[G, F](x)
+	.\]
+	כנדרש.
+\end{proof}
+
+\subquestion{}
+נניח ש־$F_1, F_2, F_3$ שדות וקטוריים גזירים פעמיים, אז נראה את זהות יעקובי,
+\[
+	[F_1, [F_2, F_3]] + [F_3, [F_1, F_2]] + [F_2, [F_3, F_1]] = 0
+.\]
+\begin{proof}
+	\begin{align*}
+		& [F_1, [F_2, F_3]](x) \\
+		= & D_x [F_2, F_3] \cdot F_1(x) - D_x F_1 \cdot [F_2, F_3](x) \\
+		= & D_x (D_x F_3 \cdot F_2(x) - D_x F_2 \cdot F_3(x)) \cdot F_1(x) - D_x F_1 \cdot (D_x F_3 \cdot F_2(x) - D_x F_2 \cdot F_3(x)) \\
+		= & D_x (D_x F_3 \cdot F_2(x)) \cdot F_1(x) - D_x (D_x F_2 \cdot F_3(x)) \cdot F_1(x) - D_x F_1 \cdot D_x F_3 \cdot F_2(x) + D_x F_1 \cdot D_x F_2 \cdot F_3(x) \\
+		= & D_{x x} F_3 \cdot F_2(x) \cdot F_1(x) + D_x F_3 \cdot D_x F_2 \cdot F_1(x) \\
+		  & - D_{x x} F_2 \cdot F_3(x) \cdot F_1(x) - D_x F_2 D_x F_3 \cdot F_1(x) \\
+		  & - D_x F_1 \cdot D_x F_3 \cdot F_2(x) + D_x F_1 \cdot D_x F_2 \cdot F_3(x)
+	\end{align*}
+	כדי להקל על הקורא נאמר שעל־ידי תהליך דומה לשלושת המחוברים אכן נקבל בדיוק $0$.
+\end{proof}
+
+\subquestion{}
+נניח ש־$F, G : \RR^n \to \RR^n$ שדות גזירים ברציפות ונסמן $\Phi(t, x) = \varphi_t(x)$ את הזרימה הנוצרת על־ידי $F$ ו־$\Psi(t, x) = \psi_t(x)$ את הזרימה הנוצרת על־ידי $G$, ונניח ש־$\Phi, \Psi$ מוגדרות על $\RR^{n + 1}$. \\
+נראה שהזרימות $\Phi, \Psi$ מתחלפות, כלומר שמתקיים $\varphi_t \circ \psi_s = \psi_s \circ \varphi_t$ לכל $t, s$, אם ורק אם $[F, G] \equiv 0$.
+\begin{proof}
+	מהגדרה נקבל,
+	\[
+		D_t \varphi_t = F,
+		\quad
+		D_s \psi_s = G
+	.\]
+	וכן,
+	\[
+		\varphi_0 = \psi_0 = \id
+	.\]
+	וכן את הזהות,
+	\[
+		[F, G] = 0
+		\iff D_x F \cdot G(x) = D_x G \cdot F(x)
+	.\]
+
+	נניח ש־$\varphi_t, \psi_s$ מתחלפות ונראה ש־$D_x F \cdot G(x) = D_x G \cdot F(x)$.
+	מתקיים,
+	\[
+		\varphi_t \circ \psi_s
+		= \psi_s \circ \varphi_t
+	.\]
+	ואם נגזור נקבל,
+	\[
+		F \circ \psi_s
+		= D_t (\varphi_t \circ \psi_s)
+		= D_t (\psi_s \circ \varphi_t)
+		= D_x \psi_s(x) |_{x = \varphi_t} \circ D_t \varphi_t
+		= D_x \psi_s(x) |_{x = \varphi_t} \circ F
+	.\]
+	נציב $t = 0$ ונקבל,
+	\[
+		F(\psi_s(x))
+		= D_x \psi_s(x) |_{x = x} \circ F
+		= D_x \psi_s(x) \cdot F(x)
+	.\]
+	נגזור לפי $s$ ונקבל,
+	\[
+		D_x F \cdot G(x)
+		D_x F \circ G(x)
+		= D_x G \cdot F(x) + D_x \psi_s(x) \cdot 0
+		= D_x G \cdot F(x)
+	.\]
+	מכלל השרשרת והגדרת כפל מטריצות.
+
+	בכיוון ההפוך נניח ש־$[F, G] = 0$ ונבחין כי נובע גם,
+	\[
+		D_t (D_x \varphi_t \cdot G)
+		= D_t (\varphi_t \cdot D_x G)
+	.\]
+	לכן,
+	\[
+		D_x F(\varphi_t) \cdot G
+		= F(\varphi_t) \cdot D_x G
+	.\]
+	ובאופן דומה,
+	\[
+		D_x \psi_s \cdot F
+		= D_x F \cdot \psi_s
+	.\]
+	עתה נקבל,
+	\[
+		D_t \varphi_t(\psi_s(x))
+		= F(\varphi_t(\psi_s(x)))
+	.\]
+	מצד אחד ומהצד השני,
+	\[
+		D_t \psi_s(\varphi_t(x))
+		= (D_x \psi_s)(\varphi_t(x)) \cdot F(\varphi_t(x))
+		= F(\psi_s(\varphi_t(x)))
+	.\]
+	ולכן מיחידות הפתרון בסביבה זו סיימנו.
+\end{proof}
+
+\subquestion{}
+נסיק כי הזרימות של המשוואות $x' = Ax, y' = By$ מתחלפות אם ורק אם $AB = BA$.
+\begin{proof}
+	מהסעיף הקודם נובע שהן מתחלפות אם ורק אם $[F, G] = 0$ אבל מסעיף א',
+	\[
+		[F, G]
+		= BA - AB
+	.\]
+	וסיימנו.
+\end{proof}
+
+\question{}
+יהי $F : \RR^n \to \RR^n$ שדה וקטורי גזיר ברציפות ונסמן $\varphi_t(x)$ את הזרימה הנוצרת על־ידו.
+נניח ש־$\varphi$ מוגדר ב־$\RR^{n + 1}$.
+
+\subquestion{}
+נראה שלכל $x \in \RR^n$ ולכל $t, s \in \RR$ מתקיים,
+\[
+	\varphi_{t + s}(x)
+	= \varphi_t(\varphi_s(x))
+	= \varphi_s(\varphi_t(x))
+.\]
+\begin{proof}
+	נקבע $x_0$ כלשהו, ולכן מהגדרת הבעיה $x'(t) = F(x(t))$ כך ש־$x(0) = 0$ הוא פתרון המוגדר $x : \RR \to \RR^n$.
+	יהי $y_0 = x(t)$ עבור $t \in \RR$ קבוע, אז קיים פתרון יחיד $y : \RR \to \RR^n$ המקיים $y'(s) = F(y(s))$ כך ש־$y(0) = y_0$.
+	נבחין כי מיחידות הפתרון וההתלכדות $x(t) = y(0)$ נובע כי הפונקציות שוות, כלומר נקבל ש־$x(t + s) = y(s)$, שכן אם קיימת נקודה שלא מקיימת זאת אז נוכל להגדיר את $y_0$ לנקודה ולקבל סתירה ליחידות פתרון.
+	בשינוי סימון נקבל $\varphi_{t + s}(x_0) = \varphi_s(\varphi_t(x))$ ישירות, כאשר החלק השלישי של השוויון נובע מסימטריה.
+\end{proof}
+
+\subquestion{}
+נראה שלכל $t \in \RR$ הפונקציה $\varphi_t$ היא דיפאומורפיזם לתחום הגדרתה.
+\begin{proof}
+	אם $x, y \in \RR^n$ כך ש־$\varphi_t(x) = \varphi_t(y)$ אז $x = \varphi_{t - t}(x) = \varphi_{t - t}(y) = y$ ולכן $\varphi_t$ חד־חד ערכית.
+	קיבלנו אם כך ש־$\varphi_t$ היא הפיכה לתחום הגדרתה.
+	ממשפט מההרצאה אנו מקבלים ש־$\varphi_t$ גם גזירה, ולכן נותר לנו לבדוק שגם ההופכית שלה גזירה.
+	נבחין כי מהסעיף הקודם,
+	\[
+		\varphi_t(\varphi_{-t}(x))
+		= \varphi_{-t}(\varphi_t(x))
+		= x
+	.\]
+	ולכן $\varphi_{-t}$ ההופכית של $\varphi_t$, והיא גזירה מאותו טיעון.
 \end{proof}
 
 \end{document}
