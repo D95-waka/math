@@ -1,0 +1,305 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- משוואות דיפרנציאליות, 80320}
+% chktex-file 9
+% chktex-file 17
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]{}
+
+\question{}
+תהי $A \in M_n(\RR)$,
+נראה מהגדרה ותוך שימוש בכפליות האקספוננט למטריצות מתחלפות ש־$E(t) = e^{tA}$ היא פונקציה גזירה המקיימת,
+\[
+	E'(t)
+	= A E(t)
+\]
+\begin{proof}
+	נבדוק גזירות מהגדרת הנגזרת,
+	\[
+		\lim_{h \to 0} \frac{E(t + h) - E(t)}{h}
+		= \lim_{h \to 0} \frac{e^{(t + h)A} - e^{tA}}{h}
+		= \lim_{h \to 0} \frac{e^{tA + hA} - e^{tA}}{h}
+		= \lim_{h \to 0} \frac{e^{tA} \cdot e^{hA} - e^{tA}}{h}
+		= e^{tA} \lim_{h \to 0} \frac{e^{hA} - 1}{h}
+	\]
+	ולכן נותר לחשב את ערך הגבול $\frac{e^{hA} - 1}{h}$ אם הוא מתקבל,
+	\[
+		\lim_{h \to 0} \frac{e^{hA} - 1}{h}
+		= \lim_{h \to 0} \frac{1}{h} \left(\sum_{n = 0}^\infty \frac{h^n A^n}{n!}\right) - \frac{1}{h}
+		= \lim_{h \to 0} \frac{1}{h} \left(\sum_{n = 1}^\infty \frac{h^n A^n}{n!}\right) + \frac{1}{h} \frac{h^0 A^0}{0!} - \frac{1}{h}
+		= \lim_{h \to 1} \sum_{n = 1}^\infty \frac{h^{n - 1} A^n}{n!}
+		= \lim_{h \to 0} A + o(h)
+	\]
+	כלומר מצאנו שהנגזרת אכן קיימת ו־$E'(t) = A E(t)$.
+\end{proof}
+
+\question{}
+\subquestion{}
+נמצא בסיס למרחב הפתרונות של המשוואה,
+\[
+	x'(t)
+	= \begin{pmatrix}
+		-1 & 2 \\
+		-3 & 4
+	\end{pmatrix}
+	x(t)
+\]
+\begin{solution}
+	נחשב את הפולינום האופייני,
+	\[
+		p(t)
+		= (t + 1)(t - 4) + 6
+		= t^2 - 3t + 2
+		= (t - 1)(t - 2)
+	\]
+	ולכן המטריצה ניתנת ללכסון וערכיה העצמיים הם $1, 2$,
+	נפתור את המשוואה $(A - \lambda_i) u = 0$ ונקבל את התוצאה,
+	\[
+		\begin{pmatrix}
+			-1 & 2 \\
+			-3 & 4
+		\end{pmatrix}
+		\begin{pmatrix}
+			1 \\
+			1
+		\end{pmatrix}
+		=
+		1 \cdot
+		\begin{pmatrix}
+			1 \\
+			1
+		\end{pmatrix}
+	\]
+	וכן,
+	\[
+		\begin{pmatrix}
+			-1 & 2 \\
+			-3 & 4
+		\end{pmatrix}
+		\begin{pmatrix}
+			1 \\
+			\frac{3}{2}
+		\end{pmatrix}
+		=
+		2 \cdot
+		\begin{pmatrix}
+			1 \\
+			\frac{3}{2}
+		\end{pmatrix}
+	\]
+	ולכן,
+	\[
+		P
+		= \begin{pmatrix}
+			1 & 1 \\
+			1 & \frac{3}{2}
+		\end{pmatrix}
+	\]
+	היא מטריצת מעבר בסיס המקיימת,
+	\[
+		P^{-1} A P
+		= \diag(1, 2)
+	\]
+
+	ממשפט מהתרגול נקבל שמרחב הפתרונות הוא $n = 2$, וכן שאם $x(0) = x_0$ אז,
+	\[
+		x(t)
+		= e^{tA} x_0
+		= P \diag(e^t, e^{2t}) P^{-1} x_0
+	\]
+	הוא פתרון של המשוואה, אז מספיק למצוא $x_0, x_1$ הפורסים את $\RR^2$.
+	נבחר $x_0 = e_1, x_1 = e_2$ ונקבל $x(t) = e^{tA} e_1, y(t) = e^{tA} e_2$ שתי פונקציות אשר פורסות את המרחב.
+\end{solution}
+
+\subquestion{}
+נמצא בסיס למרחב הפתרונות של המשוואה,
+\[
+	\sum_{n = 0}^3 y^{(n)} = 0
+	\tag{1}
+\]
+\begin{solution}
+	נגדיר את המטריצה,
+	\[
+		A
+		= \begin{pmatrix}
+			0 & 1 & 0 & 0 \\
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 1 \\
+			-1 & -1 & -1 & -1
+		\end{pmatrix}
+	\]
+	ולכן אם $x' = A x$ אז הקורדינטה הראשונה שלה מהווה פתרון ל־$(1)$.
+	מטענה מהתרגול נקבל,
+	\[
+		P_A(t)
+		= t^4 + t^3 + t^2 + t + 1
+	\]
+	אז הערכים העצמיים של $P_A$ הם $\{ e^{\frac{2 \pi i}{5}k} \mid 1 \le k < 5 \}$, ולכל אחד יש ריבוי יחיד, אז,
+	\[
+		y_k(t)
+		= e^{e^{\frac{2 \pi i}{5}k} t}
+	\]
+	פורסים את מרחב הפתרונות של המשוואה.
+	בשל חוסר אהבה משווע למספרים מרוכבים נשתמש בעובדה,
+	\[
+		\frac{1}{2} (e^{\frac{2 \pi i}{5} k} - e^{\frac{2 \pi i}{5} (5 - k)})
+		= \cos(\frac{2 \pi}{5}k)
+	\]
+	ובסגירות לכפל בסקלר ונקבל שגם,
+	\[
+		e^{\cos(\frac{2 \pi k}{5}) t}
+	\]
+	פורסים את מרחב הפתרונות, ובפרט מטעמי מימד בסיס.
+\end{solution}
+
+\question{}
+תהי $A \in M_n(\CC)$ מטריצה כך שלכל $\lambda$ ערך עצמי של $A$ מתקיים $|\lambda| < 1$. \\
+נראה ש־$\lim_{n \to \infty} A^n = 0$.
+\begin{proof}
+	נבחין כי ל־$A$ קיימת מטריצת ז'ורדן $B$, המורכבת מבלוקי ז'ורדן $J_k(\lambda)$, ואנו יודעים כמסקנה מלינארית שחזקת מטריצת בלוקים היא בלוקי החזקה, וכן $A^t = P B^t P^{-1}$ ל־$P$ הפיכה,
+	ולכן מספיק להראות ש־$J_k(\lambda)$ מקיימת את הטענה.
+	נבהיר כי זהו סימון,
+	\[
+		J_k(\lambda)
+		= \begin{pmatrix}
+			\lambda & 1 & 0 & \cdots & 0 \\
+			0 & \lambda & 1 & 0 & \cdots \\
+			\vdots & 0 & \ddots & \ddots & 0 \\
+			0 & \cdots && 0 & \lambda
+		\end{pmatrix}
+	\]
+	כלומר מתקיים $J_k(\lambda) = \lambda I_k + J_k(0)$.
+	אנו גם יודעים שמתקיים ${(J_k^m(0))}_{i, j} = 1 \iff j - i = k$, ולבסוף,
+	\[
+		J_k^m(\lambda)
+		= {(\lambda I_k + J_k(0))}^m
+		= \sum_{l = 0}^m \lambda^{m - l} J_k^l(0)
+	\]
+	ועבור $m - l \le k$ נקבל $0$ ולכן עבור $m > k$ נקבל,
+	\[
+		J_k^m(\lambda)
+		= \sum_{l = 0}^k \lambda^{m - l} J_k^l(0)
+	\]
+	נבחין כי כל ערך בסכום מוכפל ב־$\lambda$ ולכן,
+	\[
+		\lim_{m \to \infty} J_k^m(\lambda)
+		= \lim_{m \to \infty} \lambda^m \sum_{l = 0}^k \lambda^{k - l} J_k^l(0)
+		= 0
+	\]
+	וקיבלנו שכל ערך במטריצה שואף לאפס כרצוי.
+\end{proof}
+
+\question{}
+נגדיר את המשוואה,
+\[
+	x''(t) + a(t) x'(t) + b(t) x(t) = 0
+	\tag{1}
+\]
+עבור $a, b$ פונקציות אנליטיות בסביבה של $0$, ונסמן,
+\[
+	a(t)
+	= \sum_{n = 0}^\infty \alpha_n t^n,
+	\qquad
+	b(t)
+	= \sum_{n = 0}^\infty \beta_n t^n,
+\]
+בסביבה של $0$.
+
+\subquestion{}
+נראה שאם $x$ פתרון למשוואה $(1)$ כך ש־$x(t) = \sum_{n = 0}^\infty c_n t^n$ אז,
+\[
+	c_0 = x(0),
+	\quad
+	c_1 = x'(0)
+\]
+ולכל $k \ge 0$ מתקיים,
+\[
+	(k + 2)(k + 1) c_{k + 2}
+	= - \sum_{j = 0}^k ( (j + 1) \alpha_{k - j} c_{j + 1} + b_{k - j} c_j)
+\]
+\begin{proof}
+	מתקיים,
+	\[
+		x(0)
+		= \sum_{n = 0}^\infty c_n 0^n
+		= c_0
+	\]
+	וכן באותו אופן,
+	\[
+		x'(t)
+		= \sum_{n = 0}^\infty c_n \cdot n t^{n - 1}
+	\]
+	ולכן $x'(0) = c_1$ מהצבה.
+	\[
+		x''(t)
+		= \sum_{n = 2}^\infty c_n n (n - 1) t^{n - 2}
+		= \sum_{n = 0}^\infty c_{n + 2} (n + 2) (n + 1) t^n
+	\]
+	כלומר $(n + 1)(n + 2) c_{n + 2}$ הוא המקדם ה־$n$ של $x''$, וכן,
+	\[
+		x''(t)
+		= - a(t) x'(t) - b(t) x(t)
+	\]
+	נציב ונקבל,
+	\[
+		x''(t)
+		= - \left(\sum_{n = 0}^\infty \alpha_n t^n\right) \left(\sum_{n = 0}^\infty n c_{n + 1} t^n\right) - \left(\sum_{n = 0}^\infty \beta_n t^n\right) \left(\sum_{n = 0}^\infty c_n t^n\right)
+	\]
+	ולכן ישירות מקיבוע אינדקסים,
+	\[
+		(k + 1)(k + 2) c_{k + 2} t^k
+		= - \sum_{j = 0}^k \alpha_j t^j (k - j) c_{k - j - 1} t^{k - j} - \sum_{j = 0}^k \beta_j t^j (k - j) c_{k - j} t^{k - j}
+		= - \sum_{j = 0}^k ( (j + 1) \alpha_{k - j} c_{j + 1} + b_{k - j} c_j)
+	\]
+	וקיבלנו בדיוק את התוצאה הרצויה.
+\end{proof}
+
+\subquestion{}
+תהי ${(c_k)}_{k = 0}^{\infty}$ הסדרה הרקורסיבית המוגדרת על־ידי,
+\[
+	c_0 = \xi_0,
+	\quad
+	c_1 = \xi_1
+\]
+ועבור $k \ge 0$,
+\[
+	(k + 2)(k + 1) c_{k + 2}
+	= - \sum_{j = 0}^k ( (j + 1) \alpha_{k - j} c_{j + 1} + b_{k - j} c_j)
+\]
+נראה שטור החזקות $x(t) = \sum_{n = 0}^\infty c_n t^n$ מתכנס בסביבה $0 \in (-\delta, \delta)$.
+\begin{proof}
+	נגדיר את $\delta$ להיות כזו שבה $a, b$ אנליטיות, ויהי $r \in (0, \delta)$.
+	מסקנה ממשפטי ההתכנסות נסיק שקיים $0 < M$ המקיים,
+	\[
+		|a_n| t^n < M r^{-n},
+		\qquad
+		|b_n| t^n < M r^{-n}
+	\]
+	ולכן גם,
+	\begin{align*}
+		(k + 2)(k + 1) |c_{k + 2}|
+		& = \left\lvert - \sum_{j = 0}^k ( (j + 1) \alpha_{k - j} c_{j + 1} + b_{k - j} c_j) \right\rvert \\
+		& \le \sum_{j = 0}^k \left\lvert (j + 1) \alpha_{k - j} c_{j + 1} + b_{k - j} c_j \right\rvert \\
+		& \le \sum_{j = 0}^k (j + 1) |\alpha_{k - j}| \cdot |c_{j + 1}| + |b_{k - j}| \cdot |c_j| \\
+		& \le \frac{M}{r^k} \sum_{j = 0}^k ((j + 1) |c_{j + 1}| + |c_j|) \cdot r^j \\
+		& \le \frac{M}{r^k} \sum_{j = 0}^k ((j + 1) |c_{j + 1}| + |c_j|) \cdot r^j + M |c_{k + 1}| r
+	\end{align*}
+	ונגדיר את ${(C_k)}_{k = 0}^{\infty}$ על־ידי $C_0 = |c_0|, C_1 = |c_1|$ וכן,
+	\[
+		(k + 2)(k + 1) C_{k + 2}
+		= \frac{M}{r^k} \sum_{j = 0}^k ((j + 1) |c_{j + 1}| + |c_j|) \cdot r^j + M |c_{k + 1}| r
+	\]
+	ולכן ממשפט ההתכנסות לטורים נקבל שאם $C_k$ מתכנס ב־$(-r, r)$ אז גם $\sum_{n = 0}^\infty c_n t^n$ מתכנס.
+	ועתה נבחין שעבור $k \ge 0$ מתקיים,
+	\[
+		\left\lvert \frac{C_{k + 3}}{C_{k + 2}} \right\rvert
+		= \frac{C_{k + 3}}{C_{k + 2}}
+		= \frac{k + 3}{k + 1} \cdot \frac{1}{r} \frac{\sum_{j = 0}^{k + 1} ((j + 1) |c_{j + 1}| + |c_j|) \cdot r^j + M |c_{k + 2}| r}{\sum_{j = 0}^k ((j + 1) |c_{j + 1}| + |c_j|) \cdot r^j + M |c_{k + 1}| r}
+		\to 1 \cdot \frac{1}{r} \cdot 1
+	\]
+	כאשר ההתכנסות נובעת מהגדרת $M$ בתחום.
+	ממשפט מבחן היחס נובע שרדיוס ההתכנסות של $\sum C_n$ הוא $r$ ולכן גם $\sum_{n = 0}^\infty c_n$ מתכנס ב־$(-r, r)$ ושרירותיות נקבל גם התכנסות ב־$(-\delta, \delta)$.
+\end{proof}
+
+\end{document}
