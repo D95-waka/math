@@ -1,0 +1,358 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 02 --- תבניות ריבועיות ומספרים P־אדיים, 80507}
+
+\DeclareMathOperator{\rank}{rank}
+
+% chktex-file 44
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+יהי $(V, q)$ מרחב־ריבועי מעל שדה $\FF$, $u_1, \ldots, u_k \in V$ ומטריצה $A \in M_n(\FF)$ המוגדרת על־ידי $a_{ij} = g_q(u_i, u_j)$. \\
+נראה שאם $A$ הפיכה אז הסדרה $(u_1, \ldots, u_k)$ בלתי תלויה־לינארית.
+\begin{proof}
+	נניח בשלילה שהסדרה תלויה־לינארית ובפרט נניח שמתקיים,
+	\[
+		u_k
+		= \sum_{i = 1}^{k - 1} \alpha_i u_i
+	\]
+	נגדיר,
+	\[
+		v
+		= \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_{k - 1} \\ -1 \end{pmatrix} 
+	\]
+	ולכן,
+	\begin{align*}
+		A v
+		& = \begin{pmatrix}
+			\alpha_1 g_q(u_1, u_1) + \cdots + \alpha_{k - 1} g_q(u_1, u_{k - 1}) - g(u_1, u_k) \\
+			\vdots \\
+			\alpha_1 g_q(u_k, u_1) + \cdots + \alpha_{k - 1} g_q(u_k, u_{k - 1}) - g(u_k, u_k) \\
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			g_q(u_1, \alpha_1 u_1 + \cdots + \alpha_{k - 1} u_{k - 1} - u_k) \\
+			\vdots \\
+			g_q(u_k, \alpha_1 u_1 + \cdots + \alpha_{k - 1} u_{k - 1} - u_k)
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			g_q(u_1, \alpha_1 u_1 + \cdots + \alpha_{k - 1} u_{k - 1} - u_k) \\
+			\vdots \\
+			g_q(u_k, \alpha_1 u_1 + \cdots + \alpha_{k - 1} u_{k - 1} - u_k)
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+			g_q(u_1, 0) \\
+			\vdots \\
+			g_q(u_k, 0)
+		\end{pmatrix} \\
+		& = 0
+	\end{align*}
+	כלומר מצאנו וקטור $v \ne 0$ כך ש־$A v = 0$ בסתירה להופכיות $A$.
+\end{proof}
+
+\question{}
+יהיו $(V, q), (V', q')$ מרחבים־ריבועיים ותהי $f : V \to V'$ איזומטריה. \\
+נוכיח שאם $(V, q)$ לא מנוון אז $f$ חד־חד ערכית.
+\begin{proof}
+	נניח ש־$v_1', v_2' \in \im f$, ונסמן $f(v_1) = v_1', f(v_2) = v_2'$.
+	מתקיים,
+	\[
+		q(v_1) = q'(v_1'),
+		\quad
+		q(v_2) = q'(v_2')
+	\]
+	אם נניח ש־$q'(v_1') = q'(v_2')$ נקבל,
+	\[
+		-q'(v_1' - v_2')
+		= -g_{q'}(v_1' - v_2', v_1' - v_2')
+		= g_{q'}(v_1' - v_2', v_2' - v_1')
+		= q'(v_1') - q'(v_2') - g_{q'}(v_1', v_2') + g_{q'}(v_1', v_2')
+		= 0
+	\]
+	ולכן $q(v_1 - v_2) = q'(v_1' - v_2') = 0$ בסתירה להנחה ש־$(V, q)$ לא מנוון.
+\end{proof}
+
+\question{}
+נמצא דוגמה למרחבים־ריבועיים $(V, q), (V', q')$ ואיזומטריה $f : V \to V'$ שאיננה חד־חד ערכית.
+\begin{solution}
+	נגדיר $\FF = \RR, V = V' = \RR^2$, וכן,
+	\[
+		q({(x, y)}^t)
+		= x^2 - y^2
+	\]
+	וכן $q' = q$.
+	לבסוף נגדיר את $f : V \to V'$ על־ידי,
+	\[
+		f({(x, y)}^t)
+		= \begin{cases}
+			{(0, 0)}^t & x = y \\
+			{(x, y)}^t & x \ne y
+		\end{cases}
+	\]
+	ולכן אם $x \ne y$ אז נקבל $q(f(x, y)) = q(x, y)$ מהגדרה, ואחרת $0 = q(0, 0) = q(f(x, x)) = q(x, y) = x^2 - y^2 = 0$ ולכן $f$ איזומטריה.
+	אבל $f(2, 2) = f(1, 1)$ ולכן $f$ לא חד־חד ערכית.
+\end{solution}
+
+\question{}
+יהי $(V, q)$ מרחב־ריבועי ויהיו $U, W$ תת־מרחבים של $V$ כך ש־$V = U \overset{\perp}{\oplus} W$. \\
+נראה ש־$(V, q)$ לא מנוון אם ורק אם $(U, q|_U), (W, q|_W)$ לא מנוונים.
+\begin{proof}
+	נניח ש־$(V, q)$ לא מנוון, כלומר $V^\perp = \{ 0 \}$, ויהי $u \in U$.
+	נתון כי קיים $0 \ne v \in V$ כך ש־$g_q(u, v) \ne 0$.
+	אבל $V = U \oplus V$ ולכן קיימים $u' \in U, w' \in W$ כך ש־$v = u' + v'$, וכן $0 \ne g_q(u, v) = g_q(u, u' + w') = g_q(u, u') + g(u, w') = g_q(u, u')$ שכן $U \perp W$.
+	קיבלנו שקיים $u' \in U$ שמעיד ש־$(U, q|_U)$ לא מנוון. הטענה עבור $W$ שקולה מטעמי סימטריה.
+
+	נניח את הכיוון השני ונראה שלכל $v \in V$ קיים $v' \in V$ כך ש־$g_q(v, v') \ne 0$.
+	קיים פירוק יחיד $v = u + w$ עבור $u \in U, w \in W$, ומההנחה שלנו קיימים $u' \in U, w' \in W$ כך שמתקיים,
+	\[
+		g_q|_U(u, u')
+		\ne 0,
+		\qquad
+		g_q|_W(w, w')
+		\ne 0
+	\]
+	ולכן גם,
+	\[
+		g_q(u, u') \ne 0,
+		\qquad
+		g_q(w, w') \ne 0
+	\]
+	נתון $U \perp W$ ולכן $g_q(u, w) = g_q(u', w') = 0$, ונקבל,
+	\[
+		g_q(v, u' + w')
+		= g_q(u + w, u' + w')
+		= g_q(u, u') + g_q(w, w') + 0
+	\]
+	ואם $g_q(u, u') + g_q(w, w') = 0$ נוכל לבחור $u', w'$ עד כדי כפל בסקלר כך שהסכום יהיה שונה מאפס.
+\end{proof}
+
+\question{}
+יהי $\FF$ שדה ו־$A, B \in M_n(\FF)$ חופפות. \\
+נוכיח ש־$\rank A = \rank B$.
+\begin{proof}
+	בלינארית ראינו את הטענה שאם $A$ מטריצה כלשהי ו־$P$ מטריצה הפיכה אז,
+	\[
+		\rank(PA)
+		= \rank(AP)
+		= \rank A
+	\]
+	אבל נתון כי קיימת $P$ הפיכה המקיימת $A = P^t B P$ ולכן גם $\rank A = \rank(P^t B P) = \rank B$.
+\end{proof}
+
+\question{}
+יהי $(V, q)$ מרחב־ריבועי ו־$\Bb$ בסיס של $V$.
+נראה שמתקיים,
+\[
+	\dim V
+	= \rank {[g_q]}_\Bb + \dim V^\perp
+\]
+\begin{proof}
+	נניח בלי הגבלת הכלליות ש־$\Bb$ בסיס אורתוגונלי כך ש־${[g_q]}_\Bb$ מטריצה אלכסונית שבדיוק $k$ איבריה הראשונים שונים מאפס, לכן $0 \le k \le n$ עבור $n = \dim V$.
+	נגדיר $U = \Sp\{ b_1, \ldots, b_k \}, W = \Sp\{ b_{k + 1}, \ldots, b_n \}$ כאשר $\Bb = (b_1, \ldots, b_n)$.
+	בהתאם $U, W$ תת־מרחבים של $V$ וכן $V = U \oplus W$ מהגדרה.
+	מתקיים גם ${[g_q|_W]}_{(b_{k + 1}, \ldots, b_n)} = 0$.
+	לכל $u \in U$ מתקיים $g_q(u, u) \ne 0$ ולכן $V^\perp = W$ בדיוק, ונסיק ש־$U \perp W$ ובהתאם $V = U \overset{\perp}{\oplus} W$.
+	ממשפט המימד,
+	\[
+		\dim V
+		= \dim U + \dim W
+		= \rank {[g_q]}_\Bb + \dim V^\perp
+	\]
+	כאשר המעבר האחרון נובע ממשפט הדרגה.
+\end{proof}
+
+\question{}
+נמצא דוגמה למרחב־ריבועי לא מנוון $(V, q)$ ולתת־מרחב $U \subseteq V$ כך ש־$(U, q|_U)$ מנוון.
+\begin{solution}
+	נגדיר $\FF = \RR, V = \RR^2, U = \Sp\{ (1, 1) \}$ ולכן $U \subseteq V$ תת־מרחב לינארי.
+	נגדיר גם את $q(x, y) = x^2 - y^2$, ולכן גם,
+	\[
+		g_q((x_1, x_2), (y_1, y_2))
+		= x_1 x_2 - y_1 y_2
+	\]
+	ולכל $(x, y)$ נוכל לבחור את $(x, -y)$ או $(-x, y)$ אם $y = 0$ ונקבל ש־$(V, q)$ מרחב לא מנוון.
+	לעומת זאת מתקיים $q(x, x) = 0$ לכל $(x, x) \in U$, ובפרט נסיק ש־$(U, q|_U)$ מרחב מנוון.
+\end{solution}
+
+\question{}
+יהי $(V, q)$ מרחב־ריבועי ויהיו $u, w \in V$ כך ש־$q(u) = q(w) = 0$.
+נסמן $U = \Sp\{ u \}, W = \Sp\{ v, w \}$.
+
+\subquestion{}
+נוכיח ש־$(U, q|_U)$ מרחב מנוון.
+\begin{proof}
+	אם $v \in U$ אז קיים $\alpha \in \RR$ כך ש־$v = \alpha u$ ולכן $q|_U(v) = q(v) = \alpha^2 q(u) = 0$.
+	\[
+		g_q|_U(v, w)
+		= \frac{1}{2} (q(v + w) - q(v) - q(w))
+		= 0
+	\]
+	לכן $g_q|_U \equiv 0$ ובפרט המרחב מנוון.
+\end{proof}
+
+\subquestion{}
+נראה ש־$(W, q|_W)$ לא בהכרח מנוון.
+\begin{proof}
+	נבנה דוגמה נגדית לטענה. \\
+	נבחר $\FF = \RR$ ו־$V = \RR^3$, ונגדיר,
+	\[
+		q(x, y, z)
+		= x^2 - y^2 - z^2
+	\]
+	ולכן $u = (1, 1, 0), w = (1, 0, 1)$ מקיימים שניהם $q(u) = q(w) = 0$.
+	בהתאם $W = \Sp\{ u, w \} = \Sp\{ (1, 0, 0), (0, 1, -1) \}$.
+	בהתאם נקבל,
+	\[
+		{[g_q|_W]}_{(v, w)}
+		= \begin{pmatrix}
+			1 & 0 \\
+			0 & -2
+		\end{pmatrix}
+	\]
+	ולכן מהשאלות הקודמות $(W, q|_W)$ לא מנוון.
+\end{proof}
+
+\question{}
+יהיו $V$ מרחב וקטורי מעל $\FF$ ו־$l_1, l_2 : V \to \FF$ העתקות לינאריות.
+נגדיר את $q : V \to \FF$ על־ידי $q(v) = l_1(v) l_2(v)$.
+
+\subquestion{}
+נראה ש־$q$ היא תבנית ריבועית.
+\begin{proof}
+	נסמן $l_1(v_1, \ldots, v_n) = \sum_{k = 1}^n \alpha_k v_k$ וכן $l_2(v_1, \ldots, v_n) = \sum_{k = 1}^n \beta_k v_k$.
+	בהתאם,
+	\[
+		q(v_1, \ldots, v_n)
+		= \sum_{k = 1}^n \sum_{i = 1}^n \alpha_k \beta_i v_k v_i
+	\]
+	ונגדיר את התבנית הבילינארית הסימטרית $g : V^2 \to \FF$ על־ידי,
+	\[
+		g(e_i, e_j)
+		= \frac{1}{2} (\alpha_i \beta_j + \alpha_j \beta_i)
+	\]
+	ולכן,
+	\begin{align*}
+		g((v_1, \ldots, v_n), (v_1, \ldots, v_n))
+		& = \sum_{k = 1}^n \sum_{i = 1}^n \frac{1}{2} (\alpha_k \beta_i + \alpha_i \beta_k) v_k v_i \\
+		& = \frac{1}{2} \sum_{k = 1}^n \sum_{i = 1}^n \alpha_k \beta_i v_k v_i + \frac{1}{2} \sum_{k = 1}^n \sum_{i = 1}^n \alpha_i \beta_k v_i v_k \\
+		& = \frac{1}{2} \sum_{k = 1}^n \sum_{i = 1}^n \alpha_k \beta_i v_k v_i + \frac{1}{2} \sum_{k = 1}^n \sum_{i = 1}^n \alpha_i \beta_k v_k v_i \\
+		& = q(v_1, \ldots, v_n)
+	\end{align*}
+	כאשר המעבר האחרון נובע מפוביני לטורים (ובפרט לסכומים סופיים) ושינוי סימן.
+	מצאנו ש־$g$ תבנית בילינארית סימטרית כך ש־$q(v) = g(v, v)$ ולכן $q$ תבנית ריבועית.
+\end{proof}
+
+\subquestion{}
+נראה שאם $\dim V \ge 3$ אז $(V, q)$ מנוון.
+\begin{proof}
+	אם $\ker l_1 \ne \{ 0 \}$ או $\ker l_2 \ne \{ 0 \}$ אז נבחר $v \in V$ שבאחד מהגרעינים ולכן $q(v) = l_1(v) l_2(v) = 0$ וסיימנו משאלה 8.
+
+	נניח ששתי ההעתקות הלינאריות הן מדרגה מלאה, ולכן בפרט הן מדרגה $\ge 3$,
+	\[
+		3 \le 
+		\dim V
+		= \rank {[ g ]}_\Bb + \dim V^\perp
+		= 1 + \dim V^\perp
+	\]
+	ולכן בהכרח $\dim V^\perp > 0$.
+\end{proof}
+
+\question{}
+יהי $\FF$ שדה ותהי $q : \FF^2 \to \FF$ מוגדרת על־ידי,
+\[
+	q(x_1, x_2)
+	= x_1^2 + x_2^2
+\]
+נראה ש־$0 \in q(\FF^2 \setminus \{ 0 \})$ אם ורק אם $-1 \in {(\FF^*)}^2$.
+\begin{proof}
+	נניח ש־$0 \in q(\FF^2 \setminus \{ 0 \})$ ויהי $u \in \FF^2$ כך ש־$u \ne 0$ וכן $q(u) = 0$.
+	נסמן $u = (u_1, u_2)$ ולכן $u_1 \in \FF$. אם $u_1 = 0$ אז גם $0 + u_2^2 = 0$ ובפרט $u_2 = 0$ בסתירה, לכן $u_1 \in \FF^*$.
+	נגדיר את $v = \frac{u}{u_1} = (1, \frac{u_2}{u_1})$, ולכן מתקיים,
+	\[
+		q(v)
+		= q(\frac{v}{u_1})
+		= \frac{1}{u_1^2} q(u)
+		= 0
+	.\]
+	ובהתאם,
+	\[
+		q(v)
+		= 1^2 + {(\frac{u_2}{u_1})}^2
+		= 0
+	.\]
+	וקיבלנו ש־$\frac{u_1}{u_2}$ מעיד על $-1 \in {(\FF^*)}^2$.
+
+	נניח ש־$-1 \in {(\FF^*)}^2$ ויהי $a \in \FF$ כך ש־$a \ne 0$ ו־$a^2 = -1$.
+	נגדיר את $u = (1, a)$ ונקבל,
+	\[
+		q(u)
+		= 1^2 + a^2
+		= 1 + (-1)
+		= 0
+	.\]
+	וסיימנו.
+\end{proof}
+
+\question{}
+נגדיר את התבנית הריבועית $q : \FF_{11}^2 \to \FF_{11}$ על־ידי,
+\[
+	q(x_1, x_2)
+	= 2 x_1^2 - 3 x_2^2
+.\]
+נמצא בסיס $\Bb$ של $\FF_{11}^2$ כך ש־${[g_q]}_\Bb$ תהיה בצורה קנונית עם נציג $-1$.
+\begin{solution}
+	\begin{align*}
+		& \begin{pmatrix}
+			2 & 0 \\
+			0 & 8
+		\end{pmatrix}
+		\xrightarrow[R_2 \to 2 R_2]{R_1 \to 4 R_1}
+		\begin{pmatrix}
+			-1 & 0 \\
+			0 & -1
+		\end{pmatrix}
+		\xrightarrow{R_1 \to R_1 - R_2}
+		\begin{pmatrix}
+			-2 & 1 \\
+			1 & -1
+		\end{pmatrix} \\
+		& \xrightarrow{R_1 \to 4 R_1}
+		\begin{pmatrix}
+			1 & 4 \\
+			4 & -1
+		\end{pmatrix}
+		\xrightarrow{R_2 \to -4 R_1 + R_2}
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 5
+		\end{pmatrix}
+		\xrightarrow{R_2 \to 3 R_2}
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{pmatrix}
+	.\end{align*}
+	ובחישוב מטריצת המעבר נקבל,
+	\[
+		P
+		= \begin{pmatrix}
+			5 & 6 \\
+			3 & 3
+		\end{pmatrix}
+	.\]
+	ולכן $\Bb = ((5, 3), (6, 3))$.
+\end{solution}
+
+\question{}
+נגדיר את התבנית הריבועית $q : \FF_7^3 \to \FF_7$ על־ידי,
+\[
+	q(x_1, x_2, x_3)
+	= 3 x_1^2  - 2 x_2^2 - 2 x_3^2
+.\]
+ונמצא בסיס מלכסן $\Bb$ ל־$q$ כך שהנציגים הם $\{ \pm 1 \}$.
+\begin{solution}
+	TODO
+\end{solution}
+
+\end{document}
