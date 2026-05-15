@@ -274,13 +274,13 @@
 		= q(\frac{v}{u_1})
 		= \frac{1}{u_1^2} q(u)
 		= 0
-	.\]
+	\]
 	ובהתאם,
 	\[
 		q(v)
 		= 1^2 + {(\frac{u_2}{u_1})}^2
 		= 0
-	.\]
+	\]
 	וקיבלנו ש־$\frac{u_1}{u_2}$ מעיד על $-1 \in {(\FF^*)}^2$.
 
 	נניח ש־$-1 \in {(\FF^*)}^2$ ויהי $a \in \FF$ כך ש־$a \ne 0$ ו־$a^2 = -1$.
@@ -290,7 +290,7 @@
 		= 1^2 + a^2
 		= 1 + (-1)
 		= 0
-	.\]
+	\]
 	וסיימנו.
 \end{proof}
 
@@ -299,7 +299,7 @@
 \[
 	q(x_1, x_2)
 	= 2 x_1^2 - 3 x_2^2
-.\]
+\]
 נמצא בסיס $\Bb$ של $\FF_{11}^2$ כך ש־${[g_q]}_\Bb$ תהיה בצורה קנונית עם נציג $-1$.
 \begin{solution}
 	\begin{align*}
@@ -332,7 +332,7 @@
 			1 & 0 \\
 			0 & 1
 		\end{pmatrix}
-	.\end{align*}
+	\end{align*}
 	ובחישוב מטריצת המעבר נקבל,
 	\[
 		P
@@ -340,7 +340,7 @@
 			5 & 6 \\
 			3 & 3
 		\end{pmatrix}
-	.\]
+	\]
 	ולכן $\Bb = ((5, 3), (6, 3))$.
 \end{solution}
 
@@ -349,10 +349,45 @@
 \[
 	q(x_1, x_2, x_3)
 	= 3 x_1^2  - 2 x_2^2 - 2 x_3^2
-.\]
+\]
 ונמצא בסיס מלכסן $\Bb$ ל־$q$ כך שהנציגים הם $\{ \pm 1 \}$.
 \begin{solution}
-	TODO
+	נכתוב את פעולת השורה אך נבצע גם את פעולת העמודה המקבילה,
+	\[
+		\begin{pmatrix}
+			3 & 0 & 0 \\
+			0 & -2 & 0 \\
+			0 & 0 & -2
+		\end{pmatrix}
+		\xrightarrow{R_2 \to R_1 + R_2}
+		\begin{pmatrix}
+			3 & 3 & 0 \\
+			3 & 1 & 0 \\
+			0 & 0 & -2
+		\end{pmatrix}
+		\xrightarrow{R_1 \to R_1 - 3 R_2}
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & 1 & 0 \\
+			0 & 0 & -2
+		\end{pmatrix}
+		\xrightarrow{R_3 \to 2 R_3}
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & 1 & 0 \\
+			0 & 0 & -1
+		\end{pmatrix}
+	\]
+	נקבל את הבסיס,
+	\[
+		\Bb
+		= \left(
+			\begin{pmatrix} 5 \\ 4 \\ 0 \end{pmatrix},
+			\begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix},
+			\begin{pmatrix} 0 \\ 0 \\ 2 \end{pmatrix}
+		\right)
+	\]
+	ונקבל שמתקיים ${[g_q]}_\Bb = \diag(1, 1, -1)$.
 \end{solution}
 
 \end{document}
