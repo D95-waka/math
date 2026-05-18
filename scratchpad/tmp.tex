@@ -1,34 +1,71 @@
 \input{../article_base.tex}
 
+% chktex-file 9
+% chktex-file 17
+
 \begin{document}
 
-נראה שאם $E \subseteq [0, 1]$ קבוצה המקיימת שלכל סדרת איברים שונים ${\{ a_n \}}_{n = 1}^\infty \subseteq E$ מתקיים $\sum a_n < \infty$ אז $E$ בת־מניה או סופית.
-\begin{proof}
-	המטרה שלנו היא למצוא דרך להראות שהקבוצה $E$ היא קטנה מספיק.
-	נבחין כי אם $E$ סופית אז הטענה נכונה באופן ריק, ולכן אנחנו צריכים להראות שאם $E$ אינסופית אז היא בת־מניה.
+נגדיר את $X : [0, 1] \to [0, \infty)$ על־ידי $X(t) = -\ln(1 - t)$ ולכן $X^{-1}(t) = 1 - e^{-t}$ ומתקיים,
+\[
+	\lambda(X < \alpha)
+	= \lambda(\{t \in [0, 1] \mid X(t) \in [0, t) \})
+	= \lambda([0, X^{-1}(t)))
+	= \lambda([0, 1 - e^{-t}))
+	= 1 - e^{-t}
+.\]
+ולכן $X \sim \operatorname{Exp}(1)$ בדיוק.
 
-	יהי $0 < \delta < 1$, ונניח שמתקיים $|[\delta, 1] \cap E| \ge \omega$.
-	במקרה זה נוכל לקחת סדרה ${\{ a_n \}}_{n = 1}^\infty \subseteq [\delta, 1] \cap E$.
-	מתקיים,
-	\[
-		\forall n \in \NN,\ a_n \in E \land \delta \le a_n
-	.\]
-	ולכן,
-	\[
-		\sum_{n = 1}^\infty a_n
-		\ge \sum_{n = 1}^\infty \delta
-		= \delta \sum_{n = 1}^\infty 1
-		= \infty
-	.\]
-	כלומר קיבלנו סתירה לתכונת $E$, לכן יש מספר סופי של איברים ב־$E$ שגדולים מ־$\delta$.
-	נסמן $E_n = [\frac{1}{n}, 1] \cap E$, ונבחין ש־$|E_n| < \omega$ מהטענה על $\delta$ על־ידי בחירת $\delta = \frac{1}{n}$.
-	איחוד בן־מניה של קבוצות סופיות הוא בן־מניה, לכן,
-	\[
-		\left\lvert \bigcup_{n \in \NN} E_n \right\rvert
-		= \omega
-	.\]
-	אבל גם $\bigcup_{n \in \NN} E_n = E \setminus \{ 0 \}$, זאת שכן לכל מספר גדול מ־$0$ קיים $\frac{1}{n}$ שקטן ממנו.
-	נזכור כי איחוד של קבוצה סופית וקבוצה בת־מניה הוא בן־מניה ולכן גם $E = \bigcup E_n \cup \{ 0 \}$ היא בת־מניה כפי שרצינו.
-\end{proof}
+עתה נגדיר $X_n : {[0, 1]}^{\omega} \to {[0, \infty)}^{\omega}$ על־ידי,
+\[
+	X_n(a)(k)
+	= \begin{cases}
+		0 & n \ne k \\
+		X(a(n)) & n = k
+	\end{cases}
+.\]
+ולכן נקבל שוב ש־$X_n$ מתפלגת מעריכית, ונבחין כי $X_n, X_m$ בלתי־תלויים מהגדרתם כחתכים.
+\[
+	\sigma(X_n)
+	= \{ X^{-1}(E) \mid E \in \sigma([0, \infty)) \}
+	= \prod_{k < \omega} \begin{cases}
+		[0, 1] & k \ne n \\
+		\sigma([0, 1]) & k = n
+	\end{cases}
+.\]
+כלומר זה מרחב מאוד מנוון כי בציר אחד הוא לבג ובשאר הוא הכול או כלום.
+באופן דומה נחשב,
+\[
+	\sigma(X_n, X_{n + 1}, \ldots)
+	= \sigma(X_n \cup X_{n + 1} \cup \cdots)
+	= \sigma(\sigma(X_n) \cup \sigma(X_{n + 1}) \cup \cdots)
+	= \prod_{k < \omega} \begin{cases}
+		[0, 1] & k < n \\
+		\sigma([0, 1]) & k \ge n
+	\end{cases}
+.\]
+נגדיר את ה־$\sigma$־אלגברה הצילינדרית פה,
+\[
+	\Tt
+	= \bigcap_{n = 1}^\infty \sigma(X_n, X_{n + 1}, \ldots)
+	= \bigcap_{n = 1}^\infty \prod_{k < \omega} \begin{cases}
+		[0, 1] & k < n \\
+		\sigma([0, 1]) & k \ge n
+	\end{cases}
+	= \{ \emptyset, {[0, 1]}^{\omega} \}
+.\]
+
+נניח ש־${\{ a_n \}}_{n = 1}^\infty \subseteq \RR_{\ge 0}$ סדרה המקיימת,
+\[
+	\sum_{n = 1}^\infty a_n
+	= L
+.\]
+עבור $L \in [-\infty, \infty]$, לכן מהתנאי ההכרחי $a_n \to 0$.
+נחשב,
+\[
+	\frac{\sum_{n = 1}^{k + 1} a_n}{\sum_{n = 1}^k a_n}
+	= \frac{a_{k + 1} + \sum_{n = 1}^k a_n}{\sum_{n = 1}^k a_n}
+	= \frac{a_{k + 1}}{\sum_{n = 1}^k a_n} + \frac{\sum_{n = 1}^k a_n}{\sum_{n = 1}^k a_n}
+	\to \frac{0}{L} + 1
+.\]
 
 \end{document}
