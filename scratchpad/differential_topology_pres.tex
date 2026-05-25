@@ -1,0 +1,422 @@
+\documentclass[aspectratio=169,notheorems,mathserif]{beamer}
+
+\usepackage{amsmath, amsthm, thmtools, amsfonts, amssymb, luacode, catchfile, hyperref, ifthen, graphicx, bbm}
+\linespread{1.3}
+\AtBeginDocument{\setlength{\belowdisplayskip}{3pt}}
+\AtBeginDocument{\setlength{\abovedisplayskip}{3pt}}
+
+% Presentation settings
+\usetheme{metropolis}
+%\usefonttheme[onlymath]{serif}
+
+% Setting docuemnt language and fonts
+\RequirePackage[bidi=basic, layout=tabular, provide=*]{babel}
+\babelprovide[main, import]{hebrew}
+\babelprovide{rl}
+\babelfont[hebrew]{rm}[Renderer=Harfbuzz]{Libertinus Serif}
+\babelfont[hebrew]{sf}{Liberation Sans}
+\babelfont[hebrew]{tt}{Libertinus Mono}
+
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator\dist{dist}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\FF}[0]{\mathbb{F}}
+\newcommand{\HH}[0]{\mathbb{H}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+
+% theorem commands
+\newtheoremstyle{c_remark}
+	{}	% Space above
+	{}	% Space below
+	{}% Body font
+	{}	% Indent amount
+	{\bfseries}	% Theorem head font
+	{}	% Punctuation after theorem head
+	{.5em}	% Space after theorem head
+	{\thmname{#1}\thmnumber{ #2}\thmnote{ \normalfont{\text{(#3)}}}}	% head content
+\newtheoremstyle{c_definition}
+	{3pt}	% Space above
+	{3pt}	% Space below
+	{}% Body font
+	{}	% Indent amount
+	{\bfseries}	% Theorem head font
+	{}	% Punctuation after theorem head
+	{.5em}	% Space after theorem head
+	{\thmname{#1}\thmnumber{ #2}\thmnote{ \normalfont{\text{(#3)}}}}	% head content
+\newtheoremstyle{c_plain}
+	{3pt}	% Space above
+	{3pt}	% Space below
+	{\itshape}% Body font
+	{}	% Indent amount
+	{\bfseries}	% Theorem head font
+	{}	% Punctuation after theorem head
+	{.5em}	% Space after theorem head
+	{\thmname{#1}\thmnumber{ #2}\thmnote{ \text{(#3)}}}	% head content
+
+\theoremstyle{c_plain}
+\newtheorem{theorem}{משפט}[section]
+\newtheorem*{theorem*}{משפט}
+\newtheorem{lemma}[theorem]{למה}
+\newtheorem{proposition}[theorem]{טענה}
+\newtheorem*{proposition*}{טענה}
+
+\theoremstyle{c_definition}
+\newtheorem{definition}[theorem]{הגדרה}
+\newtheorem*{definition*}{הגדרה}
+\newtheorem{example}{דוגמה}[section]
+\newtheorem{exercise}{תרגיל}[section]
+
+\theoremstyle{c_remark}
+\newtheorem*{remark}{הערה}
+\newtheorem*{solution}{פתרון}
+\newtheorem{corollary}[theorem]{מסקנה}
+\newtheorem{notation}[theorem]{סימון}
+
+
+\title{משפט ז'ורדן־ברוור ובורסוק־אולם}
+\author{}
+\institute{טופולוגיה דיפרנציאלית --- 80576}
+\date{}
+
+\setcounter{secnumdepth}{2}
+\relpenalty=10000
+\binoppenalty=10000
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{רקע}
+\begin{frame}
+	ניזכר בהגדרה של אינדקס חיתוך מודולו 2.
+	\begin{definition}[אינדקס חיתוך מודולו 2]
+		נניח ש־$X$ יריעה קומפקטית ו־$f : X \to Y$ העתקה חלקה טרנסוורסלית ל־$Z \subseteq Y$ סגורה, ונניח גם ש־$\dim X + \dim Z = \dim Y$.
+		במקרה זה $f^{-1}(Z)$ היא תת־יריעה סגורה ממימד $0$ של $X$, כלומר היא קבוצה סופית.
+		נגדיר את אינדקס החיתוך מודולו 2 של $f$ ו־$Z$, $I_2(f, Z)$, להיות מספר הנקודות ב־$f^{-1}(Z)$ מודולו 2. \\
+		עבור העתקה חלקה כללית $g : X \to Y$ נבחר העתקה חלקה $f$ הומוטופית ל־$g$ וטרנסוורסלית ל־$Z$ ונגדיר $I_2(g, Z) = I_2(f, Z)$, אנו יכולים לבחור כזו בדיוק מהמסקנה הקודמת.
+	\end{definition}
+	\onslide<2->{
+		\begin{remark}
+			נשתמש בסימון $I(f, Z)$ כמספר נקודות החיתוך (הסופי) לאורך ההרצאה מטעמי נוחות, אך לא נראה אף טענה בנוגע לערך זה.
+		\end{remark}
+	}
+\end{frame}
+
+\begin{frame}
+	\begin{corollary}
+		אם $f : X \to Y$ העתקה חלקה ו־$\partial f : \partial X \to Y$ טרנסוורסלית ל־$Z \subseteq Y$ אז קיימת העתקה $g : X \to Y$ הומוטופית ל־$f$ כך ש־$\partial f = \partial g$ וגם $g \pitchfork Z$.
+	\end{corollary}
+	\onslide<2->{
+		בניסוח אחר נקבל שאם $h : \partial X \to Y$ היא העתקה טרנסוורסלית ל־$Z \subseteq Y$ ו־$h$ ניתנת להרחבה לאיזושהי העתקה $X \to Y$, אז בפרט היא יכולה להתרחב להעתקה טרנסוורסלית ל־$Z$ בכל $X$. \\
+		כלומר מצאנו שגם אם $f$ לא טרנסוורסלית ל־$Z$, היא כן הומוטופית להעתקה כן טרנסוורסלית ל־$Z$, כל תנאי שהשפה מספיק יפה.
+	}
+	\onslide<3->{
+		\begin{theorem}
+			אם $f, g : X \to Y$ הומוטופיות וטרנסוורסליות ל־$Z$, אז $I_2(g, Z) = I_2(f, Z)$.
+		\end{theorem}
+	}
+\end{frame}
+\begin{frame}
+	אם $X \subseteq Y$ אנו מקבלים את המקרה המיוחד שבו גם השיכון $i : X \hookrightarrow Y$ מקבלת אינדקס חיתוך מודולו 2, והוא כמובן משומר, נגדיר זאת.
+	\begin{definition}[אינדקס חיתוך מודולו 2 של תתי־יריעות]
+		אם $X, Z \subseteq Y$ שתי תת־יריעות ממימד משלים, כלומר $\dim X + \dim Z = \dim Y$, וכן $X$ קומפקטית, אז נגדיר $I_2(X, Z) = I_2(i, Z)$.
+	\end{definition}
+	\onslide<2->{
+		\begin{example}
+			אם נבחן את $T = S^1 \times S^1$ טורוס, אז $T \subseteq \RR^3$ וגם $\dim T = 2$.
+			נגדיר את שתי תתי־היריעות,
+			\[
+				X = e^{\pi i} \times S^1,
+				\quad
+				Z = S^1 \times e^{\pi i}
+			\]
+		\end{example}
+	}
+\end{frame}
+\begin{frame}
+	\begin{theorem}[ערמת הרשימות]
+		נניח ש־$y$ ערך רגולרי של $f : X \to Y$ כאשר $X$ קומפקטית ו־$\dim X = \dim Y$. \\
+		אז $f^{-1}(\{ y \})$ הוא קבוצה סופית, ואם נסמן $f^{-1}(\{ y \}) = \{ x_1, \ldots, x_n \}$ אז קיימת סביבה פתוחה $y \subseteq U \subseteq Y$ וסביבות פתוחות וזרות $x_i \subseteq V_i \subseteq X$,
+		כך ש־$f|_{V_i} : V_i \to U$ דיפאומורפיזם חלק.
+	\end{theorem}
+	\onslide<2->{
+		\begin{theorem}[חיתוך קבוע במקרה הקשיר]
+			אם $f : X \to Y$ חלקה, $X$ קומפקטית ו־$Y$ קשירה, כך ש־$\dim X = \dim Y$,
+			אז $I_2(f, \{ y \})$ קבוע לכמעט כל $y \in Y$.
+		\end{theorem}
+	}
+\end{frame}
+\begin{frame}
+	\begin{definition}[דרגה מודולו 2]
+		תהי $X$ קומפקטית ו־$Y$ קשירה כך ש־$\dim X = \dim Y$, ונניח ש־$f : X \to Y$ העתקה חלקה.
+		נגדיר את הדרגה מודולו 2 של $f$ להיות הערך הקבוע כמעט־תמיד $I_2(f, \{ y \})$ עבור $y \in Y$ ערך רגולרי.
+		נסמן את הדרגה ב־$\deg_2 f$.
+	\end{definition}
+	\onslide<2->{
+		\begin{example}
+			נבחן את $f : S^1 \to S^1$ המוגדרת על־ידי,
+			\[
+				f(e^{i t})
+				= e^{i n t}
+			\]
+			עבור $n \in \ZZ$ קבוע.
+		\end{example}
+	}
+\end{frame}
+\begin{frame}
+	באופן לא מפתיע, גם דרגה מתנהגת באופן צפוי תחת הומוטופיה.
+	\begin{theorem}[שימור דרגה מודולו 2 על־ידי הומוטופיה]
+		אם $f, g : X \to Y$ העתקות חלקות והומוטופיות, $X$ קומפקטית ו־$Y$ קשירה,
+		אז,
+		\[
+			\deg_2 f = \deg_2 g
+		\]
+	\end{theorem}
+	\begin{proof}
+		ישיר מהגדרה ומשפט השימור תחת הומוטופיה.
+	\end{proof}
+\end{frame}
+\begin{frame}
+	\begin{definition}[על־משטח]
+		יריעה $X \subseteq \RR^n$ תיקרא על־משטח (Hypersurface) אם $\dim X = n - 1$.
+	\end{definition}
+	יהי $X \subseteq \RR^n$ על־משטח ו־$f : X \to Y$ חלקה, כאשר $Y$ יריעה ממימד $n$.
+	אנו מעוניינים להבין בהינתן נקודה $z \in \RR^n \setminus Y$ לשאול כמה $f$ מתלפפת סביב $z$.
+	כדי שלא נעבוד קשה מדי, במקום לבחון ישירות את הליפוף, נבנה העתקה של הכיוון של $z$ מכל נקודה $f(x)$, כך נקבל שהליפוף שקול לכמות הסיבובים שאנו עושים בספירה.
+	נגדיר,
+	\[
+		u : X \to S^{n - 1},
+		\qquad
+		u(x)
+		= \frac{f(x) - z}{|f(x) - z|}
+	\]
+	זוהי בדיוק הפונקציה שמחזירה לנו את הכיוון של $f(x)$ מ־$z$ בכל מיקום, בפרט נבחין ש־$\dim X = \dim S^{n - 1}$ ולכן $\dim_2 u$ מוגדר.
+	מצאנו אם כך שעד כדי מודולו 2, אנו יודעים בדיוק את הליפוף של $f$ את $X$ סביב $z$, ונגדיר זאת מפורשות.
+\end{frame}
+\begin{frame}
+	\begin{definition}[אינדקס ליפוף מודולו 2]
+		נגדיר את אינדקס הליפוף מודולו 2 ונסמן $W_2(f, z) = \deg_2 u$ להיות דרגת פונקציית הכיוון של $f$ מ־$z$.
+	\end{definition}
+	\begin{example}
+		נבחן את $f : S^1 \to \CC$ המוגדרת על־ידי,
+		\[
+			f(e^{i t})
+			= e^{(i n + 1) t}
+		\]
+		אז $0 \notin f(S^1)$ ונבחן את הליפוף סביב הראשית.
+		נגדיר,
+		\[
+			u(x)
+			= \frac{f(x)}{|f(x)|}
+			= \frac{e^{(i n + 1) t}}{e^t}
+			= e^{i n t}
+		\]
+		וקיבלנו בדיוק את הפונקציה מהדוגמה הקודמת, נסיק ש־$W_2(f, 0) = 1$ אם ורק אם $n$ אי־זוגי.
+	\end{example}
+\end{frame}
+
+\section{אינדקס ליפוף ומשפט ההפרדה}
+\begin{frame}
+	המטרה שלנו בשלב זה היא למצוא תכונות של אינדקס ליפוף מודולו 2.
+	התכונה הראשונה שנראה היא הקשר שבין ערך זה לבין הרחבה חלקה של פונקציות.
+	\begin{theorem}[שקילות אינדקס ליפוף לחיתוך הרחבה]
+		יהי $X \subseteq \RR^n$ על־משטח כך ש־$X = \partial D$ עבור $D$ יריעה קומפקטית עם שפה, ותהי $f : X \to \RR^n$ חלקה.
+		נניח שקיימת העתקה $F : D \to \RR^n$ חלקה כך ש־$\partial F = f$, כלומר $F$ היא הרחבה חלקה של $f$ ל־$D$, ותהי $z$ ערך רגולרי של $F$ כך ש־$f$ לא מקבלת את $z$.
+		במקרה זה $F$ מקבלת את $z$ מספר סופי של פעמים וכן,
+		\[
+			W_2(f, z)
+			= \# F^{-1}(\{ z \}) \mod 2
+		\]
+		כלומר $f$ מלפפת את $X$ סביב $z$ כמספר הפעמים ש־$F$ מקבלת את $z$ מודולו 2.
+	\end{theorem}
+\end{frame}
+\begin{frame}
+	\begin{example}
+		נבחן את $f : S^1 \to \CC$ המוגדרת,
+		\[
+			f(e^{i t}) = e^{i t} + 2 e^{2i t}
+		\]
+		אבל נוכל להרחיב את $f$ ל־$F : \bar{B}(0, 1) \to \CC$ המוגדרת על־ידי,
+		\[
+			F(z) = z + 2 z^2
+		\]
+		בפרט עבור $z = 0$ נקבל,
+		\[
+			F^{-1}(\{ 0 \})
+			= \{ 0, -\frac{1}{2} \}
+		\]
+		ונסיק $W_2(f, 0) = 0$.
+		מהצד השני עבור $z = 2$ נקבל,
+		\[
+			2 = z + 2 z^2
+			\iff z = \frac{-1 \pm \sqrt{1 + 16}}{4}
+		\]
+		אבל רק $\frac{1}{4}(-1 + \sqrt{17}) \in \bar{B}(0, 1)$ ולכן $W_2(f, 2) = 1$.
+	\end{example}
+\end{frame}
+\begin{frame}
+	עתה כשבידנו דרך לחשב את אינדקס הליפוף מודולו 2, נראה תכונה ייחודית שלו.
+	\begin{theorem}[ההפרדה של ז'ורדן־ברוור]
+		יהי $X \subseteq \RR^n$ על־משטח קשיר וקומפקטי,
+		אז $X^C = \RR^n \setminus X = D_0 \cup D_1$ עבור שתי קבוצות פתוחות וזרות.
+		$D_0$ החלק ''החיצוני'' למשטח ו־$D_1$ החלק ''הפנימי'' למשטח. \\
+		בנוסף $\bar{D}_1$ היא יריעה קומפקטית המקיימת $\partial \bar{D}_1 = X$, ומתקיים $W_2(f, z) = 1 \iff z \in D_1$.
+	\end{theorem}
+	את המשפט נוכיח על־ידי ניסוח והוכחה של מספר למות תוך ההנחה ש־$X$ על־משטח קשיר וקומפקטי.
+\end{frame}
+\begin{frame}
+	\begin{lemma}
+		לכל $z \in \RR^n \setminus X$ ולכל $x \in X$ ו־$U$ כך ש־$x \in U$ סביבה פתוחה שלה ב־$\RR^n$ אז קיימת נקודה $y \in U$ כך ש־$z, y$ ניתנות לחיבור במסילה שלא חותכת את $X$.
+	\end{lemma}
+	\begin{proof}
+		נגדיר $B \subseteq X$ קבוצת הנקודות המקיימות את הטענה, במרחב קשיר אם קבוצה היא סגורה פתוחה ולא ריקה אז $B = X$, לכן נראה את שלוש התכונות הללו.
+
+		\textbf{סגורה}:
+		לכל סדרת נקודות ב־$B$ מתכנסת נוכל לבחור סביבות של הנקודות בסדרה, ובהתאם נקבל סביבה עבור הגבול שלהן.
+
+		\textbf{פתוחה}:
+		ממשפט סובמרסיה קנונית אנו יודעים שלכל $x \in B$ יש דיפאומורפיזם מקומי כך ש־$x \in V \subseteq X$ נראית כמו $\RR^{n - 1} \times \{ 0 \}$.
+		בהתאם בסביבה זו מקשירות ושרירותיות בחירת $U$ נקבל שגם $V \subseteq B$, כלומר $B$ היא קבוצה פתוחה.
+
+		\textbf{לא ריקה}:
+		אנו יודעים כי $X$ קומפקטית ולכן $d = \dist(X, z)$ מתקבל ובפרט קיימת נקודה $x \in X$ כך ש־$d = \lVert x - z \rVert$.
+		נגדיר את המסילה $\gamma = [z, x]$ ונקבל שהיא זרה ל־$X$ ומעידה על $x \in B$.
+	\end{proof}
+\end{frame}
+\begin{frame}
+	\begin{lemma}\label{at_most_two_connected_components_lemma}
+		ל־$\RR^n \setminus X$ יש לכל היותר שתי מחלקות קשירות.
+	\end{lemma}
+	\begin{proof}
+		תהי $x \in X$ נקודה כלשהי, ויהי $\varphi : V \to W$ דיפאומורפיזם מקומי כך ש־$V \subseteq \RR^{n - 1}$ ו־$W \subseteq X$.
+		ניקח כדור $B \subseteq \RR^n$ כך ש־$B \cap X \subseteq W$, ולכן ל־$B \setminus X$ יש בדיוק שתי מחלקות קשירות, נניח ש־$z_0, z_1 \in B \setminus X$ לא קשירות מסילתית. \\
+		מהלמה הקודמת עבור $x$ ו־$B$ כל נקודה $z \in \RR^n \setminus X$ מתחברת במסילה שלא חותכת את $X$ לנקודה בסביבה של $B$, בפרט מקשירות מסילתית של שתי המחלקות ב־$B \setminus X$ נסיק שכל נקודה $z$ ניתנת לחיבור במסילה ל־$z_0$ או $z_1$.
+		בפרט, $\RR^n \setminus X$ מכילה לכל היותר שתי מחלקות קשירות מסילתית.
+	\end{proof}
+\end{frame}
+\begin{frame}
+	\begin{lemma}\label{same_connected_component_implies_same_winding_lemma}
+		אם $z_0, z_1 \in \RR^n \setminus X$ שייכות לאותה מחלקת קשירות מסילתית, אז $W_2(X, z_0) = W_2(X, z_1)$.
+	\end{lemma}
+	\begin{proof}
+		תהי $\gamma : [0, 1] \to \RR^n \setminus X$ כך ש־$\gamma(0) = z_0, \gamma(1) = z_1$.
+		אז בהתאם גם,
+		\[
+			u_t(x)
+			= \frac{x - \gamma(t)}{\lVert x - \gamma(t) \rVert}
+		\]
+		היא הומוטופיה המעבירה את $u$ מ־$z_0$ ל־$z_1$, ולכן $W_2(z_0) = W_2(z_1)$.
+	\end{proof}
+\end{frame}
+\begin{frame}
+	\begin{lemma}
+		עבור $z \in \RR^n \setminus X$ ו־$v \in S^{n - 1}$ נגדיר,
+		\[
+			r = \{ z + t v \mid t \ge 0 \}
+		\]
+		הקרן היוצאת מ־$z$ בכיוון $v$. \\
+		במקרה זה $r$ טרנסוורסלית ל־$X$ אם ורק אם $v$ ערך רגולרי של $u$ המתאימה ל־$z$.
+	\end{lemma}
+	\begin{proof}
+		$r$ טרנסוורסלית ל־$X$ אם בכל נקודה $x \in r \cap X$, $v$ בלתי־תלויה לינארית ב־$D X |_x$, אבל גם $u(x) = v$ לכל נקודה כזו מהגדרת $u$, ולכן $r$ טרנסוורסלית ל־$X$ אם ורק אם $v$ ערך רגולרי של $u$.
+	\end{proof}
+	נבחין כי נובע שכמעט כל קרן היוצאת מ־$z \in \RR^n \setminus X$ נתונה היא טרנסוורסלית ל־$X$.
+\end{frame}
+\begin{frame}
+	\begin{lemma}
+		נניח ש־$w \in r$ נקודה כלשהי שונה מ־$z$ ו־$w \notin X$.
+		נסמן $l$ מספר נקודות החיתוך של $r$ ו־$X$ בין $z$ ל־$w$,
+		אז מתקיים,
+		\[
+			W_2(X, z)
+			= W_2(X, w) + l \mod 2
+		\]
+	\end{lemma}
+	\begin{proof}
+		נסמן $u_z, u_w$ פונקציות הכיוון המתאימות, לכן,
+		מהלמה הקודמת $v$ ערך רגולרי של $u_z, u_w$ ולכן מתקיים,
+		\[
+			W_2(f, z) = \# u_z^{-1}(\{ v \}),
+			\quad
+			W_2(f, w) = \# u_w^{-1}(\{ v \})
+		\]
+		מהגדרת $r$ ו־$l$ נקבל אם כך בדיוק את הרצוי.
+	\end{proof}
+\end{frame}
+\begin{frame}
+	\begin{lemma}\label{exactly_two_connected_components_lemma}
+		ישנן בדיוק שתי מחלקות קשירות ל־$\RR^n \setminus X$.
+	\end{lemma}
+	\begin{proof}
+		זהו למעשה חיזוק של למה\ \ref{at_most_two_connected_components_lemma}, עלינו להראות רק שיש לכל הפחות שתי מחלקות קשירות. \\
+		על־ידי בחירת $z$ כלשהו, בחינת $r$, וסימון $w$ לאחר חיתוך בודד עם $X$, נקבל $W_2(X, z) \ne W_2(X, w)$,
+		אבל אילו $z$ ו־$w$ היו שייכות לאותה מחלקת קשירות אז מלמה\ \ref{same_connected_component_implies_same_winding_lemma} נסיק שהן שייכות למחלקות שונות, בפרט יש לפחות שתי מחלקות שקילות ובהתאם בדיוק שתיים.
+	\end{proof}
+	נסמן,
+	\[
+		D_0 = \{ z \in \RR^n \setminus X \mid W_2(X, z) = 0 \},
+		\qquad
+		D_1 = \{ z \in \RR^n \setminus X \mid W_2(X, z) = 1 \}
+	\]
+	נבחין כי אלו הן בדיוק שתי מחלקות הקשירות מלמה\ \ref{exactly_two_connected_components_lemma} ומ־\ref{same_connected_component_implies_same_winding_lemma}.
+\end{frame}
+\begin{frame}
+	\begin{lemma}
+		לכל $z$ רחוק מספיק מהראשית מתקיים $W_2(f, z) = 0$.
+	\end{lemma}
+	\begin{proof}
+		$X$ קומפקטית ולכן מוכלת בכדור כלשהו $B(0, R)$.
+		עבור $z \notin B(0, R)$ נוכל להסיק ש־$u$ פונקציית הכיוון המתאימה ל־$z$ מקבלת כיוונים רק בחצי הספירה סביבה הנקודה $u(0)$, ישירות מגאומטריה אוקלידית.
+		בהתאם קיימת סביבה בה $u$ מתאפסת, ולכן בהכרח $W_2(f, z) = 0$.
+	\end{proof}
+	נבחין כי $D_0, D_1$ פתוחות כמחלקות הקשירות של תת־קבוצה פתוחה של $\RR^n$.
+	מצאנו גם ש־$D_0$ לא חסומה מהלמה האחרונה, וש־$D_1$ חסומה שכן $\partial D_1 = X$, בפרט $\bar{D}_1 = D_1 \cup X$.
+\end{frame}
+\begin{frame}
+	\begin{lemma}
+		$D_1$ יריעה קומפקטית.
+	\end{lemma}
+	\begin{proof}
+		נשאר להראות ש־$D_1$ יריעה. \\
+		עבור נקודות פנימיות נוכל למצוא סביבה בה קיים דיפאומורפיזם מקומי לזהות, ולכן עלינו לבדוק רק נקודות בשפה.
+		תהי $x \in X$ ונניח ש־$0 \in B \subseteq \RR^n$ סביבה כך שקיים דיפאומורפיזם חלק $\varphi : B \to \RR^n$ כך ש־$\varphi|_{\RR^{n - 1}} : \RR^{n - 1} \cap B \to X$ פרמטריזציה של $x$ ובפרט נניח ש־$\varphi(0) = x$.
+		דיפאומורפיזם משמר מחלקות קשירות ולכן $\varphi(\HH^n \cap B), \varphi(-\HH^n \cap B)$ שתי מחלקות הקשירות המקומיות סביבה $x$ של $(\RR^n \setminus X) \cap \varphi(B)$.
+		בהתאם $\varphi(\HH^n \cap B) \subseteq \bar{D}_1$ או $\varphi(-\HH^n \cap B) \subseteq \bar{D}_1$ ולכן נוכל להגביל את $\varphi$ ולקבל פרמטריזציה מקומית של $\bar{D}_1$ ולהסיק שהיא יריעה קומפקטית.
+	\end{proof}
+\end{frame}
+\begin{frame}
+	\begin{corollary}
+		גם $\bar{D}_0$ יריעה (לא קומפקטית) עם שפה, ומתקיים $\partial \bar{D}_0 = X$.
+	\end{corollary}
+	לבסוף ניגש לחלק הנוסף של המשפט.
+	\begin{corollary}
+		לכל $z \in \RR^n \setminus X$ ואיזושהי קרן $r$ היוצרת מ־$z$ וטרנסוורסלית ל־$X$, $z \in D_1$ אם ורק אם $r$ חותכת את $X$ כמות אי־זוגית של פעמים.
+	\end{corollary}
+	\begin{proof}
+		נבחר נקודה $w$ מספיק רחוקה על $r$ ולכן היא מקיימת $W_2(X, w) = 0$, ולכן מספר נקודות החיתוך של $[z, w]$ עם $X$ שנסמן ב־$l$ מקיים,
+		\[
+			W_2(X, z)
+			= W_2(X, w) + l \mod 2
+			= l \mod 2
+		\]
+		ובהתאם $l$ זוגי אם ורק אם $z \in D_0$.
+	\end{proof}
+\end{frame}
+
+\section{בורסוק־אולם}
+\begin{frame}
+	\begin{theorem}[בורסוק־אולם]
+		תהי $f : S^k \to \RR^{k + 1}$ העתקה חלקה כך שהיא לא שולחת אף נקודה לראשית,
+		ונניח ש־$f$ מקיימת את תנאי הסימטריה,
+		\[
+			\forall x \in S^k,\ 
+			f(-x) = - f(x)
+		\]
+		אז $W_2(f, 0) = 1$.
+	\end{theorem}
+	את הטענה נוכיח באינדוקציה על $k$.
+	למקרה $k = 1$ יש מספר הוכחות, בסיכום מופיעה ההוכחה המובאת בספר.
+\end{frame}
+
+\end{document}
