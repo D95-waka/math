@@ -937,5 +937,137 @@ $X_0, X_1, \ldots$ המשתנים המקריים שמקבלים ערכים ב־$
 	זוהי מטריצה מקרית ו־$\pi$ היא סטציונרית, כלומר $\pi = \pi P$.
 \end{proposition}
 
+\section{שיעור 7 --- 27.5.2026}
+\subsection{שרשרות מרקוב}
+נמשיך את הדיון על שרשרות בהתאם להגדרה שסיפקנו בהרצאה הקודמת.
+נניח ש־$X_0, \ldots$ סדרת משתנים מקריים שמקבלים ערכים בקבוצה $S$ הבדידה.
+הגדרנו גם את $P \in M_{S \times S}$ כך שלכל $s_0, \ldots, s_1 \in S$ מתקיים,
+\[
+	\PP(X_{n + 1} = s_{n + 1} \mid \forall i \le n,\ X_i = s_i)
+	= P(s_n, s_{n + 1})
+\]
+ולכן בפרט גם המטריצה היא סטוכסטית, כלומר $\forall x,\ \sum_{y \in S} P(x, y) = 1$.
+גם הראינו שאם $\mu_0 \in \Delta_S$ ו־$\mu_0 \sim X_0$ אז $X_n \sum \mu_n = \mu_0 P^n$.
+הוכחנו שלכל $P$ סטוכסטית קיימת $\pi \in \Delta_S$ כך ש־$\pi = \pi P$ (סטציונרית) על $S$ סופית. \\
+עתה נרצה להראות שמתקיים,
+\[
+	\PP_s(X_n = t)
+	= P^n(s, t)
+\]
+\[
+	\PP_s(X_{n + 1} = t)
+	= \sum_{r \in S} \PP_s(X_n = n) \PP_s(X_{n + 1} t \mid X_n = r)
+	= \sum_{r \in S} P^n(s, r) P(r, t)
+	= (P^n \cdot P)(s, t)
+	= P^{n + 1}(s, t)
+\]
+\begin{definition}[איברים ניתנים להגעה]
+	בהינתן $P$ נאמר שאפשר להגיע מ־$x$ ל־$y$ עבור $x, y \in S$ אם קיים $n$ כך ש־$P^n(x, y) > 0$.
+\end{definition}
+\begin{definition}[שרשרת אי־פריקה]
+	שרשרת נקראת אי־פריקה אם אפשר להגיע מכל מצב לכל מצב
+\end{definition}
+\begin{theorem}[יחידות התפלגות אי־פריקה]
+	אם $P$ אי־פריקה ו־$S$ סופית אז ההתפלגות הסטציונרית היא יחידה.
+\end{theorem}
+\begin{proof}
+	נראה שאם $P$ אי־פריקה אז מימד המרחב העצמי של $1$ הוא $1$.
+	נסמן את $h = (1, \ldots, 1)$ וקטור עצמי כזה, כלומר $h = P h$.
+	בהתאם,
+	\[
+		h(x)
+		= \sum_y P(x, y) h(y)
+		= \EE_x(h(X_1))
+	\]
+	נגדיר $M = \max_{x \in S} h(x)$ ונסמן $x_0$ כך ש־$h(x_0) = M$, אז,
+	\[
+		M
+		= h(x_0)
+		= \sum_u P(x_0, y) h(y)
+		\le \sum_y P(x_0, y) M
+		= M
+	\]
+	ולכן $P(x_0, y) = P(x_0, y) M$ לכל $y$.
+	נובע שלכל $y$ עבורו $0 < P(x_0, y)$ מתקיים $P(y) = M$.
+	$P$ אי־פריקה ולכן אפשר להגיע מכל $x$ לכל $y$ ונובע ש־$h \equiv M$.
+\end{proof}
+אנו יודעים ש־$\pi = \pi P$ ולכן ממשפט זה נסיק שהוא היחיד במקרה זה. \\
+תהי $P$ שרשרת־מרקוב על $S$ סופית, עבור $x$ נסמן,
+\[
+	\NN
+	\supseteq A_x
+	= \{ n > 0 \mid P^n(x, x) < 0 \}
+.\]
+ונסמן $a_x = \gcd A_x$ להיות המחזור של $x$. \\
+$A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(x, x)$ וגם $0 < P^m(x, x)$ אז גם $0 < P^{n + m}(x, x)$.
+\begin{proposition}
+	אם $A \subseteq \NN$ סגורה לחיבור אז $|\gcd(A) \NN \setminus A| < \infty$.
+\end{proposition}
+\begin{proposition}
+	אם $P$ אי־פריקה אז כל ה־$a_x$ שווים.
+\end{proposition}
+\begin{proof}
+	יהיו $x, y \in S$ ונרצה להראות ש־$a_x = a_y$. \\
+	יש $n$ כך ש־$P^n(x, y) > 0$ ויש $m$ כך ש־$P^m(y, x) > 0$.
+	אן $k \in A_x$ אז $m + n + k \in A_y$ כי,
+	\[
+		P^{n + m + k}(y, y) = P^m(y, x) P^k(x, x) P^n(x, y) > 0
+	\]
+	לכן $\gcd(A_y) \le \gcd(A_x)$ ומסימטריה $a_y = a_x$.
+\end{proof}
+\begin{corollary}
+	אם $P$ אי־פריקה אז $\forall x,\ a_x = a$ לאיזשהו $a \in \NN$, נקרא לו המחזור של $P$.
+\end{corollary}
+\begin{theorem}
+	אם $P$ אי־פריקה על $S$ סופית ולא מחזורית (כלומר $a = 1$) אז לכל $\mu_0 \in \Delta_S$ מתקיים $\mu_n = \mu_0 P^n \to \pi$ עבור $\pi$ המידה הסטציונרית היחידה.
+\end{theorem}
+\begin{proof}
+	נניח ש־$P(x, y) > 0$ לכל $x, y$.
+	במקרה זה קיים $\varepsilon > 0$ כך שלכל $x, y \in S$ מתקיים $P(x, y) \ge \varepsilon \pi(y)$.
+	לכן אם $\mu_0 \in \Delta_S$ ונסמן $\mu_0 = \nu_0$ אז קיים $\nu_1 \in \Delta_S$ כך שמתקיים,
+	\[
+		\nu_0 P
+		= \varepsilon \pi + (1 - \varepsilon) \nu_1
+	.\]
+	ולכן קיים גם $\nu_2$ כך שגם,
+	\[
+		\nu_1 P
+		= \mu_1 P
+		= \varepsilon \pi + (1 - \varepsilon) \nu_2
+	.\]
+	ונמשיך ככה לקבל סדרה,
+	\[
+		\nu_n P
+		= \varepsilon \pi + (1 - \varepsilon) \nu_{n + 1}
+	.\]
+	נקבל,
+	\[
+		\mu_n
+		= (1 - {(1 - \varepsilon)}^n) \pi + {(1 - \varepsilon)}^n \nu_n
+	.\]
+	ולכן,
+	\begin{align*}
+		\mu_{n + 1}
+		& = \mu P \\
+		& = (1 - {(1 - \varepsilon)}^n) \pi + {(1 - \varepsilon)}^n \nu_n P \\
+		& = (1 - {(1 - \varepsilon)}^n) \pi + {(1 - \varepsilon)}^n (\varepsilon \pi + (1 - \varepsilon) \nu_{n + 1}) \\
+		& = (1 - {(1 - \varepsilon)}^n - {(1 - \varepsilon)}^n \varepsilon) \pi + {(1 - \varepsilon)}^{n + 1} \nu_{n + 1}
+	.\end{align*}
+
+	עתה נניח ש־$P$ לא מחזורית ולכן קיים $n \in \NN$ כך ש־$\forall x, y \in S,\ P^n(x, y) > 0$ כי מאי־פריקות קיים $n$ כך ש־$0 < P^n(x, y)$ ומהטענה הקודמת מתקיים $0 < P^n(x, x)$ עבור כל $n$ גדול מספיק.
+	לכן,
+	\[
+		P^{n + m}(x, y)
+		\ge P^m(x, x) P^n(xm y) > 0
+	.\]
+	ונובע ש־$P^r(x, y) > 0$ לכל $x, y$ לאיזשהו $r \in \NN$.
+	מתקיים $\pi = \pi P^r$ ולפי המקרה הקודם לשרשרת $P^r$ נקבל $\mu P^{r n} \to \pi$ ובאופן דומה גם $\mu P^{rn + k} = (\mu P^k) P^{r n} \to \pi$ לכל $0 \le k < r$.
+\end{proof}
+\begin{definition}[גרף קיילי]
+	אם $G$ חבורה ו־$B \subseteq G$ סימטרית, כלומר $b \in B \implies b^{-1} \in B$.
+	נגדיר גרף קיילי עם קבוצת יוצרים $B$ עם הקשר $x \sim y \iff x y^{-1} \in B$.
+	אם $G$ סופית אז התפלגות אחידה היא סטציונרית.
+\end{definition}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
