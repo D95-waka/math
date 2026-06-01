@@ -1,0 +1,126 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 08 --- משוואות דיפרנציאליות, 80320}
+% chktex-file 9
+% chktex-file 17
+
+\usepackage{pgfplots, tikz, pgffor}
+\usetikzlibrary{math}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]{}
+
+\question{}
+נגדיר את בעיית תנאי ההתחלה,
+\[
+	\begin{cases}
+		\frac{\partial^2 u}{\partial t^2}(x, t) = c^2 \frac{\partial^2 u}{\partial x^2}(x, t) & (x, t) \in \RR^2 \\
+		u(x, 0) = f(x), \frac{\partial u}{\partial t}(x, 0) = g(x)
+	\end{cases}
+\]
+כאשר $f \in C^2(\RR), g \in C^1(\RR)$.
+נניח ש־$u : \RR^2 \to \RR$ פונקציה גזירה פעמיים ויהי $x_0 \in \RR$ ו־$L > 0$.
+לכל $\tau \in [0, \frac{L}{c}]$ נגדיר,
+\[
+	E(\tau)
+	= \frac{1}{2} \int_{x_0 + c \tau - L}^{x_0 + L - c \tau} {\left(\frac{\partial u}{\partial t}(x, \tau)\right)}^2 + c^2 {\left(\frac{\partial u}{\partial x}(x, \tau)\right)}^2 (x, \tau)\ dx
+\]
+
+\subquestion{}
+נבדוק אם $E(\tau)$ גזירה.
+\begin{solution}
+	נתון כי $u$ גזירה פעמיים ולכן בפרט נגזרתה גזירה, ומשילוב של המשפט היסודי והרכבת פונקציות נקבל שגם $E$ גזירה.
+\end{solution}
+
+\subquestion{}
+נראה שאם $u$ פותרת את משוואת הגלים אז $\frac{d E}{d \tau} \le 0$, כלומר נראה ש־$E$ מונוטונית יורדת.
+\begin{proof}
+	תחילה נניח בלי הגבלת הכלליות ש־$x_0 = 0$, נוכל להניח כן שכן האינטגרל הוא משמר (כזרימה) ולכן אינווריאנטי להזזה.
+	נסמן,
+	\[
+		F(\tau, x)
+		= {\left(\frac{\partial u}{\partial t}(x, \tau)\right)}^2 + c^2 {\left(\frac{\partial u}{\partial x}(x, \tau)\right)}^2 (x, \tau)
+	\]
+	ולכן,
+	\[
+		E(\tau)
+		= \frac{1}{2} \int_{c \tau - L}^{L - c \tau} F(\tau, x)\ dx
+	\]
+	ונחשב,
+	\begin{align*}
+		2 \frac{d}{d \tau} E(\tau)
+		& = \frac{d}{d \tau} \int_{c \tau - L}^{L - c \tau} F(\tau, x)\ dx \\
+		& = \frac{d}{d \tau} \int_0^{L - c \tau} F(\tau, x)\ dx + \frac{d}{d \tau} \int_{c \tau - L}^0 F(\tau, x)\ dx \\
+		& = F(\tau, L - c \tau) \cdot (-c) + \int_{0}^{L - c \tau} \frac{\partial}{\partial \tau} F(\tau, x)\ dx
+		- \left(F(\tau, c \tau - L) \cdot c + \int_{0}^{c \tau - L} \frac{\partial}{\partial \tau} F(\tau, x)\ dx\right) \\
+		& = - c F(\tau, L - c \tau) - c F(\tau, c \tau - L) + \int_{c \tau - L}^{L - c \tau} \frac{\partial}{\partial \tau} F(\tau, x)\ dx
+	\end{align*}
+	מכלל לייבניץ לגזירת אינטגרלים.
+	נחשב גם את הנגזרת החלקית,
+	\[
+		\frac{\partial}{\partial t} F(t, x)
+		= 2 \cdot \frac{\partial u}{\partial t}(x, t) \cdot \frac{\partial^2 u}{\partial t^2}(x, t) + 2 c^2 \cdot \frac{\partial u}{\partial x}(x, t) \cdot \frac{\partial^2 u}{\partial t \partial x}(x, t)
+	\]
+	ולכן,
+	\begin{align*}
+		\int_{c \tau - L}^{L - c \tau} \frac{\partial}{\partial \tau} F(\tau, x)\ dx
+		= & 2 \int_{c \tau - L}^{L - c \tau} \frac{\partial u}{\partial t}(x, t) \cdot \frac{\partial^2 u}{\partial t^2}(x, t)
+		+ c^2 \cdot \frac{\partial u}{\partial x}(x, t) \cdot \frac{\partial^2 u}{\partial t \partial x}(x, t)\ dx \\
+		= & 2 \int_{c \tau - L}^{L - c \tau} \frac{\partial u}{\partial t}(x, t) \cdot \frac{\partial^2 u}{\partial t^2}(x, t)\ dx
+		+ 2 c^2 \int_{c \tau - L}^{L - c \tau} \cdot \frac{\partial u}{\partial x}(x, t) \cdot \frac{\partial^2 u}{\partial t \partial x}(x, t)\ dx \\
+		\overset{(1)}{=}  & 2 \int_{c \tau - L}^{L - c \tau} \frac{\partial u}{\partial t}(x, t) \cdot \frac{\partial^2 u}{\partial t^2}(x, t)\ dx \\
+		& + 2 c^2 (\frac{\partial u}{\partial x}(x, t) \frac{\partial u}{\partial t}(x, t)) \mid_{x = c \tau - L}^{x = L - c \tau}
+		- 2 c^2 \int_{c \tau - L}^{L - c \tau} \cdot \frac{\partial^2 u}{\partial x^2}(x, t) \cdot \frac{\partial u}{\partial t}(x, t)\ dx \\
+		\overset{(2)}{=}  & 2 \int_{c \tau - L}^{L - c \tau} \frac{\partial u}{\partial t}(x, t) \cdot \frac{\partial^2 u}{\partial t^2}(x, t)\ dx \\
+		& + 2 c^2 (\frac{\partial u}{\partial x}(x, t) \frac{\partial u}{\partial t}(x, t)) \mid_{x = c \tau - L}^{x = L - c \tau}
+		- 2 \int_{c \tau - L}^{L - c \tau} \cdot \frac{\partial^2 u}{\partial t^2}(x, t) \cdot \frac{\partial u}{\partial t}(x, t)\ dx \\
+		= & 2 c^2 \left(\frac{\partial u}{\partial x}(x, t) \frac{\partial u}{\partial t}(x, t)\right) \mid_{x = c \tau - L}^{x = L - c \tau} \\
+		= & 2 c^2 \frac{\partial u}{\partial x}(L - c \tau, t) \frac{\partial u}{\partial t}(L - c \tau, t) - 2 c^2 \frac{\partial u}{\partial x}(c \tau - L, t) \frac{\partial u}{\partial t}(c \tau - L, t)
+	\end{align*}
+	כאשר,
+	\begin{enumerate}
+		\item אינטגרציה בחלקים
+		\item שימוש במשוואת הגלים
+	\end{enumerate}
+	וקיבלנו בדיוק את האיברים שמשלימים את הביטוי הקודם לסכום ריבועים, כלומר,
+	\[
+		2 \frac{d}{d \tau} E(\tau)
+		= -{\left(\frac{\partial u}{\partial t}(L - c \tau, \tau) + c \frac{\partial u}{\partial x}(L - c \tau, \tau)\right)}^2
+		- {\left(\frac{\partial u}{\partial t}(c \tau - L, \tau) + c \frac{\partial u}{\partial x}(c \tau - L, \tau)\right)}^2
+	\]
+	מאי־השוויון הנתון $|ab| \le \frac{1}{2}(a^2 + b^2)$ נקבל,
+	\[
+		2 \frac{d}{d \tau} E(\tau)
+		\le -\left\lvert \left(\frac{\partial u}{\partial t}(L - c \tau, \tau) + c \frac{\partial u}{\partial x}(L - c \tau, \tau)\right)
+		\cdot \left(\frac{\partial u}{\partial t}(c \tau - L, \tau) + c \frac{\partial u}{\partial x}(c \tau - L, \tau)\right) \right\rvert
+		\le 0
+	\]
+	כלומר קיבלנו ש־$\frac{d}{d \tau} E(\tau) \le 0$ כמבוקש.
+\end{proof}
+
+\subquestion{}
+נסיק כי פתרון בעיית ההתחלה הוא יחיד.
+\begin{proof}
+	תהיינה $v_1, v_2$ שתי פונקציות אשר פותרות את הבעיה, ונגדיר את $u = v_1 - v_2$.
+	בהתאם $u$ פותרת את בעיית תנאי ההתחלה דיריכלה, כלומר היא פתרון משוואת הגלים ובהתאם $\frac{d}{d \tau} E(\tau) \le 0$ על־פי הסעיף הקודם.
+	אבל $E(\tau)$ היא אינטגרל על פונקציות אי־שליליות ולכן בפרט נסיק ש־$E(\tau) = 0$ בלבד (שכן $E(0) = 0$ מחישוב).
+	בהתאם נקבל שגם $E'(\tau) = 0$ תמיד, אבל כתוצאה מהסעיף הקודם על מבנה הנגזרת נסיק ישירות ש־$u$ קבועה בשני הצירים, כלומר $u \equiv 0$ ובכלל $v_1 = v_2$.
+\end{proof}
+
+\question{}
+נגדיר את הבעיה,
+\[
+	\begin{cases}
+		c(x) \rho(x) \frac{\partial T}{\partial t} = \frac{\partial}{\partial x} (K(x) \frac{\partial T}{\partial x}) & (x, t) \in [0, L] \times \RR_{\ge 0} \\
+		T(0, t) = T(L, t) = 0
+	\end{cases}
+\]
+כאשר $\rho, c, K$ פונקציות גזירות ברציפות וחיוביות ו־$L > 0$ ממשי.
+
+נניח ש־$c \equiv 1$ ונמצא מערכת שטורם־ליוביל כך שאם $T$ פתרון למשוואה מהצורה $T(, x, t) = f(t) g(x)$ אז $g(x)$ היא פונקציה עצמית של המערכת, ונמצא צורה כללית של $f(t)$.
+\begin{solution}
+	
+\end{solution}
+
+\end{document}
