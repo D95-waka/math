@@ -118,9 +118,134 @@
 \]
 כאשר $\rho, c, K$ פונקציות גזירות ברציפות וחיוביות ו־$L > 0$ ממשי.
 
-נניח ש־$c \equiv 1$ ונמצא מערכת שטורם־ליוביל כך שאם $T$ פתרון למשוואה מהצורה $T(, x, t) = f(t) g(x)$ אז $g(x)$ היא פונקציה עצמית של המערכת, ונמצא צורה כללית של $f(t)$.
+נניח ש־$c \equiv 1$ ונמצא מערכת שטורם־ליוביל כך שאם $T$ פתרון למשוואה מהצורה $T(x, t) = f(t) g(x)$ אז $g(x)$ היא פונקציה עצמית של המערכת, ונמצא צורה כללית של $f(t)$.
 \begin{solution}
-	
+	למעשה זה כבר בפורמט של מערכת שטורם־ליוביל, נציב את ההנחה $T(x, t) = f(t) g(x)$ ונקבל,
+	\[
+		\frac{\partial T}{\partial t}(x, t)
+		= \frac{d}{dt} f(t) g(x)
+		= f'(t) g(x)
+	\]
+	ובאופן דומה,
+	\[
+		\frac{\partial T}{\partial x}(x, t)
+		= \frac{d}{dx} f(t) g(x)
+		= f(t) g'(x)
+	\]
+	ולכן המשוואה הנתונה מקיימת,
+	\[
+		 \frac{d}{dx} (K(x) f(t) g'(x)) - \rho(x) f'(t) g(x) = 0
+	\]
+	על־ידי העברות אגף נקבל,
+	\[
+		\frac{1}{g(x) \rho(x)} \frac{d}{dx} (K(x) g'(x))
+		= \frac{1}{f(t)} f'(t)
+	\]
+	בפרט קיבלנו ביטוי בו $x$ ו־$t$ מבודדים ולכן הביטוי שווה לקבוע $\lambda \in \RR$, ונקבל את השוויונות,
+	\[
+		\begin{cases}
+			\frac{d}{dx} (K(x) g'(x)) = \lambda g(x) \rho(x) & g(0) = g(L) = 0 \\
+			f'(t) = \lambda f(t)
+		\end{cases}
+	\]
+	קיבלנו שהמשוואה השנייה היא לינארית ולכן $f(t) = e^{\lambda t} f(0)$, ואת מערכת שטורם־ליוביל עם תנאי שפה דיריכלה התלויה ב־$g$ כפי שרצינו, שכן $g$ תהיה פונקציה עצמית של $\lambda$.
 \end{solution}
+
+\question{}
+נגדיר את מערכת שטורם־ליוביל הרגולרית,
+\[
+	\begin{cases}
+		\frac{d}{dt} (p(t) \frac{d}{dt} u(t)) + (q(t) + \lambda \rho(t)) u(t) = 0 \\
+		u(a) = u(b) = 0
+	\end{cases}
+	\tag{1}
+\]
+כאשר $p, \rho$ פונקציות חיוביות.
+נגדיר,
+\[
+	T = \int_{a}^{b} \sqrt{\frac{\rho(s)}{p(s)}}\ ds
+\]
+ונתבונן במערכת,
+\[
+	\begin{cases}
+		w''(\tau) + (Q(\tau) + \lambda) w(\tau) = 0 \\
+		w(0) = w(T) = 0
+	\end{cases}
+	\tag{2}
+\]
+כאשר $Q : [0, T] \to \RR$ מוגדרת על־ידי,
+\[
+	Q\left(\int_{a}^{t} \sqrt{\frac{\rho(s)}{p(s)}}\ ds\right)
+	= \frac{1}{\rho(t)} \left(q(t) + {(p(t) \rho(t))}^{\frac{1}{4}} \frac{d}{dt}\left(p(t) \frac{d}{dt}{(p(t) \rho(t))}^{-\frac{1}{4}}\right)\right)
+\]
+תהי $w : [0, T] \to \RR$ ונגדיר $u : [a, b] \to \RR$ על־ידי,
+\[
+	u(t)
+	= {(p(t) \rho(t))}^{-\frac{1}{4}} w\left(\int_{a}^{t} \sqrt{\frac{\rho(s)}{p(s)}}\ ds\right)
+\]
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\int_{a}^{b} \rho(t) u^2(t)\ dt
+	= \int_{0}^{T} w(\tau)\ d \tau
+\]
+\begin{proof}
+	\[
+		\int_{a}^{b} \rho(t) u^2(t)\ dt
+		= \int_{a}^{b} \rho(t) {(p(t) \rho(t))}^{-\frac{1}{2}} w^2\left(\int_{a}^{t} \sqrt{\frac{\rho(s)}{p(s)}}\ ds\right)\ dt
+		= \int_{a}^{b} \sqrt{\frac{\rho(t)}{p(t)}} w^2\left(\int_{a}^{t} \sqrt{\frac{\rho(s)}{p(s)}}\ ds\right)\ dt
+	\]
+	תהי הפונקציה שמגדירה את $T$,
+	\[
+		\varphi(t)
+		= \int_{a}^{t} \sqrt{\frac{\rho(s)}{p(s)}}\ ds
+	\]
+	כלומר $T = \varphi(b)$, נבחין כי מהגדרתה היא גזירה והפיכה, ונשתמש בה עם משפט החלפת משתנה, נקבל,
+	\[
+		\int_{a}^{b} \sqrt{\frac{\rho(t)}{p(t)}} w^2\left(\int_{a}^{t} \sqrt{\frac{\rho(s)}{p(s)}}\ ds\right)\ dt
+		= \int_{\varphi(a)}^{\varphi(b)} \sqrt{\frac{\rho(t)}{p(t)}} \cdot \frac{1}{\varphi'(s)} w^2\left(\varphi(\varphi^{-1}(s))\right)\ ds
+		= \int_{0}^{T} w^2(s)\ ds
+	\]
+	ולא הצלחנו להגיע לתוצאה, אבל הגענו די קרוב.
+\end{proof}
+
+\subquestion{}
+נסמן $\tau(t) = \varphi(t)$ הפונקציה שהגדרנו קודם ונסמן $w' = \frac{\partial w}{\partial \tau}$,
+נראה שמתקיים,
+\[
+	p \frac{\partial u}{\partial t}
+	= {(p \rho)}^{\frac{1}{4}} w'(\tau(t)) + p w(\tau(t)) \frac{\partial}{\partial t}({(p \rho)}^{-\frac{1}{4}})
+\]
+\begin{proof}
+	נתחיל בשימוש בהגדרות,
+	\[
+		p \frac{\partial u}{\partial t}
+		= p \frac{\partial}{\partial t} \left( {(p(t) \rho(t))}^{-\frac{1}{4}} w(\tau(t)) \right)
+		= p (\frac{d {(p \rho)}^{-\frac{1}{4}}}{dt} w(\tau(t)) + {(p \rho)}^{-\frac{1}{4}} w'(\tau(t)))
+	\]
+	כלומר קיבלנו בדיוק את המבוקש למעט הצורך להראות ש־$p {(p \rho)}^{-\frac{1}{4}} w'(\tau(t)) = {(p \rho)}^{\frac{1}{4}} w'(\tau(t))$, או באופן שקול,
+	\[
+		p {(p \rho)}^{-\frac{1}{4}}
+		= {(p \rho)}^{\frac{1}{4}}
+	\]
+	גם הפעם נעצור פה, כאשר אני לא משוכנע שהטענה כלל נכונה.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\frac{\partial}{\partial t} (p \frac{\partial}{\partial u}) + q u
+	= \rho^{\frac{3}{4}} p^{-\frac{1}{4}} \frac{\partial^2 w}{\partial \tau^2}(\tau(t)) + \rho^{\frac{3}{4}} p^{-\frac{1}{4}} Q(\tau(t)) w(\tau(t))
+\]
+\begin{proof}
+	נובע ישירות מהשוויון הקודם על־ידי גזירה ושימוש בהגדרת $w$ על־ידי המשוואה הדיפרנציאלית המתאימה.
+\end{proof}
+
+\subquestion{}
+נסיק כי $u$ פותרת את בעיה $(1)$ אם ורק אם $w$ פותרת את בעיה $(2)$, ושבמקרה שהן פתרון למערכות הערך העצמי שלהן זהה.
+\begin{proof}
+	בסעיף הקודם קיבלנו בדיוק שוויון של המשוואות (עד כדי סידור האיברים), בהתאם אם אחד האגפים מתאפס (וזהו פתרון של המשוואה) אז גם הצד השני, ולכן סיימנו.
+\end{proof}
 
 \end{document}
