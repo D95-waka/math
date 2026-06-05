@@ -1069,5 +1069,126 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 	אם $G$ סופית אז התפלגות אחידה היא סטציונרית.
 \end{definition}
 
+\section{שיעור 8 --- 3.6.2026}
+\subsection{שרשרות מרקוב}
+נניח שוב ש־$S$ סופית ו־$\mu, \pi \in \Delta_S \subseteq \RR^S$, כאשר,
+\[
+	\Delta_S
+	= \{ x \in \RR^S \mid \sum_{s \in S} x_s = 1, x_s \ge 0 \}
+.\]
+\begin{proposition}
+	יהיו $\mu, \nu \in \Delta_S$,
+	\[
+		\max_{f : S \to [0, 1]} \EE(f(X)) - \EE(f(Y))
+		\lVert \mu - \nu \rVert_1
+		= \sum_{s \in S} |\mu(s) - \nu(s)|
+	.\]
+	כאשר $X \sim \mu, Y \sim \nu$.
+\end{proposition}
+\begin{proof}
+	מהגדרת התוחלת,
+	\[
+		\EE(f(X)) - \EE(f(Y))
+		= \sum_{s \in S} f(s) (\mu(s) - \nu(s))
+		\le \sum_{s \in S} 1 \cdot |\mu(s) - \nu(s)|
+		= \lVert \mu - \nu \rVert_1
+	.\]
+\end{proof}
+
+\subsection{צימודים}
+\begin{definition}[צימוד]
+	תהיינה $\mu, \nu \in \Delta_S$, אז הצימוד של $\mu$ ו־$\nu$ הוא זוג משתנים־מקריים $(X, Y)$ שמקבלים ערכים ב־$S$,
+	כך ש־$X \sim \mu, Y \sim \nu$, כלומר,
+	\[
+		\PP(X = s) = \mu(s),
+		\qquad
+		\PP(Y = s) = \nu(s)
+	.\]
+\end{definition}
+\begin{proposition}
+	אם $(X, Y)$ הוא צימוד של $(\mu, \nu)$ אז,
+	\[
+		\lVert \mu - \nu \rVert_1
+		\le \PP(X \ne Y)
+	.\]
+\end{proposition}
+\begin{proof}
+	תהי $f : S \to [-1, 1]$, אז,
+	\begin{align*}
+		\EE(f(X)) - \EE(f(Y))
+		& = \EE(f(X) - f(Y)) \\
+		& = \EE(f(X) - f(Y) \mid X = Y) \PP(X = Y) + \EE(f(X) - f(Y) \mid X \ne Y) \PP(X \ne Y) \\
+		& \le 2 \PP(X \ne Y)
+	.\end{align*}
+\end{proof}
+נרצה צימוד של $\mu_n$ ו־$\pi = \nu_n$ (אם $\nu_0 = \pi$),
+הצימוד: מגרילים את $X_0 \sim \mu_0$ ואת $Y_0 \sim \nu_0 = \pi$ באופן בלתי־תלוי.
+נגדיר שרשרת מרקוב על $S \times S$ עם הסתברויות מעבר,
+\begin{align*}
+	& \PP((X_{n + 1}, Y_{n + 1}) = (x_{n + 1}, y_{n + 1}) \mid \forall i \le n,\ (X_i, Y_i) = (x_i, y_i)) \\
+	= & \begin{cases}
+		P(x_n, x_{n + 1}) \cdot P(y_n, y_{n + 1}) & x_n \ne y_n \\
+		P(x_n, x_{n + 1}) & x_n = y_n, x_{n + 1} = y_{n + 1} \\
+		0 & \text{אחרת}
+	\end{cases}
+.\end{align*}
+בהגדרה זו $X_n$ היא שרשרת מרקוב עם הסתברות $P$ וכך גם $Y_n$ ובפרט $(X_n, Y_n)$ היא צימוד של $(\mu_n, \nu_n)$.
+נסמן $A_n = \{ X_n \ne Y_n \}$ ונשים לב שזו סדרה יורדת.
+נניח ש־$P(s, s') > 0$ לכל $s, s' \in S$ ואז קיים $a > 0$ כך ש־$P(s, s') \ge a > 0$ ולכן $\PP(A_{n + 1} \mid A_n) \le 1 - a$.
+\[
+	\PP(X_{n + 1} = Y_{n + 1} \mid \forall i \le n,\ X_i = x_i, Y_i = y_i)
+	\ge \sum_{s \in S} P(x_n, s) P(y_n, s)
+	\ge |S| a^2
+	> 0
+.\]
+ולכן $\PP(A_n) \le {(1 - |S| a^2)}^n$.
+
+\subsection{פילטרציה}
+\begin{definition}[פילטרציה]
+	יהי $(\Omega, \Ff)$ מרחב מדיד.
+	פילטרציה היא סדרה עולה של תת־$\sigma$־אלגברות של $\Ff$, ${\{ \Ff_n \}}_{n \in \NN}$.
+
+	אם ${\{ X_n \}}_{n \in \NN}$ תהליך מקרי אז $\Ff_n = \sigma(X_0, \ldots, X_n)$, אז $\{ \Ff_n \}$ נקראת הפילטרציה הטבעית.
+\end{definition}
+\begin{definition}[זמן עצירה]
+	אם $(\Omega, \Ff)$ מרחב מדיד ו־${\{ \Ff_n \}}_{n \in \NN}$ פילטרציה אז $\tau : \Omega \to \NN$ נקרא זמן עצירה ביחס לפילטרציה $\{ \Ff_n \}$ אם לכל $n \in \NN$ מתקיים,
+	\[
+		\{ \tau = n \} \in \Ff_n
+	.\]
+	באופן שקול אם $\{ \tau \le n \} \in \Ff_n$.
+\end{definition}
+המטרה שלנו היא להסתכל על זה כפונקציה שמתארת תנאי עצירה של סדרת פעולות, בהתאם היא צריכה להיות מדידה אחורנית בלבד.
+לדוגמה הטלת מטבע עד שצד א' יצא.
+\begin{example}
+	נגדיר $X_i$ סדרת משתנים מקריים ונגדיר,
+	\[
+		\tau = \min\{ n \in \NN \mid X_n = 1 \}
+	.\]
+	אז $\tau \le n$ אם ורק אם $\exists i \le n,\ X_i = 1$.
+\end{example}
+\begin{definition}[מאורעות שנגמרים אחרי זמן סופי]
+	אם $\tau$ זמן עצירה, אז נגדיר,
+	\[
+		\Ff_{\tau}
+		= \{ A \in \Ff \mid \forall n \in \NN,\ A \cap \{ \tau \le n \} \in \Ff_n \}
+	.\]
+\end{definition}
+\begin{theorem}[תכונת מרקוב החזקה]
+	תהי ${\{ X_n \}}_{n \in \NN}$ שרשרת מרקוב על $S$ עם מטריצת מעבר $P$.
+	עבור $s \in S$ ו־$\tau$ זמן עצירה ביחס לפילטרציה הטבעית נגדיר $Y_n = X_{\tau + n}$ לכל $n \in \NN$ (אם $\tau = \infty$ אז נגדיר את $Y_n$ שרירותית). \\
+	בהינתן $\tau < \infty$ ו־$X_{\tau} = s$ אז ${\{ \tau_n \}}_{n \in \NN}$ היא שרשרת־מרקוב שמתחילה ב־$s$ עם מטריצת מעבר $P$ והיא בלתי־תלויה ב־$\Ff_{\tau}$.
+\end{theorem}
+\begin{proof}
+	תהי $x_0, \ldots, x_n \in S$ כך ש־$x_n = s$ ו־$A = \{ (X_1, \ldots, X_n) = (x_1, \ldots, x_n) \} \subseteq \{ \tau = n \}$ לכן $A \subseteq \{ X_{\tau} = s \}$.
+	תהי גם $y_0, \ldots, y_n \in S$ כך ש־$y_0 = s$ ונסמן $B = \{ (Y_0, \ldots, Y_n) = (y_0, \ldots, y_n) \}$.
+	\begin{align*}
+		\PP(A \cap B \mid \tau < \infty, X_{\tau} = s)
+		& = \frac{\PP(A \cap B)}{\PP(\tau < \infty, X_{\tau} = s)} \\
+		& = \frac{\PP((X_0, \ldots, X_{n + m}) = x_0, \ldots, x_n, y_1, \ldots, y_m)}{\PP(\tau < \infty, X_{\tau} = s)} \\
+		& = \frac{\mu_0(x_0) \prod_{i = 1}^{n - 1} P(x_i, x_{i + 1}) \prod_{j = 0}^{m - 1} P(y_i, y_{i + 1})}{\PP(\tau < \infty, X_{\tau} = s)} \\
+		& = \frac{\PP(A)}{\PP(\tau < \infty, X_{\tau} = s)} \cdot \PP(B)
+	.\end{align*}
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
