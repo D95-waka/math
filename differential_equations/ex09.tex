@@ -1,0 +1,186 @@
+\input{../article_base.tex} \title{פתרון מטלה 09 --- משוואות דיפרנציאליות, 80320}
+% chktex-file 9
+% chktex-file 17
+
+\DeclareMathOperator\Div{div}
+
+\usepackage{pgfplots, tikz, pgffor}
+\usetikzlibrary{math}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]{}
+
+\question{}
+תהי מערכת שטורם־ליוביל,
+\[
+	\frac{d}{d t} (p(t) \frac{d}{d t} u(t)) + (q(t) + \lambda) u(t) = 0,
+	\quad
+	u(a) = u(b) = 0
+.\]
+עבור $p > 0$.
+
+\subquestion{}
+יהי $V = C([a, b])$ מרחב הפונקציות הרציפות ונגדיר מכפלה פנימית על $V$ על־ידי,
+\[
+	\langle u, v \rangle
+	= \int_{a}^{b} u(x) v(x)\ dx
+.\]
+ונגדיר את $W = C_0^1([a, b])$ מרחב הפונקציות הגזירות ברציפות ב־$[a, b]$ המתאפסות בקצוות,
+ונגדיר את $D : W \to V$ על־ידי $D u = u'$. \\
+נראה ש־$D$ אופרטור אנטי־סימטרי, כלומר,
+\[
+	\forall u, v \in W,
+	\quad
+	\langle D u, v \rangle
+	= - \langle u, D v \rangle
+.\]
+\begin{proof}
+	תהיינה $f, g \in W$, אז מתקיים,
+	\[
+		\langle D f, g \rangle
+		= \int_{a}^{b} f'(x) g(x)\ dx
+		= \left. f(x) g(x) \right\rvert_a^b - \int_{a}^{b} f(x) g'(x)\ dx
+		= - \langle f, D g \rangle
+	.\]
+	על־ידי משפט אינטגרציה בחלקים,
+	כאשר $\left. f(x) g(x) \right\rvert_a^b = 0$ שכן $f(a) = f(b) = 0$ מההנחה כי $f \in W$.
+\end{proof}
+
+\subquestion{}
+הפעם נסמן $V = C([a, b]), W = C_0^2([a, b])$ מרחב הפונקציות הגזירות ברציפות פעמיים המתאפסות בקצוות, ויהי $\Delta = D^2$ אופרטור הגזירה פעמיים.
+נראה ש־$\Delta : W \to V$ הוא אופרטור סימטרי ונסיק כי האופרטור $S : W \to V$ המוגדר על־ידי,
+\[
+	S u(t)
+	= \frac{d}{d t} (p(t) \frac{d}{d t}u(t)) + q(t) u(t)
+.\]
+הוא אופרטור סימטרי גם כן.
+\begin{proof}
+	תהיינה $f, g \in C_0^2([a, b])$ ושוב נחשב,
+	\[
+		\langle \Delta f, g \rangle
+		= \langle D^2 f, g \rangle
+		= -\langle D f, D g \rangle
+		= {(-1)}^2 \langle f, D^2 g \rangle
+		= \langle f, \Delta g \rangle
+	.\]
+	כאשר השתמשנו אנטי־סימטריה שמצאנו בסעיף הקודם והעובדה שאם $f \in C_0^2([a, b])$ אז בפרט $f \in C_0^1([a, b])$.
+
+	אנו מניחים כי $p, q$ גזירות ברציפות פעמיים, וכן $C_0^2([a, b])$ סגורה לכפל בפונקציה גזירה ברציפות פעמיים, לכן כהרכבת פונקציות ושני האופרטורים מהסעיפים האחרונים נסיק שגם $S$ סימטרית.
+\end{proof}
+
+\subquestion{}
+נוכיח שאם $T : W \to V$ אופרטור סימטרי ו־$u, v \in W$ וקטורים עצמיים עם ערך עצמי שונה אז $u \perp v$. \\
+נסיק שאם $u, v$ פותרות את המערכת עבור ערכים עצמיים שונים אז,
+\[
+	\int_{a}^{b} u(t) v(t)\ dt
+	= 0
+.\]
+\begin{proof}
+	נסמן $T u = \lambda u, T v = \mu v$ ולכן $\lambda \ne \mu$.
+	מסימטריה,
+	\[
+		\lambda \langle u, v \rangle
+		= \langle T u, v \rangle
+		= \langle u, T v \rangle
+		= \mu \langle u, v \rangle
+	.\]
+	נקבל אם כך ש־$(\lambda + \mu) \langle u, v \rangle = 0$ ובפרט מההנחה שמדובר בווקטורים עצמיים של ערכים עצמיים שונים נוכל להניח ש־$\lambda + \mu \ne 0$ (אחרת נקבל עד כדי היפוך הווקטור ערך עצמי זהה) ש־$u \perp v$.
+
+	בסעיף הקודם מצאנו ש־$S$ סימטרי, אז אם $u, v$ פתרונות עבור $\lambda, \mu$ שונים אז בפרט המכפלה הפנימית שהגדרנו בסעיף א' מתאפסת וקיבלנו את המבוקש.
+\end{proof}
+
+\question{}
+תהיינה $p, q$ פונקציות גזירות ברציפות כך ש־$p > 0$ ונגדיר את הבעיה,
+\[
+	\frac{d}{d t} (p(t) \frac{d}{d t} u(t)) + (q(t) + \lambda) u(t) = 0,
+	\quad
+	u(a) = u(b) = 0
+.\]
+לכל $\lambda \in \RR$ נגדיר את $u_{\lambda}(t)$ להיות הפתרון לבעיה,
+\[
+	\frac{d}{d t} (p(t) \frac{d}{d t} u(t)) + (q(t) + \lambda) u(t) = 0,
+	\quad
+	u(a) = 0,
+	u'(a) = 1
+.\]
+וניזכר בהגדרת הקורדינטות הפולריות,
+\[
+	p(t) u_{\lambda}'(t) = r_{\lambda}(t) \cos \theta_{\lambda}(t),
+	\quad
+	u_{\lambda}(t) = r_{\lambda}(t) \sin \theta_{\lambda}(t)
+.\]
+נראה ש־$\lambda \mapsto \theta_{\lambda}(b)$ היא פונקציה רציפה.
+\begin{proof}
+	נזכור שמצאנו בכיתה ש־$\theta_{\lambda}$ מקיימת את המשוואה הבאה,
+	\[
+		\theta_{\lambda}'(t)
+		= (q(t) + \lambda) \sin^2 \theta_{\lambda}(t) + \frac{1}{p(t)} \cos^2 \theta_{\lambda}(t),
+	.\]
+	כלומר זוהי פונקציה שמקיימת משוואה דיפרנציאלית הומוגנית וגזירה ברציפות, ולכן אם נגדיר,
+	\[
+		F(x, y, \lambda)
+		= (q(y) + \lambda) \sin^2(x) + \frac{1}{p(t)} \cos^2(x)
+	.\]
+	אז $\theta_{\lambda}'(t) = F(\theta_{\lambda}(t), t, \lambda)$ ובפרט קיימת $U$ פתוחה מקסימלית כך ש־$\Phi(\tau_{\lambda}^0, t)$ זרימה, ולכן בפרט ממשפט רציפות זרימות היא רציפה בשלושת משתניה.
+	נעיר כי את המשפט הוכחנו עבור משוואות הומוגניות, אך משקילות נקבל נכונות גם במקרה זה, ובפרט נקבל רציפות במשתנה השלישי בהצבה במשתנה השני $b$, כלומר $\lambda \mapsto \theta_{\lambda}(b)$ רציפה.
+\end{proof}
+
+\question{}
+בשאלה זו נוכיח שבקורדינטות פולריות מתקיימת הנוסחה,
+\[
+	\Div F
+	= \frac{1}{r} \partial_r (r F_r) + \frac{1}{r} \partial_{\varphi} F_{\varphi}
+.\]
+יהי $F : \RR^2 \to \RR^2$ שדה וקטורי גזיר, נסמן $\hat{x} = (1, 0), \hat{y} = (0, 1)$ וקטורי היחידה, ונסמן את הפירוק של $F$,
+\[
+	F = F_x \hat{x}  + F_y \hat{y}
+.\]
+נגדיר קורדינטות גליליות על־ידי,
+\[
+	x = r \cos \varphi,
+	\quad
+	y = r \sin \varphi
+.\]
+ונגדיר את וקטורי היחידה של המערכת הגלילית על־ידי $\hat{r}, \hat{\varphi}$ ונבחין כי הם מקיימים,
+\[
+	\hat{r}(x, y)
+	= \frac{(x, y)}{\lVert (x, y) \rVert}
+	= \frac{x \hat{x} + y \hat{y}}{\sqrt{x^2 + y^2}},
+	\qquad
+	\hat{\varphi} = \frac{-y \hat{x} + x \hat{y}}{\sqrt{x^2 + y^2}}
+.\]
+וכן נסמן גם,
+\[
+	F = F_r \hat{r} + F_{\varphi} \hat{\varphi}
+.\]
+נסמן גם $\partial_x, \partial_y$ נגזרות במערכת הקרטזית וכן $\partial_r, \partial_{\varphi}$ נגזרות במערכת הגלילית.
+
+\subquestion{}
+נראה כי,
+\[
+	F_r
+	= \cos \varphi F_x + \sin \varphi F_y
+	= \frac{x}{r} F_x + \frac{y}{r} F_y,
+	\qquad
+	F_{\varphi} = - \sin \varphi F_x + \cos \varphi F_y
+	= - \frac{y}{r} F_x + \frac{x}{r} F_y
+.\]
+\begin{proof}
+	תחילה נבחין כי מהגדרתם,
+	\[
+		x^2 + y^2
+		= r^2 \cos^2 \varphi + r^2 \sin^2 \varphi
+		= r^2
+		\implies \lVert (x, y) \rVert = r
+	.\]
+	ולכן,
+	\[
+		F_r
+		= \hat{r}(F)
+		= \sqrt{F_x^2 + F_y^2}
+	.\]
+\end{proof}
+
+\end{document}
