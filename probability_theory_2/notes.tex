@@ -997,7 +997,7 @@ $X_0, X_1, \ldots$ המשתנים המקריים שמקבלים ערכים ב־$
 	\NN
 	\supseteq A_x
 	= \{ n > 0 \mid P^n(x, x) < 0 \}
-.\]
+\]
 ונסמן $a_x = \gcd A_x$ להיות המחזור של $x$. \\
 $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(x, x)$ וגם $0 < P^m(x, x)$ אז גם $0 < P^{n + m}(x, x)$.
 \begin{proposition}
@@ -1028,23 +1028,23 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 	\[
 		\nu_0 P
 		= \varepsilon \pi + (1 - \varepsilon) \nu_1
-	.\]
+	\]
 	ולכן קיים גם $\nu_2$ כך שגם,
 	\[
 		\nu_1 P
 		= \mu_1 P
 		= \varepsilon \pi + (1 - \varepsilon) \nu_2
-	.\]
+	\]
 	ונמשיך ככה לקבל סדרה,
 	\[
 		\nu_n P
 		= \varepsilon \pi + (1 - \varepsilon) \nu_{n + 1}
-	.\]
+	\]
 	נקבל,
 	\[
 		\mu_n
 		= (1 - {(1 - \varepsilon)}^n) \pi + {(1 - \varepsilon)}^n \nu_n
-	.\]
+	\]
 	ולכן,
 	\begin{align*}
 		\mu_{n + 1}
@@ -1052,14 +1052,14 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 		& = (1 - {(1 - \varepsilon)}^n) \pi + {(1 - \varepsilon)}^n \nu_n P \\
 		& = (1 - {(1 - \varepsilon)}^n) \pi + {(1 - \varepsilon)}^n (\varepsilon \pi + (1 - \varepsilon) \nu_{n + 1}) \\
 		& = (1 - {(1 - \varepsilon)}^n - {(1 - \varepsilon)}^n \varepsilon) \pi + {(1 - \varepsilon)}^{n + 1} \nu_{n + 1}
-	.\end{align*}
+	\end{align*}
 
 	עתה נניח ש־$P$ לא מחזורית ולכן קיים $n \in \NN$ כך ש־$\forall x, y \in S,\ P^n(x, y) > 0$ כי מאי־פריקות קיים $n$ כך ש־$0 < P^n(x, y)$ ומהטענה הקודמת מתקיים $0 < P^n(x, x)$ עבור כל $n$ גדול מספיק.
 	לכן,
 	\[
 		P^{n + m}(x, y)
 		\ge P^m(x, x) P^n(xm y) > 0
-	.\]
+	\]
 	ונובע ש־$P^r(x, y) > 0$ לכל $x, y$ לאיזשהו $r \in \NN$.
 	מתקיים $\pi = \pi P^r$ ולפי המקרה הקודם לשרשרת $P^r$ נקבל $\mu P^{r n} \to \pi$ ובאופן דומה גם $\mu P^{rn + k} = (\mu P^k) P^{r n} \to \pi$ לכל $0 \le k < r$.
 \end{proof}
@@ -1075,14 +1075,14 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 \[
 	\Delta_S
 	= \{ x \in \RR^S \mid \sum_{s \in S} x_s = 1, x_s \ge 0 \}
-.\]
+\]
 \begin{proposition}
 	יהיו $\mu, \nu \in \Delta_S$,
 	\[
 		\max_{f : S \to [0, 1]} \EE(f(X)) - \EE(f(Y))
 		\lVert \mu - \nu \rVert_1
 		= \sum_{s \in S} |\mu(s) - \nu(s)|
-	.\]
+	\]
 	כאשר $X \sim \mu, Y \sim \nu$.
 \end{proposition}
 \begin{proof}
@@ -1092,7 +1092,7 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 		= \sum_{s \in S} f(s) (\mu(s) - \nu(s))
 		\le \sum_{s \in S} 1 \cdot |\mu(s) - \nu(s)|
 		= \lVert \mu - \nu \rVert_1
-	.\]
+	\]
 \end{proof}
 
 \subsection{צימודים}
@@ -1103,14 +1103,14 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 		\PP(X = s) = \mu(s),
 		\qquad
 		\PP(Y = s) = \nu(s)
-	.\]
+	\]
 \end{definition}
 \begin{proposition}
 	אם $(X, Y)$ הוא צימוד של $(\mu, \nu)$ אז,
 	\[
 		\lVert \mu - \nu \rVert_1
 		\le \PP(X \ne Y)
-	.\]
+	\]
 \end{proposition}
 \begin{proof}
 	תהי $f : S \to [-1, 1]$, אז,
@@ -1119,7 +1119,7 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 		& = \EE(f(X) - f(Y)) \\
 		& = \EE(f(X) - f(Y) \mid X = Y) \PP(X = Y) + \EE(f(X) - f(Y) \mid X \ne Y) \PP(X \ne Y) \\
 		& \le 2 \PP(X \ne Y)
-	.\end{align*}
+	\end{align*}
 \end{proof}
 נרצה צימוד של $\mu_n$ ו־$\pi = \nu_n$ (אם $\nu_0 = \pi$),
 הצימוד: מגרילים את $X_0 \sim \mu_0$ ואת $Y_0 \sim \nu_0 = \pi$ באופן בלתי־תלוי.
@@ -1131,7 +1131,7 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 		P(x_n, x_{n + 1}) & x_n = y_n, x_{n + 1} = y_{n + 1} \\
 		0 & \text{אחרת}
 	\end{cases}
-.\end{align*}
+\end{align*}
 בהגדרה זו $X_n$ היא שרשרת מרקוב עם הסתברות $P$ וכך גם $Y_n$ ובפרט $(X_n, Y_n)$ היא צימוד של $(\mu_n, \nu_n)$.
 נסמן $A_n = \{ X_n \ne Y_n \}$ ונשים לב שזו סדרה יורדת.
 נניח ש־$P(s, s') > 0$ לכל $s, s' \in S$ ואז קיים $a > 0$ כך ש־$P(s, s') \ge a > 0$ ולכן $\PP(A_{n + 1} \mid A_n) \le 1 - a$.
@@ -1140,7 +1140,7 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 	\ge \sum_{s \in S} P(x_n, s) P(y_n, s)
 	\ge |S| a^2
 	> 0
-.\]
+\]
 ולכן $\PP(A_n) \le {(1 - |S| a^2)}^n$.
 
 \subsection{פילטרציה}
@@ -1154,7 +1154,7 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 	אם $(\Omega, \Ff)$ מרחב מדיד ו־${\{ \Ff_n \}}_{n \in \NN}$ פילטרציה אז $\tau : \Omega \to \NN$ נקרא זמן עצירה ביחס לפילטרציה $\{ \Ff_n \}$ אם לכל $n \in \NN$ מתקיים,
 	\[
 		\{ \tau = n \} \in \Ff_n
-	.\]
+	\]
 	באופן שקול אם $\{ \tau \le n \} \in \Ff_n$.
 \end{definition}
 המטרה שלנו היא להסתכל על זה כפונקציה שמתארת תנאי עצירה של סדרת פעולות, בהתאם היא צריכה להיות מדידה אחורנית בלבד.
@@ -1163,7 +1163,7 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 	נגדיר $X_i$ סדרת משתנים מקריים ונגדיר,
 	\[
 		\tau = \min\{ n \in \NN \mid X_n = 1 \}
-	.\]
+	\]
 	אז $\tau \le n$ אם ורק אם $\exists i \le n,\ X_i = 1$.
 \end{example}
 \begin{definition}[מאורעות שנגמרים אחרי זמן סופי]
@@ -1171,7 +1171,7 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 	\[
 		\Ff_{\tau}
 		= \{ A \in \Ff \mid \forall n \in \NN,\ A \cap \{ \tau \le n \} \in \Ff_n \}
-	.\]
+	\]
 \end{definition}
 \begin{theorem}[תכונת מרקוב החזקה]
 	תהי ${\{ X_n \}}_{n \in \NN}$ שרשרת מרקוב על $S$ עם מטריצת מעבר $P$.
@@ -1187,8 +1187,205 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 		& = \frac{\PP((X_0, \ldots, X_{n + m}) = x_0, \ldots, x_n, y_1, \ldots, y_m)}{\PP(\tau < \infty, X_{\tau} = s)} \\
 		& = \frac{\mu_0(x_0) \prod_{i = 1}^{n - 1} P(x_i, x_{i + 1}) \prod_{j = 0}^{m - 1} P(y_i, y_{i + 1})}{\PP(\tau < \infty, X_{\tau} = s)} \\
 		& = \frac{\PP(A)}{\PP(\tau < \infty, X_{\tau} = s)} \cdot \PP(B)
-	.\end{align*}
+	\end{align*}
 \end{proof}
+
+\section{שיעור 9 --- 10.6.2026}
+\subsection{מרטינגלים}
+נתחיל מהגדרה שאיננה הכללית, ולאחריה נמשיך ולבסוף נרחיב אותה.
+\begin{definition}[מרטינגל]
+	סדרת משתנים מקריים בדידים ${\{ X_n \}}_{n \in \NN}$ נקראת \textbf{מרטינגל} אם,
+	\[
+		\EE(X_{n + 1} \mid X_0 = x_0, \ldots, X_n = x_n)
+		= x_n
+	\]
+	לכל $n \in \NN$ ולכל $x_0, \ldots, x_n \in \RR$ בתומך של $(X_0, \ldots, X_n)$.
+\end{definition}
+הרעיון הוא שאם נעשה סדרת הימורים (כאשר המשתנה המקרי במקום ה־$n$ מייצג את סכום הכסף לאחר ההימור ה־$n$) אז ההימור הוא הוגן ביחס לקודמיו, ובתוחלת לא נפסיד ולא נרוויח כסף.
+\begin{example}
+	אם ${\{ X_n \}}_{n = 1}^\infty$ משתנים־מקריים בדידים בלתי־תלויים עם $\EE(X_n) = 0$,
+	ונגדיר $Y_n = \sum_{i = 1}^n X_n$ אז $Y_n$ הוא מרטינגל, נבדוק זאת,
+	\begin{multline*}
+		\EE(Y_{n + 1} \mid Y_0 = y_0, \ldots, Y_n = y_n)
+		= \EE(Y_n + X_{n + 1} \mid \ldots) \\
+		= \EE(y_n + X_{n + 1} \mid \ldots)
+		= y_n + \EE(X_{n + 1} \mid \ldots)
+		= y_n + \EE(X_{n + 1})
+		= y_n
+	\end{multline*}
+	כאשר המהלך האחרון נובע ישירות מאי־תלות שהנחנו של $X_{n + 1}$.
+\end{example}
+\begin{example}
+	נניח ש־$X_n$ שרשרת־מרקוב על $S$ עם מטריצת מעבר $P$ ונניח ש־$h : S \to \RR$ היא הרמונית, כלומר,
+	\[
+		h = P h
+		\iff \forall x \in S,\ h(x) = \sum_{y \in S} P(x, y) h(y)
+	\]
+	אז $h(X_n)$ הוא מרטינגל.
+\end{example}
+\begin{proof}
+	נסמן $Y_n = h(X_n)$ ואת המאורע $A = (Y_0, \ldots, Y_n) = (y_0, \ldots, y_n)$ ולכן,
+	\begin{align*}
+		\EE(Y_{n + 1} \mid A)
+		& = \EE(h(X_{n + 1}) \mid A) \\
+		& = \sum_{x_0, \ldots, x_n \in S} \PP(X_0, \ldots, X_n = x_0, \ldots, x_n) \EE(h(X_{n + 1}) \mid A, (X_0, \ldots, X_n) = (x_0, \ldots, x_n))
+	\end{align*}
+	כאשר נבחין כי $x_0, \ldots, x_n$ תלויים ב־$A$, כלומר לא כל בחירה מניבה ערך חיובי.
+	\[
+		\EE(h(X_{n + 1}) \mid (X_0, \ldots, X_n) = (x_0, \ldots, x_n))
+		= \sum_y P(x_n, y) h(y)
+		= P h(x_n)
+		= h(x_n)
+		= y_n
+	\]
+	מתכונת מרקוב, ובהתאם סיימנו משילוב שני השוויונות.
+\end{proof}
+\begin{example}
+	נגדיר את $h(x, y) = x^2 - y^2$, כפונקציה $\RR^2 \to \RR$ נקבל שהיא הרמונית במובן של אנליזה.
+	במובן שלנו כפונקציה $\ZZ^2 \to \RR$ על שרשרת מרקוב $\ZZ^2$ נרצה להראות,
+	\[
+		h(x, y)
+		= \frac{1}{4} (h(x + 1, y + 1) + h(x + 1, y - 1) + h(x - 1, y - 1) + h(x - 1, y - 1))
+	\]
+	על־ידי חישוב ישיר נקבל שתנאי זה אכן מתקיים ולכן $h$ הרמונית גם במובן שלנו.
+\end{example}
+\begin{example}[הכד של פוליה]
+	מתחילים עם כד אחד שחור ואחד לבן בכד, ובכל פעם שולפים כדור כדור באקראי, מסתכלים על הצבע שלו ואז מחזירים אותו לכד יחד עם כדור חדש באותו הצבע. \\
+	נתחיל בזמן $2$ כדי שיהיו מספר כדורים כמספר הזמן, ונסמן $X_n$ מספר הכדורים השחורים, בהתאם $n - X_n$ הוא מספר הכדורים הלבנים בזמן $n$.
+\end{example}
+\begin{proposition}
+	$\frac{X_n}{n}$ הוא מרטינגל.
+\end{proposition}
+\begin{proof}
+	תרגיל
+\end{proof}
+עתה נעבור לגרסה הכללית יותר של מרטינגל, אפילו שלא נשתמש בה רבות.
+
+\subsection{תוחלת מותנית}
+נניח ש־$(\Omega, \Ff, \PP)$ מרחב הסתברות ותהי $\Gg \subseteq \Ff$ תת־$\sigma$־אלגברה, ונניח ש־$X$ משתנה מקרי בעל תוחלת.
+\begin{definition}[תוחלת מותנית]
+	נאמר ש־$Y$ הוא התוחלת המותנית של $X$ בהינתן $\Gg$ ונסמן $Y = \EE[X \mid \Gg]$ אם מתקיימים התנאים הבאים:
+	\begin{enumerate}
+		\item $Y$ הוא $\Gg$־מדיד
+		\item לכל $A \in \Gg$ מתקיים $\EE(X \indicator_A) = \EE(Y \indicator_A)$, או באופן שקול $\EE(X \mid A) = \EE(Y \mid A)$ לכל $A$ מאורע מהסתברות חיובית.
+	\end{enumerate}
+\end{definition}
+נבחין כי $Y$ הוא משתנה מקרי, תוחלת מותנית איננה ערך סקלרי.
+\begin{example}
+	נסמן $\Gg = \{\emptyset, \Omega, A, A^C \}$ עבור מאורע $0 < \PP(A) < 1$ כלשהו.
+	אז $Y : \Omega \to \RR$ צריך להיות $\Gg$־מדיד ולכן $Y \mid_A \equiv a$ ו־$Y \mid_{A^C} \equiv b$ ומחישוב נקבל,
+	\[
+		a = \EE(X \mid A) = \frac{\EE( \indicator_A)}{\PP(A)},
+		\quad
+		b = \EE(X \mid A^C) = \frac{\EE( \indicator_{A^C})}{1 - \PP(A)}
+	\]
+\end{example}
+נותר לנו להראות שקיימת תוחלת מותנית במובן החדש, כלומר עבור $X \in L^2(\Omega, \Ff, \PP)$ (כלומר $X$ בעל שונות).
+נחפש $Y \in L^2(\Omega, \Gg, \PP)$ שממזער את $\EE({(X - Y)}^2)$, זאת שכן $a = \EE(X)$ ממזער את $f(a) = \EE({(X - a)}^2)$.
+קיים $Y$ כזה כי זהו תת־מרחב הילברט.
+$Y$ הוא ההטלה של $X$ על $L^2(\Omega, \Gg, \PP)$, כלומר $X - Y$ מאונך למרחב $L^2(\Omega, \Gg, \PP)$, דהינו,
+\[
+	\forall Z \in L^2(\Omega, \Gg, \PP),\ 
+	Z \perp X - y
+	\iff \langle Z, X - Y \rangle
+	= \EE(Z(X - Y))
+	= 0
+\]
+בפרט אם ניקח $Z = \indicator_A$ עבור $A \in \Gg$ נקבל,
+\[
+	\EE(X \indicator_A)
+	= \EE(Y \indicator_A)
+\]
+
+\subsection{מרטינגלים ותוחלת מותנית}
+תהי ${\{ \Ff_n \}}_{n = 1}^\infty$ פילטרציה (סדרה עולה של תת־$\sigma$־אלגברות) ו־$X_n$ סדרת משתנים מקריים
+\begin{definition}[מרטינגל כללי]
+	$X_n$ הוא מרטינגל ביחס ל־$\Ff_n$ אם,
+	\begin{enumerate}
+		\item $X_n$ מותאם ל־$\Ff_n$, כלומר $X_n$ הוא $\Ff_n$־מדיד
+		\item $\EE[X_{n + 1} \mid \Ff_n] = X_n$ לכל $n$.
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	אם $\Ff_n = \sigma(X_0, \ldots, X_n)$ ו־$X_n$ בדידים אז מקבלים את ההגדרה המקורית.
+\end{remark}
+כדי לראות זאת נגדיר ${\{ A_i \}}_{i \in I}$ עבור $|I| \le \aleph_0$ חלוקה, כלומר $\cupdot_{i \in I} A_i = \Omega$.
+נגדיר $\Gg = \sigma({\{ A_i \}}_{i \in I})$, ויהי $X$ משתנה מקרי בעל־תוחלת ונגדיר,
+\[
+	Y \mid_{A_i}
+	\equiv \EE(X \mid A_i)
+	= \frac{\EE(X \indicator_{A_i})}{\PP(A_i)}
+\]
+אז $Y = \EE[X \mid \Gg]$ בדיוק.
+
+נעבור לתכונות.
+\begin{proposition}
+	נניח ש־$(\Omega, \Ff, \PP)$ מרחב הסתברות, $\Gg \subseteq \Ff$ תת־$\sigma$־אלגברה וש־$X, Y \in L^1(\Omega, \Ff, \PP)$, אז מתקיים:
+	\begin{enumerate}
+		\item נוסחת התוחלת השלמה: $\EE(\EE[X \mid \Gg]) = \EE(X)$
+		\item אם $X$ הוא $\Gg$־מדיד אז $\EE[X \mid \Gg] = X$
+		\item לינאריות:
+			$\EE[X + Y \mid \Gg] = \EE[X \mid \Gg] + \EE[Y \mid \Gg]$
+		\item אם $X \ge 0$ כמעט־תמיד אז $\EE[X \mid \Gg] \ge 0$ כמעט־תמיד
+		\item אי־שוויון יאנסן:
+			אם $\varphi : \RR \to \RR$ קמורה אז,
+			\[
+				\varphi(\EE[X \mid \Gg])
+				\le \EE[\varphi(X) \mid \Gg]
+			\]
+		\item אם $\Hh \subseteq \Gg \subseteq \Ff$ אז,
+			\[
+				\EE[\EE[X \mid \Gg] \mid \Hh]
+				= \EE[X \mid \Hh]
+			\]
+		\item הוצאת המוכר (Taking out what is known):
+			אם $Z$ הוא $\Gg$־מדיד אז,
+			\[
+				\EE[X Z \mid \Gg]
+				= Z \cdot \EE[X \mid \Gg]
+			\]
+		\item אי־תלות:
+			אם $X$ בלתי־תלוי ב־$\Gg$ אז $\EE[X \mid \Gg] \overset{\text{a.s.}}{=} \EE(X)$
+		\item אם $X_n > 0$ ו־$X_n \nearrow X$ כמעט־תמיד אז,
+			\[
+				\EE[X_n \mid \Gg]
+				\nearrow \EE[X \mid \Gg]
+			\]
+		\item אם $X_n \overset{\text{a.s.}}{\to} X$ וגם קיים $Z \in L^1$ כך שלכל $n$, $|X_n| \le Z$ אז,
+			\[
+				\EE[X_n \mid \Gg]
+				\to \EE[X \mid \Gg]
+			\]
+		\item אם $X_n \ge 0$ אז,
+			\[
+				\EE[\liminf_{n \to \infty} X_n \mid \Gg]
+				\le \liminf \EE[X_n \mid \Gg]
+			\]
+	\end{enumerate}
+\end{proposition}
+\begin{example}
+	יהי $X \in L^1$ ו־$\Ff_n$ פילטרציה ונגדיר $X_n = \EE[X \mid \Ff_n]$, אז,
+	\[
+		\EE[X_{n + 1} \mid \Ff_n]
+		= \EE[\EE[X \mid \Ff_{n + 1}] \mid \Ff_n]
+		= \EE[X \mid \Ff_n]
+		= X_n
+	\]
+\end{example}
+באופן כללי נקבל שעבור מרטינגל,
+\[
+	\EE[X_{n + 2} \mid \Ff_n]
+	= \EE[\EE[X_{n + 2} \mid \Ff_{n + 1}] \mid \Ff_n]
+	= \EE[X_{n + 1} \mid \Ff_n]
+	= X_n
+\]
+\begin{corollary}
+	אם $X_0 = x_0$ כמעט תמיד אז,
+	\[
+		\EE(X_n)
+		= x_0
+	\]
+\end{corollary}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
