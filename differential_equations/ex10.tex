@@ -1,0 +1,283 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 10 --- משוואות דיפרנציאליות, 80320}
+% chktex-file 9
+% chktex-file 17
+
+\DeclareMathOperator\Div{div}
+
+\usepackage{pgfplots, tikz, pgffor}
+\usetikzlibrary{math}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]{}
+
+\question{}
+תהי מערכת שטורם־ליוביל רגולרית,
+\[
+	\frac{d}{dt}(p(t) \frac{d}{dt} u(t)) + (q(t) + \lambda \rho(t)) u(t) = 0,
+	\quad
+	u(a) = u(b) = 0
+	\tag{1}
+\]
+כאשר $p, \rho > 0$, ונסמן $\lambda_n$ הערך העצמי ה־$n$ של המערכת. \\
+נוכיח שמתקיים,
+\[
+	\lambda_n
+	= \frac{\pi^2 n^2}{T^2} + O(1)
+\]
+כאשר,
+\[
+	T
+	= \int_{a}^{b} \sqrt{\frac{\rho(t)}{p(t)}}\ ds
+\]
+\begin{proof}
+	במטלה 8 שאלה 3 ראינו כי קיימת מערכת שטורם־ליוביל נורמלית אשר חולקת ערכים עצמיים עם המערכת $(1)$, נגדיר אותה,
+	\[
+		w''(t) + (Q(t) + \lambda) w(t) = 0,
+		\quad
+		w(0) = w(T) = 0
+		\tag{2}
+	\]
+	אם נסמן $\lambda_n$ הערך העצמי ה־$n$ של המערכת $(2)$ (ולכן גם $(1)$ משקילות) אז נקבל ממשפט מהתרגול על אפיון אסימפטוטי של ערכים עצמיים במערכת נורמלית,
+	\[
+		\lambda_n
+		= \frac{\pi^2 n^2}{{(T - 0)}^2} + O(1)
+	\]
+	ולכן מצאנו בדיוק את האפיון המבוקש עבור מערכות רגולריות.
+\end{proof}
+
+\question{}
+תהיינה $f, g : \RR^n \to \RR$ כך שאחת מהן עם תומך קומפקטי, ונגדיר את $f * g : \RR^n \to \RR$ על־ידי,
+\[
+	(f * g)(x)
+	= \int_{\RR^n} f(y) g(x - y)\ dy
+\]
+
+\subquestion{}
+נראה ש־$f * g = g* f$.
+\begin{proof}
+	נגדיר את הפונקציה $\varphi_x : \RR^n \to \RR^n$ על־ידי,
+	\[
+		\varphi_x(y)
+		= x - y
+	\]
+	אז ברור כי $\varphi$ דיפאומורפיזם וכן $|J(\varphi_x)| = 1$ ולכן ממשפט חילוף משתנה,
+	\[
+		(f * g)(x)
+		= \int_{\RR^n} f(y) g(x - y)\ dy
+		= \int_{\varphi^{-1}(\RR^n)} f(\varphi(y)) g(x - \varphi(y))\ dy
+		= \int_{\RR^n} f(x - y) g(y)\ dy
+		= (g * f)(x)
+	\]
+\end{proof}
+
+\subquestion{}
+תהי $h$ פונקציה נוספת עם תומך קומפקטי,
+נראה שמתקיים,
+\[
+	f * (g * h)
+	= (f * g) * h
+\]
+\begin{proof}
+	נשתמש בהגדרה ובמשפט פוביני כדי לקבל,
+	\begin{align*}
+		(f * (g * h))(x)
+		& = \int f(y) (g * h)(x - y)\ dy \\
+		& = \int f(y) \left( \int g(x - y - z) h(z)\ dz \right)\ dy \\
+		& = \iint f(y) g(x - y - z) h(z)\ dy\ dz \\
+		& = \int h(z) \int f(y) g(x - y - z)\ dy\ dz \\
+		& = \int h(z) (f * g)(x - z)\ dz \\
+		& = ((f * g) * h)(x)
+	\end{align*}
+	כאשר נבחין כי השתמשנו מספר פעמים בסעיף א'.
+\end{proof}
+
+\subquestion{}
+נניח ששתי הפונקציות בעלות תומכים קומפקטיים וכן ש־$g \in C^1(\RR^n)$.
+נראה כי מתקיים,
+\[
+	\partial_{x_i} (f * g)
+	= f * \partial_{x_i} g
+\]
+\begin{proof}
+	נשתמש ישירות בהגדרת הנגזרת החלקית,
+	\begin{align*}
+		\partial_i (f * g)(x)
+		& = \lim_{\varepsilon \to 0} \frac{1}{\varepsilon} \left(\int_{\RR^n} f(y) g(x + \varepsilon e_i - y)\ dy - \int_{\RR^n} f(y) g(x - y)\ dy\right) \\
+		& = \lim_{\varepsilon \to 0} \int_{\RR^n} f(y) \frac{1}{\varepsilon} (g(x + \varepsilon e_i - y) - g(x - y))\ dy \\
+		& = \int_{\RR^n} \partial_i g(x - y)\ dy \\
+		& = (f * \partial_i g)(x)
+	\end{align*}
+	כאשר יכולנו להכניס את הגבול לאינטגרל ישירות מאי־תלות ב־$\varepsilon$.
+\end{proof}
+
+\subquestion{}
+נראה שאם התומכים של $f, g$ קומפקטיים אז גם $f * g$ בעלת תומך קומפקטי.
+\begin{proof}
+	נסמן $K \subseteq \RR^n$ כך ששני התומכים מוכלים ב־$K$, תמיד קיים כזה מרגולריות חיצונית.
+	בפרט נובע $f |_{K^C} \equiv g |_{K^C} \equiv 0$.
+	נסמן $r = \operatorname{diam} K = \inf\{ \lVert a - b \rVert \mid a, b \in K \}$.
+	תהי נקודה $x \notin K$ כך ש־$\dist(x, K) > r$, ותהי $y \in \RR^n$.
+	אם $y \in K^C$ אז $f(y) = 0$ ובפרט $f(y) g(x - y) = 0$.
+	אם $y \in K$ אז בפרט $\lVert x - y \rVert \ge \dist(x, K) > r$ ולכן נובע ש־$x - y \notin K$ ובהתאם $g(x - y) = 0$.
+	קיבלנו שמתקיים $f(y) g(x - y) = 0$ לכל $y$ ולכן,
+	\[
+		(f * g)(x)
+		= \int f(y) g(x - y)\ dy
+		= \int 0\ dy
+		= 0
+	\]
+	כלומר $(f * g) |_{K_r^C} \equiv 0$ כאשר $K_r = \cl \{ y \in \RR^n \mid \dist(y, K) \le r \}$ קבוצה סגורה וחסומה ולכן קומפקטית.
+\end{proof}
+
+\question{}
+תהי $v : \RR_{> 0} \to \RR$ גזירה פעמיים ונגדיר את,
+\[
+	u : \RR^n \setminus \{ 0 \},
+	\quad
+	u(x)
+	= v(\lVert x \rVert)
+\]
+
+\subquestion{}
+נראה שלכל $x \ne 0$ מתקיים,
+\[
+	\Delta u(x)
+	= v''(\lVert x \rVert) + \frac{n - 1}{\lVert x \rVert} v'(\lVert x \rVert)
+\]
+ונסיק ש־$u$ הרמונית אם ורק אם,
+\[
+	\forall r > 0,\ 
+	v''(r) + \frac{n - 1}{r} v'(r) = 0
+\]
+\begin{proof}
+	נחשב ישירות מהגדרה,
+	\[
+		\Delta u(x)
+		= \sum_{i = 1}^n \frac{\partial^2}{\partial x_i^2} u(x)
+	\]
+	אבל,
+	\[
+		\partial_i u(x)
+		= \partial_i v(\lVert x \rVert)
+		= v'(\lVert x \rVert) \cdot \partial_i \lVert x \rVert
+		= v'(\lVert x \rVert) \frac{x_i}{\lVert x \rVert}
+	\]
+	כאשר המהלך האחרון נובע משימוש בהגדרת נורמה $\lVert x \lVert_2 = \sqrt{x_1^2 + \cdots + x_n^2}$.
+	נעבור לחישוב הנגזרת השנייה,
+	\[
+		\partial_i^2 u(x)
+		= \partial_i v'(\lVert x \rVert) \frac{x_i}{\lVert x \rVert}
+		= v''(\lVert x \rVert) \frac{x_i^2}{{\lVert x \rVert}^2} + v'(\lVert x \rVert) \frac{\lVert x \rVert - x_i \cdot \frac{x_i}{\lVert x \rVert}}{\lVert x \rVert^2}
+		= v''(\lVert x \rVert) \frac{x_i^2}{{\lVert x \rVert}^2} + v'(\lVert x \rVert) \frac{\lVert x \rVert^2 - x_i^2}{\lVert x \rVert^3}
+	\]
+	ועתה נוכל להציב,
+	\[
+		\Delta u(x)
+		= \sum_{i = 1}^n \left( v''(\lVert x \rVert) \frac{x_i^2}{{\lVert x \rVert}^2} + v'(\lVert x \rVert) \frac{\lVert x \rVert^2 - x_i^2}{\lVert x \rVert^3} \right)
+		= v''(\lVert x \rVert) \frac{\sum_{i = 1}^n x_i^2}{{\lVert x \rVert}^2} + v'(\lVert x \rVert) \frac{n \lVert x \rVert^2 - \sum_{i = 1}^n x_i^2}{\lVert x \rVert^3}
+	\]
+	אבל,
+	\[
+		\lVert x \rVert^2
+		= \sum_{i = 1}^n x_i^2
+	\]
+	בדיוק ולכן נקבל,
+	\[
+		\Delta u(x)
+		= v''(\lVert x \rVert) \frac{\lVert x \rVert^2}{{\lVert x \rVert}^2} + v'(\lVert x \rVert) \frac{n \lVert x \rVert^2 - \lVert x \rVert^2}{\lVert x \rVert^3}
+		= v''(\lVert x \rVert) + v'(\lVert x \rVert) \frac{n - 1}{\lVert x \rVert}
+	\]
+	נסיק ש־$u$ הרמונית אם ורק אם,
+	\[
+		\forall r > 0,\ 
+		v''(r) + \frac{n - 1}{r} v'(r) = 0
+	\]
+	כתנאי שקול ל־$\forall x \ne 0, \Delta u(x) = 0$.
+\end{proof}
+
+\subquestion{}
+נניח ש־$u$ הרמונית ונמצא צורה כללית ל־$u$.
+\begin{solution}
+	מהסעיף הקודם נסיק את התנאי על $v$, ונרצה למצוא צורה כללית של $v$, נבחין כי,
+	\[
+		v''(t) + \frac{n - 1}{t} v'(t) = 0
+	\]
+	ולאחר העברת אגפים שנצדיק בדיעבד,
+	\[
+		\frac{v''(t)}{v'(t)}
+		= \frac{1 - n}{t}
+		\implies \frac{d}{dt} \ln(v'(t)) = \frac{1 - n}{t}
+	\]
+	לאחר אינטגרציה, $\ln(v'(t)) = (1 - n) \ln t + C_1 \implies v'(t) = C_1 t^{1 - n}$. \\
+	ולכן לבסוף שוב מאינטגרציה, $v(t) = C_1 \int t^{1 - n} = C_1 \frac{1}{2 - n} t^{2 - n} + C_2$. \\
+	וקיבלנו את המשוואה $v(t) = C_1 t^{2 - n} + C_2$, מבדיקה ישירה נקבל שהיא אכן פותרת את המשוואה ולכן,
+	\[
+		u(x)
+		= C_1 \lVert x \rVert^{2 - n} + C_2
+	\]
+\end{solution}
+
+\question{}
+תהי $\Omega \subseteq \RR^d$ פתוחה ותהי $u : \Omega \to \RR$ חלקה והרמונית.
+
+\subquestion{}
+נראה שלכל $i \in [d]$ הפונקציה $\partial_i u$ הרמונית.
+\begin{proof}
+	\[
+		\Delta \partial_i u
+		= \sum_{j = 1}^d \partial_j^2 \partial_i u
+	\]
+	אבל $u$ חלקה ובפרט $C^3$ ונוכל להחליף את סדר הגזירה,
+	\[
+		\sum_{j = 1}^d \partial_j^2 \partial_i u
+		= \sum_{j = 1}^d \partial_i \partial_j^2 u
+		= \partial_i \sum_{j = 1}^d \partial_j^2 u
+		= \partial_i 0
+		= 0
+	\]
+	ומצאנו שהרמוניות $u$ גוררת את הרמוניות הנגזרת החלקית שלה.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\Delta (u^2)
+	= 2 \lVert \nabla u \rVert^2
+\]
+\begin{proof}
+	נשתמש בהגדרות,
+	\[
+		\Delta (u^2)
+		= \sum_{i = 1}^d \partial_i^2 u^2
+		= \sum_{i = 1}^d \partial_i (2 u \cdot \partial_i u)
+		= 2 \sum_{i = 1}^d (\partial_i u \cdot \partial_i u + u \cdot \partial_i^2 u)
+		= 2 \lVert \nabla u \rVert^2 + 2 u \cdot \Delta u
+		= 2 \lVert \nabla u \rVert^2
+	\]
+	נבחין כי המהלך האחרון נובע מהרמוניות $u$ עצמה ושימוש בסימון של $\lVert \nabla \cdot \rVert^2$
+\end{proof}
+
+\subquestion{}
+נראה שלכל $n \in \NN$ מתקיים,
+\[
+	\Delta^n u^2 \ge 0
+\]
+\begin{proof}
+	נניח ש־$v = \Delta_n u^2 \ge 0$ ונראה שגם $\Delta v \ge 0$.
+	\[
+		\Delta v
+		= \sum_{i = 1}^d \partial_i^2 v
+	\]
+	אבל מסעיף א' והגדרת לפלסיאן נסיק שיש חילופיות של $\Delta^n$
+	\[
+		\Delta v
+		= \sum_{i = 1}^d \Delta^n \partial_i^2 u^2
+		= \Delta^n (\Delta u^2)
+	\]
+	אבל מסעיף ב' $\Delta u^2 \ge 0$ ומהנחת האינדוקציה $\Delta^n$ משמר אי־שליליות ולכן סיימנו.
+\end{proof}
+
+\end{document}
