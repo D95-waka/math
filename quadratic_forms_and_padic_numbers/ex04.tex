@@ -1,0 +1,402 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- תבניות ריבועיות ומספרים P־אדיים, 80507}
+
+\DeclareMathOperator{\Deg}{Deg}
+
+% chktex-file 44
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+יהי $(\FF, \lVert \cdot \rVert)$ שדה נורמי לא ארכימדי לא טריוויאלי כך שקיים $\alpha \in \RR$ המקיים,
+\[
+	\alpha = \max\{ \lVert x \rVert \mid x \in M_{\lVert \cdot \rVert} \}
+\]
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\{ \lVert x \rVert \mid x \in \FF^* \}
+	= \{ \alpha^k \mid k \in \ZZ \}
+\]
+\begin{proof}
+	נסמן ב־$x_m \in \FF$ איבר המקיים $\lVert x_m \rVert = \alpha$.
+	נבחין כי לכל $k \in \ZZ$,
+	\[
+		\lVert x_m^k \rVert
+		= \lVert x_m \rVert^k
+		= \alpha^k
+	\]
+	ולכן,
+	\[
+		\{ \lVert x \rVert \mid x \in \FF^* \}
+		\supseteq \{ \alpha^k \mid k \in \ZZ \}
+	\]
+	ונותר להראות את הכיוון ההפוך.
+	יהי $x \in \FF^*$ ונניח בשלילה ש־$\lVert x \rVert \ne \alpha^k$ לאף $k \in \ZZ$.
+	נניח בלי הגבלת הכלליות ש־$x \in M_{\lVert \cdot \rVert}$ אחרת נוכל לקחת $\frac{1}{x}$, זאת שכן $\lVert x \rVert \ne \alpha^0$ וגם $x \in \FF^*$.
+	נבחין כי $x \ne x_m$ אחרת $\lVert x \rVert = \alpha$.
+	הגדרנו $\lVert x \rVert < 1$ ולכן $\lVert x \rVert \le \alpha$ ולכן בפרט $\lVert x \rVert < \alpha$ ונקבל,
+	\[
+		\lVert x + x_m \rVert
+		= \max\{ \lVert x \rVert, \lVert x_m \rVert \}
+		= \alpha
+	\]
+	אז לא יתכן ש־$x = 2 x_m$ ולכן בפרט $x - x_m \ne x_m$ ונקבל,
+	\[
+		\lVert x \rVert
+		= \lVert (x - x_m) + x_m \rVert
+		= \max\{ \lVert x - x_m \rVert, \lVert x_m \rVert \}
+		= \alpha
+	\]
+	בסתירה.
+\end{proof}
+
+\subquestion{}
+נראה שקיים $\pi \in M_{\lVert \cdot \rVert}$ כך ש־$M_{\lVert \cdot \rVert} = \pi O_{\lVert \cdot \rVert}$.
+\begin{proof}
+	כהיסק ישיר של הסעיף הקודם נובע,
+	\[
+		M_{\lVert \cdot \rVert}
+		= \{ x \in \FF \mid x = 0 \lor \exists k \in \NN, \lVert x \rVert = \alpha^k \},
+		\qquad
+		O_{\lVert \cdot \rVert}
+		= \{ x \in \FF \mid x = 0 \lor \exists k \in \NN \cup \{ 0 \}, \lVert x \rVert = \alpha^k \}
+	\]
+	זאת ישירות מאפיון הנורמות המתקבלות על־ידי ערכים בשדה הנורמי, בפרט הטענה מתקבלת עבור $\pi = x_m$.
+\end{proof}
+
+\subquestion{}
+נוכיח שלכל אידאל $I$ של $O_{\lVert \cdot \rVert}$ קיים $n \in \NN$ כך ש־$I = \pi^n O_{\lVert \cdot \rVert}$.
+\begin{proof}
+	ידוע כי $M_{\lVert \cdot \rVert}$ אידאל מקסימלי ב־$O_{\lVert \cdot \rVert}$ ולכן $I \subseteq M_{\lVert \cdot \rVert}$.
+	יהי איבר $x \in I$, אז $\lVert x \rVert = \alpha^k$ עבור $k \in \NN$ מהסעיף הקודם.
+	נניח ש־$x_l$ הוא מנורמה מקסימלית, ונסמן $n$ להיות הטבעי המקיים $\lVert x_l \rVert = \alpha^n$.
+	מסגירות לכפל גם $x_m x_l \in I$ ולכן באינדוקציה נקבל שקיים איבר מנורמה $\lVert \cdot \rVert^k$ לכל $k \ge n$, ובפרט מהאפיון של הסעיף הקודם $I = \pi^n O_{\lVert \cdot \rVert}$ בדיוק.
+\end{proof}
+
+\question{}
+
+יהי $(\FF, \lVert \cdot \rVert)$ שדה נורמי לא ארכימדי לא טריוויאלי כך שלא קיים איבר מקסימלי בקבוצה $\{ \lVert x \rVert \mid x \in M_{\lVert \cdot \rVert} \}$. \\
+נראה שמתקיים,
+\[
+	\sup\{ \lVert x \rVert \mid x \in M_{\lVert \cdot \rVert} \} = 1
+\]
+\begin{proof}
+	נניח בשלילה ש־$\sup\{ \lVert x \rVert \mid x \in M_{\lVert \cdot \rVert} \} = \alpha < 1$ ונזכור שבקבוצה אין איבר מנורמה $= \alpha$,
+	ולכן נוכל לבנות סדרה ${\{ a_n \}}_{n = 1}^\infty \subseteq M_{\lVert \cdot \rVert}$ כך ש־$\alpha - \lVert a_n \rVert < \frac{1}{n}$.
+	\[
+		\lVert a_n - a_m \rVert
+		\le \max\{ \lVert a_n \rVert, \lVert a_m \rVert \}
+		= \max\{ \alpha - \frac{1}{n}, \alpha - \frac{1}{m} \}
+		= \alpha - \frac{1}{\max\{n, m\}}
+	\]
+	ובפרט זוהי סדרת קושי ולכן ממשפט מהכיתה קבועה החל ממקום מסוים ובפרט קיים $x \in M_{\lVert \cdot \rVert}$ כך ש־$\lVert x \rVert = \alpha$ בסתירה להגדרת השדה הנורמי.
+\end{proof}
+
+\question{}
+נסמן $\PP$ קבוצת המספרים הראשוניים ויהי $x \in \QQ^*$.
+
+\subquestion{}
+נראה שהקבוצה $\{ p \in \PP \mid |x|_p \ne 1 \}$ היא סופית.
+\begin{proof}
+	נסמן $a \in \ZZ, b \in \NN$ כך ש־$x = \frac{p}{q}$ ולכן הקבוצה שקולה לקבוצה,
+	\[
+		\{ p \in \PP \mid p^{-(v_p(a) - v_p(b))} \ne p^0 = 1 \}
+	\]
+	וזו בעצמה שקולה לקבוצה,
+	\[
+		\{ p \in \PP \mid v_p(a) \ne v_p(b) \}
+	\]
+	ואם נסמן $\PP_0 = \{ p \in \PP \mid p \mid a, p \mid b \}$ נקבל שהיא סופית מסופיות המספרים $a, b$ ובפרט גם הקבוצה שאנו מחפשים סופית כתת־קבוצה של $\PP_0$.
+	נעיר שאכן היא תת־קבוצה של $\PP_0$ שכן $v_p(a) \ne v_p(b)$ בפרט גורר שאחד מהם מתחלק ב־$p$.
+\end{proof}
+
+\subquestion{}
+נוכיח שמתקיים,
+\[
+	|x| \prod_{p \in \PP} |x|_p = 1
+\]
+\begin{proof}
+	מאינווריאנטיות של מכפלה לכפל ב־$1$ ומסעיף א' נסיק שביטוי זה מוגדר היטב, ונותר אם כך לחשבו.
+
+	מיחידות ההצגה כשבר פשוט נסמן $x = p_1^{\varepsilon_1 n_1} \cdots p_k^{\varepsilon_k n_k}$ כאשר $p_i \in \PP$ שונים ו־$\varepsilon \in \{ \pm 1 \}$ ו־$n_i \in \NN$ ולכן,
+	\[
+		| x |_{p_i}
+		= p_i^{- \tilde{v}_{p_i}(x)}
+		= p_i^{- \varepsilon_i n_i}
+	\]
+	ולכן,
+	\[
+		|x| \prod_{p \in \PP} |x|_p
+		= |p_1^{\varepsilon_1 n_1}| \cdots |p_k^{\varepsilon_k n_k}| \prod_{i = 1}^k p^{-\varepsilon_i n_i}
+		= \prod_{i = 1}^k p^{\varepsilon n_i} p^{-\varepsilon_i n_i}
+		\prod_{i = 1}^k 1
+		= 1
+	\]
+\end{proof}
+
+\question{}
+יהיו $p, q$ ראשוניים שונים.
+נראה שקיימת סדרה ${(a_n)}_{n = 1}^{\infty} \subseteq \QQ$ כך שבשדה הנורמי $(\QQ, | \cdot |_p)$ היא מתכנסת אבל בשדה הנורמי $(\QQ, | \cdot |_q)$ היא לא חסומה.
+\begin{proof}
+	נגדיר $a_n = \frac{p^n}{q^n}$ ונראה שהיא מקיימת את התכונות הדרושות.
+	\[
+		| a_n |_p
+		= p^{-\tilde{v}_p(a_n)}
+		= p^{v_p(q^n) - v_p(p^n)}
+		= p^{0 - n}
+		= \frac{1}{p^n}
+	\]
+	ולכן מצאנו שתחת הנורמה $| \cdot |_p$ מתקיים $| a_n |_p \to 0$.
+	בחישוב דומה,
+	\[
+		| a_n |_q
+		= q^{v_q(q^n) - v_q(p^n)}
+		= q^n
+	\]
+	ונקבל $| a_n |_q \to \infty$ ובפרט היא לא חסומה.
+\end{proof}
+
+\question{}
+יהיו $p, q$ ראשוניים שונים ו־$a, b \in \ZZ, \varepsilon \in \RR$ כך ש־$\varepsilon > 0$. \\
+נראה שקיים $z \in \ZZ$ כך ש־$|z - a|_p < \varepsilon$ וגם $|z - b|_q < \varepsilon$.
+\begin{proof}
+	יהי $n, m \in \NN$ ונגדיר $z = p^n q^m$.
+	נסמן $a = a_0 p^{n_a} q^{m_a}, b = b_0 p^{n_b} q^{m_b}$ עבור הערכים הגדולים ביותר המקיימים זאת.
+	בהתאם מתקיים,
+	\[
+		|z - a|_p
+		= p^{-v_p(z - a)}
+		= p^{-v_p(p^n q^m - a_0 p^{n_a} q^{m_a})}
+		= p^{-v_p(p^{n_a} q^{m_a} (p^{n - n_a} q^{m - m_a} - a_0))}
+		= p^{n_a - n}
+	\]
+	ונקבל באופן דומה גם,
+	\[
+		|z - b|_q
+		= q^{m_b - m}
+	\]
+	ולכן מספיק שנבחר $n, m$ אשר מקטינים מספיק את שני הביטויים, בפרט לדוגמה נוכל לבחור $n = \lceil n_a - \log_p \varepsilon \rceil$ ו־$m = \lceil m_b - \log_q \varepsilon \rceil$.
+\end{proof}
+
+\question{}
+יהי $p$ ראשוני, $d \in \QQ, x \in \RR$ ו־$\varepsilon > 0$. \\
+נראה שקיים $q \in \QQ$ כך ש־$|q - d|_p < \varepsilon$ וגם $|q - x| < \varepsilon$.
+\begin{proof}
+	נסמן $n = \tilde{v}_p(d)$ ולכן $d = p^n d_0$ עבור $d_0 \in \QQ$ כך ש־$\tilde{v}_p(d_0) = 0$, במילים אחרות ניקח את הכפולה של $p$ בייצוג היחיד הפשוט של $d$ ונפרק אותו.
+	יהי $m \in \ZZ$ ו־$q_0 \in \QQ$ כך ש־$\tilde{v}_p(q_0) = 0$ ונגדיר את $q = p^m q_0$, בפרט נוכל לקבל כך כל רציונלי.
+	נחשב,
+	\[
+		|q - d|_p
+		= |p^m q_0 - p^n d_0|
+		= |p^m (q_0 - d_0 p^{n - m})|_p
+		= p^{-m} \cdot |q_0 p^{m - n} - d_0|_p
+		= p^{-m}
+	\]
+	כאשר התבססנו על הטענה ש־$q_0 p^l - d_0$ לא מחלק את $p^k$ לאף $k$.
+	נבחר $m$ מספיק גדול כך ש־$p^{-m} < \varepsilon$.
+	בהתאם נוכל לבחור $|x - q_0 q^m| < \varepsilon$ על־ידי שימוש בבחירת $q_0$ שאולי תלוי ב־$p$ ואז מציאת רציונלי קרוב אליו על־ידי הגדלה מספקת של הראשוניים במונה ובמכנה במקביל.
+\end{proof}
+
+\question{}
+יהי $\FF$ שדה ונגדיר $\Deg : \FF(X) \to \ZZ \cup \{ - \infty \}$ על־ידי,
+\[
+	\Deg(\frac{f}{g}) = \deg f - \deg g,
+	\qquad
+	\Deg(0) = - \infty
+\]
+
+\subquestion{}
+נראה ש־$\Deg$ מוגדרת היטב.
+\begin{proof}
+	עבור $0$ ההגדרה היא ברורה, ולכן נותר להראות שההגדרה עובדת עבור פולינומים שאינם $0$, כלומר שאם $\frac{f_1}{g_1} = \frac{f_2}{g_2}$ אז גם,
+	\[
+		\Deg(\frac{f_1}{g_1})
+		= \Deg(\frac{f_2}{g_2})
+	\]
+	נשים לב כי דרגת פולינום מקיימת את התכונה $\forall f, g \in \FF[X],\ \deg(f g) = \deg f + \deg g$ ישירות על־ידי שימוש במולטינום, ולכן מתקיים,
+	\begin{align*}
+		\Deg(\frac{f_1}{g_1}) = \Deg(\frac{f_2}{g_2})
+		& \iff \deg f_1 - \deg g_1 = \deg f_2 - \deg g_2 \\
+		& \iff \deg f_1 + \deg g_2 = \deg f_2 + \deg g_1 \\
+		& \iff \deg(f_1 g_2) = \deg(f_2 g_1) \\
+		& \impliedby f_1 g_2 = f_2 g_1 \\
+		& \iff \frac{f_1}{g_1} = \frac{f_2}{g_2}
+	\end{align*}
+	וקיבלנו שאכן $\Deg$ מוגדרת היטב.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\forall f, g \in \FF(X),
+	\quad
+	\Deg(f g) = \Deg(f) + \Deg(g)
+\]
+\begin{proof}
+	נבחר נציגים $f = \frac{f_p}{f_q}, g = \frac{g_p}{g_q}$ ונקבל,
+	\[
+		\Deg(f g)
+		= \deg(f_p g_p) - \deg(f_q g_q)
+		= \deg(f_p) + \deg(g_p) - \deg(f_q) - \deg(g_q)
+		= \Deg(f) + \Deg(g)
+	\]
+	כאשר המעבר האחרון נובע מסידור מחדש והגדרה של $\Deg$.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\forall f, g \in \FF(X),
+	\quad
+	\Deg(f + g)
+	\le \max\{ \Deg(f), \Deg(g) \}
+\]
+\begin{proof}
+	% נבחין שאם $f \in \PP[X]$, ונניח ש־$f_p = f, f_q = 1$ אז מתקבל בדיוק $\Deg(f) = \deg(f_p) - \deg(q) = \deg(f_p)$.
+	% מצאנו אם כך שעבור פולינומים $\Deg \equiv \deg$.
+	% נראה את הטענה עבור פולינומים,
+	% \[
+	% 	\Deg(f + g)
+	% 	= \deg(f + g)
+	% 	\le \max\{ \deg f, \deg g \}
+	% .\]
+	% כאשר המעבר האחרון נובע מתכונה של דרגת פולינומים אותה אפשר להוכיח על־ידי כתיבת מקדמי הפולינום ובדיקה, ולמעשה אם המקדם המקסימלי של שני הפולינומים מערך שונה או מוכפל בסקלר שונה נקבל שגם יש שוויון.
+	נחשב ישירות ותוך שימוש בעובדה שעבור פולינומים הטענה נכונה,
+	\begin{align*}
+		\Deg(f + g)
+		& = \Deg(\frac{f_p g_q + f_q g_p}{f_q g_q}) \\
+		& = \deg(f_p g_q + f_q g_p) - \deg f_q - \deg g_q \\
+		& \le \max\{\deg(f_p g_q), \deg(f_q g_p)\} - \deg f_q - \deg g_q \\
+		& = \max\{ \deg f_p + \deg g_q, \deg f_q + \deg g_p \} - \deg f_q - \deg g_q \\
+		& = \max\{ \deg f_p - \deg f_q, \deg g_p - \deg g_q \} \\
+		& = \max\{ \Deg f, \Deg g \}
+	\end{align*}
+\end{proof}
+
+\question{}
+יהי $\FF$ שדה ויהי $\alpha \in \RR$ כך ש־$0 < \alpha < 1$.
+נגדיר את,
+\[
+	| \cdot |_{\alpha} : \FF(X) \to \RR^+,
+	\qquad
+	| f |_{\alpha} = \alpha^{- \Deg(f)}
+\]
+נוכיח ש־$| \cdot |_{\alpha}$ היא נורמה לא ארכימדית על $\FF(X)$.
+\begin{proof}
+	נתחיל ונראה שזוהי נורמה.
+
+	\textbf{אי־שליליות}:
+	הפונקציה מוגדרת כחזקת $\alpha$ ולכן היא אי־שלילית, ונשאר לבדוק אם $|f|_{\alpha} = 0 \iff f = 0$.
+	אם $f = 0$ אז הגדרנו $\Deg f = - \infty$ ולכן גם $\alpha^{- \Deg f} = \alpha^{\infty} = 0$.
+	אם $|f|_{\alpha} = 0$ אז בהתאם לא יתכן ש־$f$ פולינום מדרגה גדולה מאפס אחרת נקבל $\Deg f$ סופי ובפרט נורמה שונה מאפס.
+
+	\textbf{כפליות}:
+	תהיינה $f, g \in \FF(X)$, אז,
+	\[
+		| f g |_{\alpha}
+		= \alpha^{-\Deg(f g)}
+		= \alpha^{-\Deg f - \Deg g}
+		= \alpha^{-\Deg f} \cdot \alpha^{-\Deg g}
+		= |f|_{\alpha} \cdot |g|_{\alpha}
+	\]
+	כאשר השתמשנו בסעיף ב' של השאלה הקודמת.
+
+	\textbf{אי־שוויון המשולש}
+	נשתמש באי־השוויון שמצאנו בסעיף ג' של השאלה הקודמת כאשר הוא מוכפל ב־$(-1)$ ואז מועלה בחזקת $\alpha$ ולכן משמר את הכיוון שלו,
+	\[
+		|f + g|_{\alpha}
+		= \alpha^{-\Deg(f + g)}
+		\le \alpha^{-\max\{\Deg f, \Deg g\}}
+		= \alpha^{\min\{-\Deg f, -\Deg g\}}
+		= \max\{ \alpha^{-\Deg f}, \alpha^{-\Deg g} \}
+		= \max\{ |f|_{\alpha}, |g|_{\alpha} \}
+	\]
+	אז מצאנו את אי־שוויון האולטרה מטרי ובפרט את אי־שוויון המשולש.
+
+	מצאנו כי הפונקציה הנתונה היא אכן נורמה ולכן נשאר להראות שהיא לא ארכימדית, אך למעשה ראינו בהרצאה שנורמה מקיימת את אי־שוויון האולטרה מטרי אם ורק אם היא לא ארכימדית, לכן סיימנו.
+\end{proof}
+
+\question{}
+יהי $\FF$ שדה ויהי $\alpha \in \RR$ כך ש־$0 < \alpha < 1$, ונבחן את השדה הנורמי $(\FF(X), | \cdot |_{\alpha})$.
+
+\subquestion{}
+נראה כי,
+\[
+	O_{| \cdot |_{\alpha}}
+	= \left\{ \frac{f}{g} \mid f, g \in \FF[X], g \ne 0, \deg f \le \deg g \right\}
+\]
+\begin{proof}
+	נבחין כי $\frac{f}{g} \in O_{| \cdot |_{\alpha}} \iff | \frac{f}{g} |_{\alpha} \le 1$.
+	אבל,
+	\[
+		|\frac{f}{g}|_{\alpha} \le 1
+		\iff \alpha^{-\Deg(\frac{f}{g})} \le 1
+		\iff -\Deg(\frac{f}{g}) \ge 0
+		\iff -\deg f + \deg g \ge 0
+	\]
+	וקיבלנו שבדיוק $|\frac{f}{g}|_{\alpha} \le 1 \iff \deg f \le \deg g$ כפי שרצינו.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	M_{| \cdot |_{\alpha}}
+	= \left\{ \frac{f}{g} \mid f, g \in \FF[X], g \ne 0, \deg f < \deg g \right\}
+	= \frac{1}{X} O_{| \cdot |_{\alpha}}
+\]
+\begin{proof}
+	החלק הראשון זהה לחלוטין למהלך הקודם אך עם אי־שוויון חזק, כלומר,
+	\[
+		\frac{f}{g} \in M_{| \cdot |_{\alpha}}
+		\iff | \frac{f}{g} |_{\alpha}
+		\iff \deg f < \deg g
+	\]
+	ועלינו להראות רק את השוויון הנוסף.
+
+	אם $\frac{f}{g} \in O_{| \cdot |_{\alpha}}$ אז $\deg f \le \deg g$ אבל $\deg (X g) = \deg g + 1$ ולכן נקבל $\deg f < \deg(X g)$ ובהתאם $\frac{1}{X} \frac{f}{g} \in M_{| \cdot |_{\alpha}}$.
+	מהצד השני נניח ש־$\frac{f}{g} \in M_{| \cdot |_{\alpha}}$ ולכן $\deg f < \deg g$ ולכן בפרט $\deg(X f) \le \deg g$ שכן $\deg(Xf) = \deg f + 1$ וקיבלנו את הכיוון ההפוך.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\overline{\FF(X)}_{| \cdot |_{\alpha}}
+	\cong \FF
+\]
+\begin{proof}
+	ניזכר כי,
+	\[
+		\overline{\FF(X)}_{| \cdot |_{\alpha}}
+		= O_{| \cdot |_{\alpha}} / M_{| \cdot |_{\alpha}}
+		= O_{| \cdot |_{\alpha}} / \frac{1}{X} O_{| \cdot |_{\alpha}}
+	\]
+	הוא שדה השאריות.
+	אם נגדיר,
+	\[
+		\varphi : \FF(X) \to \FF,
+		\qquad
+		\varphi(\frac{a_n x^n + \cdots + a_0 x^0}{b_n x^n + \cdots + b_0 x^0}) = b_0
+	\]
+	נבהיר ש־$\varphi$ מוגדרת היטב אם לוקחים פולינומים זרים כתוצאה ישירה של חילוק ארוך,
+	ובנוסף נקבל
+	\[
+		\frac{f}{g} \in \ker \varphi
+		\iff b_0 = 0
+		\iff \frac{f}{g} = \frac{f}{X h}, h \in \FF[X]
+	\]
+	כלומר $\ker \varphi = \frac{1}{X} O_{| \cdot |_{\alpha}}$.
+	אז ממשפט האיזומורפיזם הראשון לחוגים נקבל,
+	\[
+		\FF
+		\cong
+		\FF(X) / \ker \varphi
+		= \overline{\FF(X)}_{| \cdot |_{\alpha}}
+	\]
+	בדיוק.
+\end{proof}
+
+\end{document}
