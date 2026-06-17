@@ -1387,5 +1387,144 @@ $Y$ הוא ההטלה של $X$ על $L^2(\Omega, \Gg, \PP)$, כלומר $X - Y$ 
 	\]
 \end{corollary}
 
+\section{שיעור 10 --- 17.6.2026}
+\subsection{מרטינגלים}
+אם ${\{ A_k \}}_{k \in \NN}$ חלוקה של $\Omega$ ו־$A_k \in \Ff$, נסמן $G = \sigma(A_1, A_2, \ldots)$.
+$X$ משתנה־מקרי בעל תוחלת ונסמן,
+\[
+	a_k
+	= \EE(X \mid A_k)
+	= \frac{\EE(X \indicator_{A_k})}{\PP(A_k)}
+.\]
+לכל $\omega \in A_k$ נגדיר $Z(\omega) = a_k$.
+\begin{proposition}
+	$Z = \EE[X \mid G]$, ו־$Z$ הוא $G$־מדיד כי,
+	\[
+		G
+		\in \bigcup_{a_k \in B} A_k
+		= Z^{-1}(B)
+	.\]
+\end{proposition}
+\begin{definition}[תהליך צפוי]
+	תהליך ${\{ C_n \}}_{n \in \NN}$ נקרא צפוי ביחס לפילטרציה $\Ff_n$ אם $C_n$ הוא $\Ff_n$־מדיד לכל $n$.
+\end{definition}
+\begin{definition}
+	אם $X_n$ הוא מרטינגל ו־$C_n$ צפוי (ביחס ל־$\Ff_n$) נגדיר,
+	\[
+		Y_n
+		= {(C \cdot X)}_n
+		= \sum_{k = 1}^n C_k (X_k - X_{k - 1})
+	.\]
+\end{definition}
+\begin{proposition}
+	$Y_n$ הוא מרטינגל.
+\end{proposition}
+\begin{proof}
+	\begin{align*}
+		\EE[Y_{n + 1} \mid \Ff_n]
+		& = \EE[Y_n + C_{n - 1}(X_n - X_{n - 1})] \\
+		& = \EE[Y_n \mid \Ff_n] + \EE[C_{n + 1}(X_{n + 1} - X_n) \mid \Ff_n] \\
+		& = Y_n + C_{n + 1} \EE[X_{n + 1} - X_n \mid \Ff_n] \\
+		& = Y_n + C_{n + 1}(\EE[X_{n + 1} \mid \Ff_n] - \EE[X_n \mid \Ff_n]) \\
+		& = Y_n
+	.\end{align*}
+\end{proof}
+נגדיר עבור זמן עצירה $\tau : \Omega \to \NN$ את,
+\[
+	Y_n
+	= X_{\min(\tau, n)}
+.\]
+\begin{proposition}
+	$T_n$ מרטינגל.
+\end{proposition}
+\begin{proof}
+	\[
+		C_n
+		= \indicator_{\{\tau \ge n\}}
+		= 1 - \indicator_{\{\tau \le n - 1 \}}
+	.\]
+	כלומר $C_n$ הוא $\Ff_{n - 1}$־מדיד, כלומר צפוי.
+	אז,
+	\[
+		Y_n
+		= X_{\min\{\tau, n\}}
+		= \sum_{k = 1}^n \indicator_{\{ \tau \ge k \}}(X_k - X_{k - 1})
+	.\]
+	כי אם $\tau(\omega) \ge n$ נקבל,
+	\[
+		X_n - X_0
+		= \sum_{k = 1}^n X_k - X_{k - 1}
+	.\]
+	ואם $\tau(\omega) \le n$ אז,
+	\[
+		X_{\tau} - X_0
+		= \sum_{k = 1}^{\tau(n)} X_k - X_{k - 1}
+	.\]
+	ובסך־הכול קיבלנו את המבוקש.
+\end{proof}
+\begin{proposition}
+	$X_n$ תהליך ו־$\tau$ זמן עצירה כך ש־$\tau < \infty$ כמעט־תמיד אז,
+	\[
+		X_{\min\{\tau, n\}}
+		\xrightarrow{\text{a.s.}}
+		X_{\tau}
+	.\]
+\end{proposition}
+\begin{proof}
+	לכל $\omega$ עבורו $\tau(\omega) < \infty$ מתקיים,
+	\[
+		\min\{ \tau(\omega), n \}
+		\to \tau(\omega)
+	.\]
+\end{proof}
+\begin{theorem}[Doobs Optional Stopping]
+	יהי $X_n$ מרטינגל ו־$\tau$ זמן עצירה (ביחס ל־$\Ff_n$), אז מתקיים אחד מהבאים:
+	\begin{enumerate}
+		\item $\tau \le k$ כמעט־תמיד עבור $k \in \NN$ כלשהו
+		\item $\tau < \infty$ כמעט־תמיד ומתקיים,
+			\[
+				|X_{\min(\tau, n)}| \le M
+			.\]
+			כמעט־תמיד לאיזשהו $M$
+		\item $\EE(\tau) < \infty$ ומתקיים,
+			\[
+				|X_{\min(\tau, n + 1)} - X_{\min(\tau, n)}| \le M
+			.\]
+			כמעט־תמיד לאיזשהו $M$ אז $\EE(X_{\tau}) = 0$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	נסמן $Y_n = X_{\min(\tau, n)}$ והראינו שזהו מרטינגל.
+	גם ראינו ש־$Y_n \to X_{\tau}$ כמעט־תמיד, ובנוסף $\EE(Y_n) = 0$.
+	
+	עבור 1 $X_{\tau} = Y_k$ (עבור $k$ שחוסם את $\tau$).
+	עבור 2 $Y_n$ חסום ולפי משפט ההתכנסות החסומה נקבל $\EE(X_{\tau}) \to \EE(Y_n)$.
+	עבור 3,
+	\[
+		X_{\min(\tau, n)}
+		= \sum_{k = 1}^n X_{\min(\tau, k)} - X_{\min(\tau, k - 1)}
+		\le \sum_{k = 1}^n |X_{\min(\tau, k)} - X_{\min(\tau, k - 1)}|
+		\le M \min(\tau, n)
+	.\]
+	ולכן $Y_n$ נשלטת על־ידי $M \tau$ שבעלת תוחלת סופית ולפי משפט ההתכנסות הנשלטת נקבל $\EE(Y_n) \to \EE(X_{\tau})$.
+\end{proof}
+יהי מרטינגל על $\ZZ$ עם $X_0 = 0$ וכן,
+\[
+	\tau = \min\{ t \mid X_t \in \{-a, b\} \}
+.\]
+עבור $a, b \in \NN$.
+בהתאם,
+\[
+	\PP(\tau_b < \tau_a)
+	= \frac{a}{a + b}
+.\]
+אז נגדיר $Y_n = X_n^2 - n$,
+\[
+	\EE[Y_n \mid \Ff_n]
+	= \EE[X_{n + 1}^2 - n \mid \Ff_n]
+	= \EE[{(X_n + Z_{n + 1})}^2 \mid \Ff_n] - n - 1
+	= \EE[X_n^2 + 2 X_n Z_{n + 1} + Z_{n + 1}^2 \mid \Ff_n] - n - 1
+.\]
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
