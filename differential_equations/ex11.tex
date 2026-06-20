@@ -1,0 +1,228 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 11 --- משוואות דיפרנציאליות, 80320}
+% chktex-file 9
+% chktex-file 17
+
+\DeclareMathOperator\Div{div}
+
+\usepackage{pgfplots, tikz, pgffor}
+\usetikzlibrary{math}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]{}
+
+\question{}
+נגדיר את $\Phi : \RR^2 \setminus \{ 0 \} \to \RR$ על־ידי,
+\[
+	\Phi(x)
+	= \frac{1}{2 \pi} \ln \lVert x \rVert
+\]
+נבחין כי מצאנו שזהו פתרון למשוואת לפלס הדו־מימדית.
+נראה שאם $f \in C_c^2(\RR^2)$ הפונקציה,
+\[
+	u(x)
+	= \frac{1}{2 \pi} \int_{\RR^2} \Phi(y) f(x - y)\ dy
+	= \frac{1}{2 \pi} (\Phi * f)(x)
+\]
+היא פתרון למשוואה $\Delta u = f$.
+\begin{proof}
+	נראה תחילה שהיא מוגדרת לכל $x$.
+	מחסימות וקומפקטיות $f$ מספיק לבדוק את התכנסות האינטגרל של $\Phi$ בכדורים פתוחים סביב הראשית,
+	\[
+		\int_{B(0, R)} \frac{1}{2 \pi} \ln \lVert x \rVert\ dx
+		= \int_0^{2 \pi} \int_0^R \frac{1}{2 \pi} r \ln(r)\ dr\ d \theta
+		= \frac{1}{4} \left. x^2 2 \ln x - x^2 \right\rvert_0^R
+		< \infty
+	\]
+	וקיבלנו כי $u$ אכן מוגדרת, ונשאר להראות שהיא מקיימת $\Delta u = f$.
+	נבחין כי מהמטלה הקודמת נובע,
+	\[
+		\Delta u
+		= \frac{1}{2 \pi} \int_{\RR^2} \Phi(y) \Delta f(y - x)\ dy
+	\]
+	בפרט $\Delta u$ מוגדר ונוכל להוכיח את הטענה.
+	נבחין שבשונה מהמקרה $d > 2$ האינטגרל מתכנס רק בכדורים סביב הראשית ולכן נגדיר את $\Omega_r = B(0, r)$ ונקבל,
+	\[
+		\Delta u
+		= \frac{1}{2 \pi} \int_{\RR^2} \Phi(y) \Delta f(y - x)\ dy
+		= \frac{1}{2 \pi} \lim_{r \to \infty} \int_{\Omega_r} \Phi(y) \Delta f(y - x)\ dy
+	\]
+	בתחום זה מנוסחת גרין הראשונה,
+	\[
+		\int_{\Omega_r} \Phi(y) \Delta f(y - x)\ dy
+		= \int_{\partial B(0, r)} \Phi(y) \partial_{\nu} f(x - y)\ dy - \int_{B(0, r)} \langle \nabla \Phi(y), \nabla f(x, y) \rangle\ dy
+	\]
+	אנו יודעים ש־$f |_{B^C(0, r)} \equiv 0$ עבור $r$ גדול מספיק, לכן בפרט נגזרתה הנורמלית מתאפסת בסביבה זו ונקבל,
+	\[
+		\int_{\Omega_r} \Phi(y) \Delta f(y - x)\ dy
+		= - \int_{B(0, r)} \langle \nabla \Phi(y), \nabla f(x, y) \rangle\ dy
+	\]
+	וממהלך שקול לתרגול על־ידי שימוש בנוסחת גרין ובהרמוניות $\Phi$ נקבל,
+	\[
+		\int_{\Omega_r} \Phi(y) \Delta f(y - x)\ dy
+		= \int_{\partial B(0, r)} \partial_{\nu} \Phi(y) f(x - y)\ dy
+	\]
+	אבל,
+	\[
+		\partial_{\nu} \Phi(y)
+		= \frac{1}{2 \pi} \frac{y}{{\lVert y \rVert}^2}
+	\]
+	וכן כפונקציה רדיאלית $\partial_{\nu} \Phi$ קבועה ונוכל לחשבה, מערך הנגזרת נוכל להסיק,
+	\[
+		\int_{\partial B(0, r)} \partial_{\nu} \Phi(y)\ dy
+		= \frac{1}{r} \frac{1}{2 \pi} \vol(\partial B(0, r))
+		= 1
+	\]
+	וקיבלנו את,
+	\[
+		\int_{\partial B(0, r)} f(x - y)\ dy
+	\]
+	ומרציפות הגבול הזה הוא בדיוק $f(x)$ וסיימנו.
+\end{proof}
+
+\question{}
+\subquestion{}
+תהי $\Omega \subseteq \RR^d$ פתוחה וחסומה בעלת שפה חלקה.
+נניח ש־$u_1, u_2 \in C^2(\overline{\Omega})$ כך שלכל $x \in \Omega$ מתקיים,
+\[
+	\Delta u_1(x)
+	= \Delta u_2(x)
+\]
+ונניח בנוסף ש־$u_1 |_{\partial \Omega} \equiv u_2 |_{\partial \Omega} \equiv 0$.
+נוכיח ש־$u_1 = u_2$.
+\begin{proof}
+	נסמן $u = u_1 - u_2$.
+	נזכור כי לכל $f \in C^1(\Omega)$ מתקיים,
+	\[
+		\Div(f \cdot \nabla f)
+		= \sum_{n = 1}^d \partial_n (f \cdot \partial_n f)
+		= \sum_{n = 1}^d {(\partial_n f)}^2 + f \cdot \partial_{n^2} f
+		= \lVert \nabla f \rVert^2 + f \cdot \nabla f
+	\]
+	נזכור כי מתקיים $u |_{\partial \Omega} = (u_1 - u_2) |_{\partial \Omega} = 0$ ולכן ממשפט הדיברגנץ מתקיים,
+	\[
+		\int_{\Omega} \lVert \nabla u \rVert^2 + u \cdot \Delta u\ d\vol_d
+		= \int_{\Omega} \Div(u \cdot \nabla u)\ d\vol_d
+		= \int_{\partial \Omega} \langle u \cdot \nabla u, \nu \rangle\ d\vol_{d - 1}
+		= 0
+	\]
+	אבל נזכור כי גם $\Delta u_1 = \Delta u_2 \implies \Delta u = 0$ וקיבלנו שבדיוק,
+	\[
+		\int_{\Omega} \lVert \nabla u \rVert^2\
+		= 0
+	\]
+	ובהתאם נסיק ש־$u = 0$ בלבד (זאת שכן זהו פונקציונל לינארי חיובי) ובפרט $u_1 = u_2$.
+\end{proof}
+
+\subquestion{}
+נבחין כי הסעיף הקודם נכון גם תחת ההנחה היותר כללית ש־$\partial_{\nu} u_1 = \partial_{\nu} u_2$ על $\partial \Omega$,
+זאת שכן זאת הייתה הדרישה היחידה שהשתמשנו בה במהלך ההוכחה.
+
+\subquestion{}
+נניח ש־$u_1, u_2 \in C(\RR^d)$ כך שלכל $x \in \RR^d$ מתקיים,
+\[
+	\Delta u_1(x)
+	= \Delta u_2(x)
+\]
+וכן נניח ש־$\lim_{x \to \infty} u_1(x) - u_2(x) = 0$. \\
+נראה ש־$u_1 = u_2$.
+\begin{proof}
+	נסמן שוב $u = u_1 - u_2$ ולכן מהנתונים נובע $\Delta u \equiv 0$ וכן $\lim_{x \to \infty} u(x) = 0$.
+	קיבלנו ש־$u$ היא הרמונית ומקיימת את תכונת הערך הממוצע על ספירות, אבל לכל $\varepsilon > 0$ קיים $r > 0$ כך שאם $x \in B(\infty, r)$ אז,
+	\[
+		\lVert u(x) \rVert < \varepsilon
+	\]
+	ישירות מהגדרת הגבול הנתון,
+	לכל $x \in \RR^d$ נוכל אם כך לבחור ספירה עם רדיוס $r$ גדול מספיק ונקבל מעיקרון המקסימום והמינימום ומתכונת הערך הממוצע על אינטגרל שמתקיים,
+	\[
+		- \vol_{d - 1}(\partial B(x, r)) \varepsilon
+		\le u(x)
+		= \int_{\partial B(x, r)} u(y)\ dy
+		\le \vol_{d - 1}(\partial B(x, r)) \varepsilon
+	\]
+	ומשרירותיות $\varepsilon > 0$ נקבל שבפרט $u(x) = 0$, כלומר $u_1 = u_2$ על $\RR^d$.
+\end{proof}
+
+\question{}
+תהי $u : \RR^d \to \RR$ הרמונית.
+נראה שאם $u$ חסומה אז $u$ קבועה.
+\begin{proof}
+	ראינו בכיתה שקיים קבוע $0 < C = C(d, 1)$ כך שמתקיים,
+	\[
+		\forall x \in \RR^d,\ 
+		|\partial_i u| \le \frac{C}{r^{d + 1}} \int_{B(x, r)} |u(x)|\ dx
+	\]
+	נסמן $0 < D$ חסם של $u$, כלומר $|u| \le D$ ולכן,
+	\[
+		|\partial_i u|
+		\le \frac{C}{r^{d + 1}} \int_{B(x, r)} |u(x)|\ dx
+		\le \frac{C}{r^{d + 1}} \vol(B(0, r)) D
+	\]
+	אבל $\vol_d(B(0, r)) = o(r^d)$ ולכן נקבל שעבור $r \to \infty$ מתקבל $|\partial_i u| \le 0$, כלומר $D u \equiv 0$ ולכן $u$ קבועה.
+\end{proof}
+
+\question{}
+יהי $d \ge 3$ ונגדיר $K : B(0, 1) \times \partial B(0, 1)$ על־ידי,
+\[
+	K(x, y)
+	= \frac{1}{\vol_{d - 1}(\partial B_1)}  \frac{1 - \lVert x \rVert^2}{\lVert x - y \rVert^2}
+\]
+ותהי $g : \partial B(0, 1) \to \RR$ רציפה.
+
+\subquestion{}
+נראה שהפונקציה,
+\[
+	u(x)
+	= \int_{\partial B(0, 1)} K(x, y) g(y)\ ds(y)
+\]
+היא הרמונית.
+\begin{proof}
+	נראה ש־$u$ מקיימת את תכונת הערך הממוצע לספירות.
+	יהיו $x_0 \in B(0, 1), r > 0$ כך ש־$B(x_0, r) \subseteq B(0, 1)$ ונבדוק,
+	\begin{multline*}
+		\int_{B(x_0, r)} u(x)\ dx
+		= \int_{B(x_0, r)} \int_{\partial B(0, 1)} K(x, y) g(y)\ ds(y)\ dx \\
+		= \int_{\partial B(0, 1)} g(y) \int_{B(x_0, r)} K(x, y)\ dx\ ds(y)
+		= \int_{\partial B(0, 1)} g(y) K(x_0, y)\ ds(y)
+		= u(x_0)
+	\end{multline*}
+	כאשר השתמשנו בפוביני ובעובדה שלכל $y$ הפונקציה $K(x, y)$ היא הרמונית ביחס ל־$x$.
+	בהתאם $u$ הרמונית.
+\end{proof}
+
+\subquestion{}
+נראה שלכל $y_0 \in \partial B(0, 1)$ מתקיים,
+\[
+	\lim_{x \to x_0} u(x)
+	= g(y_0)
+\]
+\begin{proof}
+	יהי $\varepsilon > 0$.
+	יהיו $x \in B(0, 1), y_0 \in \partial B(0, 1)$ כך שמרחקן קטן מספיק.
+	
+	קיימת קשת $A \subseteq \partial B(0, 1)$ כך שמתקיים,
+	\[
+		\left\lvert \int_{\partial B(0, 1) \setminus A} K(x, y) g(y)\ ds(y) \right\rvert
+		< \varepsilon
+	\]
+	זאת ישירות מתכונת הערך הממוצע והחסרת קשת מספיק קטנה.
+	נוכל להקטין מספיק עוד את $A$ כדי לקבל מרציפות $g$ את הטענה,
+	\[
+		\sup_{y \in A} |g(y) - g(y_0)|
+		< \varepsilon
+	\]
+	מתקיים,
+	\[
+		|u(x) - g(y_0)|
+		= \left\lvert u(x) - \int_{\partial B(0, 1)} K(x, y) g(y_0)\ ds(y) \right\rvert
+		=
+		\left\lvert \int_{\partial B(0, 1)} K(x, y) (\overbrace{g(y) - g(y_0)}^{\le \varepsilon})\ ds(y) \right\rvert
+		\le \varepsilon
+	\]
+	כאשר השתמשנו בעובדה ש־$\int K = 1$.
+	בהתאם נקבל שבדיוק $\lim_{x \to y_0} u(x) = g(y_0)$.
+\end{proof}
+
+\end{document}
