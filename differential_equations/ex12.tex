@@ -18,12 +18,12 @@
 \[
 	\lVert f \rVert_{\infty, K}
 	= \sup_{x \in K} |f(x)|
-.\]
+\]
 נניח ש־${(u_n)}_{n = 1}^{\infty} \subseteq C^2(\Omega)$ סדרת הרמוניות ונניח שקיימת $u : \Omega \to \RR^d$ כך שלכל $K \subseteq \Omega$ קומפקטית מתקיים,
 \[
 	\lim_{n \to \infty} \lVert u_n - u \rVert_{\infty, K}
 	= 0
-.\]
+\]
 
 \subquestion{}
 נראה ש־$u$ הרמונית.
@@ -32,7 +32,7 @@
 	\[
 		\bigcup_{m = 1}^\infty K_m
 		= \Omega
-	.\]
+	\]
 	בנוסף אנו מקבלים ש־$\lim_{n \to \infty} \lVert u_n - u \rVert_{\infty, K_m} = 0$, ולכן נוכל לבנות במעבר דרך הגדרת הגבול מטיעון אלכסון גם את,
 	\[
 		\lim_{n \to \infty} \lVert u_n - u \rVert_{\infty, \bigcup_{m = 1}^n K_m}
@@ -48,26 +48,26 @@
 \[
 	\lim_{n \to \infty} \lVert \partial_{i_1} \cdots \partial_{i_k} (u_n - u) \rVert_{\infty, C}
 	= 0
-.\]
+\]
 \begin{proof}
 	ממשפט החסם לנגזרות של הרמוניות קיים חסם גלובלי $D = D(d, k)$ כך שלכל הרמונית $v$ בתחום מתקיים,
 	\[
 		|\partial_{i_1} \cdots \partial_{i_k} v(x)|
 		\le \frac{D}{r^{d + k}} \int_{B(x, r)} |v(y)|\ dy
-	.\]
+	\]
 	לכל $r$ כך ש־$B(x, r) \subseteq C$.
 	מקומפקטיות $C$ בתוך $\Omega$ קיים כיסוי סופי של כדורים $C \subseteq \bigcup_{n = 1}^l B(x_n, r_n) \subseteq \Omega$. \\
 	נגדיר את $C' = \cl \bigcup_{n = 1}^l B(x_n, r_n)$, אז $C \subseteq C' \subseteq \Omega$ וכן $C'$ קומפקטית ולכן גם,
 	\[
 		l \int_{C'} |(u - u_n)(y)|\ dy
 		< \infty
-	.\]
+	\]
 	ונסמן ערך זה ב־$A_n$, נבחין כי זהו חסם לסכום האינטגרלים על הכדורים, בפרט $\int_C |u - u_n| \le A_n$, ומהתכנסות במידה שווה של $u_n$ נקבל שגם $A_n \to 0$.
 	עתה לכל $x \in C$ נוכל לבחור את $x \in B(x_n, r_n)$ שקיים מעצם הכיסוי, ולכן $B(x, \lVert x - x_n \rVert) \subseteq B(x_n, r_n)$ ובפרט,
 	\[
 		|\partial_{i_1} \cdots \partial_{i_k} v(x)|
 		\le \frac{D}{r^{d + k}} A_n
-	.\]
+	\]
 	וקיבלנו התכנסות.
 \end{proof}
 
@@ -77,20 +77,20 @@
 \[
 	\max_{\overline{\Omega}} u
 	= \max_{\partial \Omega} u
-.\]
+\]
 \begin{proof}
 	יהי $t > 0$ ונגדיר את,
 	\[
 		u_t(x)
 		= u(x) + t \lVert x \rVert^2
-	.\]
+	\]
 	אז מתקיים,
 	\[
 		\Delta u_t(x)
 		= \Delta u(x) + t \Delta \lVert x \rVert^2 + \partial_t^2 u_t
 		= 0 + t \sum_{i = 1}^d \partial_i^2 (x_1^2 + \cdots + x_d^2)
 		= 2^d t
-	.\]
+	\]
 	נבחין כי $\Omega$ חסומה ולכן $\cl \Omega$ קומפקטית ובפרט $u$ מקבלת עליה מקסימום.
 	אם המקסימום שייך לשפה אז סיימנו, לכן נניח ש־$u(x) = \max_{\overline{\Omega}} u$ מקיימת $x \in \Omega$.
 	נבחין כי $|H u|$ חסום ובפרט עבור בחירת $t$ מספיק גדול קיבלנו שהוא יהיה חיובי לחלוטין בכל נקודה, בפרט לא תהיה נקודת מקסימום מקומי.
@@ -105,35 +105,38 @@
 		\Delta u|_{\Omega} = 0 \\
 		u |_{\partial \Omega} = g |_{\partial \Omega}
 	\end{cases}
-.\]
+\]
 נראה ש־$T : C(\partial \Omega) \to C^2(\Omega) \cap C(\overline{\Omega})$ הוא אופרטור לינארי חסום וכן ש־$\lVert T \rVert_{\operatorname{op}} \le 1$.
 \begin{proof}
 	תהי $g \in C(\partial \Omega)$ ונבחין כי אם $\alpha \in \RR$ סקלר אז,
 	\[
 		\Delta (\alpha u)
 		= \alpha \Delta u
-	.\]
+	\]
 	מלינאריות הנגזרת.
 	בפרט על $\Omega$ נקבל $\Delta(\alpha u) = \alpha \Delta u = \alpha \cdot 0 = 0$ וכן על $\partial u$,
 	\[
 		\alpha u = \alpha g
-	.\]
+	\]
 	ישירות מ־$u = g$, נסיק ש־$\alpha u$ הפתרון היחיד של הבעיה עבור $\alpha g$ ולכן $T(\alpha g) = \alpha T g$.
 
 	אם $h \in C(\partial \Omega)$ בנוסף, אז שוב מלינאריות הנגזרת נקבל גם,
 	\[
 		T(g + h)
 		= Tg + Th
-	.\]
+	\]
 	וקיבלנו ש־$T$ לינארי.
 
 	נעבור לבדוק שהוא חסום,
 	\[
 		\lVert T g \rVert_{\infty}
-		= \sup\{ |g(x)| \mid x \in \overline{\Omega} \}
-	.\]
-
-	TODO
+		= \sup\{ \lVert T g(x) \rVert \mid x \in \overline{\Omega} \}
+		= \max\{ \lVert T g(x) \rVert \mid x \in \overline{\Omega} \}
+	\]
+	כאשר המעבר האחרון נובע מתחום קומפקטי.
+	נבחין כי זוהי פונקציה הרמונית כפתרון של בעיית לפלס ולכן מקסימום זה מתקבל על השפה ובפרט סופי.
+	קיבלנו אם כך שגם $\lVert T g \rVert_\infty = \lVert g \rVert_\infty$, מאותה הסיבה בדיוק.
+	מהגדרת נורמה אופרטורית נקבל אם כך שגם $\lVert T \rVert_{\operatorname{op}} \le 1$.
 \end{proof}
 
 \end{document}
