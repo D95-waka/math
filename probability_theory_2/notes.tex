@@ -1526,5 +1526,293 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 	= \EE[X_n^2 + 2 X_n Z_{n + 1} + Z_{n + 1}^2 \mid \Ff_n] - n - 1
 .\]
 
+\section{שיעור 12 --- 29.6.2026}
+\subsection{מרטינגלים --- המשך}
+דיברנו על מרטינגלים, אשר מקיימים $\EE[X_{n + 1} \mid \Ff_n] = X_n$ ודיברנו על זמן עצירה $\tau : \Omega \to \NN$ שמקיימת תמיד $\{ \tau = k \} \in \Ff_k$.
+לבסוף הגענו למשפט העצירה האופציונלית.
+\begin{corollary}
+	אם $P$ שרשרת־מרקוב נשנית אז היא ליובל,
+	כלומר אין פונקציות הרמוניות חסומות ולא קבועות, כלומר אין פונקציה $h$ שמקיימת $Ph = h$, או במילים אחרות,
+	\[
+		\sum_y P(x, y) h(y)
+		= h(x)
+	.\]
+\end{corollary}
+אם נסמן $Y_n = h(X_n)$ נקבל,
+
+\begin{example}
+	אם $X_n$ הילוך מקרי פשוט על $\ZZ^d$ ו־$h$ פונקציה הרמונית חסומה,
+	ונגדיר $X_0 = (0, \ldots, 0)$ ו־$Y_0 = (2, 0, \ldots, 0)$.
+	נראה ש־$h$ קבועה, כלומר ששרשרת מרקוב זו היא ליוביל. \\
+	נניח ש־$Z_n$ סדרת וקטורים בלתי־תלויים המקיימים,
+	\[
+		Z_n
+		\sim U(\pm e_i)
+	.\]
+	ולכן $X_{n + 1} = X_n + Z_{n + 1}$ ומתקיים,
+	\[
+		Y_{n + 1}
+		= Y_n + \indicator_{X_n = Y_n} Z_{n + 1} - \indicator_{X_n \ne Y_n} Z_{n + 1}
+	.\]
+	בהתאם $h(X_n)$ הוא מרטינגל ולכן גם $h(Y_n)$ ונקבל,
+	\[
+		\EE(h(X_{\tau}))
+		= \EE(h(X_0))
+		= h((0, \ldots, 0))
+	.\]
+\end{example}
+נניח ש־$X_n$ מרטינגל ולכן $\EE[X_{n + 1} \mid \Ff_n] = X_n$.
+המטרה שלנו כרגע היא להראות קיום של $X_{\infty}$ כך ש־$X_n \xrightarrow{\text{a.s.}} X_\infty$.
+יהיו $a < b$ כלשהם, ונגדיר $U_N(a, b)$ בתור מספר החציות כלפי מעלה של הקטע $[a, b]$.
+עבור $k$ כך שקיימים זמנים $0 \le s_1 < t_1 < s_2 < t_2 < \cdots < s_k < t_k \le N$ עבורם,
+\[
+	\forall i \le k,
+	X_{s_i} \le a,
+	\qquad
+	\forall i \le k,
+	X_{s_i} \ge b
+.\]
+אז $U_N(a, b)$ סדרה עולה של משתנים־מקריים מתאימה ל־$\Ff_n$.
+\begin{proposition}
+	אם נסמן $x^- = \max(-a, 0)$ אז מתקיים,
+	\[
+		\EE(U_N(a, b))
+		\le \frac{\EE({(X_N - a)}^-)}{b - a}
+	.\]
+\end{proposition}
+\begin{proof}
+	$X_s$ מרטינגל ונגדיר,
+	\[
+		Y_n
+		= \sum_{n = 1}^m C_n (X_n - X_{n - 1})
+	.\]
+	כאשר $C_n$ צפוי ($C_n$ הוא $\Ff_{n - 1}$־מדיד לכל $n$).
+	נקבל ש־$Y_n$ הוא מרטינגל.
+
+	נגדיר $C_1 = \indicator_{X_0 \le a}$ ורקורסיבית,
+	\[
+		C_n
+		= \indicator_{C_{n - 1} = 1} \cdot \indicator_{X_{n - 1} = <}
+		+ \indicator_{C_{n - 1} = 0} \cdot \indicator_{X_{n - 1} \le a}
+	.\]
+	אז $Y_n$ הוא אכן מרטינגל.
+	נחשב,
+	\begin{align*}
+		Y_N
+		& = \sum_{i = 1}^k \sum_{n = s_{i - 1}}^{t_i} X_n - X_{n - 1} + \indicator_{s_{k + 1} \le N} \sum_{n = s_k + 1}^N X_n - X_{n - 1} \\
+		& = \sum_{i = 1}^k X_{t_i} - X_{s_i} + \indicator_{s_{k + 1} \le N} (X_N - X_{s_{k + 1}}) \\
+		& \ge \sum_{i = 1}^k (b - a) + \indicator_{s_{k + 1} \le N} (X_N - X_{s_{k + 1}})
+	.\end{align*}
+	וכן,
+	\[
+		0
+		= \EE(Y_N)
+		\ge (b - a) \EE(U_N(a, b)) + \EE(\indicator_{s_{k + 1} \le N}(X_N - X_{s_{k + 1}}))
+	.\]
+	אבל,
+	\[
+		\EE(U_N(a, b))
+		\le \frac{-\EE(\indicator_{s_{k + 1} \le N}(X_N - X_{s_{k + 1}}))}{b - a}
+	.\]
+	ולאחר העברות אגפים,
+	\[
+		\EE(\indicator_{s_{k + 1} \le N}(X_N - X_{s_{k + 1}}))
+		\EE(\indicator_{s_{k + 1} \le N}(a - X_N))
+		\EE(\indicator_{s_{k + 1} \le N}{(a - X_N)}^+)
+		\EE({(a - X_N)}^+)
+		|a| + \EE(|X_N|)
+	.\]
+	אם $\EE(|X_N|) \le M$ לכל $N$ אז $\EE(U_N(a, b))$ חסומה ואחידה ו־$U_N(a, b)$ סדרה עולה ולכן,
+	\[
+		U_N(a, b)
+		\to U_{\infty}(a, b)
+	.\]
+	עם תוחלת סופית ולכן סופי כמעט־תמיד, לכן $X_n$ מתכנס.
+	בפרט מרטינגל חסום כמעט־תמיד מתכנס וגם מרטינגל אי־שלילי מתכנס.
+\end{proof}
+\begin{definition}[עוד התכנסויות]
+	$X_n \xrightarrow{d} X_\infty$ אם $F_{X_n}(a) \xrightarrow{n \to \infty} F_{X_\infty}(a)$ לכל $a$ שהיא נקודת אי־רציפות של $F_{X_\infty}$ כאשר $F_X(a) = \PP(X \le a)$. \\
+	$X_n \xrightarrow{w}$ אם $\EE(h(X_n)) \to \EE(h(X_\infty))$ לכל $h$ רציפה וחסומה.
+\end{definition}
+\begin{proposition}
+	$\xrightarrow{w}$ אם ורק אם $\xrightarrow{d}$.
+\end{proposition}
+\begin{definition}[ייצוג סקורחוב]
+	נניח ש־$F : \RR \to [0, 1]$ שהיא מונוטונית עולה חלש, רציפה מימין ו־$F(x) \xrightarrow{x \to -\infty} 0$ ו־$F(x) \xrightarrow{x \to \infty} 1$.
+\end{definition}
+\begin{proposition}
+	קיים משתנה מקרי כך ש־$F \equiv F_X$.
+\end{proposition}
+\begin{proof}
+	נוכיח את המקרה הפרטי בו היא רציפה ומונוטונית עולה ממש.
+	במקרה זה $F$ היא הפיכה מ־$(0, 1)$ ל־$\RR$ והפונקציה ההופכית $G : (0, 1) \to \RR$ היא המשתנה המקרי הרצוי, נראה זאת.
+	נגדיר $\Omega = [0, 1]$ עם מידה אחידה, ותהי $Y \sim U[0, 1]$ אז,
+	\[
+		\PP(G(Y) \le a)
+		\PP(Y \le F(a))
+		= F(a) - 0
+	.\]
+	כלומר מצאנו שבמקרה זה קל מאוד לבנות משתנה מקרי מתאים.
+\end{proof}
+\begin{proposition}
+	$F_h(a) \to F_\infty(a)$ לכל $a$ נקודות רציפות של $F_\infty$ ו־$X_n, X_\infty$ ייצוגי סקורחוב שלכם (עם אותו $Y$) אז $X_n \xrightarrow{\text{a.s.}} X_\infty$.
+\end{proposition}
+\begin{theorem}[משפט הגבול המרכזי]
+	$X_n$ משתנים־מקריים שווי־התפלגות בלתי־תלויים עם תוחלת $0$ ושונות $1$ אז,
+	\[
+		Z_n
+		= \frac{\sum_{i = 1}^n X_i}{\sqrt{n}}
+		\xrightarrow{d / w}
+		Z \sim N(0, 1)
+	.\]
+\end{theorem}
+נתחיל בסקיצה כללית מאוד להוכחה, אותה נמשיך לפתח בהמשך.
+\begin{proof}
+	ניזכר בפונקציות יוצרות מומנטים,
+	\[
+		M_X(t)
+		= \EE(e^{t X})
+	.\]
+	אם $X$ ו־$Y$ בלתי־תלויים אז,
+	\[
+		M_{X + Y}(t)
+		= \EE(e^{t(X + Y)})
+		= \EE(e^{t X}) \EE(e^{t X})
+		= M_X(t) M_Y(t)
+	.\]
+	אם $a \in \RR$ אז,
+	\[
+		M_{a X}(t)
+		= \EE(e^{t a X})
+		= M_X(a t)
+	.\]
+	נטען את הטענה (שיש להוכיח שמתקיים),
+	\[
+		e^{t X}
+		= 1 + t X + \frac{{(t X)}^2}{2} + \cdots
+	.\]
+	ולכן,
+	\[
+		M_X(t)
+		= 1 + \EE(X) t + \EE(X^2) \frac{t^2}{2} +\cdots
+	.\]
+	בפרט נובע,
+	\[
+		M_X'(0)
+		= \EE(X),
+		M_X''(0) = \EE(X^2),
+		\ldots
+	.\]
+	נעבור לחישוב עבור $Z_n$,
+	\[
+		M_{Z_n}(t)
+		= M_{\sum_{i = 1}^n X_i}(\frac{t}{\sqrt{n}})
+		= {\left(M_{X_1}\left(\frac{t}{\sqrt{n}}\right)\right)}^n
+	.\]
+	נקבל שגם,
+	\[
+		M_{X_1}(t)
+		= 1 + \overset{= 0}{\EE(X_1)} t + \overset{= 1}{\EE(X_1^2)} \frac{t^2}{2} + o(t^2)
+		= 1 + \frac{t^2}{2} + o(t^2)
+	.\]
+	ומשילוב שני השוויונות האחרונים,
+	\[
+		{\left(M_{X_1}\left(\frac{t}{\sqrt{n}}\right)\right)}^n
+		= {\left(1 + \frac{t^2}{2^n} + o\left(\frac{t^2}{n}\right)\right)}^2
+		\to e^{\frac{t^2}{2}}
+	.\]
+	נחשב ונקבל,
+	\[
+		\EE(t^{t Z})
+		= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-\frac{s^2}{2}} \cdot e^{ts}\ ds
+		= e^{\frac{t^2}{2}} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp\overset{= {(s - t)}^2}{\left(-\frac{s^2 - ts + t^2}{2}\right)}\ ds
+	.\]
+	וזו בדיוק הצפיפות של $N(t, 1)$.
+
+	נגדיר את הפונקציה האופיינית $\varphi_X(t) = \EE(e^{it X})$, כלומר $\im \varphi_X \subseteq S^1$.
+	כל התכונות שמצאנו על $M_X$ עדיין חלות על $\varphi_X$.
+	גם את $\varphi_X$ אפשר לפתח עם טיילור,
+	\[
+		\varphi_X(t)
+		= \EE(1 + i t X + \frac{{(i t X)}^2}{2} + \cdots)
+		= 1 + i \EE(X) t - \EE(X) \frac{t^2}{2} + o(t^2)
+	.\]
+	אם נחזור על ההוכחה הקודמת עם $\varphi$ נקבל הפעם,
+	\[
+		\varphi_{X_1}(t)
+		= 1 - i \frac{t^2}{2} + o(t^2)
+	.\]
+	ולכן גם,
+	\[
+		\varphi_{Z_n}(t)
+		= e^{-\frac{t^2}{2}}
+	.\]
+	ואז מתקבל,
+	\[
+		\EE(e^{it Z})
+		= e^{-\frac{t^2}{2}} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp(-\frac{s^2 - 2i ts - t^2}{2})\ ds
+	.\]
+	ונקבל את הצפיפות של $N(it, 1)$, למרות שזוהי לא התפלגות אפשרית או מוגדרת.
+\end{proof}
+ההוכחה אומנם לא שלמה אבל משפט זה מסיים את הגרסה שלה שראינו.
+\begin{theorem}[ההיפוך של לוי]
+	$\varphi_X$ קובעת את התפלגות $X$.
+\end{theorem}
+\begin{theorem}[הרציפות של לוי]
+	להשלים
+\end{theorem}
+\begin{example}
+	אם $X \sim U(\{ \pm 1 \})$ אז,
+	\[
+		\varphi_X(t)
+		= \frac{1}{2} e^{it} + \frac{1}{2} e^{-it}
+		= \cos t
+	.\]
+	מכך נובע שלא קיימים $X$ ו־$Y$ שווי־התפלגות בלתי־תלויים כך ש־$X - Y \sim U(\{ \pm 1 \})$ (תרגיל).
+\end{example}
+\begin{example}
+	אם $X \sim \operatorname{Exp}(1)$ אז,
+	\[
+		\varphi_X(t)
+		= \int_{0}^{\infty} e^{itr} \cdot e^{-r}\ dr
+		= \int_{0}^{\infty} e^{r(it - 1)}\ dr
+		= \left. \frac{e^{r(it - 1)}}{it - 1} \right\rvert_{r = 0}^{r = \infty}
+		= \frac{1}{1 - it}
+	.\]
+\end{example}
+\begin{example}
+	הפעם נגדיר $f_X(r) = \frac{1}{2} e^{-|r|}$, והפעם נקבל באופן דומה לדוגמה הקודמת,
+	\[
+		\varphi_X(t)
+		= \frac{1}{2} \frac{1}{1 - it} + \frac{1}{2} \frac{1}{1 + it}
+		= \frac{1}{(1 - it)(1 + it)}
+		= \frac{1}{1 + t^2}
+	.\]
+\end{example}
+מתהליך זה נוכל למצוא נוסחה לחישוב התפלגות.
+\begin{proposition}
+	אם $\varphi_X$ היא ב־$L^1$ אז $X$ משתנה־מקרי רציף בהחלט ואף,
+	\[
+		f_X(a)
+		= \frac{1}{2 \pi} \int_{-\infty}^{\infty} e^{-ita} \varphi_X(t)\ dt
+	.\]
+\end{proposition}
+נובע אם כך שאם $f_X(r) = \frac{1}{\pi(1 + r^2)}$ בדיוק כמו בדוגמה האחרונה אז,
+\[
+	\varphi_X(t)
+	= \frac{1}{2} e^{-|t|}
+.\]
+להתפלגות זו קוראים התפלגות קושי, או יותר נכון זוהי גרסה פרטית שלה,
+והיא מקיימת את התכונה הבאה,
+\begin{proposition}
+	אם $X$ ו־$Y$ מתפלגים קושי ובלתי־תלויים אז,
+	\[
+		\frac{X + Y}{2}
+	.\]
+	מתפלג קושי.
+\end{proposition}
+זוהי תכונה ייחודית, שכן היא מאלצת משיקולי הגדרת התוחלת שלא יהיה אפשרי שתהיה תוחלת, בפרט גם אין שונות, שכן נוכל לקחת ממוצע של משתנה מקרי כזה עם עצמו.
+התפלגות קושי והתפלגות נורמלית הן דוגמות להתפלגויות יציבות, כלומר שאם ממצעים אותן ומחלקים ב־$n^{\alpha}$ הן נשארות זהות.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
