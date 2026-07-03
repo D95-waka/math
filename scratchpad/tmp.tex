@@ -1,71 +1,49 @@
 \input{../article_base.tex}
 
-% chktex-file 9
-% chktex-file 17
-
 \begin{document}
-
-נגדיר את $X : [0, 1] \to [0, \infty)$ על־ידי $X(t) = -\ln(1 - t)$ ולכן $X^{-1}(t) = 1 - e^{-t}$ ומתקיים,
+נגדיר את המטריצה,
 \[
-	\lambda(X < \alpha)
-	= \lambda(\{t \in [0, 1] \mid X(t) \in [0, t) \})
-	= \lambda([0, X^{-1}(t)))
-	= \lambda([0, 1 - e^{-t}))
-	= 1 - e^{-t}
+	A
+	= \begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 0 & 0
+	\end{pmatrix}
 .\]
-ולכן $X \sim \operatorname{Exp}(1)$ בדיוק.
-
-עתה נגדיר $X_n : {[0, 1]}^{\omega} \to {[0, \infty)}^{\omega}$ על־ידי,
+נגדיר את המשוואה ההומוגנית,
 \[
-	X_n(a)(k)
-	= \begin{cases}
-		0 & n \ne k \\
-		X(a(n)) & n = k
-	\end{cases}
+	A u = 0
+	\tag{1}
 .\]
-ולכן נקבל שוב ש־$X_n$ מתפלגת מעריכית, ונבחין כי $X_n, X_m$ בלתי־תלויים מהגדרתם כחתכים.
+אז מרחב הפתרונות של $(1)$ הוא,
 \[
-	\sigma(X_n)
-	= \{ X^{-1}(E) \mid E \in \sigma([0, \infty)) \}
-	= \prod_{k < \omega} \begin{cases}
-		[0, 1] & k \ne n \\
-		\sigma([0, 1]) & k = n
-	\end{cases}
+	\left\{ \begin{pmatrix} x \\ y \\ 0 \end{pmatrix} \mid x, y \in \RR \right\}
+	= \Sp\left\{
+		\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix},
+		\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+	\right\}
 .\]
-כלומר זה מרחב מאוד מנוון כי בציר אחד הוא לבג ובשאר הוא הכול או כלום.
-באופן דומה נחשב,
+נבנה מטריצה חדשה ששורותיה הן וקטורי מרחב הפתרונות,
 \[
-	\sigma(X_n, X_{n + 1}, \ldots)
-	= \sigma(X_n \cup X_{n + 1} \cup \cdots)
-	= \sigma(\sigma(X_n) \cup \sigma(X_{n + 1}) \cup \cdots)
-	= \prod_{k < \omega} \begin{cases}
-		[0, 1] & k < n \\
-		\sigma([0, 1]) & k \ge n
-	\end{cases}
+	B
+	= \begin{pmatrix}
+		0 & 1 & 0 \\
+		0 & 0 & 1 \\
+		0 & 0 & 0
+	\end{pmatrix}
 .\]
-נגדיר את ה־$\sigma$־אלגברה הצילינדרית פה,
+כאשר הוספנו שורת אפסים כי היא לא משפיעה על כלום אבל נותנת לנו מטריצה מהצורה של $A$.
+עתה נפתור את מערכת המשוואות ההומוגנית,
 \[
-	\Tt
-	= \bigcap_{n = 1}^\infty \sigma(X_n, X_{n + 1}, \ldots)
-	= \bigcap_{n = 1}^\infty \prod_{k < \omega} \begin{cases}
-		[0, 1] & k < n \\
-		\sigma([0, 1]) & k \ge n
-	\end{cases}
-	= \{ \emptyset, {[0, 1]}^{\omega} \}
+	B u = 0
+	\tag{2}
 .\]
-
-נניח ש־${\{ a_n \}}_{n = 1}^\infty \subseteq \RR_{\ge 0}$ סדרה המקיימת,
+ונקבל,
 \[
-	\sum_{n = 1}^\infty a_n
-	= L
+	\Sp\left\{
+		\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+	\right\}
 .\]
-עבור $L \in [-\infty, \infty]$, לכן מהתנאי ההכרחי $a_n \to 0$.
-נחשב,
-\[
-	\frac{\sum_{n = 1}^{k + 1} a_n}{\sum_{n = 1}^k a_n}
-	= \frac{a_{k + 1} + \sum_{n = 1}^k a_n}{\sum_{n = 1}^k a_n}
-	= \frac{a_{k + 1}}{\sum_{n = 1}^k a_n} + \frac{\sum_{n = 1}^k a_n}{\sum_{n = 1}^k a_n}
-	\to \frac{0}{L} + 1
-.\]
+כלומר זהו בדיוק מרחב השורות שנוצר על־ידי $A$.
 
 \end{document}
