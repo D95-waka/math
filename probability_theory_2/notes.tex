@@ -59,7 +59,7 @@
 	\begin{align*}
 		\PP(Y_n = 0)
 		& = \PP(\sum_{i = 1}^n X_i = 0) \\
-		& = \PP(\sum_{i = 1}^n Z_1 = -n (p - \frac{1}{2})) \\
+		& = \PP(\sum_{i = 1}^n Z_i = -n (p - \frac{1}{2})) \\
 		& \le \PP(\sum_{i = 1}^n -Z_i \ge n(p - \frac{1}{2})) \\
 		& \le \exp(-\frac{n^2 {(p - \frac{1}{2})}^2}{2n}) \\
 		& = \exp(-\frac{{(p - \frac{1}{2})}^2}{2} \cdot n)
@@ -76,7 +76,7 @@
 	זוהי לא הוכחה פורמלית, אבל היא מבהירה לנו את הקונספט הכללי עליו אנו מדברים.
 \end{example}
 \begin{definition}[הילוך מקרי פשוט על גרף]
-	באנגלית Simple Random Walk (SRW) על גרף.
+	באנגלית Simple Random Walk או SRW על גרף.
 	נניח ש־$G = (V, E)$ גרף פשוט וקשיר עם דרגות סופיות ויהי $v_0$ קודקוד כלשהו.
 	SRW היא סדרת קודקודים מקריים בגרף, כאשר $X_0 = v_0$ כמעט תמיד, בהינתן ש־$X_0 = v_0, X_1 = v_1, \ldots, X_n = v_n$ מגרילים באופן אחיד בין השכנים של $v_n$.
 \end{definition}
@@ -200,7 +200,7 @@
 \]
 ניזכר במספר טענות,
 \begin{lemma}[הראשונה של בורל־קנטלי]
-	אם ${\{ A_n \}}_{n = 1}^\infty$ כך ש־$\sum_{n \in \NN} < \infty$ אז $\PP(\lim_{n \to \infty} A_n) = 0$.
+	אם ${\{ A_n \}}_{n = 1}^\infty$ כך ש־$\sum_{n \in \NN} \PP(A_n) < \infty$ אז $\PP(\lim_{n \to \infty} A_n) = 0$.
 \end{lemma}
 נראה דוגמה נגדית לגרירה ההפוכה,
 \begin{example}
@@ -323,7 +323,7 @@
 
 \subsection{משתנים מקריים}
 אם $(\Omega, \Ff, \PP)$ מרחב הסתברות אז משתנה מקרי הוא פונקציה מדידה מ־$\Omega$ ל־$\RR$.
-תנאי מספיק למדידות הפונקציה $X$ הוא שלכל $t \in \RR$ יתקיים $X^{-1}((-\infty, t)) \in \Ff$a.
+תנאי מספיק למדידות הפונקציה $X$ הוא שלכל $t \in \RR$ יתקיים $X^{-1}((-\infty, t)) \in \Ff$.
 אם $X, Y$ משתנים מקריים אז $(X, Y)$ פונקציה מדידה מ־$\Omega$ ל־$\RR^2$, ואם $X_1, X_2, \ldots$ סדרת משתנים מקריים אז גם $(X_1, X_2, \ldots)$ פונקציה מדידה על $\RR^\NN$.
 
 אם נחזור לדוגמה של קודם נוכל להגדיר את $(\Omega, \Ff, \PP)$ לפי הגרף $G = (V, E)$. נניח שלכל $e \in E$ יש משתנה מקרי $X_e$ המקריים $\PP(X^{-1}(\{0, 1\})) = 1$.
@@ -996,7 +996,7 @@ $X_0, X_1, \ldots$ המשתנים המקריים שמקבלים ערכים ב־$
 \[
 	\NN
 	\supseteq A_x
-	= \{ n > 0 \mid P^n(x, x) < 0 \}
+	= \{ n > 0 \mid P^n(x, x) > 0 \}
 \]
 ונסמן $a_x = \gcd A_x$ להיות המחזור של $x$. \\
 $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(x, x)$ וגם $0 < P^m(x, x)$ אז גם $0 < P^{n + m}(x, x)$.
@@ -1009,7 +1009,7 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 \begin{proof}
 	יהיו $x, y \in S$ ונרצה להראות ש־$a_x = a_y$. \\
 	יש $n$ כך ש־$P^n(x, y) > 0$ ויש $m$ כך ש־$P^m(y, x) > 0$.
-	אן $k \in A_x$ אז $m + n + k \in A_y$ כי,
+	אם $k \in A_x$ אז $m + n + k \in A_y$ כי,
 	\[
 		P^{n + m + k}(y, y) = P^m(y, x) P^k(x, x) P^n(x, y) > 0
 	\]
@@ -1147,8 +1147,13 @@ $A_x$ סגורה לחיבור כי $P^n P^m = P^{n + m}$ ולכן אם $0 < P^n(
 \begin{definition}[פילטרציה]
 	יהי $(\Omega, \Ff)$ מרחב מדיד.
 	פילטרציה היא סדרה עולה של תת־$\sigma$־אלגברות של $\Ff$, ${\{ \Ff_n \}}_{n \in \NN}$.
-
-	אם ${\{ X_n \}}_{n \in \NN}$ תהליך מקרי אז $\Ff_n = \sigma(X_0, \ldots, X_n)$, אז $\{ \Ff_n \}$ נקראת הפילטרציה הטבעית.
+\end{definition}
+\begin{definition}[הפילטרציה הטבעית]
+	אם ${\{ X_n \}}_{n \in \NN}$ תהליך מקרי ונסמן,
+	\[
+		\Ff_n = \sigma(X_0, \ldots, X_n)
+	\]
+	נגדיר את $\{ \Ff_n \}$ להיות הפילטרציה הטבעית של $\{ X_n \}$.
 \end{definition}
 \begin{definition}[זמן עצירה]
 	אם $(\Omega, \Ff)$ מרחב מדיד ו־${\{ \Ff_n \}}_{n \in \NN}$ פילטרציה אז $\tau : \Omega \to \NN$ נקרא זמן עצירה ביחס לפילטרציה $\{ \Ff_n \}$ אם לכל $n \in \NN$ מתקיים,
@@ -1395,7 +1400,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 	a_k
 	= \EE(X \mid A_k)
 	= \frac{\EE(X \indicator_{A_k})}{\PP(A_k)}
-.\]
+\]
 לכל $\omega \in A_k$ נגדיר $Z(\omega) = a_k$.
 \begin{proposition}
 	$Z = \EE[X \mid G]$, ו־$Z$ הוא $G$־מדיד כי,
@@ -1403,7 +1408,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		G
 		\in \bigcup_{a_k \in B} A_k
 		= Z^{-1}(B)
-	.\]
+	\]
 \end{proposition}
 \begin{definition}[תהליך צפוי]
 	תהליך ${\{ C_n \}}_{n \in \NN}$ נקרא צפוי ביחס לפילטרציה $\Ff_n$ אם $C_n$ הוא $\Ff_n$־מדיד לכל $n$.
@@ -1414,7 +1419,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		Y_n
 		= {(C \cdot X)}_n
 		= \sum_{k = 1}^n C_k (X_k - X_{k - 1})
-	.\]
+	\]
 \end{definition}
 \begin{proposition}
 	$Y_n$ הוא מרטינגל.
@@ -1427,39 +1432,39 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		& = Y_n + C_{n + 1} \EE[X_{n + 1} - X_n \mid \Ff_n] \\
 		& = Y_n + C_{n + 1}(\EE[X_{n + 1} \mid \Ff_n] - \EE[X_n \mid \Ff_n]) \\
 		& = Y_n
-	.\end{align*}
+	\end{align*}
 \end{proof}
 נגדיר עבור זמן עצירה $\tau : \Omega \to \NN$ את,
 \[
 	Y_n
 	= X_{\min(\tau, n)}
-.\]
+\]
 \begin{proposition}
-	$T_n$ מרטינגל.
+	$Y_n$ מרטינגל.
 \end{proposition}
 \begin{proof}
 	\[
 		C_n
 		= \indicator_{\{\tau \ge n\}}
 		= 1 - \indicator_{\{\tau \le n - 1 \}}
-	.\]
+	\]
 	כלומר $C_n$ הוא $\Ff_{n - 1}$־מדיד, כלומר צפוי.
 	אז,
 	\[
 		Y_n
 		= X_{\min\{\tau, n\}}
 		= \sum_{k = 1}^n \indicator_{\{ \tau \ge k \}}(X_k - X_{k - 1})
-	.\]
+	\]
 	כי אם $\tau(\omega) \ge n$ נקבל,
 	\[
 		X_n - X_0
 		= \sum_{k = 1}^n X_k - X_{k - 1}
-	.\]
+	\]
 	ואם $\tau(\omega) \le n$ אז,
 	\[
 		X_{\tau} - X_0
 		= \sum_{k = 1}^{\tau(n)} X_k - X_{k - 1}
-	.\]
+	\]
 	ובסך־הכול קיבלנו את המבוקש.
 \end{proof}
 \begin{proposition}
@@ -1468,14 +1473,14 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		X_{\min\{\tau, n\}}
 		\xrightarrow{\text{a.s.}}
 		X_{\tau}
-	.\]
+	\]
 \end{proposition}
 \begin{proof}
 	לכל $\omega$ עבורו $\tau(\omega) < \infty$ מתקיים,
 	\[
 		\min\{ \tau(\omega), n \}
 		\to \tau(\omega)
-	.\]
+	\]
 \end{proof}
 \begin{theorem}[Doobs Optional Stopping]
 	יהי $X_n$ מרטינגל ו־$\tau$ זמן עצירה (ביחס ל־$\Ff_n$), אז מתקיים אחד מהבאים:
@@ -1484,12 +1489,12 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		\item $\tau < \infty$ כמעט־תמיד ומתקיים,
 			\[
 				|X_{\min(\tau, n)}| \le M
-			.\]
+			\]
 			כמעט־תמיד לאיזשהו $M$
 		\item $\EE(\tau) < \infty$ ומתקיים,
 			\[
 				|X_{\min(\tau, n + 1)} - X_{\min(\tau, n)}| \le M
-			.\]
+			\]
 			כמעט־תמיד לאיזשהו $M$ אז $\EE(X_{\tau}) = 0$
 	\end{enumerate}
 \end{theorem}
@@ -1505,26 +1510,26 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		= \sum_{k = 1}^n X_{\min(\tau, k)} - X_{\min(\tau, k - 1)}
 		\le \sum_{k = 1}^n |X_{\min(\tau, k)} - X_{\min(\tau, k - 1)}|
 		\le M \min(\tau, n)
-	.\]
+	\]
 	ולכן $Y_n$ נשלטת על־ידי $M \tau$ שבעלת תוחלת סופית ולפי משפט ההתכנסות הנשלטת נקבל $\EE(Y_n) \to \EE(X_{\tau})$.
 \end{proof}
 יהי מרטינגל על $\ZZ$ עם $X_0 = 0$ וכן,
 \[
 	\tau = \min\{ t \mid X_t \in \{-a, b\} \}
-.\]
+\]
 עבור $a, b \in \NN$.
 בהתאם,
 \[
 	\PP(\tau_b < \tau_a)
 	= \frac{a}{a + b}
-.\]
+\]
 אז נגדיר $Y_n = X_n^2 - n$,
 \[
 	\EE[Y_n \mid \Ff_n]
 	= \EE[X_{n + 1}^2 - n \mid \Ff_n]
 	= \EE[{(X_n + Z_{n + 1})}^2 \mid \Ff_n] - n - 1
 	= \EE[X_n^2 + 2 X_n Z_{n + 1} + Z_{n + 1}^2 \mid \Ff_n] - n - 1
-.\]
+\]
 
 \section{שיעור 12 --- 29.6.2026}
 \subsection{מרטינגלים --- המשך}
@@ -1536,7 +1541,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 	\[
 		\sum_y P(x, y) h(y)
 		= h(x)
-	.\]
+	\]
 \end{corollary}
 אם נסמן $Y_n = h(X_n)$ נקבל,
 
@@ -1548,18 +1553,18 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 	\[
 		Z_n
 		\sim U(\pm e_i)
-	.\]
+	\]
 	ולכן $X_{n + 1} = X_n + Z_{n + 1}$ ומתקיים,
 	\[
 		Y_{n + 1}
 		= Y_n + \indicator_{X_n = Y_n} Z_{n + 1} - \indicator_{X_n \ne Y_n} Z_{n + 1}
-	.\]
+	\]
 	בהתאם $h(X_n)$ הוא מרטינגל ולכן גם $h(Y_n)$ ונקבל,
 	\[
 		\EE(h(X_{\tau}))
 		= \EE(h(X_0))
 		= h((0, \ldots, 0))
-	.\]
+	\]
 \end{example}
 נניח ש־$X_n$ מרטינגל ולכן $\EE[X_{n + 1} \mid \Ff_n] = X_n$.
 המטרה שלנו כרגע היא להראות קיום של $X_{\infty}$ כך ש־$X_n \xrightarrow{\text{a.s.}} X_\infty$.
@@ -1571,21 +1576,21 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 	\qquad
 	\forall i \le k,
 	X_{s_i} \ge b
-.\]
+\]
 אז $U_N(a, b)$ סדרה עולה של משתנים־מקריים מתאימה ל־$\Ff_n$.
 \begin{proposition}
 	אם נסמן $x^- = \max(-a, 0)$ אז מתקיים,
 	\[
 		\EE(U_N(a, b))
 		\le \frac{\EE({(X_N - a)}^-)}{b - a}
-	.\]
+	\]
 \end{proposition}
 \begin{proof}
 	$X_s$ מרטינגל ונגדיר,
 	\[
 		Y_n
 		= \sum_{n = 1}^m C_n (X_n - X_{n - 1})
-	.\]
+	\]
 	כאשר $C_n$ צפוי ($C_n$ הוא $\Ff_{n - 1}$־מדיד לכל $n$).
 	נקבל ש־$Y_n$ הוא מרטינגל.
 
@@ -1594,7 +1599,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		C_n
 		= \indicator_{C_{n - 1} = 1} \cdot \indicator_{X_{n - 1} = <}
 		+ \indicator_{C_{n - 1} = 0} \cdot \indicator_{X_{n - 1} \le a}
-	.\]
+	\]
 	אז $Y_n$ הוא אכן מרטינגל.
 	נחשב,
 	\begin{align*}
@@ -1602,18 +1607,18 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		& = \sum_{i = 1}^k \sum_{n = s_{i - 1}}^{t_i} X_n - X_{n - 1} + \indicator_{s_{k + 1} \le N} \sum_{n = s_k + 1}^N X_n - X_{n - 1} \\
 		& = \sum_{i = 1}^k X_{t_i} - X_{s_i} + \indicator_{s_{k + 1} \le N} (X_N - X_{s_{k + 1}}) \\
 		& \ge \sum_{i = 1}^k (b - a) + \indicator_{s_{k + 1} \le N} (X_N - X_{s_{k + 1}})
-	.\end{align*}
+	\end{align*}
 	וכן,
 	\[
 		0
 		= \EE(Y_N)
 		\ge (b - a) \EE(U_N(a, b)) + \EE(\indicator_{s_{k + 1} \le N}(X_N - X_{s_{k + 1}}))
-	.\]
+	\]
 	אבל,
 	\[
 		\EE(U_N(a, b))
 		\le \frac{-\EE(\indicator_{s_{k + 1} \le N}(X_N - X_{s_{k + 1}}))}{b - a}
-	.\]
+	\]
 	ולאחר העברות אגפים,
 	\[
 		\EE(\indicator_{s_{k + 1} \le N}(X_N - X_{s_{k + 1}}))
@@ -1621,12 +1626,12 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		\EE(\indicator_{s_{k + 1} \le N}{(a - X_N)}^+)
 		\EE({(a - X_N)}^+)
 		|a| + \EE(|X_N|)
-	.\]
+	\]
 	אם $\EE(|X_N|) \le M$ לכל $N$ אז $\EE(U_N(a, b))$ חסומה ואחידה ו־$U_N(a, b)$ סדרה עולה ולכן,
 	\[
 		U_N(a, b)
 		\to U_{\infty}(a, b)
-	.\]
+	\]
 	עם תוחלת סופית ולכן סופי כמעט־תמיד, לכן $X_n$ מתכנס.
 	בפרט מרטינגל חסום כמעט־תמיד מתכנס וגם מרטינגל אי־שלילי מתכנס.
 \end{proof}
@@ -1651,7 +1656,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		\PP(G(Y) \le a)
 		\PP(Y \le F(a))
 		= F(a) - 0
-	.\]
+	\]
 	כלומר מצאנו שבמקרה זה קל מאוד לבנות משתנה מקרי מתאים.
 \end{proof}
 \begin{proposition}
@@ -1664,7 +1669,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		= \frac{\sum_{i = 1}^n X_i}{\sqrt{n}}
 		\xrightarrow{d / w}
 		Z \sim N(0, 1)
-	.\]
+	\]
 \end{theorem}
 נתחיל בסקיצה כללית מאוד להוכחה, אותה נמשיך לפתח בהמשך.
 \begin{proof}
@@ -1672,61 +1677,61 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 	\[
 		M_X(t)
 		= \EE(e^{t X})
-	.\]
+	\]
 	אם $X$ ו־$Y$ בלתי־תלויים אז,
 	\[
 		M_{X + Y}(t)
 		= \EE(e^{t(X + Y)})
 		= \EE(e^{t X}) \EE(e^{t X})
 		= M_X(t) M_Y(t)
-	.\]
+	\]
 	אם $a \in \RR$ אז,
 	\[
 		M_{a X}(t)
 		= \EE(e^{t a X})
 		= M_X(a t)
-	.\]
+	\]
 	נטען את הטענה (שיש להוכיח שמתקיים),
 	\[
 		e^{t X}
 		= 1 + t X + \frac{{(t X)}^2}{2} + \cdots
-	.\]
+	\]
 	ולכן,
 	\[
 		M_X(t)
 		= 1 + \EE(X) t + \EE(X^2) \frac{t^2}{2} +\cdots
-	.\]
+	\]
 	בפרט נובע,
 	\[
 		M_X'(0)
 		= \EE(X),
 		M_X''(0) = \EE(X^2),
 		\ldots
-	.\]
+	\]
 	נעבור לחישוב עבור $Z_n$,
 	\[
 		M_{Z_n}(t)
 		= M_{\sum_{i = 1}^n X_i}(\frac{t}{\sqrt{n}})
 		= {\left(M_{X_1}\left(\frac{t}{\sqrt{n}}\right)\right)}^n
-	.\]
+	\]
 	נקבל שגם,
 	\[
 		M_{X_1}(t)
 		= 1 + \overset{= 0}{\EE(X_1)} t + \overset{= 1}{\EE(X_1^2)} \frac{t^2}{2} + o(t^2)
 		= 1 + \frac{t^2}{2} + o(t^2)
-	.\]
+	\]
 	ומשילוב שני השוויונות האחרונים,
 	\[
 		{\left(M_{X_1}\left(\frac{t}{\sqrt{n}}\right)\right)}^n
 		= {\left(1 + \frac{t^2}{2^n} + o\left(\frac{t^2}{n}\right)\right)}^2
 		\to e^{\frac{t^2}{2}}
-	.\]
+	\]
 	נחשב ונקבל,
 	\[
 		\EE(t^{t Z})
 		= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-\frac{s^2}{2}} \cdot e^{ts}\ ds
 		= e^{\frac{t^2}{2}} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp\overset{= {(s - t)}^2}{\left(-\frac{s^2 - ts + t^2}{2}\right)}\ ds
-	.\]
+	\]
 	וזו בדיוק הצפיפות של $N(t, 1)$.
 
 	נגדיר את הפונקציה האופיינית $\varphi_X(t) = \EE(e^{it X})$, כלומר $\im \varphi_X \subseteq S^1$.
@@ -1736,22 +1741,22 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		\varphi_X(t)
 		= \EE(1 + i t X + \frac{{(i t X)}^2}{2} + \cdots)
 		= 1 + i \EE(X) t - \EE(X) \frac{t^2}{2} + o(t^2)
-	.\]
+	\]
 	אם נחזור על ההוכחה הקודמת עם $\varphi$ נקבל הפעם,
 	\[
 		\varphi_{X_1}(t)
 		= 1 - i \frac{t^2}{2} + o(t^2)
-	.\]
+	\]
 	ולכן גם,
 	\[
 		\varphi_{Z_n}(t)
 		= e^{-\frac{t^2}{2}}
-	.\]
+	\]
 	ואז מתקבל,
 	\[
 		\EE(e^{it Z})
 		= e^{-\frac{t^2}{2}} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp(-\frac{s^2 - 2i ts - t^2}{2})\ ds
-	.\]
+	\]
 	ונקבל את הצפיפות של $N(it, 1)$, למרות שזוהי לא התפלגות אפשרית או מוגדרת.
 \end{proof}
 ההוכחה אומנם לא שלמה אבל משפט זה מסיים את הגרסה שלה שראינו.
@@ -1767,7 +1772,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		\varphi_X(t)
 		= \frac{1}{2} e^{it} + \frac{1}{2} e^{-it}
 		= \cos t
-	.\]
+	\]
 	מכך נובע שלא קיימים $X$ ו־$Y$ שווי־התפלגות בלתי־תלויים כך ש־$X - Y \sim U(\{ \pm 1 \})$ (תרגיל).
 \end{example}
 \begin{example}
@@ -1778,7 +1783,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		= \int_{0}^{\infty} e^{r(it - 1)}\ dr
 		= \left. \frac{e^{r(it - 1)}}{it - 1} \right\rvert_{r = 0}^{r = \infty}
 		= \frac{1}{1 - it}
-	.\]
+	\]
 \end{example}
 \begin{example}
 	הפעם נגדיר $f_X(r) = \frac{1}{2} e^{-|r|}$, והפעם נקבל באופן דומה לדוגמה הקודמת,
@@ -1787,7 +1792,7 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 		= \frac{1}{2} \frac{1}{1 - it} + \frac{1}{2} \frac{1}{1 + it}
 		= \frac{1}{(1 - it)(1 + it)}
 		= \frac{1}{1 + t^2}
-	.\]
+	\]
 \end{example}
 מתהליך זה נוכל למצוא נוסחה לחישוב התפלגות.
 \begin{proposition}
@@ -1795,20 +1800,20 @@ $X$ משתנה־מקרי בעל תוחלת ונסמן,
 	\[
 		f_X(a)
 		= \frac{1}{2 \pi} \int_{-\infty}^{\infty} e^{-ita} \varphi_X(t)\ dt
-	.\]
+	\]
 \end{proposition}
 נובע אם כך שאם $f_X(r) = \frac{1}{\pi(1 + r^2)}$ בדיוק כמו בדוגמה האחרונה אז,
 \[
 	\varphi_X(t)
 	= \frac{1}{2} e^{-|t|}
-.\]
+\]
 להתפלגות זו קוראים התפלגות קושי, או יותר נכון זוהי גרסה פרטית שלה,
 והיא מקיימת את התכונה הבאה,
 \begin{proposition}
 	אם $X$ ו־$Y$ מתפלגים קושי ובלתי־תלויים אז,
 	\[
 		\frac{X + Y}{2}
-	.\]
+	\]
 	מתפלג קושי.
 \end{proposition}
 זוהי תכונה ייחודית, שכן היא מאלצת משיקולי הגדרת התוחלת שלא יהיה אפשרי שתהיה תוחלת, בפרט גם אין שונות, שכן נוכל לקחת ממוצע של משתנה מקרי כזה עם עצמו.
