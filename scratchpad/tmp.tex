@@ -1,49 +1,48 @@
 \input{../article_base.tex}
 
 \begin{document}
-נגדיר את המטריצה,
-\[
-	A
-	= \begin{pmatrix}
-		1 & 0 & 0 \\
-		0 & 0 & 0 \\
-		0 & 0 & 0
-	\end{pmatrix}
-.\]
-נגדיר את המשוואה ההומוגנית,
-\[
-	A u = 0
-	\tag{1}
-.\]
-אז מרחב הפתרונות של $(1)$ הוא,
-\[
-	\left\{ \begin{pmatrix} x \\ y \\ 0 \end{pmatrix} \mid x, y \in \RR \right\}
-	= \Sp\left\{
-		\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix},
-		\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
-	\right\}
-.\]
-נבנה מטריצה חדשה ששורותיה הן וקטורי מרחב הפתרונות,
-\[
-	B
-	= \begin{pmatrix}
-		0 & 1 & 0 \\
-		0 & 0 & 1 \\
-		0 & 0 & 0
-	\end{pmatrix}
-.\]
-כאשר הוספנו שורת אפסים כי היא לא משפיעה על כלום אבל נותנת לנו מטריצה מהצורה של $A$.
-עתה נפתור את מערכת המשוואות ההומוגנית,
-\[
-	B u = 0
-	\tag{2}
-.\]
-ונקבל,
-\[
-	\Sp\left\{
-		\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
-	\right\}
-.\]
-כלומר זהו בדיוק מרחב השורות שנוצר על־ידי $A$.
+
+\begin{proposition}
+	אם $q \in \QQ_p$ עבור $p$ ראשוני כלשהו וכן $k \in \ZZ$,
+	אז
+	\[
+		p^k \mid q
+		\iff |q|_p \le \frac{1}{p^k}
+	.\]
+\end{proposition}
+\begin{proof}
+	\[
+		p^k \mid q
+		\iff \tilde{v}_p(q) \ge k
+		\iff \frac{1}{p^{\tilde{v}_p(q)}} \le \frac{1}{p^k}
+		\iff |q|_p \le \frac{1}{p^k}
+	.\]
+\end{proof}
+\begin{corollary}
+	עבור $k = 1$ נובע,
+	\[
+		p \mid q
+		\iff |q|_p \le \frac{1}{p}
+		\iff |q|_p < 1
+	.\]
+\end{corollary}
+\begin{proposition}
+	הנורמה ה־$p$־אדית של $q \in \QQ_p$ תהיה $\frac{1}{p^k}$ עבור $k \in \ZZ$ המיקום של הספרה הראשונה במספר שהיא לא אפס מימין לשמאל (ביחס לנקודה העשרונית).
+\end{proposition}
+\begin{proof}
+	נסמן,
+	\[
+		q = \sum_{n = s}^\infty a_n p^n
+	.\]
+	אז לכל $a_n p^n$ מתקיים ש־$|p^n|_p = p^{-n}$ וכן $|a_n|_p \in \{0, 1\}$.
+	זאת שכן אם $a_n = 0$ אז $|a_n|_p = 0$ ואחרת $1 \le a_n \le p - 1$ ולכן $|a_n|_p = 1$.
+	עתה נקבל מאי־שוויון אולטרה מטרי,
+	\[
+		|q|_p
+		= \max\{ |a_n p^n|_p \mid n \ge s \}
+		= \max\{ \frac{1}{p^n} \mid n \ge s, a_n \ne 0 \}
+		= p^{-\min\{ n \ge s \mid a_n \ne 0 \}}
+	.\]
+\end{proof}
 
 \end{document}
