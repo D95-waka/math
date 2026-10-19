@@ -1,0 +1,232 @@
+\input{../article_base.tex}
+\title{יסודות בתורת ההצגות --- סיכום}
+\setcounter{secnumdepth}{2}
+% chktex-file 9
+% chktex-file 17
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]{}
+
+\tableofcontents
+
+\section{שיעור 1 --- 19.10.2026}
+תוכנית הקורס הכללית היא מודולים, תורת Wedderburn, תורת הקרקטרים, אינדוקציה של הצגות, הצגות של $S_n$, דואליות Schur-Weyl (הצגות של $S_n$ ושל $U(n)$).
+הספרים הם Alperin-Bell: Groups and representations (פרקים 5 ו־6), Peter Webb: Course in finite group representation theory, הספר Fulton-Harris אך הוא מכיל המון ולבסוף גם Lieback-James.
+על תורת ההצגות של $S_n$ נלמד ממאמר של Vershik-Okounkov, וטקסטים קלאסיים של Sagan ו־Fulton.
+
+תורת ההצגות היא שילוב של תורת החבורות והאלגברה הלינארית.
+ניזכר בפעולה של חבורה על קבוצה,
+\begin{definition}[פעולה של חבורה על קבוצה]
+	תהי $G$ חבורה ותהי קבוצה $X$, פעולה של $G$ על $X$ היא הומומורפיזם $\rho : G \to \Sym(X)$, כלומר $\rho(g_1 g_2) = \rho(g_1) \rho(g_2)$ לכל $g_1, g_2 \in G$.
+\end{definition}
+אם ל־$X$ יש מבנה נוסף אז לעתים נרצה שגם הפעולה של $G$ ''תשמור'' על המבנה הזה, במקרה בו נעסוק יהיה ש־$X$ הוא מרחב־וקטורי.
+\begin{definition}[הצגה של חבורה]
+	תהי חבורה $G$, הזוג $(V, \rho)$ כאשר $V$ מרחב־וקטורי ו־$\rho : G \to \GL(V)$ הומומורפיזם של חבורות.
+	באנגלית Representation או Linear Representation.
+\end{definition}
+\begin{definition}[מימד ההצגה]
+	עבור $(V, \rho)$ הצגה, נגדיר את המימד שלה להיות המימד של $V$.
+\end{definition}
+במילים אחרות לכל $g \in G$ יש העתקה לינארית הפיכה $T_g : V \to V$ המקיימת,
+\[
+	T_{g_1 \cdot g_2}
+	= T_{g_1} \circ T_{g_2}
+\]
+\begin{definition}[הצגה נאמנה]
+	אם $\rho$ חד־חד ערכית אז ההצגה תיקרא נאמנה (faithful).
+\end{definition}
+אם $V$ סוף־מימדי אז על־ידי בחירת בסיס ל־$V$ ניתן לחשוב על ההצגה כהומומורפיזם $G \to \GL_{\dim V}(\FF)$.
+ולמעשה אם ההצגה נאמנה אז אנו יכולים לייצג אותה כחבורה של מטריצות.
+\begin{remark}
+	המונח ''הצגה'' של חבורה עשוי להתפרש באחת הדרכים הבאות:
+	\begin{enumerate}
+		\item כהומומורפיזם מהחבורה לחבורת האוטומורפיזמים של אובייקט מתמטי
+		\item הומומורפיזם ל־$\GL(V)$ עבור $V$ מרחב־וקטורי
+		\item הומומורפיזם ל־$\GL(V)$ כאשר $V$ מרחב וקטורי מעל $\CC$
+	\end{enumerate}
+\end{remark}
+\begin{remark}
+	הצגה היא הפרט פעולה על $V$, ובכיוון ההפוך מעל פעולה $G \to \Sym(X)$ ניתן להגדיר הצגה מעל שדה $\FF$ כלשהו;
+	נגדיר את,
+	\[
+		V = \FF^\times = \left\{ \sum_{x \in X} \alpha_x \mid \alpha_x \in \FF, \alpha_x = 0 \text{ a.s.} \right\}
+	\]
+	ו־$G$ תפעל על־ידי תמורות על איברי הבסיס $X$. \\
+	בפרט אם $|X| = n$ אז $G \to S_n \to \GL_n(\FF)$, כל תמורה נשלחת למטריצת תמורה מתאימה.
+\end{remark}
+\begin{remark}
+	אין כמעט קשר ל''הצגה'' (presentation) של חבורה על־ידי יוצרים ויחסים, כלומר מבנה מהצורה $\langle s_1, \ldots, s_k \mid r_1, \ldots, r_m \rangle$.
+\end{remark}
+\begin{remark}
+	לעתים נאמר ש־$V$ הצגה של $G$ במקום $(V, \rho)$.
+\end{remark}
+נעבור למספר דוגמות של הצגות.
+\begin{example}
+	נגדיר $G = C_4 = \ZZ / 4 \ZZ$ ונניח ש־$G = \langle \sigma \rangle$, ונניח כי $V = \RR^2$.
+	נוכל להגדיר את הפעולה $G \to \GL_2(\RR)$ על־ידי,
+	\[
+		\sigma \mapsto
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{pmatrix}
+	\]
+	כלומר כהצגת הזהות, או על־ידי,
+	\[
+		\sigma \mapsto
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{pmatrix}
+	\]
+	כלומר שיקוף, או אף על־ידי,
+	\[
+		\sigma \mapsto
+		\begin{pmatrix}
+			0 & -1 \\
+			1 & 0
+		\end{pmatrix}
+	\]
+	כלומר סיבוב בתשעים מעלות.
+\end{example}
+\begin{example}
+	נגדיר $G = D_n$ חבורת סימטריות של מצולע משוכלל בעל $n$ קודקודים.
+	נסמן $\sigma$ סיבוב ב־$\frac{2 \pi}{n}$ ו־$\tau$ שיקוף, לכן $G = \langle \sigma, \tau \rangle$.
+	נסמן $V = \RR^2$ ונגדיר את,
+	\[
+		\rho : G \to \GL(V) \cong \GL_2(\RR)
+	\]
+	על־ידי,
+	\[
+		\sigma \mapsto
+		\begin{pmatrix}
+			\cos \frac{2 \pi}{n} & - \sin \frac{2 \pi}{n} \\
+			\sin \frac{2 \pi}{n} & \cos \frac{2 \pi}{n}
+		\end{pmatrix},
+		\qquad
+		\tau \mapsto
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{pmatrix}
+	\]
+\end{example}
+\begin{example}
+	$G = \ZZ = \langle \sigma \rangle$ וכן $V = \RR^2$.
+	$\ZZ$ חבורה חופשית ולכן ניתן לשלוח את $\sigma$ לכל מטריצה ב־$\GL_2(\RR)$, דוגמה ספציפית תהיה,
+	\[
+		\sigma \mapsto
+		\begin{pmatrix}
+			1 & 1 \\
+			0 & 1
+		\end{pmatrix}
+	\]
+	ולכן,
+	\[
+		\sigma^n \mapsto
+		\begin{pmatrix}
+			1 & n \\
+			0 & 1
+		\end{pmatrix}
+	\]
+\end{example}
+\begin{example}
+	$G = C_2 = \langle \sigma \rangle$ וכן $V = \FF_2^2$ מעל השדה $\FF = \FF_2$.
+	נגדיר את,
+	\[
+		\sigma \mapsto
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{pmatrix}
+	\]
+\end{example}
+\begin{example}
+	$G = S_n$ וכן $\FF = \CC$ ו־$V = \CC^n$ אז נוכל להגדיר את,
+	\[
+		\rho : S_n \to \GL_n(\CC)
+	\]
+	על־ידי $\sigma \mapsto M$ עבור איזושהי מטריצה מתאימה $M$.
+\end{example}
+\begin{definition}[שקילות הצגות]
+	שתי הצגות $(V_1, \rho_1)$ ו־$(V_2, \rho_2)$ נקראות שקולות (equivalent) אם קיימת העתקה לינארית הפיכה $T : V_1 \to V_2$ המתחלפת עם הפעולה, כלומר,
+	\[
+		\rho_2(g) \circ T
+		= T \circ \rho_1(g)
+		\iff T^{-1} \circ \rho_2(g) = \rho_1(g)
+	\]
+\end{definition}
+במצב בו המרחבים סוף־מימדיים אם $\rho_i : G \to \GL_n(\FF)$ עבור $i \in \{1, 2\}$ אז קיימת מטריצה הפיכה $B \in \GL_n(\FF)$ כך שלכל $g \in G$ מתקיים,
+\[
+	B^{-1} \rho_2(g) B = \rho_1(g)
+\]
+\begin{example}
+	כמה הצגות דו־מימדיות מעל $\CC$ יש ל־$C_2$ עד כדי שקילות? \\
+	התשובה היא שעל־ידי שימוש בצורת ז'ורדן האיבר שאיננו היחידה נשלח ביחידות לאחת המטריצות הבאות:
+	\[
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{pmatrix}
+		\qquad
+		\begin{pmatrix}
+			-1 & 0 \\
+			0 & 1
+		\end{pmatrix}
+		\qquad
+		\begin{pmatrix}
+			-1 & 0 \\
+			0 & -1
+		\end{pmatrix}
+	\]
+\end{example}
+באופן כללי אחד האתגרים בתורת ההצגות הוא מיון כל ההצגות של חבורה עד כדי שקילות.
+\begin{definition}[תת־מרחב אינווריאנטי]
+	תהי $(V, \rho)$ הצגה של $G$. תת־מרחב־וקטורי $U \subseteq V$ נקרא אינווריאנטי אם לכל $g \in G$ ולכל $u \in U$ מתקיים $g . u \in U$.
+\end{definition}
+במטריצות לאחר שינוי בסיס כל $g$ תישלח למטריצת בלוקים כאשר הבלוק שמתחת לווקטורים של $U$ יהיו אפסים.
+\begin{example}
+	בכל הצגה $(V, \rho)$ תתי־המרחבים $\{ 0 \}, V$ הם אינווריאנטיים.
+\end{example}
+\begin{example}
+	ב־$C_4$ פעולת הביסוס על $\RR^2$ אין נוספים,
+	גם בדוגמה של $G_n$ אין נוספים.
+	בדוגמה של חבורה חופשית $\Sp\{ {(1, 0)}^t \}$ תת־מרחב אינווריאנטי.
+\end{example}
+\begin{definition}[הצגה אי־פריקה]
+	הצגה נקראת אי־פריקה (irreducible) אם אין לה תת־מרחבים אינווריאנטיים לא טריוויאליים.
+\end{definition}
+\begin{example}
+	$C_4$ על $\RR^2$ על־ידי סיבובים הצגה אי־פריקה.
+	גם עבור $D_4$ על $\RR^2$ וכן הצגות חד־מימדיות.
+\end{example}
+בהינתן שתי הצגות של $G$, $(V_1, \rho_1)$ ו־$(V_2, \rho_2)$ מעל שדה משותף $\FF$,
+ניתן לבנות הצגה $(V_1 \oplus V_2, \rho_1 \oplus V_2)$ כאשר,
+\[
+	(\rho_1 \oplus \rho_2)(v_1, v_2)
+	= (\rho_1(g)\ v_1, \rho_2(g)\ v_2)
+\]
+בשפת המטריצות,
+\[
+	\rho_1 \oplus \rho_2
+	\mapsto
+	\begin{pmatrix}
+		\rho_1(g) & 0 \\
+		0 & \rho_2(g)
+	\end{pmatrix}
+\]
+\begin{definition}[הצגה פריקה לחלוטין]
+	הצגה $(V, \rho)$ של $G$ נקראת פריקה לחלוטין (completely reducible) אם היא שקולה לסכום ישר של הצגות אי־פריקות.
+\end{definition}
+\begin{example}
+	$C_4$ וסיבוב וכן $D_n$ וסיבוב הן פריקות לחלוטין. \\
+	הצגה של $\ZZ$ שהצגנו איננה פריקה לחלוטין וגם לא אי־פריקה, וכן ההצגה של $C_2$ שהצגנו לא פריקה לחלוטין.
+\end{example}
+
+\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
+\end{document}
