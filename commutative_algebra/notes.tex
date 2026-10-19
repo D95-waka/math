@@ -1,0 +1,165 @@
+\input{../article_base.tex}
+\title{יסודות באלגברה קומוטטיבית --- סיכום}
+\setcounter{secnumdepth}{2}
+% chktex-file 9
+% chktex-file 17
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]{}
+
+\tableofcontents
+
+\section{שיעור 1 --- 18.10.2026}
+אלגברה קומוטטיבית היא למעשה התורה של חוגים חילופיים (commutative).
+היסטורית האלגברה הקומוטטיבית קיימת עבור תורת המספרים, הגאומטריה האלגברית ותורת האינווריאנטים אליה לא ניכנס.
+
+\subsection{מבוא}
+המושג הראשי שעליו נדבר בקורס הוא חוג חילופי (commutative ring), אובייקט הדומה לשדה אך ללא חילוק, ואידאל (ideal), המקבילה של תורת החוגים עבור תת־החבורה בתורת החבורות.
+נעסוק גם במודול (module), המקבילה של מרחב וקטורי אך מעל חוג סקלרים במקום שדה סקלרים.
+
+הקורס מבוסס בעיקר על הספר של Atiyah Macdoald שנקרא Introduction to commutative algebra, פרקים 1 עד 10.
+\begin{definition}[חוג]
+	הוא קבוצה עם שתי פעולות בינאריות, $(A, + : A \times A \to A, \cdot : A \times A \to A)$ המקיים את התכונות:
+	\begin{enumerate}
+		\item $(A, +)$ הוא חבורה חילופית, כלומר אסוציאטיבית, בעלת איבר נייטרלי (נסמן $0$) ולכל איבר יש איבר נגדי ביחס לפעולה
+		\item חוק הקיבוץ בכפל: לכל $a, b, c \in A$ מתקיים $a (b c) = (a b) c$
+		\item קיום איבר נייטרלי ביחס לכפל: קיים איבר $1 \in A$ כך ש־$1 \cdot a = a \cdot 1 = a$ לכל $a \in A$
+		\item חלוק הפילוג (distributivity): לכל $a, b, c \in A$ מתקיים $(a + b) c = a c + b c$ וכן $a (b + c) = a b + a c$
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	האיבר הנייטרלי ביחס לכפל הוא יחיד, זאת שכן,
+	\[
+		1'
+		= 1 \cdot 1'
+		= 1
+	.\]
+\end{remark}
+\begin{notation}
+	ההופכי ביחס לחיבור יסומן $-a$, ובהתאם $a - b = a + (-b)$.
+\end{notation}
+\begin{definition}[חוג חילופי]
+	חוג $(A, +, \cdot)$ נקרא חילופי (commutative) יש חילופיות גם ביחס לכפל, כלומר,
+	\[
+		\forall a, b \in A,\ 
+		a \cdot b = b \cdot a
+	.\]
+\end{definition}
+\begin{remark}
+	חילופיות החיבור נובעת משאר התכונות.
+	זאת שכן,
+	\[
+		(a + b) (1 + 1)
+		= (a + b) 1 + (a + b) 1
+		= a \cdot 1 + b \cdot 1 + a \cdot 1 + b \cdot 1
+		= a + b + a + b
+	.\]
+	אבל מהצד השני,
+	\[
+		(1 + 1) (a + b)
+		= a + a + b + b
+	.\]
+	$(A, +)$ היא חבורה ולכן נוכל לצמצם ולקבל בדיוק ש־$a + b = b + a$.
+\end{remark}
+\begin{remark}
+	מקיבוציות הכפל נובע שמכפלה $a_1 \cdot a_k$ אינה תלויה בהצבת סוגריים, ולכן מותר להשמיט את הסוגריים.
+\end{remark}
+\begin{example}
+	חוג השלמים $\ZZ$ עם פעולות הכפל והחיבור הסטנדרטיות הוא חוג חילופי.
+\end{example}
+\begin{example}
+	לכל שדה $\FF$, $(\FF, +, \cdot)$ הוא חוג חילופי גם כן.
+\end{example}
+\begin{example}
+	חוג המטריצות $A = M_n(\FF)$, כלומר המטריצות מעל $\FF$ מגודל $n \times n$ כאשר $1_A = I_n$ ו־$0_A = 0$.
+	זהו חוג שחילופי אם ורק אם $n = 1$.
+	נבחין גם כי במקום שדה $\FF$ יכולנו לבחור חוג כללי.
+\end{example}
+\begin{example}
+	חוג הפולינומים,
+	יהי $\FF$ שדה, נסמן את $\FF[x]$ להיות אוסף הפולינומים במשתנה $x$ עם מקדמים ב־$\FF$, וזהו חוג חילופי.
+\end{example}
+\begin{example}
+	החוג הטריוויאלי:
+	יהי $A$ יחידון, אז נגדיר את $+, \cdot$ טריוויאלית ונקבל ש־$(A, +, \cdot)$ הוא חוג חילופי.
+	בחוג זה אף מתקיים $1_A = 0_A$, וזוהי תכונה המאפיינת ביחידות חוג זה, כלומר אם $0 = 1$ אז מתקיים,
+	\[
+		a
+		= a (1 + 0)
+		= a ( 1 + 1)
+		= a + a
+	.\]
+	כלומר $a = 0$ לכל $a \in A$.
+\end{example}
+
+\subsection{פעולות בסיסיות בחוגים}
+יהי $(A, +, \cdot)$ חוג.
+\begin{definition}[חזקה]
+	אם $n \in \NN$ ו־$a \in A$ אז נגדיר,
+	\[
+		a^n
+		= \overbrace{a \cdots a}^{n \text{ times}}
+	.\]
+\end{definition}
+\begin{proposition}[תכונות חזקה]
+	לכל $n, m \in \NN$ ו־$a, b \in A$ מתקיים,
+	\begin{enumerate}
+		\item $a^{n + m} = a^n a^m$
+		\item אם $A$ חילופי אז גם,
+			\[
+				{(a b)}^n = a^n b^n
+			.\]
+	\end{enumerate}
+\end{proposition}
+\begin{definition}[הכפלה במספר שלם]
+	אם $n \in \NN$ ו־$a \in A$ אז נגדיר את,
+	\[
+		n a
+		= \begin{cases}
+			\overbrace{a + \cdots + a}^{n \text{times}} & n > 0 \\
+			0 & n = 0 \\
+			\overbrace{(-a) + \cdots + (-a)}^{n \text{times}} & n < 0
+		\end{cases}
+	.\]
+\end{definition}
+לכפל בשלם יש אסוציאטיביות.
+
+\subsection{יחידות}
+\begin{definition}[איבר הפיך]
+	$a \in A$ נקרא הפיך (invertible) או יחידה (unit) אם קיים $b \in A$ כך שמתקיים $a b = b a = 1$.
+	במקרה זה נאמר ש־$b$ הוא ההופכי של $a$ ונסמן $b = a^{-1}$.
+\end{definition}
+\begin{notation}
+	נסמן את קבוצת ההפיכים על־ידי,
+	\[
+		A^{\times}
+		= \{ a \in A \mid a \text{ is invertible} \}
+	.\]
+	סימון מקובל נוסף הוא $A^*$.
+\end{notation}
+\begin{proposition}
+	$A^\times$ חבורה ביחס לכפל.
+\end{proposition}
+\begin{proof}
+	נבדוק ש־$A^\times$ סגור ביחס לכפל.
+	אם $a, b \in A^\times$ אז קיימים $a', b' \in A^\times$ המקיימים $a a' = b b' = 1$.
+	מתקיים,
+	\[
+		(a b) (b' a')
+		= a b b' a'
+		= a a'
+		= 1
+	.\]
+	וכן באופן דומה נקבל זאת עבור כפל הפוך, לכן $a b \in A^\times$.
+	בהתאם נובע שכפל הוא פעולה בינארית על $A^\times$, וכן ברור כי $1 \in A^\times$ נייטרלי וכן שלכל $a \in A^\times$ גם $a' \in A^\times$.
+\end{proof}
+לחבורה $A^\times$ קוראים גם החבורה הכפלית של החוג (multiplication group).
+
+
+\listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
+\end{document}
