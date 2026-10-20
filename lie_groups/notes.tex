@@ -17,6 +17,7 @@
 
 \section{lecture 1 --- 20.10.2026}
 We will follow the book ``Lectures on Lie groups'' by J. Frank Adams through chapter 5.56.
+Another book relevant to this course is ``Naive Lie Theory'' by J. Stillwell.
 
 \subsection{Introduction}
 Suppose that $V, W$ are finite dimension vector spaces over $\RR$.
@@ -26,23 +27,28 @@ a function $f : U \to W$ where $U \subseteq V$ is differentiable if for all $x \
 	f(x + h)
 	= f(x) + (df \mid_x)(h) + o(|h|)
 \]
-Therefore $f' : U \to \hom(V, W)$ defined by $x \mapsto f'(x)$.
-We continue to define in such manner the next differentials recursively, $f'' : U \to \hom(V, \hom(V, W))$ etc.
+Therefore $f' : U \to \Hom(V, W)$ defined by $x \mapsto f'(x)$.
+We continue to define in such manner the next differentials recursively, $f'' : U \to \Hom(V, \Hom(V, W))$ etc.
 A function $f$ is $C^\infty$ (smooth) if the derivatives of any order exists and are continuous.
+
+To study manifolds we have to be able to move between manifolds and Euclidean spaces, the map from a local open set in euclidean space into a manifold is called local parameterization or local coordinates.
 \begin{definition}[Chart]
 	Let $X$ be a topological space.
-	\textbf{Chart} on $X$ modeled on $V$, $\varphi_{\alpha} : X_{\alpha} \to \Omega_{\alpha}$ is a homeomorphism such that $X_{\alpha} \subseteq X$ is open and $\Omega_{\alpha} \subseteq V$ is open as well.
+	\textbf{Chart} on $X$ modeled on $V$, $\varphi : U \to \Omega$ is a homeomorphism such that both $U \subseteq X$ and $\Omega \subseteq V$ are open sets.
 \end{definition}
-In Adams book chart is defined the other way around ($\Omega_{\alpha} \to X_{\alpha}$).
-Compatible charts $\varphi_{\alpha}, \varphi_{\beta}$ are charts such that there is a homeomorphism between them and are invertible. \\
-An atlas on $X$ is $\{ \varphi_{\alpha} : X_{\alpha} \to \Omega_{\alpha} \}$ a set of charts, such that $\forall \alpha, \beta,\ \varphi_{\beta} \circ \varphi_{\alpha}^{-1}, \varphi_{\alpha} \circ \varphi_{\beta}^{-1}$
-are smooth and $\bigcup_{\alpha} X_{\alpha} = X$.
-Two atlases are equivalent if their union is atlas.
+In Adams book chart is defined the other way around ($\Omega_{\alpha} \to X_{\alpha}$), meaning that Adams chart is equivalent to our definition to parameterization.
+Compatible charts $\varphi_{\alpha}, \varphi_{\beta}$ are charts such that there is a homeomorphism between them and are invertible.
+\begin{definition}[Atlas]
+	An atlas on $X$ is a family of charts $\{ \varphi_{\alpha} : X_{\alpha} \to \Omega_{\alpha} \mid \alpha \in I \}$ for some indices set $I$,
+	such that $\bigcup_{\alpha \in I} X_{\alpha} = X$, namely a family of charts that form a cover of $X$.
+\end{definition}
+Each atlas can be enriched to contain any chart of an open subset of $X$, thus making it unique maximal atlas.
+Two atlases are equivalent if their union is an atlas, equivalently if they share a maximal atlas.
 \begin{exercise}
-	This is an equivalent relation.
+	Prove that this is an equivalent relation.
 \end{exercise}
 \begin{definition}[Smooth manifold]
-	A (smooth) manifold is a Hausdorff 2nd countable topological space $X$ equipped with an equivalence class of atlases.
+	A (smooth) manifold is a Hausdorff 2nd countable topological space $X$ equipped with an equivalence class of atlases (or a maximal atlas).
 \end{definition}
 Given manifolds $X, Y$ modeled on vector-spaces $V, W$, $X \times Y$ is a manifold modeled on $V \times W$.
 $\{ \varphi_{\alpha} : X_{\alpha} \to \Omega_{\alpha} \}$, $\{ \psi_{\beta} : Y_{\beta} \to \Omega_{\beta}' \}$ are atlases,
@@ -69,29 +75,47 @@ There exists a unique manifold structure on $X \times Y$ such that $X \times Y \
 	$(\RR^n, +)$ is a Lie group.
 \end{example}
 \begin{example}
-	Define $(\RR^n / \ZZ^n, +)$.
-	In this case we can define $\forall x \in \RR^n$ and $0 < \varepsilon < \frac{1}{2}$ we can define $\Omega_x = B(x, \varepsilon) \to X_x$ where $X_x$ is its image in $\RR^n / \ZZ^n$.
+	Observe $(\RR^n / \ZZ^n, +)$, an $n$-dimensional torus, is a Lie group.
+	Recall that in general $\RR^n / \ZZ^n \cong {(\RR / \ZZ)}^n$ it suffices to show that $S^1$ is a Lie group.
+	$(S^1, +)$ is indeed a manifold, and it is clear that it is a group as well.
 \end{example}
 \begin{example}
-	Let $V$ be a vector-space over $\RR$ or $\CC$ denoted as $\Lambda$, and let $\End(V) = \hom_{\Lambda}(V, V)$ ($\End(V) \cong \RR^{n \times n}$),
-	and $\aut(V) \subseteq \End(V)$ be the subset of invertible $\Lambda$-linear maps.
-	$\aut(V)$ is an open subset of $\End(V)$. In coordinates: $a, b \mapsto a \cdot b$ as matrix multiplication is a polynomial, hence smooth.
-	It follows from Kramer's rule that $a \mapsto a^{-1}$ the matrix inversion is achieved by $a^{-1} = \frac{1}{\det a} \operatorname{adj}(a)$, and so it's smooth as well.
+	Let $V$ be a vector-space over $\RR$ or $\CC$, denoted as $\Lambda$, and let $\End(V) = \Hom_{\Lambda}(V, V)$ the set of linear operators over $V$.
+	Recall that if $\dim_{\Lambda} V = n$ then $\End(V) \cong \RR^{n \times n}$.
+	Let,
+	\[
+		\Aut(V) = \{ T \in \End(V) \mid \exists S \in \End(V),\ T \circ S = S \circ T = \id \} \subseteq \End(V)
+	\]
+	be the subset of invertible $\Lambda$-linear maps, then $\Aut(V)$ is an open subset of $\End(V)$. \\
+	$a, b \mapsto a \cdot b$ as matrix multiplication is a polynomial, and is in particular smooth.
+	It follows from Kramer's rule that $a \mapsto a^{-1}$ the matrix inverse can be obtained by $a^{-1} = \frac{1}{\det a} \operatorname{adj}(a)$, and so it's smooth as well.
 \end{example}
 \begin{remark}
-	For $X, Y$ are manifolds and $f : X \to Y$ is smooth if and only if any $n$ and $S \subseteq \RR^n$ open \& smooth map $S \to X$, the composition $S \to X \to Y$ is smooth,
-	if and only if for all $g : Y \to \RR$ smooth, $f \circ g$ is smooth.
+	For $X, Y$ are manifolds and $f : X \to Y$ the following are equivalent:
+	\begin{enumerate}
+		\item $f$ is smooth
+		\item For any $n \in \NN$ and open subset $S \subseteq \RR^n$ \& smooth map $g : S \to X$, the composition $f \circ g$ is smooth
+		\item For any smooth function $g : Y \to \RR$, $f \circ g$ is smooth as well
+	\end{enumerate}
 \end{remark}
+\begin{exercise}
+	Prove this
+\end{exercise}
 \begin{definition}[Tangent space]
 	Tangent space to a manifold $X$ at $x \in X$ is defined as,
 	\[
 		T_x X
-		= \{ \gamma : (-\delta, \delta) \to X \text{ smooth}, \gamma(0) = x \} / \sim
+		= \{ \gamma : (-1, 1) \to X \mid \gamma \text{ is smooth}, \gamma(0) = x \} / \sim
 	\]
-	where $\gamma_1 \sim \gamma_2 \iff \forall f : U \to \RR$ where $x \in U$ is open neighborhood, smooth map, then $\frac{d}{dt} \mid_{t = 0} f \circ \gamma_1 = \frac{d}{dt} \mid_{t = 0} f \circ \gamma_2$.
+	where we define that $\gamma_1 \sim \gamma_2$ iff for any smooth function $f : U \to \RR$ where $x \in U$ is an open neighborhood, 
+	\[
+		\frac{d}{dt} \mid_{t = 0} f \circ \gamma_1
+		= \frac{d}{dt} \mid_{t = 0} f \circ \gamma_2
+	\]
+	In other words, we identify curves by their ``derivative'' when passing through $x$.
 \end{definition}
 \begin{example}
-	For $x \in X \subseteq V$ open, namely an open subset of a vector space, $T_x X = V$ via $\gamma(t) = x + t v$ for $v \in V$.
+	For $x \in X \subseteq V$ open set, namely an open subset of a vector space, $T_x X = V$, as can be seem via $\gamma(t) = x + t v$ for $v \in V$.
 \end{example}
 Smooth map of manifolds $f : X \to Y$ induces $f' = f_* = df \mid_x : T_x X \to T_{f(x)} Y$. \\
 Given a manifold $X$ \& atlas $\{ \varphi_{\alpha} : X_{\alpha} \to \Omega_{\alpha} \}$,
