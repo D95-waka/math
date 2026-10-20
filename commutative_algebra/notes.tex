@@ -38,7 +38,7 @@
 		1'
 		= 1 \cdot 1'
 		= 1
-	.\]
+	\]
 \end{remark}
 \begin{notation}
 	ההופכי ביחס לחיבור יסומן $-a$, ובהתאם $a - b = a + (-b)$.
@@ -48,7 +48,7 @@
 	\[
 		\forall a, b \in A,\ 
 		a \cdot b = b \cdot a
-	.\]
+	\]
 \end{definition}
 \begin{remark}
 	חילופיות החיבור נובעת משאר התכונות.
@@ -58,12 +58,12 @@
 		= (a + b) 1 + (a + b) 1
 		= a \cdot 1 + b \cdot 1 + a \cdot 1 + b \cdot 1
 		= a + b + a + b
-	.\]
+	\]
 	אבל מהצד השני,
 	\[
 		(1 + 1) (a + b)
 		= a + a + b + b
-	.\]
+	\]
 	$(A, +)$ היא חבורה ולכן נוכל לצמצם ולקבל בדיוק ש־$a + b = b + a$.
 \end{remark}
 \begin{remark}
@@ -93,7 +93,7 @@
 		= a (1 + 0)
 		= a ( 1 + 1)
 		= a + a
-	.\]
+	\]
 	כלומר $a = 0$ לכל $a \in A$.
 \end{example}
 
@@ -104,7 +104,7 @@
 	\[
 		a^n
 		= \overbrace{a \cdots a}^{n \text{ times}}
-	.\]
+	\]
 \end{definition}
 \begin{proposition}[תכונות חזקה]
 	לכל $n, m \in \NN$ ו־$a, b \in A$ מתקיים,
@@ -113,7 +113,7 @@
 		\item אם $A$ חילופי אז גם,
 			\[
 				{(a b)}^n = a^n b^n
-			.\]
+			\]
 	\end{enumerate}
 \end{proposition}
 \begin{definition}[הכפלה במספר שלם]
@@ -125,7 +125,7 @@
 			0 & n = 0 \\
 			\overbrace{(-a) + \cdots + (-a)}^{n \text{times}} & n < 0
 		\end{cases}
-	.\]
+	\]
 \end{definition}
 לכפל בשלם יש אסוציאטיביות.
 
@@ -139,7 +139,7 @@
 	\[
 		A^{\times}
 		= \{ a \in A \mid a \text{ is invertible} \}
-	.\]
+	\]
 	סימון מקובל נוסף הוא $A^*$.
 \end{notation}
 \begin{proposition}
@@ -154,12 +154,440 @@
 		= a b b' a'
 		= a a'
 		= 1
-	.\]
+	\]
 	וכן באופן דומה נקבל זאת עבור כפל הפוך, לכן $a b \in A^\times$.
 	בהתאם נובע שכפל הוא פעולה בינארית על $A^\times$, וכן ברור כי $1 \in A^\times$ נייטרלי וכן שלכל $a \in A^\times$ גם $a' \in A^\times$.
 \end{proof}
 לחבורה $A^\times$ קוראים גם החבורה הכפלית של החוג (multiplication group).
 
+\section{שיעור 2 --- 20.10.2026}
+\subsection{יחידות --- המשך}
+\begin{example}
+	נניח ש־$A = \ZZ$.
+	אם $m, n \in \ZZ$ ו־$m n = 1$ אז $m = n = \pm 1$ ולכן $\ZZ^\times = \{ \pm 1 \}$.
+\end{example}
+\begin{example}
+	אם $A = \FF$ שדה כלשהו, אז $\FF^\times = \FF \setminus \{ 0 \}$. \\
+	בכיוון ההפוך אם $A$ חוג חילופי המקיים $A^\times = A \setminus \{ 0 \}$ אז $A$ הוא שדה.
+\end{example}
+\begin{example}
+	במקרה $A = M_n(\FF)$ עבור שדה $\FF$ אז מתקיים,
+	\[
+		A^\times
+		= \{ A \in M_n(\FF) \mid \det A \ne 0
+	\]
+	זוהי חבורה מוכרת ומסומנת לרוב $\GL_n(\FF)$ (General Linear).
+\end{example}
+\begin{example}
+	אם $A = \FF[x]$ שדה פולינומים פורמליים במשתנה $x$ מעל השדה $\FF$,
+	ונניח ש־$f, g \in \FF[x]$ מקיימים $f g = 1$.
+	ידוע כי $\deg fg = \deg f + \deg g$ בכל חוג פולינומים ולכן נובע שבמקרה שלנו $\deg f + \deg g = \deg 1 = 0$ וכן $f, g \ne 0$ ולכן $\deg f = \deg g \ge 0$.
+	נסיק ש־$\deg f = \deg g = 0$, כלומר אלו הם ערכים קבועים שונים מאפס, כלומר ${\FF[x]}^\times = \FF^\times$.
+\end{example}
+\begin{remark}
+	תמיד נזהה איברים מ־$\FF$ עם פולינומים קבועים, כלומר $\FF \subseteq \FF[x]$.
+\end{remark}
+
+\subsection{מחלקי אפס}
+\begin{definition}[מחלק אפס]
+	יהי $A$ חוג חילופי.
+	איבר $a \in A$ נקרא מחלק אפס (zero divisor) אם קיים $0 \ne b \in A$ כך ש־$a b = 0$.
+\end{definition}
+\begin{remark}
+	תמיד מתקיים $a \cdot 0 = 0 \cdot a = 0$ בכל חוג, זאת שכן,
+	\[
+		a \cdot 0
+		= a (1 - 1)
+		= a \cdot 1 - a \cdot 1
+		= a - a
+		= 0
+	\]
+\end{remark}
+\begin{exercise}
+	הראו כי בכל חוג $A$ מתקיים,
+	\[
+		a - a = 0
+		\qquad
+		a (b - c) = a b - a c
+		\qquad
+		(a - b) c
+		= a c - b c
+	\]
+	לכל $a, b, c \in A$.
+\end{exercise}
+\begin{example}
+	הראו כי אם $a \in A$ מחלק אפס ו־$b \in A$ איבר כלשהו אז $a b$ מחלק אפס.
+\end{example}
+\begin{definition}[תחום שלמות]
+	חוג חילופי $A$ נקרא תחום שלמות (integral domain) או בקיצור תחום,
+	אם $A \ne \{ e \}$ וכן אין ב־$A$ מחלקי אפס.
+\end{definition}
+נעבור לדוגמות למחלקי אפס.
+\begin{example}
+	אם $A$ חוג לא טריוויאלי אז $0$ הוא מחלק אפס,
+	שכן $1 \cdot  0 = 0$.
+\end{example}
+\begin{example}
+	אם $A = \ZZ / 6 \ZZ$ אז $2, 3$ מחלקי אפס שכן $(2 + 6 \ZZ) \cdot (3 + 6 \ZZ) = 0 + 6 \ZZ$.
+\end{example}
+\begin{example}
+	$\ZZ, \FF, \FF[x]$ לכל שדה $\FF$ הם תחומי שלמות.
+\end{example}
+אך כמובן $\ZZ / 6 \ZZ$ אינו תחום שלמות.
+
+\subsection{אידאלים}
+באלגברה קומוטטיבית נהוג לסמן $A \subset B$ להכלה או שוויון ו־$A \subsetneq B$ עבור הכלה ממש. \\
+\begin{notation}
+	אם $X, Y \subset A$ תת־קבוצות של חוג $A$ אז נסמן,
+	\[
+		X \pm Y
+		= \{ x \pm y \mid x \in X, y \in Y \},
+		\quad
+		X \cdot Y
+		= \{ x y \mid x \in X, y \in Y \}
+	\]
+	וכן לכל $a \in A$ גם,
+	\[
+		a X
+		= \{ a x \mid x \in X \},
+		\quad
+		X a
+		= \{ x a \mid x \in X \}
+	\]
+	ולבסוף $-X = \{ -x \mid x \in X \} = (-1) \cdot X$.
+\end{notation}
+\begin{definition}[אידאל]
+	תת־קבוצה $I \subset A$ תיקרא אידאל (Ideal) אם מתקיים:
+	\begin{enumerate}
+		\item $I$ תת־חבורה של $A$ ביחס לחיבור
+		\item $I A = A I = I$, כלומר לכל $b \in I$ ו־$a \in A$ מתקיים $a b, b a \in I$
+	\end{enumerate}
+\end{definition}
+\begin{notation}
+	אם $I \subset A$ אידאל אז נסמן $I \triangleleft A$.
+\end{notation}
+\begin{remark}
+	כדי לבדוק ש־$\emptyset \ne I \subset A$ אידאל מספיק לבדוק ש־$I$ סגורה לחיבור ($I + I \subset I$), \\
+	וכן שיש סגירות לכפל באיברי $A$ ($I A, A I \subset I$).
+\end{remark}
+נבחין כי $0 = 0 \cdot a \in I$ לכל $a \in A$ וכן $-a = (-1) \cdot a \in I$ ולכן $(I, +)$ תת־חבורה. \\
+בנוסף $I A = I, A I = I$ שכן $I = I \cdot 1 \subset I A$. \\
+נבחין כי $I$ לא בהכרח חוג כי אין לו בהכרח יחידה כפלית.
+\begin{example}
+	אם $A$ חוג כלשהו אז $I = \{ 0 \}$ הוא אידאל האפס. \\
+	אידאל היחידה או האידאל הטריוויאלי הוא $I = A$.
+\end{example}
+\begin{corollary}
+	אידאל הוא טריוויאלי אם ורק אם $1 \in I$.
+\end{corollary}
+\begin{example}
+	נגדיר,
+	\[
+		A
+		= \left\{ \begin{pmatrix} a & b \\ 0 & c \end{pmatrix} \mid a, b, c \in \FF \right\}
+	\]
+	עבור $\FF$ שדה
+	 אז מתקיים,
+	 \[
+	 	I
+		= \left\{ \begin{pmatrix} 0 & b \\ 0 & 0 \end{pmatrix} \mid b \in \FF \right\}
+	 \]
+	 הוא אידאל של $A$, כלומר $I \triangleleft A$.
+\end{example}
+\begin{example}
+	אם $X$ קבוצה ו־$A = \RR^\times = \{ f : X \to \RR \}$ ונגדיר את הפעולות $(f g)(x) = f(x) g(x), (f + g)(x) = f(x) + g(x)$ אז $A$ הוא חוג. \\
+	יהי $x_0 \in X$ ונגדיר,
+	\[
+		I
+		= \{ f \in A \mid f(x_0) = 0 \}
+	\]
+	אז $I \triangleleft A$.
+\end{example}
+\begin{example}
+	עבור $A = \ZZ$ ולכל $n \in \NN \cup \{ 0 \} = \NN_0$ מתקיים $n \ZZ \triangleleft  \ZZ$.
+	מתקיים $n \ZZ + n \ZZ = n \ZZ$ וכן $a (n \ZZ) = (a n) \ZZ \subset n \ZZ$. \\
+	בכיוון ההפוך כל $I \triangleleft  \ZZ$ הוא מהצורה הזו כי כל תת־החבורות של $\ZZ$ הן מהצורה הזו.
+\end{example}
+\begin{definition}[אידאל שמאלי וימני]
+	יהי $A$ חוג.
+	אידאל שמאלי ב־$A$ הוא תת־קבוצה $I \subset A$ כך ש־$(I, +)$ היא תת־חבורה וכן $A I = I$.
+	אידאל ימני הוא זהה אך ש־$I A = I$ במקום.
+	כלומר אידאל שמאלי סגור לכפל משמאל ואידאל ימני סגור לכפל מימין.
+\end{definition}
+אידאל שמאלי שהוא גם ימני נקרא לעתים אידאל דו־צדדי. בחוגים חילופיים כל ההגדרות הללו שקולות.
+
+נעבור לפעולות על אידאלים.
+\begin{proposition}
+	יהי $A$ חוג ויהיו $I_{\alpha} \triangleleft  A$ אוסף אידאלים עבור $\alpha \in T$.
+	אז גם $I = \bigcap_{\alpha \in T} I_{\alpha} \triangleleft A$.
+\end{proposition}
+\begin{proposition}
+	יהיו $I_1, \ldots, I_k \triangleleft A$ אידאלים עבור $k \in \NN$.
+	אז גם $I = \sum_{i = 1}^k I_i = \{ a_1 + \cdots + a_k \mid a_i \in I_i \} \triangleleft A$.
+\end{proposition}
+\begin{proof}
+	תרגיל.
+\end{proof}
+\begin{proposition}
+	חיבור אידאלים נכון גם במקרה האינסופי, כלומר אם $T$ קבוצת אינדקסים ו־$I_{\alpha} \triangleleft A$ לכל $\alpha \in T$ אז גם $I = \sum_{\alpha \in T} I_{\alpha} \triangleleft A$.
+	כאשר אנו מגדירים זאת עם סכימות של תת־קבוצות סופיות.
+\end{proposition}
+\begin{example}
+	עבור $A = \ZZ$ וכן $I_i = n_i \ZZ$ מתקיים,
+	\[
+		\bigcap_{i = 1}^\infty I_i = \lcm\{ n_i \mid i \in T \} \ZZ,
+		\qquad
+		\sum_{i = 1}^\infty I_i = \gcd\{ n_i \mid i \in T \} \ZZ
+	\]
+\end{example}
+עתה נעבור לדון במקרה שבו $A$ אידאל חילופי.
+\begin{remark}
+	במקרה זה כדי לבדוק ש־$\emptyset \ne I \subset A$ אידאל מספיק לבדוק ש־$I + I \subset I, A I \subset I$, כלומר השמטנו בדיקה של כפל בשני הכיוונים.
+\end{remark}
+\begin{definition}[אידאל נוצר]
+	תהי $S \subset A$ תת־קבוצה.
+	נגדיר את האידאל הנוצר על־ידי $S$ ב־$A$ על־ידי,
+	\[
+		(S)
+		= \left\{ \sum_{i = 1}^k a_i s_i \mid a_i \in A, s_i \in S, k \in \NN \right\}
+	\]
+\end{definition}
+\begin{proposition}
+	$(S)$ הוא אכן אידאל, וכן כל אידאל של $A$ המכיל את $S$ מכיל גם את $(S)$.
+\end{proposition}
+\begin{proof}
+	יהיו $a = \sum_{i = 1}^k a_i s_i, b = \sum_{i = 1}^l b_i s_i \in (S)$.
+	אז $a + b \in (S)$ על־ידי הסכום של $(a_i + b_i) s_i$.
+	בנוסף לכל $c \in A$ נקבל $c a = \sum_{i = 1}^k (c a_i) s_i \in (S)$ ולכן $(S) \triangleleft A$.
+
+	לחלק השני יהי $S \subset I \triangleleft A$.
+	לכל $a_1, \ldots, a_k \in A, s_1, \ldots, s_k \in S$ מתקיים $a_i \in A, s_i \in S \subset I$.
+	לכן,
+	\[
+		a_i s_i \in I
+		\implies \sum a_i s_i \in I
+	.\]
+	ולכן נובע ש־$(S) \subset I$.
+\end{proof}
+\begin{notation}
+	נסמן $(\{a_1, \ldots, a_n\}) = (a_1, \ldots, a_n)$ ובפרט $(\{ a \}) = (a) = A a$.
+\end{notation}
+\begin{exercise}
+	הראו כי $(a_1, \ldots, a_n) = A a_1 + \cdots + A a_n$.
+\end{exercise}
+\begin{definition}[אידאל ראשי]
+	לכל $A$ חוג, אידאל הנוצר על־ידי איבר אחד, כלומר $I = (a)$ עבור $a \in A$, אז נאמר ש־$I$ אידאל ראשי (principal ideal).
+\end{definition}
+\begin{example}
+	בחוג $\ZZ$ כל אידאל הוא מהצורה $(n) = n \ZZ$ ולכן ראשי.
+\end{example}
+\begin{proposition}
+	אם $I, J \triangleleft A$ אידאלים וכן,
+	\[
+		K
+		= I J
+		= \{ \sum_{i = 1}^k a_i b_i \mid a_i \in I_i, b_i \in J_i, k \in \NN \}
+	.\]
+	אז $K \triangleleft A$.
+\end{proposition}
+\begin{proof}
+	תרגיל.
+\end{proof}
+\begin{example}
+	אם $I = (a)$ ו־$J = (b)$ אז $I J = (ab)$.
+\end{example}
+נבחין כי $I J$ איננה מכפלת הקבוצות $I$ ו־$J$, בדרך־כלל אם אנו כופלים אידאלים הכוונה היא לפעולה של כפל אידאלים.
+
+\subsection{חוגי מנה}
+בהינתן חוג $A$ ואידאל $I \triangleleft A$ נרצה להגדיר את חוג המנה $A / I$.
+$A$ הוא חילופי ביחס לחיבור ולכן $I \le A$ תת־חבורה נורמלית ביחס לחיבור.
+נגדיר את,
+\[
+	R
+	= A / I
+	= \{ a + I \mid a \in A \}
+.\]
+אם פעולת החיבור $(a + I) + (b + I) = (a + b) + I$ היא חבורה, עתה נרצה להגדיר כפל ולהפוך אותה לחוג.
+\begin{notation}
+	נסמן $\bar{a}$ עבור $a + I$.
+\end{notation}
+בהתאם מתקיים $\bar{a} = \bar{b}$ אם ורק אם $a - b \in I$.
+סימון נוסף הוא $a \equiv b \mod I$.
+\begin{proposition}
+	עבור $\bar{a}, \bar{b} \in R$ הפעולה $\bar{a} \cdot \bar{b} = \bar{ab}$ מוגדרת היטב וכן $(R, +, \cdot)$ חוג.
+\end{proposition}
+\begin{proof}
+	נבחר נציגים $a - a' \in I$ וכן $b - b' \in I$ ונראה כי $ab - a' b' \in I$.
+	\[
+		a b - a' b'
+		= a \overbrace{(b - b')}^{\in I} + \overbrace{(a - a')}^{\in I} b'
+		\in I
+	.\]
+	בהתאם באמת מצאנו שהפעולה מוגדרת היטב עבור חבורת המנה.
+
+	החלק של בדיקת הגדרות החוג עבור $(R, +, \cdot)$ מושארת כתרגיל.
+\end{proof}
+\begin{definition}[חוג מנה]
+	$R = A / I$ עבור $A$ חוג ו־$I \triangleleft A$ נקרא חוג המנה (quotient ring) של $A$ ב־$I$. \\
+	ההעתקה $\pi : A \to A / I$ המוגרת על־ידי,
+	\[
+		\pi(a)
+		= \bar{a}
+		= a + I
+		\in R
+	.\]
+	נקראת העתקת המנה ביחס לאידאל $I$.
+\end{definition}
+\begin{example}
+	אם $A = \ZZ$ וכן $I = n \ZZ$ כאשר $n \in \NN_0$ אז,
+	\[
+		A / I
+		= \ZZ / n \ZZ
+	.\]
+	חוג שאריות מודולו $n$.
+\end{example}
+
+\subsection{הומומורפיזמים}
+\begin{definition}[הומומורפיזם חוגים]
+	יהיו $A, B$ חוגים.
+	פונקציה $\varphi : A \to B$ נקראת הומומורפיזם חוגים אם היא מקיימת את התכונות הבאות:
+	\begin{enumerate}
+		\item $\varphi : (A, +) \to (B, +)$ הומומורפיזם של חבורות, כלומר $\varphi(0_A) = 0_B$ וכן $\varphi(a \pm b) = \varphi(a) \pm \varphi(b)$ לכל $a, b \in A$
+		\item $\varphi(1_A) = 1_B$
+		\item פעולת הכפל משומרת, כלומר לכל $a, b \in A$ מתקיים $\varphi(a b) = \varphi(a) \cdot_B \varphi(b)$
+	\end{enumerate}
+\end{definition}
+כאשר אנו יודעים כי הומומורפיזם הוא הומומורפיזם חוגים לעתים נשמיט את המילה חוגים.
+\begin{example}
+	אם $A$ חוג ו־$I \triangleleft A$ אידאל אז העתקת המנה $\pi : A \to A / I$ היא הומומורפיזם.
+\end{example}
+\begin{example}
+	נגדיר את $\varphi : \CC \to M_2(\RR)$ על־ידי,
+	\[
+		\varphi(a + b i)
+		= \begin{pmatrix}
+			a & -b \\
+			b & a
+		\end{pmatrix}
+	.\]
+	על־ידי בדיקה פשוטה נקבל שזהו הומומורפיזם.
+\end{example}
+\begin{definition}[איזומורפיזם חוגים]
+	הומומורפיזם חוגים נקרא איזומורפיזם חוגים אם הוא פונקציה הפיכה, ובמקרה זה גם הפונקציה ההופכית היא איזומורפיזם חוגים.
+\end{definition}
+\begin{notation}
+	נסמן איזומורפיזם על־ידי $\varphi : A \xrightarrow{\sim} B$.
+\end{notation}
+\begin{definition}[חוגים איזומורפיים]
+	חוגים $A, B$ יקראו איזומורפיים אם קיים $\varphi : A \xrightarrow{\sim} B$ ביניהם.
+\end{definition}
+\begin{definition}[גרעין]
+	הגרעין של הומומורפיזם $\varphi : A \to B$ מוגדר להיות,
+	\[
+		\ker \varphi
+		= \varphi^{-1}(\{ 0_B \})
+		= \{ a \in A \mid \varphi(a) = 0 \}
+	.\]
+\end{definition}
+\begin{proposition}
+	אם $\varphi : A \to B$ הומומורפיזם אז $\ker \varphi \triangleleft A$.
+\end{proposition}
+\begin{proof}
+	מתורת החבורות ידוע שהגרעין הוא תת־חבורה חיבורית של $A$.
+	נשאר אם כן ש־$I = \ker \varphi$ סגור לכפל ב־$A$.
+	יהי $a \in A$ ו־$b \in I$, אז,
+	\[
+		\varphi(a b)
+		= \varphi(a) \varphi(b)
+		= \varphi(a) \cdot 0_B
+		= 0
+	.\]
+	ולכן $a b \in I$.
+\end{proof}
+\begin{definition}[תמונה]
+	התמונה של הומומורפיזם $\varphi : A \to B$ היא,
+	\[
+		\im \varphi
+		= \varphi(A)
+		= \{ \varphi(a) \mid a \in A \}
+	.\]
+\end{definition}
+\begin{definition}[תת־חוג]
+	תת־חוג (sub-ring) של חוג $A$ היא תת־קבוצה $B \subset A$ כך ש־$B$ סגורה לחיבור, חיבור וכפל, וכן $1_A \in B$.
+\end{definition}
+\begin{exercise}
+	אם $\varphi : A \to B$ הומומורפיזם של חוגים אז $\varphi(A) \subset B$ תת־חוג.
+\end{exercise}
+\begin{theorem}[משפט האיזומורפיזם הראשון לחוגים]
+	יהי $\varphi : A \to B$ הומומורפיזם חוגים, אז יש איזומורפיזם $A / \ker \varphi \xrightarrow{\sim} \im \varphi$ על־ידי $a + \ker \varphi \mapsto \varphi(a)$.
+\end{theorem}
+\begin{proof}
+	מתורת החבורות נקבל שההעתקה הזו אכן מוגדרת היטב, ומהווה איזומורפיזם חבורות ביחס לפעולת החיבור.
+	נשאר להראות שהיא שומרת על כפל ו־$1$.
+	יהיו $a, b \in A$ אז,
+	\[
+		(a + \ker \varphi) (b + \ker \varphi)
+		= a b + \ker \varphi
+		\mapsto \varphi(a b)
+		= \varphi(a) \varphi(b)
+	.\]
+	ולכן קיבלנו שאכן הפעולה משמרת כפל. \\
+	בנוסף נבחין כי $1 + \ker \varphi$ הוא איבר היחידה של $A / \ker \varphi$ והוא נשלח ל־$\varphi(1) = 1_B$ ולכן $\varphi$ אכן איזומורפיזם חוגים.
+\end{proof}
+\begin{theorem}[משפט ההתאמה לחוגים]
+	יהי $A$ חוג ו־$I \triangleleft A$ אידאל, ונסמן $\pi : A \to A / I$ העתקת המנה.
+	אז יש התאמה חד־חד ערכית ועל בין $\{ I \subset J \triangleleft A \}$ ל־$\{ K \triangleleft A / I \}$ המוגדרת על־ידי,
+	\[
+		J \mapsto \pi(J)
+		= J / I
+	.\]
+\end{theorem}
+לפני שניגש להוכחת המשפט נוכיח טענת עזר חשובה.
+\begin{lemma}
+	יהי $\varphi : A \to B$ הומומורפיזם חוגים, אז,
+	\begin{enumerate}
+		\item אם $I \triangleleft B$ אז $\varphi^{-1}(I) \triangleleft A$
+		\item אם $I \triangleleft A$ וכן $\varphi$ על אז $\im \varphi \triangleleft B$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	החלק הראשון מושאר כתרגיל.
+
+	אנו יודעים כי $\varphi(I)$ תת־חבורה חיבורית של $B$, עלינו להראות שגם $B \varphi(I), \varphi(I) B \subset \varphi(I)$.
+	מתקיים,
+	\[
+		B \varphi(I)
+		= \varphi(A) \varphi(I)
+		= \varphi(A I)
+		= \varphi(I)
+	.\]
+	כאשר המעבר הראשון נובע מהעובדה ש־$\varphi$ על, והכיוון השני זהה.
+\end{proof}
+נחזור למשפט ההתאמה.
+\begin{proof}[הוכחת המשפט]
+	ידוע מתורת החבורות שההתאמה שתיארנו קיימת בין תת־חבורות חיבוריות $\{ I \subset H \subset A \}$ לבין תת־חבורות $\{ Q \subset A / I \}$.
+	נותר להראות שהתאמה זו משמרת אידאלים.
+	$\pi$ היא על ולכן מטענת העזר נובע שאם $I \subset J$ אידאל אז $\pi(J)$ וכן אם $K \triangleleft A / I$ אז $\pi^{-1}(K) \triangleleft A$ כנדרש.
+\end{proof}
+\begin{remark}
+	$\pi(J) = J / I$ הוא אידאל ב־$A / I$.
+\end{remark}
+\begin{theorem}[משפט האיזומורפיזם השלישי]
+	יהי $A$ חוג ויהי $I \triangleleft A$ אידאל, וכן $I \subset J \triangleleft A$ אידאל נוסף.
+	אז מתקיים,
+	\[
+		A / J
+		\cong (A / I) / (J / I)
+	.\]
+	על־ידי המיפוי,
+	\[
+		a + J
+		\mapsto \pi(a) + J / I
+	.\]
+\end{theorem}
+\begin{proof}
+	מתורת החבורות קיים איזומורפיזם כזה, וקל לבדוק שוב את התנאים הנוספים הנדרשים.
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
