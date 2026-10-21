@@ -160,6 +160,7 @@
 		= T \circ \rho_1(g)
 		\iff T^{-1} \circ \rho_2(g) = \rho_1(g)
 	\]
+	במקרה זה נסמן $(V_1, \rho_1) \cong (V_2, \rho_2)$.
 \end{definition}
 במצב בו המרחבים סוף־מימדיים אם $\rho_i : G \to \GL_n(\FF)$ עבור $i \in \{1, 2\}$ אז קיימת מטריצה הפיכה $B \in \GL_n(\FF)$ כך שלכל $g \in G$ מתקיים,
 \[
@@ -227,6 +228,101 @@
 	$C_4$ וסיבוב וכן $D_n$ וסיבוב הן פריקות לחלוטין. \\
 	הצגה של $\ZZ$ שהצגנו איננה פריקה לחלוטין וגם לא אי־פריקה, וכן ההצגה של $C_2$ שהצגנו לא פריקה לחלוטין.
 \end{example}
+
+\section{שיעור 2 --- 20.10.2026}
+\begin{proposition}
+	אם $G$ סופית ו־$(V, \rho)$ הצגה אי־פריקה אז $\dim V \le |G|$.
+\end{proposition}
+\begin{proof}
+	יהי $0 \ne v \in V$ ונגדיר $U = \Sp\{ g . v \mid g \in G \}$, אז $\dim U \le |G|$.
+	נראה ש־$U$ אינווריאנטי, $v = 1 . u \in U$ ולכן $u \ne 0$ ועל־כן אם $V$ אי־פריקה אז $V = U$.
+	אם $U$ מרחב לא ריק ואינווריאנטי ולכן הוא כלל המרחב.
+	יהי $u \in U$ ולכן $u = \sum_{g \in G} \alpha_g (g. v)$ עבור סקלרים $\alpha_g \in \FF$,
+	לכל $h \in G$,
+	\[
+		h . u
+		= h . \sum_g \alpha_g (g. u)
+		= \sum_g \alpha_g (h . g . v)
+		\in U
+	\]
+	שכן $h . g . v = (h . g) . v \in U$.
+\end{proof}
+\begin{remark}
+	נראה בהמשך שאם הצגה אי־פריקה לחלוטין, אז בכל שני פירוקים להצגות אי־פריקות תופענה אותן הצגות אי־פריקות עם אותו ריבוי (עד כדי שקילות).
+\end{remark}
+\begin{remark}
+	בכל הצגה סוף־מימדית יש יחידות של ''גורמי ההרכב'' (גרסה של משפט ז'ורדן־הלדר להצגות).
+\end{remark}
+\begin{theorem}[משקה (Maschke)]
+	אם $G$ סופית ו־$\Char \FF \nmid |G|$ (או $\Char \FF = 0$) אז כל הצגה סוף־מימדית של $G$ היא פריקה לחלוטין.
+\end{theorem}
+ראינו דוגמה $\rho : C_2 \to \GL_2(\FF_2)$ שאיננה פריקה, וראינו גם שקיימת הצגה $\rho : \ZZ \to \GL_2(\RR)$ שגם היא איננה פריקה לחלוטין.
+\begin{proof}
+	מספיק להוכיח תת־מרחב וקטורי אינווריאנטי יש משלים ישר אינווריאנטי,
+	כלומר שאם $U \le V$ אינווריאנטי אז קיים $W \le V$ אינווריאנטי כך ש־$U \oplus W = V$.
+
+	אם $\FF$ הוא $\RR$ או $\CC$ ויש מכפלה פנימית על $V$ ו־$U \le V$ תת־מרחב וקטורי אינווריאנטי.
+	באופן כללי $U^\perp$ לא בהכרח אינווריאנטי, ואין בהכרח בין מכפלה פנימית והצגה. \\
+	אם ההצגה מכבדת את המכפלה הפנימית, כלומר פועלת כאיזומטריה:
+	\[
+		 \forall g \in G \forall v, u \in V,\ 
+		 \langle g . u, g . v \rangle = \langle u, v \rangle
+	\]
+	אז $U^\perp$ גם אינווריאנטי. נראה כי,
+	\[
+		w \in U^\perp
+		\iff \forall u \in U,\ \langle w, u \rangle = 0
+		\iff \forall u \in U, g \in G,\ \langle g . w, u \rangle = \langle w, g^{-1} u \rangle = 0
+	\]
+	זאת שכן $g^{-1} u \in U$ מאינווריאנטיות. לכן $g . w \in U^\perp$. \\
+	באופן כללי אפשר מעל $\RR$ או $\CC$ אפשר לבחור מכפלה פנימית שמכבדת את החבורה (נקרא Weylis Unitary trick).
+	ניקח מכפלה פנימית כלשהי $\langle , \rangle$ ונגדיר מכפלה פנימית חדשה על־ידי,
+	\[
+		\langle u, v \rangle_G
+		= \frac{1}{|G|} \sum_{g \in G} \langle g u, g v \rangle
+	\]
+	זו מכפלה פנימית כסכום של מכפלות פנימיות, ו־$\rho$ פועלת כאיזומטריה על המכפלה הפנימית הזו,
+	\[
+		\langle h . u, h . v \rangle_G
+		= \frac{1}{|G|} \sum_{g \in G} \langle g . h . u, g . h . v \rangle
+		= \frac{1}{|G|} \sum_{t = g . h \in G} \langle t . u, t . v \rangle
+		= \langle u, v \rangle_G
+	\]
+	נבחין כי הוכחה זו משתנה כתלות בשדה ($\RR$ או $\CC$),
+	וכל שמעל $\RR$ כל הצגה סוף־מימדית של חבורה סופית שקולה להצגה אורתוגונלית.
+	עוד נובע שמעל $\CC$ כל הצגה שקולה להצגה אוניטרית, כלומר $\rho : G \to O(n) \subseteq \GL_n(\RR)$.
+
+	תהי $G$ סופית ו־$V$ הצגה סוף מימדית, $U \le V$ אינווריאנטי,
+	נבחר משלים ישר כלשהו $W \le V$ כך ש־$W \oplus U = V$.
+	תהי $P : V \to U$ ההטלה, כלומר $P(u) = u$ לכל $u \in U$, ו־$P(w) = 0$ לכל $w \in W$.
+	נגדיר $\bar{P} : V \to V$ על־ידי,
+	\[
+		\bar{P}(v)
+		= \frac{1}{|G|} \sum_{g \in G} g . P(g^{-1} v)
+	\]
+	נראה ש־$\bar{P}$ הטלה על $U$ וש־$\ker \bar{P}$ הוא אינווריאנטי. \\
+	לכל $u \in U$ נראה ש־$\bar{P}(u) = u$, נבחין כי $g^{-1} . u \in U$ מאינווריאנטיות $U$ ולכן,
+	\[
+		\bar{P}(u)
+		= \frac{1}{|G|} \sum_{g \in G} g . P(g^{-1} . u)
+		= \frac{1}{|G|} \sum_{g \in G} g . g^{-1} . u
+		= \frac{1}{|G|} \sum_{g \in G} u
+		= u
+	\]
+	נקבל ש־$\im \bar{P} \subseteq U$.
+	מכיוון ש־$\bar{P}$ כמו בהגדרה אז $U \oplus \ker \bar{P} = V$, ועתה נראה ש־$\ker \bar{P}$ הוא אינווריאנטי.
+	אכן לכל $w \in \ker \bar{P}$ צריך להראות ש־$h . w \in \ker \bar{P}$ לכל $h \in G$,
+	\begin{multline*}
+		\bar{P}(h . w)
+		= \frac{1}{|G|} \sum_{g \in G} g . P(g^{-1} . h . w)
+		= \frac{1}{|G|} \sum_{g \in G} h . (h^{-1} . g) . P({(h^{-1} g)}^{-1} . w) = \\
+		= \frac{1}{|G|} \sum_{t \in G} h . t P(t^{-1} . w)
+		= h . \frac{1}{|G|} \sum_{t \in G} t . P(t^{-1}. w)
+		= h . 0
+		= 0
+	\end{multline*}
+	זאת שכן $t^{-1} . w \in \ker P$.
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
