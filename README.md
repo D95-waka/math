@@ -49,233 +49,248 @@ read num && env AUTHOR='<author name>' lualatex -halt-on-error -output-directory
     </tr>
     <tr>
         <th colspan="2">הסתיימו</th>
-        <th>105</th>
+        <th>129</th>
     </tr>
     <tr>
-        <td><a href="./discrete_mathematics">מתמטיקה דיסקרטית</a></td>
-        <td>2022ג'</td>
+        <td>מתמטיקה דיסקרטית</td>
+        <td>2021ג'</td>
         <td>4</td>
     </tr>
     <tr>
-        <td><a href="./linear_algebra_1">אלגברה לינארית 1</a></td>
-        <td>2023א'</td>
+        <td>אלגברה לינארית 1</td>
+        <td>2022א'</td>
         <td>6</td>
     </tr>
     <tr>
-        <td><a href="./linear_algebra_2">אלגברה לינארית 2</a></td>
-        <td>2023ב'</td>
+        <td>אלגברה לינארית 2</td>
+        <td>2022ב'</td>
         <td>5</td>
     </tr>
     <tr>
-        <td><a href="./calculus_1">חשבון אינפיניטסימלי 1</a></td>
+        <td>חשבון אינפיניטסימלי 1</td>
+        <td>2022ב'</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>חשבון אינפיניטסימלי 2</td>
         <td>2023ב'</td>
         <td>7</td>
     </tr>
     <tr>
-        <td><a href="./calculus_2">חשבון אינפיניטסימלי 2</a></td>
-        <td>2024ב'</td>
-        <td>7</td>
-    </tr>
-    <tr>
-        <td><a href="./calculus_3">חשבון אינפיניטסימלי 3</a></td>
-        <td>2024ב'</td>
+        <td>חשבון אינפיניטסימלי 3</td>
+        <td>2023ב'</td>
         <td>6</td>
     </tr>
     <tr>
-        <td><a href="./algebraic_structures_1">מבנים אלגבריים 1</a></td>
-        <td>2024ב'</td>
+        <td>מבנים אלגבריים 1</td>
+        <td>2023ב'</td>
         <td>6</td>
     </tr>
     <tr>
-        <td><a href="./set_theory">תורת הקבוצות</a></td>
-        <td>2024ב'</td>
+        <td>תורת הקבוצות</td>
+        <td>2023ב'</td>
         <td>3</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/76631">תכנות בסיסי בפייתון</a></td>
-        <td>2025א'</td>
+        <td>תכנות בסיסי בפייתון</td>
+        <td>2024א'</td>
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="./probability_theory_1">תורת ההסתברות 1</a></td>
-        <td>2025א'</td>
+        <td>תורת ההסתברות 1</td>
+        <td>2024א'</td>
         <td>5</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80519">פונקציות מרוכבות</a></td>
+        <td>פונקציות מרוכבות</td>
+        <td>2024א'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>מבוא ללוגיקה</td>
+        <td>2024א'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>אנליזה פונקציונלית</td>
+        <td>2024ב'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>מבנים אלגבריים 2</td>
+        <td>2024ב'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>מבוא לטופולוגיה</td>
+        <td>2024ב'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>אליזה על יריעות</td>
+        <td>2024ב'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>לוגיקה מתמטית 2</td>
+        <td>2024ב'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>תורת המודלים 1</td>
+        <td>2025א'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>תורת המידה</td>
         <td>2025א'</td>
         <td>4</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80423">מבוא ללוגיקה</a></td>
+        <td>גיאומטריה דיפרנציאלית אלמנטרית</td>
         <td>2025א'</td>
         <td>4</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80417">אנליזה פונקציונלית</a></td>
-        <td>2025ב'</td>
+        <td>קוגניציה אנושית למלאכותית</td>
+        <td>2025א'</td>
         <td>3</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80446/">מבנים אלגבריים 2</a></td>
-        <td>2025ב'</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80516">מבוא לטופולוגיה</a></td>
-        <td>2025ב'</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80416">אליזה על יריעות</a></td>
-        <td>2025ב'</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80424">לוגיקה מתמטית 2</a></td>
-        <td>2025ב'</td>
-        <td>3</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80616">תורת המודלים 1</a></td>
-        <td>2026א'</td>
-        <td>3</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80517">תורת המידה</a></td>
-        <td>2026א'</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80560">גיאומטריה דיפרנציאלית אלמנטרית</a></td>
-        <td>2026א'</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6178">קוגניציה אנושית למלאכותית</a></td>
-        <td>2026א'</td>
-        <td>3</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6119">חישוביות וקוגניציה</a></td>
-        <td>2026א'</td>
+        <td>חישוביות וקוגניציה</td>
+        <td>2025א'</td>
         <td>6</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6178">פרספקטיבות חדשות על הוראת מתמטיקה</a></td>
-        <td>2026א'</td>
+        <td>פרספקטיבות חדשות על הוראת מתמטיקה</td>
+        <td>2025א'</td>
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/03053">תיאוריות בהתפתחות הילד והמתבגר</a></td>
-        <td>2026א'</td>
+        <td>תיאוריות בהתפתחות הילד והמתבגר</td>
+        <td>2025א'</td>
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/38373">הסכסוך הישראלי-פלסטיני א'</a></td>
-        <td>2026א'</td>
+        <td>הסכסוך הישראלי-פלסטיני א'</td>
+        <td>2025א'</td>
         <td>2</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/3405">יהודי אתיופיה: עבר, הווה ועתיד</a></td>
-        <td>2026א'</td>
+        <td>יהודי אתיופיה: עבר, הווה ועתיד</td>
+        <td>2025א'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>משוואות דיפרנציאליות</td>
+        <td>2025ב'</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>תורת ההסתברות (2)</td>
+        <td>2025ב'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>תבניות ריבועיות ומספרים P־אדיים</td>
+        <td>2025ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>טופולוגיה דיפרנציאלית</td>
+        <td>2025ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>סקס- רביה מינית ממולקולות עד פילים, באנגלית</td>
+        <td>2025ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>תכנות מתקדם בפייתון</td>
+        <td>2025ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>הסכסוך הישראלי-פלסטיני ב'</td>
+        <td>2025ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>קוגניציה וחישוביות של בעלי חיים</td>
+        <td>2025ב'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>ממדעים לאמנות</td>
+        <td>2025ב'</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>מחשבת החינוך</td>
+        <td>2025ב'</td>
         <td>2</td>
     </tr>
     <tr>
         <th colspan="2">בלמידה</th>
-        <th>24</th>
+        <th>8</th>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80320">משוואות דיפרנציאליות</a></td>
-        <td>2026ב'</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80421">תורת ההסתברות (2)</a></td>
-        <td>2026ב'</td>
+        <td>יסודות בתורת ההצגות</td>
+        <td>2026א'</td>
         <td>3</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80507">תבניות ריבועיות ומספרים P־אדיים</a></td>
-        <td>2026ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/80576">טופולוגיה דיפרנציאלית</a></td>
-        <td>2026ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/72159">סקס- רביה מינית ממולקולות עד פילים, באנגלית</a></td>
-        <td>2026ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/76632">תכנות מתקדם בפייתון</a></td>
-        <td>2026ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/38406">הסכסוך הישראלי-פלסטיני ב'</a></td>
-        <td>2026ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/6170">קוגניציה וחישוביות של בעלי חיים</a></td>
-        <td>2026ב'</td>
+        <td>יסודות באלגברה קומוטטיבית</td>
+        <td>2026א'</td>
         <td>3</td>
     </tr>
     <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/34073">ממדעים לאמנות</a></td>
-        <td>2026ב'</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td><a href="https://shnaton.huji.ac.il/index.php/NewSyl/34312">מחשבת החינוך</a></td>
-        <td>2026ב'</td>
+        <td>סמינר חבורות לי</td>
+        <td>2026א'</td>
         <td>2</td>
     </tr>
     <tr>
         <th colspan="2">עתידיים</th>
-        <th>0</th>
+        <th>13</th>
+    </tr>
+    <tr>
+        <td>תורת הקבוצות המתקדמת 1</td>
+        <td>2026ב'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>יסודות בטופולוגיה אלגברית</td>
+        <td>2026ב'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>גאומטריה אלגברית 1</td>
+        <td>2026ב'</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>סמינר בגאומטריה ודינמיקה</td>
+        <td>2026ב'</td>
+        <td>2</td>
     </tr>
 </table>
 
 בנוסף ישנן הדרישות המספריות:
 <table dir="rtl">
     <tr>
-        <th>שם</th>
+        <th>קטגוריה</th>
         <th>דרוש</th>
         <th>בוצע</th>
     </tr>
     <tr>
-        <td>חובה בחוג</td>
-        <td>53</td>
-        <td>48</td>
-    </tr>
-    <tr>
-        <td>חובת בחירה</td>
+        <td>קורסים</td>
         <td>24</td>
-        <td>24</td>
+        <td>0</td>
     </tr>
     <tr>
-        <td>בחירה בחוג</td>
-        <td>17</td>
-        <td>14</td>
-    </tr>
-    <tr>
-        <td>לימודי תכנות</td>
-        <td>2</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td>אבני פינה</td>
-        <td>2</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td>לימודים משלימים</td>
-        <td>30</td>
-        <td>15</td>
+        <td>סמינרים</td>
+        <td>4</td>
+        <td>0</td>
     </tr>
 </table>
