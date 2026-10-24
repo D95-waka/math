@@ -1,0 +1,137 @@
+\newcounter{stoppagebreaks}
+\input{../article_base.tex}
+\setlist[enumerate,1]{label={\alph*.}}
+% chktex-file 9
+% chktex-file 17
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{מתמטיקה א' --- פתרון תרגיל 2}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{שאלה 1}
+להלן הזוגות המתאימים של הקבוצות השוות (בקבוצות, סדר האיברים וכפילויות אינם משנים):
+\begin{itemize}
+    \item $\{\} = \emptyset$
+    \item $\{\text{סוס}, \text{כלב}, \text{דג}\} = \{\text{דג}, \text{כלב}, \text{סוס}, \text{סוס}\}$
+    \item $\{a, a, b, b, c\} = \{a, b, c\}$
+    \item $\{1, 3, 2\} = \{1, 2, 2, 3\}$
+\end{itemize}
+
+\section{שאלה 2}
+נתונה הקבוצה $A = \{1, 2, \{1\}, \{3\}\}$:
+\begin{enumerate}
+    \item $1 \in A$ --- \textbf{נכון} (האיבר 1 נמצא בקבוצה).
+    \item $3 \in A$ --- \textbf{לא נכון} (האיבר 3 לא בקבוצה, אלא הקבוצה $\{3\}$).
+    \item $\emptyset \in A$ --- \textbf{לא נכון} (הקבוצה הריקה אינה איבר ב־$A$).
+    \item $\emptyset \subseteq A$ --- \textbf{נכון} (הקבוצה הריקה היא תת־קבוצה של כל קבוצה).
+    \item $\{2\} \in A$ --- \textbf{לא נכון} (הקבוצה $\{2\}$ אינה איבר ב־$A$, אלא המספר 2).
+    \item $\{2\} \subseteq A$ --- \textbf{נכון} (האיבר 2 נמצא ב־$A$, ולכן הקבוצה המכילה אותו היא תת־קבוצה).
+    \item $\{\{1\}, \{3\}\} \subseteq A$ --- \textbf{נכון} (האיברים $\{1\}$ ו־$\{3\}$ שניהם שייכים ל־$A$).
+    \item $\{1, 2, 3\} = A$ --- \textbf{לא נכון} (האיברים שונים, למשל 3 לא ב־$A$).
+\end{enumerate}
+
+\section{שאלה 3}
+פתרונות לפעולות בין קבוצות וקטעים:
+\begin{enumerate}
+    \item $[-4, 7] \cap [4, 7] = [4, 7]$
+    \item $[-4, 7] \cup [4, 7] = [-4, 7]$
+    \item $(2, 5] \cap [4, 5) = [4, 5)$
+    \item $\emptyset \cap (1, 2) = \emptyset$
+    \item $\emptyset \cup (3, 5) = (3, 5)$
+    \item $\{3, 4, 7\} \cap \{1, 2, 3\} = \{3\}$
+    \item $\{1, 2, 3\} \setminus \{1, 2, 3, 4\} = \emptyset$
+\end{enumerate}
+
+\section{שאלה 4}
+תרגום הטענות לצורה מילולית:
+\begin{enumerate}
+    \item $\forall x \in A \cap B, x \in A \cup B$ \\
+    \textbf{תשובה:} לכל איבר $x$ שנמצא בחיתוך של הקבוצות $A$ ו־$B$, האיבר $x$ שייך גם לאיחוד של הקבוצות $A$ ו־$B$. (כלומר, כל איבר בחיתוך נמצא גם באיחוד).
+    \item $\nexists p \in \mathbb{Q} : p \notin \mathbb{R}$ \\
+    \textbf{תשובה:} לא קיים מספר רציונלי $p$ כך ש־$p$ אינו מספר ממשי. (או במילים פשוטות: כל מספר רציונלי הוא גם מספר ממשי).
+\end{enumerate}
+
+\section{שאלה 5}
+הערה: נהוג להגדיר את התחום והטווח כ־$\mathbb{R}$ אם לא צוין אחרת, והתמונה היא אוסף הערכים שהפונקציה מקבלת בפועל.
+\begin{enumerate}
+    \item $f(x) = x$ \\
+    \textbf{תחום:} $\mathbb{R}$, \textbf{טווח:} $\mathbb{R}$, \textbf{תמונה:} $\mathbb{R}$.
+	\begin{otherlanguage}{english}
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[
+					axis lines = middle,
+					xlabel = {$x$}, ylabel = {$y$},
+					ymin=-5, ymax=5, xmin=-5, xmax=5,
+					domain=-5:5, samples=2,
+					width=8cm, height=6cm
+					]
+					\addplot[blue, thick] {x};
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{otherlanguage}
+
+    \item $f(x) = -2x + 10$ \\
+    \textbf{תחום:} $\mathbb{R}$, \textbf{טווח:} $\mathbb{R}$, \textbf{תמונה:} $\mathbb{R}$.
+	\begin{otherlanguage}{english}
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[
+					axis lines = middle,
+					xlabel = {$x$}, ylabel = {$y$},
+					ymin=-5, ymax=15, xmin=-2, xmax=7,
+					domain=-2:7, samples=2,
+					width=8cm, height=6cm
+					]
+					\addplot[blue, thick] {-2*x + 10};
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{otherlanguage}
+
+    \item $f(x) = -x(x - 3) = -x^2 + 3x$ \\
+    \textbf{תחום:} $\mathbb{R}$, \textbf{טווח:} $\mathbb{R}$. פרבולה הבוכה שמקסימום הקודקוד שלה הוא ב־$x=1.5, y=2.25$. לכן \textbf{התמונה:} $(-\infty, 2.25]$.
+	\begin{otherlanguage}{english}
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[
+					axis lines = middle,
+					xlabel = {$x$}, ylabel = {$y$},
+					ymin=-5, ymax=4, xmin=-2, xmax=5,
+					domain=-1.5:4.5, samples=100,
+					width=8cm, height=6cm
+					]
+					\addplot[blue, thick] {-x^2 + 3*x};
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{otherlanguage}
+
+    \item $f(x) = x^2 + 10$ \\
+    \textbf{תחום:} $\mathbb{R}$, \textbf{טווח:} $\mathbb{R}$. פרבולה מחייכת שהקודקוד שלה ב־$(0,10)$. לכן \textbf{התמונה:} $[10, \infty)$.
+	\begin{otherlanguage}{english}
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[
+					axis lines = middle,
+					xlabel = {$x$}, ylabel = {$y$},
+					ymin=0, ymax=25, xmin=-4, xmax=4,
+					domain=-3.5:3.5, samples=100,
+					width=8cm, height=6cm
+					]
+					\addplot[blue, thick] {x^2 + 10};
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{otherlanguage}
+
+\end{enumerate}
+
+\end{document}
