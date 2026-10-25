@@ -518,7 +518,7 @@ $A$ הוא חילופי ביחס לחיבור ולכן $I \le A$ תת־חבור�
 \begin{exercise}
 	אם $\varphi : A \to B$ הומומורפיזם של חוגים אז $\varphi(A) \subset B$ תת־חוג.
 \end{exercise}
-\begin{theorem}[משפט האיזומורפיזם הראשון לחוגים]
+\begin{theorem}[האיזומורפיזם הראשון לחוגים]
 	יהי $\varphi : A \to B$ הומומורפיזם חוגים, אז יש איזומורפיזם $A / \ker \varphi \xrightarrow{\sim} \im \varphi$ על־ידי $a + \ker \varphi \mapsto \varphi(a)$.
 \end{theorem}
 \begin{proof}
@@ -534,7 +534,7 @@ $A$ הוא חילופי ביחס לחיבור ולכן $I \le A$ תת־חבור�
 	ולכן קיבלנו שאכן הפעולה משמרת כפל. \\
 	בנוסף נבחין כי $1 + \ker \varphi$ הוא איבר היחידה של $A / \ker \varphi$ והוא נשלח ל־$\varphi(1) = 1_B$ ולכן $\varphi$ אכן איזומורפיזם חוגים.
 \end{proof}
-\begin{theorem}[משפט ההתאמה לחוגים]
+\begin{theorem}[ההתאמה לחוגים]
 	יהי $A$ חוג ו־$I \triangleleft A$ אידאל, ונסמן $\pi : A \to A / I$ העתקת המנה.
 	אז יש התאמה חד־חד ערכית ועל בין $\{ I \subset J \triangleleft A \}$ ל־$\{ K \triangleleft A / I \}$ המוגדרת על־ידי,
 	\[
@@ -572,7 +572,7 @@ $A$ הוא חילופי ביחס לחיבור ולכן $I \le A$ תת־חבור�
 \begin{remark}
 	$\pi(J) = J / I$ הוא אידאל ב־$A / I$.
 \end{remark}
-\begin{theorem}[משפט האיזומורפיזם השלישי]
+\begin{theorem}[האיזומורפיזם השלישי]
 	יהי $A$ חוג ויהי $I \triangleleft A$ אידאל, וכן $I \subset J \triangleleft A$ אידאל נוסף.
 	אז מתקיים,
 	\[
@@ -588,6 +588,107 @@ $A$ הוא חילופי ביחס לחיבור ולכן $I \le A$ תת־חבור�
 \begin{proof}
 	מתורת החבורות קיים איזומורפיזם כזה, וקל לבדוק שוב את התנאים הנוספים הנדרשים.
 \end{proof}
+
+\section{שיעור 3 --- 25.10.2026}
+\subsection{משפטי האיזומורפיזם --- המשך}
+נעבור לדבר על משפט האיזומורפיזם השני.
+\begin{theorem}[האיזומורפיזם השני]
+	יהי $A$ חוג, $B \subset A$ תת־חוג ו־$I \triangleleft A$ אידאל.
+	\begin{enumerate}
+		\item $I + B$ הוא תת־חוג של $A$
+		\item $B \cap I \triangleleft B$ וכן $I \triangleleft I + B$
+		\item $B / (I \cap B) \cong (I + B) / I$ נתון על־ידי $b + (I \cap B) \mapsto b + I$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\textbf{1.}
+	יהיו $a, b \in I + B$, אז ברור ש־$a \pm b \in I + B$.
+	נסמן $a = c + d, b = e + f$ עבור $c, e \in I$ ו־$d, f \in B$, אז מתקיים,
+	\[
+		a b
+		= (c + d)(e + f)
+		= \overbrace{c e + d e + cf}^{\in I} + \overbrace{df}^{\in B}
+		\in I + B
+	.\]
+	וכן $1 = 1 + 0 \in I + B$ ולכן $I + B$ אכן תת־חוג.
+
+	\textbf{2.}
+	ניתן לבדיקה ישירה.
+
+	\textbf{3.}
+	מתורת החבורות ידוע שההעתקה הנתונה מוגדרת היטב ומהווה איזומורפיזם חבורות, ולכן מספיק לבדוק שהיא שומרת על כפל ויחידה (תרגיל).
+\end{proof}
+
+\subsection{אידאלים ראשוניים}
+באנגלית נקרא prime ideal, בחלק זה נניח ש־$A$ הוא חוג \textbf{חילופי}.
+
+\begin{definition}[אידאל ראשוני]
+	$P \triangleleft A$ נקרא אידאל \textbf{ראשוני} אם:
+	\begin{enumerate}
+		\item $P \ne A$, כלומר זהו אידאל ממש
+		\item לכל $a, b \in A$ אם $a b \in P$ אז או ש־$a \in P$ או ש־$b \in P$, כלומר המצב ההפוך לסגירות לכפל של האידאל
+	\end{enumerate}
+\end{definition}
+\begin{proposition}[תנאי שקול לאידאל ראשוני]
+	$P$ הוא ראשוני אם ורק אם $A / P$ תחום.
+\end{proposition}
+\begin{proof}
+	נניח ש־$A / P$ תחום, לכן $A / P \ne 0$, או באופן שקול $A \ne P$.
+	בנוסף אם $a, b \in A$ כך ש־$a b \in P$ אז $\pi(a b) = 0$ עבור $\pi : A \to A / P$ העתקת המנה, ו־$A / P$ תחום ולכן $\pi(a) = 0$ או $\pi(b) = 0$,
+	כלומר $a \in P$ או $b \in P$ ולכן $P$ ראשוני לפי ההגדרה.
+
+	הכיוון השני זהה.
+\end{proof}
+\begin{example}
+	נגדיר $A = \ZZ$ חוג השלמים, ונבדוק עבור אילו טבעיים $n \in \NN_0$ האידאל $(n) = n \ZZ$ הוא ראשוני. \\
+	אם $n = 0$ אז $\ZZ / (0) \cong \ZZ$ וזהו תחום ולכן $(0)$ ראשוני. \\
+	אם $n = 1$ אז $\ZZ / (1) \cong \{ 0 \}$ וזהו אינו תחום ולכן $(1)$ לא ראשוני. \\
+	נניח עתה ש־$n$ מספר ראשוני, אז $\ZZ / (p) \cong \FF_p$ הוא שדה ובפרט תחום ולכן $(n)$ ראשוני. \\
+	אם $n$ מספר פריק גדול וגדול מ־$1$, אז קיימים $a, b > 1$ עבורם $n = a b$ אז גם $a b \in (n)$ אבל $a, b \notin (n)$ ולכן $(n)$ לא ראשוני.
+
+	מצאנו שב־$\ZZ$ האידאלים הראשוניים הם אידאל האפס ו־$(p)$ לכל $p$ ראשוני.
+\end{example}
+\begin{definition}[אידאל מקסימלי]
+	יהי $A$ חוג כלשהו (לא בהכרח חילופי), $M \triangleleft A$ נקרא אידאל \textbf{מקסימלי} אם הוא מתקיים:
+	\begin{enumerate}
+		\item $M \ne A$
+		\item לא קיים $A \ne I \triangleleft A$ כך ש־$M \subsetneq I$, או באופן שקול כל אידאל $M \subset I \triangleleft A$ מקיים $I = A$ או $I = M$
+	\end{enumerate}
+\end{definition}
+\begin{lemma}
+	יהי $A \ne 0$ חוג חילופי, אז $A$ שדה אם ורק אם כל האידאלים ב־$A$ הם $(0), (1)$.
+\end{lemma}
+\begin{proof}
+	יהי $A$ שדה ויהי $I \triangleleft A$.
+	אם $I = (0)$ אז סיימנו ולכן נניח ש־$I \ne 0$ ולכן קיים $a \in I$, אבל אז גם $1 = a \cdot a^{-1} \in I$ ולכן $I = (1)$.
+
+	בכיוון ההפוך נניח שכלל האידאלים הם $(0), (1)$ וכן ש־$0 \ne 1$ ונראה שכל $a \ne 0$ הפיך.
+	$(a) \ne (0)$ ולכן $(a) = (1)$, כלומר $1 = a b$ ו־$a$ בהתאם הפיך.
+\end{proof}
+\begin{proposition}
+	$M \triangleleft A$ מקסימלי אם ורק אם $A / M$ שדה.
+\end{proposition}
+\begin{proof}
+	$M$ מקסימלי אם ורק אם כל האידאלים בין $M$ ו־$A$ הם בדיוק $M, A$ ובנוסף $M \ne A$, ממשפט ההתאמה טענה זו שקולה לכך שכל האידאלים ב־$A / M$ הם $(0), (1)$ והם שונים, וזוהי בדיוק הלמה אותה הוכחנו זה עתה.
+\end{proof}
+\begin{corollary}
+	כל אידאל מקסימלי הוא ראשוני.
+\end{corollary}
+\begin{proof}
+	אם $M$ מקסימלי אז $A / M$ שדה ולכן בפרט $A / M$ הוא תחום ולכן $M$ ראשוני.
+\end{proof}
+נראה שטענה זו נכונה רק בכיוון הזה.
+\begin{example}
+	נבחן שוב את $A = \ZZ$ ונבחין כי $(0)$ ראשוני אבל לא מקסימלי כי $(0) \subsetneq (2) \ne (1)$. \\
+	אם $p$ מספר ראשוני אז נראה ש־$(p)$ מקסימלי.
+	אם $(p) \subsetneq (n) \subsetneq (1)$ אז $n \mid p$ וכן $n > 1$ וזו סתירה לראשיות של $(p)$.
+	נסיק שכל האידאלים ב־$\ZZ$ הם מהצורה $(p)$ עבור $p$ מספר ראשוני.
+	נובע גם ש־$\ZZ / (p)$ הוא אכן שדה, וש־$\FF_p$ שדה אם ורק אם $p$ ראשוני.
+\end{example}
+\begin{theorem}[האידאל המקסימלי]
+	בכל $A \ne 0$ קיים אידאל מקסימלי.
+	נקרא גם משפט Krull.
+\end{theorem}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
