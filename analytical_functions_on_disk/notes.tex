@@ -1,0 +1,457 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Space of analytic functions over unit disk --- Notes}
+\setcounter{secnumdepth}{2}
+% chktex-file 9
+% chktex-file 17
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+\maketitle
+\maketitleprint[blue]{}
+
+\tableofcontents
+
+\section{Lecture 1 --- 18.10.2026}
+The main object of this course is a Hardy Space, for $0 < p < \infty$, the Hardy space $\HH^p$ consists of all holomorphic functions $f : \DD \to \CC$ such that,
+\[
+	\sup_{0 < r < 1} \int_{- \pi}^{\pi} {| f(r e^{i t}) |}^p\ dt < \infty
+\]
+and,
+\[
+	\HH^\infty
+	= \{ \text{bounded analytic functions on } \DD \}
+\]
+for $p < q$ it is clear that $\HH^p \supseteq \HH^q \supseteq \ldots \supseteq BMO \supseteq \HH^\infty$.
+We study boundary behavior, in particular Fatou's theory; for a.e. $\theta \in [0, 2 \pi)$, a function $f \in \HH^\infty$ has a non-tangential limit at $e^{i \theta}$,
+\[
+	z_n to e^{i \theta}
+	\implies \lim_{n \to \infty} f(z_n) \text{ exists}
+\]
+in particular $\lim_{r \to 1^-} f(r e^{i \theta})$ exists.
+
+Another question we study is Zero sets, a set of points $\{ a_n \} \subseteq \DD$ is the Zero set of an $\HH^\infty$ function if and only if $\sum (1 - | a_n |) < \infty$,
+in other words it converges to the boundary quickly (Blaschke condition).
+
+We also study Invariant subspaces $z X \subseteq X$, if $z(z) \in X$ then $z \cdot f(z) \in X$ (Beurling, 1949).
+
+Interpolating sequences. A sequence $\{ a_n \} \subseteq \DD$ is interpolating if for any $b_n \in l^\infty$ there exists $f \in \HH^\infty$ such that $f(a_n) = b_n$.
+The answer was given by Carleson: a sequence is interpolating if and only if it is separated and has Carleson condition.
+
+Finally, Corona problem: given $f_1, f_2 \in \HH^\infty$ such that $|f_1(z)| + |f_2(z)| > \delta$ for all $z \in \DD$, then there are $g_1, g_2 \in \HH^\infty$ such that $f_1 g_1 + f_2 g_2 = 1$.
+The Space $BMO$ is going to be involved with the solution to this problem.
+There are also Bergman spaces, $A^p = \{ f : \DD \xrightarrow{\text{hol}} \CC \mid \int_{\DD} {| f(z) |}^p\ dA < \infty \}$ and Dirichlet space,
+\[
+	\Dd
+	= \{ f : \DD \xrightarrow{\text{hol}} \CC \mid \int_{\DD} {| f'(z) |}^2\ dA < \infty \}
+\]
+The textbook is ''$H_p$ spaces'' by P. Koosis. The preliminaries are Complex analysis 1, Measure theory, Hilbert spaces and little bit of Functional analysis.
+
+Reminder about $\Ll^p$ spaces, ${(\Ll^p)}^* \simeq \Ll^q$ for $1 \le p < \infty$ where $\frac{1}{p} + \frac{1}{q} = 1$.
+Then $\lVert g \rVert_{L^q} = \sup_{\lVert f \rVert_{L^p}} \int f \cdot g\ dt$. Another fact is that $C_c(\RR) \subseteq \Ll^p(\RR)$ is dense.
+$(T_t f)(x) = f(x + t)$ is continuous in $\Ll^p$ in the sense that $t \to T_t f$ is continuous,
+\[
+	\lVert T_t f - f \rVert_{L^p} \xrightarrow{t \to 0} 0
+\]
+the proof is left as exercise.
+$C {(\partial \DD)}^* \simeq \Mm(\partial \DD)$ and $C_0 {(\RR)}^* \simeq \Mm(\RR)$.
+We can define the measure $\mu$ that takes $f \to \int_{\partial \DD} f\ d \mu$.
+
+\subsection{Harmonic functions}
+\begin{definition}[Harmonic function]
+	a function $u : \Omega \to \RR$ is harmonic if one of the following conditions holds:
+	\begin{enumerate}
+		\item $u$ is $C^2$ and $\Delta u = \frac{\partial^2}{\partial x^2} u + \frac{\partial^2}{\partial y^2} = 0$
+		\item $u \in C$ satisfies the mean-value property, namely for any disk $B(z_0, r) \subseteq \Omega$ it holds that,
+			\[
+				u(z_0)
+				= \frac{1}{2 \pi} \int_{- \pi}^{\pi} u(z_0 + r e^{i \theta})\ d \theta
+			\]
+		\item $u$ is locally the real part of an analytic function.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	$\log |z|$ is harmonic in $\CC \setminus \{ 0 \}$.
+\end{example}
+We would have wanted to take $f = \log z$ but we would've encountered a problem with continuity.
+Note that condition 3 holds for the imaginary part as well.
+For the sake of convenience we will treat condition 3 as the main definition in this course.
+Suppose that $u : B(0, R) \to \RR$ is harmonic, then $u = \re f$ for some analytic function $f$, but any such function has an analytic series,
+\[
+	f(z)
+	= \sum_{n = 0}^\infty a_n z^n
+\]
+such that,
+\[
+	\liminf_{n \to \infty} \frac{1}{\sqrt[n]{|a_n|}}
+	\ge R
+\]
+Taking real parts, we get,
+\[
+	u(r r^{i \theta})
+	= \sum_{n = -\infty}^\infty A_n r^{|n|} e^{i n \theta}
+\]
+In order for this to be real we need $A_{-n} = \overline{A_n}$ and the condition,
+\[
+	\forall n \in \ZZ,\ 
+	\liminf_{n \to \infty} \frac{1}{\sqrt[|n|]{|A_n|}}
+	\ge R
+\]
+
+\subsection{Poisson integral formula}
+Poisson formula gives us some generalization of the mean-value property in the sense that each point is valued by an harmonic function as the boundary of a consisting ball, up to weight function (kernel).
+Let $u : B(0, R) \to \RR$ with $R > 1$ and $r < 1$ then,
+\[
+	u(r e^{i \theta})
+	= \frac{1}{2 \pi} \int_{- \pi}^{\pi} u(e^{i t}) \left[ \sum_{- \infty}^\infty r^{|n|} e^{i n (\theta - t)} \right]\ dt
+\]
+We know that,
+\[
+	\frac{1}{2 \pi} \int_{- \pi}^{\pi} e^{i n t}\ dt
+	= \begin{cases}
+		0 & n \ne 0 \\
+		1 = 0
+	\end{cases}
+\]
+and that if $u$ is defined as a sequence, then,
+\[
+	u(r e^{i t})
+	= \frac{1}{2 \pi} \int_{- \pi}^{\pi} \sum_{- \infty}^\infty A_n e^{i n t} r^{|n|} e^{i n (\theta - t)}\ dt
+\]
+thus we get the exact formula.
+\begin{definition}[Poisson kernel]
+	For any $\theta$ we define,
+	\[
+		P_r(\theta)
+		= \sum_{- \infty}^\infty r^{|n|} e^{i n \theta}
+		= \frac{1 - r^2}{1 + r^2 - 2 r \cos \theta}
+		= \re(\frac{1 + r e^{i \theta}}{1 - r e^{i \theta}})
+	\]
+\end{definition}
+Then,
+\[
+	u(r e^{i \theta})
+	= \frac{1}{2 \pi} \int_{- \pi}^{\pi} u(e^{i t}) P_r(\theta - t)\ dt
+\]
+\begin{proposition}
+	The following properties hold for Poisson kernel:
+	\begin{enumerate}
+		\item $P_r(\theta) > 0$
+		\item $P_r$ is $2 \pi$-periodic
+		\item $\frac{1}{2 \pi} \int_{- \pi}^\pi P_r(\theta)\ d \theta = 1$
+		\item For any $\delta > 0$, $P_r(\theta) \to 0$ uniformly for $\pi > | \theta | > \delta$, as $r \to 1$
+		\item $P_r(\theta)$ is even
+	\end{enumerate}
+\end{proposition}
+\begin{remark}
+	We can also denote using Poisson kernel with,
+	\[
+		u(e r^{i \theta})
+		= \frac{1}{2 \pi} u(e^{i t}) P_r(\theta - t)\ dt
+	\]
+\end{remark}
+
+Suppose that $f \in \Ll^p(\partial \DD)$ or equivalently $\in \Ll^p([-\pi, \pi])$, and let $u = P[f]$ Poisson extension of $f$, namely,
+\[
+	u(r e^{i t})
+	= \frac{1}{2 \pi} \int_{- \pi}^{\pi} f(t) P_r(\theta - t)\ dt
+\]
+then $u$ is harmonic in $\DD$.
+We can also consider $u + i \tilde{u}$ for $\tilde{u}$ the harmonic conjugate.
+So we can plug $\Ll^p$ functions into the PIF (Poisson Integration Formula) to obtain harmonic functions in the disk.
+What kind of functions do we get by doing so, and how are $u$ and $f$ related? Is $f \to u \to \tilde{u} \to \tilde{f}$ bounded in $\Ll^p$ (Singular integral operators)?
+That is a delicate question which we will answer during the course.
+\begin{theorem}[Extension to harmonic functions]
+	Suppose that $u(r e^{i \theta})$ is a harmonic function on the unit disk. If $1 < p < \infty$ and,
+	\[
+		\sup_{0 < r < 1} \int_{|z| = r} {| u(r e^{i \theta}) |}\ d \theta < \infty
+	\]
+	then there is a function $f : [-\pi, \pi] \to \RR$ in $L^p$ such that $u(r e^{i \theta}) = \frac{1}{2 \pi} \int_{- \pi}^{\pi} P_r(\theta - t) f(t)\ dt$.
+\end{theorem}
+\begin{proof}
+	Compactness:
+	We know that ${(\Ll^q)}^* \simeq \Ll^p$. Choose a countable dense set $G_1, G_2, \ldots \in \Ll^q$.
+	Define,
+	\[
+		\Ll G_j
+		= \lim_{j \to \infty} \frac{1}{2 \pi} \int_{- \pi}^{\pi} G_k(\theta) u((1 - \frac{1}{n_j}) e^{i \theta})\ d \theta
+	\]
+	$G_k \in \Ll^q$ and $u((1 - n_j) e^{i \theta})$ is bounded because $L^p$ norm is bounded, then the whole integral is bounded.
+	Remember that $|\int f g| \le \lVert f \rVert_p \cdot \lVert g \rVert_q$ for any $f \in L^p, g \in L^q$.
+	For a general $G \in \Ll^q$, we approximate $G$ by $G_{k_l} \in \Ll^q$ and define $\Ll G = \lim_{l \to \infty} \Ll G_{k_l}$.
+	It follows that there exists a function $f \in \Ll^p$ such that $\Ll G = \int_{-\pi}^{\pi} f G$.
+	Fix $-\pi \le \theta \le \pi$ and choose $G(t) = P_r(\theta - t)$, let $v = P[f]$,
+	\[
+		\Ll P_r(\theta - t)
+		= \int_{-\pi}^{\pi} f(t) P_r(\theta - t)\ dt
+		= 2 \pi v(r e^{i \theta})
+		= \lim_{j \to \infty} \int_{-\pi}^{\pi} P_r(\theta - t) u((1 - \frac{1}{n_j}) e^{i \theta})
+	\]
+	The dilate $u((1 - \frac{1}{n_j}) e^{i \theta})$ is harmonic on $B(0, \frac{1}{1 - \frac{1}{n_j}}) \subseteq B(0, 1)$ therefore we can use Poisson formula,
+	\[
+		\lim_{j \to \infty} \int_{-\pi}^{\pi} P_r(\theta - t) u((1 - \frac{1}{n_j}) e^{i \theta})
+		= \lim_{j \to \infty} 2 \pi u((1 - \frac{1}{n_j}) r e^{i \theta})
+		= 2 \pi \cdot u(r e^{i \theta})
+	\]
+\end{proof}
+\begin{theorem}[Existence of measure to harmonic functions]
+	Suppose that $u(e r^{i \theta})$ is a harmonic function on $\DD$ such that,
+	\[
+		\sup_{0 < r < 1} \int_{-\pi}^{\pi} |u(r e^{i \theta})|\ d \theta < \infty
+	\]
+	then there exists a measure $\mu$ such that,
+	\[
+		u(r e^{i \theta})
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} P_r(\theta - t)\ d \mu
+	\]
+\end{theorem}
+\begin{example}
+	Remember that $P_r(\theta) = \frac{1 - r^2}{1 + r^2 - 2 \cos \theta}$, in the case ``$r = 1$'' acts like $\delta_1$.
+\end{example}
+
+\section{Lecture 2 --- 25.10.2026}
+\subsection{Measures and total variation}
+A \textbf{signed measure} is the difference of two positive finite measures, $\mu = \mu_+ - \mu_-$.
+The \textbf{total variation measure} $|\mu| = \mu_+ + \mu_-$, this leads to the identity,
+\[
+	\left\lvert \int f\ d \mu \right\rvert
+	\le \int |f|\ d |\mu|
+\]
+We define $\lVert \mu \rVert_M = |\mu|(X)$.
+A complex measure is, in similar manner, a sum of two measures, $\mu = \lambda + i \nu$ where $\lambda, \nu$ are signed measures.
+In this case we define the total variation as $|\mu| = |\lambda| + |\nu| = \lambda_- + \lambda_- + \nu_+ + \nu_-$.
+\begin{theorem}[Banach-Alaoglu]
+	Let $X$ be a Banach space, The unit ball in $X^*$ is weak-$*$ compact.
+\end{theorem}
+\begin{example}
+	${(\Ll^q)}^* \simeq \Ll^p$ for $1 < \le \infty$ and $\frac{1}{p} + \frac{1}{q} = 1$.
+\end{example}
+Suppose $f_1, f_2, \ldots$ with $\sup \lVert f_j \rVert_{L^p} < \infty$.
+$\{ f_j \}$ may not have a continuous subsequence in $\Ll^p$, BA (Banach-Alaoglu) implies that there are $j_k$ such that $f_{j_k} \to f$ in weak-$*$,
+\[
+	\forall g \in \Ll^q,
+	\quad
+	\int f_{j_k} g\ d x
+	\to \int f g\ d x
+\]
+
+\subsection{Harmonic functions in R-disk}
+Denote $\DD_R = \{ z \in \CC \mid |z| < R \}$.
+Function $u : \DD_R \to \RR$ is harmonic if,
+\[
+	u(r e^{i \theta})
+	= \sum_{n = -\infty}^\infty A_n r^{|n|} e^{i n \theta}
+\]
+where $A_{-n} = \bar{A}_n$ and radius $\ge R$.
+
+We can consider complex-valued harmonic functions, in this case we can omit the first condition and say that $u$ is analytic iff $A_{-n} = 0$ for $n > 0$,
+\[
+	u(r e^{i \theta})
+	= \sum_{n \ge 0} A_n r^n e^{i n \theta}
+\]
+$u$ is \textbf{anti-analytic} iff $A_n = 0$ for $n > 0$.
+Any harmonic function $h$ can be written as $h = i + i v$ where $u, v$ are real-valued harmonic functions, but also as $h = f + \bar{g}$ where $f, g$ are analytics. \\
+We say that $v$ is a \textbf{harmonic-conjugate} of $u$ if $u + i v$ is analytic.
+\begin{lemma}
+	$v$ is unique up to an additive constant.
+\end{lemma}
+If $v_1, v_2$ are such conjugates then $(u + i v_1) - (u + i v_2) = i(v_1 - v_2)$ which is constant. \\
+Existence:
+\[
+	\tilde{u}(r e^{i \theta})
+	= \sum_{n = 0\infty}^\infty (-i \sgn n) A_n r^{|n|} e^{i n \theta}
+\]
+From this definition it follows that $\tilde{A}_n = -i A_n$ for $n > 0$ and so $\tilde{A}_{-n} = i A_{-n}$, meaning that indeed $\tilde{A}_{-n} = \bar{\tilde{A}}_n$.
+
+When discussing Poisson integral formula we assumed that $R > 1$,
+\[
+	u(r e^{i \theta})
+	= \frac{1}{2 \pi} \int_{-\pi}^{\pi} u(e^{i t}) \left[ \sum_{n = -\infty}^\infty r^{|n|} e^{i n (\theta - t)} \right]\ dt
+\]
+When $R > 1$, $|A_n| \le C \Theta^{-n}$ for some $\Theta > 1$.
+\begin{example}
+	The series $z + z^2 + \cdots$ has a radius $1 = \limsup \sqrt[|n|]{|A_n|}$, to enlarge it we have to set the coefficients to be much smaller.
+	$\frac{z}{2} + \frac{z^2}{4} + \frac{z^3}{8}$ has a radius of $2$.
+\end{example}
+We will define Poisson kernel as,
+\[
+	P_r(\theta)
+	= \sum_{n = -\infty}^\infty r^{|n|} e^{i n \theta}
+	= \frac{1 - r^2}{1 + r^2 - 2 r \cos \theta}
+	= \re \frac{1 + r e^{i \theta}}{1 - r e^{i \theta}}
+\]
+Poisson kernel $P(r e^{i \theta})$ is a harmonic function in $\DD$.
+This is clear as it can be written as a special case of the series defining a harmonic function, or as the real part of an analytic function.
+In general we can achieve the harmonic conjugate with the formula,
+\[
+	\tilde{u}(r e^{i \theta})
+	= \frac{1}{2 \pi} \int_{-\pi}^{\pi} u(e^{i t}) \left[ \sum_{n = -\infty}^\infty -i \sgn(n) r^{|n|} e^{i n (\theta - t)} \right]\ dt
+\]
+So we define the conjugate Poisson kernel as,
+\[
+	Q_r(\theta)
+	= \sum_{n = -\infty}^\infty -i \sgn(n) r^{|n|} e^{i n \theta}
+	= \frac{2 r \sin \theta}{1 + r^2 - 2 r \cos \theta}
+	= \im \frac{1 + r e^{i \theta}}{1 - r r^{i \theta}}
+\]
+
+\subsection{Harmonic functions with bounded Lp means}
+\begin{theorem}[Representation with Lp fuctions]
+	Suppose $u$ is harmonic function on the unit disk.
+	If,
+	\[
+		\sup_{0 < r < 1} \int_{-\pi}^{\pi} {|u(r e^{i \theta})|}^p\ d \theta < \infty
+		\tag{1}
+	\]
+	then,
+	\[
+		u(r e^{i \theta})
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} F(t) P_r(\theta - t)\ dt
+	\]
+	where $F \in \Ll^p$.
+\end{theorem}
+\begin{proof}
+	Set $F_n(\theta) = u((1 - \frac{1}{n}) e^{i \theta})$ for $\theta \in [-\pi, \pi]$.
+	$(1)$ sways that $\lVert F_n \rVert_{L^p} \le C$ for all $n$.
+	Banach-Alaoglu means that for any $G \in L^q$,
+	\[
+		\int_{-\pi}^{\pi} F_{n_k}(\theta) G(\theta)\ d \theta
+		\to \int_{-\pi}^{\pi} F(\theta) G(\theta)\ d \theta
+	\]
+	Fix $0 \le r < 1$ and $t \in [-\pi, \pi]$ and take $G(\theta) = P_r(t - \theta)$, this is a smooth function.
+	\[
+		2 \pi u(r e^{i t})
+		= 2 \pi \lim_{k \to \infty} u((1 - \frac{1}{n_k}) r e^{i t})
+		= \lim_{k \to \infty} \int_{-\pi}^{\pi} u((1 - \frac{1}{n_k}) e^{i \theta}) P_r(t - \theta)\ d \theta
+		= \int_{-\pi}^{\pi} F(\theta) P_r(t - \theta)\ d \theta
+	\]
+\end{proof}
+\begin{theorem}[equivalency in the case of 1]
+	Suppose $u$ is harmonic function on the unit disk and $p = 1$.
+	If,
+	\[
+		\sup_{0 < r < 1} \int_{-\pi}^{\pi} {|u(r e^{i \theta})|}\ d \theta < \infty
+	\]
+	then,
+	\[
+		u(r e^{i \theta})
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} P_r(\theta - t)\ d \mu(t)
+	\]
+	where $\mu$ is a signed measure.
+\end{theorem}
+\begin{corollary}
+	Suppose $u : \DD \to \RR$ is a positive harmonic function.
+	Then $u = P[\mu]$ for $\mu$ a positive measure, namely $d u = P d \mu$.
+\end{corollary}
+\begin{example}
+	$P(r e^{i \theta}) = \frac{1 - r^2}{1 + r^2 - 2 r \cos \theta}$ is a positive harmonic function,
+	\[
+		P(r e^{i \theta})
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} P_r(\theta - t) d (2 \pi \delta_0(t))
+	\]
+	It follows that $P = P[2 \pi \delta_0]$.
+\end{example}
+\begin{example}[Plateau's problem]
+	Suppose that $\gamma \subseteq \RR^3$ is a closed smooth path,
+	find a surface $S \subseteq \RR^3$ with $\partial S = \gamma$ of minimal area.
+
+	Let $m = \inf\{ \vol_2 S \mid \partial S = \gamma \}$, for any $n \in \NN$ there is a surface $S_n$ with $\partial S_n = \gamma$ and $\vol_2 S_n < m + \frac{1}{n}$.
+\end{example}
+\begin{theorem}
+	Suppose $F(\theta) \in \Ll^p$, where $1 < p \le \infty$, and $u = P[F]$. Then,
+	\[
+		\sup_{0 < r < 1} \int_{-\pi}^{\pi} {| u(r e^{i \theta})|}^p\ d \theta < \infty
+	\]
+	\begin{proof}
+		Set $F_r(\theta) = u(r e^{i \theta})$ for $\theta \in [-\pi, \pi]$.
+		Then there is a function $G \in \Ll^q$ with $\lVert G \rVert_{L^q} = 1$ such that,
+		\begin{align*}
+			\lVert F_r \rVert_{L^p}
+			& = \int_{-\pi}^{\pi} F_r(\theta) G(\theta)\ d \theta \\
+			& = \left\lvert \frac{1}{2 \pi} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} F(\theta - t) P_r(t)\ dt\ G(\theta)\ d \theta \right\rvert \\
+			& \le \frac{1}{2 \pi} \int_{-\pi}^{\pi} \lVert F \rVert_{L^p} \lVert G \rVert_{L^q} P_r(t)\ dt \\
+			& = \lVert F \rVert_{L^p} \lVert G \rVert_{L^q} \frac{1}{2 \pi} \int_{-\pi}^{\pi} P_r(t)\ dt \\
+			& = \lVert F \rVert_{L^p} \lVert G \rVert_{L^q} \\
+			& = \lVert F \rVert_{L^p}
+		\end{align*}
+		In the case $p = 1$, $G \in \Ll^\infty$ and $G = \frac{\bar{F}_r}{|F_r|}$, the inequalities are a bit different,
+		\begin{align*}
+			\lVert F_r \rVert_{L^1}
+			& = \int_{-\pi}^{\pi} F_r(\theta) G(\theta)\ d \theta \\
+			& = \frac{1}{2 \pi} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} P_r(\theta - t) d \mu(t) G(\theta)\ d \theta \\
+			& \le \frac{1}{2 \pi} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} P_r(\theta - t) |d \mu(t)|\ d \theta \\
+			& = \int_{-\pi}^{\pi} |d \mu(\theta)| \\
+			& = \lVert \mu \rVert_M
+		\end{align*}
+		and the claim holds.
+	\end{proof}
+\end{theorem}
+
+\subsection{Elementary study of boundary behavior}
+\begin{theorem}[Extension of unit function to boundary]
+	Suppose $F$ is a continuous function on $[-\pi, \pi]$ and $u = P[F]$.
+	Then $u$ extends continuously to $\overline{\DD}$ and,
+	\[
+		\lim_{z \to e^{i \theta}} u(z)
+		= F(\theta)
+	\]
+\end{theorem}
+Notice that $P_r(\theta) > 0$, is even, $2 \pi$-periodic, $\int_{-\pi}^{\pi} P_r(\theta)\ d \theta = 2 \pi$
+and $\forall \delta > 0 \exists r_0,\ r > r_0 \implies \int_{|t| > \delta} P_r(\theta)\ d \theta < \delta$.
+\begin{proof}
+	We show $\lim_{r \to 1} u(r e^{i \theta}) = F(\theta)$.
+	\[
+		u(r e^{i \theta})
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} F(\theta - t) P_r(t)\ d t
+	\]
+	Then,
+	\[
+		u(r e^{i \theta}) - F(\theta)
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} F(\theta - t) P_r(t)\ dt
+	\]
+	and in particular,
+	\[
+		|u(r e^{i \theta}) - F(\theta)|
+		\le \frac{1}{2 \pi} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} |F(\theta - t) - F(\theta)| P_r(t)\ dt
+		= \frac{1}{2 \pi} (\int_{|t| < \delta} + \int_{|t| > \delta})
+	\]
+	We show that these two integrals are bounded by $\frac{\varepsilon}{2}$.
+	Since $F$ is uniformly continuous, there exists a $\delta > 0$ such that,
+	\[
+		|F(\theta - t) - F(\theta)| < \frac{\varepsilon}{2}
+	\]
+	for $|t| < \delta$.
+	Denote the two integrals by $I$ and $I\!I$, then,
+	\[
+		|I|
+		\le \frac{1}{2 \pi} \int_{|t| < \delta} \frac{\varepsilon}{2} P_r(t)\ dt
+		\le \frac{\varepsilon}{2}
+	\]
+	Since $F$ is continuous, it is bounded, $M = \lVert F \rVert_{L^\infty} < \infty$.
+	\[
+		|I\!I|
+		\le \frac{1}{2 \pi} \int_{|t| > \delta} 2 M P_r(t)\ dt
+	\]
+	but by Poisson kernel properties, we can choose a value such that $r$ is close to $1$.
+\end{proof}
+\begin{theorem}
+	Suppose $F(\theta) \in \Ll^p$ with $1 < p < \infty$ and $u = P[F]$.
+	Set $F_r(\theta) = u(r e^{i \theta})$, then $F_r \to F$ in $L^p$ as $r \to 1$.
+\end{theorem}
+\begin{proof}
+	\[
+		\lVert F_r(\theta) - F(\theta) \rVert_{L^p}
+		= \left\lVert \frac{1}{2 \pi} \int_{-\pi}^{\pi} (F(\theta - t) - F(\theta)) P_r(t) \right\rVert_{L^p}
+		\le \frac{1}{2 \pi} \int_{-\pi}^{\pi} \lVert F(\theta - t) - F(\theta) \rVert_{L^p} P_r(t)\ dt
+		\le \frac{1}{2 \pi} (\int_{|t| < \delta} + \int_{|t| > \delta})
+	\]
+	and we once again denote them $I$ and $I\!I$.
+	$I < \frac{\varepsilon}{2}$ by the same claim as the last theorem.
+	If $\lVert F \rVert_{L^p} = M$ then $\lVert F(\theta - t) - F(\theta) \rVert_{L^p} \le 2 M$ hence $I\!I < \frac{\varepsilon}{2}$ by a choice of $\delta$.
+\end{proof}
+
+\listoftheorems[title=theorems \& definitions,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
+\end{document}
