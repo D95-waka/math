@@ -1,0 +1,46 @@
+\newcounter{english}
+\input{../article_base.tex}
+\title{Lie Groups --- Notes}
+\setcounter{secnumdepth}{2}
+% chktex-file 9
+% chktex-file 17
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+\maketitle
+\maketitleprint[teal]{}
+
+\section{Journal 1}
+We will provide another definition of a smooth manifold and show equivalency to the atlas based definition.
+\begin{definition}[Locally diffeomorphic smooth manifold]
+	$X \subseteq \RR^n$ is called a $k$-manifold if for any $p \in X$ there is an open neighborhood $p \in W \subseteq X$ (open in the subspace topology induced by $X$) and an open set $V \subseteq \RR^k$,
+	and a smooth invertible map $\varphi : V \to W$, namely a diffeomorphism. \\
+	In other words $X$ is a manifold if it is locally diffeomorphic to open sets in $\RR^k$.
+\end{definition}
+In order for our map $\varphi$ to actually be considered a diffeomorphism we have to define differentiability of its invertible map $\psi : W \to V$.
+To do so, we define differentiability of such map to be such that when extending $W$ to an open set $W \subseteq W' \subseteq \RR^n$, there is a function $\Phi : W' \to \RR^m$ such that $\Phi \mid_{W \cap W'} = \psi$.
+\begin{theorem}[Equivalency of manifold definitions]
+	$X \subseteq \RR^n$ is a smooth manifold iff it is a locally diffeomorphic manifold.
+\end{theorem}
+\begin{proof}
+	$1 \implies 2$:
+	Let $A = \{ \varphi : U_{\alpha} \to X_{\alpha} \mid \alpha \in I \}$ be an atlas of $X \subseteq \RR^n$ and let $p \in X$ be some point.
+	$\bigcup_{\alpha \in I} X_{\alpha} = X$ by the atlas definition, therefore there is $\alpha \in I$ such that $p \in X_{\alpha}$,
+	therefore $\varphi_{\alpha}^{-1}$ is a local diffeomorphism fulfilling the local diffeomorphism property.
+
+	$2 \implies 1$:
+	Let $X$ be a locally diffeomorphic manifold and let $I = X$.
+	For each $\alpha \in I$ let $\varphi_{\alpha}^{-1} : W_{\alpha} \to X_{\alpha}$ be a local diffeomorphism of $\alpha \in X$.
+	Define $A = \{ \varphi_{\alpha} \mid \alpha \in I \}$, this is an atlas as $\alpha \in X_{\alpha}$ for all $\alpha$ so $\bigcup_{\alpha \in I} X_{\alpha} = X$.
+\end{proof}
+Notice that we did not check for Hausdorff nor for 2nd countability, as the euclidean spaces (equipped with the standard topology) are both.
+\begin{remark}
+	The definition of a manifold induced by an atlas discards the requirement to take $X \subseteq \RR^n$,
+	instead letting us discuss manifolds as a general property. \\
+	Even by doing so, it is easy to emphasize the concept of manifolds in euclidean spaces.
+\end{remark}
+
+\end{document}
