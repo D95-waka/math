@@ -19,6 +19,7 @@
 הספרים הם Alperin-Bell: Groups and representations (פרקים 5 ו־6), Peter Webb: Course in finite group representation theory, הספר Fulton-Harris אך הוא מכיל המון ולבסוף גם Lieback-James.
 על תורת ההצגות של $S_n$ נלמד ממאמר של Vershik-Okounkov, וטקסטים קלאסיים של Sagan ו־Fulton.
 
+\subsection{הגדרות בסיסיות}
 תורת ההצגות היא שילוב של תורת החבורות והאלגברה הלינארית.
 ניזכר בפעולה של חבורה על קבוצה,
 \begin{definition}[פעולה של חבורה על קבוצה]
@@ -230,6 +231,7 @@
 \end{example}
 
 \section{שיעור 2 --- 20.10.2026}
+\subsection{פריקויות}
 \begin{proposition}
 	אם $G$ סופית ו־$(V, \rho)$ הצגה אי־פריקה אז $\dim V \le |G|$.
 \end{proposition}
@@ -323,6 +325,163 @@
 	\end{multline*}
 	זאת שכן $t^{-1} . w \in \ker P$.
 \end{proof}
+
+\section{שיעור 3 --- 26.10.2026}
+\subsection{תזכורת על הטלות}
+\begin{definition}[הטלה של מרחב וקטורי]
+	יהי $V$ מרחב וקטורי, $P : V \to V$ כך ש־$P^2 = P$ תיקרא \textbf{הטלה}.
+\end{definition}
+\begin{proposition}
+	אם $P : V \to V$ אז $\ker P \oplus \im P = V$.
+\end{proposition}
+כשאנחנו מדברים על הטלות אנו שואלים על מה ההטלה, כלומר לאיפה היא מטילה, הטלה $P$ היא על $\im P$.
+\begin{proposition}
+	לכל $U \le V$ יש התאמה חד־חד ערכית ועל בין ההטלות על $U$ והמרחבים $W \le V$ כך ש־$W \oplus U = V$ על־ידי $P \mapsto \ker P$ ו־$W \mapsto ((w, u) \mapsto u)$.
+\end{proposition}
+
+\subsection{חזרה לפריקות}
+ניזכר כי ראינו שתי דוגמות שמבהירות שתנאי משפט משקה הכרחיים.
+ראינו כי $\ZZ \to \GL_2(\RR)$ ו־$\ZZ / 2 \ZZ \to \GL_2(\RR)$ אינן פריקות לחלוטין.
+השימוש שלנו במשפט בתנאי $\Char \FF \nmid |G|$ היה בחלוקה ב־$|G|$.
+
+נעבור לדוגמה נגדית במקרה $\Char \FF \nmid |G|$.
+\begin{definition}[מרחב נוצר על־ידי חבורה]
+	תהי $G$ חבורה ו־$\FF$ שדה.
+	נסמן ב־$\FF[G]$ את המרחב הווקטורי מעל $\FF$ עם בסיס שהוא איברי $G$,
+	כלומר,
+	\[
+		\FF[G]
+		= \left\{ \sum_{g \in G} \alpha_g g \mid \alpha_g \in \FF, \text{ כמות סופית של פעמים } \alpha_g \right\}
+	\]
+\end{definition}
+\begin{definition}[הצגה רגולרית שמאלית]
+	הפעולה הלינארית של $G$ על $\FF[G]$ על־ידי כפל משמאל, כלומר,
+	\[
+		h\ . \left(\sum_{g \in G} \alpha_g g\right)
+		= \sum_{g \in G} \alpha_g (h g)
+	\]
+\end{definition}
+\begin{example}
+	אם $G$ סופית ו־$\Char \FF \mid |G|$ אז ההצגה הרגולרית השמאלית אינה פריקה לחלוטין.
+	נגדיר,
+	\[
+		V_1
+		= \left\{ \sum_{g \in G} \alpha_g g \mid \sum \alpha_g = 0 \right\}
+	\]
+	הוא תת־מרחב אינווריאנטי ממימד $|G| - 1$, ומהצד השני,
+	\[
+		V_0
+		= \Sp\{ \sum_{g \in G} g \}
+	\]
+	הוא תת־מרחב אינווריאנטי נוסף ממימד $1$.
+
+	אם $\Char \FF \nmid |G|$ אז $V_0 \oplus V_1 = \FF[G]$, אם לעומת זאת $\Char \FF \mid |G|$ אז $V_0 \subseteq V_1$, ואין ל־$V_1$ משלים ישר אינווריאנטי. 
+	אפשר להסיק מכאן ש־$\FF[G]$ אינה פריקה לחלוטין.
+\end{example}
+
+\subsection{הצגות מרוכבות של חבורות סופיות}
+המטרה שלנו היא להבין מה ידוע על הצגות של חבורה סופית מעל $\CC$, נראה עתה מהן התוצאות אותן נראה בנושא הקרוב.
+\begin{definition}[קרקטר]
+	תהי הצגה סוף־מימדית $\rho : G \to \GL(V)$ מעל שדה כלשהו.
+	ה\textbf{קרקטר} (character) של $\rho$ מוגדר להיות $\chi_{\rho} : G \to \FF$ הניתן על־ידי $g \mapsto \tr \rho(g)$.
+\end{definition}
+\begin{definition}[קרקטר אי־פריק]
+	אם $\rho$ אי־פריק אז נאמר ש־$\chi_{\rho}$ קרקטר אי־פריק.
+\end{definition}
+\begin{proposition}
+	התכונות הבאות מתקיימות עבור קרקטר:
+	\begin{enumerate}
+		\item להצגות שקולות יש אותו קרקטר: $\rho_1 \cong \rho_2 \implies \chi_{\rho_1} = \chi_{\rho_2}$
+		\item לאיברים צמודים ב־$G$ יש אותו ערך בקרקטר: $\chi_{\rho}(g h g^{-1}) = \chi_{\rho}(h)$
+	\end{enumerate}
+\end{proposition}
+פונקציה $G \to \FF$ שהיא אינווריאנטית תחת הצמדה נקראת פונקציית מחלקה (class function).
+
+בפרק זה נראה שמעל $\CC$ מתקיים עבור הצגות סוף־מימדיות של הצגה סופית,
+\begin{enumerate}
+	\item $\chi_{\rho_1} = \chi_{\rho_2} \implies \rho_1 \cong \rho_2$
+	\item מספר ההצגות האי־פריקות שווה למספר מחלקות הצמידות של $G$
+	\item הקרקטרים של ההצגות האי־פריקות מהווים בסיס למרחב פונקציות המחלקה.
+	\item אורתוגונליות השורות של טבלת הקרקטרים: אם $\chi_1$ ו־$\chi_2$ קרקטרים של הצגות אי־פריקות אז,
+		\[
+			\langle \chi_1, \chi_2 \rangle_G
+			= \frac{1}{|G|} \sum_{g \in G} \chi_1(g) \cdot \overline{\chi_2(g)}
+			= \begin{cases}
+				0 & \chi_1 \ne \chi_2 \\
+				1 & \chi_1 = \chi_2
+			\end{cases}
+		\]
+	\item ''אורתוגונליות'' העמודות:
+		לכל שתי מחלקות צמידות $C_1, C_2 \subseteq G$ מתקיים,
+		\[
+			\sum_{\substack{\chi : G \to \CC \\ \text{ireducible character}}} \chi(C_1) \cdot \overline{\chi(C_2)}
+			= \begin{cases}
+				0 & C_1 \ne C_2 \\
+				\frac{|G|}{|C_1|} & C_1 = C_2
+			\end{cases}
+		\]
+	\item מסקנה מהחלק הקודם: אם $R$ אוסף ההצגות האי־פריקות של $G$ עד־כדי שקילות, אז,
+		\[
+			\sum_{\rho \in R} {(\dim \rho)}^2
+			= |G|
+		\]
+	\item תהי $(\rho, V)$ הצגה סוף־מימדית של $G$ מעל $\CC$, אז $\rho$ אי־פריקה אם ורק אם $\frac{1}{|G|} \sum_{g \in G} \chi(g) \cdot \overline{\chi(g)} = 1$.
+	\item אם $\chi$ אי־פריק ולא טריוויאלי אז,
+		\[
+			\sum_{g \in G} \chi(g) = 0
+		\]
+	\item ההצגה הרגולרית $(\rho_{\operatorname{reg}}, \CC[G])$ אז,
+		\[
+			\xi_{\operatorname{reg}}(h)
+			= \begin{cases}
+				|G| & h = 1 \\
+				0 & h \ne 1
+			\end{cases}
+		\]
+\end{enumerate}
+\begin{example}
+	ההצגה $\ZZ / 2 \ZZ \to \GL_2(\FF_2)$ המוגדרת על־ידי $1 \mapsto (\begin{smallmatrix} 1 & 1 \\ 0 & 1 \end{smallmatrix})$ בעלת אותו קרקטר כמו ההצגה $1 \mapsto (\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix})$,
+	זאת למרות שהן לא שקולות.
+\end{example}
+\begin{example}
+	עבור $G = S_3 \simeq D_3$ ההצגה $\rho : S_3 \to \GL_1(\CC) \cong \CC^*$ המוגדרת על־ידי $\sigma \mapsto 1$ וכן $\rho : S_3 \to \GL_2(\CC)$ המוגדרת על־ידי,
+	\[
+		1 \mapsto \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},
+		\quad
+		(1\ 2) \mapsto \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix},
+		\quad
+		(1\ 2\ 3) \mapsto \begin{pmatrix} \cos \frac{2 \pi}{3} & \sin \frac{2 \pi}{3} \\ -\sin \frac{2 \pi}{3} & \cos \frac{2 \pi}{3} \end{pmatrix}
+	\]
+	זוהי ההצגה הסטנדרטית $W_1$ כאשר $n = 3$. \\
+	נוכל להגדיר הצגה שלישית $\sgn : S_3 \to \GL_1(\CC)$ על־ידי $\sigma \mapsto \sgn \sigma$.
+\end{example}
+נחשב את טבלת הקרקטרים של $S_3$ על־ידי חישוב ישיר,
+\begin{otherlanguage}{english}
+	\begin{center}
+		$\begin{array}{c| c c c} % chktex 44
+			x & 1 & (1\ 2\ 3) & (1\ 2) \\
+			\hline % chktex 44
+			\id & 1 & 1 & 1 \\
+			(\rho . w_1) & 2 & -1 & 0 \\
+			\sgn & 1 & 1 & -1
+		\end{array}$
+	\end{center}
+\end{otherlanguage}
+\begin{example}
+	נגדיר $G = C_3$ ונחשב את טבלת הקרקטרים שלה,
+	\begin{otherlanguage}{english}
+		\begin{center}
+			$\begin{array}{c| c c c} % chktex 44
+				& 1 & 1 & 2 \\
+				\hline % chktex 44
+				\id & 1 & 1 & 1 \\
+				\chi_2 & 1 & \omega & \omega^2 \\
+				\chi_3 & 1 & \omega^2 & \omega
+			\end{array}$
+		\end{center}
+	\end{otherlanguage}
+	עבור $\omega$ שורש יחידה פרימיטיבי מסדר $3$.
+\end{example}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
