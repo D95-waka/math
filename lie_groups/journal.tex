@@ -1,6 +1,6 @@
 \newcounter{english}
 \input{../article_base.tex}
-\title{Lie Groups --- Notes}
+\title{Lie Groups --- Journals}
 \setcounter{secnumdepth}{2}
 % chktex-file 9
 % chktex-file 17
@@ -14,33 +14,32 @@
 \maketitleprint[teal]{}
 
 \section{Journal 1}
-We will provide another definition of a smooth manifold and show equivalency to the atlas based definition.
-\begin{definition}[Locally diffeomorphic smooth manifold]
-	$X \subseteq \RR^n$ is called a $k$-manifold if for any $p \in X$ there is an open neighborhood $p \in W \subseteq X$ (open in the subspace topology induced by $X$) and an open set $V \subseteq \RR^k$,
-	and a smooth invertible map $\varphi : V \to W$, namely a diffeomorphism. \\
-	In other words $X$ is a manifold if it is locally diffeomorphic to open sets in $\RR^k$.
-\end{definition}
-In order for our map $\varphi$ to actually be considered a diffeomorphism we have to define differentiability of its invertible map $\psi : W \to V$.
-To do so, we define differentiability of such map to be such that when extending $W$ to an open set $W \subseteq W' \subseteq \RR^n$, there is a function $\Phi : W' \to \RR^m$ such that $\Phi \mid_{W \cap W'} = \psi$.
-\begin{theorem}[Equivalency of manifold definitions]
-	$X \subseteq \RR^n$ is a smooth manifold iff it is a locally diffeomorphic manifold.
-\end{theorem}
-\begin{proof}
-	$1 \implies 2$:
-	Let $A = \{ \varphi : U_{\alpha} \to X_{\alpha} \mid \alpha \in I \}$ be an atlas of $X \subseteq \RR^n$ and let $p \in X$ be some point.
-	$\bigcup_{\alpha \in I} X_{\alpha} = X$ by the atlas definition, therefore there is $\alpha \in I$ such that $p \in X_{\alpha}$,
-	therefore $\varphi_{\alpha}^{-1}$ is a local diffeomorphism fulfilling the local diffeomorphism property.
+We will discuss several definitions of a smooth manifold on the special case that the manifold $X$ is a euclidean manifold (embedded manifold), namely $X \subseteq \RR^n$ for some $n \in \NN$.
+Note that $\RR^n$ is a T4 topological space of 2nd countability, therefore if $A$ is an atlas on $X$ then $(X, A)$, or for the sake of convenience $A$ alone, is a smooth manifold.
+When discussing embedded manifolds, there are several definitions, they are generally give substance to the concept of a manifold.
 
-	$2 \implies 1$:
-	Let $X$ be a locally diffeomorphic manifold and let $I = X$.
-	For each $\alpha \in I$ let $\varphi_{\alpha}^{-1} : W_{\alpha} \to X_{\alpha}$ be a local diffeomorphism of $\alpha \in X$.
-	Define $A = \{ \varphi_{\alpha} \mid \alpha \in I \}$, this is an atlas as $\alpha \in X_{\alpha}$ for all $\alpha$ so $\bigcup_{\alpha \in I} X_{\alpha} = X$.
+The first definition is Guillemin \& Pollacks (GP) definition, as shown in their book ``Differential Topology''.
+\begin{definition}[GP smooth manifold]
+	Let $M \subseteq \RR^n$ be a set and $k \in \NN$.
+	We say that $M$ is a $k$-dimensional smooth manifold if that for any point $p \in M$ there is an open neighborhood $p \in U \subseteq \RR^n$ and an open set $W \subseteq \RR^k$ with function $F : U \to W$ diffeomorphism,
+	meaning that its smooth and invertible. We define the function $f = F|_{M \cap U}$ as a smooth function from open subset of the manifold $M$.
+\end{definition}
+Another version which we consider is defined by its parameterizations,
+\begin{definition}[Locally smooth parameterization manifold]
+	a set $M \subseteq \RR^n$ together with a $k \in \NN$ is called a smooth manifold if for any $p \in M$ there is an open set $U \subseteq M$ (open in the sub-topology of $\RR^n$ induced by $M$),
+	and an open set $W \subseteq \RR^k$ such that there exists a function $\varphi : W \to U$ smooth (in the standard sense), open, invertible and with $\rank D_x = k$ for any $x \in W$, namely a smooth local parameterization.
+\end{definition}
+While both definitions may seem different, it can be shown using the inverse function theorem that they are equivalent.
+
+Whitney embedding theorem states that any smooth manifold $(X, A)$ can be embedded in $\RR^{2 k}$ space where $k = \dim (A, X)$,
+giving us motivation to compare our definition of a manifold in euclidean space to the definitions stated above.
+\begin{proposition}
+	If $M \subseteq \RR^n$ is a GP $k$-dimensional smooth manifold and for any $p \in M$ let $f_p : U_p \to W_p$ be a diffeomorphism, where $U_p \subseteq M, W_p \subseteq \RR^k$ open.
+	Then $A = \{ f_p \mid p \in M \}$ is an atlas, and in particular $(M, A)$ is a smooth manifold.
+\end{proposition}
+\begin{proof}
+	Clear by our definition of $f_p$ as a restriction of a smooth function $F_p$ and compositions.
 \end{proof}
-Notice that we did not check for Hausdorff nor for 2nd countability, as the euclidean spaces (equipped with the standard topology) are both.
-\begin{remark}
-	The definition of a manifold induced by an atlas discards the requirement to take $X \subseteq \RR^n$,
-	instead letting us discuss manifolds as a general property. \\
-	Even by doing so, it is easy to emphasize the concept of manifolds in euclidean spaces.
-\end{remark}
+This result together with Whitney embedding theorem lead us to the conclusion that a manifold is a smooth manifold iff its a GP manifold (up to embedding).
 
 \end{document}
