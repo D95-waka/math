@@ -1,0 +1,329 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 02 --- יסודות באלגברה קומוטטיבית}
+
+\DeclareMathOperator{\Nil}{Nil}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+יהי $R$ חוג, נראה כי אין איברים נילפוטנטיים ב־$R / \Nil(R)$ פרט ל־$0$.
+\begin{proof}
+	יהי $x \in R$.
+	אם $x \in \Nil(R)$ אז קיים $n \in \NN$ כך ש־$x^n = 0$ ולכן גם ${(x + \Nil(R))}^n = x^n + \Nil(R) = \bar{0}$, ונסיק ש־$\bar{0}$ הוא נילפוטנטי בחבורת המנה.
+	נניח אם כך ש־$x \notin \Nil(R)$, ולכן לכל $n \in \NN$ מתקיים $x^n \ne 0$, ולכן גם $x^n + \Nil(R) = \Nil(R)$, כלומר $x + \Nil(R)$ לא נילפוטנטי בחוג המנה.
+\end{proof}
+
+\question{}
+יהי $x \in R$ נילפוטנטי ונראה ש־$1 + x$ הפיך.
+נסיק שסכום של הפיך ונילפוטנטי הוא הפיך.
+\begin{proof}
+	נסמן $n \in \NN$ המקיים $x^n = 0$ וניזכר בזהות,
+	\[
+		k^n - 1
+		= (1 + \cdots + k^{n - 1})(k - 1)
+	\]
+	הנכונה לכל $k$, בפרט אם נציב $k = -x$ נקבל,
+	\[
+		{(-x)}^n - 1
+		= \left(\sum_{i = 0}^{n - 1} {(-1)}^i x^i\right) \cdot ((-x) - 1)
+	\]
+	אבל $x^n = 0$ ולכן גם $-x^n = 0$ ובכל מקרה,
+	\[
+		0 - 1
+		= -\left(\sum_{i = 0}^{n - 1} {(-1)}^i x^i\right) \cdot (x + 1)
+	\]
+	ולכן מצאנו ש־$x + 1$ הפיך וההופכי שלו מתקבל על־ידי $\sum_{i = 0}^{n - 1} {(-1)}^i x^i$.
+
+	יהי $y \in R$ הפיך כלשהו, אז $\frac{x}{y} \in R$ איבר נילפוטנטי שכן ${(\frac{x}{y})}^n = \frac{x^n}{y^n} = \frac{0}{y^n} = 0$.
+	אם כך אז $y + x = y (1 + \frac{x}{y})$, אבל האחרון הפיך כפי שראינו, ומכפלת הפיכים היא הפיכה.
+\end{proof}
+
+\question{}
+יהי $R$ חוג, נראה כי $R \setminus R^\times$ אידאל אם ורק אם יש ל־$R$ אידאל מקסימלי יחיד, כלומר ש־$R$ הוא חוג מקומי.
+\begin{proof}
+	נניח ש־$R \setminus R^\times$ הוא אידאל, נראה שהוא מקסימלי ויחיד.
+	לכל אידאל $R \setminus R^\times \subsetneq I \subset R$ בהכרח יש איבר $x \in R^\times$ כך ש־$x \in I$, לכן גם $1 \in I$, נסיק ש־$R \setminus R^\times$ אכן אידאל מקסימלי.
+	ברור כי הוא יחיד מאותו שיקול של הכלת איברים הפיכים וסגירות לכפל.
+
+	נניח מהצד השני ש־$I \subset R$ הוא אידאל מקסימלי יחיד ונראה ש־$I = R \setminus R^\times$, בפרט שזהו אידאל.
+	משיקולי הפיכות ברור ש־$I \subset R \setminus R^\times$, לכן נותר להראות שאם $x \in R \setminus R^\times$ אז $x \in I$.
+	על־ידי שימוש בעובדה ש־$(x) \subsetneq R$ ושימוש בלמה של צורן נוכל להסיק שקיים אידאל מקסימלי שכולל את $x$, לכן מיחידות בהכרח $x \in I$ כפי שרצינו.
+\end{proof}
+
+\question{}
+יהי $R$ חוג ונראה שהתנאים הבאים שקולים:
+\begin{enumerate}
+	\item ל־$R$ יש אידאל ראשוני יחיד
+	\item כל איבר ב־$R$ הוא הפיך או נילפוטנטי
+	\item $R / \Nil(R)$ שדה
+\end{enumerate}
+\begin{proof}
+	$1 \implies 2$:
+	יהי $I$ אידאל מקסימלי כלשהו של $R$, לכן הוא אידאל ראשוני ולכן יחיד, כלומר ישנו אידאל מקסימלי יחיד לחוג.
+	משאלה 3 נובע ש־$I = R \setminus R^\times$, בפרט אם $x \notin I$ אז הוא הפיך.
+	יהי $x \in I$, מיחידות האידאל המקסימלי נקבל ש־$(x) \subset I$, ולכן $x$ נמצא בחיתוך כל האידאלים הראשוניים ולכן נילפוטנטי.
+
+	$2 \iff 3$:
+	ברור כנתון שבחוג המנה כל האיברים הם או הפיכים או מזדהים עם $0$.
+
+	$2 + 3 \implies 1$:
+	נתון כי $\Nil(R)$ הוא מקסימלי ולכן ראשוני ונראה שכל אידאל ראשוני שווה בדיוק לו.
+	יהי $I$ אידאל ראשוני כלשהו ולכן ניתן להרחבה לאידאל מקסימלי, אך יש רק אחד כזה ולכן $I \subset \Nil(R)$.
+	נניח ש־$x \in \Nil(R)$, אז נבחר $y \in I$ נילפוטנטי כך שהחזקה המאפסת שלו שונה משל $x$.
+	\[
+		{(x + y)}^n
+		= 0 + x^{n - 1} + \cdots + y^n
+	\]
+	עבור $n$ כך ש־$x^n = 0$, אבל מסגירות לכפל וחיבור נוכל להסיק ש־${(x + y)}^n \in I$ ולכן מראשוניות גם $x + y \in I$ וכן $x \in I$.
+\end{proof}
+
+\question{}
+יהי $R$ חוג כך שלכל אידאל $I \triangleleft R$ כך ש־$I \not\subset \Nil(R)$ קיים $0 \ne x \in I$ כך ש־$x^2 = x$.
+נראה ש־$\Nil(R) = \Jj(R)$.
+\begin{proof}
+	מספיק להראות ש־$\Jj(R) \subset \Nil(R)$, יהי $x \in \Jj(R)$ ונסמן $I = (x)$, אם $I \subset \Nil(R)$ אז סיימנו, לכן נניח ש־$I \not\subset \Nil(R)$.
+	מהנתון קיים $y \in I$ כך ש־$y^2 = y$, ונסמן $y = x z$ ולכן,
+	\[
+		x z = x z x z
+		\implies x z (1 - x z) = 0
+	\]
+	ונתון כי $1 - x z$ הפיך כאיבר ברדיקל ג'ייקובסון, אז נסיק $x z = 0$, ולכן בהכרח $x \in \Nil(R)$.
+\end{proof}
+
+\question{}
+\subquestion{}
+יהי $R$ חוג כך ש־$\Jj(R)$ סופי וכן שיש מספר אידאלים מקסימליים סופי. \\
+נראה שלכל פולינום $f \in R[x]$ שאחד ממקדמיו הפיך יש כמות סופית של שורשים ב־$R$.
+\begin{proof}
+	נבחין כי אם $M_i \triangleleft R$ כלל האידאלים המקסימליים עבור $1 \le i \le n$ אז ממשפט השאריות הסיני,
+	\[
+		R / J(R)
+		= R / \bigcap_{i = 1}^n M_i
+		\cong \prod_{i = 1}^n (R / M_i)
+	\]
+	נגדיר את $\varphi : R \to \prod R / M_i$ ולכן $\ker \varphi = J(R)$.
+	ל־$f$ יש מקדם הופכי ולכן גם ל־$f + M_i \in R[x] / M_i$ יש מקדם הפיך ולא אפס ולכן בפרט $f$ לא טריוויאלי במכפלה.
+	נסמן $\deg f = k$ ולכן יש ל־$f$ לכל היותר $k$ שורשים בכל $R / M_i$ ובסך־הכול לכל היותר $k^n$ שורשים במכפלת השדות.
+	נבחין כי אם $x \in \im \varphi$ אז יש לו לכל היותר $|J(R)|$ מקורות ממשפט האיזומורפיזם הראשון, אבל זהו מספר סופי.
+\end{proof}
+
+\subquestion{}
+נראה ש־$R$ הוא חוג שבו $\Jj(R) = 0$ ויש לו כמות סופית של אידאלים מקסימליים אם ורק אם יש אוסף סופי של שדות $F_i$ ל־$1 \le i \le n$ כך ש־$R \cong \prod F_i$.
+\begin{proof}
+	הכיוון הראשון נובע מיידית ממשפט השאריות הסיני, נראה את הכיוון ההפוך. \\
+	נסמן $\pi_j : \prod F_i \to F_j$ להיות ההטלה הסטנדרטית, וכן $\varphi : R \to \prod F_i$ איזומורפיזם.
+	נגדיר לכל $1 \le i \le n$ את הפונקציה $p_i : R \to F_i$ על־ידי $p_i = \pi_i \circ \varphi$.
+	זוהי הרכבה של הומומורפיזמים ולכן $M_i : = \ker p_i$ אידאל, וברור כי הוא מקסימלי וכי כל אידאל מקסימלי על־ידי $\varphi$ הוא מהצורה הזו, לכן מצאנו שיש מספר סופי של אידאלים סופיים.
+	לבסוף נבחין כי גם,
+	\[
+		\Jj(R)
+		= \bigcap M_i
+		= \bigcap p_i^{-1}(\{ 0 \})
+		= \{ 0 \}
+	\]
+	שכן נקבל את הדרישה שיהיה אפס בכל קורדינטה.
+\end{proof}
+
+\question{}
+יהיו $I, J \triangleleft R$ אידאלים.
+
+\subquestion{}
+נראה שאם יש $n \in \NN$ שעבורו $I^n \subset J$ אז $\sqrt{I} \subset \sqrt{J}$.
+\begin{proof}
+	יהי $x \in I$, אז מהנתון $x^n \in J$ ולכן מהגדרה גם $x \in \sqrt{J}$.
+	אם $y \in \sqrt{I}$ אז קיים $m \in \NN$ כך ש־$y^m \in I$ ולכן $y^{n m} \in J$.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\sqrt{\sqrt{I}}
+	= \sqrt{I}
+\]
+\begin{proof}
+	יהי $x \in \sqrt{\sqrt{I}}$, לכן קיים $y \in \sqrt{I}$ כך ש־$x^n = y$, ולכן קיים $z \in I$ כך ש־$y^m = z$, אבל בהתאם $x^{n m} \in I$ ולכן $\sqrt{\sqrt{I}} \subset \sqrt{I}$.
+	הצד השני נובע ישירות מ־$I \subset \sqrt{I}$.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\sqrt{I J}
+	= \sqrt{I \cap J}
+	= \sqrt{I} \cap \sqrt{J}
+\]
+\begin{proof}
+	נובע בצורה זהה לסעיף הקודם.
+\end{proof}
+
+\subquestion{}
+נוכיח ש־$\sqrt{I} = (1)$ אם ורק אם $I = (1)$.
+\begin{proof}
+	\[
+		\sqrt{I} = (1)
+		\iff 1 \in \sqrt{I}
+		\iff \exists x \in I \exists n \in \NN,\ 1^n = x
+	\]
+	אבל $1^n = 1$ לכל $n \in \NN$.
+\end{proof}
+
+\subquestion{}
+נראה שמתקיים,
+\[
+	\sqrt{I + J}
+	= \sqrt{\sqrt{I} + \sqrt{J}}
+\]
+\begin{proof}
+	נובע מסגירות של חיבור אידאלים לחיבור וסעיף ב'.
+\end{proof}
+
+\subquestion{}
+נוכיח שאם $I$ ראשוני אז לכל $n \in \NN$ מתקיים $\sqrt{I^n} = I$.
+\begin{proof}
+	אם $x \in \sqrt{I^n}$ אז $x^m \in I^n$ לאיזשהו $m \in \NN$.
+	אבל במצב זה נקבל ש־$x^{m - 1} \in I$ או $x \in I$, ולאחר מספר סופי של מהלכים כאלה נקבל ש־$x \in I$.
+	הכיוון השני דומה.
+\end{proof}
+
+\question{}
+יהי $R$ חוג ו־$I \triangleleft R$, נראה שמתקיים,
+\[
+	\sqrt{I}
+	= \bigcap_{P \in \Pp} P
+\]
+עבור $\Pp$ משפחת האידאלים הראשוניים ב־$R$ המכילים את $I$.
+\begin{proof}
+	יהי $P \in \Pp$ ונראה ש־$\sqrt{I} \subset P$.
+	יהי $x \in \sqrt{I}$ כך ש־$x^n \in I$, אז $x^n \in P$ ולכן $x \in P$ או $x^{n - 1} \in P$, לאחר מספר סופי של צעדים נקבל שבהכרח $x \in P$.
+	נסיק שמתקיים $\sqrt{I} \subset \bigcap_{P \in \Pp} P$.
+
+	בכיוון ההפוך יהי $x \notin \sqrt{I}$ ולכן בפרט $x \notin I$, ונגדיר את $S$ להיות כל האידאלים המכילים את $I$ וזרים ל־$x, x^2, \ldots$.
+	נבחין כי $I \in S$ ולכן נוכל להשתמש בלמה של צורן עם הכלה ושימוש בעובדה שאיחוד אידאלים הוא אידאל, ונסמן $P \in S$ איבר מקסימלי.
+	מאותו שיקול של משפט קיום אידאל מקסימלי נוכל לקבל שגם $P$ הוא ראשוני ולכן מעיד על $x \notin \bigcap \Pp$.
+\end{proof}
+
+\question{}
+יהיו $p_1, \ldots, p_k \in \ZZ$ ראשוניים שונים, ויהיו $n_1, \ldots, n_k \in \NN$ שונים מאפס.
+נראה שמתקיים,
+\[
+	\sqrt{p_1^{n_1} \cdots p_k^{n_k} \ZZ}
+	= p_1 \cdots p_k \ZZ
+\]
+\begin{proof}
+	\[
+		\sqrt{p_1^{n_1} \cdots p_k^{n_k} \ZZ}
+		= \sqrt{p_1^{n_1} \ZZ} \cap \cdots \cap \sqrt{p_k^{n_k} \ZZ}
+		= p_1 \ZZ \cap \cdots \cap p_k \ZZ
+		= p_1 \cdots p_k \ZZ
+	\]
+\end{proof}
+
+\question{}
+יהי $f = \sum_{i = 0}^n a_i x^i \in R[x]$.
+
+\subquestion{}
+נראה ש־$f$ נילפוטנטי אם ורק אם $a_0, \ldots, a_n$ נילפוטנטיים.
+\begin{proof}
+	אם $a_0, \ldots, a_n$ נילפוטנטיים אז יש טבעי יחיד $k \in \NN$ עבורו $a_i^k = 0$ לכל $i$, עבורו $f^k = 0$ בלבד.
+
+	נניח ש־$f$ נילפוטנטי ולכן קיים $k$ עבורו $f^k = 0$, אבל גם,
+	\[
+		f^k
+		= {\left(\sum_{i = 0}^n a_i x^i\right)}^k
+		= \sum_{\substack{(i_0, \ldots, i_n) \in \NN^n, \\ i_0 + \cdots + i_n = k}} a_0^{i_0} \cdots a_n^{i_n} x^{i_1 + 2 i_2 + \cdots + n i_n}
+	\]
+	ולכן $a_i^k = 0$ לכל $i$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$f$ מחלק אפס אם ורק אם קיים $0 \ne a \in R$ כך ש־$a f = 0$.
+\begin{proof}
+	יהי $0 \ne g \in R[x]$ ממעלה מינימלית כך ש־$f g = 0$, ונניח בשלילה ש־$\deg g > 0$.
+	נסמן $g = \sum_{i = 0}^m b_i x^i$ ולכן $f g = a_0 b_0 + \cdots + a_n b_m x^{n + m}$, ובפרט $a_n b_m = 0$ בלבד.
+	נובע אם כך ש־$a_n g$ הוא פולינום כך ש־$\deg a_n g < \deg g$ וגם $b_n g f = b_n (f g) = 0$, וזו סתירה, לכן $\deg g = 0$.
+\end{proof}
+
+\question{}
+יהיו $I = (4, x), M = (2, x) \triangleleft \ZZ[x]$ אידאלים.
+
+\subquestion{}
+נראה ש־$M$ מקסימלי.
+\begin{proof}
+	$\ZZ[x] / (2, x) \cong (\ZZ[x] / (x)) / (2) = \ZZ / (2) \cong \FF_2$, וזהו שדה ולכן $M$ מקסימלי.
+\end{proof}
+
+\subquestion{}
+נוכיח ש־$M = \sqrt{I}$.
+\begin{proof}
+	נבחין כי $2^2 = 4, x^1 = x$ ולכן $M \subset \sqrt{I}$.
+	מתקיים גם $3 \notin \sqrt{I}$ שכן $3 \notin I$ ולא קיים $n^k = 3$, לכן $M \subset \sqrt{I} \subsetneq \ZZ[x]$ ולכן $M = \sqrt{I}$ בלבד.
+\end{proof}
+
+\subquestion{}
+נראה שלא קיים $n \in \NN$ כך ש־$M^n = I$.
+\begin{proof}
+	עבור $n = 1$ הטענה ברורה, ועבור $n > 1$ נקבל ש־$x \notin M^n$ ובפרט $M^n \ne I$.
+\end{proof}
+
+\question{}
+יהי $F$ שדה, לכל אידאל נבדוק אם הוא ראשוני או מקסימלי.
+
+\subquestion{}
+נראה ש־$(x - y - 1) \triangleleft F[x, y]$ הוא ראשוני.
+\begin{proof}
+	נגדיר את ההומומורפיזם $\varphi : F[x, y] \to F[x]$ על־ידי $\varphi(f) = f(x, x - 1)$.
+	לכל $f \in F[x]$ מתקיים $\varphi(f) = f$ ולכן $\varphi$ הוא על. \\
+	נבחין כי $\varphi(x - y - 1) = x - (x - 1) - 1 = 0$ ולכן $(x - y - 1) \subset \ker \varphi$, נרצה להראות גם הכלה הפוכה.
+	יהי $f \in \ker \varphi$ ונסמן $f = \sum_{i, j} c_{i, j} x^i y^j$ אז,
+	\begin{align*}
+		f + (x - y - 1)
+		& = \sum_{i, j} c_{i, j} x^i y^j + (x - y - 1) \\
+		& = \sum_{i, j} c_{i, j} x^i {(x - 1)}^j + (x - y - 1) \\
+		& = f(x, x - 1) + (x - y - 1)
+	\end{align*}
+	ולכן $\ker \varphi = (x - y - 1)$ בדיוק ונובע ש־$F[x] / (x - y - 1) = F[x]$, זהו תחום שלמות שאיננו שדה ולכן $(x - y - 1)$ ראשוני אבל לא מקסימלי.
+\end{proof}
+
+\subquestion{}
+נראה ש־$(x, y^2 - 1) \triangleleft F[x, y]$ הוא מקסימלי.
+\begin{proof}
+	נבחין כי $F[x, y] / (x, y^2 - 1) \cong (F[x, y] / x) / (y^2 - 1) \cong F[y] / (y^2 - 1) \cong F[i]$ ולכן מספיק להראות שכל איבר ב־$F[i]$ הפיך.
+	יהי $x + i y \in F[x]$ אז $\frac{(x + i y)(x - i y)}{x^2 + y^2} = 1$ וכן $\frac{x}{x^2 + y^2}, \frac{y}{x^2 + y^2} \in F$ ולכן קיים הופכי וזהו שדה, כלומר $(x, y^2 - 1)$ אידאל מקסימלי.
+\end{proof}
+
+\subquestion{}
+נראה ש־$(x - y + 1, y - 3) \triangleleft F[x, y]$ הוא אידאל מקסימלי.
+\begin{proof}
+	נבחין כי $(x - y + 1, y - 3) = (x - 2, y - 3)$ שכן $x - y + 1 - (y - 3) = x - 2$.
+	לכן,
+	\[
+		F[x, y] / (x - 2, y - 3)
+		\cong (F[x, y] / (x - 2)) / (y - 3)
+		\cong \FF_2[y] / (y - 3)
+		= \FF_2[y] / (y - 1)
+		\cong \FF_2
+	\]
+	זהו שדה ולכן $(x - y + 1, y - 3)$ הוא אידאל מקסימלי.
+\end{proof}
+
+\subquestion{}
+נראה ש־$(2 + x + z, y - x z - x^2) \triangleleft F[x, y, z]$ הוא אידאל ראשוני.
+\begin{proof}
+	מתקיים $y - x z - x^2 + x (2 + x + z) = y + 2 x$ ולכן $(2 + x + z, y - x z - x^2) = (2 + x + z, y + 2 x)$.
+	נגדיר את ההומומורפיזם $\varphi : R[x, y, z] \to R[x]$ על־ידי $\varphi(f) = f(x, -2 y, -x - 2)$. 
+	ברור כי $\im \varphi = F[x]$ ונראה ש־$\ker \varphi = (2 + x + z, y + 2 x) = I$.
+	מתקיים $\varphi(2 + x + z) = 0, \varphi(y + 2 x) = 0$ ולכן $I \subset \ker \varphi$ ונותר להראות את הכיוון ההפוך.
+	יהי $f \in \ker \varphi$ ונסמן $f = \sum_{i, j, k} c_{i, j, k} x^i y^j z^k$ אז,
+	\[
+		f + I
+		= \sum_{i, j, k} c_{i, j, k} x^i y^j z^k + I
+		= \sum_{i, j, k} -2 c_{i, j, k} x^{i + 1} y^{j - 1} (-x - 2) z^{k - 1} + I
+		= f(x, -2x, -x - 2) + I
+		= 0
+	\]
+	לכן ממשפט האיזומורפיזם הראשון $F[x, y, z] / I \cong F[x]$ ולכן $I$ אידאל ראשוני שאינו מקסימלי.
+\end{proof}
+
+\end{document}
