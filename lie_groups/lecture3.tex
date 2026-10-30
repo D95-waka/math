@@ -13,6 +13,139 @@
 \begin{document}
 \maketitle
 
+\section{Reminder}
+\begin{definition}[Tangent space]
+	If $(X, A)$ is a smooth manifold and $p \in X$ is some point, then the tangent space of $p$ is defined as,
+	\[
+		T_p X
+		= \{ \gamma : (-\delta, \delta) \to X \mid \gamma(0) = p, \gamma \in C^{\infty}(X), \delta \in \RR^+ \} / \sim
+	\]
+\end{definition}
+\begin{definition}[exponential map]
+	If $G$ is a Lie group then define $\exp : L(G) \to G$ as the map that for any $v \in L(G)$, $\theta_v$ be the corresponding $1$-parameter subgroup of $G$, then $\exp tv = \theta_v(t)$.
+\end{definition}
+
 \section{Submanifolds}
+\begin{definition}[Submanifold]
+	Let $M$ be a smooth manifold modeled on $V$, and let $N \subseteq M$ be a subset and $W \subseteq V$ be a subspace.
+	$N$ is a \textbf{submanifold} modeled on $W$ if for any $x \in N$ there exists a chart compatible with $M$, $\varphi_{\alpha} : M_{\alpha} \to \Omega_{\alpha}$
+	where $M_{\alpha} \subseteq M, \Omega_{\alpha} \subseteq V$ are open, that restricts to a bijection $M_{\alpha} \cap N \to \Omega_{\alpha} \cap W$.
+\end{definition}
+\begin{proposition}
+	Given a manifold $M$ and a submanifold $N$, the bijections $\{ M_{\alpha} \cap N \to \Omega_{\alpha} \cap W \}$ are an atlas on $N$. \\
+	Furthermore, equivalent atlases on $M$ yield equivalent atlases on $N$ thus $N$ is a smooth manifold modeled on $W$.
+\end{proposition}
+\begin{proof}
+	Left as an exercise.
+\end{proof}
+\begin{proposition}
+	If $N$ is a submanifold of $M$, then $N$ can be given differential structure as a manifold so that:
+	\begin{enumerate}
+		\item The inclusion of $N$ in $M$ is smooth
+		\item $P \to N$ is smooth if and only if the composition $P \to N \to M$ is smooth
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Let $f : N \to M$ be the identity embedding, and let $\varphi : U \to V$ be a chart of $M$, $u \subseteq M, V \subseteq \RR^k$ are open, and assume $N \cap U \ne \emptyset$.
+	Then $\varphi$ can be restricted to a chart $\psi : N \cap U \to V \cap W$ which is a bijection and $\varphi \circ f \circ \psi$ is smooth by our definition of smoothness.
+
+	The second part is similar and is left as an exercise.
+\end{proof}
+\begin{corollary}
+	$T(N)$ is embedded in $T(M)$.
+\end{corollary}
+\begin{exercise}
+	Show that if $N_1, N_2$ are manifolds of $M_1, M_2$ then $N_1 \times N_2$ is a submanifold of $M_1 \times M_2$ and its differential structure as a submanifold is the same as of the product.
+\end{exercise}
+\begin{proposition}
+	If $G$ is a Lie group and $H$ is both a submanifold and a subgroup then $H$ is a Lie group.
+\end{proposition}
+\begin{proof}
+	Follows from the last exercise and proposition for the maps $\mu : G \times G \to G$ and $\mu : H \times H \to H$ and $i : G \to G$ to $i : H \to H$.
+\end{proof}
+
+\section{Closed subgroups}
+\begin{definition}[Closed subgroup]
+	A subgroup $H$ of a Lie group $G$ is closed if it is closed as a subset of the topology $G$.
+\end{definition}
+\begin{theorem}[Closed subgroup as submanifold]
+	A closed subgroup $H$ of a Lie group is a submanifold.
+\end{theorem}
+To prove the theorem is given by the next three lemmas.
+\begin{lemma}
+	Suppose $L(G) = T_e G$ has a norm and suppose that $0 \ne h_n \in L(G)$ is a sequence of points such that,
+	\[
+		\forall n \in \NN,\ \exp h_n \in H,
+		\quad
+		h_n \xrightarrow{n \to \infty} 0,
+		\quad
+		\frac{1}{|h_n|} h_n \to v \in L(G)
+	\]
+	Then $\exp(t v) \in H$ for all $t \in \RR$.
+\end{lemma}
+In other words, a closed subgroup is closed under ``directions''.
+\begin{proof}
+	TODO
+\end{proof}
+\begin{lemma}
+	Let $W$ be a vector subspace of $L(G)$, then $W$ is a vector subspace of $L(G)$.
+\end{lemma}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{lemma}
+	$\exp W$ is a neighborhood of $e \in H$.
+\end{lemma}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{proof}[Proof of the theorem]
+	By the last lemma $\exp W$ is a neighborhood of $e$ in $H$, thus $\exp |_W$ is a chart of a neighborhood of $e$.
+	This chart can be translated to any other point $\in H$ by multiplication.
+\end{proof}
+\begin{example}
+	$O(n) \subseteq \GL_n(\RR)$ the subspace of orthogonal invertible matrices is a closed subgroup (TODO proof) and so a submanifold of a Lie group thus its is a Lie group.
+\end{example}
+\begin{example}
+	$U(n) \subseteq \GL_n(\CC)$ the subspace of unitary complex matrices is also a closed subset (TODO proof) thus also a Lie group.
+\end{example}
+TODO\@: Should we copy the third example?
+\begin{example}
+	If $G$ is a compact Lie group and $H$ is a closed connected Abelian subgroup, then $H$ is a torus.
+\end{example}
+\begin{proposition}
+	A closed connected subgroup $H$ of a Lie group $G$ is determined by $L(G)$.
+\end{proposition}
+\begin{proof}
+	TODO something with 2.17 which means that a homomorphism is determined by its projection to the tangent space.
+\end{proof}
+
+\section{Quotient spaces}
+\begin{definition}[Subgroup \& Cosets]
+	Suppose $G$ is a Lie group and $H$ is a closed subgroup, then the \textbf{quotient space} $G / H$ is the set of (left) cosets $\{ g H \mid g \in G \}$.
+	The map $\pi : G \to G / H$ given by $g \mapsto g H$ is the projection, and give $G / H$ the quotient topology.
+\end{definition}
+\begin{proposition}
+	$G / H$ is Hausdorff.
+\end{proposition}
+\begin{proof}
+	Suppose that $x H, y H \in G / H$ are different points, conversely $x, y \in G$ such that $x \ne y$ and $x H \ne y H$.
+	$G$ is Hausdorff then there are $x \in U, y \in V$ open neighborhoods such that $U \cap V = \emptyset$.
+	$e \in x^{-1} U, y^{-1} V$ then there is a chart $\varphi : W \to \RR^k$ for $W \subseteq x^{-1} U \cap y^{-1} V$ up to compatibility with $G$.
+	By translating the chart we can make $V, U$ arbitrarily small (taking $\varphi^{-1}(B(0, \varepsilon))$), such that $\varepsilon < \dist(\varphi(x W \cap x H, y W \cap y H))$ if it is defined (otherwise the claim holds).
+\end{proof}
+Together with the fact that a quotient topology assumes 2nd countability of a topology, we get,
+\begin{proposition}
+	$G / H$ can be given a smooth manifold structure, such that $\pi$ is smooth and any $f : G / H \to M$ is smooth if and only if there exists $F : G \to M$ smooth with $f = F \circ \pi$.
+\end{proposition}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{definition}[Bundle]
+	TODO
+\end{definition}
+\begin{proposition}
+	$H \to G \to G / H$ is a bundle.
+\end{proposition}
 
 \end{document}
