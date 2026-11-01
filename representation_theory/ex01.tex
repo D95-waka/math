@@ -21,18 +21,21 @@
 \begin{proof}
 	כל מטריצת פרמוטציה $M$ מקיימת את התכונה שסכום כל שורה הוא $1$ וכן סכום כל עמודה הוא $1$, לכן זוהי מטריצה סטוכסטית ומקיימת את התכונה ש־$1$ ערך עצמי של המטריצה עבור הווקטור $v = {(1, \ldots, 1)}^t$.
 	נגדיר את $V_1 = \Sp\{ v \}$ ולכן נקבל ש־$\rho(\sigma)(u) = u$ לכל $u \in V_1$ ולכל $\sigma \in S_n$.
-	נגדיר את $V_2 = (e_1, \ldots, e_{n - 1})$ ולכן $V_1 \oplus V_2 = \CC^n$ בדיוק. \\
-	מצאנו כבר שאם $u \in V_1$ אז גם $\sigma . u \in V_1$ ולכן נשאר להראות שאם $u \in V_2$ אז $\sigma . u \in V_2$ לכל $\sigma \in S_n$.
-	נסמן $\pi_j : \CC^n \to \CC$ ההטלה על הציר ה־$j$, כלומר $\pi_j(e_i) = e_i \iff i = j$, ונבחין כי $\pi_n(u) = 0$, ולכן $\pi_{\sigma(n)}(u) = 0$ ובפרט $u \notin V_1$.
+	נגדיר את $V_2 = \{ (t_1, \ldots, t_n) \in \CC^n \mid t_1 + \cdots + t_n = 0 \}$, ברור כי $V_1 + V_2 = \CC^n$ שכן $(1, 0, \ldots, 0, -1) \in V_2$ ולכן $(1, 0, \ldots, 0) \in V_1 + V_2$ וכן הלאה.
+	יהי $v \in V_1 \cap V_2$, אז $v = \alpha (1, \ldots, 1)$ שכן $v \in V_1$, אבל גם $n \cdot \alpha = 0$ ולכן $\alpha = 0$ בלבד, כלומר $V_1 \cap V_2 = \{ 0 \}$ ונובע ש־$V_1 \oplus V_2 = \CC^n$. \\
+	מהגדרת $V_1$ מתקיים $\dim V_1 = 1$, לכן ממשפט המימד נסיק ש־$\dim V_2 = n - 1$.
+
+	אם $\sigma \in S_n$ וכן $(t_1, \ldots, t_n) \in V_2$ אז $\sigma . (t_1, \ldots, t_n) = (t_{\sigma(1)}, \ldots, t_{\sigma(n)})$ ובכל מקרה סכומם $0$ ומתקיים $\sigma . (t_1, \ldots, t_n) \in V_2$.
+	אם כך שני המרחבים אינווריאנטיים.
 \end{proof}
 
 \subquestion{}
 נראה ש־$V_1$ ו־$V_2$ אי־פריקים.
 \begin{proof}
-	ברור כי $V_1$ אי־פריק, נראה זאת עבור $V_2$.
-	נבחין כי לכל $1 \le i, j < n$ קיים $\sigma = (i\ j) \in S_n$ כך ש־$\sigma . e_i = e_j$, 
-	יהי תת־מרחב $V \subset V_2$, לכן קיים $j < n$ כך ש־$e_j \notin U$, אחרת $\dim U = \dim V_2$ בסתירה להיותו תת־מרחב ממש, ויהי $0 \ne u \in U$, אז קיים אינדקס $i$ כך ש־$\pi_i(u) \ne 0$,
-	לכן $\sigma . u \notin U$ עבור $\sigma$ שהגדרנו, ולכן $U$ לא מרחב אינווריאנטי, נסיק ש־$V_2$ עצמו הוא אי־פריק.
+	ברור כי $V_1$ אי־פריק, נראה זאת עבור $V_2$. \\
+	נגדיר את $u_i \in \CC$ כך ש־$\pi_i(u_i) = 1, \pi_n(u_i) = -1$, לכן $V_2 = \Sp\{u_1, \ldots, u_n\}$.
+	כדי להראות ש־$V_2$ אי־פריק מספיק להראות שאפשר לשלוח כל $u_i$ לכל $u_j$ עבור $1 \le i, j \le n$.
+	נבחין כי $(i\ j) \in S_n$ וכן $(i\ j) . u_i = u_j$, אז נובע בדיוק שלא יתכן שיש תת־מרחב ממש אינווריאנטי כך שהוא כולל חלק מווקטורי הבסיס $v_1, \ldots, v_n$.
 \end{proof}
 
 \question{}
@@ -166,15 +169,71 @@
 		= T \circ \rho_1
 	\]
 	נבחין כי מספיק להגדיר את ההעתקה על בסיס של $\CC^2$ כהומומורפיזם לינארי.
-	על־ידי שימוש בהגדרת איזומורפיזם ושימוש בהגדרות $\rho_1, \rho_2$ נקבל שמטריצה $T$ תקיים את הדרוש אם,
+	ננסה למצוא אחת, נגדיר,
 	\[
 		T
 		= \begin{pmatrix}
-			\frac{\omega^2}{2} & \frac{1}{2} - \frac{\omega^2}{4} \\
-			-\frac{\omega}{2} & \frac{\omega^2}{2}
+			a & b \\
+			c & d
 		\end{pmatrix}
 	\]
-	בדיוק, ניתן לבדוק בעזרת חישוב שהעתקה זו אכן מקיימת את הנדרש.
+	אז צריך להתקיים מחילופיות,
+	\[
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{pmatrix} T
+		= T
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{pmatrix}
+		\implies
+		\begin{pmatrix}
+			c & d \\
+			a & b
+		\end{pmatrix}
+		= \begin{pmatrix}
+			b & a \\
+			d & c
+		\end{pmatrix}
+	\]
+	ונובע ש־$c = b, a = d$, כלומר,
+	\[
+		T
+		= \begin{pmatrix}
+			a & b \\
+			b & a
+		\end{pmatrix}
+	\]
+	נשתמש שוב בחילופיות עבור $(1\ 2)$ ונקבל,
+	\[
+		\begin{pmatrix}
+			-a - b & -b - a \\
+			b & a
+		\end{pmatrix}
+		= \begin{pmatrix}
+			-1 & -1 \\
+			0 & 1
+		\end{pmatrix} T
+		= T \begin{pmatrix}
+			0 & \omega \\
+			\omega^2 & 0
+		\end{pmatrix}
+		= \begin{pmatrix}
+			b \omega^2 & a \omega \\
+			a \omega^2 & b \omega
+		\end{pmatrix}
+	\]
+	בפרט נקבל $a = b \omega$ ולכן נוכל להגדיר $b = 1, a = \omega$ ונקבל שההעתקה,
+	\[
+		T
+		= \begin{pmatrix}
+			\omega & 1 \\
+			1 & \omega
+		\end{pmatrix}
+	\]
+	מקיימת את הטענה ומעידה על האיזומורפיזם.
 \end{proof}
 
 \question{}
