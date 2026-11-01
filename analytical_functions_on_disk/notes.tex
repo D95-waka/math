@@ -453,5 +453,198 @@ and $\forall \delta > 0 \exists r_0,\ r > r_0 \implies \int_{|t| > \delta} P_r(\
 	If $\lVert F \rVert_{L^p} = M$ then $\lVert F(\theta - t) - F(\theta) \rVert_{L^p} \le 2 M$ hence $I\!I < \frac{\varepsilon}{2}$ by a choice of $\delta$.
 \end{proof}
 
+\section{Lecture 3 --- 1.11.2026}
+\section{Elementary study of the boundary behavior}
+We saw the theorem,
+\begin{theorem}
+	Suppose $F : \partial \DD \to \RR$  is in $\Ll^p(\partial \DD)$ and $u(r e^{i \theta}) = P[F](r e^{i \theta}) = \frac{1}{2 \pi} \int_{-\pi}^{\pi} F(e^{i t}) P_r(\theta - t)\ dt$,
+	is its Poisson extension to $\DD$. If $F_r(e^{i \theta}) = u(r e^{i \theta})$ then $F_r \to F$ in $\Ll^p(\partial \DD)$ as $r \to 1$.
+\end{theorem}
+\begin{remark}
+	As stated, the theorem fails for $p = \infty$.
+	If $v(z) = \re \log z$ then $u(z) = v \circ m = \re(\log(z) \circ m)$ for $m$ the Möbius transformation mapping the unit disk onto the upper half plane $m : \DD \xrightarrow{\sim} \HH$.
+	If $F_r = u(r e^{i \theta})$ and if $F_r \to F$ in $\Ll^\infty$ then $F$ would be continuous, but it is not as $u(-1)$ is non-continuity.
+\end{remark}
+\begin{theorem}
+	Suppose $F : [-\pi, \pi] \to \RR$  is in $\Ll^\infty(\partial \DD)$ and $u(r e^{i \theta}) = P[F](r e^{i \theta}) = \frac{1}{2 \pi} \int_{-\pi}^{\pi} F(e^{i t}) P_r(\theta - t)\ dt$,
+	is its Poisson extension to $\DD$. If $F_r(\theta) = u(r e^{i \theta})$ then $F_r \to F$ in $\Ll^p(\partial \DD)$ in weak-$*$.
+\end{theorem}
+Since $\Ll^\infty \simeq {(\Ll^1)}^*$, we need to check that,
+\[
+	\int_{-\pi}^{\pi} F_r(\theta) G(\theta)\ d \theta
+ 	\xrightarrow{r \to 1} \int_{-\pi}^{\pi} F(\theta) G(\theta)\ d \theta
+\]
+for all $G \in L^1(-[\pi, \pi])$.
+\begin{proof}
+	\[
+		\Ll HS
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} F(t) P_r(\theta - t)\ d t G(\theta)\ d \theta
+		\overset{P_r \text{ is even}}{=}  \frac{1}{2 \pi} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} F(t) P_r(t - \theta)\ d t G(\theta)\ d \theta
+	\]
+	$G \in \Ll^1$ is bounded then $G(\theta) P_r(t - \theta)$ converges,
+	\[
+		\to
+		\int_{-\pi}^{\pi} F(t) G(t)\ d t
+	\]
+\end{proof}
+\begin{theorem}
+	Suppose $\mu$ is a signed measure on $[-\pi, \pi]$,
+	\[
+		u(r e^{i \theta})
+		= P[\mu](r e^{i \theta})
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} P_r(\theta - t)\ d \mu
+	\]
+	is its Poisson extension to $\DD$.
+	If $F_r(\theta) = u(r e^{i \theta})$, then $F_r(\theta)\ d \theta \to \mu$ in weak-$*$.
+\end{theorem}
+\begin{remark}
+	One generally does not have a total variation convergence.
+\end{remark}
+Since $\Mm \simeq \Cc {([-\pi, \pi])}^*$, this means that,
+\[
+	\int_{-\pi}^{\pi} F_r(\theta) G(\theta)\ d \theta
+	\to \int_{-\pi}^{\pi} G(\theta)\ d \mu(\theta)
+\]
+as $r \to 1^-$, for every continuous function $G$.
+\begin{proof}
+	\[
+		\Ll HS
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} P_r(t - \theta)\ d \mu(t)\ G(\theta)\ d \theta
+		\xrightarrow{r \to 1 \text{ in } \CC}
+		G(t)
+	\]
+	As $r \to 1^-$, $\Ll HS \to \int_{-\pi}^{\pi} G(t)\ d \mu(t)$.
+\end{proof}
+\begin{theorem}[Fatou's theorem]
+	Suppose $\mu$ is a signed measure on $[-\pi, \pi]$ and $\eta(t) = \int_{-\pi}^{t} d\ \mu$ be its distribution function.
+	If $\eta'(t)$ exists, then $P[\mu](z) \to \eta'(t)$ as $z \to e^{i t}$ non-tangentially, namely the sequence of points is bounded by its angle from the point of convergence.
+\end{theorem}
+Since monotone functions are differentiable almost everywhere, the claim holds for almost every $t \in [-\pi, \pi]$.
+If $\mu = g(t)\ dt$ with $g$ continuous then $\eta'(t) = g(t)$.
+
+Recall that $P_r(t) = \frac{1 - r^2}{1 + r^2 - 2 r \cos t}$.
+Set,
+\[
+	F_r(t) = -\frac{1 + r}{2 r} \cdot t P_r'(t)
+	= \frac{{(1 + r)}^2 (1 - r) t \sin t}{{(1 + r^2 - 2 r \cos t)}^2}
+\]
+\begin{lemma}
+	$F_r > 0$, even, $\frac{1}{2 \pi} \int_{-\pi}^{\pi} F_r(t)\ d t = 1$, and for every $\delta, \varepsilon > 0$ there is $0 < r_0 < 1$ such that for any $r_0 < r < 1$,
+	\[
+		\int_{{[-\delta, \delta]}^C} F_r(t)\ dt < \varepsilon
+	\]
+\end{lemma}
+The reason for the multiplication by $\frac{1 + r}{2 r}$ is that,
+\[
+	\int_{-\pi}^{\pi} t P'(t)\ dt
+	= t P(t) \mid_{-\pi}^{\pi} - \int_{-\pi}^{\pi} P(t)\ dt
+	= 2 \pi \cdot \frac{1 - r}{1 + r} - 2 \pi
+	= 2 \pi \cdot \frac{-2 r}{1 + r}
+\]
+so that they will cancel out.
+Without loss of generality, we may assume that $\theta = 0$,
+Our claim is that $\lim_{r \to 1} u(r e^{i \theta}) = \eta'(0)$ where $u = P_{\mu}$.
+\begin{align*}
+	P_{\mu}(r)
+	& = \frac{1}{2 \pi} \int_{-\pi}^{\pi} \frac{1 - r^2}{1 + r^2 - 2 r \cos t}\ d \mu(t) \\
+	& = \frac{1}{2 \pi} \left. \frac{1 - r^2}{1 + r^2 - 2 r \cos t} \eta(t) \right\rvert_{-\pi}^{\pi} - \frac{1}{2 \pi} \int_{-\pi}^{\pi} \frac{\partial P_r}{\partial t} \cdot \eta(t)\ dt \\
+	& = \frac{1}{2 \pi} \frac{1 - r}{1 + r} \cdot \mu([-\pi, \pi]) + \frac{1}{2 \pi} \frac{2 r}{1 + r} \int_{-\pi}^{\pi} -\frac{1 + r}{2 r} \cdot t \cdot \frac{\partial P_r}{\partial t} \cdot \frac{\eta(t)}{t}\ dt
+\end{align*}
+Denote the terms in the last formula $I$ and $I\!I$. As $r \to 1^-$, $I \to 0$.
+\[
+	\frac{2 r}{1 + r^2} \to 1
+\]
+and,
+\[
+	\frac{1}{2 \pi} \int_{-\pi}^{\pi} F_r(t) \cdot \frac{\eta(t)}{t}\ dt
+\]
+$\frac{\eta(t)}{t}$ is continuous at $0$ by our assumption,
+we also assume without loss of generality that $\eta(0) = 0$ by subtracting a constant value, then,
+\[
+	\lim_{t \to 0, t \ne 0} \frac{\eta(t)}{t}
+	= \eta'(0)
+\]
+Summary:
+$\eta(t) = \int_{-\pi}^t d\ \mu = \mu([-\pi, t])$. Pick $t \in [-\pi, \pi]$ where $\eta'$ exists.
+$u(z)$ is harmonic then $u(e^{i \alpha} z)$ is also harmonic, therefore we can rotate it such that we choose $t = 0$.
+We want $\eta(0) = 0$, replace $\mu$ by $\mu - c\ dm$ where $c \in \RR$ is chosen that $\mu([-\pi, 0]) = c \cdot m([-\pi, 0]) = c \pi$.
+$P_{\mu}(r) = I + I\!I$. If $\eta(0) = 0$ and $\eta'(0)$ exists then $g(t) = \frac{\eta(t)}{t}$ is continuous at $0$, therefore $I\!I \to \eta'(0)$.
+\begin{theorem}[F \& M. Riesz]
+	Suppose $\mu$ is a measure on $[-\pi, \pi]$. If,
+	\[
+		\forall n \in \NN,
+		\quad
+		\hat{\mu}(-n) \frac{1}{2 \pi} \int_{-\pi}^{\pi} e^{i n \theta}\ d \mu = 0
+	\]
+	then $\mu$ is absolutely continuous with respect to $m$.
+\end{theorem}
+\begin{definition}[Function created measure]
+	If $\mu$ is a measure and $f \in \Ll^1(\mu)$, then $(f\ d \mu)(E) = \int_E f\ d \mu$.
+\end{definition}
+\begin{proof}
+	Step 0:
+	Suppose not. Then $\mu = \mu_{ac} + \mu_s$ where $\mu_s \ne 0$.
+	There is $E$ with $m(E) = 0$ but $\mu(E) = \mu_s(E) \ne 0$.
+	If $\mu$ is not absolutely continuous, then neither is $e^{i \theta}\ d \mu$, then there is $E$ such that $m(E) = 0$ but $\int_E e^{i \theta}\ d \mu \ne 0$.
+	By inner regularity, we may assume that $E$ is closed.
+	Denote the complementary arcs by $\{ I_j \}$. So, $\partial \DD \setminus E = \bigcup I_j$, as $E$ is closed.
+
+	Step 1:
+	There exists a function $F : \partial \DD \to (0, \infty]$ which satisfies,
+	\begin{itemize}
+		\item $F \in \Ll^1(\partial \DD)$
+		\item $F \in C^\infty(\partial D \setminus E)$
+		\item $F(e^{i \theta}) \to \infty$ as $e^{i \theta} \to E$
+	\end{itemize}
+	$l_j = m(I_j)$ then $\sum l_j = 2 \pi$. There exists $m_j \nearrow \infty$ such that $\sum l_j m_j < \infty$.
+	On $I_j$ we construct $F$ such that $F(t) \ge m_j$ then $\int_{I_j} F(t)\ dt \ge l_j \cdot m_j$.
+	Let $u = P[F]$ and $\tilde{u}$ its harmonic conjugate, $u + i \tilde{u}$ is analytic function with positive real part.
+	A fact we will accept is that $\tilde{u} \in C(\partial \DD \setminus E)$.
+
+	Step 2:
+	The disk algebra $\Aa$ consists of all analytic functions $\DD$ which extend continuously to $\DD$, $\Aa = \operatorname{Hol}(\DD) \cap C(\bar{\DD})$.
+	Then $\phi = \frac{u + i \tilde{u}}{1 + u + i \tilde{u}}$ is a disk algebra function such that $|\phi(z)| < 1$ on $\DD \setminus E$, $\phi(z) = 1$ ``peak set''.
+
+	Step 3:
+	We claim that,
+	\[
+		\int_{-\pi}^{\pi} \phi{(e^{i \theta})}^k \cdot e^{i \theta}\ d \mu = 0
+	\]
+	for any $k \in \NN$.
+	We use a trick to observe $\phi$ in the unit disk instead of the boundary, in which is analytic,
+	\[
+		\int_{-\pi}^{\pi} \phi{(e^{i \theta})}^k \cdot e^{i \theta}\ d \mu
+		= \lim_{r \to 1} \int_{-\pi}^{\pi} \phi{(r e^{i \theta})}^k \cdot r e^{i \theta}\ d \mu
+	\]
+	so $\phi {(z)}^k = a_0 + a_1 z + \cdots$ converges absolutely and uniformly on compact subsets of $\DD$.
+	It is possible to integrate term by term and recall that $\int e^{i n \theta}\ d \mu = 0$ for $n \ge 0$.
+
+	Step 4:
+	By dominated convergence theorem,
+	\[
+		0 = \int_{-\pi}^{\pi} \phi{(e^{i \theta})}^k e^{i \theta}\ d \mu
+		\xrightarrow{k \to \infty} 
+		\int_E e^{i \theta}\ d \mu(\theta)
+	\]
+	This is a contradiction to our assumption that $\int_E e^{i \theta}\ d \mu(\theta) \ne 0$.
+\end{proof}
+Recall that $H^p$ consists of all analytic functions on $\DD$ such that,
+\[
+	\sup_{0 < r < 1} \int_{-\pi}^{\pi} {| f(e r^{i \theta}) |}^p\ d \theta < \infty
+\]
+If $p > 1$, there exists a function $F : \partial \DD \to \RR$ in $\Ll^p$ such that $f(z) = P[F]$.
+If $p = 1$, then there is a measure $\mu \in \Mm(\partial \DD)$ such that $f = P[\mu]$.
+Brothers Riesz: $\mu = F\ d m$ for some $F \in \Ll^1$, if,
+\[
+	\int_{\partial \DD} z^n\ d \mu
+	= 0
+\]
+for $n \in \NN$.
+$f_r \to \mu$ in weak-$*$.
+\[
+	\int_{\partial \DD} z^n f(r z)\ dm
+	\to \int_{\partial \DD} z^n\ d \mu
+\]
+
 \listoftheorems[title=theorems \& definitions,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
