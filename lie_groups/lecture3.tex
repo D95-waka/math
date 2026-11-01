@@ -126,6 +126,7 @@ In other words, a closed subgroup is closed under exponent, in particular under 
 	\[
 		\lim_{n \to \infty} \exp m_n h_n
 		= \lim_{n \to \infty} \exp \frac{m_n \lVert h_n \rVert}{\lVert h_n \rVert} h_n
+		= \lim_{n \to \infty} \exp m_n \lVert h_n \rVert \cdot \lim_{n \to \infty} \exp \frac{1}{\lVert h_n \rVert} h_n
 		= \exp t v
 	\]
 	But $\exp m_n h_n = {(\exp h_n)}^{m_n} \in H$ as a subgroup, and $t v \in H$ follows from closure.
@@ -138,6 +139,7 @@ In other words, a closed subgroup is closed under exponent, in particular under 
 	If $v \in L(G)$ as in the last lemma, then $\exp t v \in H$, $W$ consists of such values therefore $\exp W \subseteq H$.
 
 	It is clear that if $w \in W$ then $t w \in W$ for all $t \in \RR$, and it remain to show that if $w_1, w_2 \in W$ then $w_1 + w_2 \in W$ as well.
+	The case $w_1 + w_2 = 0$ is clear then assume otherwise.
 \end{proof}
 \begin{lemma}
 	$\exp W$ is a neighborhood of $e \in H$.
