@@ -8,6 +8,8 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 
+\DeclareMathOperator\Mon{Mon}
+
 \begin{document}
 \maketitle
 \maketitleprint[red]{}
@@ -689,6 +691,142 @@ $A$ הוא חילופי ביחס לחיבור ולכן $I \le A$ תת־חבור�
 	בכל $A \ne 0$ קיים אידאל מקסימלי.
 	נקרא גם משפט Krull.
 \end{theorem}
+
+\section{שיעור 4 --- 1.11.2026}
+\subsection{אידאלים מקסימליים}
+נוכיח את משפט האידאל המקסימלי.
+\begin{proof}
+	נסמן $S = \{ I \triangleleft A \mid I \ne A \}$ כל האידאלים ב־$A$ ונבדוק את תנאי הלמה של צורן.
+	תהי $T \subset S$ שרשרת ביחס ההכלה וניקח את $I = \{ 0 \} \cup \bigcup T$ ונראה ש־$I \in S$ וכן שהוא חסם עליון של $T$.
+	אכן $J \subset I$ לכל $J \in T$, ונראה ש־$I \triangleleft A, I \ne A$. \\
+	יהיו $a, b \in I$, ונניח בלי הגבלת הכלליות ש־$T$ לא ריקה. קיימים $J, K \in S$ כך ש־$b \in K, a \in J$.
+	$T$ שרשרת ולכן $J \subset K$ או $K \subset J$ ונניח בלי הגבלת הכלליות ש־$K \subset J$.
+	אז $a, b \in J$ ולכן $a + b \in J \subset I$ כנדרש.
+	אם $c \in I$ ו־$a \in A$ אז קיים $J \in T$ כך ש־$c \in J$ ולכן גם $a c \in J \subset I$ ולכן נוכל להסיק ש־$I \triangleleft A$.
+	בנוסף $1 \notin J$ לכל $J \in T$ ולכן גם $1 \notin J$ ובפרט $J \ne A$.
+	בהתאם $J \in S$ הוא אכן חסם עליון ולכן תנאי הלמה של צורן מתקיימים וקיים אידאל מקסימלי.
+\end{proof}
+\begin{corollary}
+	יהי $A$ חוג ויהי $I \triangleleft A$ אידאל ממש, אז קיים אידאל $I \subset M \triangleleft A$ מקסימלי.
+\end{corollary}
+\begin{proof}
+	לפי משפט ההתאמה אידאלים מקסימליים $I \subset M \triangleleft A$ מתאימים לאידאלים מקסימליים ב־$A / I$ ולפי משפט האידאל המקסימלי קיים $N \triangleleft A / I$ מקסימלי.
+\end{proof}
+
+\subsection{חוגי פולינומים}
+לפרק זה נניח כי כל החוגים הם חילופיים.
+נבחין כי כמעט לכל מתייחס כאן לתמיד למעט מספר סופי של מקרים. \\
+בנוסף אם $(A, +)$ חבורה חילופית ו־$f : X \to A$ פונקציה עבור קבוצה כלשהי $X$, כך ש־$f(x) = 0$ כמעט לכל $x$ אז נסמן,
+\[
+	\sum_{x \in X} f(x)
+	= \sum_{x \in X \setminus f^{-1}(\{ 0 \})} f(x)
+\]
+\begin{definition}[מונום]
+	תהי קבוצה $X$, נחשוב עליה כאוסף של משתנים בלתי־תלויים.
+	מונום (monomial) מעל $X$ הוא פונקציה $m : X \to \NN_0$ כך ש־$m(x) = 0$ כמעט לכל $x$.
+\end{definition}
+נסמן $m = x^2 y^3 z$ עבור המונום כך ש־$f(x) = 2, f(y) = 3, f(z) = 1$ ולכל משתנה אחר $f(s) = 0$.
+נסמן ב־$1$ את המונום $m \equiv 0$.
+\begin{notation}
+	נסמן ב־$\Mon(X)$ את אוסף כל המונומים במשתנים $X$.
+\end{notation}
+\begin{definition}[כפל מונומים]
+	אם $m_1, m_2 \in \Mon(X)$ אז נגדיר $m_1 \cdot m_2$ כמונום $m(x) = m_1(x) + m_2(x)$ לכל $x \in X$.
+\end{definition}
+\begin{example}
+	בסימון שלנו $x y^2 \cdot x^2 y^3 = x^3 y^5$.
+\end{example}
+\begin{definition}[פולינום]
+	נגדיר פולינום (polynomial) עם במשתנים $X$ בחוג (חילופי) $A$ כפונקציה $p : M \to A$ שמתאפסת לכמעט כל מונום.
+\end{definition}
+\begin{notation}
+	נסמן פולינומים כסכום של מונומים עם מקדמים מ־$A$, כלומר לדוגמה $a x^2 + b x y z + c$ עבור $a, b, c \in A$ הוא הפולינום המוגדר על־ידי,
+	\[
+		p(x^2) = a,
+		\quad
+		p(x y z) = b,
+		\quad
+		p(1) = c,
+		\quad
+		p(s) = 0
+	\]
+\end{notation}
+\begin{definition}[קבוצת הפולינומים]
+	נסמן את קבוצת כל הפולינומים במשתנים $X$ מעל $A$ על־ידי $A[X]$. \\
+	נגדיר חיבור פולינומים על־ידי $(p_1 + p_2)(m) = p_1(m) + p_2(m)$ וכפל על־ידי,
+	\[
+		(p_1 \cdot p_2)(m)
+		= \sum_{\substack{m_1, m_2 \in \Mon(X) \\ m_1 m_2 = m}} p_1(m_1) p_2(m_2)
+	\]
+	ולבסוף נגדיר את פולינום ה־$1$ כפולינום $p(m) = \indicator_{\{ m = 1 \}}$.
+\end{definition}
+\begin{proposition}
+	$(A[X], +, \cdot)$ הוא חוג חילופי כאשר פולינומי ה־$0$ וה־$1$ הם בדיוק $0_{A[X]}$ ו־$1_{A[X]}$.
+\end{proposition}
+\begin{proof}
+	תרגיל.
+\end{proof}
+\begin{notation}
+	$A[\{ x_1, \ldots, x_n \}] = A[x_1, \ldots, x_n]$.
+\end{notation}
+\begin{proposition}
+	$A[x_1, \ldots, x_n] \cong A[x_1, \ldots, x_{n - 1}][x_n]$.
+\end{proposition}
+גם טענה זו מושארת כתרגיל.
+
+\subsection{אלגברות}
+\begin{definition}[אלגברה]
+	יהי $A$ חוג חילופי, אלגברה (algebra) חילופית מעל $A$ היא זוג $(B, \varphi)$ כאשר $B$ חוג חילופי ו־$\varphi : A \to B$ הומומורפיזם.
+\end{definition}
+אפשר לחשוב על $B$ כחוג חילופי עם פעולה נוספת של כפל בסקלר מ־$A$, שכן,
+\[
+	b \in B, \lambda \in A
+	\implies \lambda b := \varphi(\lambda) b
+\]
+\begin{example}
+	כל חוג חילופי $A$ הוא אלגברה מעל $\ZZ$ על־ידי ההומומורפיזם $n \mapsto n \cdot 1_A$.
+\end{example}
+\begin{example}
+	אם $A$ חוג ו־$I$ אידאל אז $(A / I, \pi)$ עבור $\pi$ העתקת המנה, הוא אלגברה מעל $A$.
+\end{example}
+\begin{example}
+	אם $A$ חוג ו־$X$ אוסף משתנים אז $A[X]$ אלגברה יחד עם ההומומורפיזם $a \mapsto a \cdot 1$ עבור $1$ מונום היחידה, בדרך־כלל נשמיט את ה־$1$.
+\end{example}
+\begin{definition}[הצבה בפולינום]
+	יהי $A$ חוג (חילופי) ו־$(B, \varphi)$ אלגברה מעל $A$, $X$ קבוצת משתנים ונניח ש־$X$ סופית (אך ההכללה פשוטה) ו־$X = x_1, \ldots, x_n$.
+	\textbf{הצבה} של ערכים מ־$B$ במשתנים $X$ היא פונקציה $f : X \to B$ ונסמן $f(x_i) = b_i$.
+
+	\textbf{הצבה במונום} $m \in \Mon(X)$ מוגדרת על־ידי,
+	\[
+		m(b_1, \ldots, b_n)
+		= \prod_{i = 1}^n b_i^{m(x_i)} \in B
+	\]
+
+	\textbf{הצבה בפולינום} $p$ תוגדר על־ידי,
+	\[
+		p(b_1, \ldots, b_n)
+		= \sum_{m \in \Mon(X)} \varphi(p(m)) m(b_1, \ldots, b_n) \in B
+	\]
+\end{definition}
+\begin{example}
+	אם $p = x_1^2 + a x_2^2 + 1$ אז $p(b_1, b_2) = b_1^2 + a b_2^2 + 1$.
+\end{example}
+\begin{theorem}[התכונה האוניברסלית של חוג הפולינומים]
+	יהי $A$ חוג ו־$X = \{x_1, \ldots, x_n\}$, תהי $(B, \varphi)$ אלגברה מעל $A$, ו־$b_1, \ldots, b_n \in B$.
+	אז מתקיים,
+	\begin{enumerate}
+		\item פעולת ההצבה $\psi(p) = p(b_1, \ldots, b_n)$ היא הומומורפיזם $\psi : A[X] \to B$ כך שמתקיים $\psi(a) = \varphi(a)$ לכל $a \in A$ ובנוסף $\psi(x_i) = b_i$
+		\item $\psi$ הוא ההומומורפיזם היחיד $A[X] \to B$ כך ש־$\psi |_A = \varphi$ ו־$\psi(x_i) = b_i$ לכל $i$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	תחילה עלינו להראות ש־$\psi$ הומומורפיזם.
+	תחילה מראים שהוא שומר על כפל מונומים ואז מסיקים שהוא שומר על כפל פולינומים (תרגיל).
+	$\psi(x_i) = b_i$: אם $a$ קבוע אז $\psi(a) = \varphi(a) \cdot 1 = \varphi(n)$.
+
+	נעבור ליחידות:
+	נובע מכך שכל פולינום הוא סכום של מונומים כפול מקדמים וכל מונום הוא מכפלה של המשתנים.
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
