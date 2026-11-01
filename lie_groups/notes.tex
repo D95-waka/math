@@ -37,7 +37,7 @@ To study manifolds we have to be able to move between manifolds and Euclidean sp
 	\textbf{Chart} on $X$ modeled on $V$, $\varphi : U \to \Omega$ is a homeomorphism such that both $U \subseteq X$ and $\Omega \subseteq V$ are open sets.
 \end{definition}
 In Adams book chart is defined the other way around ($\Omega_{\alpha} \to X_{\alpha}$), meaning that Adams chart is equivalent to our definition to parameterization.
-Compatible charts $\varphi_{\alpha}, \varphi_{\beta}$ are charts such that there is a homeomorphism between them and are invertible.
+Compatible charts $\varphi_{\alpha}, \varphi_{\beta}$ are charts such that the homeomorphism $\varphi_{\beta} \circ \varphi_{\alpha}^{-1}$ (between open subsets of $V$) is a diffeomorphism.
 \begin{definition}[Atlas]
 	An atlas on $X$ is a family of compatible charts $\{ \varphi_{\alpha} : X_{\alpha} \to \Omega_{\alpha} \mid \alpha \in I \}$ for some indices set $I$,
 	such that $\bigcup_{\alpha \in I} X_{\alpha} = X$, namely a family of charts that form a cover of $X$.
@@ -64,7 +64,7 @@ There exists a unique manifold structure on $X \times Y$ such that $X \times Y \
 	\begin{enumerate}
 		\item a manifold structure
 		\item a group structure:
-			a group operation $\mu : G \times G \to G$ defined as $\mu(a, b) = a \cdot b$ and inversion $i : G \to G$ defined as $i(x) = x^{-1}$.
+			a group operation $\mu : G \times G \to G$ denoted as $\mu(a, b) = a \cdot b$ and inversion $i : G \to G$ defined as $i(x) = x^{-1}$.
 	\end{enumerate}
 	such that $\mu$ and $i$ are smooth.
 \end{definition}
@@ -75,7 +75,7 @@ There exists a unique manifold structure on $X \times Y$ such that $X \times Y \
 	$(\RR^n, +)$ is a Lie group.
 \end{example}
 \begin{example}
-	Observe $(\RR^n / \ZZ^n, +)$, an $n$-dimensional torus, is a Lie group.
+	Observe $(\RR^n / \ZZ^n, +)$, an $n$-dimensional torus, is a Lie group with parameterizations obtained by restricting the quotient map to small enough subsets of $\RR^n$.
 	Recall that in general $\RR^n / \ZZ^n \cong {(\RR / \ZZ)}^n$ it suffices to show that $S^1$ is a Lie group.
 	$(S^1, +)$ is indeed a manifold, and it is clear that it is a group as well.
 \end{example}
@@ -84,7 +84,9 @@ There exists a unique manifold structure on $X \times Y$ such that $X \times Y \
 	Recall that if $\dim_{\Lambda} V = n$ then $\End(V) \cong \RR^{n \times n}$.
 	Let,
 	\[
-		\Aut(V) = \{ T \in \End(V) \mid \exists S \in \End(V),\ T \circ S = S \circ T = \id \} \subseteq \End(V)
+		\Aut(V)
+		= \{ T \in \End(V) \mid \exists S \in \End(V),\ T \circ S = S \circ T = \id \}
+		\subseteq \End(V)
 	\]
 	be the subset of invertible $\Lambda$-linear maps, then $\Aut(V)$ is an open subset of $\End(V)$. \\
 	$a, b \mapsto a \cdot b$ as matrix multiplication is a polynomial, and is in particular smooth.
@@ -105,7 +107,7 @@ There exists a unique manifold structure on $X \times Y$ such that $X \times Y \
 	Tangent space to a manifold $X$ at $x \in X$ is defined as,
 	\[
 		T_x X
-		= \{ \gamma : (-1, 1) \to X \mid \gamma \text{ is smooth}, \gamma(0) = x \} / \sim
+		= \{ \gamma : J \to X \mid 0 \in J \subseteq \RR \text{ open interval}, \gamma \text{ is smooth}, \gamma(0) = x \} / \sim
 	\]
 	where we define that $\gamma_1 \sim \gamma_2$ iff for any smooth function $f : U \to \RR$ where $x \in U$ is an open neighborhood, 
 	\[
@@ -122,18 +124,19 @@ Given a manifold $X$ \& atlas $\{ \varphi_{\alpha} : X_{\alpha} \to \Omega_{\alp
 \[
 	{(\varphi_{\alpha})}^* : T_x X_{\alpha} \to T_{\varphi_{\alpha}(x)} \Omega_{\alpha} = V
 \]
-Given a well defined vector-spaces structure on $T_x X$.
+gives a well defined vector-spaces structure on $T_x X$.
 \begin{definition}[Lie algebra]
 	Suppose that $G$ is a Lie group and $e \in G$ its unit, we define $L(G) = T_e G$ (as a vector-spaces),
 	Lie algebra of $G$.
-	Also notated as $\operatorname{Lie}(G)$ or $\mathfrak{G}$.
+	Also notated as $\operatorname{Lie}(G)$ or $\mathfrak{g}$. \\
+	Let $G$ be a Lie group, $x \in G$, and define left multiplication,
+	\[
+		L_x : G \to G,
+		\quad
+		g \mapsto x g
+	\]
 \end{definition}
-Let $G$ be a Lie group, $x \in G$, and define left multiplication,
-\[
-	L_x : G \to x g
-\]
-defined a diffeomorphism $G \to G$ by $e \mapsto x$ hence a linear isomorphism $T_e G \xrightarrow{\sim} T_x G$,
-then left trivial injection $TG \cong G \times L(G)$.
+$L_x$ defines a diffeomorphism $G \to G$ with $e \mapsto x$ hence a linear isomorphism $T_e G \xrightarrow{\sim} T_x G$, then by left trivial injection, $T G \cong G \times L(G)$.
 
 \listoftheorems[title=definitions \& theorems,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
