@@ -24,13 +24,21 @@
 \begin{definition}[exponential map]
 	If $G$ is a Lie group then define $\exp : L(G) \to G$ as the map that for any $v \in L(G)$, $\theta_v$ be the corresponding $1$-parameter subgroup of $G$, then $\exp tv = \theta_v(t)$.
 \end{definition}
+TODO\@: Maybe insert here a graph of $\RR^2$ and an embedding of $T^2$, showing how would $\exp(t v)$ would look for a given $v \in S^1$.
 
 \section{Submanifolds}
+We intend to characterize the subspace of a Lie group, in order to do so we will discuss a subspace retaining the properties of manifold, as the characterization of a subgroup is well defined.
+The general idea if to define submanifold as the restriction of a manifold to a subspace such that its smooth property, as show up as smoothness of charts, would not be affected.
 \begin{definition}[Submanifold]
 	Let $M$ be a smooth manifold modeled on $V$, and let $N \subseteq M$ be a subset and $W \subseteq V$ be a subspace.
 	$N$ is a \textbf{submanifold} modeled on $W$ if for any $x \in N$ there exists a chart compatible with $M$, $\varphi_{\alpha} : M_{\alpha} \to \Omega_{\alpha}$
 	where $M_{\alpha} \subseteq M, \Omega_{\alpha} \subseteq V$ are open, that restricts to a bijection $M_{\alpha} \cap N \to \Omega_{\alpha} \cap W$.
 \end{definition}
+\begin{remark}
+	The requirement for a compatible chart is crucial, as the given atlas might not contain a single chart matching $M_{\alpha}$, instead being equivalent to an atlas that does.
+\end{remark}
+Our first task is to show that a submanifold, in the sense of a manifold subset retaining smoothness properties, is indeed a smooth manifold on its own.
+We first need an actual atlas to show that, that leads us to,
 \begin{proposition}
 	Given a manifold $M$ and a submanifold $N$, the bijections $\{ M_{\alpha} \cap N \to \Omega_{\alpha} \cap W \}$ are an atlas on $N$. \\
 	Furthermore, equivalent atlases on $M$ yield equivalent atlases on $N$ thus $N$ is a smooth manifold modeled on $W$.
@@ -38,6 +46,7 @@
 \begin{proof}
 	Left as an exercise.
 \end{proof}
+We can now describe the structure of a submanifold as a manifold,
 \begin{proposition}
 	If $N$ is a submanifold of $M$, then $N$ can be given differential structure as a manifold so that:
 	\begin{enumerate}
@@ -46,52 +55,89 @@
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
-	Let $f : N \to M$ be the identity embedding, and let $\varphi : U \to V$ be a chart of $M$, $u \subseteq M, V \subseteq \RR^k$ are open, and assume $N \cap U \ne \emptyset$.
-	Then $\varphi$ can be restricted to a chart $\psi : N \cap U \to V \cap W$ which is a bijection and $\varphi \circ f \circ \psi$ is smooth by our definition of smoothness.
+	Let $f : N \to M$ be the identity embedding, and let $\varphi : U \to V$ be a chart of $M$, where $U \subseteq M, V \subseteq \RR^k$ are open, and assume $N \cap U \ne \emptyset$.
+	Then $\varphi$ can be restricted to $\psi : N \cap U \to V \cap W$ a bijection and $\varphi \circ f \circ \psi$ is smooth by our definition of smoothness and as a restriction.
 
 	The second part is similar and is left as an exercise.
 \end{proof}
 \begin{corollary}
 	$T(N)$ is embedded in $T(M)$.
 \end{corollary}
+Recall that if $M_1, M_2$ are smooth manifolds, $M_1 \times M_2$ can be given a smooth manifold structure, this holds for submanifolds as well.
 \begin{exercise}
-	Show that if $N_1, N_2$ are manifolds of $M_1, M_2$ then $N_1 \times N_2$ is a submanifold of $M_1 \times M_2$ and its differential structure as a submanifold is the same as of the product.
+	Show that if $N_1, N_2$ are manifolds of $M_1, M_2$ then $N_1 \times N_2$ is a submanifold of $M_1 \times M_2$,
+	and its differential structure as a submanifold is the same as of the product of the submanifolds as smooth manifolds.
 \end{exercise}
+As of now, there are two distinct ``substructures'' we consider of a Lie group, that is the subgroup \& the submanifold.
+The question that naturally arises is whether there is a connection between these two substructures.
 \begin{proposition}
 	If $G$ is a Lie group and $H$ is both a submanifold and a subgroup then $H$ is a Lie group.
 \end{proposition}
 \begin{proof}
 	Follows from the last exercise and proposition for the maps $\mu : G \times G \to G$ and $\mu : H \times H \to H$ and $i : G \to G$ to $i : H \to H$.
+	To elaborate we defined the submanifold differential structure as such that preserves smooth maps, then the group operations (that are of course smooth) are being preserved.
 \end{proof}
+So these two structure do collide when in Lie groups.
 
 \section{Closed subgroups}
+While subgroups are a natural way to understand groups, and are easy to construct,
+submanifolds are somewhat more difficult object to handle, is there a way to construct submanifolds from subgroups?
+We will show that in a special case of subgroups the answer is that it is.
 \begin{definition}[Closed subgroup]
 	A subgroup $H$ of a Lie group $G$ is closed if it is closed as a subset of the topology $G$.
 \end{definition}
+To understand the case of a non-closed subgroup:
+\begin{example}
+	Let $M = T^2 = \RR^2 / \ZZ^2$ the $2$-torus, and take $\alpha \in \RR \setminus \QQ$ some irrational number.
+	Define $H = \{ (t, \alpha t) \in \RR^2 \mid t \in \RR \} / \ZZ^2$, then $H \le M$ a subgroup, and a dense set of $\RR^2 / \ZZ^2$, in particular it isn't closed. \\
+	It is also clear that $H$ does not assume a manifold structure, as any small enough open neighborhood of any point $\in H$ is not connected as $H \cap {(\QQ / \ZZ)}^2 = \{ 0 \}$.
+\end{example}
+In the other hand,
+\begin{example}
+	If $\alpha \in \QQ$ then there must be $z \in \ZZ \setminus \{ 0 \}$ such that $\alpha z \in \ZZ$, meaning that $H$ is a closed path in the topological space $M$.
+	In particular $H$ is indeed a $1$ dimensional manifold.
+\end{example}
+This result is no coincidence, it leads us to,
 \begin{theorem}[Closed subgroup as submanifold]
-	A closed subgroup $H$ of a Lie group is a submanifold.
+	A closed subgroup $H$ of a Lie group $G$ is a submanifold as well.
 \end{theorem}
-To prove the theorem is given by the next three lemmas.
+The proof of the theorem is given by the next three lemmas:
 \begin{lemma}
-	Suppose $L(G) = T_e G$ has a norm and suppose that $0 \ne h_n \in L(G)$ is a sequence of points such that,
+	Suppose $L(G) = T_e G$ has a norm $\lVert \cdot \rVert$, and suppose that ${\{ h_n \}}_{n = 1}^\infty \subseteq L(G) \setminus \{ 0 \}$ is a sequence of points such that,
 	\[
 		\forall n \in \NN,\ \exp h_n \in H,
-		\quad
+		\qquad
 		h_n \xrightarrow{n \to \infty} 0,
-		\quad
-		\frac{1}{|h_n|} h_n \to v \in L(G)
+		\qquad
+		\frac{1}{\lVert h_n \rVert} h_n \to v \in L(G)
 	\]
 	Then $\exp(t v) \in H$ for all $t \in \RR$.
 \end{lemma}
-In other words, a closed subgroup is closed under ``directions''.
+In other words, a closed subgroup is closed under exponent, in particular under $1$-parameter subgroups generated by $v \in H$.
 \begin{proof}
-	TODO
+	Suppose $t \in \RR$, then,
+	\[
+		\frac{t}{\lVert h_n \rVert}
+		\to t v
+	\]
+	and $\lVert h_n \rVert \to 0$.
+	Let $\{ m_n \} \subseteq \NN$ be a sequence such that $m_n \lVert h_n \rVert \xrightarrow{n \to \infty} t$, such sequence can be obtained directly by limit definition.
+	Then,
+	\[
+		\lim_{n \to \infty} \exp m_n h_n
+		= \lim_{n \to \infty} \exp \frac{m_n \lVert h_n \rVert}{\lVert h_n \rVert} h_n
+		= \exp t v
+	\]
+	But $\exp m_n h_n = {(\exp h_n)}^{m_n} \in H$ as a subgroup, and $t v \in H$ follows from closure.
 \end{proof}
 \begin{lemma}
-	Let $W$ be a vector subspace of $L(G)$, then $W$ is a vector subspace of $L(G)$.
+	Let $W \subseteq L(G)$ be a set of all $t v$ for $t \in \RR$ and $v \in L(G)$ of the last lemma.
+	Then $\exp W \subseteq H$ and $W$ is a vector subspace of $L(G)$.
 \end{lemma}
 \begin{proof}
-	TODO
+	If $v \in L(G)$ as in the last lemma, then $\exp t v \in H$, $W$ consists of such values therefore $\exp W \subseteq H$.
+
+	It is clear that if $w \in W$ then $t w \in W$ for all $t \in \RR$, and it remain to show that if $w_1, w_2 \in W$ then $w_1 + w_2 \in W$ as well.
 \end{proof}
 \begin{lemma}
 	$\exp W$ is a neighborhood of $e \in H$.
