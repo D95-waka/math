@@ -483,5 +483,173 @@
 	עבור $\omega$ שורש יחידה פרימיטיבי מסדר $3$.
 \end{example}
 
+\section{שיעור 4 --- 2.11.2026}
+\subsection{חוגים}
+חוג במובן הכללי הוא שדה בלי הדרישה להופכיות כפל ובלי קומוטטיביות של הכפל.
+\begin{definition}[חוג]
+	חוג הוא קבוצה $R$ ושתי פעולות בינאריות, $+ : R \times R \to R$ ו־$\cdot : R \times R \to R$ ושני איברים $0, 1 \in R$ כך שמתקיים:
+	\begin{enumerate}
+		\item $(R, +, 0)$ הוא חבורה אבלית
+		\item הכפל אסוציאטיבי 
+		\item $1$ הוא יחידה בפעולת הכפל: $\forall r \in R,\ r \cdot 1 = 1 \cdot r = r$
+		\item חוק הפילוג: $(s + t) r = s r + t r$
+	\end{enumerate}
+	אם בנוסף הכפל הוא קומוטטיבי אז החוג נקרא קומוטטיבי ואם יש הופכי כפלי אז החוג נקרא חוג חילוק.
+\end{definition}
+\begin{remark}
+	בקורס זה כל החוגים הם חוגים עם יחידה, אך ניתן להגדיר גם ללא.
+\end{remark}
+\begin{example}
+	נראה מספר חוגים:
+	\begin{enumerate}
+		\item שדות
+		\item החוג הטריוויאלי $\{ 0 \}$
+		\item $\ZZ, \ZZ / n \ZZ$
+		\item $\FF[x], \FF[x, y]$
+		\item $M_n(\FF)$ חוג המטריצות $n \times n$ מעל $\FF$
+		\item $\HH$, חוג הקוונטרניונים של המילטון,
+			\[
+				\HH
+				= \{ a + b i + c j + d k \mid a, b, c, d \in \RR \}
+			\]
+			כאשר הכפל מוגדר כהרחבה של כפל ממשי כך שמתקיים $i^2 = j^2 = k^2 = -1$ ו־$i j = k, i k = j, j k  = i$.
+			נבחין כי זהו חוג חילוק שאינו קומוטטיבי
+		\item חוג החבורה (נקרא גם אלגברת חבורה):
+			בהינתן שדה $\FF$ וחבורה $G$ זהו החוג,
+			\[
+				\FF[G]
+				= \{ \sum_{g \in G} \alpha_g g \mid \alpha_g \in \FF, \alpha_g \text{ finitley} \ne 0 \}
+			\]
+			כאשר החיבור מוגדר כחיבור איבר איבר וכן,
+			\[
+				\left(\sum \alpha_g g\right) \left(\sum \beta_g g\right)
+				= \sum_{g, h \in G} \alpha_g \beta_h (g h)
+			\]
+			$0$ סכום ריק, $1 = 1_\FF \cdot e_G$.
+			$\FF[G]$ קומוטטיבי אם ורק אם $G$ אבלי ואם $G \ne \{ 1 \}$ אז זהו לא חוג חילוק (שכן אם $g \ne e$ אז ל־$g - e$ אין הופכי)
+		\item עבור חבורה אבלית $A$, $\End(A)$ הוא חוג האנדומורפיזמים, כלומר הומומורפיזמים $A \to A$,
+			יחד עם חיבור $(\varphi_1 + \varphi_2)(a) = \varphi_1(a) + \varphi_2(a)$ וכפל המוגדר על־ידי $(\varphi_1 \cdot \varphi_2)(a) = \varphi_1(\varphi_2(a))$. \\
+			אם $A = \ZZ^n$ אז $\End(A) \cong M_n(\ZZ)$
+	\end{enumerate}
+\end{example}
+\begin{definition}[הומומורפיזם חוגים]
+	העתקה $\varphi : R \to S$ בין שני חוגים נקראת הומומורפיזם אם:
+	\begin{enumerate}
+		\item $\varphi(r_1 + r_2) = \varphi(r_1) + \varphi(r_2)$ לכל $r_1, r_2 \in R$
+		\item $\varphi(r_1 \cdot r_2) = \varphi(r_1) \cdot \varphi(r_2)$ לכל $r_1, r_2 \in R$
+		\item $\varphi(1_R) = 1_S$
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	נובע מהתנאי הראשון ש־$\varphi(0_R) = 0_S$ ולכן לא דרשנו זאת כתנאי
+\end{remark}
+\begin{definition}[תת־חוג]
+	תת־קבוצה של $R$ חוג תיקרא תת־חוג אם היא מקיימת את האקסיומות של חוג לאותן פעולות של $R$ ואותם קבועים.
+\end{definition}
+\begin{remark}
+	תת־קבוצה היא תת־חוג אם ורק אם היא תמונה של הומומורפיזם כלשהו.
+\end{remark}
+\begin{example}
+	הבאים הם תתי־חוגים:
+	\begin{itemize}
+		\item מטריצות משולשיות עליונות בחוג המטריצות.
+		\item תת־שדה של שדה
+		\item משפט קיילי לחוגים:
+			כל חוג ניתן לשכן ב־$\End(A)$ לאיזושהי חבורה אבלית $A$, ואז הוא יהיה תת־חוג של $\End(A)$
+	\end{itemize}
+\end{example}
+\begin{proof}
+	ניקח את $A$ להיות החבורה האבלית של $R$
+\end{proof}
+\begin{definition}[אידאל]
+	$I \subseteq \RR$ נקרא אידאל (ideal) אם:
+	\begin{enumerate}
+		\item $I$ תת־חבורה אבלית
+		\item $I$ סגור לכפל משני הצדדים ב־$R$, במילים אחרות $I$ ''בולע'' כפלית
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	$I$ הוא אידאל של $R$ אם ורק אם הוא גרעין של איזושהי הומומורפיזם
+\end{remark}
+\begin{proof}
+	נניח ש־$I = \ker \varphi$ כאשר $\varphi : R \to S$ הומומורפיזם חוגים.
+	אז $0 \in I$.
+	אם $r, s \in I$ אז,
+	\[
+		\varphi(r - s)
+		= \varphi(r) - \varphi(s)
+		= 0 - 0
+		= 0
+	\]
+	ולכן גם $r - s \in I$ ולכן $I$ תת־חבורה אבלית. \\
+	אם $i \in I$ ו־$r \in R$ אז $\varphi(r i) = \varphi(r) \varphi(i) = 0$ ובהתאם $r i \in I$.
+
+	בכיוון ההפוך אם $I$ אידאל אז נתבונן בהומומורפיזם ההטלה $\varphi : R \to R / I$ המוגדר על־ידי $\varphi(r) = r + I$, גרעינו הוא בדיוק $I$.
+\end{proof}
+\begin{example}
+	הבאים הם אידאלים:
+	\begin{itemize}
+		\item לכל $R$, $\{ 0 \} \trianglelefteq R$ וכן $R \trianglelefteq R$
+		\item $n \ZZ \trianglelefteq \ZZ$
+		\item $(f) \trianglelefteq \FF[G]$
+		\item אם $G$ סופית: $\Sp_\FF(\sum g) \trianglelefteq \FF[G]$
+		\item לכל $G$: $\{ \sum \alpha_g g \mid \sum \alpha_g = 0 \} \trianglelefteq \FF[G]$
+	\end{itemize}
+\end{example}
+\begin{definition}[חוג פשוט]
+	חוג נקרא פשוט (simple) אם הוא לא טריוויאלי שאין לו אידאלים פרט ל־$\{ 0 \}, R$.
+\end{definition}
+\begin{example}
+	הבאים הם חוגים פשוטים:
+	\begin{itemize}
+		\item שדות
+		\item חוג חילוק (לא טריוויאלי)
+		\item $M_n(\FF)$ לכל שדה $\FF$ ו־$M_n(D)$ לכל חוג חילוק לא טריוויאלי
+	\end{itemize}
+\end{example}
+\begin{definition}[אידאל שמאלי וימני]
+	יהי $R$ חוג. תת־חבורה אבלית $I \subseteq R$ נקראת אידאל שמאלי אם לכל $r \in R$ ו־$i \in I$ גם $r \cdot i \in I$. אידאל ימני הוא זהה אך עבור מכפלה $i \cdot r \in I$.
+\end{definition}
+\begin{example}
+	קבוצת המטריצות שהן אפס חוץ מהעמודה השמאלית הוא אידאל שמאלי.
+\end{example}
+
+\subsection{מודולים}
+הכללה של מרחב וקטורי עבור שדות שמתאים לחוגים.
+מרחב וקטורי מעל $\FF$ הוא חבורה אבלית $V$ יחד עם הומומורפיזם של חוגים $\rho : \FF \to \End(V)$.
+\begin{definition}[מודול]
+	מודול (שמאלי) מעל חוג $R$ הוא חבורה אבלית $M$ יחד עם הומומורפיזם חוגים $\rho : R \to \End(M)$.
+\end{definition}
+\begin{proposition}
+	הגדרה שקולה למודול:
+	מודול שמאלי $M$ מעל חוג $R$ הוא חבורה אבלית $M$ יחד עם העתקה $R \times M \to M$ שמקיימת:
+	\begin{enumerate}
+		\item $(r s) m = r (s m)$ לכל $r, s \in R$ ו־$m \in M$
+		\item $(r + s) \cdot m = r m + s m$ לכל $r, s \in R$ ו־$m \in M$
+		\item $1 . m = m$
+		\item $r (m + n) = r m + r n$ לכל $r \in R$ ו־$m, n \in M$
+	\end{enumerate}
+	שלושת התנאים הראשונים שקולים לקיום הומומורפיזם $R \to \End(M)$ והתנאי האחרון שקול ל־$(m \mapsto r m) \in \End(M)$
+\end{proposition}
+\begin{notation}
+	אם $M$ מודול מעל $R$ אז נאמר ש־$M$ הוא $R$־מודול.
+\end{notation}
+\begin{example}
+	הבאים הם מודולים:
+	\begin{enumerate}
+		\item אם $R$ שדה אז $R$־מודול הוא מרחב־וקטורי מעל $R$
+		\item כל $\ZZ$־מודול $\rho : \ZZ \to \End(M)$ חייב לקיים $1 \mapsto \id$, וכן $\rho(2) = \rho(1 + 1)$ ולכן $(\rho(2))(m) = m + m$.
+			נסיק שזוהי רק החבורה האבלית היחידה $\ZZ$, וזהו המודול היחיד
+		\item $\FF^n$ הוא $M_n(\FF)$־מודול על־ידי $A . v = A v$
+		\item $R$ עצמו הוא $R$־מודול, כאשר כפל נקבע על־ידי כפל
+		\item כל אידאל שמאלי של $R$ הוא גם $R$־מודול
+		\item אם $V$ הוא מרחב וקטורי מעל $\FF$ ו־ $T : V \to V$ אופרטור לינארי, אז ל־$V$ יש מבנה של מודול מעל $\FF[x]$ המוגדר על־ידי $x . v = T(v)$
+	\end{enumerate}
+\end{example}
+\begin{proposition}
+		כל $\FF[G]$־מודול היא הצגה של $G$ מעל שדה $\FF$.
+		באופן כללי יש התאמה בין $\FF[G]$ מודולים עד כדי איזומורפיזם של מודולים לבין הצגות של $G$ מעל $\FF$ עד כדי שקילות.
+\end{proposition}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
