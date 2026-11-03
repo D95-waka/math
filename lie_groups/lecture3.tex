@@ -24,6 +24,10 @@
 \begin{definition}[exponential map]
 	If $G$ is a Lie group then define $\exp : L(G) \to G$ as the map that for any $v \in L(G)$, $\theta_v$ be the corresponding $1$-parameter subgroup of $G$, then $\exp tv = \theta_v(t)$.
 \end{definition}
+\begin{proposition}
+	Let $\varphi_e : U_e \to \Omega_0$ be a chart where $e \in U_e \subseteq G$ and $0 \in \Omega_0 \subseteq L(G)$ open neighborhoods.
+	Let $x, y \in \Omega_0$ and denote $x \cdot y = \varphi(\varphi^{-1}(x) \cdot \varphi^{-1}(y))$, then $x \cdot y = x + y + o(r)$ where $r$ is the distance of $(x, y)$ and $(e, e)$.
+\end{proposition}
 
 \section{Submanifolds}
 We intend to characterize the subspace of a Lie group, in order to do so we will discuss a subspace retaining the properties of manifold, as the characterization of a subgroup is well defined.
@@ -116,7 +120,7 @@ In other words, a closed subgroup is closed under ``directions'', namely if a di
 \begin{proof}
 	Suppose $t \in \RR$, then,
 	\[
-		\frac{t}{\lVert h_n \rVert}
+		\frac{t}{\lVert h_n \rVert} h_n
 		\to t v
 	\]
 	and $\lVert h_n \rVert \to 0$.
@@ -128,7 +132,7 @@ In other words, a closed subgroup is closed under ``directions'', namely if a di
 		= \lim_{n \to \infty} \exp m_n \lVert h_n \rVert \cdot \lim_{n \to \infty} \exp \frac{1}{\lVert h_n \rVert} h_n
 		= \exp t v
 	\]
-	But $\exp m_n h_n = {(\exp h_n)}^{m_n} \in H$ as a subgroup, and $t v \in H$ follows from closure.
+	But $\exp m_n h_n = {(\exp h_n)}^{m_n} \in H$, it follows from $H$'s closure that $\exp tv \in H$.
 \end{proof}
 \begin{lemma}
 	Let $W \subseteq L(G)$ be a set of all $t v$ for $t \in \RR$ and $v \in L(G)$ of the last lemma.
@@ -141,10 +145,10 @@ In other words, a closed subgroup is closed under ``directions'', namely if a di
 	The case $w_1 + w_2 = 0$ is clear then assume otherwise.
 	Consider $g(t) = \exp(t w_1) \exp(t w_2)$ and recall that $\exp$ is smooth, $g(0) = \exp(0) \exp(0) = e$,
 	then for small enough values of $t$, there is a smooth map $g(t) = \exp f(t)$ with $f(0) = 0$ and $f(t) \in L(G)$. \\
-	Recall that $x y = x + y + o(r)$ for $r = d((e, e), (x, y))$ distance of $G \times G$, when $x, y \in $ a small enough neighborhood of $e$, then the same holds for $f$,
+	Recall that $x \cdot y = x + y + o(r)$ for distance $r$ in $G \times G$, when $x, y \in $ a small enough neighborhood of $e$, then the same holds for $f$,
 	\[
-		f(t)
-		= \exp(t w_1) \exp(t w_2)
+		g(t)
+		= \exp f(t)
 		= \exp(t w_1 + t w_2) + o(t)
 	\]
 	then $\frac{1}{t} f(t) \xrightarrow{t \to 0} w_1 + w_2$, by choosing $h_n = f(\frac{1}{n})$ the conditions for the last lemma hold for $v = \frac{w_1 + w_2}{\lVert w_1 + w_2 \rVert}$, therefore $w_1 + w_2 \in W$.
@@ -220,10 +224,10 @@ As an embedded manifold we can identify $T_{\id} O(n)$ and $T_{\id}(U(n))$ as su
 	$G / H$ is Hausdorff.
 \end{proposition}
 \begin{proof}
-	Suppose that $x H, y H \in G / H$ are different points, conversely $x, y \in G$ such that $x \ne y$ and $x H \ne y H$.
-	$G$ is Hausdorff then there are $x \in U, y \in V$ open neighborhoods such that $U \cap V = \emptyset$.
-	$e \in x^{-1} U, y^{-1} V$ then there is a chart $\varphi : W \to \RR^k$ for $W \subseteq x^{-1} U \cap y^{-1} V$ up to compatibility with $G$.
-	By translating the chart we can make $V, U$ arbitrarily small (taking $\varphi^{-1}(B(0, \varepsilon))$), such that $\varepsilon < \dist(\varphi(x W \cap x H, y W \cap y H))$ if it is defined (otherwise the claim holds).
+	the projection $p : G \to G / H$ is an open map, and define $R = \{ (x, y) \in G \times G \mid x^{-1} y \in H \}$, meaning that $(x, y) \in R \iff x H = y H$.
+	Define $f : G \times G \to G$ by $f(x, y) = x^{-1} y$, $f$ is continuous as both the group multiplication \& inverse are continuous, and $f^{-1}(H) = R$.
+	$H \subseteq G$ is closed and $f$ is continuous therefore $f^{-1}(H) = R$ is closed in $G \times G$. \\
+	By the property that a topological quotient space $X / H$ is Hausdorff iff $H \subseteq X$ is closed it follows that $G / H$ is indeed Hausdorff.
 \end{proof}
 Together with the fact that a quotient topology assumes 2nd countability of a topology, we get,
 \begin{lemma}
