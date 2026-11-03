@@ -24,7 +24,6 @@
 \begin{definition}[exponential map]
 	If $G$ is a Lie group then define $\exp : L(G) \to G$ as the map that for any $v \in L(G)$, $\theta_v$ be the corresponding $1$-parameter subgroup of $G$, then $\exp tv = \theta_v(t)$.
 \end{definition}
-TODO\@: Maybe insert here a graph of $\RR^2$ and an embedding of $T^2$, showing how would $\exp(t v)$ would look for a given $v \in S^1$.
 
 \section{Submanifolds}
 We intend to characterize the subspace of a Lie group, in order to do so we will discuss a subspace retaining the properties of manifold, as the characterization of a subgroup is well defined.
@@ -205,10 +204,11 @@ As an embedded manifold we can identify $T_{\id} O(n)$ and $T_{\id}(U(n))$ as su
 	If $G$ is a compact Lie group and $H$ is a closed connected Abelian subgroup, then $H$ is a torus.
 \end{example}
 \begin{proposition}
-	A closed connected subgroup $H$ of a Lie group $G$ is determined by $L(G)$.
+	A closed connected subgroup $H$ of a Lie group $G$ is determined by its tangent space at $e$.
 \end{proposition}
 \begin{proof}
-	TODO something with 2.17 which means that a homomorphism is determined by its projection to the tangent space.
+	We saw that a homomorphism $G \to H$ of Lie groups is determined by the induced homomorphism $L(G) \to L(H)$ when $G$ is connected.
+	Combining this proposition together with the result that the tangent space is a subspace of $L(G)$ gives us full characterization by tangent space.
 \end{proof}
 
 \section{Quotient spaces}
@@ -226,11 +226,28 @@ As an embedded manifold we can identify $T_{\id} O(n)$ and $T_{\id}(U(n))$ as su
 	By translating the chart we can make $V, U$ arbitrarily small (taking $\varphi^{-1}(B(0, \varepsilon))$), such that $\varepsilon < \dist(\varphi(x W \cap x H, y W \cap y H))$ if it is defined (otherwise the claim holds).
 \end{proof}
 Together with the fact that a quotient topology assumes 2nd countability of a topology, we get,
+\begin{lemma}
+	If $W = L(H)$, $W \oplus W' = L(G)$ and $p : G \to G / H$ projection, then $\psi = p \circ \exp |_U$ is a bijection for small enough neighborhood $0 \in U \subseteq W'$.
+\end{lemma}
+\begin{proof}
+	Recall that $\exp$ is a diffeomorphism for small enough neighborhood of $0$.
+	It suffice to show that $f$ is injective (why?), let $w_1, w_2 \in U$, and assume $\psi(w_1) = \psi(w_2)$, if $w_1 = -w_2$ then $\exp(w_1) H = \exp(-w_1) H \implies \exp {(w_1)}^2 H = H \implies 2 w_1 \in W \implies w_1 = 0$.
+	Assume otherwise $w_1 \ne -w_2$, $\exp(w_1) H = \exp(w_2) H \implies \exp(w_1 - w_2) \in H$, then $w_1 - w_2 \in W \implies w_1 - w_2 = 0$.
+	Therefore $\psi$ is a bijection composited by continuous functions, therefore continuous.
+\end{proof}
+\begin{exercise}
+	Show that $\psi$ is a homeomorphism, in other words, show that its inverse is continuous.
+\end{exercise}
 \begin{proposition}
-	$G / H$ can be given a smooth manifold structure, such that $\pi$ is smooth and any $f : G / H \to M$ is smooth if and only if there exists $F : G \to M$ smooth with $f = F \circ \pi$.
+	$G / H$ can be given a smooth manifold structure, such that $p : G \to G / H$ is smooth and any $f : G / H \to M$ is smooth if and only if there exists $F : G \to M$ smooth with $f = F \circ p$.
 \end{proposition}
 \begin{proof}
-	TODO
+	Split $L(G) = W \oplus W'$ as before, such that $W = L(H)$ and let $0 \in U \subseteq W'$ be a small enough neighborhood as following the last lemma.
+	Define the map $\psi : U \to G / H$ by $\psi = p \circ \exp |_U$, it follows from the lemma and exercise that it is a homeomorphism between $U$ and a neighborhood of $e H$ in $G / H$.
+	In a similar matter define $\psi_x : U_x \to V_x$ by $\psi_v = \rho_x \circ \psi$, by the fact that $T_e G \cong T_x G$ it is a homeomorphism as well.
+	$\psi_x^{-1} \psi : U \to U_x$ is smooth, it is clear by restriction of charts of $G$ in $e$ and $x$.
+
+	The second part is similar and is left as an exercise.
 \end{proof}
 \begin{definition}[Bundle]
 	TODO
