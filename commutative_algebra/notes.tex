@@ -9,6 +9,7 @@
 \renewcommand{\headrulewidth}{0pt}
 
 \DeclareMathOperator\Mon{Mon}
+\DeclareMathOperator\Nil{Nil}
 
 \begin{document}
 \maketitle
@@ -827,6 +828,346 @@ $A$ הוא חילופי ביחס לחיבור ולכן $I \le A$ תת־חבור�
 	נעבור ליחידות:
 	נובע מכך שכל פולינום הוא סכום של מונומים כפול מקדמים וכל מונום הוא מכפלה של המשתנים.
 \end{proof}
+
+\section{שיעור 5 --- 3.11.2026}
+\subsection{אלגברות נוצרות}
+בפרק זה כל חוג הוא חילופי.
+\begin{proposition}
+	אם $g \in A[x_1, \ldots, x_n]$ ו־$f : B \to C$ הומומורפיזם של $A$־אלגברות אז,
+	\[
+		f(g(b_1, \ldots, b_n))
+		= g(f(b_1), \ldots, f(b_n))
+	\]
+\end{proposition}
+\begin{exercise}
+	בדקו זאת.
+\end{exercise}
+\begin{definition}[פתרון מערכת משוואות]
+	יהי $E \subset A[x_1, \ldots, x_n]$ אוסף פולינומים עבור $B$ $A$־אלגברה ו־$b_1, \ldots, b_n \in B$.
+	נאמר ש־$b_1, \ldots, b_n$ מקיימים את מערכת המשוואות $E$ אם $f(b_1, \ldots, b_n) = 0$ לכל $f \in E$.
+\end{definition}
+\begin{corollary}
+	אם $f : B \to C$ הומומורפיזם של $A$־אלגברות ו־$b_1, \ldots, b_n$ מקיימים את המערכת $E$ אז גם $f(b_1), \ldots, f(b_n)$ מקיימים את המערכת $E$.
+\end{corollary}
+\begin{definition}[אלגברה נוצרת על־ידי יחסים]
+	תהי $E \subset A[x_1, \ldots, x_n]$ מערכת משוואות, להן נקרא גם יחסים.
+	נגדיר $B = A[x_1, \ldots, x_n] / (E)$ כ־$A$־אלגברה ביחד עם המנה $A \to A[x_1, \ldots, x_n] \to A[x_1, \ldots, x_n] / (E)$.
+\end{definition}
+\begin{remark}
+	$t_1, \ldots, t_n$ כאשר $t_i = x_i \mod (E) \in B$ מקיימים את המערכת $E$:
+	אם $g \in (E)$ אז,
+	\[
+		g(t_1, \ldots, t_n)
+		= g(x_1 \mod (E), \ldots, g_n \mod (E))
+		= g(x_1, \ldots, x_n) \mod (E)
+		= 0
+	\]
+	כשכמובן העתקת המנה היא הומומורפיזם של אלגברות.
+\end{remark}
+\begin{theorem}[התכונה האוניברסלית של אלגברה נוצרת על־ידי יחסים]
+	נניח ש־$C$ היא $A$־אלגברה נוספת ו־$u_1, \ldots, u_n \in C$ המקיימים את המערכת $C$.
+	אז קיים הומומורפיזם יחיד של $A$־אלגברות,
+	\[
+		f : B \to C
+	\]
+	כך ש־$f(t_i) = u_i$ כאשר $t_i = x_i \mod (E)$.
+\end{theorem}
+מתכונת האוניברסליות של חוג הפולינומים קיים הומומורפיזם יחיד $h : A[x_1, \ldots, x_n] \to C$ שלוקח את $x_i$ ל־$u_i$.
+$E \subset \ker h$ ומכאן נובע ש־$(E) \subset \ker h$, לכן ההעתקה $h$ מתפרקת דרך המנה בגרעין $A[x_1, \ldots, x_n] \xrightarrow{\pi} A[x_1, \ldots, x_n] / (E) \xrightarrow{f} C$.
+\begin{remark}
+	טענה זו נכונה גם במקרה של אינסוף משתנים.
+\end{remark}
+\begin{definition}[תת־חוג נוצר]
+	יהי $A$ חוג ותהי $S \subset A$ תת־קבוצה.
+	נגדיר,
+	\[
+		B
+		= \{ f(s_1, \ldots, s_n) \mid s_1, \ldots, s_n \in S, f \in \ZZ[x_1, \ldots, x_n], n \in \NN \}
+	\]
+	אז $B$ תת־חוג של $A$, והוא מוכל בכל תת־חוג $S \subset C \subset A$.
+\end{definition}
+\begin{exercise}
+	הראו שקילות זאת.
+\end{exercise}
+\begin{definition}[תת־חוג נוצר מעל תת־חוג]
+	אם $A_0 \subset A$ תת־חוג ו־$S \subset A$ תת־קבוצה, נגדיר,
+	\[
+		A_0[S]
+		= \{ f(s_1, \ldots, s_n) \mid f \in A_0[x_1, \ldots, x_n], s_i \in S, n \in \NN \}
+	\]
+	אז $A_0[S]$ הוא תת־החוג המינימלי שמכיל את $A_0$ ו־$S$ והוא נקרא תת־החוג של $A$ הנוצר על־ידי $S$ מעל $A_0$.
+\end{definition}
+
+\subsection{נילפוטנטים ורדיקלים}
+\begin{definition}[נילפוטנט]
+	יהי $A$ חוג.
+	איבר $a \in A$ יקרא נילפוטנט (nilpotent) אם קיים $n \in \NN$ כך ש־$a^n = 0$.
+\end{definition}
+\begin{definition}[רדיקל]
+	$\Nil(A) = \{ a \in A \mid a \text{ is nilpotent} \}$ נקרא הרדיקל של $A$.
+\end{definition}
+\begin{example}
+	נחשב את הרדיקל של הבאים:
+	\begin{enumerate}
+		\item $a = 0$ תמיד נילפוטנט
+		\item אם $A = \ZZ / (n)$ עבור $n \in \NN$ אז $m \mod n$ נילפוטנט אם ורק אם $m$ מתחלק בכל גורם ראשוני של $n$
+		\item אם $A = \ZZ[x] / (x^n)$ אז $a = (x \mod (x^n))$ הוא נילפוטנט כי $a^n = 0$
+	\end{enumerate}
+\end{example}
+\begin{remark}
+	אם $A \ne 0$ אז כל נילפוטנט הוא מחלק 0.
+	אם $a = 0$ הוא מחלק 0, אחרת יהי $n \in \NN$ מינימלי כך ש־$a^n = 0$, ואז $a \cdot a^{n - 1} = 0$.
+\end{remark}
+\begin{theorem}[שקילות רדיקל וחיתוך האידאלים הראשוניים]
+	נניח ש־$A \ne 0$, ונסמן $\Pp$ קבוצת כל האידאלים הראשוניים ב־$A$, אז,
+	\[
+		\Nil(A)
+		= \bigcap \Pp
+	\]
+	בפרט $\Nil(A)$ הוא אידאל.
+\end{theorem}
+\begin{proof}
+	תחילה נראה ש־$\Nil(A) \subset \bigcap \Pp$, כלומר שלכל $P \in \Pp$ ו־$a$ נילפוטנט מתקיים $a \in P$.
+	תהי $\pi : A \to A / P$ העתקת המנה, אם $a^n = 0$ אז ${(\pi(a))}^n = \pi(a^n) = \pi(0) = 0$ ולכן גם $\pi(a)$ נילפוטנט ב־$A / P$, בפרט הוא מחלק 0.
+	אבל $A / P$ תחום ולכן $\pi(a) = 0$ בלבד.
+
+	נראה את הכיוון ההפוך, כלומר שאם $a$ איננו נילפוטנט אז קיים $P \triangleleft A$ ראשוני שלא מכיל את $a$.
+	נגדיר את קבוצת האידאלים,
+	\[
+		S
+		= \{ I \triangleleft A \mid I \cap \{1, a, a^2, \ldots\} = \emptyset \}
+	\]
+	אז $(S, \subset)$ סדר חלקי, ונבדוק שהיא מקיימת את תנאי הלמה של צורן.
+	אם $T \subset S$ שרשרת אז נבחר $I = \bigcup I \cup \{ 0 \}$, זהו אידאל כאיחוד אידאלים, וכן הוא חסם עליון של השרשרת כאיחודה.
+	אם כך נובע מהלמה של צורן שקיים $P \in S$ מקסימלי.
+	אז $P \triangleleft A$, $P \cap \{1, a, a^2, \ldots\} = \emptyset$ וכן שאם $P \subsetneq Q \triangleleft A$ אז בהכרח $Q$ מכיל חזקה של $a$, ונראה ש־$P$ ראשוני.
+	יהיו $b, c \notin A \setminus P$ ונראה ש־$b c \notin P$.
+	נניח בשלילה ש־$b c \in P$ ונבחן את $Q = P + (b), Q' = P + (c)$, אז $P \subsetneq Q, Q'$ ולכן מכילים חזקות של $a$, כלומר קיימים $a^n \in P + (b), a^m \in P + (c)$ ל־$n, m \in \NN$.
+	אם $p_1, p_2 \in P, \lambda_1, \lambda_2 \in A$ כך ש־$a^n = p_1 + \lambda_1 b, a^m = p_2 + \lambda_2 c$ אז,
+	\[
+		a^{m + n}
+		= (p_1 + \lambda_1 b)(p_2 + \lambda_2 c)
+		= p_1 p_2 + \lambda_1 b p_2 + \lambda_2 c p_1 + \lambda_1 \lambda_2 b
+		\in P
+	\]
+	וקיבלנו ש־$a^{m + n} \in P$ וזו סתירה.
+\end{proof}
+\begin{definition}[רדיקל של אידאל]
+	הרדיקל של אידאל $I \triangleleft A$ מוגדר להיות,
+	\[
+		\sqrt{I}
+		= \{ a \in A \mid \exists n \in \NN,\ a^n \in I \}
+		\subset A
+	\]
+\end{definition}
+\begin{remark}
+	$\sqrt{(1)} = (1)$ וכן הרדיקל של $A$ הוא בדיוק $\sqrt{(0)}$.
+\end{remark}
+\begin{proposition}
+	אם $I \ne (1)$ אז מתקיים $\sqrt{I} = \bigcap \Pp$ עבור $\Pp$ קבוצת האידאלים $I \subset P \triangleleft A$ הראשוניים.
+\end{proposition}
+\begin{proof}
+	תהי $\pi : A \to A / I$ העתקת המנה,
+	\[
+		\sqrt{I}
+		= \pi^{-1}(\Nil(A / I))
+	\]
+	ולכן,
+	\[
+		\sqrt{I}
+		= \pi^{-1}(\bigcap_{\substack{Q \triangleleft A / I \\ \text{prime}}} Q)
+		= \bigcap_{\substack{Q \triangleleft A / I \\ \text{prime}}} \pi^{-1}(Q)
+		= \bigcap \Pp
+	\]
+	כאשר הטענה נובעת ממשפט ההתאמה ושימוש באידאלים ראשוניים מתאימים לראשוניים ממשפט האיזומורפיזם השלישי.
+\end{proof}
+\begin{definition}[רדיקל ג'ייקובסון]
+	רדיקל ג'ייקובסון של חוג $A \ne 0$ מוגדר להיות,
+	\[
+		\Jj(A)
+		= \bigcap_{\substack{M \triangleleft A \\ \text{maximal}}} M
+		\triangleleft A
+	\]
+	אם $A = 0$ אז נגדיר $\Jj = (0)$. \\
+	אם $I \triangleleft A$ אז נגדיר את רדיקל ג'ייקובסון של $I \ne (1)$ להיות,
+	\[
+		\Jj(I)
+		= \bigcap_{\substack{I \subset M \triangleleft A \\ \text{maximal}}} M
+		\triangleleft A
+	\]
+	ואם $I = (1)$ נגדיר את $\Jj(I) = (1)$.
+\end{definition}
+\begin{remark}
+	$\Nil(A) \subset \Jj(A)$ שכן כל אידאל מקסימלי הוא ראשוני.
+\end{remark}
+לפי משפט ההתאמה $\Jj(I) = \pi^{-1}(\Jj(A / I))$.
+\begin{proposition}[אפיון איברי רדיקל ג'ייקובסון]
+	אם $A$ חוג אז,
+	\[
+		\Jj(A)
+		= \{ a \in A \mid \forall b \in A,\ 1 - a b \in A^\times \}
+	\]
+\end{proposition}
+\begin{proof}
+	יהי $a \in A$ כך שלכל $b \in A$, $1 - a b$ הפיך, ונראה ש־$1 - a b \in \Jj(A)$, כלומר נראה ש־$1 - a b \in M$ לכל $M \triangleleft A$ מקסימלי.
+	יהי $M \triangleleft A$ מקסימלי, אם $a \notin M$ אז $M \subsetneq M + (a)$ ולכן $M + (a) = (1)$, כלומר $1 \in M + (a)$ ונרשום $1 = m + b a$ כאשר $m \in M$ ו־$b \in A$.
+	אז $1 - b a = m \in M$ ואינו הפיך בסתירה (אחרת $M = A$).
+
+	בכיוון ההפוך יהי $a \in \Jj(A)$ ו־$b \in A$ ונראה ש־$1 - a b$ הפיך.
+	אם הוא אינו הפיך אז $(1 - a b) \ne (1)$ ולכן קיים אידאל מקסימלי $(1 - a b) \subset M$ אז $a \in \Jj(A) \subset M$, כלומר $a, 1 - a b \in M$ ולכן $1 = b a + 1 - a b \in M$ בסתירה.
+\end{proof}
+\begin{definition}[חוג ג'ייקובסון]
+	$A$ נקרא חוג ג'ייקובסון אם $\Jj(I) = \sqrt{I}$ לכל $I \triangleleft A$.
+\end{definition}
+חוגי ג'ייקובסון הם מופע די נדיר, נראה דוגמות.
+\begin{example}
+	$\ZZ$ הוא חוג ג'ייקובסון (תרגיל).
+\end{example}
+\begin{example}
+	$K[x_1, \ldots, x_n]$ עבור $K$ שדה הוא חוג ג'ייקובסון, נוכיח טענה זו בהמשך הקורס.
+\end{example}
+נעבור לדוגמה נגדית.
+\begin{example}
+	אם $A$ תחום שבו יש רק אידאל מקסימלי יחיד $M$ ו־$A$ אינו שדה אז,
+	\[
+		\Nil(A)
+		= (0)
+		\subsetneq M
+		= \Jj(A)
+	\]
+	כלומר $A$ כזה אינו חוג ג'ייקובסון.
+	בהמשך הקורס נראה מספר דוגמות לחוגים עם אידאל מקסימלי יחיד (נקראים חוגים מקומיים).
+\end{example}
+
+\subsection{מכפלת חוגים}
+בפרק זה לא נניח שכל חוג הוא חילופי.
+יהיו $A, B$ חוגים, נגדיר מבנה של חוג על $A \times B$ על־ידי,
+\[
+	(a_1, b_1) + (a_2, b_2)
+	= (a_1 + b_1, a_2 + b_2),
+	\qquad
+	(a_1, b_1) \cdot (a_2, b_2)
+	= (a_1 \cdot b_1, a_2 \cdot b_2)
+\]
+קל לבדוק ש־$A \times B$ חוג עם פעולות אלה והקבועים $0 = (0_A, 0_B), 1 = (0_A, 0_B)$. \\
+באופן דומה ניתן להגדיר מכפלה של אוסף כלשהו ${\{ A_{\alpha} \}}_{\alpha \in I}$ של חוגים,
+\[
+	\prod_{\alpha \in I} A_{\alpha}
+	= \left\{ f : I \to \bigcup_{\alpha \in I} A_{\alpha} \mid \forall \alpha \in I,\ f(\alpha) \in A_{\alpha} \right\}
+\]
+והפעולות,
+\[
+	(f + g)(\alpha)
+	= f(\alpha) + g(\alpha),
+	\quad
+	(f g)(\alpha) = f(\alpha) \cdot g(\alpha)
+\]
+$A_{\alpha}$ חילופיים אם ורק אם $\prod_{\alpha \in I} A_{\alpha}$ חילופי.
+
+יהי $A$ חוג חילופי.
+\begin{definition}[אידאלים זרים]
+	אידאלים $I_1, \ldots, I_k \triangleleft A$ נקראים זרים (prime) אם $I_1 + \cdots + I_k = (1)$ והם זרים בזוגות, כלומר אם $I_i + I_j = (1)$ לכל $i \ne j$.
+\end{definition}
+\begin{notation}
+	נכתוב $(I, J)$ במקום $I + J$ ונכתוב $I = 1$ במקום $I = (1)$. \\
+	בעזרת סימונים אלה אידאלים $I_1, \ldots, I_k$ זרים אם ורק אם $(I_1, \ldots, I_k) = 1$.
+\end{notation}
+\begin{example}
+	$A = \ZZ$ ו־$I_i = (n_i)$ עבור $n_i \in \NN_0$ אז,
+	\[
+		(I_1, \ldots, I_k)
+		= (\gcd(n_1, \ldots, n_k))
+	\]
+	ובפרט הם זרים אם ורק אם $n_1, \ldots, n_k$ זרים.
+\end{example}
+\begin{proposition}
+	יהיו $I, J, K \triangleleft A$.
+	\begin{enumerate}
+		\item אם $(I, J) = 1$ אז $I \cap J = I J$
+		\item אם $(I, K) = (I, J) = 1$ אז $(I, J K) = 1$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\textbf{1.}
+	לכל זוג אידאלים $I J \subset I \cap J$. נניח ש־$I + J = (1)$, כלומר $1 = a + b$ עבור $a \in I, b \in J$.
+	אם $c \in I \cap J$ אז נציג $c = a c + b c$, אבל $a c \in I J$ וכן $b c \in I J$ ולכן גם $c \in I J$, כלומר $I \cap J \subset I J$.
+
+	\textbf{2.}
+	נניח ש־$I + J = I + K = 1$ ושוב נסמן איברים $a, b \in I, c \in J, d \in K$ כך ש־$a + c = 1 = b + d$.
+	\[
+		1
+		= (a + c)(b + d)
+		= \overbrace{a b + c b + a d}^{\in I} + \overset{\in J K}{c d}
+		\in I + J K
+	\]
+	ולכן $I + J K = (1)$.
+\end{proof}
+\begin{corollary}
+	אם $I_1, \ldots, I_k$ אידאלים זרים בזוגות אז $I_1 \cap \cdots \cap I_k = I_1 \cdots I_k$ וכן $(I_1, I_2 \cdots I_k) = 1$.
+\end{corollary}
+\begin{proof}
+	הטענה האחרונה ואינדוקציה.
+\end{proof}
+\begin{theorem}[השאריות הסיני]
+	יהי $A$ חוג חילופי ויהיו $I_1, \ldots, I_k \triangleleft A$ זרים בזוגות.
+	אז קיים איזומורפיזם,
+	\[
+		A / I_1 \cdots I_k
+		\cong (A / I_1) \times \cdots (A / I_k)
+	\]
+	על־ידי המיפוי,
+	\[
+		a \mod I_1 \cdots I_k
+		\mapsto (a \mod I_1, \ldots, a \mod I_k)
+	\]
+\end{theorem}
+\begin{proof}
+	נגדיר $\varphi : A \to \bigcap_{i = 1}^k A / I_i$ על־ידי $\varphi(a) = (a \mod I_1, \ldots, a \mod I_k)$. \\
+	זהו הומומורפיזם עם גרעין $\ker \varphi = \{ a \in A \mid \forall i,\ a \in I_i \}$.
+	ממשפט האיזומורפיזם הראשון לחוגים נקבל $A / \ker \varphi \cong \im \varphi$ ונשאר להראות ש־$\im \varphi \prod_{i = 1}^k A / I_i$, כלומר ש־$\varphi$ היא על. \\
+	נוכיח זאת באינדוקציה על $k$, המקרה $k = 1$ ברור, ולכן נניח $k > 1$ ושהטענה נכונה עבור $k - 1$.
+	יהיו $a_1, \ldots, a_k \in A$, לפי הנחת האינדוקציה קיים $b \in A$ כך ש־$b \equiv a_i \mod I_i$ לכל $1 \le i < k$.
+	מהמסקנה הקודמת אנחנו יודעים ש־$(I_1 \cdots I_{k - 1}, I_k) = 1$, כלומר קיימים $u \in I_1 \cdots I_{k - 1}, v \in I_k$ כך ש־$u + v = 1$.
+	אז $u \equiv 0, v \equiv 1 \mod I_1 \cdots I_{k - 1}$ וכן $u \equiv 1, v \equiv 0 \mod I_k$.
+	נגדיר את הצירוף $a = v b + u a_k$, אז $a \equiv b \mod I_1 \cdots I_k$, ובאופן דומה גם,
+	\[
+		a
+		= v b + u a_k
+		\equiv 0 \cdot b + 1 \cdot a_k
+		\equiv a_k \mod I_k
+	\]
+	כלומר $a \equiv b \equiv a_i \mod I_i$. קיבלנו ש־$a \equiv a \mod I_i$ לכל $1 \le i \le k$, כלומר $\varphi$ היא אכן על.
+\end{proof}
+
+\subsection{מבוא לגאומטריה אלגברית}
+\begin{definition}[שדה סגור אלגברית]
+	שדה $K$ נקרא סגור אלגברית (algebraic closed) אם לכל פולינום $f \in K[x] \setminus K$ יש שורש ב־$K$, כלומר $\exists \alpha \in K,\ f(\alpha) = 0$.
+\end{definition}
+וניזכר בטענה שראינו,
+\begin{theorem}[המשפט היסודי של האלגברה]
+	$\CC$ הוא סגור אלגברית.
+\end{theorem}
+\begin{example}
+	$\RR$ לא סגור אלגברית כי ל־$x^2 + 1$ אין שורש.
+\end{example}
+\begin{theorem}[קיום שדה סגור אלגברית]
+	יהי $k$ שדה כלשהו, אז קיים שדה סגור אלגברית $K$ והומומורפיזם שיכון $k \hookrightarrow K$.
+\end{theorem}
+\begin{proof}
+	בהמשך הקורס.
+\end{proof}
+\begin{definition}[מערכת פתרונות]
+	יהי $K$ שדה סגור אלגברית ויהי $n \in \NN$.
+	תהי $S \subset K[x_1, \ldots, x_n]$ ונגדיר,
+	\[
+		Z(S)
+		= \{ (x_1, \ldots, x_n) \in K^n \mid \forall f \in S,\ f(x_1, \ldots, x_n) = 0 \}
+	\]
+	קבוצת האפסים או קבוצת הפתרונות של מערכת המשוואות $S$.
+\end{definition}
+\begin{definition}[קבוצה אלגברית]
+	קבוצה אלגברית ב־$K^n$ היא תת־קבוצה מהצורה $Z(S)$ עבור $S \subset K[x_1, \ldots, x_n]$.
+\end{definition}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
