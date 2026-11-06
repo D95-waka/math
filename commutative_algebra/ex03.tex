@@ -1,0 +1,367 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 03 --- יסודות באלגברה קומוטטיבית}
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Specm}{Specm}
+\DeclareMathOperator{\Nil}{Nil}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+נראה שכל שדה $\FF$ סגור אלגברית הוא אינסופי.
+\begin{proof}
+	נסמן $k \in \NN$ כך ש־$k \ne \Char \FF$, ונניח בשלילה ש־$\FF$ סופי.
+	יהי $a_0 \in \FF \setminus \{ 0, 1 \}$ ונגדיר את הפולינום $p(x) = x^k - a_0$, אז יש לו שורש ונסמן $a_1 \in \FF$ שורש כזה.
+	נמשיך ונבנה כך סדרה באופן רקורסיבי, אז $a_{n}^{k^n} = a_0$.
+	מעיקרון שובך היונים נובע שקיים $n$ כך ש־$a_n = a_0$ ולכן $a_0^{k^n} = a_0$ ולכן $a_0^{k^n - 1} (a_0 - 1) = 0$, אבל $a_0 \ne 1, 0$ ולכן קיבלנו סתירה.
+\end{proof}
+
+\question{}
+יהי $A$ חוג ויהי $f = \sum_{n \in \NN} a_n x^n \in A[[x]]$.
+
+\subquestion{}
+נראה ש־$f \in \Jj(A[[x]])$ אם ורק אם $a_0 \in \Jj(A)$.
+\begin{proof}
+	נזכור כי $f$ הפיך אם ורק אם $a_0$ הפיך.
+
+	$f \in Jj(A[[x]])$ אם ורק אם לכל $g \in A[[x]]$ אם ורק אם $1 - f g$ הפיך.
+	נסמן $g = \sum_{n \in \NN} b_n x^n$ ונבחין כי,
+	\[
+		(1 - f g)(0)
+		= 1 - f(0) g(0)
+		= 1 - a_0 b_0
+	\]
+	אז $1 - f g$ הפיך אם ורק אם $1 - a_0 b_0$ הפיך, כלומר $a_0 \in \Jj(A)$.
+\end{proof}
+
+\subquestion{}
+נראה שאם $f$ נילפוטנטי אז לכל $n \in \NN$, $a_n$ נילפוטנטי.
+\begin{proof}
+	נסמן $k \in \NN$ כך ש־$f^k = 0$.
+	ישירות מהגדרת כפל טורים פורמליים,
+	\[
+		0^k
+		= f^k(0)
+		= {(f(0))}^k
+		= a_0^k
+	\]
+	כלומר $a_0^k = 0$.
+	נבחין שאם $g = f - a_0 x^0$ אז גם,
+	\[
+		g^{k^2}
+		= {(f - a_0)}^{k^2}
+		= 0
+	\]
+	כלומר $g$ גם הוא נילפוטנטי, וכן,
+	\[
+		g
+		= \sum_{n = 1}^\infty a_n x^n
+		= x \sum_{n = 0}^\infty a_{n + 1} x^n
+	\]
+	ולכן נוכל להגדיר את $h \in A[[x]]$ כך ש־$g = x h$, ונסיק ש־$g^{k^2} = x^{k^2} h^{k^2}$ ולכן גם $h$ נילפוטנטי.
+	כלומר מצאנו שאם $f$ נילפוטנטי אז גם הטור המוגדר על־ידי $h(n) = f(n + 1)$ נילפוטנטי, ולכן בשילוב הגרירה $f$ נילפוטנטי גורר $a_0$ נילפוטנטי נקבל ש־$a_n$ נילפוטנטי לכל $n \in \NN$.
+\end{proof}
+
+\subquestion{}
+נמצא חוג $A$ וטור חזקות $f$ שכל מקדמיו נילפוטנטיים אך הוא לא נילפוטנטי.
+\begin{solution}
+	נגדיר $A = \prod_{n \in \NN} \ZZ / 2^{n + 2} \ZZ$ וכן $f \in A[[x]]$ על־ידי $f(n) = g_n$ המוגדרת על־ידי,
+	\[
+		g_n(x)
+		= \begin{cases}
+			2 & x \le n \\
+			0 & x > n
+		\end{cases}
+	\]
+	מתקיים $g_n^n(x) = 2^n = 0$ שכן $2^n \in \ZZ / 2^{x + 2} \ZZ$ או $g_n(x) = 0$ אם $n < x$, בפרט $g_n$ נילפוטנטי לכל $n \in \NN$.
+
+	מהצד השני לכל $k \in \NN$ נבחין כי,
+	\[
+		f^k(x)
+		= \sum_{i \in \NN^x, \sum i(j) = k} f(i(0)) \cdots f(i(x))
+		= \sum_{i \in \NN^x, \sum i(j) = k} g_0^{i(0)} \cdots g_x^{i(x)}
+	\]
+	ולכן עבור בחירת $x > k$ מספיק גדול נקבל שהמקדם לא מתאפס.
+\end{solution}
+
+\question{}
+יהי $F$ שדה. נראה ש־$F[[x]]$ תחום ראשי, ונמצא את כל האידאלים שלו.
+\begin{proof}
+	יהי אידאל $I \triangleleft F[[x]]$.
+	אם $I = (0)$ אז בפרט הוא ראשי, לכן נניח שקיים $f \in I$ כך ש־$f \ne 0$ וכך שדרגת המונום הקטן ביותר שלו היא מינימלית.
+	נגדיר את $k = \inf\{ n \in \NN \mid f(n) \ne 0 \}$ להיות דרגת המונום הקטן ביותר, ונגדיר את $g \in F[[x]]$ על־ידי $g(n) = f(n - k)$, לכן $f = x^k g$.
+	מתקיים $g(0) \ne 0$ ולכן $g(0) \in F^\times$, ולכן $g$ הוא טור הפיך, נסמן $h \in F[[x]]$ להיות טור כך ש־$g h = 1$, לכן גם $f h = x^k g h = x^k \in I$.
+	נסיק שלכל $f \in I$ קיים $g$ כמתואר כך ש־$f = x^k g$ ולכן $I = (x^k)$, כלומר $I$ ראשי, ונוכל אף להסיק ש־$\{ (x^k) \mid k \in \NN \}$ היא בדיוק קבוצת כל האידאלים של $F[[x]]$.
+\end{proof}
+
+\question{}
+יהי $R$ חוג.
+
+\subquestion{}
+יהיו $P, I_1, \ldots, I_n \triangleleft R$ כך ש־$P$ ראשוני, ונניח ש־$\bigcap_{i = 1}^n I_i \subset P$. \\
+נראה שקיים $i \in [n]$ כך ש־$I_i \subset P$.
+\begin{proof}
+	נזכור כי אידאל הוא ראשוני אם ורק אם לכל $I, J \triangleleft R$ כך ש־$I J \subset P$ אז $I \subset P$ או $J \subset P$.
+	נבחין כי לכל $i \ne j$, $I_i I_j \subset I_i, I_j$ מצד אחד, ומהצד השני $I_i \cap I_j \subset I_i I_j$, לכן $I_1 \cdots I_n = \cap_{i = 1}^n I_i \subset P$.
+	לכן או $I_1 \subset P$ או $I_2 \cdots I_n \subset P$, וכך נמשיך ונקבל שבהכרח קיים $i$ כך ש־$I_i \subset P$.
+\end{proof}
+
+\subquestion{}
+נראה שטופולוגיית זריצקי על $X = \Spec(R)$ היא טופולוגיה.
+\begin{proof}
+	נסמן את $\Tt \subseteq \Pp(\Spec(R))$ טופולוגיית זריצקי.
+	נבדוק שזוהי טופולוגיה על־ידי בחינת קבוצות סגורות, כלומר נבדוק ש־$\emptyset, X \in \Tt$ וכן סגירות לחיתוך כללי ולאיחוד סופי.
+
+	נזכור ש־$C$ סגורה אם קיים $E \subset R$ כך ש־$C = Z(E)$, בפרט $Z(R) = \emptyset$ אכן סגורה וגם $Z(\emptyset) = R$ סגורה. \\
+	יהיו $C_{\alpha}^C \in \Tt$ כך ש־$C_{\alpha} = Z(E_{\alpha})$ ונראה שגם $\bigcap_{\alpha \in I} C_{\alpha}$ סגורה.
+	ניקח $E = \bigcup_{\alpha \in I} E_{\alpha}$, אז $Z(E)$ הוא בדיוק חיתוך קבוצות האידאלים מהגדרה.
+	סגירות לאיחודים סופיים נובעת מסעיף א'.
+\end{proof}
+
+\question{}
+\subquestion{}
+יהי $R$ חוג, נראה ש־$\{ P \} \subset \Spec R$ סגור אם ורק אם $P$ אידאל מקסימלי.
+\begin{proof}
+	נניח ש־$\{ P \}$ סגור, ויהי $E \subset R$ כך ש־$\{ P \} = Z(E)$.
+	נבחין כי מכאן נובע ישירות שאם $I \triangleleft R$ כך ש־$P \subsetneq I$, אז או ש־$I = R$ או שקיים $I \subset M$ מקסימלי ולכן ראשוני, אבל אז $M \in Z(E)$ בסתירה, ולכן $P$ אכן מקסימלי.
+
+	נניח ש־$P$ מקסימלי, אז $Z(P) = \{ P \}$ בלבד.
+\end{proof}
+נסמן $\Specm R$ כאוסף הנקודות הללו.
+
+\subquestion{}
+נסיק שלכל שדה סגור אלגברית $K$ יש הומיאומורפיזם $\Specm K[x] \to K$.
+\begin{proof}
+	נזכור כי אידאל ב־$K[x]$ הוא מקסימלי אם ורק אם הוא מהצורה $(x - a)$ לאיזשהו $a \in K$, ולכן נגדיר את ההעתקה $f : \Specm K[x] \to K$ על־ידי $f((x - a)) = a$.
+	קבוצה $C \subset K$ היא סגורה אם קיימת $S \subset K[x]$ כך ש־$Z(S) = C$, בשדה סגור אלגברית זה שקול לפולינום בודד שקבוצת השורשים שלו היא $C$, והוא מתפרק לגורמים לינאריים המגדירים אידאלים מקסימליים.
+	זוהי כמובן קבוצה סגורה גם ב־$\Spec K[x]$.
+	מהצד השני תהי קבוצה סגורה ב־$\Spec K[x]$, כלומר קבוצה של סופית של אידאלים מקסימליים $(x - a_i)$, אז נגדיר $p(x) = \prod (x - x_i)$, לכן $Z(\{ p \})$ קבוצה סגורה, ובדיוק התמונה של קבוצה סגורה של $\Spec K[x]$.
+\end{proof}
+
+\question{}
+יהי $X$ מרחב טופולוגי ויהי $Y \subseteq X$ אי־פריק.
+נראה שגם $\overline{Y}$ אי־פריק.
+\begin{proof}
+	נניח בשלילה ש־$\overline{Y}$ מתפרק ל־$C_1, C_2 \subseteq \overline{Y}$, כלומר $C_1 \cup C_2 = \overline{Y}$ וכן $C_1, C_2 \ne \overline{Y}$.
+	נובע אם כך ש־$C_1^C, C_2^C$ קבוצות פתוחות ולכן גם פתוחות בטופולוגיה המושרית על־ידי $Y$, וכן $C_1, C_2$ סגורות ב־$Y$ כמשלים של משלים, וכן בהכרח $C_1 \cup C_2 = Y$ בסתירה.
+\end{proof}
+
+\question{}
+יהי $K$ שדה סגור אלגברית ויהי $0 < n \in \NN$.
+נראה שלכל $X \subset K^n$ מתקיים $I(X) = I(Z(I(X)))$.
+\begin{proof}
+	ניזכר כי $I(X) = \{ f \in K[x_1, \ldots, x_n] \mid \forall x \in X,\ f(x) = 0 \}$ הוא האידאל ב־$K[x_1, \ldots, x_n]$ של פולינומים שמתאפסים ב־$X$.
+	מהצד השני $Z(S) = \{ x \in K^n \mid \forall f \in S,\ f(x) = 0 \}$, קבוצת הערכים שמאפסים את כל פולינומי $S$.
+
+	מספיק להראות שפולינום $f \in K[x_1, \ldots, x_n]$ מאפס את $X$ אם ורק אם הוא מאפס את $Z(I(X))$.
+	בכיוון הראשון נניח שהוא מאפס את $X$, לכן $f \in I(X)$, אם $x \in Z(I(X))$ אז מהגדרה $f(x) = 0$.
+	מהצד השני אם $f$ מאפס את $Z(I(X))$ אז מפתיחת ההגדרה הוא מאפס גם את $X$ עצמו.
+\end{proof}
+
+\question{}
+יהי $K$ שדה סגור אלגברית.
+
+\subquestion{}
+נראה שטופולוגיית זריצקי על $K$ היא הטופולוגיה הקו־סופית.
+\begin{proof}
+	תהי קבוצה סגורה $C \subset K$, ותהי $S \subset K[x]$ קבוצת הפולינומים המעידה על כך, כלומר $f(C) = 0$ לכל $f \in S$.
+	נבחין שקבוצת השורשים של פולינום (שונה מפולינום האפס) היא סופית ולכן $C$ היא קבוצה סופית בלבד.
+	בשילוב העובדה ש־$K$ הוא אינסופי נקבל שאם $U$ פתוחה אז היא אינסופית או הקבוצה הריקה (פולינום האפס).
+
+	מהצד השני תהי קבוצה סופית $C \subset K$ ונראה שהיא גם סגורה.
+	נגדיר את הפולינום $f(x) = \prod_{c \in C} (x - c)$, אז $f(C) = 0$ ואף $c \in \ker f \iff c \in C$, ולכן $S = \{ f \}$ מעידה על סגירות $C$, לכן כל קבוצה אינסופית היא פתוחה.
+\end{proof}
+
+\subquestion{}
+יהיו $0 < n \in \NN$ ו־$f \in K[x_1, \ldots, x_n]$. \\
+נראה כי ההומומורפיזם $\varphi : K^n \to K$ המוגדר על־ידי $\varphi(x_1, \ldots, x_n) = f(x_1, \ldots, x_n)$ רציף ביחס לטופולוגיית זריצקי.
+\begin{proof}
+	מספיק שנראה שהמקור של כל קבוצה סופית הוא קבוצה סגורה ב־$K[x_1, \ldots, x_n]$, כלומר מספיק שלכל $C \subset K$ סופית נראה שגם $\varphi^{-1}(C)$ סגורה. \\
+	תהי קבוצה כזו $C$, ונסמן גם את $D = \varphi^{-1}(C) = f^{-1}(C)$, כלומר קבוצת כל המקורות של $C$ ב־$K[x_1, \ldots, x_n]$.
+	נגדיר את,
+	\[
+		g(x)
+		= \prod_{c \in C} (f(x) - c)
+	\]
+	אז $g \in K[x_1, \ldots, x_n]$ וכן לכל $d \in D$ קיים $c \in C$ כך ש־$f(d) = c$, לכן $g(d) = 0$.
+	נסיק ש־$g(D) = 0$, לכן $g$ מעיד על סגירות $D$.
+\end{proof}
+
+\subquestion{}
+יהי $0 < n \in \NN$, ויהי $S \subset K^n$. \\
+נראה ש־$\overline{S} = Z(I(S))$.
+\begin{proof}
+	נבחין תחילה ש־$Z(I(S))$ היא קבוצה סגורה, שהרי $I(S)$ מעידה על כך בדיוק.
+	לכן מספיק להראות שכל קבוצה סגורה $S \subset C$ מתקיים $Z(I(S)) \subset C$.
+
+	נסמן $C = Z(T)$, אז,
+	\[
+		S \subset C
+		\implies I(S) \supset I(Z(T))
+		\implies Z(I(S)) \subset Z(I(Z(T))) = Z(T) = C
+	\]
+	זאת ישירות מהיפוך יחס ההלכה שמתקיים תחת הפעולות.
+\end{proof}
+
+\question{}
+נראה ש־$V = \{ (t, t^2) \mid t \in \CC \} \subset \CC^2$ אלגברית ואי־פריקה.
+\begin{proof}
+	נגדיר $f(x, y) = x^2 - y$, לכן $f \in \CC[x, y]$ וכן,
+	\[
+		f(x, y) = 0
+		\iff x^2 - y = 0
+		\iff (x, y) \in V
+	\]
+	לכן $f$ מעידה על אלגבריות $V$.
+
+	נגדיר $\varphi : \CC \to \CC^2$ על־ידי $\varphi(t) = (t, t^2)$, ותהי קבוצה סגורה $C \subset V$, אז נסמן $S \subset \CC[x, y]$ כך ש־$Z(S) = C$ ונגדיר,
+	\[
+		S' = \{ f(t, t^2) \mid f \in S \}
+	\]
+	ונסמן $C' = \varphi^{-1}(C)$, אז $z \in C'$ אם $\varphi(z) \in C$, כלומר $f(\varphi(z)) = 0$ לכל $f \in S$, כלומר $f'(z) = 0$ לכל $f' \in S'$ ונסיק ש־$C'$ סגורה.
+	נובע ש־$\varphi$ רציפה, ונבחין כי $\CC$ אי־פריק שכן במרוכבים כל פולינום לא קבוע הוא על, וראינו שפונקציות רציפות משמרות אי־פריקות, לכן $\varphi(\CC) = V$ אי־פריקה.
+\end{proof}
+
+\question{}
+יהיו $R_1, R_2$ חוגים, ונגדיר את $R = R_1 \times R_2$.
+נראה שמתקיים,
+\[
+	\Spec R
+	= \{ P_1 \times R_2 \mid P_1 \in \Spec R_1 \} \uplus \{ R_1 \times P_2 \mid P_2 \in \Spec R_2 \}
+\]
+ונסיק ש־$\Spec R$ לא קשירה.
+\begin{proof}
+	ברור כי $R_1 \times P$ ראשוני לכל $P \in \Spec R_2$, ובאופן שקול גם $P \times R_2$.
+	יהיו $P_1 \in \Spec R_1, P_2 \in \Spec R_2$, ויהי $(x, y) \in P_1 \times P_2$, אז מתקיים,
+	\[
+		(1, y) \cdot (x, 1)
+		= (x, y)
+	\]
+	אז או $1 \in P_1$ או $1 \in P_2$, ונסיק את הכיוון ההפוך של ההכלה.
+
+	אלו הן שתי קבוצות סגורות בטופולוגיית זריצקי והן זרות, לכן $\Spec R$ לא קשירה.
+\end{proof}
+
+\question{}
+יהי $R$ חוג, ויהיו $f, g \in R$, נסמן $X = \Spec R$.
+
+\subquestion{}
+נראה ש־$X_f \cap X_g = X_{f g}$.
+\begin{proof}
+	נראה את הטענה השקולה ש־$Z(f) \cup Z(g) = Z(f g)$.
+	אם $P \in Z(f) \cup Z(g)$ אז $f g \in P$ ולכן $P \in Z(f g)$.
+	מהצד השני אם $P \in Z(f g)$ אז $f g \in P$ והוא ראשוני ולכן או $f \in P$ או $g \in P$ ובכל מקרה $P \in Z(f) \cup Z(g)$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$X_f = \emptyset$ אם ורק אם $f$ הוא נילפוטנטי.
+\begin{proof}
+	נבחין כי $X_f = \emptyset \iff Z(f) = X$ אם ורק אם $f \in P$ לכל $P \triangleleft R$ ראשוני.
+	נזכור כי $\Nil(R) = \bigcap X$, כלומר איבר ב־$R$ הוא נילפוטנטי אם ורק אם הוא ב־$P$ לכל $P$ ראשוני.
+\end{proof}
+
+\subquestion{}
+נראה ש־$X_f = X$ אם ורק אם $f$ הפיך.
+\begin{proof}
+	$X_f = X$ אם ורק אם $Z(f) = \emptyset$ אם ורק אם $f \in P \implies P = R$ לכל $P \in X$, ונזכור כי כל אידאל ניתן להרחיב לאידאל מקסימלי ולכן גם ראשוני, כלומר $f \in I \triangleleft R \implies I = R$.
+	בפרט זה נכון ל־$I = (f)$, כלומר $(f) = R$, וזה נכון אם ורק אם $1 \in (f)$, כלומר $f$ הפיך.
+\end{proof}
+
+\subquestion{}
+נוכיח שלכל $f \in R$, $X_f$ קומפקטי.
+\begin{proof}
+	יהי כיסוי פתוח $\bigcup_{\alpha \in A} U_{\alpha} = X_f$.
+	ונסמן $U_{\alpha} = X \setminus Z(E_{\alpha})$ לכל $\alpha$ וכן $E = \bigcup_{\alpha \in A} E_{\alpha}$.
+	נגדיר $U = X \setminus Z(E)$, אז $X_f \subset U$ שכן $Z(E) = \bigcap Z(E_{\alpha})$, וכן $Z(E) \subset Z(f)$ ולכן $f \in \sqrt{(E)}$, כלומר קיים $n \in \NN$ כך ש־$f^n \in (E)$.
+	בהתאם קיימים $a_i \in R, f_i \in R$ עבור $i \in [k]$ כך שמתקיים,
+	\[
+		f^n
+		= \sum_{i = 1}^k a_i f_i
+	\]
+	אבל $f_i \in E_{\alpha_i}$ לאיזשהו $\alpha_i \in A$ לכל $i$, ונבחן את תת־הקבוצה $\{ U_{\alpha_i} \}$, נראה שהיא תת־כיסוי (סופי) של $\{ U_{\alpha} \}$.
+	ברור ש־$f^n \in \bigcup_{i \in [k]} (E_{\alpha_i})$ ולכן גם $Z(\bigcup U_{\alpha_i}) \subset Z(f^n) = Z(f)$ ולכן,
+	\[
+		X_f
+		= X \setminus Z(f)
+		\subset X \setminus Z(\bigcup U_{\alpha_i})
+		= X \setminus \bigcap Z(U_{\alpha_i})
+		= \bigcup X \setminus Z(U_{\alpha_i})
+		= \bigcup U_{\alpha_i}
+	\]
+	ומצאנו תת־כיסוי סופי.
+\end{proof}
+
+\subquestion{}
+נראה ש־$U \subset X$ היא קומפקטית אם ורק אם יש $E \subset R$ סופית כך ש־$U = \bigcup_{f \in E} X_f$.
+\begin{proof}
+	אם $U \subset X$ קומפקטית, ונסמן $U = X \setminus Z(E)$ אז,
+	\[
+		U
+		= X \setminus Z(E)
+		= X \setminus Z(\bigcup_{f \in E} f)
+		= X \setminus \bigcap_{f \in E} Z(f)
+		= \bigcup_{f \in E} X \setminus Z(F)
+		= \bigcup_{f \in E} X_f
+	\]
+	אז מקומפקטיות יש תת־קבוצה סופית כדרוש.
+
+	מהצד השני אם $U = \bigcup_{f \in E} X_f$ אז היא איחוד סופי של קבוצות קומפקטיות ולכן קומפקטית.
+\end{proof}
+
+\question{}
+יהי $R$ חוג ונסמן $X = \Spec R$.
+נראה ש־$X$ אי־פריק אם ורק אם $\Nil R$ אידאל ראשוני.
+\begin{proof}
+	נניח ש־$X$ אי־פריק, ונזכור כי הוא קומפקטי, ולכן,
+	\[
+		X
+		= \bigcup_{i = 1}^n Z(I_i)
+		= Z(\bigcap_{i = 1}^n I_i)
+		= Z(I)
+	\]
+	עבור אידאלים כלשהם $I_i \triangleleft R$ ו־$I = I_1 \cdots I_n$.
+	כלומר מצאנו שקיים אידאל $I \triangleleft R$ כך ש־$I \subset P$ לכל $P \in X$, לכן $I = \Nil R$.
+
+	נניח ש־$\Nil R$ אידאל ראשוני, אז $\Nil R \in X$.
+	נניח ש־$U, V \subset X$ סגורות כך ש־$U \cup V = X$, אז בלי הגבלת הכלליות $\Nil R \in U$.
+	נזכור שגם $\Nil R \subset P$ לכל $P \in X$, אז $Z(\Nil R) = X$ ו־$U$ סגורה ולכן $X = Z(\Nil R) \subset U \implies U = X$.
+\end{proof}
+
+\question{}
+נאמר ש־$S \subset R$ היא כפלית אם ורק אם $1 \in S$ ולכל $a, b \in S$ מתקיים $a b \in S$.
+
+\subquestion{}
+יהי $P \in \Spec R$, נראה ש־$R \setminus P$ כפלית.
+\begin{proof}
+	ברור כי $1 \in R \setminus P$, ונותר לבדוק סגירות לכפל.
+	יהיו $a, b \in R \setminus P$, ונניח בשלילה ש־$a b \in P$, אז נקבל $a \in P$ או $b \in P$ בסתירה.
+\end{proof}
+
+\subquestion{}
+תהי $S \subset R$ כפלית כך ש־$0 \notin S$.
+נראה שקיים $P \in \Spec R$ כך ש־$P \cap S = \emptyset$.
+\begin{proof}
+	נסמן $\Pp = \{ P \triangleleft R \mid S \cap P = \emptyset \}$.
+	מתקיים $(0) \in \Pp$, וכן לכל שרשרת $C \subset \Pp$ נקבל ש־$\bigcup C \triangleleft R, \bigcup \Pp \triangleleft R$ ולכן מתנאי הלמה של צורן קיים אידאל $P \triangleleft R$ ב־$\Pp$ מקסימלי ביחס ההכלה.
+	נראה ש־$P$ ראשוני, נניח בשלילה שלא ולכן קיימים $a, b \in R$ כך ש־$a b \in P$ וכן $a, b \notin P$, ולכן $P \subset P + (a), P + (b) \triangleleft R$ אידאלים.
+	אבל $P$ מקסימלי ב־$\Pp$ ולכן $P + (a) \cap S \ne \emptyset$ וכך גם $P + (b) \cap S \ne \emptyset$.
+	נסמן,
+	\[
+		s_1 = p_1 + r_1 a,
+		\qquad
+		s_2 = p_2 + r_2 b,
+	\]
+	עבור $s_1, s_2 \in S, p_1, p_2 \in P, r_1, r_2 \in R$.
+	נבחין כי $s_1 s_2 \in S$ כקבוצה כפלית, אבל גם,
+	\[
+		s_1 s_2
+		= (p_1 + r_1 a) (p_2 + r_2 b)
+		= p_1 p_2 + p_1 r_2 b + p_2 r_1 a + r_1 r_2 a b
+		\in P
+	\]
+	שכן $P$ אידאל ולכן סגור לכפל, וכן $a b \in P$, אז קיבלנו ש־$P \cap S \ne \emptyset$ בסתירה.
+\end{proof}
+
+\end{document}
