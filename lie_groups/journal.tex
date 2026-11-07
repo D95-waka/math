@@ -42,4 +42,27 @@ giving us motivation to compare our definition of a manifold in euclidean space 
 \end{proof}
 This result together with Whitney embedding theorem lead us to the conclusion that a manifold is a smooth manifold iff its a GP manifold (up to embedding).
 
+\section{Journal 2}
+We will discuss the claim that $\exp : L(G) \to G$ is a local homeomorphism, and in particular the fact that $\ker \exp$ is a discrete set.
+In general, the following theorem is known about embedded manifolds,
+\begin{theorem}[Preimage theorem]
+	If $y$ is a regular value of $f : X \to Y$, then $f^{-1}(Y)$ is a submanifold of $X$ with $\dim f^{-1}(y) = \dim X - \dim Y$.
+\end{theorem}
+where,
+\begin{definition}[Regular value]
+	If $f : X \to Y$ is a smooth map between manifolds, then $y \in Y$ is called a regular value if $d f_x : T_x(X) \to T_y(Y)$ is surjective at every point $x \in f^{-1}(y)$.
+\end{definition}
+If a function is locally homeomorphism, then in particular it is locally surjective, and defines a preimage manifold with $\dim f^{-1}|_U(y) = \dim X - \dim T_e X = 0$, namely it is a discrete set of points.
+While this is a very complex way to perceive this result, it binds the behavior of the exponential map to intersection-theory, and open the question about these two topics.
+Let us proceed to prove the claim in discussion directly.
+\begin{proposition}
+	If $G$ has a Lie group structure, and $\exp : L(M) \to M$ is the exponential function, then $\exp^{-1}(g)$ is discrete for any $g \in G$.
+\end{proposition}
+\begin{proof}
+	If $g \notin G_e$ then $\exp^{-1}(g) = \emptyset$, then let us assume that $\exp^{-1}(g)$ is non-empty, in particular $g \in G_e$.
+	Assume for the sake of contradiction that a point $x \in \exp^{-1}(g)$ is non-discrete, namely there exist a sequence $\{ x_n \} \subseteq \exp^{-1}(g)$ with $x_n \to x$.
+	$\exp$ is a diffeomorphism, then let $\varphi : \overset{\subseteq G}{U} \to \overset{\subseteq L(G)}{W}$ be a chart, then $h = \varphi^{-1} \circ \exp$ is a diffeomorphism,
+	but $\exp(x_n) = g$ therefore $h(x_n)$ is constant for any $n$, a contradiction.
+\end{proof}
+
 \end{document}
