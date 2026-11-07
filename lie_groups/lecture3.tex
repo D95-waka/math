@@ -20,6 +20,7 @@
 		T_p X
 		= \{ \gamma : (-\delta, \delta) \to X \mid \gamma(0) = p, \gamma \in C^{\infty}(X), \delta \in \RR^+ \} / \sim
 	\]
+	The tangent bundle of $X$ is denoted $T X = \bigsqcup_{p \in X} T_p X$.
 \end{definition}
 \begin{definition}[exponential map]
 	If $G$ is a Lie group then define $\exp : L(G) \to G$ as the map that for any $v \in L(G)$, $\theta_v$ be the corresponding $1$-parameter subgroup of $G$, then $\exp tv = \theta_v(t)$.
@@ -68,13 +69,13 @@ We can now describe the structure of a submanifold as a manifold,
 \end{corollary}
 Recall that if $M_1, M_2$ are smooth manifolds, $M_1 \times M_2$ can be given a smooth manifold structure, this holds for submanifolds as well.
 \begin{exercise}
-	Show that if $N_1, N_2$ are manifolds of $M_1, M_2$ then $N_1 \times N_2$ is a submanifold of $M_1 \times M_2$,
+	Show that if $N_1, N_2$ are submanifolds of $M_1, M_2$ then $N_1 \times N_2$ is a submanifold of $M_1 \times M_2$,
 	and its differential structure as a submanifold is the same as of the product of the submanifolds as smooth manifolds.
 \end{exercise}
 As of now, there are two distinct ``substructures'' we consider of a Lie group, that is the subgroup \& the submanifold.
 The question that naturally arises is whether there is a connection between these two substructures.
 \begin{proposition}
-	If $G$ is a Lie group and $H$ is both a submanifold and a subgroup then $H$ is a Lie group.
+	If $G$ is a Lie group and $H$ is both a submanifold and a subgroup then $H$ assumes the structure of a Lie group.
 \end{proposition}
 \begin{proof}
 	Follows from the last exercise and proposition for the maps $\mu : G \times G \to G$ and $\mu : H \times H \to H$ and $i : G \to G$ to $i : H \to H$.
@@ -158,7 +159,7 @@ In other words, a closed subgroup is closed under ``directions'', namely if a di
 \end{lemma}
 \begin{proof}
 	Split $L(G) = W' \oplus W$, there is a diffeomorphism $\varphi(w', w) = \exp(w') \exp(w)$ between a neighborhood of $0 \in L(G)$ and a neighborhood of $e \in G$.
-	Assume the lemma does not hold for contradiction, then there is no open set $0 \in \exp U \subseteq \exp W \subseteq H$.
+	Assume the lemma does not hold for contradiction, then there is no open set $e \in \exp U \subseteq \exp W \subseteq H$.
 	In other words there is a sequence $\{ h_n \} \subseteq H$ such that $h_n \to e$. Denote $h_n = \varphi(w_n', w_n)$, then by the contradiction it can be assumed that $w_n' \ne 0$ for all $n$.
 	Since $H$ is a subgroup and $\exp w_n \in H, \varphi(w_n', w_n) \in H$ it follows that $\exp w_n' \in H$ as well.
 	$\frac{w_n'}{\lVert w_n' \rVert} \in S^k$ for $S^k = \{ v \in L(G) \mid \lVert v \rVert = 1 \}$ a $k$-sphere, in particular in a compact set,
@@ -177,7 +178,7 @@ In other words, a closed subgroup is closed under ``directions'', namely if a di
 \begin{example}
 	$U(n) \subseteq \GL_n(\CC)$ the subspace of unitary complex matrices is also a closed subset as a similar case of $O(n)$, thus also a Lie group.
 \end{example}
-As an embedded manifold we can identify $T_{\id} O(n)$ and $T_{\id}(U(n))$ as subspaces of $M_n(\RR)$ and $M_n(\CC)$.
+As an embedded manifold we can identify $T_{\id}(O(n))$ and $T_{\id}(U(n))$ as subspaces of $M_n(\RR)$ and $M_n(\CC)$.
 \begin{proposition}
 	In both Lie groups, $L(G) = \{ X \in M_n(\FF) \mid \bar{X}^T = -X \}$.
 \end{proposition}
@@ -235,7 +236,8 @@ Together with the fact that a quotient topology assumes 2nd countability of a to
 \end{lemma}
 \begin{proof}
 	Recall that $\exp$ is a diffeomorphism for small enough neighborhood of $0$.
-	It suffice to show that $f$ is injective (why?), let $w_1, w_2 \in U$, and assume $\psi(w_1) = \psi(w_2)$, if $w_1 = -w_2$ then $\exp(w_1) H = \exp(-w_1) H \implies \exp {(w_1)}^2 H = H \implies 2 w_1 \in W \implies w_1 = 0$.
+	It suffice to show that $\psi$ is injective (why?), let $w_1, w_2 \in U$,
+	and assume $\psi(w_1) = \psi(w_2)$, if $w_1 = -w_2$ then $\exp(w_1) H = \exp(-w_1) H \implies \exp {(w_1)}^2 H = H \implies 2 w_1 \in W \implies w_1 = 0$.
 	Assume otherwise $w_1 \ne -w_2$, $\exp(w_1) H = \exp(w_2) H \implies \exp(w_1 - w_2) \in H$, then $w_1 - w_2 \in W \implies w_1 - w_2 = 0$.
 	Therefore $\psi$ is a bijection composited by continuous functions, therefore continuous.
 \end{proof}
@@ -254,10 +256,37 @@ Together with the fact that a quotient topology assumes 2nd countability of a to
 	The second part is similar and is left as an exercise.
 \end{proof}
 \begin{definition}[Bundle]
-	TODO
+	A \textbf{bundle} is structure consists of:
+	\begin{enumerate}
+		\item Bundle space: a topological space $E$, also called total space
+		\item Base space: another topological space, denoted usually by $B$
+		\item Projection: a continuous map $p : E \to B$ surjective
+	\end{enumerate}
+	For $b \in B$ we call $F_b : = p^{-1}(b)$ the \textbf{fiber} of $b$ in the bundle. \\
+	A bundle is called a \textbf{fiber bundle} if also:
+	\begin{enumerate}
+		\setcounter{enumi}{3}
+		\item Fiber: There exists another topological space $F$ such that $F_b$ is homeomorphic to $F$ for all $b \in B$
+		\item For any $b \in B$ there is an open neighborhood $b \in U \subseteq B$ such that there is a homeomorphism $\varphi : U \times F \to p^{-1}(U)$
+	\end{enumerate}
 \end{definition}
+\begin{notation}
+	We will denote a fiber bundle by $F \to E \to B$ to describe both the projection and the embedding of the fiber in the bundle space.
+\end{notation}
+The concept of a bundle is not new to us, as any topological covering space is a fiber bundle such that $F_b$ is discrete for any $b \in B$.
+In general, we wish to conceptualize a fiber bundle as a more general notion of a covering space, locally $E$ assumes the structure of $U \times F$,
+meaning that when inspecting a small enough neighborhood, $E$ can be thought of as a stack of $U$ copies of the fiber.
+\begin{example}
+	If $M$ has a structure of a manifold (and in particular a smooth manifold) then $T M = \bigsqcup_{x \in M} T_x M$, the tangent bundle, is a bundle.
+	We can choose $p : T M \to M$ by $p(x, u) = x$, it also follows that $F_x \simeq T_x M$, the tangent space of $x$.
+\end{example}
+Recall that if $G$ assumes a Lie group structure then $T_x G \cong L(G)$, in other words $L(G) \to G \times L(G) \cong T G \to G$ is a fiber bundle.
 \begin{proposition}
-	$H \to G \to G / H$ is a bundle.
+	$H \to G \to G / H$ defines a fiber bundle.
 \end{proposition}
+A direct result is that for each $x H \in G / H$ there is an open subset $x H \in U \subseteq G / H$ can be identified as $U \times H$.
+\begin{exercise}
+	Show that if $\dim G = n$ and $\dim H = k < n$ then $\dim G / H = n - k$.
+\end{exercise}
 
 \end{document}
