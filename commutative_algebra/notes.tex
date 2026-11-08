@@ -1169,5 +1169,155 @@ $A_{\alpha}$ חילופיים אם ורק אם $\prod_{\alpha \in I} A_{\alpha}$
 	קבוצה אלגברית ב־$K^n$ היא תת־קבוצה מהצורה $Z(S)$ עבור $S \subset K[x_1, \ldots, x_n]$.
 \end{definition}
 
+\section{שיעור 6 --- 8.11.2026}
+\subsection{מבוא לגאומטריה אלגברית --- המשך}
+\begin{example}
+	כל תת־מרחב לינארי של $K^n$ הוא קבוצה אלגברית, ונקבל אותו תמיד כאוסף שורשים של משוואות לינאריות.
+\end{example}
+\begin{example}
+	הקבוצה $\{ x^2 + y^2 = 1 \} \subset K^2$, לעתים נכנה אותה מעגל מעל $K$.
+\end{example}
+\begin{proposition}
+	יהי $K$ שדה סגור אלגברית, אז,
+	\begin{enumerate}
+		\item אם $i \in I$ ו־$V_i \subset K^n$ אוסף של קבוצות אלגבריות, אז גם $\bigcap_{i \in I} V_i$ אלגברית
+		\item אם $V_1, \ldots, V_m \subset K^n$ אלגבריות, אז גם $\bigcup_{i = 1}^m V_i$ אלגבריות
+		\item $\emptyset, K^n$ אלגבריות
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\textbf{1.}
+	נניח ש־$V_i = Z(V_i)$ אז,
+	\[
+		\bigcap_{i \in I} V_i
+		= Z(\bigcup_{i \in I} S_i)
+	\]
+	אלגברית.
+
+	\textbf{2.}
+	מספיק להראות למקרה $m = 2$, כל מקרה נוסף יתקבל באינדוקציה.
+	נסמן $V_1 = Z(S_1), V_2 = Z(S_2)$, ונראה,
+	\[
+		V_1 \cup V_2
+		= Z(\{ f g \mid f \in S_1, g \in S_2 \})
+	\]
+	לכל $f \in S_1, g \in S_2$ ו־$a \in V_1 \cup V_2$ נקבל שאו $f(a) = 0$ או $g(a) = 0$ ולכן בכל מקרה $f(a) g(a) = (f g)(a) = 0$, לכן $V_1 \cup V_2 \subset Z(\{ f g \})$.
+	מהצד השני תהי $a \notin V_1 \cup V_2$, אז בפרט $a \in V_1$ וקיים $f \in S_1$ כך ש־$f(a) \ne 0$.
+	באותו אופן קיים גם $g \in V_2$ כך ש־$g(a) \ne 0$, ולכן באופן כללי $(f g)(a) \ne 0$, כלומר $V_1 \cup V_2 \supset Z(\{ f g \})$.
+
+	\textbf{3.}
+	$K^n = Z(\emptyset)$ וכן $\emptyset = Z(\{ 1 \})$.
+\end{proof}
+אלו הן בדיוק התכונות של קבוצה סגורה בטופולוגיה, לכן קבוצה אלגברית נקראת גם \textbf{סגורה זריצקי} (Zariski) ולכן גם $K^n \setminus V$ נקראת פתוחה זריצקי.
+\begin{corollary}
+	אוסף הקבוצות הפתוחות זריצקי מגדירות טופולוגיה על $K^n$ שנקראת \textbf{טופולוגיית זריצקי}.
+\end{corollary}
+\begin{remark}
+	אם $K = \CC$, אז טופולוגיית זריצקי היא לא הטופולוגיה הסטנדרטית של $\CC^n$. \\
+	כל קבוצה סגורה זריצקי היא סגורה במובן הרגיל (כי פונקציות פולינומיאליות הן רציפות), אבל ההפך לא נכון, לדוגמה $\RR \subset \CC$ אינה אלגברית.
+	במילים אחרות, טופולוגיית זריצקי היא גסה יותר מטופולוגיה סטנדרטית.
+\end{remark}
+\begin{notation}
+	תהי $X \subset K^n$ תת־קבוצה כלשהי, אז נסמן,
+	\[
+		I(X)
+		= \{ f \in K[\bar{x}] \mid \forall \bar{a} \in X,\ f(\bar{a}) = 0 \}
+		\subset K[\bar{x}]
+	\]
+\end{notation}
+\begin{proposition}
+	$I(X) \subset K[\bar{x}]$ אידאל רדיקלי, כלומר $I(X) = \sqrt{I(X)}$.
+\end{proposition}
+\begin{proof}
+	אם $f, g \in I(X)$ אז $f(a) = g(a) = 0$ לכל $a \in X$ ולכן גם $(f + g)(a) = f(a) + g(a) = 0$ לכל $a \in X$.
+	כלומר $f + g \in I(X)$.
+	אם $h \in K[\bar{x}]$ אז גם $(h f)(a) = h(a) f(a) = 0$ ולכן גם $h f \in K[\bar{x}]$, וכן $0 \in I(X)$ ולכן $I(X) \triangleleft K[\bar{x}]$. \\
+	יהי $f \in \sqrt{I(X)}$, כלומר $f^n \in I(X)$, ויהי $a \in X$, אז,
+	\[
+		{(f(a))}^n
+		= f^n(a)
+		= 0
+	\]
+	ולכן $f(a) = 0$ לכל $a \in X$ ולכן $f \in I(X)$, כלומר $I(X) = \sqrt{I(X)}$.
+\end{proof}
+אם $X \subset K^n$ אלגברית אז נקרא ל־$I(X)$ \textbf{אידאל המשוואות} של $X$.
+\begin{proposition}
+	הטענות הבאות נכונות לאידאל המשוואות,
+	\begin{enumerate}
+		\item אם $X \subset Y \subset K^n$ אז $I(X) \supset I(Y)$
+		\item אם $S \subset T \subset K[\bar{x}]$ אז $Z(S) \supset Z(T)$
+	\end{enumerate}
+\end{proposition}
+\begin{proposition}
+	אם $V$ אלגברית, אז $Z(I(V)) = V$. \\
+	אם $J \triangleleft K[\bar{x}]$ אידאל, אז $\sqrt{J} \subset I(Z(J))$.
+\end{proposition}
+\begin{proof}
+	נסמן $V = Z(S)$, אז כל $f \in S$ מתאפס על $V$ ולכן $S \subset I(V)$.
+	לכן $V = Z(S) \supset Z(I(V))$.
+	בכיוון ההפוך תהי $a \in V$, אז $f(a) = 0$ לכל $f \in I(V)$ ולכן $a \in Z(I(V))$ ולכן $V \subset Z(I(V))$.
+
+	עבור החלק השני של הטענה, יהי $f \in \sqrt{J}$ ו־$a \in Z(I)$.
+	קיים $n$ כך ש־$f^n \in J$ ולכן ${(f(n))}^n = 0$ ובהתאם $f(a) = 0$.
+	זה נכון לכל $a \in Z(J)$ ולכן $f \in I(Z(J))$, קיבלנו ש־$\sqrt{J} \subset I(Z(J))$.
+\end{proof}
+עד כה לא השתמשנו בכלל בסגירות האלגברית, עתה ננסח משפט שבו לסגירות האלגברית תפקיד חשוב, אך עוד לא נוכיח את המשפט.
+\begin{theorem}[האפסים של הילברט, Hilbert's Nullstellensatz]
+	יהי $K$ שדה סגור אלגברית ויהי $J ftri K[x_1, \ldots, x_n]$ אידאל, אז,
+	\[
+		I(Z(J))
+		= \sqrt{J}
+	\]
+	באופן שקול, אם $f \in K[\bar{x}]$ מתאפס על כל פתרון של המערכת $J$, אז $f^n \in J$ עבור $n \in \NN$ כלשהו.
+\end{theorem}
+\begin{corollary}
+	קיימת התאמה חד־חד ערכית ועל ההופכת הכלה בין אוסף הקבוצות $V \subset K^n$ האלגבריות ואוסף האידאלים $J \triangleleft K[\bar{x}]$ הרדיקליים על־ידי $V \mapsto I(V)$ ו־$J \mapsto Z(J)$.
+\end{corollary}
+\begin{remark}
+	אם $K$ לא סגור אלגברית אז יכול להיות ש־$I(Z(J)) \supsetneq \sqrt{J}$.
+\end{remark}
+\begin{example}
+	אם $n = 1, K = \RR$ אז $J = (x^2 + 1)$ הוא אידאל שנוצר על־ידי פולינום ללא פתרונות, לכן $Z(J) = \emptyset$ ולכן $I(Z(J)) = (1)$, אבל $\sqrt{J} = J$ שכן הפולינום אי־פריק.
+\end{example}
+נעבור למסקנות ממשפט האפסים של הילברט.
+\begin{corollary}
+	כל האידאלים המקסימליים של $K[\bar{x}] = K[x_1, \ldots, x_n]$ הם מהצורה $(x_1 - c_1, \ldots, x_n - c_n)$ עבור $c_1, \ldots, c_n \in K^n$.
+\end{corollary}
+הסיבה לכך היא שכל אידאל מקסימלי רדיקלי, לפי ההתאמה אידאלים מקסימליים מתאימים לקבוצות אלגברית מינימליות, כלומר נקודות.
+אם $c = (c_1, \ldots, c_n) \in K^n$ אז $I(\{ c \}) = (x_1 - c_1, \ldots, x_n - c_n)$.
+אם $f(c) = 0$ אז,
+\[
+	f = f(x_1, \ldots, x_n) - f(c_1, \ldots, c_n) \in (x_1 - c_1, \ldots, x_n - c_n)
+\]
+נרצה לחקור את ההתאמה של אידאלים ראשוניים.
+\begin{definition}[קבוצה אלגברית אי־פריקה]
+	קבוצה אלגברית $V \subset K^n$ נקראת \textbf{אי־פריקה} (irreducible) אם $V \ne \emptyset$ ולא ניתן להציג $V = U \cup W$ כאשר $U, W \subsetneq V$ אלגבריות.
+\end{definition}
+\begin{example}
+	$\{ x^2 + y^2 = 1 \}$ היא אי־פריקה. \\
+	מהצד השני $\{ x y = 0 \}$ היא פריקה, זאת שכן היא בדיוק $\{ x = 0 \} \cup \{ y = 0 \}$.
+\end{example}
+\begin{proposition}
+	תחת ההתאמה בין אידאלים רדיקליים וקבוצות אלגבריות, אידאלים ראשוניים מתאימים לקבוצות אי־פריקות.
+\end{proposition}
+\begin{proof}
+	בכיוון הראשון, יהי $P \triangleleft K[\bar{x}]$ אידאל ראשוני, ונסמן $V = Z(P)$, נניח בשלילה ש־$V = U \cup W$ עבור קבוצות אלגבריות $U, W \subsetneq V$.
+	$P \subsetneq I(U), I(W)$ (שכן ההתאמה הופכת הכלה) ונבחר $f \in I(U) \setminus P, g \in I(W) \setminus P$, ונבחין כי $f$ מתאפס על $U$ ו־$g$ מתאפס על $W$ ולכן $f g$ מתאפס על $V$.
+	לכן $f g \in I(V) = I(Z(P)) = P$ בסתירה לראשוניות $P$.
+
+	בכיוון השני נניח ש־$P \triangleleft K[\bar{x}]$ רדיקלי אבל אינו ראשוני, ונסמן $V = Z(P)$.
+	יהיו $f, g \in K[\bar{x}]$ כך ש־$f, g \in P$ אבל $f g \in P$.
+	נגדיר,
+	\[
+		U = Z(P \cup \{ f \}),
+		\qquad
+		W = Z(P \cup \{ g \})
+	\]
+	ונראה כי $V = U \cup W$ ו־$U, W \subsetneq V$, כלומר $V$ פריקה.
+	$f$ מתאפסת על $U$ ולא על $V$ ולכן $U \subsetneq V$, אותו הדבר נכון גם ל־$W$, כלומר $W \subsetneq V$.
+	אם $a \in V$ אז כל $h \in P$ מתאפס על $a$, וכן $f g \in P$ ולכן $(f g)(a) = 0$, כלומר $f(a) = 0$ או $g(a) = 0$.
+	במקהה הראשון $a \in U$ ובמקרה השני $a \in W$, כלומר $V = U \cap W$ פריקה.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
