@@ -18,21 +18,22 @@
 	If $(X, A)$ is a smooth manifold and $p \in X$ is some point, then the tangent space of $p$ is defined as,
 	\[
 		T_p X
-		= \{ \gamma : (-\delta, \delta) \to X \mid \gamma(0) = p, \gamma \in C^{\infty}(X), \delta \in \RR^+ \} / \sim
+		= \{ \gamma \in C^\infty((-\delta, \delta), X) \mid \gamma(0) = p, \delta \in \RR^+ \} / \sim
 	\]
 	The tangent bundle of $X$ is denoted $T X = \bigsqcup_{p \in X} T_p X$.
 \end{definition}
 \begin{definition}[exponential map]
-	If $G$ is a Lie group then define $\exp : L(G) \to G$ as the map that for any $v \in L(G)$, $\theta_v$ be the corresponding $1$-parameter subgroup of $G$, then $\exp tv = \theta_v(t)$.
+	If $G$ is a Lie group then define $\exp : L(G) \to G$ as the map that for any $v \in L(G)$ and $t \in \RR$,
+	let $\theta_v : \RR \to G$ be the corresponding $1$-parameter subgroup of $G$, then $\exp tv = \theta_v(t)$.
 \end{definition}
 \begin{proposition}
 	Let $\varphi_e : U_e \to \Omega_0$ be a chart where $e \in U_e \subseteq G$ and $0 \in \Omega_0 \subseteq L(G)$ open neighborhoods.
-	Let $x, y \in \Omega_0$ and denote $x \cdot y = \varphi(\varphi^{-1}(x) \cdot \varphi^{-1}(y))$, then $x \cdot y = x + y + o(r)$ where $r$ is the distance of $(x, y)$ and $(e, e)$.
+	Let $x, y \in \Omega_0$ and denote $x \cdot y = \varphi(\varphi^{-1}(x) \cdot \varphi^{-1}(y))$, then $x \cdot y = x + y + o(r)$ where $r$ is the distance between $(x, y)$ and $(0, 0)$.
 \end{proposition}
 
 \section{Submanifolds}
 We intend to characterize the subspace of a Lie group, in order to do so we will discuss a subspace retaining the properties of manifold, as the characterization of a subgroup is well defined.
-The general idea if to define submanifold as the restriction of a manifold to a subspace such that its smooth property, as show up as smoothness of charts, would not be affected.
+The general idea is to define a submanifold as the restriction of a manifold to a subspace such that its smooth property, showing up as smoothness of charts, would not be affected.
 \begin{definition}[Submanifold]
 	Let $M$ be a smooth manifold modeled on $V$, and let $N \subseteq M$ be a subset and $W \subseteq V$ be a subspace.
 	$N$ is a \textbf{submanifold} modeled on $W$ if for any $x \in N$ there exists a chart compatible with $M$, $\varphi_{\alpha} : M_{\alpha} \to \Omega_{\alpha}$
@@ -52,7 +53,7 @@ We first need an actual atlas to show that, that leads us to,
 \end{proof}
 We can now describe the structure of a submanifold as a manifold,
 \begin{proposition}
-	If $N$ is a submanifold of $M$, then $N$ can be given differential structure as a manifold so that:
+	If $N$ is a submanifold of $M$, then $N$ can be given a differential structure as a manifold so that:
 	\begin{enumerate}
 		\item The inclusion of $N$ in $M$ is smooth
 		\item $P \to N$ is smooth if and only if the composition $P \to N \to M$ is smooth
@@ -81,7 +82,7 @@ The question that naturally arises is whether there is a connection between thes
 	Follows from the last exercise and proposition for the maps $\mu : G \times G \to G$ and $\mu : H \times H \to H$ and $i : G \to G$ to $i : H \to H$.
 	To elaborate we defined the submanifold differential structure as such that preserves smooth maps, then the group operations (that are of course smooth) are being preserved.
 \end{proof}
-So these two structure do collide when in Lie groups.
+So these two structures do coincide when in Lie groups.
 
 \section{Closed subgroups}
 While subgroups are a natural way to understand groups, and are easy to construct,
@@ -93,10 +94,11 @@ We will show that in a special case of subgroups the answer is that it is.
 To understand the case of a non-closed subgroup:
 \begin{example}
 	Let $M = T^2 = \RR^2 / \ZZ^2$ the $2$-torus, and take $\alpha \in \RR \setminus \QQ$ some irrational number.
-	Define $H = \{ (t, \alpha t) \in \RR^2 \mid t \in \RR \} / \ZZ^2$, then $H \le M$ a subgroup, and a dense set of $\RR^2 / \ZZ^2$, in particular it isn't closed. \\
-	It is also clear that $H$ does not assume a manifold structure, as any small enough open neighborhood of any point $\in H$ is not connected as $H \cap {(\QQ / \ZZ)}^2 = \{ 0 \}$.
+	Define $H = \{ (t, \alpha t) \in \RR^2 \mid t \in \RR \} / \ZZ^2$, then $H \le M$ a subgroup, and a dense subset of $\RR^2 / \ZZ^2$, in particular it isn't closed. \\
+	It is also clear that $H$ does not assume a manifold structure, as for any point $p \in M$ there exists a small enough open neighborhood $p \in U \subseteq M$ which not connected,
+	as $U \cap H$ consists of infinitely many parallel line segments.
 \end{example}
-In the other hand,
+On the other hand,
 \begin{example}
 	If $\alpha \in \QQ$ then there must be $z \in \ZZ \setminus \{ 0 \}$ such that $\alpha z \in \ZZ$, meaning that $H$ is a closed path in the topological space $M$.
 	In particular $H$ is indeed a $1$ dimensional manifold.
@@ -116,7 +118,7 @@ The proof of the theorem is given by the next three lemmas:
 		\frac{1}{\lVert h_n \rVert} h_n \to v \in L(G)
 	\]
 	Then $\exp(t v) \in H$ for all $t \in \RR$.
-\end{lemma}
+\end{lemma}\label{lemma_closed_subgroup_1}
 In other words, a closed subgroup is closed under ``directions'', namely if a direction vectors converge then the span of the result is in $W$.
 \begin{proof}
 	Suppose $t \in \RR$, then,
@@ -128,14 +130,15 @@ In other words, a closed subgroup is closed under ``directions'', namely if a di
 	Let $\{ m_n \} \subseteq \NN$ be a sequence such that $m_n \lVert h_n \rVert \xrightarrow{n \to \infty} t$, such sequence can be obtained directly by limit definition.
 	Then,
 	\[
-		\lim_{n \to \infty} \exp m_n h_n
-		= \lim_{n \to \infty} \exp \frac{m_n \lVert h_n \rVert}{\lVert h_n \rVert} h_n
-		= \lim_{n \to \infty} \exp m_n \lVert h_n \rVert \cdot \lim_{n \to \infty} \exp \frac{1}{\lVert h_n \rVert} h_n
-		= \exp t v
+		\lim_{n \to \infty} m_n h_n
+		= \lim_{n \to \infty} \frac{m_n \lVert h_n \rVert}{\lVert h_n \rVert} h_n
+		= \lim_{n \to \infty} m_n \lVert h_n \rVert \cdot \lim_{n \to \infty} \frac{1}{\lVert h_n \rVert} h_n
+		= t \cdot v
 	\]
+	which implies $\lim_{n \to \infty} \exp m_n h_n = \exp t v$ by continuity of $\exp$.
 	But $\exp m_n h_n = {(\exp h_n)}^{m_n} \in H$, it follows from $H$'s closure that $\exp tv \in H$.
 \end{proof}
-\begin{lemma}
+\begin{lemma}\label{lemma_closed_subgroup_2}
 	Let $W \subseteq L(G)$ be a set of all $t v$ for $t \in \RR$ and $v \in L(G)$ of the last lemma.
 	Then $\exp W \subseteq H$ and $W$ is a vector subspace of $L(G)$.
 \end{lemma}
@@ -146,13 +149,16 @@ In other words, a closed subgroup is closed under ``directions'', namely if a di
 	The case $w_1 + w_2 = 0$ is clear then assume otherwise.
 	Consider $g(t) = \exp(t w_1) \exp(t w_2)$ and recall that $\exp$ is smooth, $g(0) = \exp(0) \exp(0) = e$,
 	then for small enough values of $t$, there is a smooth map $g(t) = \exp f(t)$ with $f(0) = 0$ and $f(t) \in L(G)$. \\
-	Recall that $x \cdot y = x + y + o(r)$ for distance $r$ in $G \times G$, when $x, y \in $ a small enough neighborhood of $e$, then the same holds for $f$,
+	Recall that $x \cdot y = x + y + o(r)$ for distance $r$ in $L(G) \times L(G)$, when $x, y \in $ a small enough neighborhood of $0$, then the same holds for $f$,
 	\[
 		g(t)
 		= \exp f(t)
-		= \exp(t w_1 + t w_2) + o(t)
+		= \exp(t w_1 + t w_2 + o(t))
+		\implies f(t)
+		= t w_1 + t w_2 + o(t)
 	\]
-	then $\frac{1}{t} f(t) \xrightarrow{t \to 0} w_1 + w_2$, by choosing $h_n = f(\frac{1}{n})$ the conditions for the last lemma hold for $v = \frac{w_1 + w_2}{\lVert w_1 + w_2 \rVert}$, therefore $w_1 + w_2 \in W$.
+	then $\frac{1}{t} f(t) \xrightarrow{t \to 0} w_1 + w_2$, by choosing $h_n = f(\frac{1}{n})$ the conditions for\ \ref{lemma_closed_subgroup_1} hold for $v = \frac{w_1 + w_2}{\lVert w_1 + w_2 \rVert}$,
+	therefore $w_1 + w_2 \in W$.
 \end{proof}
 \begin{lemma}
 	$\exp W$ is a neighborhood of $e \in H$.
@@ -172,11 +178,11 @@ In other words, a closed subgroup is closed under ``directions'', namely if a di
 \end{proof}
 \begin{example}
 	Consider $O(n) \subseteq \GL_n(\RR)$ the subgroup of orthogonal invertible matrices over the reals.
-	Define $f : \GL_n(\RR) \to \GL_n(\RR)$ by $f(A) = A^T A$ then $f$ is continuous and $O(n) = f^{-1}(\{ \id \})$.
+	Define $f : \GL_n(\RR) \to \GL_n(\RR)$ by $f(A) = A^T A$ then $f$ is continuous and $O(n) = f^{-1}(\{ I_n \})$.
 	Then $O(n)$ is closed and therefore by\ \ref{theorem_closed_subgroup_is_submanifold} a submanifold and a Lie group.
 \end{example}
 \begin{example}
-	$U(n) \subseteq \GL_n(\CC)$ the subspace of unitary complex matrices is also a closed subset as a similar case of $O(n)$, thus also a Lie group.
+	$U(n) \subseteq \GL_n(\CC)$ the subspace of unitary complex matrices is also a closed subset by a similar argument to $O(n)$, thus also a Lie group.
 \end{example}
 As an embedded manifold we can identify $T_{\id}(O(n))$ and $T_{\id}(U(n))$ as subspaces of $M_n(\RR)$ and $M_n(\CC)$.
 \begin{proposition}
@@ -192,10 +198,12 @@ As an embedded manifold we can identify $T_{\id}(O(n))$ and $T_{\id}(U(n))$ as s
 	\[
 		(I + t \bar{X}^T + o(t))(I + t X + o(t)) = I
 		\implies
+		I + t (\bar{X}^T + X) + o(t) = I
+		\implies
 		\bar{X}^T + X = 0
 	\]
 
-	From the other hand, if $\bar{X}^T = -X$ then,
+	On the other hand, if $\bar{X}^T = -X$ then,
 	\[
 		\overline{(\exp t X)}^T
 		= \overline{\left(\sum_{n = 0}^\infty \frac{t^n X^n}{n!}\right)}^T
@@ -228,7 +236,7 @@ As an embedded manifold we can identify $T_{\id}(O(n))$ and $T_{\id}(U(n))$ as s
 	the projection $p : G \to G / H$ is an open map, and define $R = \{ (x, y) \in G \times G \mid x^{-1} y \in H \}$, meaning that $(x, y) \in R \iff x H = y H$.
 	Define $f : G \times G \to G$ by $f(x, y) = x^{-1} y$, $f$ is continuous as both the group multiplication \& inverse are continuous, and $f^{-1}(H) = R$.
 	$H \subseteq G$ is closed and $f$ is continuous therefore $f^{-1}(H) = R$ is closed in $G \times G$. \\
-	By the property that a topological quotient space $X / H$ is Hausdorff iff $H \subseteq X$ is closed it follows that $G / H$ is indeed Hausdorff.
+	By the property that a topological quotient space $X / R$ is Hausdorff iff $R \subseteq X \times X$ is closed in $X \times X$, it follows that $G / R$ is indeed Hausdorff.
 \end{proof}
 Together with the fact that a quotient topology assumes 2nd countability of a topology, we get,
 \begin{lemma}
@@ -236,10 +244,15 @@ Together with the fact that a quotient topology assumes 2nd countability of a to
 \end{lemma}
 \begin{proof}
 	Recall that $\exp$ is a diffeomorphism for small enough neighborhood of $0$.
-	It suffice to show that $\psi$ is injective (why?), let $w_1, w_2 \in U$,
-	and assume $\psi(w_1) = \psi(w_2)$, if $w_1 = -w_2$ then $\exp(w_1) H = \exp(-w_1) H \implies \exp {(w_1)}^2 H = H \implies 2 w_1 \in W \implies w_1 = 0$.
-	Assume otherwise $w_1 \ne -w_2$, $\exp(w_1) H = \exp(w_2) H \implies \exp(w_1 - w_2) \in H$, then $w_1 - w_2 \in W \implies w_1 - w_2 = 0$.
-	Therefore $\psi$ is a bijection composited by continuous functions, therefore continuous.
+	It suffice to show that $\psi$ is injective (why?), let $w_1, w_2 \in U$, and assume $\psi(w_1) = \psi(w_2)$, this is equivalent to $\exp(w_1) H = \exp(w_2) H$, which leads to,
+	\[
+		\exp(-w_1) \exp(w_2)
+		= h
+		\in H
+	\]
+	Recall the diffeomorphism $\varphi(w', w) = \exp w' \exp w$ defined in lemma\ \ref{lemma_closed_subgroup_2}.
+	We assume (up to take a smaller $U$) that $(w', w) \in U$, then there are values $(0, y) \in U$ such that $\varphi(0, y) = h$.
+	Then $\exp(-w_1) \exp(w_2) = \exp(y) \implies \exp(w_2) = \exp(w_1) \exp(y)$, equivalently $\varphi(w_2, 0) = \varphi(w_1, y)$, but $\varphi$ is diffeomorphism then $y = 0$ and $w_1 = w_2$.
 \end{proof}
 \begin{exercise}
 	Show that $\psi$ is a homeomorphism, in other words, show that its inverse is continuous.
@@ -250,13 +263,13 @@ Together with the fact that a quotient topology assumes 2nd countability of a to
 \begin{proof}
 	Split $L(G) = W \oplus W'$ as before, such that $W = L(H)$ and let $0 \in U \subseteq W'$ be a small enough neighborhood as following the last lemma.
 	Define the map $\psi : U \to G / H$ by $\psi = p \circ \exp |_U$, it follows from the lemma and exercise that it is a homeomorphism between $U$ and a neighborhood of $e H$ in $G / H$.
-	In a similar matter define $\psi_x : U_x \to V_x$ by $\psi_v = \rho_x \circ \psi$, by the fact that $T_e G \cong T_x G$ it is a homeomorphism as well.
+	In a similar manner define $\psi_x : U_x \to V_x$ by $\psi_x = \rho_x \circ \psi$, by the fact that $T_e G \cong T_x G$ it is a homeomorphism as well.
 	$\psi_x^{-1} \psi : U \to U_x$ is smooth, it is clear by restriction of charts of $G$ in $e$ and $x$.
 
 	The second part is similar and is left as an exercise.
 \end{proof}
 \begin{definition}[Bundle]
-	A \textbf{bundle} is structure consists of:
+	A \textbf{bundle} is a structure consisting of:
 	\begin{enumerate}
 		\item Bundle space: a topological space $E$, also called total space
 		\item Base space: another topological space, denoted usually by $B$
@@ -267,7 +280,8 @@ Together with the fact that a quotient topology assumes 2nd countability of a to
 	\begin{enumerate}
 		\setcounter{enumi}{3}
 		\item Fiber: There exists another topological space $F$ such that $F_b$ is homeomorphic to $F$ for all $b \in B$
-		\item For any $b \in B$ there is an open neighborhood $b \in U \subseteq B$ such that there is a homeomorphism $\varphi : U \times F \to p^{-1}(U)$
+		\item For any $b \in B$ there is an open neighborhood $b \in U \subseteq B$ such that there is a homeomorphism $\varphi : U \times F \to p^{-1}(U)$,
+			such that $p(\varphi(x, f)) = x$ for all $x \in U, f \in F$
 	\end{enumerate}
 \end{definition}
 \begin{notation}
@@ -284,7 +298,7 @@ Recall that if $G$ assumes a Lie group structure then $T_x G \cong L(G)$, in oth
 \begin{proposition}
 	$H \to G \to G / H$ defines a fiber bundle.
 \end{proposition}
-A direct result is that for each $x H \in G / H$ there is an open subset $x H \in U \subseteq G / H$ can be identified as $U \times H$.
+A direct result is that for each $x H \in G / H$ there is an open subset $x H \in U \subseteq G / H$ such that its preimage can be identified as $U \times H$.
 \begin{exercise}
 	Show that if $\dim G = n$ and $\dim H = k < n$ then $\dim G / H = n - k$.
 \end{exercise}
