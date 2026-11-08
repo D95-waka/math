@@ -9,6 +9,8 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 
+\DeclareMathOperator\length{length}
+
 \begin{document}
 \maketitle
 \maketitleprint[blue]{}
@@ -454,7 +456,7 @@ and $\forall \delta > 0 \exists r_0,\ r > r_0 \implies \int_{|t| > \delta} P_r(\
 \end{proof}
 
 \section{Lecture 3 --- 1.11.2026}
-\section{Elementary study of the boundary behavior}
+\subsection{Elementary study of the boundary behavior}
 We saw the theorem,
 \begin{theorem}
 	Suppose $F : \partial \DD \to \RR$  is in $\Ll^p(\partial \DD)$ and $u(r e^{i \theta}) = P[F](r e^{i \theta}) = \frac{1}{2 \pi} \int_{-\pi}^{\pi} F(e^{i t}) P_r(\theta - t)\ dt$,
@@ -570,11 +572,11 @@ $u(z)$ is harmonic then $u(e^{i \alpha} z)$ is also harmonic, therefore we can r
 We want $\eta(0) = 0$, replace $\mu$ by $\mu - c\ dm$ where $c \in \RR$ is chosen that $\mu([-\pi, 0]) = c \cdot m([-\pi, 0]) = c \pi$.
 $P_{\mu}(r) = I + I\!I$. If $\eta(0) = 0$ and $\eta'(0)$ exists then $g(t) = \frac{\eta(t)}{t}$ is continuous at $0$, therefore $I\!I \to \eta'(0)$.
 \begin{theorem}[F \& M. Riesz]
-	Suppose $\mu$ is a measure on $[-\pi, \pi]$. If,
+	Suppose $\mu$ is a signed measure on $[-\pi, \pi]$. If,
 	\[
 		\forall n \in \NN,
 		\quad
-		\hat{\mu}(-n) \frac{1}{2 \pi} \int_{-\pi}^{\pi} e^{i n \theta}\ d \mu = 0
+		\hat{\mu}(-n) : = \frac{1}{2 \pi} \int_{-\pi}^{\pi} e^{i n \theta}\ d \mu = 0
 	\]
 	then $\mu$ is absolutely continuous with respect to $m$.
 \end{theorem}
@@ -645,6 +647,180 @@ $f_r \to \mu$ in weak-$*$.
 	\int_{\partial \DD} z^n f(r z)\ dm
 	\to \int_{\partial \DD} z^n\ d \mu
 \]
+
+\section{Lecture 4 --- 8.11.2026}
+\begin{definition}[Hardy space]
+	The harmonic Hardy space $h^p$ is the set of harmonic functions $u$ on $\DD$ satisfying,
+	\[
+		\lVert u \rVert_{h^p}^p
+		= \sup_{0 < r < 1} \int_{-\pi}^{\pi} {| u(r e^{i \theta}) |}^p\ d \theta
+		< \infty
+	\]
+\end{definition}
+For $p > 1$ we saw that $h^p \simeq \Ll^p(\partial \DD)$,
+\[
+	P : \Ll^p \xrightarrow{\sim} h^p,
+	\qquad
+	F(\theta)
+	\mapsto \frac{1}{2 \pi} \int_{-\pi}^{\pi} P_r(\theta - t) F(t)\ dt
+\]
+For $p = 1$ this is false, if $u(r e^{i \theta}) = \frac{1 - r^2}{1 + r^2 - 2 r \cos \theta}$.
+In this case $\Ll^1 \subsetneq h^1 \subseteq \Mm$.
+\begin{lemma}
+	Suppose $F \in C^1([-\pi, \pi])$ and suppose,
+	\[
+		u(e r^{i \theta})
+		= P[F](e r^{i \theta})
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} \frac{1 - r^2}{1 + r^2 - 2 r \cos(\theta - t)} F(t)\ dt
+	\]
+	We have seen that,
+	\[
+		\tilde{u}(r e^{i \theta})
+		= Q[F](r e^{i \theta})
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} \frac{2 r \sin s}{1 + r^2 - 2 r \cos s} F(\theta - s)\ ds
+	\]
+	Then $\tilde{u}$ extends to a continuous function on $\bar{\DD}$.
+\end{lemma}
+We know that $u \to \tilde{u}$ preserves $\Ll^p$ for $1 < p < \infty$, $C^{\alpha}$ for $0 < \alpha < 1$, $W^{s, p}$ for $p > 1$, $Z$, $BMO$ etc.
+And we define,
+\[
+	\lVert f \rVert_{C^{\alpha}}
+	= \lVert f \rVert_\infty + \sup_{x, y} \frac{|f(x) - f(y)|}{{|x - y|}^{\alpha}}
+\]
+This defines Hölder space.
+\begin{proof}[Proof of the lemma]
+	\[
+		\tilde{u}(r e^{i \theta})
+		= \frac{1}{\pi} \int_{0}^{\pi} \frac{r \sin s}{1 + r^2 - 2 r \cos s} (F(\theta - s) - F(\theta + s))\ ds
+	\]
+	but $r \sin s = 2 r \sin \frac{s}{2} \cos \frac{s}{2}$ and $1 + r^2 - 2 r \cos s = {(1 - r)}^2 + 2 r - 2 r \cos s = {(1 - r)}^2 + 2 r (1 - \cos s) = {(1 - r)}^2 + r r \sin^2 \frac{s}{2}$, then,
+	\[
+		= \frac{1}{\pi} \int_{0}^{\pi} \frac{2 r \sin \frac{s}{2} \cos \frac{s}{2}}{{(1 - r)}^2 + 4 r \sin^2 \frac{s}{2}} (F(\theta - s) - F(\theta + s))\ ds
+	\]
+	As $r \to 1^-$, $\frac{2 r \sin \frac{s}{2} \cos \frac{s}{2}}{{(1 - r)}^2 + 4 r \sin^2 \frac{s}{2}}$ tends to $\frac{1}{2 \tan \frac{s}{2}}$.
+	Therefore,
+	\[
+		\lim_{r \to 1} \tilde{u}(r e^{i \theta})
+		= \frac{1}{\pi} \int_{0}^{\pi} \frac{F(\theta - s) - F(\theta + s)}{2 \tan \frac{s}{2}}\ ds
+	\]
+	Since $F \in C^1$, this integral converges absolutely.
+	I.E.,
+	\[
+		\int \left\lvert \frac{F(\theta - s) - F(\theta + s)}{2 \tan \frac{s}{2}} \right\rvert\ ds < \infty
+	\]
+	To justify the passage to the limit, we use Lebesgue's dominated convergence theorem,
+	\[
+		\frac{C}{\pi} \int \frac{|F(\theta - s) - F(\theta + s)|}{\tan \frac{s}{2}}
+		< \infty
+	\]
+\end{proof}
+
+\begin{theorem}[Uniqueness for H 1 functions]
+	Suppose $F \in H^1$. If $F$ has non-tangential boundary value $0$ on a set of positive Lebesgue measure $E$, then $F \equiv 0$.
+\end{theorem}
+\begin{proof}
+	Without loss of generality, we may assume that $F(0) \ne 0$ ($F(z) = z^k G(z)$ such that $G(0) \ne 0$).
+	Let $u = P[\frac{1}{|E|} \chi_E - \frac{1}{|E^C|} \chi_{E^C}]$, then $u(0) = \lim_{r \to 1} \frac{1}{2 \pi} \int_{-\pi}^{\pi} u(r e^{i \theta})\ d \theta = \frac{1}{2 \pi} \int_{-\pi}^{\pi} u(e^{i \theta})\ d \theta$.
+	Denote $\tilde{u}$, the harmonic conjugate of $u$, set $\varphi(z) = e^{u(z) + i \tilde{u}(z)}$, a holomorphic function and $\varphi(0) = 1$.
+	$\sup_{z \in \DD} |\varphi(z)| < \infty$ therefore $\varphi \in H^\infty$.
+	Since $\varphi$ is bounded, $\varphi^k F \in \HH^1$ for every integer $k$.
+	\[
+		F(0)
+		= \varphi^k(0) F(0)
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} \varphi^k(e^{i \theta}) F(e^{i \theta})\ d \theta
+		= \frac{1}{2 \pi} \int_{E^C} \varphi^k(e^{i \theta}) F(e^{i \theta})\ d \theta
+		\xrightarrow{k \to \infty} 0
+	\]
+\end{proof}
+\begin{theorem}[Privalov]
+	Suppose $F$ is an analytic function in $\DD$.
+	If $F$ has non-tangential boundary value $0$ on a set of positive Lebesgue measure, then $F \equiv 0$.
+\end{theorem}
+\begin{remark}
+	There exists $F \not\equiv 0$ analytic on $\DD$ such that the radial boundary value is $0$ for almost every $\theta$.
+\end{remark}
+We take for a fact the Riemann mapping theorem, that there exists a conformal mapping $\varphi : \DD \to \Omega$ for $\Omega \subsetneq \CC$ such that $\Omega$ is s.c.
+\begin{theorem}[Carathéodory]
+	If $\Omega$ is a Jordan domain, then $\varphi$ extends to a homeomorphism from $\bar{\DD}$ to $\bar{\Omega}$.
+\end{theorem}
+\begin{definition}[Rectifiable curves]
+	if $\gamma : I \to \CC$ is a curve, then we define $\length \gamma = \sup_P \sum_{i = 0}^{n - 1} |z_{i + 1} - z_i|$.
+	We say that $\gamma$ is rectifiable if $\length \gamma < \infty$.
+\end{definition}
+Another fact we will accept,
+\begin{proposition}
+	If $\gamma$ is rectifiable, it has an arclength parameterization, $\gamma : [0, L] \to \CC$ such that,
+	\[
+		\length \gamma([0, t])
+		= t
+	\]
+\end{proposition}
+\begin{definition}[Lebesgue measure of a curve]
+	$\gamma$ is defined as $\gamma_* m \mid |_{[0, L]}$.
+	If $\gamma(t) = (x(t), y(t)) \in C^1$ then,
+	\[
+		\length \gamma
+		= \int_a^b \sqrt{{(x'(t))}^2 + {(y'(t))}^2}
+	\]
+\end{definition}
+\begin{definition}[Subharmonic \& Superharmonic function]
+	We say that $u : \Omega \to \RR$ is subharmonic if it is upper semi-continuous and satisfies the sub mean-value property,
+	\[
+		u(z_0)
+		\le \frac{1}{2 \pi} \int_{-\pi}^{\pi} u(z_0 + r e^{i \theta})\ d \theta
+	\]
+	A function is called superharmonic if it satisfies the super mean-value property, which is the exact same property with the relation inverted.
+\end{definition}
+Then $\limsup_{z \to z_0} u(z) \le u(z_0)$.
+Subharmonic functions form a cone, the multiplication of a subharmonic function $u$ and $\lambda > 0$ is subharmonic, and the addition of subharmonic functions is harmonic.
+\begin{remark}
+	If $u$ is subharmonic then $-u$ is superharmonic.
+	If $f$ is analytic then $|f|$ is subharmonic,
+	\[
+		|f(z_0)|
+		= \left\lvert \frac{1}{2 \pi} \int f(z_0 + r e^{i \theta})\ d \theta \right\rvert
+		\le \frac{1}{2 \pi} \int |f(z_0 + r e^{i \theta})|\ d \theta
+	\]
+\end{remark}
+Subharmonic functions satisfy the maximum principle,
+\[
+	\forall z_0 \in \Omega,\ 
+	u(z_0) \le \limsup_{z \to \partial \Omega} u(z)
+\]
+If equality holds, then $u$ is constant.
+\begin{remark}
+	Superharmonic functions satisfy the minimum principle, harmonic functions satisfy both principles.
+\end{remark}
+\begin{theorem}[F \& M Riesz]
+	Suppose $\Omega$ is a Jordan domain.
+	$\partial \Omega$ is rectifiable iff $\varphi' \in H^1$. $\length(\partial \Omega) = \lVert \varphi' \rVert_{H^1}$. 
+\end{theorem}
+\begin{proof}
+	$\impliedby$:
+	By Carathéodory's theorem, $\varphi$ extends to a homeomorphism of the closures.
+	\begin{multline*}
+		\sum_{k = 0}^{n - 1} |\varphi(e^{i \theta_{k + 1}}) - \varphi(e^{i \theta_k})|
+		= \lim_{r \to 1} \sum_{k = 0}^{n - 1} |\varphi(r e^{i \theta_{k + 1}}) - \varphi(r e^{i \theta_k})| \\
+		= \lim_{r \to 1} \sum_{k = 0}^{n - 1} \left\lvert \int_{\theta_k}^{\theta_{k + 1}} \varphi'(r e^{i \theta}) i r e^{i \theta}\ d \theta \right\rvert
+		\le \lim_{r \to 1} \sum_{k = 0}^{n - 1} \int_{-\pi}^{\theta_{\pi}} |\varphi'(r e^{i \theta})|\ d \theta
+		= \lVert \varphi' \rVert_{H^1}
+	\end{multline*}
+
+	$\implies$:
+	Fix a partition of $[0, 2 \pi]$, $0 = \theta_0 < \cdots \theta_n = 2 \pi$.
+	Define,
+	\[
+		S(z)
+		= \sum_{k = 0}^{n - 1} |\varphi'(e^{i \theta_{k + 1}} z) - \varphi'(e^{i \theta_k} z)| 
+	\]
+	This is a subharmonic function, by the maximum principle,
+	\[
+		S(z_{0})
+		\le \max_{|\zeta| = 1} S(\zeta)
+		\le \length \partial \Omega
+	\]
+	so $\length(\varphi(|z| = r)) \le \length(\partial \Omega)$, but this length is exactly $\int_{-\pi}^{\pi} |\varphi(r e^{i \theta}) i r e^{i \theta}|\ d \theta$.
+\end{proof}
 
 \listoftheorems[title=theorems \& definitions,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
