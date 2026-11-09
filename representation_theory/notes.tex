@@ -741,6 +741,228 @@
 
 	אם $M$ נוצר סופית על־ידי $S \subseteq M$ אז כמרחב־וקטורי הוא נפרש על־ידי $\{ g . s \mid g \in G, s \in S \}$ וזו קבוצה סופית.
 \end{proof}
+\begin{definition}[מודול חופשי]
+	$R$־מודול $M$ כך שיש בסיס $S \subseteq M$, כלומר לכל $m \in M$ יש דרך יחידה לפרק אותו לסכום $m = \sum_{s \in S} r_s . s$.
+\end{definition}
+כל $\varphi : S \to N$ ל־$N$ $R$־מודול כלשהו, אז ניתן להרחיב בצורה יחידה להומומורפיזם של $R$־מודולים $\tilde{\varphi} : M \to N$, ונראה זאת כשנגדיר תת־מודולים.
+
+\section{שיעור 6 --- 9.11.2026}
+\subsection{תת־מודולים ומודולי מנה}
+\begin{definition}[תת־מודול]
+	יהי $R$ חוג ו־$M$ $R$־מודול, אז תת־מודול (או תת־$R$־מודול) הוא תת־חבורה $N \le M$ כך שהוא גם סגור תחת הפעולה, כלומר $r . n \in N$ לכל $r \in R, n \in N$.
+\end{definition}
+\begin{example}
+	הבאים הם תת־מודולים:
+	\begin{enumerate}
+		\item לכל מודול $M$ ישנם תת־המודולים הטריוויאליים $\{ 0 \}, M$
+		\item עבור ה־$R$ מודול $R$, תת־מודול הוא בדיוק אידאל שמאלי של $R$
+		\item תת־מודול של $F[G]$־מודול הוא בדיוק תת־מרחב וקטורי אינווריאנטי של ההצגה
+	\end{enumerate}
+\end{example}
+\begin{definition}[מודול מנה]
+	בהינתן תת־מודול $N \le M$, \textbf{מודול המנה} $M / N$ הוא במודול שאיבריו הם איברי חבורת המנה $M / N$ והפעולה של $R$ על עליו היא,
+	\[
+		r . (m + N)
+		= r . m + N
+	\]
+\end{definition}
+\begin{remark}
+	הפעולה מוגדרת היטב כי אם $m, m' \in M / N$ אז $m - m' \in N$, ו־$N$ הוא תת־מודול, לכן $r . (m - m') \in N$
+\end{remark}
+\begin{definition}[מודול פשוט]
+	מודול $M$ נקרא \textbf{פשוט} (simple) אם $M \ne \{ 0 \}$ ואין לו תת־מודול פרט ל־$M$ ול־$\{ 0 \}$.
+\end{definition}
+\begin{example}
+	הבאים הם מודולים פשוטים:
+	\begin{enumerate}
+		\item $F$־מודול פשוט: מרחב־וקטורי חד־מימדי
+		\item $\ZZ$־מודול: חבורה אבלית פשוטה, כלומר $\ZZ / p \ZZ$ ל־$p$ ראשוני
+		\item $\FF[G]$־מודול פשוט: הצגה אי־פריקה של $G$ מעל $\FF$
+		\item $M_n(\FF)$־מודול פשוט: $\FF^n$ הוא מודול פשוט
+	\end{enumerate}
+\end{example}
+
+\subsection{סכום ישר של מודולים}
+\begin{proposition}
+	אם $N_1, N_2 \le M$ תת־מודולים אז,
+	\[
+		N_1 + N_2
+		= \{ n_1 + n_2 \mid n_1 \in N_1, n_2 \in N_2 \}
+	\]
+	הוא תת־מודול, וכן $N_1 \cap N_2$ אף הוא תת־מודול.
+\end{proposition}
+\begin{definition}[חיבור ישר של מודולים]
+	אם $N_1 \cap N_2 = \{ 0 \}$ אז נאמר שהסכום $N_1 + N_2$ הוא ישר ונסמן $N_1 \oplus N_2$ (סכום ישר פנימי).
+	לכל שני $R$־מודולים $M_1, M_2$ נוכל להגדיר את הסכום הישר (החיצוני) $M_1 \oplus M_2$ על החבורה האבלית $M_1 \times M_2$ עם הפעולה,
+	\[
+		r . (m_1, m_2)
+		= (r . m_1, r . m_2)
+	\]
+\end{definition}
+\begin{notation}
+	נסמן את $M \oplus M \oplus \cdots \oplus M$ $n$ פעמים על־ידי $n M$ או $M^n$.
+\end{notation}
+\begin{definition}[מודול פשוט למחצה]
+	מודול נקרא פשוט למחצה (semi-simple) אם הוא סכום ישר וסופי של תת־מודולים פשוטים.
+\end{definition}
+\begin{proposition}
+	$\FF[G]$־מודול הוא פשוט למחצה אם ורק אם ההצגה המתאימה לו היא פריקה לחלוטין.
+\end{proposition}
+משפט משקה אומר באופן שקול שאם $G$ סופית ו־$\Char \FF \nmid |G|$ אז כל הצגה סוף־מימדית היא פשוטה למחצה.
+
+\subsection{הומומורפיזמים של מודולים}
+\begin{definition}[הומומורפיזם מודולים]
+	יהיו $M, N$ מודולים על $R$ ותהי העתקה $\varphi : M \to N$.
+	נאמר ש־$\varphi$ היא הומומורפיזם של $R$־מודולים אם:
+	\begin{enumerate}
+		\item $\varphi$ הומומורפיזם של חבורות, כלומר לכל $m_1, m_2 \in M$ מתקיים $\varphi(m_1 + m_2) = \varphi(m_1) + \varphi(m_2)$
+		\item שימור הפעולה, כלומר לכל $r \in R, m \in M$ אז $\varphi(r . m) = r . \varphi(m)$
+	\end{enumerate}
+\end{definition}
+כמובן נשתמש גם במינוחים הנוספים, מונומורפיזם להומומורפיזם חד־חד ערכי, אפימורפיזם לעל, איזומורפיזם לחד־חד ערכי ועל, אנדומורפיזם שהוא אופרטור ואוטומורפיזם לאופרטור הפיך.
+\begin{notation}
+	נסמן $\Hom_R(M, N)$ קבוצת כל ההומומורפיזמים של $R$־מודולים $M \to N$.
+	נסמן גם $\End_R(M) = \Hom_R(M, M)$.
+\end{notation}
+נבחין כי $\Hom_R(M, N)$ היא חבורה אבלית, זאת שכן $(\varphi_1 + \varphi_2)(m) = \varphi_1(m) + \varphi_2(m)$.
+באופן דומה $\End_R(M)$ הוא חוג (עבור כפל המוגדר על־ידי הרכבה), נובע גם ש־$\End_R(M) \le \End(M)$ עבור ההומומורפיזמים של $R$־מודולים וההומומורפיזמים של חבורות $M \to M$.
+נבחין כי אפשר לקבל גם את $\ker \varphi \le M, \im \varphi \le N$, ואלו הם תת־מודולים.
+
+גם משפטי האיזומורפיזם עובדים עבור מודולים, לא נוכיח אותם אך ההוכחה עבור חבורות עובדת בצורה כמעט זהה.
+\begin{theorem}[האיזומורפיזם הראשון]
+	אם $\varphi : M \to N$ הומומורפיזם $R$־מודולים אז $M / \ker \varphi \cong \im \varphi$.
+\end{theorem}
+\begin{theorem}[ההתאמה]
+	עבור מודול $M$ ותת־מודול $N$ אז יש התאמה בין $N \subseteq Q \le M$ לבין $\{ 0 \} \subseteq Q / N \le M / N$.
+\end{theorem}
+\begin{theorem}[האיזומורפיזם השני]
+	אם $M$ מודול ו־$N_1, N_2 \le M$ תת־מודולים, אז,
+	\[
+		(N_1 + N_2) / N_2
+		\cong N_1 / (N_1 \cap N_2)
+	\]
+\end{theorem}
+נעור ללמה של שור (Issai Schur) עבור מודולים כלליים.
+\begin{lemma}[שור]
+	יהיו $M, N$ שני מודולים פשוטים ויהי $\varphi : M \to N$ הומומורפיזם מודולים.
+	אז אם $M, N$ אינם איזומורפיים אז $\varphi \equiv 0$ ואם $M \cong N$ אז $\varphi$ היא או אפס או הפיכה.
+\end{lemma}
+בפרט נובע מכך ש־$\End_R(M)$ הוא חוג חילוק.
+\begin{proof}
+	יהי $\varphi : M \to N$ הומומורפיזם של מודולים, לכן $\ker \varphi \le M$ תת־מודול, לכן או ש־$\ker \varphi = M$ ואז $\varphi \equiv 0$ או ש־$\ker \varphi = 0$, כלומר $\varphi$ חד־חד ערכית.
+	$\im \varphi \le N$ גם תת־מודול אז אם $\im \varphi = 0$ אז $\varphi \equiv 0$, אחרת $\im \varphi = N$ ואז $\varphi$ על.
+\end{proof}
+
+\subsection{מרחבי ההומומורפיזמים של מודולים}
+ראינו כי $\Hom_R(M, N)$ חבורה אבלית גם כאשר $R$ לא קומוטטיבי.
+כדי לראות זאת צריך לבדוק:
+\begin{itemize}
+	\item $\varphi_1 + \varphi_2 \in \Hom_R(M, N)$
+	\item אסוציאטיביות: $(\varphi_1 + \varphi_2) + \varphi_3 = \varphi_1 + (\varphi_2 + \varphi_3)$
+	\item קיום איבר נייטרלי: העתקת האפס $m \mapsto 0$
+	\item קיום נגדי
+\end{itemize}
+איך ניתן להגדיר על החבורה האבלית הזו מבנה של $R$־מודול?
+נרצה לקיים $(r . \varphi)(m) = \varphi(r . m) = r . \varphi(m)$.
+תכונה זו לא עובדת כאשר $R$ לא קומוטטיבי, שכן,
+\[
+	(s r) \varphi(m)
+	= \varphi((s r) m)
+	= (s \varphi)(r . m)
+	= r . ((s \varphi)(m))
+	= (r . (s \varphi))(m)
+	= ((r s) . \varphi)(m)
+	= (r s)(\varphi(m))
+\]
+\begin{definition}[מודול הומומורפיזמים]
+	אם $R$ קומוטטיבי ו־$M, N$ מודולים, אז ל־$\Hom_R(M, N)$ יש מבנה של $R$־מודול המתקבל על־ידי פעולת הכפל,
+	\[
+		(r . \varphi)(m)
+		= \varphi(r . m)
+	\]
+\end{definition}
+\begin{example}
+	הבאים הם מודולים מצורה זו:
+	\begin{enumerate}
+		\item אם $\FF$ שדה ו־$U, V$ מרחבים וקטוריים מעל השדה, אז,
+			\[
+				\Hom_\FF(U, V)
+				= \{ T : U \to V \mid T \text{ is linear} \}
+			\]
+			אם $U, V$ סוף־מימדיים אז גם $\Hom_\FF(M, N) \cong M_{\dim V \times \dim U}(\FF)$.
+		\item $\Hom_{\ZZ}(A, B)$ הוא החבורה האבלית $\Hom(A, B)$
+		\item $\Hom_{\ZZ}(\ZZ / 5 \ZZ, \ZZ) = \{ 0 \}$
+		\item $\Hom_{\ZZ}(\QQ, \ZZ) = \{ 0 \}$
+		\item $\Hom_{\ZZ}(\ZZ / 5 \ZZ, \ZZ / 10 \ZZ) = \{0, 1 \mapsto 5 \}$
+		\item $\Hom_R(R, M) \cong M$, זאת שכן אם נגדיר $\varphi \mapsto \varphi(1)$ אז גם $\varphi(r) = \varphi(r . 1) = r . \varphi(1)$, כלומר זהו הומומורפיזם הפיך
+	\end{enumerate}
+\end{example}
+\begin{exercise}
+	מהו $\Hom_{\ZZ}(\ZZ / n \ZZ, \ZZ / m \ZZ)$?
+\end{exercise}
+
+\subsection{מכפלה טנזורית של מודולים}
+נניח ש־$R$ הוא קומוטטיבי.
+\begin{definition}[העתקה בילינארית של מודולים]
+	יהי $R$ חוג קומוטטיבי, ויהיו $M, N, U$ מודולים.
+	העתקה $f : M \times N \to U$ נקראת $R$־בילינארית אם היא $R$־לינארית בכל רכיב בנפרד, כלומר:
+	\begin{align*}
+		& f(m_1 + m_2, n) = f(m_1, n) + f(m_2, n),
+		& f(r . m, n) = r . f(m, n) \\
+		& f(m, n_1 + n_2) = f(m, n_1) + f(m, n_2),
+		& f(m, r . n) = r . f(m, n)
+	\end{align*}
+\end{definition}
+\begin{definition}[מכפלה טנזורית של מודולים]
+	יהי $R$ חוג קומוטטיבי ו־$M, N$ מודולים מעליו.
+	\textbf{המכפלה הטנזורית} $M \otimes_R N$ היא המודול שמוגדר באחת משתי הדרכים השקולות הבאות:
+	\begin{enumerate}
+		\item \textbf{התכונה האוניברסלית}:
+			$M \otimes_R N$ הוא $R$־מודול יחד עם העתקה בילינארית $\mu : M \times N \to M \otimes_R N$,
+			כך שלכל העתקה $R$־בילינארית $f : M \times N \to U$ קיים ויחיד הומומורפיזם חוגים $\tilde{f} : M \otimes_R N \to U$ כך שמתקיים $f = \tilde{f} \circ \mu$
+		\item \textbf{בנייה}:
+			נביט ב־$R$־מודול החופשי עם בסיס $\{ m \otimes n \mid m \in M, n \in N \}$ כאשר $m \otimes n$ הוא סימון פורמלי, ונסמן מודול זה ב־$A$, לכן,
+			\[
+				A
+				= \left\{ \sum_{m \in M, n \in N} r_{m, n} m \otimes n \mid r_{n, m} \in R \text{ a.s. } = 0 \right\}
+			\]
+			ונביט בתת־המודול $B \le A$ הנוצר על־ידי,
+			\[
+				\begin{cases}
+					(m_1 + m_2) \otimes n - m_1 \otimes n - m_2 \otimes n & m_1, m_2 \in M, n \in N \\
+					(r m) \otimes n - r (m \otimes n) & m \in M, n \in N \\
+					m \otimes (n_1 + n_2) - m \otimes n_1 - m \otimes n_2 & m \in M, n_1, n_2 \in N \\
+					m \otimes (r n) - r (m \otimes n) & m \in M, n \in N, r \in R
+				\end{cases}
+			\]
+			ונגדיר $M \otimes_R N = A / B$, כאשר ההעתקה ה־$R$־בילינארית תהיה $(m, n) \mapsto \overline{m \otimes n} = m \otimes n + B$.
+	\end{enumerate}
+\end{definition}
+\begin{proposition}
+	הטענות הללו שקולות, ומתקבל $R$־מודול יחיד עד כדי איזומורפיזם.
+\end{proposition}
+\begin{proof}
+	נראה שההגדרה בבנייה מקיימת את התכונה האוניברסלית. \\
+	תהי $f : M \times N \to U$ העתקה $R$־בילינארית ונגדיר $F : A \to U$ על־ידי,
+	\[
+		F(m \otimes n)
+		= f(m, n)
+	\]
+	מכיוון ש־$f$ היא בילינארית, היא שולחת כל יוצר של $B$ ל־$0$.
+	לכן $F(B) = 0$, לכן $B \le \ker F$ ו־$F$ מתאימה למנה $A / B$, נסמן $\tilde{f} : A / B \to U$ המוגדרת על־ידי $\tilde{f} = f \circ \pi$ עבור $\pi : A \to A / B$ ההטלה הסטנדרטית.
+	$\tilde{f}$ יחידה כי היא צריכה לקיים $f = \tilde{f} \circ \mu$ ולכן $f(m, n) = \tilde{f}(m \otimes n + B)$.
+
+	נראה שההגדרה הראשונה מבטיחה יחידות. \\
+	אכן אם $T_1, T_2$ שניהם מודולים מעל $R$ שמקיימים את התכונה האוניברסלית עם $\mu_1 : M \times N \to T_1$ ו־$\mu_2 : M \times N \to T_2$ אז מהתכונה האוניברסלית קיימות $\tilde{\mu}_1 : T_1 \to T_2$,
+	וכן $\tilde{\mu}_2 : T_2 \to T_1$ המקיימות,
+	\[
+		T_2 = \tilde{\mu}_2 \circ \mu_1,
+		\qquad
+		T_1 = \tilde{\mu}_1 \circ \mu_2
+	\]
+	לכן $\id_{T_1} = \tilde{\mu}_1 \circ \tilde{\mu}_2 : T_1 \to T_1$ כתוצאה של התכונה האוניברסלית.
+	באותו אופן בדיוק $\tilde{\mu}_2 \circ \tilde{\mu}_1 = \id_{T_2}$ ולכן $T_1 \cong T_2$.
+\end{proof}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
