@@ -964,5 +964,156 @@
 	באותו אופן בדיוק $\tilde{\mu}_2 \circ \tilde{\mu}_1 = \id_{T_2}$ ולכן $T_1 \cong T_2$.
 \end{proof}
 
+\section{שיעור 7 --- 10.11.2026}
+\subsection{מכפלות טנזוריות --- המשך}
+\begin{remark}
+	נסמן את התמונה של $m \otimes n \in A$ במנה, כלומר את $m \otimes n + B$ בסימון $m \otimes n$.
+\end{remark}
+\begin{remark}
+	לא כל איבר ב־$M \otimes_R N$ הוא מהצורה $m \otimes n$.
+\end{remark}
+\begin{remark}
+	השימוש בקומוטטיביות $R$ היא בהגדרה של פונקציה $R$־בילינארית.
+\end{remark}
+\begin{remark}
+	מתקיים,
+	\[
+		(r m) \otimes n
+		= r . (m \otimes n)
+		= m \otimes (r n)
+	\]
+	וכן,
+	\[
+		(m_1 + m_2) \otimes n
+		= m_1 \otimes n + m_2 \otimes n
+		\qquad
+		m \otimes (n_1 + n_2)
+		= m \otimes n_1 + m \otimes n_2
+	\]
+	בהגדרת הסימון שלנו.
+\end{remark}
+\begin{example}
+	$R \otimes_R M \cong M$ לכל $M$ מודול מעל $R$.
+\end{example}
+\begin{proof}
+	נראה שהפונקציה $r \otimes m \mapsto r m$ מוגדרת היטב ומצביעה על איזומורפיזם.
+	תהי $f : R \times M \to M$ המוגדרת $f(r, m) = r . m$. נבחין כי $f$ היא $R$־בילינארית באופן מיידי, ולפי התכונה האוניברסלית קיימת $\tilde{f} : R \otimes_R M \to M$ המקיימת,
+	\[
+		\tilde{f}(r \otimes m)
+		= f(r, m)
+		= r . m
+	\]
+	מהצד השני נגדיר את $g : M \to R \otimes_R M$ על־ידי $g(m) = 1 \otimes m$, זהו הומומורפיזם מודולים, ונראה ש־$\tilde{f}, g$ הן הופכיות,
+	\[
+		(g \circ \tilde{f})(r \otimes m)
+		= g(r m)
+		= 1 \otimes r m
+		= r . 1 \otimes m
+		= r \otimes m
+	\]
+	ומהצד השני $(\tilde{f} \circ g)(m) = \tilde{f}(1 \otimes m) = 1 . m = m$.
+\end{proof}
+\begin{example}
+	$M \otimes_R N \cong N \otimes_R M$, זאת אפשר לראות על־ידי הפונקציה $f : M \times N \to N \otimes_R M$ המוגדרת על־ידי $f(m, n) = n \otimes m$.
+	היא בילינארית ונקבל מהתכונה האוניברסלית $\tilde{f} : M \otimes_R N \to N \otimes_R M$ השולחת $m \otimes n \to n \otimes m$.
+	לכיוון ההפוך נגדיר באופן דומה $g : N \times M \to M \otimes_R N$ וכן הלאה.
+\end{example}
+\begin{example}
+	$\ZZ \otimes_{\ZZ} A \cong A$ עבור $A$ חבורה אבלית כלשהי, זהו מקרה פרטי של הדוגמה הראשונה.
+	נביט ב־$\ZZ / 5 \ZZ \otimes \ZZ / 3 \ZZ$,
+	\[
+		= 1 \otimes 1
+		= 3 . 2 \otimes 1
+		= 3 . (2 \otimes 1)
+		= 2 \otimes 3 . 1
+		= 2 \otimes 0
+		= 0
+	\]
+	אז $\ZZ / 5 \ZZ \otimes \ZZ / 3 \ZZ = \{ 0 \}$.
+	באופן מאוד דומה עבור $\ZZ / 5 \ZZ \otimes_{\ZZ} \QQ$,
+	\[
+		a \otimes b
+		= a \otimes 5 \cdot \frac{b}{5}
+		= 5 a \otimes \frac{b}{5}
+		= 0 \otimes \frac{b}{5}
+		= 0
+	\]
+	ושוב נקבל שזהו מבנה טריוויאלי.
+\end{example}
+\begin{example}
+	סכום ישר (סופי) מתחלף עם מכפלה טנזורית,
+	\[
+		(M_1 \oplus M_2) \otimes_R N
+		\cong (M_1 \otimes N) \oplus (M_2 \otimes N)
+	\]
+	ומכאן באינדוקציה,
+	\[
+		(M_1 \oplus \cdots \oplus M_t) \otimes N
+		\cong M_1 \otimes N \oplus \cdots \oplus M_t \otimes N
+	\]
+	נוכל לראות זאת על־ידי הפונקציה,
+	\[
+		f : (M_1 \oplus M_2) \times N \to M_1 \otimes N + M_2 \otimes N,
+		\qquad
+		f((m_1, m_2), n)
+		= (m_1 \otimes n, m_2 \otimes n)
+	\]
+	ועלינו להראות שהיא בילינארית ולהשתמש בתכונה האוניברסלית.
+	מהצד השני נגדיר,
+	\[
+		g_i : M_1 \times N \to (M_1 \oplus M_2) \otimes N
+	\]
+	עבור $i \in \{1, 2\}$ ואז $g = (\tilde{g}_1, \tilde{g}_2)$ תהיה פונקציה הופכית ל־$\tilde{f}$.
+\end{example}
+נעבור לדון במכפלה טנזורית של מרחבים וקטוריים. \\
+אם $V$ מרחב וקטורי מעל $\FF$ אז $\FF \otimes_{\FF} V \cong V$ כתוצאה של הדוגמה הראשונה.
+אם ${\{ \alpha_i \}}_{i \in I} \subseteq V$ בסיס, אז ${\{ 1 \otimes \alpha_i \}}_{i \in I}$ בסיס של $\FF \otimes_{\FF} V$.
+\begin{proposition}
+	אם $U, V$ מרחבים וקטוריים מעל $\FF$ נוצרים סופית, ו־${\{ \alpha_i \}}_{i = 1}^m \subseteq U, {\{ \beta_i \}}_{j = 1}^n \subseteq V$ בסיסים,
+	אז גם $U \otimes_{\FF} V$ מרחב וקטורי ממימד $m \cdot n$ עם הבסיס ${\{ \alpha_i \otimes \beta_j \}}_{i \in [m], j \in [n]}$.
+\end{proposition}
+\begin{proof}
+	\[
+		U \otimes_{\FF} V
+		= \overbrace{(\FF \oplus \cdots \oplus \FF)}^{m \text{ times}} \otimes \overbrace{(\FF \oplus \cdots \oplus \FF)}^{n \text{ times}}
+		= \bigoplus_{m \cdot n \text{ times}} \FF \otimes_{\FF} \FF
+		\cong \bigoplus_{m \cdot n \text{ times}} \FF
+	\]
+	מהטענה הקודמת.
+	לכן המימד של המרחב הווקטורי $U \otimes_{\FF} V$ הוא $m n$.
+	נראה ש־$\{ \alpha_i \otimes \beta_j \}$ פורש.
+	מספיק להראות שקבוצה זו פורשת כל יוצר של $U \otimes_{\FF} V$ מהצורה $u \otimes v$ (כל טנזור פשוט), אם נכתוב,
+	\[
+		u
+		= \sum c_i \alpha_i
+		\qquad
+		v
+		= \sum d_j \beta_j
+	\]
+	אז מתקיים,
+	\[
+		u \otimes v
+		= \left(\sum c_i \alpha_i\right) \otimes \left(\sum d_j \beta_j\right)
+		= \sum_{i, j} c_i d_j (\alpha_i \otimes \beta_j)
+	\]
+\end{proof}
+\begin{remark}
+	הטענה הזו נכונה גם למרחבים וקטוריים שלא נוצרים סופית, אך ההוכחה היא אחרת.
+\end{remark}
+\begin{example}
+	נזכור כי $\FF_2, \FF_4 = \FF_2[x] / (x^2 + x + 1)$ שדות, ואנו יכולים לבחון את,
+	\[
+		\FF_4 \otimes_{\FF_2} \FF_4
+	\]
+	כאשר זהו מרחב וקטורי ממימד $4$ מעל $\FF_2$, כלומר זהו מרחב כלשהו מגודל $16$, אך זהו לא $\FF_{16}$ שכן אין שימור מכפלה.
+	נוכל לבחון גם את,
+	\[
+		\FF_4 \otimes_{\FF_4} \FF_4
+		\cong \FF_4
+	\]
+	זוהי שוב תוצאה של הדוגמה הראשונה שראינו.
+\end{example}
+עבור $M, N$ מודולים מעל $\FF[G]$, נבנה הצגות על בסיס $M \otimes_{\FF} N$ ו־$\Hom_{\FF}(M, N)$.
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
