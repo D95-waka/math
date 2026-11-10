@@ -1319,5 +1319,393 @@ $A_{\alpha}$ חילופיים אם ורק אם $\prod_{\alpha \in I} A_{\alpha}$
 	במקהה הראשון $a \in U$ ובמקרה השני $a \in W$, כלומר $V = U \cap W$ פריקה.
 \end{proof}
 
+\section{שיעור 7 --- 10.11.2026}
+\subsection{שיכון שדות בשדות סגורים אלגברית}
+המטרה שלנו היא להוכיח את המשפט,
+\begin{theorem}[קיום סגור אלגברי]
+	אם $K$ שדה אז קיים שדה $L$ ושיכון $K \hookrightarrow L$ כהומומורפיזם שדות.
+\end{theorem}
+כדי לעשות זאת ננסח ונוכיח מספר למות.
+\begin{lemma}
+	יהי $K$ שדה ו־$A \ne 0$ חוג, אם $\varphi : K \to A$ הומומורפיזם, אז הוא חד־חד ערכי.
+\end{lemma}
+\begin{proof}
+	נבחן את $\ker \varphi$, זהו אידאל של $K$, אך ב־$K$ כל האידאלים הם $(0)$ או $(1)$.
+	אם $\ker \varphi = (1)$ אז בפרט $1 \in \ker \varphi$  אבל $\varphi(1) = 1_A \ne 0_A$ וזו סתירה, לכן $\ker \varphi = (0)$, כלומר $\varphi$ חד־חד ערכי.
+\end{proof}
+\begin{lemma}
+	יהיו $f_1, \ldots, f_n \in K[x] \setminus K$ פולינומים, אז קיים שיכון $K \hookrightarrow L$ עבור $K$ שדה כך שב־$K$ לכל $f_i$ יש שורש.
+\end{lemma}
+\begin{proof}
+	מספיק לטפל במקרה של $n = 1$, שאר המקרים יתקבלו באינדוקציה.
+	נגדיר את $A = K[x] / (f_1)$, אז בחוג זה מתקבל ש־$x$ הוא שורש.
+	$(f_1) \ne (1)$ שכן $f_1$ לא קבוע, לכן $A \ne 0$.
+	נבחר $M \triangleleft A$ מקסימלי, לכן $A / M$ הוא שדה,
+	\[
+		K
+		\hookrightarrow K[x]
+		\hookrightarrow K[x] / (f_1)
+		= A
+		\to A / M
+		= L
+	\]
+	התמונה של $x \mod (f_1)$ היא השורש של $f_1$ ב־$L$, לפי הלמה הראשונה הרכבת הומומורפיזמים כזאת היא חד־חד ערכית, כלומר $K \hookrightarrow L$.
+\end{proof}
+\begin{proposition}
+	יהי $K$ שדה, אז קיים שדה $L$ עם שיכון $K \hookrightarrow L$ כך שלכל $f \in K[x] \setminus K$ יש שורש ב־$L$.
+\end{proposition}
+נראה את ההוכחה של Emil Artin.
+\begin{proof}
+	יהי $\bar{x} = \{ x_f \mid f \in K[x] \setminus K \}$ אוסף משתנים.
+	נבחן את $A = K[\bar{x}] / (f(x_k) \mid f \in K[x] \setminus K)$, לכן $x_f \mod I$ הוא שורש של $f$ ב־$A$.
+	תחילה נראה ש־$A \ne 0 \iff I = (1)$, נניח בשלילה ש־$I = (1)$, כלומר,
+	\[
+		1
+		= \sum_{i = 1}^n h_i(\bar{x}) f_i(x_{f_i})
+	\]
+	קיים שיכון $K \hookrightarrow F$ עבור $F$ שדה שבו ל־$f_1, \ldots, f_n$ יש שורש (וזוהי בדיוק הלמה הקודמת).
+	$\alpha_i \in F$ כך ש־$f(\alpha_i) = 0$ ונציב $x_{f_i} \mapsto \alpha_i$ וכן $x_g \mapsto 0$ אם $g \in \{ f_1, \ldots, f_n \}$, לכן,
+	\[
+		1
+		= \sum_{i = 1}^n h_i(\alpha_1, \ldots, \alpha_n, 0, \ldots) f_i(\alpha_i)
+		= 0
+	\]
+	וקיבלנו סתירה. \\
+	כעת כמו בהוכחת הלמה הקודמת נבחר $M \triangleleft A$ מקסימלי ונסתכל על השיכון,
+	\[
+		K
+		\hookrightarrow K[\bar{x}]
+		\to A
+		\to A / M
+		= L
+	\]
+	ב־$L$ לכל $f \in K[x] \setminus K$ יש שורש כנדרש.
+\end{proof}
+נעבור להוכחת המשפט עצמו.
+\begin{proof}[הוכחת המשפט]
+	יהי $K$ שדה, נבנה הרחבה $K \subset L_0$ כך שלכל פולינום $f \in K[x] \setminus K$ יש שורש.
+	נבנה הרחבה $L_0 \subset L_1$ כך שלכל פולינום עם מקדמים ב־$L_0$ יש שורש ב־$L_1$.
+	נמשיך כך ונבנה סדרת שדות,
+	\[
+		K = L_0 \subset L_1 \subset \cdots
+	\]
+	ונגדיר את $L = \bigcup_{i = 0}^\infty L_i$, זהו שדה שכן כל $f \in L[x] \setminus L$ נמצא באיזשהו $L_i[x]$ ולכן יש שורש ב־$L_{i + 1}[x]$,
+	כלומר $L$ הוא שדה סגור אלגברית כפי שרצינו.
+\end{proof}
+\begin{remark}
+	למעשה ניתן להראות שמתקיים $L_0 = L_1 = \cdots$, כבר סגור אלגברית.
+\end{remark}
+\begin{remark}
+	למעשה יכולנו להשתמש בגרסה חלשה יותר של אקסיומת הבחירה.
+	היא שקולה לכך שבכל חוג לא טריוויאלי יש אידאל ראשוני.
+	אקסיומה זו נקראת אקסיומת העל־מסנן (ultrafilter axiom).
+\end{remark}
+
+\subsection{מודולים}
+זוהי הכללה של מושג המרחב הווקטורי מעל שדה.
+יהי $A$ חוג כלשהו.
+\begin{definition}[מודול שמאלי]
+	מודול (שמאלי) מעל $A$ הוא קבוצה $M$ ביחד עם שתי פעולות $+ : M \times M \to M$ (חיבור) ו־$\cdot : A \times M \to M$ (כפל בסקלר) המקיימות:
+	\begin{enumerate}
+		\item $(M, +)$ היא חבורה אבלית
+		\item אסוציאטיביות: $(a b) x = a (b x)$ לכל $a, b \in A, x \in M$
+		\item $1 \cdot x = x$ לכל $x \in M$
+		\item פילוג: $(a + b) x = a x + b x$ וכן $a (x + y) = a x + b y$ לכל $a, b \in A, x, y \in M$
+	\end{enumerate}
+\end{definition}
+\begin{exercise}
+	הראו שהפילוג מתקיים גם עם חיסור, וכן ש־$0 \cdot x = a \cdot 0 = 0$. \\
+	הראו שגם תכונת האבליות של $(M, +)$ נובעת משאר הדרישות.
+\end{exercise}
+\begin{example}
+	הבאים הם מודולים:
+	\begin{enumerate}
+		\item אם $\FF$ שדה, אז כל מודול מעל $\FF$ הוא למעשה מרחב וקטורי.
+		\item אם $A$ חילופי ו־$(B, \varphi : A \to B)$ אלגברה מעל $A$, אז נגדיר כפל בסקלר על־ידי $a . x = \varphi(a) x$ לכל $a \in A, x \in B$, אז $B$ מקבל מבנה של מודול מעל $A$.
+		\item אם $A = \ZZ$ ו־$(M, +)$ חבורה חילופית, אז נוכל להגדיר $n \cdot x$ באופן הסטנדרטי עבור $n \in \ZZ$, אז נקבל ש־$M$ הוא מודול מעל $\ZZ$.
+			משמעות הדבר היא שקבוצה היא מודול מעל $\ZZ$ אם ורק אם היא חבורה חיבורית.
+		\item עבור $A$ חוג כללי ו־$I \triangleleft A$ אידאל מתקיים $a x \in I$ לכל $a \in A, x \in I$.
+			לכן $I$ הוא מודול מעל $A$ עם הכפל הרגיל מצומצם ל־$I$.
+		\item עבור $\FF$ שדה ו־$A = M_n(\FF)$ נגדיר את $A \times \FF^n \to \FF^n$ על־ידי כפל מטריצה בווקטור עמודה, לכן $\FF^n$ הוא מודול מעל $M_n(\FF)$.
+	\end{enumerate}
+\end{example}
+\begin{remark}
+	ניתן להגדיר גם מודול ימני שבו הכפל בסקלר הוא מימין, במקרה זה הקיבוץ יהיה בצורה,
+	\[
+		(x a) b
+		= x (a b)
+	\]
+	מעל חוג חילופי אלו הן הגדרות שקולות לחלוטין, אבל בחוג כללי זהו לא המצב.
+	לכן מעתה נניח שהכוונה במודול למודול שמאלי.
+\end{remark}
+\begin{definition}[תת־מודול]
+	יהי $A$ חוג ויהי $M$ מודול מעליו.
+	תת־קבוצה $N \subset M$ נקראת תת־מודול (submodule) אם $(N, +) \le (M, +)$ תת־חבורה חיבורית, ו־$N$ סגורה ביחס לכפל בסקלר, כלומר לכל $a \in A, x \in N$ מתקיים $a x \in N$.
+\end{definition}
+\begin{proposition}
+	קבוצה היא תת־מודול אם ורק אם:
+	\begin{enumerate}
+		\item $N \ne \varnothing$
+		\item $N + N \subset N$
+		\item $a N \subset N$ לכל $a \in A$
+	\end{enumerate}
+\end{proposition}
+\begin{example}
+	אם נחשוב על $A$ כמודול מעל עצמו ונניח שהוא חילופי, אז תת־קבוצה ב־$A$ היא תת־מודול אם ורק אם היא אידאל.
+\end{example}
+\begin{proposition}[סכום של תתי־מודולים]
+	יהיו $N_i \subset M$ עבור $i \in I$ תתי־מודולים, אז,
+	\[
+		N
+		= \sum_{i \in I} N_i
+		= \left\{ \sum_{i \in I} x_i \mid x_i \in N_i, x_i \overset{\text{a.s.}}{=} 0 \right\}
+	\]
+	הוא תת־מודול.
+\end{proposition}
+\begin{definition}[תת־מודול נפרש]
+	תהי $S \subset M$ תת־קבוצה.
+	נגדיר,
+	\[
+		\langle S \rangle
+		= \sum_{s \in S} A s
+		= \left\{ \sum_{i = 1}^k a_i s_i \mid a_i \in A, s_i \in S, n \in \NN \right\}
+	\]
+	את $\langle S \rangle \subset M$ נכנה תת־המודול הנפרש (נוצר) על־ידי $S$.
+\end{definition}
+\begin{definition}[כפל של מודול באידאל]
+	אם $I \triangleleft A$ ו־$M$ מודול מעל $A$ אז נגדיר,
+	\[
+		I M
+		= \left\{ \sum_{i = 1}^n a_i x_i \mid a_i \in I, x_i \in M, n \in \NN \right\}
+	\]
+	הוא תת־מודול ב־$M$.
+\end{definition}
+\begin{definition}[מודול מנה]
+	יהי $M$ מודול מעל $A$ ויהי $N \subset M$ תת־מודול.
+	נגדיר על חבורת המנה $M / N$ את הפעולות,
+	\[
+		a (x + N)
+		= a x + N
+	\]
+	ל־$(M / N, +, \cdot)$ יש מבנה של מודול מעל $A$ ונקרא לו \textbf{מודול המנה}.
+\end{definition}
+\begin{proposition}
+	הכפל בסקלר מוגדר היטב.
+\end{proposition}
+\begin{proof}
+	אם $x + N = y + N$ אז $x - y \in N$ ואז $a x - a y = a (x - y) \in N$ ולכן $a x + N = a y + N$.
+\end{proof}
+\begin{definition}[הומומורפיזם מודולים]
+	יהיו $M, N$ מודולים מעל $A$.
+	הומומורפיזם $\varphi : M \to N$ הוא הומומורפיזם חבורות שבנוסף שומר על פעולת הכפל בסקלר, כלומר,
+	\[
+		\forall a \in A, x \in M,\ 
+		\varphi(a x) = a \varphi(x)
+	\]
+\end{definition}
+\begin{proposition}
+	תכונות הומומורפיזם מודולים:
+	\begin{enumerate}
+		\item ברכבת הומומורפיזמים היא הומומורפיזם, כלומר אם $M \xrightarrow{\varphi} N \xrightarrow{\psi} K$ אז גם $\psi \circ \varphi$ הומומורפיזם.
+		\item $\id : M \to M$ הוא הומומורפיזם
+		\item אם $\varphi : M \to N$ איזומורפיזם (הומומורפיזם הפיך) אז גם $\varphi^{-1} : N \to M$ הומומורפיזם.
+		\item אם $\varphi, \psi : M \to N$ הומומורפיזמים, אז גם $\varphi \pm \psi : M \to N$ הומומורפיזם.
+		\item אם $\varphi \in \Hom(M, N)$ (שנגדיר מיד) אז $\ker \varphi = \{ x \in M \mid \varphi(x) = 0 \}$ היא תת־מודול, התמונה $\varphi(M) \subset N$ היא גם תת־מודול.
+	\end{enumerate}
+\end{proposition}
+\begin{definition}[חבורת ההומומורפיזמים]
+	נסמן את,
+	\[
+		\Hom(M, N)
+		= \Hom_A(M, N)
+		= \{ \varphi : M \to N \text{ homomorphism} \}
+	\]
+	היא חבורה חילופית.
+\end{definition}
+\begin{proposition}
+	אם $A$ חילופי אז $\Hom(M, N)$ הוא מודול עם 
+\end{proposition}
+\begin{proof}
+	נראה שלכל סקלר גם $a \varphi$ הומומורפיזם,
+	\[
+		(a \varphi)(b x)
+		= a \varphi(b x)
+		= a b \varphi(x)
+		= b a \varphi(x)
+		= b ((a \varphi)(x))
+	\]
+	ולכן $a \varphi$ הומומורפיזם.
+\end{proof}
+גם משפטי האיזומורפיזם תקפים עבור מודולים.
+\begin{theorem}[האיזומורפיזם הראשון]
+	יהי $\varphi \in \Hom(M, N)$, אז $\varphi(M) \simeq M / \ker \varphi$ וישנה ההתאמה $\varphi(x) \leftrightarrow x + \ker \varphi$.
+\end{theorem}
+\begin{theorem}[ההתאמה]
+	אם $M$ מודול ו־$N \subset M$ תת־מודול, נסמן $\pi : M \to M / N$ העתקת המנה, אז קיימת התאמה בין $\{ N \subset P \subset M \text{ submodules} \}$ לבין $\{ M / N \text{ submodules} \}$,
+	על־ידי $P \mapsto \pi(P) = P / N$ ו־$Q \mapsto \pi^{-1}(Q)$.
+\end{theorem}
+\begin{theorem}[האיזומורפיזם השני]
+	יהי $M$ מודול ויהיו $N, P \subset M$ תת־מודולים, אז מתקיים,
+	\[
+		(N + P) / P
+		\simeq N / (N \cap P)
+	\]
+	על־ידי ההתאמה $x + P \leftrightarrow x + (N \cap P)$/
+\end{theorem}
+\begin{theorem}[האיזומורפיזם השלישי]
+	אם $P \subset N \subset M$ תתי־מודולים, אז,
+	\[
+		M / N
+		\simeq (M / P) / (N / P)
+	\]
+	נתון על־ידי $x + N \leftrightarrow (x \mod P) + (N / P)$.
+\end{theorem}
+\begin{definition}[סכום ישר חיצוני]
+	יהי $A$ חוג ונגדיר מודולים מעליו ${\{ M_i \}}_{i \in I}$.
+	\textbf{סכום ישר חיצוני} מוגדר על־ידי,
+	\[
+		\bigoplus_{i \in I} M_i
+		= \left\{ f : I \to \bigcup M_i \mid \forall i \in I,\ f(i) \in M_i, f(i) \overset{\text{a.s.}}{=} 0 \right\}
+	\]
+	עם הפעולות $(f + g)(i) = f(i) + g(i)$ והפעולה $(a f)(i) = a f(i)$.
+	במקרה זה $\bigoplus_I M_i$ הוא $A$־מודול.
+\end{definition}
+\begin{definition}[סכום ישר פנימי]
+	אם $M$ מודול, $M_i \subset M$ אוסף של תתי־מודולים, נאמר ש־$M = \bigoplus_{i \in I} M_i$ אם כל $x \in M$ ניתן לרשום ביחידות על־ידי,
+	\[
+		x
+		= \sum_{i \in I} x_i
+	\]
+	כאשר $x_i \in M_i$ ולכמעט כל $i$ גם $x_i = 0$.
+\end{definition}
+\begin{proposition}
+	הגדרה זו שקולה לתנאים ש־$M = \sum_I M_i$ ובנוסף ש־$M_i \cap \sum_{j \ne i} M_j = \{ 0 \}$ לכל $i$.
+\end{proposition}
+\begin{exercise}
+	הוכיחו טענה זו.
+\end{exercise}
+סכום ישר פנימי איזומורפי לסכום ישר חיצוני של $M_i$ על־ידי,
+\[
+	f(i) = x_i
+	\leftrightarrow
+	x = \sum_I x_i
+\]
+\begin{definition}[מכפלה ישרה]
+	נגדיר מכפלה ישרה (חיצונית) על־ידי,
+	\[
+		\prod_{i \in I} M_i
+		= \left\{ f : I \to \bigcup_I M_i \mid f(i) \in M_i \right\}
+	\]
+	אם $I$ סופי אז $\prod M_i = \bigoplus M_i$, אחרת $\prod M_i$ הוא אובייקט יותר גדול.
+\end{definition}
+\begin{definition}[מודול חופשי בתיאור חיצוני]
+	\[
+		A^{\oplus I}
+		= \bigoplus_{i \in I} A
+	\]
+	נקרא \textbf{המודול החופשי} מעל $A$ של אוסף היוצרים ב־$I$. \\
+	לכל $i \in I$ נתאים וקטור בסיס סטנדרטי,
+	\[
+		e_i
+		= j \mapsto
+		\begin{cases}
+			1 \in A & j = i \\
+			0 \in A & j \ne i
+		\end{cases}
+	\]
+\end{definition}
+\begin{definition}[בסיס]
+	אם $M$ מודול אז \textbf{בסיס} של $M$ הוא אוסף ${(e_i)}_{i \in I} \subset M$ כך שכל $x \in M$ ניתן להציג ביחידות כצירוף $x = \sum a_i e_i$ עבור $a_i \in I$.
+\end{definition}
+\begin{example}
+	אם $M = A^{\oplus I}$ אז הבסיס הסטנדרטי שהגדרנו הוא אכן בסיס, נוכל לכתוב כל $f \in M$ על־ידי $f = \sum_{i \in I} f(i) e_i$.
+\end{example}
+\begin{definition}[תיאור פנימי למודול חופשי]
+	מודול $M$ נקרא \textbf{חופשי} אם יש לו בסיס.
+\end{definition}
+\begin{corollary}
+	אם $M$ חופשי עם בסיס ${( b_i )}_{i \in I} \subset M$ אז קיים איזומורפיזם $M \to A^{\oplus I}$ המתקבל על־ידי $\sum a_i b_i \mapsto \sum a_i e_i$ עבור $e_i$ הבסיס הסטנדרטי.
+\end{corollary}
+\begin{notation}
+	נסמן $A^n = A^{\oplus \{1, \ldots, n\}} = A \oplus \cdots \oplus A$.
+\end{notation}
+\begin{example}
+	אם $\FF$ הוא שדה, אז כל מודול מעל $\FF$ (מרחב וקטורי) הוא חופשי.
+\end{example}
+\begin{example}
+	אם $A$ תחום ו־$I \triangleleft A$ אידאל, אז נראה ש־$I$ חופשי אם ורק אם $I$ הוא ראשי (נוצר על־ידי איבר יחיד). \\
+	נניח ש־$I$ חופשי ויהי ${(e_i)}_{i \in B}$ בסיס של $I$, אם $|B| = 0$ אז $I = 0$ ראשי.
+	אם $|B| \ge 2$ אז קיימים $a_i \ne e_j$ ואז יש תלות לינארית $e_i - e_j - e_j e_i = 0$.
+	אם $|B| = 1$ אז $I = (e_i)$ כאשר $B = \{ i \}$. \\
+	בכיוון ההפוך אם $I = (a)$ ראשי אז $\{ a \}$ הוא בסיס של $I$ כי כל $b \in (a)$ ניתן לרשום על־ידי $b = c a$ עבור $c \in A$, ולמעשה אף באופן יחיד ($a \ne 0$) שכן $A$ תחום.
+	אם $a = 0$ אז $I = (0)$ חופשי באופן ריק.
+\end{example}
+\begin{theorem}[אוניברסליות של מודול חופשי]
+	אם $M$ הוא מודול חופשי עם בסיס $\Bb = {\{ e_i \}}_{i \in I}$, אז כל $f : \Bb \to N$ כאשר $N$ מודול נוסף, ניתן להרחיב להומומורפיזם מודלים $\varphi : M \to N$ בצורה יחידה כך ש־$\varphi |_{\Bb} = f$.
+\end{theorem}
+\begin{proof}
+	תהי $f : \Bb \to N$ פונקציה, כל $x \in M$ ניתן לכתוב ביחידות על־ידי,
+	\[
+		x
+		= \sum_{i \in I} \alpha_i e_i
+	\]
+	ולכן נגדיר,
+	\[
+		\varphi(x)
+		= \sum_{i \in I} \alpha_i f(e_i)
+	\]
+	קל לבדוק ש־$\varphi$ הומומורפיזם, יחידות נובעת מהעובדה שמתקיים,
+	\[
+		\varphi(\sum_{i \in I} a_i e_i)
+		= \sum a_i \varphi(e_i)
+		= \sum a_i f(e_i)
+	\]
+	משימור חיבור וכפל של הומומורפיזם.
+\end{proof}
+\begin{definition}[מודול נוצר על־ידי יוצרים ויחסים]
+	תהי $I$ קבוצה ויהי $r \in A^{\oplus I}$ עבור $M$ מודול כלשהו.
+	אם $x_i \in M$ לכל $i \in I$ אוסף של איברים ב־$M$, אז נוכל להציב אותם ב־$r$,
+	\[
+		\bar{x} = {( x_i )}_{i \in I},
+		\qquad
+		r(\bar{x})
+		= \sum_{i \in I} r(i) x_i
+		\in M
+	\]
+	נאמר ש־$( x_i )$ מקיימים את היחס (משוואה) $r$ אם $r(\bar{x}) = 0$.
+
+	תהי $R \subset A^{\oplus I}$ תת־קבוצה (נכנה אותה אוסף יחסים או מערכת משוואות לינאריות) ונגדיר,
+	\[
+		M
+		= A^{\oplus I} / \langle R \rangle
+	\]
+	ל־$M$ נקרא המודול המוגדר על־ידי היחסים $R$.
+	אם $( e_i )$ הבסיס הסטנדרטי ב־$A^{\oplus I}$ נסמן $b_i = e_i + \langle R \rangle \in M$ וכן $\bar{b} = ( b_i )$.
+\end{definition}
+לכל $r \in R$ מתקיים,
+\[
+	r(\bar{b}) = 0
+\]
+זאת שכן,
+\[
+	r(\bar{b})
+	= r(\bar{e}) + \langle R \rangle
+	= 0
+\]
+\begin{theorem}[תכונת האוניברסליות]
+	יהיו $M = A^{\oplus I} / \langle R \rangle$ וכן $e_i, b_i$ כאלו.
+	יהי $N$ מודול כלשהו עם $x_i \in N$ כך שמתקיים $r(\bar{x}) = 0$ לכל $r \in R$, אז קיים ויחיד $\varphi \in \Hom(M, N)$ כך ש־$\varphi(b_i) = x_i$.
+\end{theorem}
+\begin{proof}
+	קיום של $\varphi$:
+	$b_i$ פורשים את $M$ שכן $e_i$ פורשים את $A^{\oplus I}$.
+	לכן כל $y \in M$ ניתן להציג על־ידי $y = \sum a_i b_i$ עבור $a_i \in A$.
+	נגדיר $\varphi(y) = \sum a_i x_i \in N$, ונראה ש־$\varphi$ מוגדר היטב.
+	אם $y = \sum a_i b_i = \sum a_i' b_i$ אז גם $\sum (a_i - a_i') b_i = 0$, זו טענה שקולה ל־$\sum (a_i - a_i') e_i \in \langle R \rangle$.
+	נובע ש־$\sum (a_i - a_i') x_i = 0$, כלומר כל המשוואות ב־$R$ ולכן ב־$\langle R \rangle$ מתקיימות על $\bar{x}$.
+	לכן $\sum a_i x_i = \sum a_i' x_i$ ו־$\varphi$ מוגדר היטב. \\
+	קל להראות ש־$\varphi$ הומומורפיזם, ויחידות נובעת מכך ש־$b_i$ פורשים את $M$.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
