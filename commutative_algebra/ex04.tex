@@ -1,0 +1,265 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 04 --- יסודות באלגברה קומוטטיבית}
+
+\DeclareMathOperator{\Ann}{Ann}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+יהי חוג ויהי $M$ מודול מעליו, נראה ש־$M$ נוצר סופית אם ורק אם הוא איזומורפי למודול מנה של $R^n$ לאיזשהו $0 < n \in \NN$.
+\begin{proof}
+	נניח ש־$M$ נוצר סופית ונסמן $M = \langle m_1, \ldots, m_n \rangle$.
+	נסמן $S \subset R[x_1, \ldots, x_n]$ אוסף הפולינומים כך שמתקיים $f(m_1, \ldots, m_n) = 0 \in M$ לכל $f \in S$.
+	נגדיר גם את $I = Z(S)$, אז $I \subset R^n$ אידאל, ונראה ש־$M \cong R^n / I$.
+	נגדיר את $\varphi : M \to R^n$ על־ידי $\varphi(m_i) = e_i$ לכל $1 \le i \le n$ ועבור $e_i$ הבסיס הסטנדרטי.
+	ברור כי $\im \varphi = R^n$, ונותר להראות ש־$\ker \varphi = I$, אך זוהי למעשה בדיוק הגדרת $I$, לכן ממשפט האיזומורפיזם הראשון נקבל את הדרוש.
+
+	בכיוון ההפוך נניח ש־$M = R^n / I$ ונראה שהוא נוצר סופית.
+	נסמן $a_1 = (1, 0, \ldots, 0), \ldots, a_n = (0, \ldots, 0, 1)$, ויהי $b + I \in M$, כאשר $b \in R^n$ נציג, אז ברור כי $b = \sum_{i = 1}^n b_i a_i$, כלומר המודול אכן נוצר סופית.
+\end{proof}
+
+\question{}
+יהי $R$ חוג ויהי $M$ מודול מעליו, ויהי $N \subset M$ תת־מודול.
+נניח ש־$N, M / N$ נוצרים סופית, ונראה שגם $M$ נוצר סופית.
+\begin{proof}
+	נסמן $N = \langle a_1, \ldots, a_n \rangle$ וכן $M / N = \langle b_1, \ldots, b_m \rangle$.
+	יהי $m \in M$, אז $m = \sum \beta_i b_i + n$ עבור $n \in N$, אבל $n = \sum \alpha_i a_i$ לאיזשהו צירוף, אז נקבל בדיוק את המבוקש.
+\end{proof}
+
+\question{}
+נאמר ש־$R$־מודול $M \ne 0$ הוא פשוט אם ורק אם אין לו תת־מודולים לא טריוויאליים.
+נגדיר את המאפס של $M$ להיות,
+\[
+	\Ann_R M
+	= \{ r \in R \mid \forall m \in M, r m = 0 \}
+\]
+ונאמר ש־$M$ הוא נאמן אם $\Ann_R M = 0$.
+
+\subquestion{}
+נראה ש־$\Ann_R M \triangleleft R$ אידאל לכל מודול מעל $R$.
+\begin{proof}
+	עלינו להראות שזוהי חבורה חיבורית וכן סגירות לכפל ב־$R$.
+	ברור כי $0 \in \Ann_R M$, וכן אם $r \in \Ann_R M$ אז לכל $m \in M$ מתקיים $r m = 0$, וכן $0 m = 0$, אז $0 = 0 m = (r - r) m = r m + (- r) m = 0 + (-r) m$ ולכן גם $-r \in \Ann_R M$.
+	נסיק שהמאפס הוא חבורה חיבורית, נותר להראות שהוא סגור לכפל.
+	יהי $r \in \Ann_R M$, ויהי $s \in R$, אז לכל $m \in M$ מתקיים $(r s) m = s (r m) = 0$ וקיבלנו את המבוקש.
+\end{proof}
+
+\subquestion{}
+נראה שלכל חוג יש מודול פשוט.
+\begin{proof}
+	יהי $I \triangleleft R$ אידאל מקסימלי כלשהו, אז $M = R / I$ הוא מודול וכן גם שדה, נראה שהוא מודול פשוט.
+	נניח ש־$N \subset M$ תת־מודול. אם לא קיים $0 \ne x \in M$ אז סיימנו, אחרת נניח ש־$x$ הוא ערך כזה, ולכן קיים לו הופכי $x^{-1} \in R / I$,
+	כלומר קיים נציג $y \in R$ כך ש־$x \pi(y) = 1$, בפרט $y x \in N$ כמודול ולכן $N = M$.
+\end{proof}
+
+\subquestion{}
+נניח שקיים $R$־מודול $M$ פשוט ונאמן, נראה ש־$R$ שדה.
+\begin{proof}
+	נגדיר את ההומומורפיזם $\varphi : R \to M$ על־ידי $\varphi(r) = r \cdot 1_M$.
+	יהיו $r, s \in R$ כך ש־$\varphi(r) = \varphi(s)$ אז $(r - s) 1 = 0$, אבל $M$ נאמן ולכן $r - s = 0 \implies r = s$, כלומר $\varphi$ חד־חד ערכי.
+	אילו קיים $m \in M$ כך ש־$m \notin \im \varphi$ אז $\varphi(R) \subset M$ הוא תת־מודול לא טריוויאלי, לכן נסיק שלא קיים כזה ו־$\varphi$ הוא על.
+	מצאנו ש־$\varphi$ איזומורפיזם, בפרט הוא מעיד כי אין מחלקי אפס ואין אידאלים לא טריוויאליים, ולכן $R$ שדה.
+\end{proof}
+
+\question{}
+יהי $R$ חוג ויהיו $I, J \triangleleft R$ אידאלים,
+נראה כי,
+\[
+	0
+	\to I \cap J
+	\xrightarrow{x \mapsto (x, -x)} I \oplus J
+	\to I + J
+	\to 0
+\]
+סדרה מדויקת.
+\begin{proof}
+	התנאי היחיד שמתקיים הוא שלכל $i$ מתקיים, $\im \varphi_i = \ker \varphi_{i + 1}$. \\
+	ברור כי $\im \varphi_0 = 0$ ולכן נראה ש־$\ker \varphi_1 = \{ 0 \}$, אך זה ברור מהגדרה והעובדה ש־$\pi_1 \circ \varphi_1$ הוא שיכון $I \cap J \hookrightarrow I$.
+	מתקיים $\im \varphi_1 = \{ (x, -x) \mid x \in I \cap J \}$ ולכן נראה שזהו בדיוק $\ker \varphi_2$.
+	מתקיים $(x, y) \in \ker \varphi_2 \iff x + y = 0 \implies x = -y$ ולכן שוב קיבלנו שוויון.
+	ברור כי $\varphi_2$ היא על, כלומר $\im \varphi_2 = I + J$, וברור כי $\ker \varphi_3 = I + J$.
+\end{proof}
+
+\question{}
+יהיו $M, M', M''$ מודולים מעל $R$, ויהיו $v : M \to M'', u : M' \to M$ הומומורפיזמים. \\
+לכל $R$־מודול $N$ נגדיר את $\bar{u} : \Hom_R(N, M') \to \Hom_R(N, M)$ על־ידי, $\bar{u}(\varphi) = u \circ \varphi$ וכן נגדיר את $\bar{v} : \Hom_R(N, M) \to \Hom_R(N, M'')$ על־ידי $\bar{v}(\varphi) = v \circ \varphi$. \\
+נראה שהסדרה,
+\[
+	0
+	\to M'
+	\xrightarrow{u} M
+	\xrightarrow{v} M''
+\]
+מדויקת אם ורק אם,
+\[
+	0
+	\to \Hom_R(N, M')
+	\xrightarrow{\bar{u}} \Hom_R(N, M)
+	\xrightarrow{\bar{v}} \Hom_R(N, M'')
+\]
+מדויקת.
+\begin{proof}
+	שקול לתרגיל שהוצג בתרגול.
+\end{proof}
+
+\question{}
+בשאלה זו נוכיח שאם $A$ תחום ראשי ו־$M$ מודול חופשי, אז כל $N \subset M$ הוא חופשי. \\
+יהי ${\{ e_i \}}_{i \in I}$ בסיס ל־$M$, ויהי $\le$ סדר טוב על $I$, וכן נסמן $p_i : M \to A$ ההטלה לקורדינטה $i$. \\
+לכל $i$ נסמן $M_i = (e_j \mid j \le i)$ וכן נסמן $N_i = N \cap M_i$.
+
+\subquestion{}
+נראה ש־$N = \bigcup_{i \in I} N_i$.
+\begin{proof}
+	מספיק להראות ש־$M = \bigcup M_i$, ונקבל שהטענה נובעת.
+	יהי $x \in M$, אז $p_i(x) = 0$ לכמעט כל $i$, ונסמן את $n = \max\{ i \in I \mid p_i(x) \ne 0 \}$, נבחין כי הגדרה זו תקפה מהעובדה שזהו מקסימום של קבוצה סופית.
+	בהתאם נובע ש־$x \in \bigcup_{i \le n} M_i \subseteq \bigcup_{i \in I} M_i$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$p_i(N_i) \triangleleft A$ אידאל של $A$.
+\begin{proof}
+	ברור כי $0 \in p_i(N_i)$, וכן אם $x \in N_i$ אז גם $-1 \cdot p_i(x) = p_i(-x) \in N_i$ ולכן זוהי חבורה חיבורית.
+	יהי $a \in A$, ונניח ש־$x = \sum_{i \in I} \alpha_i x_i$, אז,
+	\[
+		a x
+		= a \sum_{i \in I} \alpha_i x_i
+		= \sum_{i \in I} (a \alpha_i) x_i
+		\implies p_i(a x)
+		= a p_i(x)
+	\]
+	ולכן זהו אכן אידאל.
+\end{proof}
+
+לכל $i \in I$ נבחר $a_i \in A$ כך ש־$p_i(N_i) = (a_i)$, וכן נבחר $n_i \in N_i$ כך ש־$p_i(n_i) = a_i$, בפרט אם $a_i = 0$ אז נבחר $n_i = 0$.
+\subquestion{}
+נראה שמתקיים $(n_i \mid i \in I) = N$.
+\begin{proof}
+	מסעיף א' מספיק להראות שלכל $i \in I$ מתקיים $N_i \subset (n_j \mid j \in I)$, לכן נניח בשלילה שזה לא מתקיים, ויהי $i$ המינימלי עבורו $N_i \not\subset (n_j \mid j \in I)$.
+	נסמן $x \in N_i \setminus (n_j \mid j \in I)$, בפרט $x_i = p_i(x) \in (a_i)$ ולכן $x_i = \alpha a_i$, ונסמן $y = x - \alpha n_i$, לכן $y \in N_i$ וגם $x \in (n_j \mid j \in I) \iff y \in (n_j \mid j \in I)$.
+	לבסוף נובע ש־$y \notin (n_j \mid j \in I)$ אבל $y \in N_{i - 1}$, כלומר $N_{i - 1} \not\subset (n_j \mid j \in I)$ בסתירה למינימליות $i$.
+\end{proof}
+
+\subquestion{}
+נראה ש־$\{ n_i \mid i \in I, n_i \ne 0 \}$ היא בלתי־תלויה לינארית.
+\begin{proof}
+	נניח ש־$n_i \in (n_j \mid j \in I \setminus \{ i \})$, ועל־ידי החלפת אגפים נוכל להניח ש־$i$ מקסימלי (שוב מטענת סופיות המקדמים השונים מאפס).
+	נסמן $i' < i$ כאינדקס הגדול ביותר כך ש־$n_{i'} \ne 0$, לכן $N_i = N_{i'}$, כלומר $n_i = \alpha n_{i'}$ לאיזשהו $\alpha \in A$.
+	בפרט נסיק ש־$p_i(n_i) = p_i(\alpha n_{i'})$ בסתירה.
+\end{proof}
+
+\subquestion{}
+נסיק ש־$N$ מודול חופשי.
+\begin{proof}
+	מצאנו ש־$n_i$ פורשים את $N$ וכן שאין תלות, כלומר יש הצגה יחידה, לכן $N$ מודול חופשי.
+\end{proof}
+
+\question{}
+נראה ש־$1 \otimes i + i \otimes 1 \in \CC \otimes_{\RR} \CC$ לא טנזור פשוט.
+\begin{proof}
+	נסמן $z = a + i b, w = c + i d$ ולכן ונניח ש־$z \otimes w = 1 \otimes i + i \otimes 1$, אבל,
+	\[
+		z \otimes w
+		= (a + i b) \otimes (c + i d)
+		= (a \otimes c) + (i b \otimes i d) + (a \otimes i d) + (i b \otimes c)
+		= a c (1 \otimes 1) + b d (i \otimes 1) + a d (1 \otimes i) + b c (i \otimes 1)
+	\]
+	ולכן נקבל שבהכרח $a c = 0, b d = 0, a d = 1, b c = 1$.
+	נובע ש־$a, b, c, d \ne 0$ אבל $a c = 0$, כלומר קיבלנו סתירה לטענה שזהו טנזור פשוט.
+\end{proof}
+
+\question{}
+יהיו $N, M$ מודולים מעל $R$, ויהי $I \triangleleft R$ אידאל.
+נראה שמתקיים,
+\[
+	(M / I M) \otimes_R (N / I N)
+	\cong (M \otimes_R N) / (I (M \otimes_R N))
+\]
+\begin{proof}
+	נגדיר את $\varphi : (M / I M) \times (N / I N) \to (M \otimes_R N) / (I (M \otimes_R N))$ על־ידי,
+	\[
+		\varphi(m + I M, n + I N)
+		= (m \otimes n) + I (M \otimes_R N)
+	\]
+	כאשר ביטוי זה מוגדר היטב מבילינאריות המכפלה הטנזורית.
+	לכן נובע שקיים הומומורפיזם,
+	\[
+		\tilde{\varphi} : (M / I M) \otimes_R (N / I N) \to (M \otimes_R N) / (I (M \otimes_R N))
+	\]
+	מהצד השני נגדיר את,
+	\[
+		\psi : (M \otimes_R N) / (I (M \otimes_R N)) \to (M / I M) \otimes_R (N / I N),
+		\qquad
+		\psi((m \otimes n) + I (M \otimes_R N))
+		= (m + I M) \otimes (n + I N)
+	\]
+	שוב ההעתקה מוגדרת היטב על־ידי שימוש בבילינאריות.
+	ברור כי ההומומורפיזמים הפוכים ולכן נסיק שהם איזומורפיזמים, ובפרט הזהות נכונה.
+\end{proof}
+
+\question{}
+יהי $M$ מודול מעל $R$ ונסמן $M[x]$ את הפולינומים עם מקדמים ב־$M$.
+נגדיר את $M[x]$ כמודול מעל $R$ על־ידי הפעולה,
+\[
+	(m_0 x^0 + \cdots + m_n x^n) + (m_0' x^0 + \cdots + m_k' x^k)
+	= \sum_{i = 0}^{\max\{ n, m \}} (m_i + m_i') x^i
+\]
+והפעולה,
+\[
+	a (m_0 x^0 + \cdots + m_n x^n)
+	= (a m_0) x^0 + \cdots + (a m_n) x^n
+\]
+נראה כי מתקיים,
+\[
+	M \otimes_R R[x]
+	\cong M[x]
+\]
+\begin{proof}
+	נגדיר את ההעתקה,
+	\[
+		\varphi : M \times R[x] \to M[x],
+		\qquad
+		\varphi(m, r_0 x^0 + \cdots + r_n x^n)
+		= (r_0 m) x^0 + \cdots + (r_n m) x^n
+	\]
+	נבחין מבדיקה ישירה כי זהו הומומורפיזם מודולים, ולכן יש לו הרמה להומומורפיזם,
+	\[
+		\tilde{\varphi} : M \otimes_R R[x] \to M[x]
+	\]
+	מהצד השני נגדיר את,
+	\[
+		\psi : M[x] \to M \otimes_R R[x],
+		\qquad
+		\psi(\sum_{i = 0}^n m_i x^i)
+		= \sum_{i = 0}^n m_i \otimes x^i
+	\]
+	ולכן גם $\psi$ היא פונקציה מוגדרת היטב ומבדיקה ישירה היא גם הומומורפיזם, ונרצה להראות שהיא הפוכה ל־$\tilde{\varphi}$,
+	\begin{align*}
+		\psi(\tilde{\varphi}(m \otimes (r_0 x^0 + \cdots + r_n x^n)))
+		& = \psi(\varphi(m, r_0 x^0 + \cdots + r_n x^n)) \\
+		& = \psi((r_0 m) x^0 + \cdots + (r_n m) x^n) \\
+		& = ((r_0 m) \otimes x^0) + \cdots + ((r_n m) \otimes x^n) \\
+		& = m \otimes (r_0 x^0 + \cdots + r_n x^n)
+	\end{align*}
+	ומהצד השני,
+	\[
+		\tilde{\varphi}(\psi(m_0 x^0 + \cdots + m_n x^n))
+		= \tilde{\varphi}(m_0 \otimes x^0 + \cdots + m_n \otimes x^n)
+		= \tilde{\varphi}(m_0 \otimes x^0) + \cdots + \tilde{\varphi}(m_n \otimes x^n)
+		= m_0 x^0 + \cdots + m_n x^n
+	\]
+	וקיבלנו בדיוק שהפונקציות הופכיות ולכן איזומורפיזמים ומעידות על הרצוי.
+\end{proof}
+
+\question{}
+יהיו $M, N, P$ מודולים מעל $R$, נראה כי,
+\[
+	\Hom_R(M \otimes_R N, P)
+	\cong \Hom_R(M, \Hom_R(N, P))
+\]
+\begin{proof}
+	ברור כי הטענה נכונה עבור מכפלות סטנדרטיות, ושאר הטענה נובעת מקיבוע הומומורפיזם ושימוש בתכונת ההרמה.
+\end{proof}
+
+\end{document}
