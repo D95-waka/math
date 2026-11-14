@@ -65,4 +65,21 @@ Let us proceed to prove the claim in discussion directly.
 	but $\exp(x_n) = g$ therefore $h(x_n)$ is constant for any $n$, a contradiction.
 \end{proof}
 
+\section{Journal 3}
+We will bring a full and formal proof of the closed subgroup theorem, assuming that the three lemmas Adams formulate hold.
+\begin{theorem}[Closed subgroup]
+	If $G$ is a lie group and $H \le G$ is a closed subgroup, then $H$ assumes a smooth manifold structure.
+\end{theorem}
+\begin{proof}
+	Denote $V$ the vector space for which the atlas maps $G$ locally.
+	By the third lemma there is a vector space $W \le V$ such that $\exp W \subseteq H$ is a neighborhood of $0$, in particular there is an open neighborhood of $e$ in $H$, denoted by $U$.
+	$\exp$ is a local diffeomorphism, by restricting $\exp$ to $W$ or a smaller set $\Omega$, we can assume that $\exp \Omega = U$ and $\exp |_{\Omega} : \Omega \to U$ is invertible.
+	Note that to achieve $\Omega \subseteq W, U \subseteq \exp W$ we can use the inverse map theorem.
+	Define $\varphi : U \to \Omega$ as the inverse of the restriction of $\exp$, we get a function of a neighborhood of $e$ in $H$.
+	For any $p \in H$, define $\varphi_p : U_p \to \Omega$. Recall that the group multiplication is smooth, therefore the preimage of an open neighborhood of $p$, small enough, for the map $x \mapsto x \cdot p$,
+	yields an open set such that $U_p = p U$ (where we assume that $U$ is already small enough without loss of generality).
+	Then $\varphi_p(x) = \varphi(p^{-1} x)$ is exactly composition of smooth maps therefore smooth, and is a chart around $p$.
+	Construct $A = \{ \varphi_p : U_p \to \Omega \mid p \in H \}$, a collection of smooth maps such that $\bigcup_{p \in H} \dom \varphi_p = H$, therefore $(H, A)$ is indeed a smooth map.
+\end{proof}
+
 \end{document}
