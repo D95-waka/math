@@ -1,0 +1,104 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 03 --- יסודות בתורת ההצגות}
+
+\DeclareMathOperator\reg{reg}
+\DeclareMathOperator\Ann{Ann}
+
+% chktex-file 44
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+יהי $R$ חוג חילופי ויהיו $M_1, M_2, N$ מודולים מעל $R$.
+נראה שמתקיים,
+\[
+	(M_1 \oplus M_2) \otimes_R N
+	\cong (M_1 \otimes_R N) \oplus (M_2 \otimes_R N)
+\]
+\begin{proof}
+	נגדיר את ההעתקה,
+	\[
+		\varphi : (M_1 \oplus M_2) \times N \to (M_1 \otimes_R N) \oplus (M_2 \otimes_R N),
+		\qquad
+		\varphi((m_1, m_2), n)
+		= ((m_1 \otimes n), (m_2 \otimes n))
+	\]
+	נבחין כי העתקה זו מוגדרת היטב מהגדרת החיבור הישר החיצוני כמכפלה קרטזית עם הגדרת פעולת כפל.
+	מאותה הסיבה זהו גם הומומורפיזם $R$־בילינארי, נבדוק בילינאריות,
+	\begin{multline*}
+		\varphi((m_1, m_2) + (m_1', m_2'), n)
+		= \varphi((m_1 + m_1', m_2 + m_2'), n)
+		= ((m_1 + m_1') \otimes n, (m_2 + m_2') \otimes n) \\
+		= (m_1 \otimes n + m_1' \otimes n, m_2 \otimes n + m_2' \otimes n)
+		= (m_1 \otimes n, m_2 \otimes n) + (m_1' \otimes n, m_2' \otimes n)
+	\end{multline*}
+	ונוכל באופן זהה לקבל את כל התכונות שמעידות על בילינאריות על־ידי שימוש בבילינאריות של מכפלה טנזורית. \\
+	מהתכונה האוניברסלית קיימת הרמה,
+	\[
+		\tilde{\varphi} : (M_1 \oplus M_2) \otimes_R N \to (M_1 \otimes_R N) \oplus (M_2 \otimes_R N)
+	\]
+	זהו הומומורפיזם, ונרצה להראות שהוא הפיך.
+	נגדיר את ההעתקה,
+	\[
+		\psi : (M_1 \otimes_R N) \oplus (M_2 \otimes_R N) \to (M_1 \oplus M_2) \otimes_R N,
+		\qquad
+		\psi(m_1 \otimes n, m_2 \otimes n')
+		= (m_1, 0) \otimes n + (0, m_2) \otimes n'
+	\]
+	העתקה זו מוגדרת היטב מבילינאריות של מכפלה טנזורית ובפרט זהו הומומורפיזם, ונבדוק שהוא הפוך ל־$\tilde{\varphi}$.
+	\begin{align*}
+		\tilde{\varphi}(\psi(m_1 \otimes n, m_2 \otimes n'))
+		& = \tilde{\varphi}((m_1, 0) \otimes n + (0, m_2) \otimes n') \\
+		& = \tilde{\varphi}((m_1, 0) \otimes n) + \tilde{\varphi}((0, m_2) \otimes n') \\
+		& = \varphi((m_1, 0), n) + \varphi((0, m_2), n') \\
+		& = (m_1 \otimes n, 0 \otimes n) + (0 \otimes n', m_2 \otimes n') \\
+		& = (m_1 \otimes n, m_2 \otimes n')
+	\end{align*}
+	ומהצד השני,
+	\[
+		\psi(\tilde{\varphi}((m_1, m_2) \otimes n))
+		= \psi(\varphi((m_1, m_2), n))
+		= \psi((m_1 \otimes n), (m_2 \otimes n))
+		= (m_1, 0) \otimes n + (0, m_2) \otimes n
+		= (m_1 + m_2) \otimes n
+	\]
+	ומצאנו שאכן $\tilde{\varphi}$ איזומורפיזם המעיד על הרצוי.
+\end{proof}
+
+\question{}
+נמצא שקילות פשוטה לחבורות האבליות הבאות.
+
+\subquestion{}
+נגדיר $A = \Hom_{\ZZ}(\ZZ / m \ZZ, \ZZ / n \ZZ)$ עבור $m, n \in \NN$.
+\begin{solution}
+	יהי $f : \ZZ / m \ZZ \to \ZZ / n \ZZ$ הומומורפיזם, כלומר $f \in A$, ונסמן $k + n \ZZ = f(\bar{1})$.
+	מתקיים $f(\bar{x}) = f(x \cdot \bar{1}) = x f(\bar{1}) = x k$, נסיק ש־$f$ נקבע ביחידות על־ידי $k$.
+	בנוסף מתקיים,
+	\[
+		0
+		= f(0)
+		= f(m)
+		= m k + n \ZZ
+		\implies m k \in n \ZZ
+		\iff (m, n) \cdot \frac{m}{(m, n)} k \in (m, n) \frac{n}{(m, n)} \ZZ
+		\implies \frac{m}{(m, n)} k \in \frac{n}{(n, m)} \ZZ
+	\]
+	אבל $\frac{m}{(m, n)}$ זר ל־$\frac{n}{(n, m)}$ ולכן נובע ש־$k \in \frac{n}{(n, m)} \ZZ$ בלבד (עד כדי שקילות), ונסיק $A \cong \ZZ / \frac{n}{(n, m)} \ZZ$.
+\end{solution}
+
+\subquestion{}
+נגדיר $A = \ZZ / m \ZZ \otimes_{\ZZ} \ZZ / n \ZZ$ ל־$m, n \in \NN$.
+\begin{solution}
+	נבחין כי לכל $b \in \ZZ / n \ZZ$ מתקיים,
+	\[
+		n \otimes b
+		= 1 \otimes (n b)
+		= 1 \otimes 0
+		= 0
+	\]
+	ובאופן דומה נקבל גם $a \otimes m = 0$, ולכן נראה שמתקיים $A \cong \ZZ / \gcd(n, m) \ZZ$.
+\end{solution}
+
+\end{document}
