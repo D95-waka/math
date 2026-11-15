@@ -822,5 +822,145 @@ If equality holds, then $u$ is constant.
 	so $\length(\varphi(|z| = r)) \le \length(\partial \Omega)$, but this length is exactly $\int_{-\pi}^{\pi} |\varphi(r e^{i \theta}) i r e^{i \theta}|\ d \theta$.
 \end{proof}
 
+\section{Lecture 5 --- 15.11.2026}
+Last time we saw the theorem that if $f \in H^1$ has zero non-tangential limits on a set $E \subseteq \partial \DD$ of a positive measure, then $f \equiv 0$.
+Privalov theorem claims that this is true for all holomorphic functions $f : \DD \to \CC$ (not just in $H^1$).
+The tool we are going to use is Riemann mapping theorem: suppose that $\varphi : \DD \to \Omega$ is a conformal map onto a Jordan domain.
+Then $\length(\partial \Omega) < \infty \iff \varphi' \in H^1$.
+For $r < 1$,
+\[
+	\length(\partial \Omega_r)
+	= \int_{|z| = r} |\varphi'(z)|\ |d z|
+\]
+This is true for $r = 1$,
+\[
+	\length(\partial \Omega)
+	= \int_{|r| = 1} |\varphi'(z)|\ |d z|
+\]
+As,
+\[
+	\length(\varphi(I))
+	= \int_I |\varphi'(z)|\ |d z|
+\]
+We can define two measures,
+\[
+	\mu_1(I)
+	= \int_I |\varphi'|\ |d z|,
+	\qquad
+	\mu_2 = \varphi_* m
+\]
+where $m$ is the length measure on $\partial \Omega$.
+It follows that $\mu_1 = \mu_2$.
+Hence for any Borel set $E$,
+\[
+	\length(\varphi(E))
+	= \int_E |\varphi'|\ |d z|
+\]
+\begin{corollary}
+	$\length(E) = 0 \iff \length(\varphi(E)) = 0$.
+\end{corollary}
+\begin{proof}
+	$\impliedby$:
+	$\varphi' = 0$ almost everywhere on $E$.
+	By the uniqueness theorem for $H^1$ functions, $\varphi' \equiv 0$ therefore $\varphi$ is constant.
+\end{proof}
+\begin{definition}[Stolz angles]
+	Let $0 < \alpha < \pi$ and $\zeta \in S^1$, the Stolz angle with vertex at $\zeta$ and opening angle $\alpha$, $\Gamma^{\alpha}(\zeta)$,
+	is the area bounded by the angle around the origin of $\zeta$ on the unit circle, bounded by the largest circle not intersecting the tangential lines.
+\end{definition}
+We will denote $\Gamma(\zeta) = \Gamma^{\frac{\pi}{2}}(\zeta)$, and $\Gamma_h^{\alpha}(\zeta) = \Gamma^{\alpha}(\zeta) \cap B(\zeta, h)$.
+If $E \subseteq \partial \DD$ then we define $\Omega_E = \bigcup_{\zeta \in E} \Gamma(\zeta)$.
+Any Stolz angle is translated to a triangle in $\HH^+$, meaning that $\Omega_E$ is a translation of a union of triangles.
+\begin{proof}[Proof of Privalov]
+	Suppose $F : \DD \to \CC$ is a holomorphic function which has a zero non-tangential limits a set of positive measure.
+	For every $\zeta \in E$, we assume $\lim_{z \to \zeta, z \in \Gamma(\zeta)} F(z) = 0$.
+	We can sacrifice a set of measure $< \frac{m(E)}{2}$ such that the limits are uniform in $\zeta$.
+	It follows that $\forall \zeta \in E \exists \varepsilon > 0 \exists h_{\zeta, \varepsilon}$ such that $|F(z) < \varepsilon$ on $\Gamma_{h_{\varepsilon}}(\zeta)$.
+	Take $\varepsilon = \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots$, for each $j = 1, 2, 3, \ldots$ such that $\exists h_j > 0$ such that,
+	\[
+		|F(z)| < 2^{-j}
+	\]
+	for all $\zeta \in E$ except possibly on a set of measure $\frac{m(E)}{2^{j + 1}}$.
+
+	\textbf{Step 2}
+	We assume that $E$ is closed and $F(z) \to 0$ uniformly as $z \in E$ (through $\Omega_E$).
+	Then $F$ is continuous on $\overline{\Omega_E}$.
+	By Carathéodory's theorem, $\varphi$ extends to a homeomorphism from $\bar{\DD}$ to $\overline{\Omega_E}$.
+	By the Riemann mapping theorem, there exists $\varphi : \DD \to \Omega_E$ conformal, and $F \circ \varphi \in \Aa$ (Disk algebra):
+	it is holomorphic of $\DD$ and extends continuously to $\bar{\DD}$, and vanishes in $\varphi^{-1}(E)$.
+	In particular $\Aa \subseteq H^1$, then $F \circ \varphi \in H^1$.
+	If $m(\varphi^{-1}(E)) > 0$ then by the uniqueness theorem for $H^1$-functions, $F \circ \varphi \equiv 0$ and so $F \equiv 0$ on $\Omega_E$, then $F \equiv 0$ on $\DD$.
+\end{proof}
+\begin{remark}
+	Privalov's theorem also holds for meromorphic functions.
+	A function $f$ is called meromorphic if $f = \frac{g}{h}$ for holomorphic functions $g, h$.
+\end{remark}
+\begin{corollary}
+	If $f \to \infty$ non-tangential on a set of positive measure, $f \equiv \infty$.
+\end{corollary}
+\begin{proof}
+	If $F$ is meromorphic and $F \to 0$ through $\Omega_E$ then $F$ has finitely many poles in $\Omega_E$.
+	Then $F = G \prod \frac{1}{{(z - p_k)}^{m_k}}$ where $G$ is pole-free on $\overline{\Omega_E}$.
+\end{proof}
+
+\subsection{Angular derivatives}
+\begin{definition}[Angular derivative]
+	Suppose that $f : \DD \to \CC$ is holomorphic, we say that $f$ has an angular derivative at $\zeta$ if the non-tangential limit $A = \lim_{z \to \zeta, z \in \Gamma(\zeta)} f'(z)$ exists,
+	and $f(z)$ has a non-tangential limit at $\zeta$.
+\end{definition}
+\begin{definition}[Angular derivative in sense of Carathéodory]
+	Suppose $f : \DD \to \DD$ holomorphic.
+	We say that $f$ has an angular derivative in the sense of Carathéodory if $\lim_{z \to \zeta, z \in \Gamma(\zeta)} f(z) \in \partial \DD$ and the non-tangential limit of $f'(z)$ exists.
+\end{definition}
+\begin{lemma}
+	If $f : \DD \to \CC$ has an angular-derivative at $\zeta$ then it is \textbf{isogonal} at $\zeta$.
+	Which means that for any $l \in \DD$ a line pointing to $\zeta$, then $\lim_{z \to \zeta, z \in l} \arg(f(z) - f(\zeta))$ exists,
+	and that if $l'$ is also a line to $\zeta$ and $l, l'$ form an angle $\alpha$, then $\arg(f(z) - f(w)) \xrightarrow[w \to \zeta, w \in l']{z \to \zeta, z \in l} \alpha$
+\end{lemma}
+In this case we get,
+\[
+	f(z)
+	= f(\zeta) + \int_{\zeta}^{z} f'(z)\ dt
+	= f(\zeta) + A(z - \zeta) + o(|z - \zeta|)
+\]
+by the fundamental theorem of calculus.
+\begin{lemma}
+	Suppose $f$ has an ADC (angular-derivative in sense of Carathéodory) at $\zeta \in \partial \DD$.
+\end{lemma}
+Plessner's theorem is a minor upgrade of Privalov's theorem.
+Let $f : \DD \to \CC$ holomorphic, we say that $\zeta$ is a \textbf{Fatou point} if $\operatorname{nt-}\lim_{z \to \zeta} f(z)$ exists.
+We say that $\zeta$ is a \textbf{Plessner point} if for every truncated Stolz angle, $f(\Gamma_h^{\alpha}(\zeta))$ is dense in $\CC$, which is sort of the reverse of having a limit.
+\begin{theorem}[Plessner]
+	For an arbitrary holomorphic $f : \DD \to \CC$, almost every point on $\partial \DD$ is either Fatou or Plessner.
+\end{theorem}
+\begin{theorem}[Fatou]
+	If $f \in H^\infty$, almost every $s \in \partial \DD$ is Fatou.
+\end{theorem}
+Let $\{ w_n \} \subseteq \CC$ be a countable dense set.
+Observe that if $\zeta$ is not Plessner, then there exist $m, n, p \ge 1$ such that $f(\Gamma_{\frac{1}{m}}^{\frac{1}{p}}(\zeta))$ omits $B(w_m, \frac{1}{t})$.
+Denote $\partial \DD \setminus \text{Plessner}(f) = \bigcup E_{m, n, p, t}$.
+\begin{proposition}
+	For any fixed $m, n, p, t$: almost every point in $E_{n, m, p, t}$ is Fatou.
+\end{proposition}
+\begin{proof}
+	Set $g = \frac{1}{f(z) - w_n} \circ \varphi$.
+	Assume first that $f(\Omega_E)$ omits $B(w_n, \frac{1}{t})$.
+	In this case, $g$ is bounded and holomorphic on $\DD$.
+	By Fatou's theorem, almost every point in $\varphi^{-1}(E)$ is a Fatou point for $g$.
+	It follows almost every point in $E$ is a Fatou point for $f$.
+	Suppose $\zeta$ is a Fatou point of $g$, Is $\varphi(\zeta)$ a Fatou point of $f$?
+	Recall that $\varphi' \in H^1$ then $\varphi'(\zeta) < \infty$ at almost every $\zeta$.
+\end{proof}
+Collingwood: Is it true that at every Plessner point, one has $m_2(\CC \setminus \Gamma_h^{\alpha}(\zeta)) = 0$?
+The answer is that not.
+\begin{theorem}[Oleg + Astra]
+	There exists a counter-example.
+	\[
+		f(z)
+		= \sum_{n = 0}^\infty \frac{\xi_n}{\sqrt{n}} z^{2^n}
+	\]
+	where $\xi_n$ are i.i.d.\ standard Gaussians.
+\end{theorem}
+
 \listoftheorems[title=theorems \& definitions,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
