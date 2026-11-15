@@ -1707,5 +1707,231 @@ $A_{\alpha}$ חילופיים אם ורק אם $\prod_{\alpha \in I} A_{\alpha}$
 	קל להראות ש־$\varphi$ הומומורפיזם, ויחידות נובעת מכך ש־$b_i$ פורשים את $M$.
 \end{proof}
 
+\section{שיעור 8 --- 15.11.2026}
+\subsection{מכפלה טנזורית}
+בפרק זה כל המודולים הם חילופיים.
+\begin{definition}[העתקה בילינארית מעל חוג]
+	יהיו $M, N, P$ מודולים מעל $A$.
+	פונקציה $B : M \times N \to P$ נקראת \textbf{בילינארית} אם מתקיים,
+	\[
+		B(a x + b x', y)
+		= a B(x, y) + b B(x', y)
+		\qquad
+		B(x, a y + b y')
+		= a B(x, y) + b B(x, y')
+	\]
+\end{definition}
+\begin{remark}
+	אם $\psi : P \to Q$ הומומורפיזם אז $\psi \circ B : M \times N \to Q$ גם בילינארית.
+\end{remark}
+המטרה שלנו היא לבנות העתקה בילינארית אוניברסלית $\otimes : M \times N \to P$ כך שלכל $B : M \times N \to Q$ בילינארית היא מהצורה $B(x, y) = \psi(x \otimes y)$ כאשר $\psi \in \Hom(P, Q)$.
+\begin{definition}[מכפלה טנזורית]
+	יהיו $M, N$ מודולים מעל $A$, ונגדיר אוסף יחסים על $A^{\oplus(M \times N)}$ על־ידי,
+	\[
+		R
+		= \{ e_{a x + b x', y} - a e_{x, y} - b e_{x', y}, e_{x, a y + b y'} - a e_{x, y} - b e_{x, y'} \mid x, x' \in M, y, y' \in N, a, b \in A \}
+	\]
+	ונגדיר את $M \otimes N = A^{\oplus(M \times N)} / \langle R \rangle$ וכן לכל $x \in M, y \in N$ נגדיר את $\otimes : M \times N \to M \otimes N$ על־ידי $x \otimes y + \langle R \rangle \in M \otimes N$.
+\end{definition}
+\begin{proposition}
+	$\otimes$ היא פעולה בילינארית אוניברסלית על $M, N$. \\
+	לפי היחסים שלקחנו ל־$R$ מתקיים,
+	\[
+		x \otimes (a y + b y')
+		= a x \otimes y + b x \otimes y',
+		\qquad
+		(a x + b x') \otimes y
+		= a x \otimes y + b x' \otimes y
+	\]
+\end{proposition}
+\begin{proposition}
+	המכפלה הטנזורית מקיימת את התכונה האוניברסלית.
+\end{proposition}
+\begin{proof}
+	תהי $B : M \times N \to Q$ בילינארית, ונסמן $b_{x, y} = B(x, y)$.
+	$\{ b_{x, y} \mid x \in M, y \in N \}$ מקיים את היחסים ב־$R$ ולכן לפי תכונת האוניברסליות של מודול נוצר על־ידי יוצרים ויחסים קיים ויחיד $\psi \in \Hom(M \otimes N, Q)$ כך שמתקיים,
+	\[
+		x \otimes y
+		= \psi(e_{x, y} \mod \langle R \rangle)
+		= b_{x, y}
+		= B(x, y)
+	\]
+\end{proof}
+\begin{notation}
+	איבר $x \otimes y \in M \otimes N$ נקרא \textbf{טנזור פשוט}.
+	צירוף $\sum_{i = 1}^k x_i \otimes y_i$ נקרא טנזור כללי, וכן,
+	\[
+		M \otimes N
+		= \{ \sum_{i = 1}^k x_i \otimes y_i \mid x_i \in M, y_i \in N, k \in \NN \}
+	\]
+	נבחין כי אין צורך לציין כפל בסקלרים כי ניתן לייצג אותו בעזרת המקדמים עצמם.
+\end{notation}
+\begin{remark}
+	אם $M = \langle x_i \mid i \in I \rangle$ וכן $N = \langle y_j \mid j \in J \rangle$ אז גם,
+	\[
+		M \otimes N
+		= \langle x_i \otimes y_j \mid i \in I, j \in J \rangle
+	\]
+	זאת ישירות על־ידי שימוש בבילינאריות כדי לפרק סכומים סופיים.
+\end{remark}
+\begin{remark}
+	אם $B : M \times N \to P$ העתקה בילינארית כלשהי, אז קיים ויחיד הומומורפיזם $\psi : M \otimes N \to P$ כך ש־$\psi(x \otimes y) = B(x, y)$.
+	באופן שקול $\psi(\sum x_i \otimes y_i) = \sum B(x_i, y_i)$.
+\end{remark}
+זוהי למעשה בדיוק התכונה האוניברסלית של מכפלה טנזורית.
+\begin{example}
+	מתקיים $A \otimes M \cong M$ ונתון על־ידי $\sum x_i \otimes x_i \mapsto \sum a_i x_i$. \\
+	נרצה לבנות איזומורפיזם כזה, אז נגדיר את $B(a, x) = a x \in M$, זוהי העתקה בילינארית, לכן קיים $\varphi \in \Hom(A \otimes M, M)$ המקיים $\varphi(a \otimes x) = a x$.
+	בכיוון ההפוך נגדיר $\psi \in \Hom(M, A \otimes M)$ על־ידי $\psi(x) = 1 \otimes x$.
+	$\psi, \varphi$ הפוכים זה לזה, מספיק לבדוק זאת על יוצרים,
+	\[
+		\psi(\varphi(a \otimes x))
+		= \psi(a x)
+		= a \psi(x)
+		= a (1 \otimes x)
+		= a \otimes x
+	\]
+	מהצד השני,
+	\[
+		\varphi(\psi(x))
+		= \varphi(1 \otimes x)
+		= x
+	\]
+	ולכן $\varphi, \psi$ איזומורפיזמים הפוכים זה לזה.
+\end{example}
+\begin{proposition}[תכונות מכפלה טנזורית]
+	התכונות הבאות נכונות עבור מכפלה טנזורית:
+	\begin{enumerate}
+		\item $(M \oplus N) \otimes P \cong (M \otimes P) \oplus (N \otimes P)$ ונתון על־ידי $\alpha : (x, y) \otimes z \mapsto (x \otimes z, y \otimes z)$
+		\item חוק פילוג: באופן כללי,
+			\[
+				\left(\bigoplus_{i \in I} M_i\right) \otimes P
+				\cong \bigoplus_{i \in I} (M_i \otimes P)
+			\]
+		\item $M \otimes N \cong N \otimes M$ ומתקבל על־ידי $x \otimes y \mapsto y \otimes x$
+		\item חוק פילוג בכיוון ההפוך,
+			\[
+				P \otimes \left(\bigoplus_{i \in I} M_i\right)
+				\cong \bigoplus_{i \in I} (P \otimes M_i)
+			\]
+		\item $(M \otimes N) \otimes P \cong M \otimes (N \otimes P)$ מתקבל על־ידי $(x \otimes y) \otimes z \mapsto x \otimes (y \otimes z)$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	נראה את הוכחת התכונה הראשונה, השאר דומות. \\
+	$\alpha$ היא בילינארית ולכן מוגדרת היטב, וכן זוהי ההעתקה היחידה המקיימת את התכונה הזאת.
+	מהצד השני $(x, z) \mapsto (x, 0) \otimes z, (x, z) \mapsto (0, y) \otimes z$ הן שתיהן בילינאריות ולכן קיימים הומומורפיזמים,
+	\[
+		\beta : M \otimes P \to (M \oplus N) \otimes P,
+		\qquad
+		\gamma : N \otimes P \to (M \oplus N) \otimes P
+	\]
+	המוגדרות על־ידי,
+	\[
+		\beta(x \otimes z)
+		= (x, 0) \otimes z,
+		\qquad
+		\gamma(y \otimes z)
+		= (0, y) \otimes z
+	\]
+	ולכן נוכל להגדיר את $\beta \oplus \gamma : (M \otimes P) \oplus (N \otimes P) \to (M \oplus N) \otimes P$ על־ידי,
+	\[
+		(\beta \oplus \gamma)(w, u)
+		= \beta(w) + \gamma(u)
+	\]
+	וקל לבדוק שפעולות $\alpha, \beta \oplus \gamma$ הפוכות זו לזו, ולכן הן איזומורפיזמים.
+\end{proof}
+\begin{example}
+	$M \otimes A^{\oplus I} \cong M^{\oplus I}$ מחוק הפילוג, לכן,
+	\[
+		A^{\oplus I} \otimes A^{\oplus J}
+		\cong A^{\oplus (I \times J)}
+	\]
+	מתקבל על־ידי $e_i \otimes f_j \mapsto g_{(i, j)}$ כאשר $e, f, g$ בסיסים סטנדרטיים.
+	בפרט $A^m \otimes A^n \cong A^{n m}$, ואם $A = F$ שדה ו־$V, W$ מרחבים וקטוריים מעל $F$ אז,
+	\[
+		\dim(V \otimes W)
+		= \dim(V) \cdot \dim(W)
+	\]
+\end{example}
+\begin{definition}[מכפלה טנזורית של הומומורפיזמים]
+	יהיו $\varphi \in \Hom(M, M')$ ו־$\psi \in \Hom(N, N')$ הומומורפיזמים,
+	נגדיר את $B : M \times N \to M' \times N'$ על־ידי,
+	\[
+		B(x, y)
+		= \varphi(x) \otimes \psi(y)
+	\]
+	אז $B$ בילינארית ולכן קיים ויחיד $\lambda \in \Hom(M \otimes N, M' \otimes N')$ כך ש־$\lambda(x \otimes y) = \varphi(x) \otimes \psi(y)$.
+	נסמן $\varphi \otimes \psi = \lambda$ ונקרא להעתקה זו \textbf{המכפלה הטנזורית} של $\varphi, \psi$.
+\end{definition}
+\begin{remark}
+	מתקיים,
+	\[
+		(\varphi \otimes \psi)(x \otimes y)
+		= \varphi(x) \otimes \psi(y)
+	\]
+	למעשה זו התכונה המגדירה את ההומומורפיזם המוכפל.
+\end{remark}
+\begin{example}
+	אם $A = F$ שדה ו־$\varphi : F^n \to F^m, \psi : F^{n'} \to F^{m'}$ הומומורפיזמים, כלומר העתקות לינאריות, והן מוגדרות על־ידי המטריצות $C = ( c_{i, j} ), B = ( b_{i, j} )$.
+	כלומר $\varphi(u) = B u, \psi(u) = C u$, אז המטריצה של $\varphi \oplus \psi$ בבסיסים $e_i \otimes e_i'$, $f_k \otimes f_k'$ עבור $e, e', f, f'$ בסיסים סטנדרטיים של $F^n, F^{n'}, F^m, F^{m'}$.
+	אז נקבל שהמטריצה המייצגת של ההעתקה היא,
+	\[
+		\begin{pmatrix}
+			b_{1, 1} C & b_{1, 2} C & \cdots & b_{1, n} C \\
+			\vdots & & & \vdots \\
+			b_{m, 1} C & b_{m, 2} C & \cdots & b_{m, n} C
+		\end{pmatrix}
+	\]
+	נקראת מכפלת קרונקר ומסומנת $B \otimes C$ היא מטריצה $m m' \times n n'$.
+\end{example}
+\begin{remark}
+	אם $A$ אינו חילופי אז ניתן להגדיר מכפלה טנזורית בעזרת היחסים $x \otimes a y = x a \otimes y$ של מודול ימני במודול שמאלי, מקבלים כך חבורה שאינה בהכרח $A$־מודול $M \otimes N$.
+\end{remark}
+\begin{definition}[סדרה מדויקת]
+	כאשר $A$ חוג חילופי, ו־$M_i$ סדרה של מודולים מעל $A$.
+	סדרת ההומומורפיזמים,
+	\[
+		M_0
+		\xrightarrow{\varphi_1} M_1
+		\xrightarrow{\varphi_2} M_2
+	\]
+	נקראת \textbf{מדויקת} (exact sequence) אם $\im \varphi_i = \ker \varphi_{i + 1}$ לכל $1 \le i < n$, בפרט $\varphi_{i + 1} \circ \varphi_i = 0$.
+\end{definition}
+\begin{notation}
+	סדרה מדויקת קצרה היא סדרה מדויקת מהצורה,
+	\[
+		0
+		\to M
+		\xrightarrow{\varphi} N
+		\xrightarrow{\psi} P
+		\to 0
+	\]
+	בקופן שקול $\varphi$ חד־חד ערכית, $\psi$ היא על, ו־$\im \varphi = \ker \psi$.
+	לפי משפט האיזומורפיזם הראשון מתקבל,
+	\[
+		P
+		= \im \psi
+		= N / \ker \psi
+		= N / \im \varphi
+	\]
+	אם $M \subset N$ ו־$\varphi$ הוא השיכון אז $P \cong N / M$ ונקבל שהסדרה איזומורפית לסדרה,
+	\[
+		0
+		\to M
+		\hookrightarrow N
+		\to N / M
+		\to 0
+	\]
+\end{notation}
+\begin{theorem}[דיוק מימין של מכפלה טנזורית]
+	תהי $M \xrightarrow{\varphi} N \xrightarrow{\psi} P \to 0$ סדרה מדויקת, $Q$ מודול כלשהו,
+	אז הסדרה,
+	\[
+		M \otimes Q \xrightarrow{\varphi \otimes \id_Q} N \otimes Q \xrightarrow{\psi \otimes \id_Q} P \otimes Q \to 0
+	\]
+	מדויקת.
+\end{theorem}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
