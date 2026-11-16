@@ -75,17 +75,24 @@
 \begin{solution}
 	יהי $f : \ZZ / m \ZZ \to \ZZ / n \ZZ$ הומומורפיזם, כלומר $f \in A$, ונסמן $k + n \ZZ = f(\bar{1})$.
 	מתקיים $f(\bar{x}) = f(x \cdot \bar{1}) = x f(\bar{1}) = x k$, נסיק ש־$f$ נקבע ביחידות על־ידי $k$.
-	בנוסף מתקיים,
+	נבחין גם כי אם $f(x) = k x$ וכן $g(x) = l x$ אז $(f \cdot g)(x) = k l x$, כלומר $A \cong \ZZ / s \ZZ$ עבור איזשהו $s \in \NN$.
+	מתקיים,
 	\[
-		0
+		f(m)
 		= f(0)
-		= f(m)
-		= m k + n \ZZ
-		\implies m k \in n \ZZ
-		\iff (m, n) \cdot \frac{m}{(m, n)} k \in (m, n) \frac{n}{(m, n)} \ZZ
-		\implies \frac{m}{(m, n)} k \in \frac{n}{(n, m)} \ZZ
+		= 0
 	\]
-	אבל $\frac{m}{(m, n)}$ זר ל־$\frac{n}{(n, m)}$ ולכן נובע ש־$k \in \frac{n}{(n, m)} \ZZ$ בלבד (עד כדי שקילות), ונסיק $A \cong \ZZ / \frac{n}{(n, m)} \ZZ$.
+	וכן,
+	\[
+		f(n)
+		= k n
+		= 0
+	\]
+	ולכן נסיק ש־$s \mid l, k$, ובפרט נובע ש־$s = \gcd(n, m)$ בלבד, נראה זאת.
+	נגדיר את $\varphi : \ZZ / \gcd(m, m) \ZZ \to A$ על־ידי $\varphi(k)(x) = k x$.
+	ברור כי $\varphi$ הומומורפיזם, וכן ברור כי הוא חד־חד ערכי, נשאר להראות שהוא על.
+	נניח ש־$f = \varphi(k) \in \ker \varphi$, כלומר $f(x) = 0$ לכל $x$, בפרט נובע $x k \in n \ZZ$ או $x k \in m \ZZ$ לכל $x$, אז גם $k \mid m, n$ על־ידי הצבת $x = 1$, אבל $k < \gcd(m, n)$ ולכן $k = 0$ בלבד.
+	נסיק ש־$\varphi$ איזומורפיזם.
 \end{solution}
 
 \subquestion{}
@@ -98,7 +105,231 @@
 		= 1 \otimes 0
 		= 0
 	\]
-	ובאופן דומה נקבל גם $a \otimes m = 0$, ולכן נראה שמתקיים $A \cong \ZZ / \gcd(n, m) \ZZ$.
+	ובאופן דומה נקבל גם $a \otimes m = 0$, נראה שמתקיים $A \cong \ZZ / \gcd(n, m) \ZZ$.
+	באופן דומה למהלך הקודם $a \otimes b = (a b) \otimes 1$ ולכן מספיק לבנות העתקות $a \otimes 1 \mapsto a$, העתקה זו היא הומומורפיזם וברור כי היא הפיכה על־ידי $a \mapsto a \otimes 1$.
+	נסיק שאיזומורפיזם זה מעיד על $A \cong \ZZ / \gcd(n, m) \ZZ$ כפי שרצינו.
 \end{solution}
+
+\subquestion{}
+נגדיר את $A = \QQ \otimes_{\ZZ} \QQ$.
+\begin{solution}
+	יהי $\frac{p}{q} \otimes \frac{a}{b} \in A$ טנזור פשוט, אז מבילינאריות מתקיים,
+	\[
+		\frac{p}{q} \otimes \frac{a}{b}
+		= \frac{b p}{b q} \otimes \frac{a}{b}
+		= \frac{p}{b q} \otimes \frac{a b}{b}
+		= \frac{p}{b q} \otimes a
+		= \frac{a p}{b q} \otimes 1
+	\]
+	כלומר שוב קיבלנו שכל טנזור פשוט הוא מהצורה $q \otimes 1$ עבור $q \in \QQ$, ובדומה לסעיף הקודם נוכל להגדיר את $q \otimes 1 \mapsto q$ ולקבל איזומורפיזם המעיד על $A \cong \QQ$.
+\end{solution}
+
+\question{}
+נראה שכל מכפלה טנזורית מעל חוג חילופי $R$ היא אסוציאטיבית, כלומר נראה שאם $M, N, P$ מודולים מעל $R$ אז מתקיים,
+\[
+	(M \otimes_R N) \otimes_R P
+	\cong M \otimes_R (N \otimes_R P)
+\]
+\begin{proof}
+	נשתמש באסטרטגיה הסטנדרטית של הגדרת הומומורפיזמים הפוכים והרמתם. \\
+	נקבע $p \in P$ ונגדיר את ההעתקה $f_p : M \times N \to M \otimes_R (N \otimes_R P)$ על־ידי,
+	\[
+		f_p(m, n)
+		= m \otimes (n \otimes p)
+	\]
+	אז ברור כי היא מוגדרת היטב, והיא בילינארית על־ידי בילינאריות המכפלה הטנזורית, לכן ניתן להרים את $f_p$ להומומורפיזם $\tilde{f}_p : M \otimes_R N \to M \otimes_R (N \otimes_R P)$,
+	ומתקיים,
+	\[
+		\tilde{f}_p(m \otimes n)
+		= m \otimes (n \otimes p)
+	\]
+	עתה נוכל להגדיר את ההעתקה הכללית,
+	\[
+		\varphi : (M \otimes_R N) \times P \to M \otimes_R (N \otimes_R P)
+		\qquad
+		\varphi(m \otimes n, p)
+		= \tilde{f}_p(m, n)
+		= m \otimes (n \otimes p)
+	\]
+	אז ברור כי היא מוגדרת היטב וכן שהיא בילינארית ולכן ניתנת להרמה להומומורפיזם,
+	\[
+		\tilde{\varphi} : (M \otimes_R N) \otimes_R P \to M \otimes_R (N \otimes_R P)
+	\]
+	מהצד השני נוכל להגדיר את,
+	\[
+		\psi : M \times (N \otimes_R P) \to (M \otimes_R N) \otimes_R P
+		\qquad
+		\psi(m, n \otimes p)
+		= (m \otimes n) \otimes p
+	\]
+	על־ידי שיקול דומה נוכל להסיק שזהו הומומורפיזם בילינארי ולכן קיימת הרמה יחידה,
+	\[
+		\tilde{\psi} : M \otimes_R (N \otimes_R P) \to (M \otimes_R N) \otimes_R P
+		\qquad
+		\tilde{\psi}(m \otimes (n \otimes p))
+		= (m \otimes n) \otimes p
+	\]
+	על־ידי הצבה ישירה נקבל ש־$\tilde{\varphi}, \tilde{\psi}$ הומומורפיזמים הפוכים ולכן איזומורפיזמים המעידים על הטענה.
+\end{proof}
+
+\question{}
+יהיו $U, V$ מרחבים וקטוריים מעל שדה $\FF$ עם הבסיסים ${\{ u_i \}}_{i \in I}, {\{ v_j \}}_{j \in J}$ בהתאמה. \\
+נראה ש־${\{ u_i \times v_j \}}_{i \in I, j \in J}$ הוא בסיס עבור המכפלה הטנזורית $U \otimes_{\FF} V$.
+\begin{proof}
+	יהי $u \otimes v \in U \otimes_{\FF} V$ טנזור פשוט, לכן קיימים צירופים סופיים כך שמתקיים,
+	\[
+		u = \sum_i \alpha_i u_i,
+		\qquad
+		v = \sum_j \beta_j v_j
+	\]
+	כאיברים במרחב וקטורי עם בסיס נתון.
+	מבילינאריות נקבל,
+	\[
+		u \otimes v
+		= \left(\sum_i \alpha_i u_i\right) \otimes \left(\sum_j \beta_j v_j\right)
+		= \sum_{i, j} \alpha_i \beta_j (u_i \otimes v_j)
+	\]
+	הטענה כמובן עובדת גם לטנזורים לא פשוטים על־ידי בילינאריות והעובדה שסכום של סכומים סופיים הוא סופי. \\
+	נסיק אם כך שהקבוצה ${\{ u_i \otimes v_j \}}_{i \in I, j \in J}$ היא קבוצה פורשת של $U \otimes_{\FF} V$.
+	נשאר להראות שפירוק זה הוא יחיד, אבל תוצאה זו מתקבלת ישירות מהעובדה ש־$u_i, v_j$ בסיסים ולכן עבורם יש פירוק יחיד.
+\end{proof}
+
+\question{}
+יהי $R$ חוג כלשהו, ונזכור כי מודול מעל $R$ נקרא חופשי אם יש לו בסיס, נראה שלוש הגדרות שונות עבור בסיס:
+\begin{definition}[בסיס כמקיים תכונת הרמה אוניברסלית]
+	בסיס של $M$ הוא תת־קבוצה $S \subseteq M$ המקיימת את התכונה האוניברסלית, כלומר שלכל העתקה $f : S \to L$ לאיזשהו $R$־מודול $L$ יש הרחבה יחידה להומומורפיזם $\hat{f} : M \to L$.
+\end{definition}
+\begin{definition}[בסיס כקבוצה יוצרת וייחודית]
+	בסיס של $M$ הוא תת־קבוצה $S \subseteq M$ כך שכל איבר ב־$M$ ניתן לייצוג כצירוף לינארי $\sum_{s \in S} r_s . s$ בצורה יחידה, וכאשר $r_s = 0$ כמעט תמיד.
+\end{definition}
+\begin{definition}[בסיס כקבוצה לא תלויה־לינארית]
+	בסיס של $M$ הוא תת־קבוצה $S \subseteq M$ היוצרת את $M$ כך שאם $\sum_{s \in S} r_s . s = 0$ אז $r_s = 0$ לכל $s \in S$.
+\end{definition}
+
+\subquestion{}
+נראה שכל שלוש ההגדרות שקולות.
+\begin{proof}
+	$1 \implies 2$:
+	תהי $f : S \to R[S]$, כלומר העתקה ששולחת את ערכי $M$ לפולינומים במשתנים מתאימים ל־$S$, ונסמן $x_s$ לכל $s \in S$ המשתנה המתאים.
+	נגדיר את $f(s) = x_s$ לכל $s \in S$, לכן קיים הומומורפיזם יחיד $\hat{f} : M \to R[S]$.
+	אם $m = \sum_{s \in S} r_s . s$ אז $\bar{f}(m) = \sum_{s \in S} r_s x_s$.
+	נניח שמתקיים גם $m = \sum_{s \in S} t_s . s$, כלומר שקיימת עוד דרך לקבל את $m$ כצירוף לינארי של איברי $S$, אז נקבל גם,
+	\[
+		\sum_{s \in S} r_s x_s
+		= \sum_{s \in S} t_s x_s
+		\implies
+		\sum_{s \in S} (r_s - t_s) x_s
+		= 0
+	\]
+	כלומר נובע $r_s = t_s$ לכל $s \in S$, בהתאם מצאנו כי קיים ייצוג יחיד כצירוף לינארי.
+
+	$2 \implies 3$:
+	הנחנו שכל איבר ניתן לייצוג כצירוף לינארי יחיד, לכן נסמן $0 = \sum_s r_s . s$ הצירוף היחיד המקיים זאת.
+	נניח כי קיים $r_s \ne 0$, אז מתקיים $-r_s . s = \sum_{t \in S \setminus \{ s \}} r_s . s$, אבל נזכור כי גם ל־$-r_s . s$ יש ייצוג יחיד, והוא כמובן $-r_s . s$, לכן $r_t = 0$ לכל $t \ne s$, כלומר $-r_s . s = 0$.
+	הנחנו ש־$r_s = 0$ ולכן נובע ש־$s = 0$ בלבד, אבל אם $0 \in S$ אז נקבל שלא יכול להיות שלכל איבר יהיה צירוף לינארי מתאים יחיד, ולכן נקבל סתירה, כלומר $r_s = 0$ לכל $s \in S$.
+
+	$3 \implies 2$:
+	יהי $m \in M$ ונניח ש־$m = \sum_s r_s . s = \sum_s t_s . s$, אז בפרט נקבל $\sum_s (r_s - t_s) . s = 0$, אבל אז נובע ש־$r_s - t_s = 0$, כלומר $r_s = t_s$, ונקבל שאכן קיים ייצוג יחיד.
+
+	$2 \implies 1$:
+	תהי העתקה $f : S \to L$ עבור $L$ מודול כלשהו מעל $R$, ונרצה להראות שיש הרחבה יחידה להומומורפיזם $\hat{f} : M \to L$.
+	תהי איזושהי הרחבה $\hat{f} : M \to L$ הומומורפיזם.
+	נסמן $m = \sum_s r_s . s$ הייצוג היחיד של $m$ כצירוף לינארי מעל $S$, אז מתקיים,
+	\[
+		\hat{f}(m)
+		= \sum_{s \in S} r_s . \hat{f}(s)
+		= \sum_{s \in S} r_s . f(s)
+	\]
+	כלומר מצאנו כי $\hat{f}$ נקבע ביחידות על־ידי $f$, וכך גם מצאנו שאכן קיימת הרחבה כזאת.
+\end{proof}
+
+\subquestion{}
+נראה שאם $M_1$ ו־$M_2$ הם מודולים חופשיים עם בסיסים $S_1$ ו־$S_2$ בהתאמה, וכן ש־$|S_1| = |S_2|$, אז בהכרח $M_1 \cong M_2$.
+\begin{proof}
+	מהנתון $|S_1| = |S_2|$ נובע שקיימת פונקציה חד־חד ערכית ועל $h : S_1 \to S_2$. \\
+	נגדיר את ההעתקה $f : S_1 \to M_2$ על־ידי $f(s_1) = h(s_1)$, אז קיימת הרחבה יחידה $F : M_1 \to M_2$ להומומורפיזם כך ש־$F(s_1) = h(s_1)$ לכל $s_1 \in S_1$.
+	נובע ש־$F$ היא חד־חד ערכית על־ידי שימוש בעובדה שכל איבר מתפרק ביחידות לצירוף לינארי בתמונה.
+	נרצה להראות ש־$F$ גם על, יהי $m_2 \in M_2$, אז הוא מתפרק ל־$m_2 = \sum_{s_2} r_{s_2} . s_2$ יחיד, אבל,
+	\[
+		m_2
+		= \sum_{s_2 \in S_2} r_{s_2} . s_2
+		= \sum_{s_1 \in S_1} r_{h(s_1)} . h(s_1)
+		= \sum_{s_1 \in S_1} r_{h(s_1)} . F(s_1)
+		= F\left(\sum_{s_1 \in S_1} r_{h(s_1)} . s_1\right)
+	\]
+	כלומר מצאנו מקור ל־$m_2$ ולכן $F$ היא גם על, ונסיק כי זהו איזומורפיזם $F : M_1 \to M_2$.
+\end{proof}
+
+\question{}
+יהי חוג $R$, ונגדיר את $R^n = \bigoplus_{[n]} R$, זהו מודול על $R$.
+
+\subquestion{}
+נראה ש־$R^n$ הוא מודול חופשי.
+\begin{proof}
+	נבחן את הסכום הישר כסכום ישר חיצוני, כלומר נבחן את $R^n$ כ־$\prod_{[n]} R$ עם הפעולה של כפל כלל האיברים.
+	בשל כך נזהה את $R^n$ הן כמכפלה קרטזית והן כסכום ישר והפעולה.
+	נגדיר גם את $e_i(k) = 1$ אם $i = k$ ו־$e_i(k) = 0$ אחרת, ונקבל ש־$E = \{ e_i \mid i \in [n] \}$ הוא קבוצה יוצרת של $R^n$.
+	לבסוף, אם $\bar{0} = \sum_{i \in [n]} r_i . e_i$ אז בפרט $0 = \pi_i(\bar{0}) = r_i$ ונסיק מהשאלה הקודמת שזהו בסיס.
+\end{proof}
+
+\subquestion{}
+יהי $I \trianglelefteq R$ אידאל, נסמן את תת־הקבוצה של $R^n$,
+\[
+	I R^n
+	= \{ i . \bar{r} \mid i \in I, \bar{r} \in R^n \}
+\]
+וכן נגדיר את $I^n = \bigoplus_{[n]} I$, ונראה ש־$\langle I R^n \rangle = I^n$, כלומר תת־המודול הנוצר על־ידי $I R^n$ הוא בדיוק $I^n$.
+\begin{proof}
+	יהי $i . \bar{r} \in I R^n$, ונסמן $r_k = \pi_k(\bar{r})$ ההטלה של $R^n$, אז $i r_k \in I$ לכל $k$, אבל $i . \bar{r} = (i r_1, \ldots, i r_n)$, לכן גם $i . \bar{r} \in I^n$.
+	נסיק ש־$I R^n \subseteq I^n$, וכקבוצת יוצרים ובשל סגירות של $I^n$ לחיבור, נסיק שגם $\langle I R^n \rangle \subseteq I^n$.
+
+	בכיוון ההפוך יהי $\bar{\imath} \in I^n$ ונסמן $\bar{\imath} = (i_1, \ldots, i_n)$.
+	אז מתקיים,
+	\[
+		\bar{\imath}
+		= \sum_{k = 1}^n i_k . e_k
+	\]
+	אבל $i_k \in I, e_k \in R^n$ ולכן $i_k . e_k \in I R^n$, ומסגירות של תת־מודול לסכומים סופיים נסיק שגם $I^n \subseteq \langle I R^n \rangle$.
+\end{proof}
+
+\subquestion{}
+נראה על־ידי שימוש בלמה של צורן שלכל חוג לא טריוויאלי יש אידאל מקסימלי.
+\begin{proof}
+	נסמן $S = \{ I \triangleleft R \mid I \ne R \}$ כל האידאלים ב־$R$ ונבדוק את תנאי הלמה של צורן עבור יחס ההכלה.
+	תהי $T \subseteq S$ שרשרת ביחס ההכלה וניקח את $I = \{ 0 \} \cup \bigcup T$ ונראה ש־$I \in S$ וכן שהוא חסם עליון של $T$.
+	אכן $J \subseteq I$ לכל $J \in T$, ונראה ש־$I \triangleleft R, I \ne R$. \\
+	יהיו $a, b \in I$, ונניח בלי הגבלת הכלליות ש־$T$ לא ריקה. קיימים $J, K \in S$ כך ש־$b \in K, a \in J$.
+	$T$ שרשרת ולכן $J \subseteq K$ או $K \subseteq J$ ונניח בלי הגבלת הכלליות ש־$K \subseteq J$.
+	אז $a, b \in J$ ולכן $a + b \in J \subseteq I$ כנדרש.
+	אם $c \in I$ ו־$a \in R$ אז קיים $J \in T$ כך ש־$c \in J$ ולכן גם $a c \in J \subseteq I$ ולכן נוכל להסיק ש־$I \triangleleft R$.
+	בנוסף $1 \notin J$ לכל $J \in T$ ולכן גם $1 \notin J$ ובפרט $J \ne R$.
+	בהתאם $J \in S$ הוא אכן חסם עליון ולכן תנאי הלמה של צורן מתקיימים וקיים אידאל מקסימלי.
+\end{proof}
+
+\subquestion{}
+נראה שאם $R$ הוא חוג חילופי, אז $R^m \cong R^n$ אם ורק אם $m = n$. \\
+נסיק שלכל מודול חופשי מעל $R$ יש דרגה מוגדרת היטב.
+\begin{proof}
+	אם $m = n$ אז נקבל ש־$R^m = R^n$ בדיוק.
+
+	בכיוון ההפוך, נניח שמתקיים $R^m \cong R^n$ ונסמן $\varphi : R^m \to R^n$ איזומורפיזם מודולים המעיד על כך.
+	נסמן $I \trianglelefteq R$ אידאל מקסימלי, קיים כזה ממשפט האידאל המקסימלי.
+	אם $i \in I, \bar{r} \in R^m$ אז מתקיים $i . \varphi(\bar{r}) = \varphi(i \bar{r})$ ולכן גם,
+	\[
+		\varphi(I R^m)
+		= I R^n
+	\]
+	ועל־ידי סגירות לחיבור נקבל שגם,
+	\[
+		\varphi(I^m)
+		= I^n
+	\]
+	נגדיר את $\psi : R^m / I R^m \to R^n / I R^n$ על־ידי,
+	\[
+		\psi(\bar{r} + I R^m)
+		= \varphi(\bar{r} + I R^m)
+		= \varphi(\bar{r}) + I R^n
+	\]
+\end{proof}
 
 \end{document}
