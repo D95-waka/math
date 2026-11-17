@@ -1115,5 +1115,104 @@
 \end{example}
 עבור $M, N$ מודולים מעל $\FF[G]$, נבנה הצגות על בסיס $M \otimes_{\FF} N$ ו־$\Hom_{\FF}(M, N)$.
 
+\section{שיעור 8 --- 17.11.2026}
+ניזכר ש־$\FF[G]$־מודול הוא בדיוק הצגה של $G$ מעל $\FF$, לאחר מכן דיברנו על סכום ישר של מודולים, ובפרט נוכל לבחון סכומים ישרים של $\FF[G]$־מודולים.
+לבסוף הגדרנו את המכפלה הטנזורית של מודולים עבור חוג חילופי.
+
+\subsection{מכפלה טנזורית של הצגות}
+\begin{definition}[מכפלה טנזורית של הצגות]
+	בהינתן שני $\FF[G]$־מודולים $U, V$, נגדיר את המכפלה הטנזורית שלהם על המרחב הווקטורי $U \otimes_{\FF} V$ עם הפעולה,
+	\[
+		g . (u \otimes v)
+		= (g . u) \otimes (g . v)
+	\]
+\end{definition}
+\begin{proposition}
+	ההגדרה הזו תקפה, כלומר:
+	\begin{enumerate}
+		\item הפעולה של כל $g \in G$ מוגדרת היטב
+		\item זוהי גם העתקה לינארית מעל המרחב הווקטורי $U \otimes V$
+		\item זהו הומומורפיזם חבורות, כלומר $g h$ פועלת כמו $g \cdot h$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	ההעתקה $g : U \times V \to U \otimes V$ המוגדרת על־ידי $g(u, v) = (g u) \otimes (g v)$.
+	זוהי העתקה $\FF$־בילינארית ולכן ניתנת להרמה להעתקה $g : U \otimes_{\FF} V \to U \otimes_{\FF} V$, וזוהי העתקה לינארית.
+	העתקה זו מקיימת $u \otimes v \mapsto (g u) \otimes (g v)$.
+
+	לבסוף, זהו הומומורפיזם של חבורות שכן,
+	\[
+		(g \cdot h) (u \otimes v)
+		= g((h u) \otimes (h v))
+		= (g . h u) \otimes (g . h v)
+		= (g h) (u \otimes v)
+	\]
+	כלומר זהו אכן הומומורפיזם.
+\end{proof}
+\begin{example}
+	נבחן את $G = S_4$.
+	נבנה לה טבלת קרקטרים,
+	\begin{otherlanguage}{english}
+		\begin{center}
+			$\begin{array}{c| c c c c c} % chktex 44
+				& 1\ (1) & (1\ 2\ 3)\ (8) & (1\ 2)\ (3 4)\ (3) & (1\ 2)\ (6) & (1\ 2\ 3\ 4) \\
+				\hline % chktex 44
+				\text{triv} & 1 & 1 & 1 & 1 & 1 \\
+				\sgn & 1 & 1 & 1 & -1 & -1 \\
+				\rho = \# \text{fixed points} - 1 & 3 & 0 & -1 & 1 & -1 \\
+				\sgn \otimes \rho & 3 & 0 & -1 & -1 & 1 \\
+				\psi & 2 & -1 & 2 & 0 & 0
+			\end{array}$
+		\end{center}
+	\end{otherlanguage}
+	אפשר לבנות את ההצגה $\sgn \otimes_{\CC} \rho$. אם $\{ e \}$ בסיס של הצגת הסימן ו־$\{ f_1, f_2, f_3 \}$ בסיס של ההצגה $\varphi$ אז $\{ e \otimes f_1, e \otimes f_2, e \otimes f_3 \}$ בסיס של המכפלה.
+	איך $\sigma \in S_4$ פועלת על הבסיס הזה, ומה המטריצה המתאימה?
+	\[
+		\sigma (e \otimes f_1)
+		= (\sigma . e) \otimes (\sigma . f_1)
+		= (\sgn . e) \otimes (\sigma . f_1)
+	\]
+	מקבלים שאם $e(A) \in \GL_3(\CC)$ היא המטריצה שמתארת את פעולת $\sigma$ בבסיס $\{f_1, f_2, f_3\}$,
+	אז $\sgn(\alpha) \cdot A$ מתארת את פעולת $\sigma$ על $\sgn \otimes \rho$ בבסיס $\{ e \otimes f_1, e \otimes f_2, e \otimes f_3 \}$.
+	מכאן נוכל להשלים את שתי השורות האחרונות בטבלה, כאשר עלינו להראות שהצגה זו אכן אי־פריקה, זאת נוכל לבדוק על־ידי $\langle \sgn \otimes \rho, \sgn \otimes \rho \rangle_{S_4} = 1$.
+	לבסוף נשלים את השורה האחרונה עם תכנות טבלת קרקטרים, וללא ביטוי ברור של $\psi$.
+\end{example}
+\begin{remark}
+	לכל $R$ חילופי ו־$R$־מודולים $U, V$ הגדרנו את $\Hom_R(U, V)$ והראינו שזה $R$־מודול עם,
+	\[
+		(r . \varphi)(u)
+		= r . \varphi(u)
+		= \varphi(r . u)
+	\]
+	אם $\FF$ שדה ו־$U, V$ מרחבים וקטוריים נוצרים סופית אז $\Hom_{\FF}(U, V)$ הוא מרחב וקטורי ממימד $\dim(U) \cdot \dim(V)$.
+\end{remark}
+\begin{definition}[מודול מעל חבורת הומומורפיזמים]
+	אם $U, V$ הם $\FF[G]$־מודולים, אז נגדיר מבנה של $\FF[G]$־מודול על $\Hom_{\FF}(U, V)$ על־ידי הפעולה,
+	\[
+		(g . \varphi)(u)
+		= g . \varphi(g^{-1} u)
+	\]
+	כאשר $g^{-1} . u$ היא פעולה ב־$U$ ו־$g . (\cdots)$ היא פעולה ב־$V$.
+\end{definition}
+\begin{proposition}
+	זוהי הגדרה תקינה והפעולה מוגדרת היטב, כלומר:
+	\begin{enumerate}
+		\item $g . \varphi$ היא העתקה לינארית $U \to V$
+		\item $g$ פועלת לינארית על $\Hom_{\FF}(U, V)$, כלומר,
+			\[
+				g(\alpha_1 \varphi_1 + \alpha_2 \varphi_2)
+				= \alpha_1 g . \varphi_1 + \alpha_2 g . \varphi_2
+			\]
+		\item $1 . \varphi = \varphi$ וכן $(g h) . \varphi = g(h(\varphi))$ וכן $g$ פועל באופן הפיך $\rho(g) \in \GL$ וגם $\rho$ הוא הומומורפיזם של חבורות
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	נסמן $\rho : G \to \GL(\Hom_{\FF}(U, V))$.
+	עלינו להראות ש־$g . \varphi$ היא העתקה לינארית $U \to V$.
+\end{proof}
+\begin{proof}
+	תרגיל.
+\end{proof}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
