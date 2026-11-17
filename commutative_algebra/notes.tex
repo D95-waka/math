@@ -10,6 +10,7 @@
 
 \DeclareMathOperator\Mon{Mon}
 \DeclareMathOperator\Nil{Nil}
+\DeclareMathOperator\loc{loc}
 
 \begin{document}
 \maketitle
@@ -1907,7 +1908,7 @@ $A_{\alpha}$ חילופיים אם ורק אם $\prod_{\alpha \in I} A_{\alpha}$
 		\xrightarrow{\psi} P
 		\to 0
 	\]
-	בקופן שקול $\varphi$ חד־חד ערכית, $\psi$ היא על, ו־$\im \varphi = \ker \psi$.
+	באופן שקול $\varphi$ חד־חד ערכית, $\psi$ היא על, ו־$\im \varphi = \ker \psi$.
 	לפי משפט האיזומורפיזם הראשון מתקבל,
 	\[
 		P
@@ -1924,6 +1925,10 @@ $A_{\alpha}$ חילופיים אם ורק אם $\prod_{\alpha \in I} A_{\alpha}$
 		\to 0
 	\]
 \end{notation}
+
+\section{שיעור 9 --- 17.11.2026}
+\subsection{מכפלה טנזורית --- המשך}
+בפרק זה נניח שכל החוגים הם חילופיים, נמשיך בדיון שלנו על מכפלות טנזוריות.
 \begin{theorem}[דיוק מימין של מכפלה טנזורית]
 	תהי $M \xrightarrow{\varphi} N \xrightarrow{\psi} P \to 0$ סדרה מדויקת, $Q$ מודול כלשהו,
 	אז הסדרה,
@@ -1932,6 +1937,414 @@ $A_{\alpha}$ חילופיים אם ורק אם $\prod_{\alpha \in I} A_{\alpha}$
 	\]
 	מדויקת.
 \end{theorem}
+\begin{proof}
+	צריך להראות ש־$\psi \otimes \id_Q$ על ובנוסף $\ker(\psi \otimes \id_Q) = \im(\varphi \otimes \id)$.
+	נתחיל בחלק הראשון, יהיו $x \in P, t \in Q$, מכיוון ש־$\psi$ על ובהתאם קיים $y \in N$ כך ש־$\psi(y) = x$ ואז,
+	\[
+		(\psi \otimes \id_Q)(y \otimes t)
+		= \psi(y) \otimes \id_Q(t)
+		= \theta(y) \otimes t
+		= x \otimes t
+	\]
+	אבל $x \otimes t \in \im(\psi \otimes \id_Q)$ ולכן $P \otimes Q = \im(\psi \otimes \id_Q)$.
+
+	נעבור להראות $\im(\varphi \otimes \id) = \ker(\psi \otimes \id)$.
+	מתקיים,
+	\[
+		(\psi \otimes \id) \circ (\varphi \otimes \id)
+		= (\psi \circ \varphi) \otimes (\id \otimes \id)
+		= 0
+	\]
+	כאשר $\psi \otimes \varphi = 0$ מההנחה שלנו.
+	אז $\im(\varphi \otimes \id) \subset \ker(\psi \otimes \id)$, נשאר להראות שיש שוויון (ונשאר כתרגיל להראות שמכפלה טנזורית מתחלפת עם הרכבה).
+	$\psi$ על ולכן לכל $x \in P$ נבחר $f(x) \in N$ כך ש־$\psi(f(x)) = x$ ולכן $\psi \circ f = \id$, נגדיר,
+	\[
+		B : P \times Q \to (N \otimes Q) / \im(\varphi \otimes \id),
+		\qquad
+		B(x, t)
+		= f(x) \otimes t + \im(\varphi \otimes \id)
+	\]
+	$B$ בילינארית ולכן,
+	\[
+		f(x) \otimes (a t + b s)
+		= a f(x) \otimes t + b f(x) \otimes s
+	\]
+	וכן,
+	\[
+		f(a x + b y) \otimes t - a f(x) \otimes t - b f(y) \otimes t
+		= (f(a x + b y) - a f(x) - b f(y)) \otimes t
+		\in \im(\varphi \otimes t)
+	\]
+	שכן $f(a x + b y) \otimes t - a f(x) \otimes t - b f(y) \otimes t \in \ker \psi = \im \varphi$.
+	לכן $B(a x + b y, t) - a B(x, t) - b B(y, t) = 0$ ונסיק ש־$B$ בילינארית.
+	לכן קיים ויחיד $\lambda \in \Hom(P \otimes Q, (N \otimes Q) / \im(\varphi \otimes \id))$ כך שמתקיים,
+	\[
+		\lambda(x \otimes b)
+		= f(x) \otimes t + \im(\varphi \otimes \id)
+	\]
+	אם $x \in N$ אז,
+	\[
+		\psi(x - f(\psi(x)))
+		= \psi(x) - \psi(f(\psi(x)))
+		= \psi(x) - \psi(x)
+		= 0
+	\]
+	כלומר $x - f(\psi(x)) \in \ker \psi = \im \varphi$.
+	נובע,
+	\[
+		\lambda(\psi(x) \otimes t)
+		\equiv f(\psi(x)) \otimes t
+		\equiv x \otimes t
+		\mod \im(\varphi \otimes \id)
+	\]
+	ולכן $x \equiv f(\psi(x)) \mod \im \varphi$.
+	קיבלנו שמתקיים $\lambda \circ (\psi \otimes \id)$ היא העתקת המנה $N \otimes Q \to (N \otimes Q) / \im(\varphi \otimes \id)$.
+	כעת אם $u \in \ker(\psi \otimes \id)$ אז $\lambda((\psi \otimes \id)(u)) = 0$ ולכן $u \in \im(\varphi \otimes \id)$, כלומר קיבלנו את הנדרש.
+\end{proof}
+\begin{corollary}
+	יהי $I \triangleleft A$, אז $M \otimes A / I \cong M / I M$ מתקבל על־ידי $x \otimes (a \mod I) \mapsto a x \mod I M$.
+\end{corollary}
+\begin{proof}
+	$0 \to I \overset{\iota}{\hookrightarrow} A \xrightarrow{\pi} A / I \to 0$ מדויקת.
+	ממשפט הדיוק מימין נקבל שגם,
+	\[
+		I \otimes M
+		\to A \otimes M
+		\to (A / I) \otimes M
+		\to 0
+	\]
+	מדויקת, וכן נזכור כי $A \otimes M = M$ (כמודולים איזומורפיים) ולכן נקבל $\im(\iota \otimes \id_M) = I M$ ולכן,
+	\[
+		(A / I) \otimes M
+		\cong (A \otimes M) / \ker(\pi \otimes \id)
+		= (A \otimes M) / \im(\iota \otimes \id)
+		= M / I M
+	\]
+	וצריך לבדוק שאכן ההעתקה שהגדרנו מקיימת את הדרוש.
+\end{proof}
+נראה כי אין דיוק משמאל עם הדוגמה הבאה.
+\begin{example}
+	נסמן $A = \ZZ$ ונגדיר את הסדרה המדויקת,
+	\[
+		0
+		\to 2 \ZZ
+		\hookrightarrow \ZZ
+		\to \ZZ / 2 \ZZ
+	\]
+	נכפול טנזורית עם $\ZZ / 2 \ZZ$ ונקבל,
+	\[
+		0
+		\to 2 \ZZ / 4 \ZZ
+		\xrightarrow{0} \ZZ / 2 \ZZ
+		\xrightarrow{\id} \ZZ / 2 \ZZ
+	\]
+	ואין כאן דיוק.
+\end{example}
+
+\subsection{בניות על־ידי מכפלות טנזוריות}
+נניח ש־$A$ הוא חוג חילופי, ו־$(B, f : A \to B)$ אלגברה על $A$.
+נוכל לצמצם סקלרים מ־$B$ ל־$A$:
+אם $M$ הוא מודול מעל $B$ נהפוך אותו ל־$A$־מודול על־ידי כפל בסקלר,
+\[
+	a x
+	= f(a) x
+	\in M
+\]
+לכל $a \in A, x \in M$.
+במקרה זה,
+\[
+	(a b) x
+	= f(a b) x
+	= f(a) f(b) x
+	= f(a) b x
+	= a (b x)
+\]
+ושאר האקסיומות נשמרות באופן דומה.
+
+נוכל גם להרחיב סקלרים:
+אם $M$ הוא מודול מעל $A$ ו־$B$ הוא מודול מעל $A$ עם הפעולה $a b = f(a) b$ לכל $a \in A, b \in B$.
+נגדיר,
+\[
+	M_B
+	= B \otimes_A M
+\]
+אז נקבל ש־$M_B$ הוא מודל מעל $A$.
+נהפוך אותו ל־$B$־מודול על־ידי,
+\[
+	b \sum b_i \otimes x_i
+	= \sum b b_i \otimes
+	\in M_B
+\]
+כדי לבדוק שהפעולה מוגדרת היטב עלינו להראות ש־$b, x \mapsto b x$ בילינארית (תרגיל), קל לבדוק שמתקיימות אקסיומות המודול.
+\begin{definition}[הרחבת סקלרים]
+	$M_B$ הוא $B$־מודול שנקרא \textbf{הרחבת הסקלרים} מ־$A$ ל־$B$.
+\end{definition}
+\begin{example}
+	\begin{enumerate}
+		\item $M = A^{\otimes I}$ חופשי, אז,
+			\[
+				M_B
+				= A^{\otimes I} \otimes_A B
+				= {(A \otimes_A B)}^{\otimes I}
+				= B^{\otimes I}
+			\]
+		\item אם $I \triangleleft A$ ו־$B = A / I$ אז,
+			\[
+				M_B
+				= (A / I) \otimes M
+				\cong M / I M
+			\]
+	\end{enumerate}
+\end{example}
+\begin{exercise}
+	אם $M, N$ מודולים מעל $A$ ו־$\varphi \in \Hom_A(M, N)$ אז $\varphi_B : = \id_B \otimes \varphi : M_B \to N_B$ הומומורפיזם של $B$־מודולים,
+	\[
+		{( \id_M )}_B
+		= \id_{M_B},
+		\qquad
+		{(\varphi \circ \psi)}_B
+		= \varphi_B \circ \psi_B
+	\]
+\end{exercise}
+\begin{theorem}[תכונת האוניברסליות של הרחבת סקלרים]
+	יהי $M$ מודול מעל $A$, ו־$N$ מודול מעל $B$, $\varphi \in \Hom_A(M, N)$.
+	אז לכל $f : A \to B$ קיים ויחיד $\psi \in \Hom_B(M_B, N)$ כך שמתקיים $\psi \circ (f \otimes \id_M) = \varphi$, וכן $\psi(b \otimes x) = b \varphi(x)$.
+\end{theorem}
+\begin{definition}[מכפלה טנזורית של אלגברות]
+	יהי $A$ חוג, $(B, \varphi : A \to B)$ ו־$(C, \psi : A \to C)$ שתי אלגברות מעל $A$.
+	בפרט $B, C$ הם מודולים מעל $A$ ולכן ניתן להגדיר את $A \otimes_A C$, על מבנה זה נגדיר מבנה של אלגברה על־ידי,
+	\[
+		\left(\sum b_i \otimes c_i\right)\left(\sum b_j' \otimes c_j'\right)
+		= \sum_{i, j} b_i b_j' \otimes c_i c_j'
+	\]
+\end{definition}
+הכפל מוגדר היטב שכן ההעתקה $b, c \mapsto b b' \otimes c c'$ בילינארית ולכן הכפל לא תלוי בהצגת האיבר הראשון כסכום טנזורים פשוטים.
+אותה הטענה נכונה גם לערך השני.
+\begin{exercise}
+	בדקו ש־$B \otimes_A C$ חוג חילופי.
+\end{exercise}
+נגדיר $f : A \to B \otimes_A C$ על־ידי,
+\[
+	f(a)
+	= \varphi(a) \otimes 1
+	= a 1 \otimes 1
+	= 1 \otimes a 1
+	= 1 \otimes \psi(a)
+\]
+\begin{exercise}
+	בדקו ש־$f$ הומומורפיזם של חוגים.
+\end{exercise}
+זה מוביל אותנו להגדרה הבאה,
+\begin{definition}[מכפלה טנזורית של אלגברות]
+	$(B \otimes_A C, f)$ היא אלגברה מעל $A$, נקרא לה \textbf{המכפלה הטנזורית} של $(B, \varphi)$ ו־$(C, \psi)$.
+\end{definition}
+\begin{example}
+	יהי $A$ חוג ויהיו $B = A[\bar{x}], C = A[\bar{x}]$ עבור $\bar{x}, \bar{y}$ אוספי משתנים.
+	אז,
+	\[
+		B \otimes_A C
+		\cong A[\bar{x}, \bar{u}]
+	\]
+	זאת שכן $A[\bar{x}] = A^{\oplus \Mon(\bar{x})}$ כ־$A$־מודולו.
+	באופן דומה נקבל גם $A[\bar{y}] = A^{\oplus \Mon(\bar{y})}$, לכן,
+	\[
+		A[\bar{x}] \otimes_A A[\bar{y}]
+		\cong A^{\oplus (\Mon(\bar{x}) \times \Mon(\bar{y}))}
+	\]
+	אבל ניתן לזהות,
+	\[
+		\Mon(\bar{x} \cup \bar{y})
+		= \Mon(\bar{x}) \times \Mon(\bar{y})
+	\]
+	כאשר נזהה $(m(\bar{x}), n(\bar{y})) \leftrightarrow m(\bar{x}) n(\bar{y})$.
+	ניתן לבדוק שפעולות הכפל ב־$A[\bar{x} \cup \bar{y}]$ ו־$A^{\oplus \Mon(\bar{x}) \times \Mon(\bar{y})}$ מתאימים.
+\end{example}
+\begin{example}
+	כמקרה פרטי של הדוגמה הקודמת,
+	\[
+		A[x] \otimes A[y]
+		= A[x, y]
+	\]
+\end{example}
+באופן כללי נקבל $f(\bar{x}) \otimes g(\bar{x}) \leftrightarrow f(\bar{x}) g(\bar{y})$.
+\begin{definition}[חוג הקורדינטות של קבוצה אלגברית]
+	יהי $K$ שדה סגור אלגברית, ו־$\bar{x} = (x_1, \ldots, x_n)$.
+	ניזכר בהגדרה,
+	\[
+		V
+		= Z(S)
+		= \{ a \in K^n \mid \forall f \in S,\ f(a) = 0 \}
+		\subset K^n
+	\]
+	וכן,
+	\[
+		I(V)
+		= \{ f \in K[\bar{x}] \mid \forall a \in V,\ f(a) = 0 \}
+	\]
+	אז נגדיר את,
+	\[
+		K[V]
+		= \{ f |_V \mid f \in K[\bar{x}] \}
+	\]
+	כאוסף הפונקציות $K^n \to K$.
+	קבוצה זו נקראת \textbf{חוג הקורדינטות} של $V$.
+\end{definition}
+\begin{remark}
+	$f - g \in I(V) \iff f |_V = g |_V$ ולכן ניתן לזהות $K[V] \cong K[\bar{x}] / I(V)$ על־ידי $f |_V \leftrightarrow (f \mod I(V))$.
+\end{remark}
+תהי $W \subset K^m$ קבוצה אלגברית נוספת.
+נבחן את $V \times W \subset K^{n + m}$, גם $V \times W$ אלגברית ומוגדרת על־ידי $I(V) \cup I(W)$,
+כאשר משכנים $K[\bar{x}], K[\bar{y}] \subset K[\bar{x}, \bar{y}]$.
+\begin{proposition}
+	מתקיים,
+	\[
+		K[V \times W]
+		\cong K[V] \otimes_K K[W]
+	\]
+	כאיזומורפיזם של $K$־אלגברות.
+\end{proposition}
+\begin{proof}
+	נגדיר את $\varphi : K[V] \otimes K[W] \to K[V \times W]$ על־ידי,
+	\[
+		\varphi(\sum_i f_i |_V \otimes g_i |_W)
+		= \sum_i f_i(\bar{x}) g_i(\bar{y}) |_{V \times W}
+	\]
+	יש לבדוק שהפעולה $f |_V, g |_W \mapsto f(\bar{x}) g(\bar{y}) |_{V \times W}$ מוגדרת היטב ובילינארית.
+	לכן $\varphi$ מוגדר היטב, קל לבדוק ש־$\varphi$ הוא הומומורפיזם של $K$־אלגברות ונשאר להוכיח שהוא חד־חד ערכי ועל. \\
+	כל פולינום ב־$K[\bar{x}, \bar{y}]$ ניתן להציג על־ידי $\sum f_i(\bar{x}) g_i(\bar{y})$ ולכן $\varphi$ על.
+
+	נעבור לחד־חד ערכיות.
+	יהי $\alpha = \sum_{i = l}^l f_i |_V \otimes g_i |_W \in \ker \varphi$ כך ש־$l$ מינימלי.
+	נסמן גם $\bar{f}_i = f_i |_V, \bar{g}_i = g_i |_W$.
+	אז $\bar{g}_1, \ldots, \bar{g}_l$ בלתי־תלויים לינארית מעל $K$, אחרת נוכל להציג $\bar{g}_l = \sum_{i < l} \alpha_i \bar{g}_i$ ואז,
+	\[
+		\sum_1^l \bar{f}_i \otimes \bar{g}_i
+		= \sum_1^{l - 1} (\bar{f}_i + a_i) \otimes \bar{g}_i
+	\]
+	וקיבלנו הצגה יותר קצרה בסתירה למינימליות של $l$. \\
+	לכל $a \in V$ נבחן את ההומומורפיזם,
+	\[
+		s_a : K[V] \to K,
+		\qquad
+		s_a(\bar{f}) = f(a)
+	\]
+	הומומורפיזם ההצבה.
+	על־ידי מכפלה טנזורית עם $\id_{K[W]}$ נקבל,
+	\[
+		(s_a \otimes \id_{K[W]})(\sum_{i = 1}^l \bar{f}_i \otimes \bar{g}_i)
+		= \sum_{i = 1}^l f_i(a) \bar{g}_i
+		\equiv 0
+	\]
+	כי $\sum \bar{f}_i \otimes \bar{g}_i \in \ker \varphi$ ולכן $\sum_1^l f_i g_i \in I(V \times W)$.
+	מכיוון ש־$\bar{g}_i$ בלתי־תלויים נסיק ש־$f_i(a) = 0$ לכל $i$ ולכל $a \in V$, כלומר $\bar{f}_i \equiv 0$ ו־$\alpha = \sum \bar{f}_i \otimes \bar{g}_i = 0$, כלומר $\varphi$ חד־חד ערכי.
+\end{proof}
+\begin{theorem}[התכונה האוניברסלית של מכפלה טנזורית של אלגברות]
+	נגדיר הומומורפיזמים $i_B : B \to B \otimes_A C$ וכן $i_C : C \to B \otimes_A C$ על־ידי $i_B(b) = b \otimes 1_C$ ו־$i_C(c) = 1_B \otimes c$.
+	$i_B, i_C$ הומומורפיזמים של $A$־אלגברות. \\
+	כעת נניח ש־$f : B \to D, g : C \to D$ זוג הומומורפיזמים של $A$־אלגברות.
+	אז קיים ויחיד הומומורפיזם $\varphi : B \otimes_A C \to D$ המקיים,
+	\[
+		\varphi \circ i_B = f,
+		\qquad
+		\varphi \circ I_C = g
+	\]
+	והוא מתקבל על־ידי $\varphi(b \otimes c) = f(b) g(c)$.
+\end{theorem}
+$b, c \mapsto f(b) g(c)$ בילינארית ולכן $\varphi$ מוגדר היטב, וקל לבדוק שהוא הומומורפיזם של $A$־אלגברות.
+\begin{remark}
+	 גם למכפלה $B \times C$ יש תכונה אוניברסלית דואלית לתכונה של מכפלה טנזורית.
+\end{remark}
+
+\subsection{מיקום}
+באנגלית localization.
+באופן כללי בחוג $A$ אין חילוק, אנו נרצה לבנות חוג אחר ''גדול יותר'' שבו ניתן לחלק בחלק מהאיברים ב־$A$.
+\begin{definition}[תת־קבוצה כפלית]
+	יהי $A$ חוג, תת־קבוצה $S \subset A$ נקראת \textbf{כפלית} (multiplicative) אם מתקיימות התכונות:
+	\begin{enumerate}
+		\item $1 \in S$
+		\item סגירות לכפל: $S \cdot S \subset S$, כלומר לכל $s, t \in S$ מתקיים $s t \in S$
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	הבאות הן תת־קבוצות כפליות:
+	\begin{enumerate}
+		\item $A^\times$
+		\item אם $f \in A$ אז $\{1, f, f^2, \ldots\}$
+		\item אם $P \triangleleft A$ ראשוני, אז $A \setminus P$
+	\end{enumerate}
+\end{example}
+יהי $A$ חוג ותהי $S \subset A$ כפלית, נבנה אלגברה מעל $A$ שבה כל האיברים ב־$S$ הפיכים כך שהיא גם תהיה אוניברסלית ביחס לתכונה זו.
+נגדיר יחס שקילות $\sim$ על $A \times S$ על־ידי,
+\[
+	(a, s) \sim (b, t)
+	\iff \exists r \in S,\ r(a t - b s) = 0
+\]
+\begin{proposition}
+	$\sim$ אכן יחס שקילות.
+\end{proposition}
+\begin{proof}
+	$(a, s) \sim (a, s)$ כי $1 \cdot (a s - s a) = 0$, ולכן קיבלנו רפלקסיביות.
+
+	אם $(a, s) \sim (b, t)$ אז קיים $r \in S$ כך ש־$r (a t - b s) = 0$ אבל אז נקבל שגם $r (b s - a t) = 0$, כלומר קיבלנו סימטריה.
+
+	נעבור לטרנזיטיביות.
+	נניח ש־$(a, s) \sim (b, t) \sim (c, u)$ ולכן קיימים $r, r' \in S$ כך שמתקיים,
+	\[
+		r (a t - b s) = 0,
+		\qquad
+		r' (v u - c t) = 0
+	\]
+	בהתאם מתקיים,
+	\[
+		(r r' t) (a n - c s)
+		= r' a r (a t - b s) + r s r' (b u - c t)
+		= 0
+	\]
+	ולכן גם $(a, s) \sim (c, u)$.
+\end{proof}
+\begin{notation}
+	נסמן ב־$\frac{a}{s}$ את מחלקת השקילות של $(a, s)$, לכן,
+	\[
+		\frac{a}{s} = \frac{b}{t}
+		\iff \exists r \in S,\ r (a t - b s) = 0
+	\]
+	ונסמן $S^{-1} A = \{ \frac{a}{s} \mid a \in A, s \in S \}$.
+\end{notation}
+נרצה לתת ל־$S^{-1} A$ מבנה של חוג ולכן נגדיר,
+\[
+	\frac{a}{s} + \frac{b}{t}
+	= \frac{a t + b s}{s t},
+	\qquad
+	\frac{a}{s} \cdot \frac{b}{t}
+	= \frac{a b}{s t}
+\]
+\begin{proposition}
+	מתקיים:
+	\begin{enumerate}
+		\item שתי הפעולות מוגדרות היטב.
+		\item $(S^{-1} A, +, \cdot)$ חוג חילופי, כאשר $0_{S^{-1} A} = \frac{0}{1}$ וגם $1_{S^{-1} A} = \frac{1}{1}$
+		\item ההעתקה $\loc : A \to S^{-1} A$ המוגדרת על־ידי $\loc(a) = \frac{a}{1}$ היא הומומורפיזם, ונקרא לה העתקת המיקום ב־$S$
+		\item $\loc$ שולחת כל איבר ב־$S$ לאיבר הפיך, כלומר $\frac{1}{s} \cdot \frac{s}{1} = \frac{1}{1} = 1_{S^{-1} A}$ ומתקיים,
+			\[
+				{(S^{-1} A)}^\times
+				= \{ \frac{a}{s} \mid \exists b \in A,\ b a \in S \}
+			\]
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\textbf{1.}
+	נבדוק עבור כפל, כלומר נבדוק שאם $\frac{a}{s} = \frac{a'}{s'}$ וכן $r(a s' - a' s) = 0$ ולכן,
+	\[
+		r (a s' b t - a' s b t) = 0
+	\]
+	ומכאן נובע שמתקיים,
+	\[
+		\frac{a b}{s t}
+		= \frac{a' b}{s' t}
+	\]
+	ונובע שהכפל מוגדר היטב, הבדיקה עבור חיבור היא דומה.
+\end{proof}
+אז $(S^{-1} A, \loc)$ היא אלגברה על $A$ שבה על האיברים ב־$S$ הם הפיכים.
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
