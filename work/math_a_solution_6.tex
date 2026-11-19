@@ -1,0 +1,248 @@
+\newcounter{stoppagebreaks}
+\input{../article_base.tex}
+\setlist[enumerate,1]{label={\alph*.}}
+% chktex-file 9
+% chktex-file 17
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{מתמטיקה א' --- פתרון תרגיל 6}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{שאלה 1}
+בדיקת חסימות הפונקציות והוכחת הטענות:
+\begin{enumerate}
+	\item $f(x) = 5x - 3$ --- אינה חסומה מלמעלה ואינה חסומה מלמטה.
+		\begin{itemize}
+			\item אינה חסומה מלמעלה: יהי $M \in \RR$. נבחר $x = \frac{M + 4}{5}$, ונקבל:
+				\[
+					f(x) = 5 \cdot \frac{M + 4}{5} - 3 = M + 4 - 3 = M + 1 > M
+				\]
+				לכן לא קיים חסם מלמעלה.
+			\item אינה חסומה מלמטה: יהי $m \in \RR$. נבחר $x = \frac{m + 2}{5}$, ונקבל:
+				\[
+					f(x) = 5 \cdot \frac{m + 2}{5} - 3 = m + 2 - 3 = m - 1 < m
+				\]
+				לכן לא קיים חסם מלמטה.
+		\end{itemize}
+
+	\item $f(x) = x^2 + 3$ --- חסומה מלמטה ואינה חסומה מלמעלה.
+		\begin{itemize}
+			\item חסומה מלמטה: לכל $x \in \RR$ מתקיים $x^2 \ge 0$, ולכן $f(x) = x^2 + 3 \ge 3$. מכאן ש־$3$ הוא חסם מלמטה.
+			\item אינה חסומה מלמעלה: יהי $M \in \RR$. נבחר $x = \sqrt{|M|} + 1$, ונקבל:
+				\[
+					f(x) = {\left(\sqrt{|M|} + 1\right)}^2 + 3 = |M| + 2\sqrt{|M|} + 4 > |M| \ge M
+				\]
+				לכן הפונקציה אינה חסומה מלמעלה.
+		\end{itemize}
+
+	\item $f(x) = \ln(x)$ (בתחום ההגדרה $(0, \infty)$) --- אינה חסומה מלמעלה ואינה חסומה מלמטה.
+		\begin{itemize}
+			\item אינה חסומה מלמעלה: יהי $M \in \RR$. נבחר $x = e^{|M| + 1} > 0$, ונקבל:
+				\[
+					f(x) = \ln\left(e^{|M| + 1}\right) = |M| + 1 > M
+				\]
+				לכן הפונקציה אינה חסומה מלמעלה.
+			\item אינה חסומה מלמטה: יהי $m \in \RR$. נבחר $x = e^{-|m| - 1} > 0$, ונקבל:
+				\[
+					f(x) = \ln\left(e^{-|m| - 1}\right) = -|m| - 1 < -|m| \le m
+				\]
+				לכן הפונקציה אינה חסומה מלמטה.
+		\end{itemize}
+
+	\item $f(x) = 3\sin(x) + 2\cos(x)$ --- חסומה מלמעלה ומלמטה. \\
+		לכל $x \in \RR$ מתקיים $|\sin(x)| \le 1$ ו־$|\cos(x)| \le 1$. כל אחד מהערכים אם כך יכול לנוע בין $-2$ ל־$2$ ו־$-3$ ל־$3$, וביחד הם נסכמים לכל היותר ל־$-5$ עד $5$.
+
+	\item $f : [-100, 100] \to \RR, \quad f(x) = e^x + x^7$ --- חסומה מלמעלה ומלמטה. \\
+		נראה כי $f$ מונוטונית עולה ממש: יהיו $x_1, x_2 \in [-100, 100]$ כך ש־$x_1 < x_2$. הפונקציה המעריכית $e^x$ עולה ממש ולכן $e^{x_1} < e^{x_2}$, ופונקציית החזקה האי־זוגית $x^7$ עולה ממש ולכן $x_1^7 < x_2^7$. מחיבור אי־השוויונות נקבל:
+		\[
+			f(x_1) = e^{x_1} + x_1^7 < e^{x_2} + x_2^7 = f(x_2)
+		\]
+		מכיוון ש־$f$ עולה, לכל $x \in [-100, 100]$ מתקיים $-100 \le x \le 100$, ולכן:
+		\[
+			f(-100) \le f(x) \le f(100) \implies e^{-100} - 100^7 \le f(x) \le e^{100} + 100^7
+		\]
+		מכאן ש־$e^{-100} - 100^7$ הוא חסם מלמטה ו־$e^{100} + 100^7$ הוא חסם מלמעלה.
+\end{enumerate}
+
+\section{שאלה 2}
+נתונות הפונקציות $f(x) = \frac{e^x + e^{-x}}{2}$ ו־$g(x) = \frac{e^x - e^{-x}}{2}$ המוגדרות לכל $x \in \RR$ (תחום סימטרי סביב $0$):
+\begin{enumerate}
+	\item עבור הפונקציה $f(x) = \frac{e^x + e^{-x}}{2}$:
+		\begin{itemize}
+			\item זוגיות: לכל $x \in \RR$ מתקיים:
+				\[
+					f(-x) = \frac{e^{-x} + e^{-(-x)}}{2} = \frac{e^{-x} + e^x}{2} = \frac{e^x + e^{-x}}{2} = f(x)
+				\]
+				לכן $f$ פונקציה זוגית.
+			\item חסומה מלמטה: לכל $x \in \RR$ מתקיים $e^x > 0$ ו־$e^{-x} > 0$, ולכן $f(x) = \frac{e^x + e^{-x}}{2} > 0$. מכאן ש־$0$ הוא חסם מלמטה של $f$.
+		\end{itemize}
+
+	\item עבור הפונקציה $g(x) = \frac{e^x - e^{-x}}{2}$:
+		\begin{itemize}
+			\item אי־זוגיות: לכל $x \in \RR$ מתקיים:
+				\[
+					g(-x) = \frac{e^{-x} - e^{-(-x)}}{2} = \frac{e^{-x} - e^x}{2} = -\frac{e^x - e^{-x}}{2} = -g(x)
+				\]
+				לכן $g$ פונקציה אי־זוגית.
+			\item אינה חסומה כלל:
+				\begin{enumerate}
+					\item אינה חסומה מלמעלה: יהי $M \in \RR$. עבור $x > 0$ מתקיים $e^{-x} < 1$, ולכן $g(x) > \frac{e^x - 1}{2}$. נבחר $x = \ln(2|M| + 2) > 0$, ונקבל:
+						\[
+							g(x) > \frac{e^{\ln(2|M| + 2)} - 1}{2} = \frac{2|M| + 2 - 1}{2} = |M| + \frac{1}{2} > M
+						\]
+					\item אינה חסומה מלמטה: יהי $m \in \RR$. מכיוון ש־$g$ אינה חסומה מלמעלה, קיים $x_0 \in \RR$ כך ש־$g(x_0) > -m$. מאי־זוגיות הפונקציה נקבל עבור $x = -x_0$:
+						\[
+							g(-x_0) = -g(x_0) < -(-m) = m
+						\]
+				\end{enumerate}
+				לכן $g$ אינה חסומה מלמעלה ואינה חסומה מלמטה.
+		\end{itemize}
+\end{enumerate}
+
+\section{שאלה 3}
+פתרון המשוואות הטריגונומטריות (בכל הסעיפים $k \in \mathbb{Z}$):
+\begin{enumerate}
+	\item $\sin x = \frac{1}{2}$: \\
+		הפתרונות הבסיסיים במחזור $[0, 2\pi)$ הם $x = \frac{\pi}{6}$ ו־$x = \pi - \frac{\pi}{6} = \frac{5\pi}{6}$, ולכן הפתרון הכללי הוא:
+		\[
+			x = \frac{\pi}{6} + 2\pi k \quad \text{או} \quad x = \frac{5\pi}{6} + 2\pi k \quad (k \in \mathbb{Z})
+		\]
+
+	\item $\cos(2x) = \frac{1}{2}$: \\
+		מפתרון משוואת הקוסינוס הבסיסית נקבל:
+		\[
+			2x = \pm \frac{\pi}{3} + 2\pi k \quad (k \in \mathbb{Z})
+		\]
+		נחלק את שני האגפים ב־$2$:
+		\[
+			x = \pm \frac{\pi}{6} + \pi k \quad (k \in \mathbb{Z})
+		\]
+
+	\item $\tan x = 0$: \\
+		הפונקציה $\tan x = \frac{\sin x}{\cos x}$ מוגדרת כאשר $\cos x \ne 0$ ומתאפסת כאשר $\sin x = 0$ (ובנקודות אלו $\cos x = \pm 1 \ne 0$). לכן הפתרון הכללי הוא:
+		\[
+			x = \pi k \quad (k \in \mathbb{Z})
+		\]
+\end{enumerate}
+
+\section{שאלה 4}
+הוכחת מחזוריות ומציאת גודל המחזור $T > 0$:
+\begin{enumerate}
+	\item $f(x) = \sin(\pi x)$ --- גודל המחזור הוא $T = 2$. \\
+		המחזור היסודי של $\sin(u)$ הוא $2\pi$, ולכן נדרוש $\pi T = 2\pi \implies T = 2$.
+		אכן, לכל $x \in \RR$ מתקיים:
+		\[
+			f(x + 2) = \sin\big(\pi(x + 2)\big) = \sin(\pi x + 2\pi) = \sin(\pi x) = f(x)
+		\]
+
+	\item $f(x) = \tan\left(21\frac{1}{3}x - 15\right)$ --- גודל המחזור הוא $T = \frac{3\pi}{64}$. \\
+		נרשום $21\frac{1}{3} = \frac{64}{3}$, כלומר $f(x) = \tan\left(\frac{64}{3}x - 15\right)$. המחזור היסודי של $\tan(u)$ הוא $\pi$, ולכן נדרוש $\frac{64}{3}T = \pi \implies T = \frac{3\pi}{64}$.
+		אכן, לכל $x$ בתחום ההגדרה של $f$ (תחום הנשמר תחת הזזה ב־$\frac{3\pi}{64}$) מתקיים:
+		\[
+			f\left(x + \frac{3\pi}{64}\right) = \tan\left(\frac{64}{3}\left(x + \frac{3\pi}{64}\right) - 15\right) = \tan\left(\left(\frac{64}{3}x - 15\right) + \pi\right) = \tan\left(\frac{64}{3}x - 15\right) = f(x)
+		\]
+
+	\item $f(x) = \tan(3x) - \sin(5x)$ --- גודל המחזור הוא $T = 2\pi$. \\
+		המחזור היסודי של $\tan(3x)$ הוא $T_1 = \frac{\pi}{3}$, והמחזור היסודי של $\sin(5x)$ הוא $T_2 = \frac{2\pi}{5}$. המחזור המשותף המינימלי הוא הכפולה המשותפת המינימלית החיובית של $T_1$ ו־$T_2$:
+		\[
+			n \cdot \frac{\pi}{3} = m \cdot \frac{2\pi}{5} \implies 5n = 6m
+		\]
+		הפתרון המינימלי במספרים טבעיים הוא $n = 6, m = 5$, ולכן $T = 6 \cdot \frac{\pi}{3} = 2\pi$.
+		אכן, לכל $x$ בתחום ההגדרה של $f$ מתקיים:
+		\[
+			f(x + 2\pi) = \tan\big(3(x + 2\pi)\big) - \sin\big(5(x + 2\pi)\big) = \tan(3x + 6\pi) - \sin(5x + 10\pi) = \tan(3x) - \sin(5x) = f(x)
+		\]
+\end{enumerate}
+
+\section{שאלה 5}
+גרפים המתארים את ההרחבות המחזוריות:
+\begin{enumerate}
+	\item $f : [0, 10) \to \RR, \quad f(x) = x^2, \quad L = 10$: \\
+		בכל קטע $[10k, 10k + 10)$ עבור $k \in \mathbb{Z}$ הגרף הוא העתק של הפרבולה מ־$(10k, 0)$ עד $(10k + 10, 100)$.
+		\begin{otherlanguage}{english}
+			\begin{center}
+				\begin{tikzpicture}[xscale=0.35, yscale=0.032]
+					\draw[->] (-11.5, 0) -- (22, 0) node[right] {$x$};
+					\draw[->] (0, -8) -- (0, 115) node[above] {$y$};
+					\draw[dashed, gray] (-10, 100) -- (20, 100);
+					\node[left] at (0, 100) {$100$};
+					\foreach \x in {-10, 10, 20} {
+						\draw (\x, -2.5) -- (\x, 2.5);
+						\node[below] at (\x, -2.5) {$\x$};
+					}
+
+					\draw[thick, blue, domain=-10:0, samples=50] plot (\x, {(\x+10)^2});
+					\node[circle, fill=blue, inner sep=1.5pt] at (-10, 0) {};
+					\node[circle, draw=blue, fill=white, inner sep=1.5pt] at (0, 100) {};
+
+					\draw[thick, blue, domain=0:10, samples=50] plot (\x, {(\x)^2});
+					\node[circle, fill=blue, inner sep=1.5pt] at (0, 0) {};
+					\node[circle, draw=blue, fill=white, inner sep=1.5pt] at (10, 100) {};
+
+					\draw[thick, blue, domain=10:20, samples=50] plot (\x, {(\x-10)^2});
+					\node[circle, fill=blue, inner sep=1.5pt] at (10, 0) {};
+					\node[circle, draw=blue, fill=white, inner sep=1.5pt] at (20, 100) {};
+				\end{tikzpicture}
+			\end{center}
+		\end{otherlanguage}
+
+	\item $f : [-5, 5] \to \RR, \quad f(x) = x^2, \quad L = 10$:
+		\begin{otherlanguage}{english}
+			\begin{center}
+				\begin{tikzpicture}[xscale=0.35, yscale=0.11]
+					\draw[->] (-16.5, 0) -- (17.5, 0) node[right] {$x$};
+					\draw[->] (0, -2.5) -- (0, 30) node[above] {$y$};
+					\draw[dashed, gray] (-15, 25) -- (15, 25);
+					\node[above left] at (0, 25) {$25$};
+					\foreach \x in {-15, -5, 5, 15} {
+						\draw (\x, -0.8) -- (\x, 0.8);
+						\node[below] at (\x, -0.8) {$\x$};
+					}
+
+					\draw[thick, blue, domain=-15:-5, samples=50] plot (\x, {(\x+10)^2});
+
+					\draw[thick, blue, domain=-5:5, samples=50] plot (\x, {(\x)^2});
+
+					\draw[thick, blue, domain=5:15, samples=50] plot (\x, {(\x-10)^2});
+				\end{tikzpicture}
+			\end{center}
+		\end{otherlanguage}
+
+	\item $f : [-1, 2) \to \RR, \quad f(x) = |x|, \quad L = 3$: \\
+		בכל קטע $[3k - 1, 3k + 2)$ הגרף מתחיל בנקודה ב־$(3k - 1, 1)$, יורד ל־$(3k, 0)$ ועולה עד לנקודה ב־$(3k + 2, 2)$.
+		\begin{otherlanguage}{english}
+			\begin{center}
+				\begin{tikzpicture}[xscale=1.05, yscale=1.05]
+					\draw[->] (-4.6, 0) -- (5.8, 0) node[right] {$x$};
+					\draw[->] (0, -0.3) -- (0, 2.5) node[above] {$y$};
+					\draw[dashed, gray] (-4, 2) -- (5, 2);
+					\node[left] at (0, 1) {$1$};
+					\node[above left] at (0, 2) {$2$};
+					\foreach \x in {-4, -3, -1, 2, 3, 5} {
+						\draw (\x, -0.08) -- (\x, 0.08);
+						\node[below] at (\x, -0.08) {$\x$};
+					}
+
+					\draw[thick, blue] (-4, 1) -- (-3, 0) -- (-1, 2);
+					\node[circle, fill=blue, inner sep=1.5pt] at (-4, 1) {};
+					\node[circle, draw=blue, fill=white, inner sep=1.5pt] at (-1, 2) {};
+
+					\draw[thick, blue] (-1, 1) -- (0, 0) -- (2, 2);
+					\node[circle, fill=blue, inner sep=1.5pt] at (-1, 1) {};
+					\node[circle, draw=blue, fill=white, inner sep=1.5pt] at (2, 2) {};
+
+					\draw[thick, blue] (2, 1) -- (3, 0) -- (5, 2);
+					\node[circle, fill=blue, inner sep=1.5pt] at (2, 1) {};
+					\node[circle, draw=blue, fill=white, inner sep=1.5pt] at (5, 2) {};
+				\end{tikzpicture}
+			\end{center}
+		\end{otherlanguage}
+\end{enumerate}
+
+\end{document}
