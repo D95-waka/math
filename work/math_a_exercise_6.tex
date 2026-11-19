@@ -1,0 +1,47 @@
+\newcounter{stoppagebreaks}
+\input{../article_base.tex}
+\setcounter{secnumdepth}{6}
+% chktex-file 9
+% chktex-file 17
+
+\title{מתמטיקה א' --- תרגיל 6}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\item
+		בדקו אם הפונקציות הבאות הן חסומות מלמעלה ומלמטה.
+		הוכיחו את טענותיכם.
+		\begin{enumerate}
+			\item $f(x) = 5x - 3$
+			\item $f(x) = x^2 + 3$
+			\item $f(x) = \ln(x)$
+			\item $f(x) = 3 \sin(x) + 2 \cos(x)$
+			\item $f : [-100, 100] \to \RR, f(x) = e^x + x^7$ \\
+				רמז: הראו מונוטוניות עולה, ואז נקבל $-100 < x < 100 \implies f(-100) \le f(x) \le f(100)$
+		\end{enumerate}
+
+	\item
+		נגדיר את שתי הפונקציות $f(x) = \frac{e^x + e^{-x}}{2}$ ו־$g(x) = \frac{e^x - e^{-x}}{2}$,
+		הראו כי $f$ פונקציה זוגית וחסומה מלמטה, וכן ש־$g$ פונקציה אי־זוגית ולא חסומה כלל.
+
+	\item
+		פתרו את המשוואות הבאות:
+		\begin{enumerate}
+			\item $\sin x = \frac{1}{2}$
+			\item $\cos(2 x) = \frac{1}{2}$
+			\item $\tan x = 0$
+		\end{enumerate}
+
+	\item
+		הראו שהפונקציות הבאות מחזוריות ומצאו את גודל המחזור שלהן:
+		\begin{enumerate}
+			\item $f(x) = \sin(\pi x)$
+			\item $f(x) = \tan(3 x) - \sin(5 x)$
+		\end{enumerate}
+\end{enumerate}
+
+\end{document}
