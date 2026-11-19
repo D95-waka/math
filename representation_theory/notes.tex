@@ -1214,5 +1214,209 @@
 	תרגיל.
 \end{proof}
 
+\section{הרצאה 9 --- 18.11.2026}
+ניזכר כי אם $U, V$ מרחבים וקטוריים מעל $V$ ו־${\{ v_i \}}_{i \in I}, {\{ u_j \}}_{j \in J}$ בסיסים שלהם, אז גם ${\{ v_i \otimes u_j \}}_{i \in I, j \in J}$ בסיס של $V \otimes_{\FF} U$.
+לכל איבר $w \in U \otimes V$ נוכל לתאר את ''דרגת הטנזור'' כמספר המינימלי של טנזורים פשוטים ש־$w$ הוא הסכום שלהם.
+אם $U, V$ הם מודולים מעל $\FF[G]$ אז הגדרנו את מבנה של $\FF[G]$־מודול על $U \otimes_{\FF} V$ על־ידי $g(u \otimes v) = (g u) \otimes (g v)$, והגדרנו גם מבנה של $\FF[G]$־מודול על חבורת ההומומורפיזמים.
+
+\subsection{מקרה פרטי של ההצגה הדואלית}
+\begin{definition}[הצגה דואלית]
+	בהינתן $\FF[G]$־מודול $U$, \textbf{ההצגה הדואלית}, אותה נסמן ב־$U^*$, היא ההצגה על $\Hom_{\FF}(U, \FF)$ כאשר $\FF$ היא ההצגה הטריוויאלית.
+\end{definition}
+בהצגה הדואלית אם $\varphi : U \to \FF$ פונקציונל, אז,
+\[
+	(g \varphi)(u)
+	= g \varphi(g^{-1} u)
+	= \varphi(g^{-1} u)
+\]
+\begin{example}
+	אם $G = C_n = \langle g \rangle$ חבורה ציקלית בגודל $n$, ותהי הצגה חד־מימדית על $\CC$, $g \to \GL_1(\CC) \cong \CC$, כך ש־$\rho(g) . v = e^{\frac{2 \pi i}{n}} v$.
+	נבדוק מה ההצגה הדואלית. יהי $\varphi : \CC \to \CC$ פונקציונל,
+	\[
+		(\rho(g) . \varphi)(u)
+		= \varphi({\rho(g)}^{-1})(v)
+		= \varphi(e^{-\frac{2 \pi i}{n}} . v)
+		= e^{- \frac{2 \pi i}{n}} \varphi(v)
+		= (e^{- \frac{2 \pi i}{n}} \varphi)(v)
+	\]
+	קיבלנו ש־$\rho^*$ שקולה להצגה שמקיימת,
+	\[
+		g . v
+		= e^{-\frac{2 \pi i}{n}} v
+	\]
+\end{example}
+\begin{example}
+	נבחן את $\rho$ ההצגה האי־פריקה הדו־מימדית של $S_3$, אז $\rho^* \cong \rho$.
+\end{example}
+\begin{exercise}
+	הוכיחו זאת ישירות מהגדרה.
+\end{exercise}
+\begin{theorem}[שקילות מכפלה טנזורית של מרחב דואלי]
+	יהיו $U, V$ מרחבים וקטוריים מעל $\FF$, ונניח ש־$U$ נוצר סופית. \\
+	אז $U^* \otimes_{\FF} V \cong \Hom_{\FF}(U, V)$, ואיזומורפיזם זה מתקבל על־ידי,
+	\[
+		\varphi \otimes v
+		\mapsto (u \mapsto \varphi(u) v)
+	\]
+
+	אם בנוסף $U, V$ הם $\FF[G]$־מודולים, זהו איזומורפיזם של $\FF[G]$־מודולים.
+\end{theorem}
+\begin{proof}
+	נסמן את ההעתקה שהגדרנו ב־$\Gamma$.
+	ראשית, ההעתקה,
+	\[
+		U^* \times V \to \Hom_{\FF}(U, V),
+		\qquad
+		(\varphi, v) \mapsto (u \mapsto \varphi(u) v)
+	\]
+	היא $\FF$־בילינארית ולכן $\Gamma$ היא העתקה לינארית מוגדרת היטב של מרחבים וקטוריים מעל $\FF$.
+	נותר להראות ש־$\Gamma$ חד־חד ערכית ועל.
+	נסמן $\{ \varphi_1, \ldots, \varphi_n \}$ בסיס של $U^*$, איבר כללי ב־$U^* \otimes U$ יהיה מהצורה,
+	ונסמן $\varphi_i(u_j) = f_{i j}$, אז,
+	\[
+		\sum_{k = 1}^l \varphi_k \otimes v_k
+		= \sum_{k = 1}^l \sum_{j = 1}^n \alpha_{k j} \varphi_j \otimes v_k
+		= \sum_{j = 1}^n \varphi_j \otimes (\sum_{k = 1}^l \alpha_{k, j})
+		= \sum_{j = 1}^n \varphi_j \otimes v_j'
+	\]
+	נראה ש־$\Gamma$ חד־חד ערכי.
+	נניח ש־$x = \sum_{j = 1}^n \varphi_j \otimes v_j$ ו־$\Gamma(x) = 0$, אז,
+	\[
+		\Gamma(x)(u_i)
+		= \sum_{j = 1}^n \varphi_j(u_i) \otimes v_j'
+		= v_i'
+	\]
+	אם $\Gamma(x) = 0$ בפרט $v_i' = \Gamma(x)(u_i) = 0$ ולכן $x = \sum \varphi_j(v_j) = 0$. \\
+	נראה ש־$\Gamma$ על.
+	יהי $\psi \in \Hom_{\FF}(U^*, V)$ ונחפש $x \in U^* \otimes V$ כך שמתקיים $\gamma(x) = \psi$, וזה מתקיים אם ורק אם $\Gamma(x)(u_i) = \psi(u_i)$ לכל $i$.
+	אכן ניתן לבחור,
+	\[
+		x
+		= \sum_{j = 1}^n \varphi_j \otimes \psi(u_i)
+	\]
+	ולכן $\Gamma$ אכן על.
+
+	נעבור לחלק השני של המשפט.
+	נותר להראות רק ש־$\Gamma$ מתחלפת עם הפעולה של כל $g \in G$, כלומר שאם $x \in U^* \otimes V$ ו־$g \in G$ אז,
+	\[
+		\Gamma(g . x)
+		= g . \Gamma(x)
+	\]
+	מספיק להראות לטנזורים פשוטים מלינאריות, אז יהי $\varphi \otimes v$,
+	\[
+		\Gamma((g . \varphi) \otimes (g . v))
+		= u \mapsto (g . \varphi) \cdot (g . v)
+		= u \mapsto \varphi(g^{-1} u) (g . v)
+	\]
+	מהצד השני,
+	\[
+		g . (u \mapsto \varphi(u) . v)
+		= u \mapsto g . \varphi(g^{-1} u) v
+		= u \mapsto \varphi(g^{-1} u) (g . v)
+	\]
+	ואכן קיבלנו ששני הערכים שווים ויש שימור של הפעולה.
+\end{proof}
+
+\subsection{יחידות הפירוק של הצגות פריקות לחלוטין}
+נדון קודם כל בפירוק של מודולים פשוטים למחצה כסכום ישר.
+הגדרנו שמודול נקרא פשוט אם הוא לא טריוויאלי ואין לו תת־מודולים לא טריוויאליים.
+מודול נקרא פשוט למחצה אם הוא סכום ישר של מודולים פשוטים.
+\begin{theorem}[שקילות פירוק למודולים פשוטים]
+	יהי $R$ חוג כלשהו, ויהי $M$ מודול, ונניח ש־$M \cong \bigoplus_{i = 1}^n L_i \cong \bigoplus_{j = 1}^k S_j$ עבור $L_i, S_j$ מודולים פשוטים.
+	אז קיימת תמורה $\sigma \in S_n$ כך ש־$L_i \cong S_{\sigma(i)}$.
+\end{theorem}
+\begin{remark}
+	משפט זה נובע ממשפט ז'ורדן־הולדר למודולים, אך זהו מקרה פרטי ונוכיח אותו ישירות.
+\end{remark}
+\begin{proof}
+	באינדוקציה על $n$.
+	המקרה של $n = 0, 1$ ברור.
+	ניתן לחשוב על $S_i, L_j$ כתת־מודולים של $M$, ונסמן $\hat{L}_i = \bigoplus_{t \ne i} L_t$, לכן,
+	\[
+		M / \hat{L}_i
+		\cong L_i
+	\]
+	ממשפט ההתאמה למודולים, מכיוון ש־$L_i$ פשוט, נסיק ש־$\hat{L}_i$ הוא תת־מודול מקסימלי של $M$.
+	נבחין כי,
+	\[
+		\bigcap_{i = 1}^n \hat{L}_i
+		= \{ 0 \}
+	\]
+	ולכן יש $\hat{L}_i$ שלא מכיל את $S_k$.
+	עבור $i$ זה מתקיים,
+	\[
+		\hat{L}_i
+		\subset \hat{L} + S_k
+		\implies L_i + S_k = M
+	\]
+	מצד שני,
+	\[
+		\hat{L}_i \cap S_k
+		< S_k
+	\]
+	תת־מודול ממש, זאת כתוצאה מההנחה שאין הכלה, לכן נסיק ש־$\hat{L}_i \cap S_k = \{ 0 \}$ בלבד.
+	קיבלנו ש־$\hat{L}_i \oplus L_i \cong M \cong \hat{L}_i \oplus S_k$.
+	ואז $L_i \cong M / \hat{L}_i \cong S_k$ וגם $M \cong \hat{L}_i \oplus S_k$ וגם $M \cong \hat{S}_k \oplus S_k$ ולכן $\hat{S}_k \cong M / S_k \cong \hat{L}_i$, ולכן מהלך האינדוקציה תקף.
+\end{proof}
+
+\subsection{אלגברה מעל שדה}
+דיברנו על כך ש־$\FF$ הוא תת־חוג של $\FF[G]$, נכליל זאת עם ההגדרה הבאה:
+\begin{definition}[אלגברה]
+	יהי $\FF$ שדה, \textbf{אלגברה} מעל $\FF$ (או בקיצור $\FF$־אלגברה) היא חוג $A$ כך שהוא גם מרחב וקטורי מעל $\FF$ וכך ש־$\lambda (a b) = (\lambda a) b = a (\lambda b)$ לכל $\lambda \in \FF, a, b \in A$.
+\end{definition}
+\begin{proposition}
+	$A$ הוא $\FF$־אלגברה אם ורק אם $A$ הוא חוג כך ש־$\FF$ הוא תת־חוג שלו שמוכל במרכז של $A$.
+\end{proposition}
+\begin{proof}
+	נניח ש־$A$ אלגברה.
+	אז נתבונן בהעתקה $\varphi : \FF \to A$ המוגדרת על־ידי $\varphi(\lambda) = \lambda 1_A$.
+	זהו הומומורפיזם של חוגים, וגרעינו אפס כי אם $\lambda \ne 0$ אז $\lambda^{-1} \lambda 1 = 1$ ולכן $\lambda 1 \ne 0$ (אין מחלקי אפס).
+	לכן $\FF$ משוכן כתת־חוג, ונשאר להראות ש־$\FF$ מוכל במרכז, זאת נראה על־ידי,
+	\[
+		(\lambda a) \cdot a
+		= \lambda \cdot (a \cdot 1)
+		= a \cdot (\lambda \cdot 1)
+	\]
+
+	בכיוון ההפוך נניח ש־$A$ הוא חוג ו־$\FF$ הוא תת־חוג במרכז.
+	אז קיים $\rho : A \to \End(A)$ הומומורפיזם קיילי, ובצמצום $\rho |_{\FF}$ נותן ל־$A$ מבנה של מרחב וקטורי.
+\end{proof}
+\begin{example}
+	הבאים הם $\FF$־אלגברות:
+	\begin{enumerate}
+		\item $\FF[G]$, וכאשר $\FF \cong \{ \lambda e_G \mid \lambda \in \FF \}$
+		\item הרחבת שדות $\FF \subseteq E$ מעל $\FF$
+		\item $\HH$ חוג הקוונטרניונים מעל $\FF = \RR$, אבל לא $\CC$־אלגברה שכן המרכב של $\HH$ הוא בדיוק $\{ \alpha \}$
+		\item $M_n(\FF)$ כאשר $\FF = \{ \lambda I_n \mid \lambda \in \FF \}$
+		\item אם $A$ הוא $\FF$־אלגברה אז $M_n(A)$, כאשר שוב נזהה $\FF \cong \{ \lambda \cdot I_n \mid \lambda \in \FF \subseteq A \}$
+		\item אם $G$ סופית ו־$\Char \FF \nmid |G|$ אז,
+			\[
+				\{ \sum_g \alpha_g g \mid \sum \alpha_g = 0 \}
+				\subseteq \FF[G]
+			\]
+			הוא $\FF$־אלגברה. \\
+			זהו חוג (אבל לא תת־חוג של $\FF[G]$ כי הוא לא מכיל את $1_{\FF[G]}$).
+			איבר היחידה של החוג הוא $1 \cdot e_G - \frac{1}{|G|} \sum_{g \in G} g$, שכן,
+			\[
+				(1 \cdot e_G - \frac{1}{|G|} \sum_g  g)(h_1 - h_2)
+				= h_1 - h_2
+			\]
+			גם $\{ \alpha \sum_g g \mid \alpha \in \FF \}$ הוא $\FF$־אלגברה, ופה איבר היחידה הוא $\frac{1}{|G|} \sum_g g$.
+	\end{enumerate}
+\end{example}
+\begin{remark}
+	יש כל מיני וריאציות בספרות למושג האלגברה, כדאי לשים לב להקשר בו כל טענה מופיעה.
+\end{remark}
+\begin{definition}[חוג פשוט למחצה]
+	חוג (ובפרט $\FF$־אלגברה) נקרא \textbf{פשוט למחצה} (semi-simple) אם כל מודול נוצר סופית מעליו הוא פשוט למחצה.
+\end{definition}
+\begin{example}
+	הבאים הם חוגים פשוטים למחצה:
+	\begin{enumerate}
+		\item שדות
+		\item $\FF[G]$ עבור $G$ סופית ו־$\Char \FF \nmid |G|$
+	\end{enumerate}
+\end{example}
+
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
