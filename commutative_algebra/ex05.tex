@@ -1,0 +1,86 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 05 --- יסודות באלגברה קומוטטיבית}
+
+\DeclareMathOperator{\Ann}{Ann}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question[2]{}
+יהיו $M, M', M'', N, N', N''$ מודולים מעל $R$.
+נניח כי שתי הסדרות,
+\[
+	M'
+	\xrightarrow{f} M
+	\xrightarrow{g} M''
+	\to 0,
+	\qquad
+	N'
+	\xrightarrow{\varphi} N
+	\xrightarrow{\psi} N''
+	\to 0
+\]
+הן מדויקות.
+נגדיר את,
+\[
+	\theta : (M \otimes_R N') \oplus (M' \otimes_R N) \to M \otimes_R N,
+	\qquad
+	\theta(x, y)
+	= \id \otimes \varphi(x) + f \otimes \id(y)
+\]
+ונראה כי הסדרה,
+\[
+	(M \otimes_R N') \oplus (M' \otimes_R N)
+	\xrightarrow{\theta} M \otimes_R N
+	\xrightarrow{g \otimes \psi} M'' \otimes_R N''
+	\to 0
+\]
+היא סדרה מדויקת.
+\begin{proof}
+	שקול להוכחת דיוק מימין.
+\end{proof}
+
+\question{}
+יהי $f : A \to B$ הומומורפיזם חוגים, ויהי $N$ מודול מעל $B$, על־ידי צמצום סקלרים $N$ הוא גם מודול מעל $A$.
+נסמן $N_B = B \otimes_A N$, זהו מודול מעל $B$, ועל־ידי הרחבת סקלרים נגדיר הומומורפיזם,
+\[
+	\varphi : N \to N_B,
+	\qquad
+	\varphi(m) = 1 \otimes m
+\]
+נראה ש־$\varphi$ חד־חד ערכית.
+\begin{proof}
+	נגדיר את ההעתקה $\psi : B \times N \to N$ על־ידי $\psi(b, n) = b \cdot n$.
+	נראה כי זוהי העקה בילינארית מעל $A$,
+	\[
+		a . \psi(b, n)
+		= f(a) \cdot b n
+		= (f(a) \cdot b) \cdot n
+		= \psi(f(a) b, n)
+	\]
+	אבל גם,
+	\[
+		a . \psi(b, n)
+		= b f(a) n
+		= \psi(b, f(a) n)
+	\]
+	ולכן זוהי העתקה $A$־בילינארית, ונסיק כי קיימת ההרמה,
+	\[
+		\tilde{\psi} : B \otimes_A N \to N,
+		\qquad
+		\tilde{\psi}(b \otimes n)
+		= b n
+	\]
+	כלומר $\tilde{\psi} : N_B \to N$ הומומורפיזם.
+
+	יהי $x \in N$ כך ש־$\varphi(x) = 0$, כלומר $1 \otimes x = 0$, אז,
+	\[
+		0
+		= \tilde{\psi}(0)
+		= \tilde{\psi}(1 \otimes x)
+		= 1 \cdot x
+	\]
+\end{proof}
+
+\end{document}
