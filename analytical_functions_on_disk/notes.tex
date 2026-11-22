@@ -962,5 +962,254 @@ The answer is that not.
 	where $\xi_n$ are i.i.d.\ standard Gaussians.
 \end{theorem}
 
+\section{Lecture 6 --- 22.11.2026}
+\subsection{Finite Blaschke products}
+Let,
+\[
+	B(z)
+	= e^{i \theta} \prod_{k = 1}^d \frac{z - a_k}{1 - \bar{a}_k z}
+\]
+where $\{ a_k \} \subseteq \DD$, then $Z(B) = \{ a_k \}$.
+Since each Blaschke factor $z \to \frac{z - a_k}{1 - \bar{a}_k z}$ maps $\DD \to \DD$ and $\partial \DD \to \partial \DD$, so does $B$.
+\begin{remark}
+	A polynomial is just a linear product, then Blaschke products are in a way act similarly.
+\end{remark}
+\begin{lemma}[Jensen's]
+	Suppose $f : \Omega \to \CC$ is a holomorphic function defined on $\Omega \supseteq \bar{\DD}$, and suppose $f(0) \ne 0$.
+	If $f$ has no zeroes on $\partial \DD$ then,
+	\[
+		\frac{1}{2 \pi} \int_{-\pi}^{\pi} \log |g(e^{i \theta})|\ d \theta
+		= \log |f(0)| + \sum_{\substack{f(a_k) = 0 \\ a_n \in \DD}} \log \frac{1}{|a_k|}
+	\]
+\end{lemma}
+Where $\log \frac{1}{|a_k|} = - \log |a_k|$.
+\begin{remark}
+	If $f$ has no zeroes in $\DD$ then $\log |f| = \re \log f$ is harmonic.
+\end{remark}
+\begin{remark}
+	For $0 < r < 1$,
+	\[
+		\frac{1}{2 \pi} \int_{-\pi}^{\pi} \log |f(r e^{i \theta})|\ d \theta
+		= \log |f(0)| + \sum_{\substack{f(a_k) = 0 \\ |a_k| < r}} \log \frac{r}{|a_k|}
+	\]
+	this formula can be achieved by the lemma's formula and taking $z \to f(r z)$.
+\end{remark}
+\begin{remark}
+	The formula olds if $f$ has zeroes on $\partial \DD$.
+	$f(e^{i t}) = 0 \implies f(z) = {(z - e^{i t})}^m g(z)$ where $g(e^{i \theta}) \ne 0$.
+	Then
+	\[
+		\int \log |f(e^{i \theta})|
+		= \int \log |g(e^{i \theta})|\ d \theta + m \int \log |e^{i \theta} - e^{i \theta}|\ d \theta
+	\]
+\end{remark}
+We move to show Jensen's lemma.
+\begin{proof}
+	Since $f$ is holomorphic on a neighborhood of $\bar{\DD}$, it has finitely many zeroes in $\DD$, denoted by $a_1, \ldots, a_n$.
+	Define,
+	\[
+		B(z)
+		= \prod_{k = 1}^n \frac{z - a_k}{1 - \bar{a}_k z}
+	\]
+	Then $f = B g$, where $g$ has no zeroes in $\bar{\DD}$.
+	Since $\log |g(z)|$ is harmonic on a neighborhood of $\bar{\DD}$,
+	\[
+		\frac{1}{2 \pi} \int_{-\pi}^{\pi} \log |g(e^{i \theta})|\ d \theta
+		= \log |g(0)|
+	\]
+	Since $|B| = 1$ on the unit circle,
+	\[
+		\frac{1}{2 \pi} \int_{-\pi}^{\pi} \log |f(e^{i \theta})|\ d \theta
+		= \frac{1}{2 \pi} \int_{-\pi}^{\pi} \log |g(e^{i \theta})|\ d \theta
+	\]
+	$|B(0)| = |a_1| \cdots |a_n|$ then $\log |B(0)| = \sum_{k = 1}^n \log |a_k|$.
+	Lastly by $f = B g$,
+	\[
+		\log |f(0)|
+		= \log |B(0)| + \log |g(0)|
+	\]
+	We conclude the lemma.
+\end{proof}
+We intend to further study Blaschke products, to do so we cover some material about normal families.
+In complex analysis it is customary to equip $\operatorname{Hol}(\Omega)$ with the topology of uniform convergence on compact subsets,
+meaning that $f_n \to f$ if $f_n(z) \rightrightarrows f(z)$ uniformly on every compact subset $K \subseteq \Omega$.
+\begin{lemma}
+	If a sequence $f_n : \Omega \to \CC$ of holomorphic functions converges uniformly on compact subsets to $f$, then $f$ is holomorphic.
+\end{lemma}
+To show the lemma recall,
+\begin{theorem}[Cauchy]
+	If $f$ is holomorphic on $\Omega$, then,
+	\[
+		\int_{\partial R} f(z)\ dz
+		= 0
+	\]
+	for any rectangle $R \subseteq \Omega$.
+\end{theorem}
+And by the other hand,
+\begin{theorem}[Morera]
+	If the above integral is defined for all rectangles $R \subseteq \Omega$, and is zero, then $f$ is holomorphic.
+\end{theorem}
+Back to the lemma.
+\begin{proof}
+	Being the uniform limit of continuous functions, $f |_K$ is continuous, hence $f \in C(K)$.
+	By Cauchy's theorem,
+	\[
+		\int_{\partial R} f_n(z) = 0
+	\]
+	for all $n \in \NN$ and rectangle $R \subseteq \Omega$, so by uniform convergence,
+	\[
+		\int_{\partial R} f(z)\ dz
+		= 0
+	\]
+	By Morera's theorem the lemma holds.
+\end{proof}
+\begin{theorem}[Montel]
+	Suppose $f_n : \Omega \to \CC$ is a sequence of holomorphic functions.
+	If $\{ f_n \}$ is uniformly bounded on compact subsets of $\Omega$, then $\{ f_n \}$ has a subsequence which converges uniformly on compact subsets.
+\end{theorem}
+This theorem resembles Arzela-Askoli theorem, but we don't have the equicontinous requirement, but,
+\begin{proposition}
+	$\{ f_n \}$ is equicontinous on compact subsets.
+\end{proposition}
+In fact, $\{ f_n' \}$ are uniformly bounded on compact subsets.
+\begin{proof}
+	Choose $L \supseteq K$ in its interior and define $2 \delta = \dist(K, \partial L)$.
+	\[
+		f'(z)
+		= \frac{1}{2 \pi i} \int_{|\zeta - z| = \delta} \frac{f(\zeta)}{{(\zeta - z)}^2}\ d \zeta
+	\]
+	By Cauchy's formula, then,
+	\[
+		|f'(z)|
+		\le \frac{1}{2 \pi} \cdot 2 \pi \delta \cdot \frac{M_L}{\delta^2}
+	\]
+	for $M_L$ the maximum of $f$ in $L$.
+\end{proof}
+\begin{exercise}
+	$f_n(z) = \frac{1}{n}$ for all $z \in \CC$ converge uniformly to $0$.
+\end{exercise}
+\begin{theorem}[Hurwitz]
+	Suppose $\{ f_n \} \subseteq \operatorname{Hol}(\Omega)$ which converges uniformly on compact subsets to $f$.
+	If $f_n$'s are zero-free, then either $f$ is zero-free or $f \equiv 0$.
+\end{theorem}
+Recall the argument theorem,
+\begin{theorem}[Argument]
+	If $f$ does not vanish on $\gamma$ then the number of zeroes of $f$ in the area enclosed by $\gamma$ is exactly $\frac{1}{2 \pi i} \int_{\gamma} \frac{f'(z)}{f(z)}\ dz$.
+\end{theorem}
+We get a proof of Hurwitz by using the argument theorem, the number of zeroes of $f_n$ enclosed by $\gamma$ is $0$ as $n \to \infty$ is dictated by the formula.
+\begin{theorem}
+	For $\{ a_k \} \subseteq \DD \setminus \{ 0 \}$ and $0 \le \theta < 2 \pi$ let,
+	\[
+		B(z)
+		= e^{i \theta} z^m \prod_{k = 1}^\infty -\frac{\bar{a}_k}{|a_k|} \cdot \frac{z - a_k}{1 - \bar{a}_k z}
+	\]
+	Then $B(z)$ converges $*$ iff $\sum_{k = 1}^\infty (1 - |a_k|) < \infty$ (Called Blaschke condition).
+	In this case, $B(z)$ is holomorphic on $\DD$.
+\end{theorem}
+\begin{proof}
+	Without loss of generality, we may assume that $\theta = 0$ and $m = 0$.
+	Define,
+	\[
+		B_N
+		= \prod_{k = 1}^N -\frac{a_k}{|a_k|} \cdot \frac{z - a_k}{1 - \bar{a}_k z}
+	\]
+	Since each factor has absolute value $< 1$ in $\DD$, $|B_N(z)|$ are decreasing as $N \to \infty$.
+	By Dini's theorem, $|B_N(2)|$ converges uniformly on compact subsets of $\DD$.
+	In complex analysis, if the partial products of an infinite product converges to $0$, we say that the product diverges.
+	Suppose $B$ and $\tilde{B}$ were two subsequential limits. Then $|B(z)| = |\tilde{B}(z)|$ where $z \in \DD$.
+	Then $\tilde{B} = e^{i \alpha} B$ for some $\alpha \in [0, 2 \pi)$.
+	\[
+		m_k(0)
+		= -\frac{\bar{a}_k}{|a_k|} \cdot (-a_k)
+		= |a_k|
+		\in (0, 1)
+	\]
+	Suppose $\sum_{k = 0}^\infty (1 - |a_k|) < \infty$. We show that $B(z)$ is not identically $0$.
+	\[
+		|B(0)|
+		= \prod |a_k|
+		\implies \log \frac{1}{|B(0)|}
+		= \sum \log \frac{1}{|a_k|}
+	\]
+	Now suppose that $\sum_{k = 0}^\infty (1 - |a_k|) = \infty$.
+	Suppose some sequence of $a_k$'s tends to $0$. It is easy to see that $B(z) \equiv 0$.
+	Our assumption implies that $B(0) = 0$.
+	\[
+		B_N(z)
+		= \prod_{k = 1}^N -\frac{\bar{a}_k}{|a_k|} \cdot \frac{z - a_k}{1 - \bar{a}_k z}
+	\]
+\end{proof}
+\begin{theorem}
+	Let,
+	\[
+		B(z)
+		= e^{i \theta} z^m \prod_{k = 1}^\infty -\frac{\bar{a}_k}{|a_k|} \cdot \frac{z - a_k}{1 - \bar{a}_k z}
+	\]
+	where $\sum (1 - |a_k|) < \infty$.
+	By Fatou's theorem, $B(e^{i \theta}) = \lim_{r \to 1} B(r e^{i \theta})$ exists for almost every $\theta \in [0, 2 \pi)$.
+	We have $|B(e^{i \theta})| = 1$ for almost any $\theta$.
+\end{theorem}
+\begin{proof}
+	Without loss of generality we can assume that $B(0) = 0$ ($B(z) = z^m B_1(z)$).
+	\[
+		\frac{1}{2 \pi} \int_{-\pi}^{\pi} \log |B(r e^{i \theta})|\ d \theta
+		= \log |B(0)| + \sum_{|a_k| < r} \log \frac{r}{|a_k|}
+		= -\sum_{|a_k| < 1} \log \frac{1}{|a_k|} + \sum_{|a_k| < r} \log \frac{r}{|a_k|}
+	\]
+	then $\lim_{r \to 1} \frac{1}{2 \pi} \log |B(r e^{i \theta})| \ge \lim_{r \to 1} \frac{1}{2 \pi} \int_{-\pi}^{\pi} \log |B(r e^{i \theta})|\ d \theta$ by Fatou's lemma.
+	Then $\log |B(e^{i \theta})| = 0$ almost everywhere.
+\end{proof}
+
+\subsection{Nevalinna class}
+The Nevalinna class $\Nn$ consists of holomorphic functions $f : \DD \to \CC$ for which,
+\[
+	\limsup_{r \to 1} \int_{-\pi}^{\pi} \log^+ |f(r e^{i \theta})|\ d \theta
+	< \infty
+\]
+Where $\log = \log^+ + \log^-$.
+\begin{lemma}
+	If $f \in \Nn$ then,
+	\[
+		\limsup_{r \to 1} \int_{-\pi}^{\pi} \log |f(r e^{i \theta})|\ d \theta
+		< \infty
+	\]
+\end{lemma}
+\begin{proof}
+	Without loss of generality, we may assume that $f(0) \ne 0$.
+	Apply Jensen's lemma,
+	\[
+		\log |f(0)|
+		= \frac{1}{2 \pi} \int_{|z| = r} \log^+ |f(r e^{i \theta})|\ d \theta - \frac{1}{2 \pi} \int_{|z| = r} \log^- |f(r e^{i \theta})|\ d \theta
+	\]
+	this is true for every $r$.
+	The left value in the equality is bounded below, and the left addition element of the right value is bounded above (by Nevalinna class definition).
+\end{proof}
+\begin{lemma}
+	If $\limsup_{r \to 1} \int_{-\pi}^{\pi} \log |f(r e^{i \theta})|\ d \theta$ is bounded above, then the zeroes of $f$ form a Blaschke sequence.
+\end{lemma}
+\begin{proof}
+	WLOG, we may assume that $f(0) \ne 0$.
+	\[
+		\frac{1}{2 \pi} \int_{0}^{2 \pi} \log |f(r e^{i \theta})|\ d \theta
+		= \log |f(0)| + \sum_{\substack{|a_k| < r \\ f(a_k) = 0}} \log \frac{r}{|a_k|}
+	\]
+	as $r \to 1$, increases to,
+	\[
+		\log |f(0)| + \sum_{\substack{|a_k| < r \\ f(a_k) = 0}} \log \frac{1}{|a_k|}
+	\]
+\end{proof}
+\begin{theorem}
+	For any $p > 0$,
+	\[
+		\Hh^p \subseteq \Nn
+	\]
+\end{theorem}
+$\Hh^p$ is defined by,
+\[
+	\lim_{r \to 1^-} \int_{-\pi}^{\pi} {| f(r e^{i \theta}) |}^p\ d \theta
+	< \infty
+\]
+For $t \ge 0$, $\log^+ t \le t^p$.
+
 \listoftheorems[title=theorems \& definitions,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
