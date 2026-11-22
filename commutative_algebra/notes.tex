@@ -11,6 +11,7 @@
 \DeclareMathOperator\Mon{Mon}
 \DeclareMathOperator\Nil{Nil}
 \DeclareMathOperator\loc{loc}
+\DeclareMathOperator\Frac{Frac}
 
 \begin{document}
 \maketitle
@@ -2327,7 +2328,7 @@ $b, c \mapsto f(b) g(c)$ בילינארית ולכן $\varphi$ מוגדר היט
 		\item $\loc$ שולחת כל איבר ב־$S$ לאיבר הפיך, כלומר $\frac{1}{s} \cdot \frac{s}{1} = \frac{1}{1} = 1_{S^{-1} A}$ ומתקיים,
 			\[
 				{(S^{-1} A)}^\times
-				= \{ \frac{a}{s} \mid \exists b \in A,\ b a \in S \}
+				= \left\{ \frac{a}{s} \mid \exists b \in A,\ b a \in S \right\}
 			\]
 	\end{enumerate}
 \end{proposition}
@@ -2345,6 +2346,241 @@ $b, c \mapsto f(b) g(c)$ בילינארית ולכן $\varphi$ מוגדר היט
 	ונובע שהכפל מוגדר היטב, הבדיקה עבור חיבור היא דומה.
 \end{proof}
 אז $(S^{-1} A, \loc)$ היא אלגברה על $A$ שבה על האיברים ב־$S$ הם הפיכים.
+
+\section{שיעור 10 --- 22.11.2026}
+\subsection{מיקום --- המשך}
+בשיעור הקודם הוכחנו שבהינתן קבוצה כפלית בחוג חילופי $S \subset A$ אז ניתן להגדיר חוג חדש.
+\begin{definition}[מיקום של חוג]
+	$(S^{-1} A, +, \cdot)$ הוא חוג ונקרא לו \textbf{המיקום} של $A$ ב־$S$.
+\end{definition}
+\begin{definition}[העתקת המיקום]
+	$\loc : A \to S^{-1} A$ המוגדרת על־ידי $\loc(a) = \frac{a}{1}$ היא הומומורפיזם המיקום, אם $s \in S$ אז $\loc(s) = \frac{s}{1}$ הפיך על־ידי $\frac{1}{s}$.
+\end{definition}
+נעבור לדוגמות.
+\begin{example}
+	נראה מקרים של מיקומים מעל קבוצות כפליות.
+	\begin{enumerate}
+		\item אם $S = \{ 1 \}$ אז $\loc : A \xrightarrow{\sim} S^{-1} A$
+		\item אם $0 \in S$ רז $S^{-1} A = 0$ כי $\frac{1}{s} = \frac{b}{t}$ לכל $a, b, s, t$ כי $0 \cdot a t = 0 \cdot b s$
+		\item מיקום באיבר בודד: אם $f \in A$ ו־$S = \{1, f, f^2, \ldots\}$ אז נסמן את $A_f = S^{-1} A$ ולכן,
+			\[
+				A_f
+				= \{ \frac{a}{f^n} \mid a \in A, n \in \NN_0 \}
+			\]
+		\item מיקום באידאל ראשוני:
+			אם $P \triangleleft A$ אז $S = A \setminus P$ כפלית ונסמן,
+			\[
+				A_P
+				= \{ S^{-1} P \mid \frac{a}{s} \mid a \in A, s \in A \setminus P \}
+			\]
+		\item שדה השברים של תחום $A$.
+			$(0) \triangleleft A$ ראשוני, נגדיר את,
+			\[
+				\Frac(A)
+				= A_{(0)}
+				= \{ \frac{a}{b} \mid a \in A, 0 \ne b \in A \}
+			\]
+			בפרט $\Frac(\ZZ) = \QQ$. \\
+			אם $K$ שדה אז נסמן $K(x_1, \ldots, x_n) = \Frac(K[x_1, \ldots, x_n])$ שדה הפונקציות הרציונליות מעל $K$ במשתנים $x_1, \ldots, x_n$
+	\end{enumerate}
+\end{example}
+\begin{theorem}[התכונה האוניברסלית של מיקום]
+	יהי $f : A \to B$ הומומורפיזם של חוגים, ותהי $S \subset A$ כפלית, נניח כי $f(S) \subset B^\times$.
+	אז קיים ויחיד הומומורפיזם $\psi : S^{-1} A \to B$ כך שמתקיים,
+	\[
+		\loc \circ \psi
+		= f
+	\]
+\end{theorem}
+\begin{proof}
+	נגדיר,
+	\[
+		\psi(\frac{a}{s})
+		= f{(s)}^{-1} f(a)
+	\]
+	נראה ש־$\psi$ מוגדר היטב.
+	נניח ש־$\frac{a}{s} = \frac{b}{t}$, כלומר $r a t = r b s$ לכל $r \in S$ ולכן,
+	\[
+		f(r) f(a) f(t)
+		= f(r) f(b) f(s)
+		\implies f{(s)}^{-1} f(a)
+		= f{(t)}^{-1} f(b)
+	\]
+	על־ידי שימוש בהנחת ההפיכות.
+	נסיק שההעתקה מוגדת היטב, וניתן לבדוק בדיקה ישירה שזהו אכן הומומורפיזם, לכן נעבור ליחידות. \\
+	יחידות נובעת מ־$f = \psi \circ \loc$,
+	\[
+		f(s) \psi(\frac{a}{s})
+		= \psi(\frac{s}{1}) \psi(\frac{a}{s})
+		= \psi(\frac{a}{1})
+		= f(a)
+	\]
+	ולכן $\psi(\frac{a}{s}) = f{(s)}^{-1} f(a)$.
+\end{proof}
+\begin{example}
+	נניח ש־$K$ שדה סגור־אלגברית, ותהי $V \subset K^n$ קבוצה אלגברית.
+	ראינו כי $K[V] \cong K[\bar{x}] / I(V)$, ותהי $a \in V$, נגדיר,
+	\[
+		S
+		= \{ g \in K[V] \mid g(a) \ne 0 \}
+	\]
+	אז $S$ כפלית.
+	נסמן,
+	\[
+		O_{V, a}
+		= S^{-1} K[V]
+		= \{ \frac{f}{g} \mid f, g \in K[V], g(a) \ne 0 \}
+	\]
+	אז $\frac{f}{g}$ מוגדרת רק בסביבה פתוחה זריצקי של $a$ (בסביבה בה $g \ne 0$) ולא בהכרח על כל $V$.
+	נקבל גם ש־$\frac{f}{g} = \frac{h}{q}$ אם ורק אם $\frac{f}{g} = \frac{h}{q}$ על סביבה פתוחה זריצקי של $a$.
+\end{example}
+\begin{remark}
+	$O_{V, a} \cong {K[V]}_P$ עבור $P = \{ f \in K[V] \mid f(a) = 0 \}$ ראשוני.
+\end{remark}
+\begin{definition}[מיקום של אידאל]
+	אם $I \triangleleft A$ ו־$S \subset A$ כפלית, אז נגדיר,
+	\[
+		S^{-1} I
+		= \{ \frac{a}{s} \mid a \in I, s \in S \}
+		\triangleleft S^{-1} A
+	\]
+	הוא אידאל ב־$S^{-1} A$.
+\end{definition}
+\begin{exercise}
+	הוכיחו כי זהו אכן אידאל.
+\end{exercise}
+\begin{proposition}
+	כל אידאל ב־$S^{-1} A$ הוא מהצורה $S^{-1} I$ כאשר $I \triangleleft A$.
+\end{proposition}
+\begin{proof}
+	יהי $J \triangleleft S^{-1} A$ ונגדיר את $I = \loc^{-1}(J) = \{ a \in A \mid \frac{a}{1} \in J \}$.
+	אז $S^{-1} I = J$:
+	\[
+		\frac{a}{s} \in J
+		\implies
+		\frac{a}{1} = \frac{a}{s} \cdot \frac{s}{1} \in J
+		\implies \frac{a}{s} \in S^{-1} A
+	\]
+	ולכן $J \subset S^{-1} I$, והכיוון השני ברור.
+\end{proof}
+\begin{proposition}
+	יש התאמה חד־חד ערכית על ושומרת הכלה בין $\{ P \triangleleft A \text{ prime}, P \cap S = \varnothing \}$ ו־$\{ Q \triangleleft S^{-1} A \text{ prime} \}$,
+	והיא מתקבלת על־ידי $Q \mapsto \loc^{-1}(Q)$ ו־$P \mapsto S^{-1} P$.
+\end{proposition}
+\begin{proof}
+	יהי $P \triangleleft A$ כך ש־$P \cap S = \varnothing$.
+	תחילה נראה ש־$\frac{a}{s} \in S^{-1} P$ אם ורק אם $a \in P$.
+	נניח ש־$\frac{a}{s} \in S^{-1} A$, כלומר $\frac{a}{s} = \frac{b}{t}$ עבור $b \in P, t \in S$.
+	$r a t = r b s \in P$ עבור $r \in S$, $r, t \notin P$ ולכן $a \in P$ (מראשוניות) כנדרש.
+
+	נראה ששתי ההעתקות שהגדרנו הופכיות זו לזו ומוגדרות היטב (שולחות איברים לטווח שהגדרנו).
+	יהי $P \triangleleft A$ כך ש־$P \cap S = \varnothing$, אז,
+	\[
+		\loc^{-1}(S^{-1} A)
+		= P
+	\]
+	ישירות מהחלק הראשון של ההוכחה.
+	נבדוק ש־$S^{-1} A$ ראשוני. אם $\frac{a}{s} \cdot \frac{b}{t} \in S^{-1} P$ אז לפי החלק הראשון שוב נקבל ש־$a b \in P$ ואז או $a \in P$ ולכן $\frac{a}{s} \in S^{-1} A$ או ש־$b \in P$ ולכן $\frac{b}{s} \in S^{-1} P$.
+	אם $Q \triangleleft S^{-1} A$ ראשוני אז $P = \loc^{-1}(Q)$ ראשוני כתמונה הפוכה של ראשוני על־ידי הומומורפיזם.
+	קל לבדוק ש־$S^{-1} \loc^{-1}(Q) = Q$ שכן טענה זו נכונה לכל אידאל (לא רק ראשוניים). \\
+	נותר להראות ש־$P \cap S$, אם $s \in P \cap S$ אז $\frac{s}{1} \in {(S^{-1} A)}^\times$ וגם $\frac{s}{1} \in Q$ וזו סתירה לראשוניות $Q$.
+\end{proof}
+\begin{proposition}
+	הפעולה $I \mapsto S^{-1} I$ שומרת הכלה, סכומים, חיתוכים, כפל ורדיקל.
+\end{proposition}
+ההוכחה מושארת כתרגיל.
+\begin{definition}[מיקום של מודול]
+	יהי $A$ חוג, $S \subset A$ כפלית, ויהי $M$ מודול מעל $A$.
+	נגדיר יחס שקילות על $M \times S$ על־ידי,
+	\[
+		(x, s) \sim (y, t)
+		\iff \exists r \in S,\ r t x = r s y
+	\]
+	ונסמן $\frac{x}{s} = {[ (x, s) ]}_\sim$.
+	נגדיר,
+	\[
+		S^{-1} M
+		= \{ \frac{x}{s} \mid x \in M, s \in S \}
+	\]
+	להיות המיקום של $M$.
+\end{definition}
+נגדיר חיבור על $S^{-1} M$ על־ידי,
+\[
+	\frac{x}{s} + \frac{y}{t}
+	= \frac{t x + s y}{s t}
+\]
+ונגדיר כפל בסקלר מ־$S^{-1} A$ על־ידי,
+\[
+	\frac{a}{s} \cdot \frac{x}{t}
+	= \frac{a x}{s t}
+\]
+\begin{exercise}
+	הראו כי הפעולות הללו מוגדרות היטב.
+\end{exercise}
+\begin{proposition}
+	$(S^{-1} M, +, \cdot)$ מודול מעל $S^{-1} A$.
+\end{proposition}
+\begin{proposition}
+	$S^{-1} A \otimes_A M \cong S^{-1} M$ מתקבל על־ידי,
+	\[
+		\frac{a}{s} \otimes x
+		\mapsto \frac{a x}{s},
+		\qquad
+		\frac{x}{s}
+		\mapsto \frac{1}{s} \otimes x
+	\]
+\end{proposition}
+\begin{proof}
+	ההעתקה $\frac{a}{s}, x \mapsto \frac{a x}{s}$ בילינארית, לכן היא מגדירה הומומורפיזם יחיד של $A$־מודולים,
+	\[
+		\varphi : S^{-1} A \otimes_A S^{-1} M
+	\]
+	כך ש־$\varphi(\frac{a}{s} \otimes x) = \frac{a x}{s}$. \\
+	בכיוון ההפוך נגדיר את $\psi : S^{-1} M \to S^{-1} A \otimes M$ על־ידי $\psi(\frac{x}{s}) = \frac{1}{s} \otimes x$.
+	$\psi$ מוגדר היטב שכן אם $\frac{x}{s} = \frac{y}{t}$ אז $r t x = r s y$ לאיזשהו $r \in S$ ולכן,
+	\[
+		\frac{1}{s} \otimes x
+		= \frac{r t}{r t s} \otimes x
+		= \frac{1}{r t s} \otimes r t x
+		= \frac{r s}{r t s} \otimes y
+		= \frac{1}{t} \otimes y
+	\]
+	קל לבדוק ש־$\psi$ הומומורפיזם וש־$\varphi, \psi$ הפוכים אחד לשני.
+\end{proof}
+\begin{definition}[מיקום של הומומורפיזם]
+	אם $f : M \to N$ הומומורפיזם של $A$־מודולים אז נגדיר,
+	\[
+		S^{-1} f
+		\in \Hom_{S^{-1} A}(S^{-1} M, S^{-1} N),
+		\qquad
+		(S^{-1} f)(\frac{x}{s})
+		= \frac{f(x)}{s}
+	\]
+	אם נזהה $S^{-1} M = S^{-1} A \otimes M$ ו־$S^{-1} N = S^{-1} A \otimes N$ אז $S^{-1} f$ מזדהה עם $\id_{S^{-1} A} \otimes f$.
+\end{definition}
+\begin{exercise}
+	הראו כי ההעתקה מוגדרת היטב והומומורפיזם.
+\end{exercise}
+\begin{proposition}
+	תהי $0 \to N \to \xrightarrow{f} M \to \xrightarrow{g} P \to 0$ סדרה מדויקת קצרה. \\
+	אז $0 \to S^{-1} N \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} P \to 0$ מדויקת.
+\end{proposition}
+\begin{proof}
+	לפי הטענה הקודמת ודיוק מימין של טנזור מתקיים $S^{-1} N \to S^{-1} M \to S^{-1} P \to 0$ מדויקת.
+	צריך להראות ש־$S^{-1} f$ חד־חד ערכית.
+	נניח ש־$\frac{x}{s} \in \ker(S^{-1} f)$ עבור $s \in S, x \in N$, אז,
+	\[
+		0
+		= S^{-1} f(\frac{x}{s})
+		= \frac{f(x)}{s}
+	\]
+	ולכן קיים $r \in S$ כך ש־$f(r x) = r f(x) = 0$, $f$ חד־חד ערכית מדיוק הסדרה המקורית ולכן $r x = 0$ ו־$\frac{x}{s} = 0$.
+\end{proof}
+\begin{remark}
+	אם נתונה פעולה על מודולים והומומורפיזמים ששומרת על הרכבה, סכום, הומומורפיזמים ודיוק של סדרות קצרות, אז היא שומרת דיוק של כל סדרה.
+	בפרט אם $M_0 \xrightarrow{f_0} \cdots \xrightarrow{f_n} M_n$ מדויקת אז גם $S^{-1} M_0 \xrightarrow{S^{-1} f_1} \cdots \xrightarrow{S^{-1} f_n} S^{-1} M_n$ מדויקת.
+	$0 \to \ker(f_{i + 1}) \hookrightarrow M_i \to f_{i + 1}(M_i) \to 0$.
+\end{remark}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
