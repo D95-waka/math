@@ -1476,7 +1476,7 @@
 	ונוכל לקבל כל מטריצה על־ידי כפל במטריצות אלמנטריות.
 \end{remark}
 המטרה היא להראות ש־$M_n(D)$ פשוטה למחצה.
-\begin{lemma}
+\begin{lemma}\label{lemma_equivalency_module_over_algebra}
 	תהי $A$ אלגברה מעל $\FF$ ו־$M$ מודול מעל $A$.
 	אז התנאים הבאים שקולים:
 	\begin{enumerate}
@@ -1518,7 +1518,7 @@
 	\]
 	ולכל $i$, $\mu(S_i)$ הוא או פשוט או אפס, לכן קיבלנו ש־$M / N$ הוא סכום של פשוטים, ונקבל פשוטה למחצה לפי הלמה הקודמת.
 \end{proof}
-\begin{lemma}
+\begin{lemma}\label{lemma_semisimple_algebra_iff_semisimple_module}
 	תהי $A$ אלגברה (סוף־מימדית מעל $\FF$).
 	$A$ פשוטה למחצה כאלגברה אם ורק אם $A$ פשוטה למחצה כ־$A$־מודול.
 \end{lemma}
@@ -1630,6 +1630,104 @@
 	\]
 	כאשר $M_1(\HH)$ מגיע מ־$\End_{\RR[Q]}(\HH)$.
 \end{example}
+
+\section{שיעור 11 --- 24.11.2026}
+\subsection{תורת ודרבורן --- המשך}
+\begin{proposition}[סכום ישר של אלגברות]
+	אם $A_1, \ldots, A_r$ הן אלגברות מעל $\FF$, אז גם $A_1 \oplus \cdots \oplus A_r$ היא גם $\FF$־אלגברה.
+	כאשר המרחב הוא המכפלה הקרטזית $A_1 \times \cdots \times A_r$, החיבור הוא קורדינטה קורדינטה, וכך גם הכפל, עם היחידה $(1, \ldots, 1)$.
+	נוכל לשכן את $\FF$ על־ידי $\lambda \mapsto (\lambda, \ldots, \lambda)$.
+\end{proposition}
+\begin{remark}
+	איזומורפיזם של $\FF$־אלגברות הוא איזומורפיזם חוגים שהוא זהות על איברי $\FF$.
+\end{remark}
+\begin{proposition}
+	אם $A_1, \ldots, A_r$ הן $\FF$־אלגברות פשוטות למחצה, אז גם $A_1 \oplus \cdots \oplus A_r$ פשוט למחצה.
+\end{proposition}
+\begin{remark}
+	טענה זו מוכיחה את הכיוון השני של החלק השני של משפט ודרבורן.
+\end{remark}
+\begin{proof}
+	מספיק להראות עבור $r = 2$, כלומר להראות שאם $A_1, A_2$ פשוטות למחצה אז גם $A_1 \oplus A_2$ פשוטה למחצה.
+	כל $A_1$־מודול הוא גם $A_1 \oplus A_2$־מודול על־ידי,
+	\[
+		A_1 \oplus A_2
+		\xrightarrow{\text{projection}} A_1
+		\to \End_{\ZZ}(M)
+	\]
+	כלומר על־ידי הפעולה $(a_1, a_2) . m = a_1 . m$.
+	אם $M$ הוא $A_1$־מודול פשוט אז הוא גם $A_1 \oplus A_2$־מודול פשוט.
+
+	נניח שמתקיים,
+	\[
+		A_1
+		\cong S_1 \oplus \cdots \oplus S_m
+	\]
+	עבור מודולים פשוטים, זה מתקבל מפשטות למחצה של $A_1$.
+	באופן דומה נוכל גם לסמן,
+	\[
+		A_2
+		\cong T_1 \oplus \cdots \oplus T_k
+	\]
+	מסיבה דומה.
+	אז מתקיים,
+	\[
+		A_1 \oplus A_2
+		\cong A_1 \oplus A_2
+	\]
+	כלומר הסכום הישר כאלגברות וכמודולים הוא שקול, כאשר האיזומורפיזם הוא של $A_1 \oplus A_2$־מודולים.
+	נסיק שמתקיים,
+	\[
+		A_1 \oplus A_2
+		\cong S_1 \oplus \cdots \oplus S_m \oplus T_1 \oplus \cdots \oplus T_k
+	\]
+	כלומר, כמודול $A_1 \oplus A_2$ פשוטה למחצה, לכן מלמה\ \ref{lemma_semisimple_algebra_iff_semisimple_module} נובע שהיא פשוטה למחצה.
+\end{proof}
+\begin{theorem}[אלגברה פשוטה ולמחצה]
+	אלגברה פשוטה היא פשוטה למחצה.
+\end{theorem}
+\begin{proof}
+	תהי $A$ אלגברה פשוטה, ויהי $\Sigma \le A$ סכום כל תת־המודולים הפשוטים של $A$ (כ־$A$־מודול).
+	אם נראה ש־$\Sigma = A$ אז נסיים לפי למות\ \ref{lemma_equivalency_module_over_algebra} ו־\ref{lemma_semisimple_algebra_iff_semisimple_module}.
+	$\Sigma$ הוא תת־מודול של $A$, בפרט סגור לכפל משמאל (אידאל שמאלי) ונראה שהוא סגור גם לכפל מימין ולכן אידאל דו־צדדי.
+	יהי $a \in A$, לכל תת־מודול פשוט $S \le A$ ההעתקה $\varphi : S \to A$ המוגדרת על־ידי $\varphi(s) = s a$ היא הומומורפיזם של $A$־מודולים,
+	\[
+		b . s
+		\mapsto b . s a
+		= (b s) . a
+	\]
+	ולכן $\varphi(S) \cong S / \ker \varphi$, זהו איזומורפיזם ל־$S$ (ולכן פשוט) או אפס, ובכל מקרה מוכל ב־$\Sigma$ ומתקבל $\Sigma a \subseteq \Sigma$.
+	נובע ש־$\Sigma$ אידאל דו־צדדי, אבל $A$ פשוטה ולכן $\Sigma = 0$ או $\Sigma = A$.
+	מכיוון ש־$A$ סוף־מימדית מעל $\FF$, יש לה תת־מודול פשוט (לדוגמה תת־מודול לא טריוויאלי ומינימלי מעל $\FF$), לכן $\Sigma \ne 0$ ובפרט $\Sigma = A$.
+\end{proof}
+\begin{proposition}
+	הכיוון הראשון של החלק הראשון של משפט ודרבורן נובע מהכיוון הראשון של החלק השני של המשפט.
+\end{proposition}
+\begin{proof}
+	תהי $A$ אלגברה פשוטה, לפי המשפט האחרון היא פשוטה למחצה.
+	לפי החלק השני של המשפט נובע ש־$A \cong M_{n_1}(D_1) \oplus \cdots \oplus M_{n_r}(D_r)$ אבל $M_{n_1}(D_1) \times \{ 0 \} \times \cdots \times \{ 0 \}$ הוא אידאל דו־צדדי שונה מאפס ולכן הוא איזומורפי ל־$A$, כלומר $r = 1$.
+\end{proof}
+מהיכן מגיעות אלגברות החילוק $D_1, \ldots, D_r$ במשפט?
+\begin{example}
+	הבאות הן אלגברות חילוק:
+	\begin{enumerate}
+		\item הרחבת שדות
+		\item $\End_A(S)$ עבור $S$ מודול פשוט מעל $A$
+	\end{enumerate}
+\end{example}
+ראינו גם ש־$\Hom_R(M, N)$ חבורה אבלית (אם $R$ חילופי וגם $R$־מודול).
+לכל $R$ גם $\End_R(M, M)$ הוא חוג כאשר הכפל מוגדר על־ידי הרכבה.
+אם $A$ הוא $\FF$־אלגברה ו־$M$ הוא מודול מעל $A$ אז $\End_A(M)$ הוא גם $\FF$־אלגברה:
+הוא חוג כמו קודם, והשיכון של $\FF$, $\lambda \mapsto (m \mapsto \lambda . m)$, התמונה במרכז של $\End_A(M)$ כי,
+\[
+	(\varphi_{\lambda} . \psi)(m)
+	= \varphi_{\lambda}(\psi(m))
+	= \lambda . \psi(m)
+	= \psi(\lambda m)
+	= (\psi \circ \varphi_{\lambda})(m)
+\]
+ונותר להראות שזו אלגברת חילוק.
+אם $M = S$ פשוט, אז הלמה של שור הראתה שכל הומומורפיזם של $A$־מודולים $S \to S$ היא או אפס או הפיכה, לכן $\End_A(M)$ היא אלגברת חילוק מעל $\FF$.
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
 \end{document}
