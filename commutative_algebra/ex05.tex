@@ -81,6 +81,84 @@
 		= \tilde{\psi}(1 \otimes x)
 		= 1 \cdot x
 	\]
+	כלומר $x = 0$ כפי שרצינו.
+\end{proof}
+
+\question{}
+יהי $f : A \to B$ הומומורפיזם חוגים, ויהי $N$ מודול מעל $B$, על־ידי צמצום סקלרים גם מודול מעל $A$.
+נסמן $N_B = B \otimes_A N$, וזהו $B$־מודול על־ידי הרחבת סקלרים.
+נגדיר את,
+\[
+	\varphi : N \to N_B,
+	\qquad
+	n \mapsto 1 \otimes n
+\]
+ונבחין כי זהו הומומורפיזם.
+נראה כי,
+\[
+	0
+	\to N
+	\xrightarrow{\varphi} N_B
+	\xrightarrow{\pi_{\im \varphi}} N_B / \im \varphi
+	\to 0
+\]
+היא סדרה מדויקת ומתפצלת.
+\begin{proof}
+	$\varphi$ חד־חד ערכית מהשאלה הקודמת, והטלת מנה היא תמיד על, לכן כדי לבדוק דיוק נותר לבדוק $\im \varphi = \ker \pi_{\im \varphi}$, אך זה ברור מהגדרה.
+	נותר לבדוק פיצול, אבל זה מתקבל ישירות על־ידי $\psi$ מהשאלה הקודמת.
+\end{proof}
+
+\question{}
+יהי $f : A \to B$ הומומורפיזם חוגים, ויהי $M$ מודול מעל $A$.
+
+\subquestion{}
+נראה שאם $M$ נוצר סופית אז $M_B$ נוצר סופית מעל $B$.
+\begin{proof}
+	$M$ נוצר סופית ולכן נסמן $S \subset M$ כך ש־$\langle S \rangle_A = M$ וכך ש־$S$ סופית.
+	נזכור כי $M_B = B \otimes_A M$, מספיק להראות שכל טנזור פשוט נוצר סופית מעל $B$.
+	יהי $b \otimes m \in M_B$, אז $m = \sum_{s \in S} a_s s$ עבור $a_s \in A$.
+	נקבל,
+	\[
+		b \otimes m
+		= b \otimes \sum a_s s
+		= \sum_{s \in S} a_s (b \otimes s)
+		= \sum_{s \in S} (f(a_s) b) (1 \otimes s)
+	\]
+	כאשר במעבר האחרון השתמשנו בהגדרת פעולת הכפל של $M_B$ כ־$B$־מודול.
+	קיבלנו שניתן לייצג טנזור פשוט כצירוף לינארי של $1 \otimes s$ עבור $s \in S$ ולכן גם $M_B$ נוצר סופית.
+\end{proof}
+
+\subquestion{}
+נראה שאם $M$ חופשי, אז גם $M_B$ חופשי מעל $B$.
+\begin{proof}
+	מהסעיף הקודם נותר להראות שאם $S$ בסיס אז גם $\{ 1 \otimes s \mid s \in S \}$ בסיס של $M_B$.
+	מהגדרה שקולה לחופשיות נובע $M \cong \bigoplus_{i \in I} A$ עבור איזשהו $I$, ונזהה אותם.
+	לכן,
+	\[
+		M_B
+		= B \otimes_A M
+		= B \otimes_A \bigoplus_{i \in I} A
+		\cong \bigoplus_{i \in I} B \otimes_A A
+		\cong \bigoplus_{i \in I} B
+	\]
+	וזהו בדיוק מודול חופשי מעל $B$.
+\end{proof}
+
+\question[7]{}
+תהי אלגברה $A$ ממימד סופי מעל שדה $F$.
+
+\subquestion{}
+נראה שאם $A$ תחום שלמות אז $A$ שדה.
+\begin{proof}
+	יהי $0 \ne a \in A$, נראה כי הוא הפיך כפלית ולכן $A$ שדה.
+	נניח כי $\dim_F A = n$ ונבחן את $\{ 1, a, a^2, \ldots, a^n \}$, זוהי קבוצה תלויה לינארית ולכן קיים צירוף לינארי כך שמתקיים,
+	\[
+		1
+		= \sum_{i = 1}^n \alpha_i a^i
+		= a \cdot \sum_{i = 1}^n \alpha_i a^{i - 1}
+	\]
+	ולכן נסמן $b = \alpha_1 1 + \cdots + \alpha_n a^{n - 1}$.
+	נובע כי $1 = a \cdot b$, ו־$A$ תחום שלמות לכן $b \ne 0$, ונובע כי $a$ אכן הפיך.
 \end{proof}
 
 \end{document}
