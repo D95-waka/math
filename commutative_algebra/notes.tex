@@ -12,6 +12,8 @@
 \DeclareMathOperator\Nil{Nil}
 \DeclareMathOperator\loc{loc}
 \DeclareMathOperator\Frac{Frac}
+\DeclareMathOperator\Mor{Mor}
+\DeclareMathOperator\Ann{Ann}
 
 \begin{document}
 \maketitle
@@ -2580,6 +2582,305 @@ $b, c \mapsto f(b) g(c)$ בילינארית ולכן $\varphi$ מוגדר היט
 	אם נתונה פעולה על מודולים והומומורפיזמים ששומרת על הרכבה, סכום, הומומורפיזמים ודיוק של סדרות קצרות, אז היא שומרת דיוק של כל סדרה.
 	בפרט אם $M_0 \xrightarrow{f_0} \cdots \xrightarrow{f_n} M_n$ מדויקת אז גם $S^{-1} M_0 \xrightarrow{S^{-1} f_1} \cdots \xrightarrow{S^{-1} f_n} S^{-1} M_n$ מדויקת.
 	$0 \to \ker(f_{i + 1}) \hookrightarrow M_i \to f_{i + 1}(M_i) \to 0$.
+\end{remark}
+
+\section{שיעור 11 --- 24.11.2026}
+\subsection{דיוק המיקום}
+\begin{corollary}
+	אם $N \subset M$ תת־מודול, אז $S^{-1} N \hookrightarrow S^{-1} M$ ולכן נוכל לחשוב על $S^{-1} N$ כתת־מודול של $S^{-1} M$ (כאשר נזהה את $\frac{x}{s}$ כ־$\frac{x}{s}$).
+\end{corollary}
+\begin{proof}
+	נובע מכך שמיקום של השיכון $N \hookrightarrow M$ הוא חד־חד ערכי.
+\end{proof}
+\begin{corollary}
+	אם $N_i \subset M$ תת־מודול אז,
+	\[
+		S^{-1} \sum_{i \in I} N_i
+		= \sum_{i \in I} S^{-1} N_i,
+		\quad
+		S^{-1} (N_1 \cap N_2) = S^{-1} N_1 \cap S^{-1} N_2
+	\]
+\end{corollary}
+\begin{proof}
+	הסכום מושאר כתרגיל, נבדוק חיתוך.
+	ברור כי $S^{-1} (N_1 \cap N_2) \subset S^{-1} N_1 \cap S^{-1} N_2$ ואנו נראה את ההכלה ההפוכה.
+	יהיו $\frac{y}{t} = \frac{x}{s} \in S^{-1} N_1 \cap S^{-1} N_2$ כאשר $x \in N_1, y \in N_2, s, t \in S$.
+	קיים $r \in S$ כך שמתקיים $r s y = r t x$ ולכן $\frac{x}{s} = \frac{r t x}{r t s} \in S^{-1} (N_1 \cap N_2)$ כי $N_2 \ni r t y = r t x \in N_1$
+\end{proof}
+\begin{corollary}
+	אם $N \subset M$ אז,
+	\[
+		S^{-1} (M / N)
+		\cong S^{-1} M / S^{-1} N
+	\]
+\end{corollary}
+\begin{proof}
+	$0 \to N \to M \to M / N \to 0$ מדויקת ולכן גם $0 \to S^{-1} N \hookrightarrow S^{-1} M \to S^{-1} (M / N) \to 0$ מדויקת.
+	לכן בהכרח $S^{-1} (M / N) \cong S^{-1} M / S^{-1} N$.
+\end{proof}
+\begin{definition}[מודול שטוח]
+	מודול $Q$ מעל $A$ נקרא \textbf{שטוח} (flat) אם לכל הומומורפיזם $f : M \to N$ חד־חד ערכי של $A$־מודולים, גם $f \otimes \id_Q : M \otimes Q \to N \otimes Q$ הוא חד־חד ערכי.
+	באופן שקול $\otimes Q$ פעולה מדויקת.
+\end{definition}
+\begin{example}
+	$S^{-1} A$ הוא $A$־מודול שטוח.
+	זה נובע מיד מכך ש־$M \otimes S^{-1} A = S^{-1} M$ והעובדה שמיקום הוא פעולה מדויקת.
+\end{example}
+\begin{example}
+	מודול חופשי $A^{\oplus I}$ הוא שטוח כי $M \otimes A^{\oplus I} \cong M^{\oplus I}$ וסכום ישר של סדרות מדויקות הוא סדרה מדויקת.
+\end{example}
+\begin{definition}[מורפיזם של קבוצות אלגבריות]
+	יהי $K$ שדה סגור אלגברית, ותהיינה $V \subset K^n, W \subset K^m$ קבוצות אלגבריות.
+	\textbf{מורפיזם} $f : V \to W$ הוא פונקציה מהצורה $f = (f_1, \ldots, f_m)$ כך ש־$f_i \in K[V]$ (כל $f_i$ נתונה על־ידי פולינום).
+\end{definition}
+\begin{notation}
+	$\Mor(V, W) = \{ f : V \to W \mid f \text{ morphism} \}$.
+	$f_1, \ldots, f_m \in K[V]$ צריכים לקיים את התוכן ב־$I(W)$.
+\end{notation}
+\begin{remark}
+	הרכבה של מורפיזמים היא מורפיזם.
+\end{remark}
+יהי $f \in \Mor(V, W)$, לכל $g \in K[W]$ מתקיים $g \circ f \in K[V]$ (באופן כללי $K[W]$ היא בדיוק $\Mor(W, K)$).
+קל לבדוק שההעתקה $\varphi_f : K[W] \to K[V]$ המוגדרת על־ידי $\varphi_f(g) = g \circ f$ היא הומומורפיזם של $K$־אלגברות.
+לפיכך, אם $\varphi \in \Hom_{K-\text{alg}}(K[W], K[V])$ אז נגדיר,
+\[
+	f
+	= (f_1, \ldots, f_m)
+	= (\varphi(y_1 |_W), \ldots, \varphi(y_m |_W))
+\]
+עבור $y_1, \ldots, y_m$ קורדינטות ב־$K^m$.
+$y_1 |_W, \ldots, y_m |_W$ מקיימות את המשוואות ב־$I(W)$ ולכן מכיוון ש־$\varphi$ הומומורפיזם אז גם $f_1, \ldots, f_m$ מקיימים את המשוואות ולכן גם $f : V \to W$ מורפיזם. \\
+קל לבדוק שהפעולות הללו הופכיות, כלומר $\Mor(V, W) \leftrightarrow \Hom_{K-\text{alg}}(K[W], K[V])$ על־ידי $f \mapsto (g \mapsto g \circ f)$, וזו התאמה חד־חד ערכית ועל.
+בפרט כל מורפיזם $f : V \to W$ הופך את $K[V]$ לאלגברה (בפרט מודול) מעל $K[W]$.
+\begin{notation}
+	נאמר ש־$f$ שטוח אם $K[V]$ שטוח כמודול מעל $K[W]$.
+\end{notation}
+\begin{example}
+	נסמן $W = K, V = \{ x y = 1 \}$ ותהי $f : V \to W$ המוגדרת על־ידי $f(x, y) = x$.
+	אז,
+	\[
+		K[V]
+		= K[x, y] / (x y - 1)
+		\cong {K[x]}_x
+	\]
+	כאשר זהו סימון של מיקום בחזקות $x$.
+	מתקבל על־ידי $y \mod (x y - 1) \mapsto \frac{1}{x}$ ו־$x \mod (x y - 1) \mapsto x$.
+	במקרה ה גם $K[W] = K[x]$ וכן $\loc = \varphi_f : K[x] \hookrightarrow {K[x]}_x$.
+	${K[x]}_x$ מודול שטוח מעל $K[x]$ ולכן $f$ שטוח.
+\end{example}
+\begin{example}
+	נגדיר $V = \{ x y = 0 \}, W = K$ ואת $f(x, y) = x$.
+	הפעם $K[W] = K[x]$ וכן $K[V] = K[x, y] / (x y)$.
+	אם נבצע מכפלה טנזורית על הומומורפיזם של $K[x]$ ־מודולים,
+	\[
+		k[x] \cong x K[x] \hookrightarrow K[x]
+	\]
+	על־ידי עוד מכפלה טנזורית עם $K[x, y] / (x y)$ נקבל,
+	\[
+		K[x, y] / ((x y) \cdot x)
+		\to K[x, y] / (x y)
+	\]
+	העתקה זו לא חד־חד ערכית כי לדוגמה $y \mod (x y) \ne 0$ אבל $x y \mod (x y) = 0$, לכן $f$ לא שטוח.
+\end{example}
+
+\subsection{חוגים מקומיים}
+\begin{definition}[חוג מקומי]
+	חוג $A$ נקרא \textbf{מקומי} (local ring) אם יש לו אידאל מקסימלי יחיד.
+\end{definition}
+\begin{notation}
+	נאמר ש־$(A, M)$ הוא חוג מקומי, כלומר ש־$A$ מקומי ו־$M \triangleleft A$ האידאל המקסימלי היחיד שלו.
+\end{notation}
+\begin{proposition}
+	$A$ הוא מקסימלי אם ורק אם $A \setminus A^\times \triangleleft A$ אידאל.
+	במקרה זה $A \setminus A^\times$ הוא מקסימלי.
+\end{proposition}
+\begin{proof}
+	נניח ש־$A$ מקומי, ולכן $M \subset A \setminus A^\times$, אם $a \in A \setminus A^\times$ אז $(a) \ne (1)$ וקיים אידאל מקסימלי שמכיל את $(a)$.
+	ממקומיות הוא חייב להיות $M$ ולכן $A \setminus A^\times = M$.
+
+	בכיוון השני אם $M = A \setminus A^\times$ אידאל, אז $M$ מכיל כל אידאל לא טריוויאלי של $A$, לכן הוא המקסימלי היחיד.
+\end{proof}
+הדוגמה הבאה באיזשהו מובן מציגה את כל החוגים המקומיים:
+\begin{example}
+	אם $A$ חוג ו־$P \triangleleft A$ ראשוני, אז $A_P = S^{-1} A$ עבור $S = A \setminus P$ הוא מקומי עם אידאל מקסימלי יחיד $S^{-1} P = P A_P$.
+\end{example}
+נוכיח שדוגמה זו נכונה.
+\begin{proof}
+	$A_P^\times = \{ \frac{a}{s} \mid a, s \in A \setminus P \}$ ולכן $S^{-1} P = A_P \setminus A_P^\times = \{ \frac{a}{s} \mid a \in P, s \in A \setminus P \}$ אידאל.
+	נובע ש־$(A_P, S^{-1} P)$ מקומי מהתנאי השקול.
+\end{proof}
+\begin{corollary}
+	אם $(A, M)$ מקומי אז $A \cong A_M$ כי $A \setminus M \subset A^\times$.
+\end{corollary}
+נגדיר מספר הגדרות עבור הדוגמה הבאה: \\
+תהי $X \subset \RR^n$ קבוצה, ונסמן את $A = C(X) = \{ f : X \to \RR \mid f \text{ continuous} \}$.
+תהי $x \in X$, אז,
+\[
+	M_x
+	= \{ f \in A \mid f(x) = 0 \}
+\]
+אידאל מקסימלי.
+\[
+	A / M_x \cong \RR,
+	\qquad
+	f \mod M_x \mapsto f(x)
+\]
+\begin{definition}[נבט]
+	אם $f, g \in C(X)$ אז נאמר שהן שקולות אם קיים כדור $B(x, \delta)$ כך ש־$f |_{B(x, \delta)} \equiv g |_{B(x, \delta)}$.
+	למחלקת השקילות של $f$ נקרא \textbf{הנבט} (germ) של $f$ בנקודה $x$, ונסמן $f |_x$.
+	נסמן גם $C(X) |_x = \{ f |_x \mid f \in C(X) \}$.
+\end{definition}
+$C(X) |_x$ הוא חוג, ואפילו אלגברה מעל $\RR$.
+\begin{example}
+	$\CC(X) |_x \cong {C(X)}_{M_x}$ ומתקבל על־ידי $f |_x \mapsto \frac{f}{1}$ וכן $\frac{f}{g} \mapsto \frac{f}{g} |_x$ אם $g(x) \ne 0$.
+\end{example}
+\begin{proposition}
+	אם $X$ קומפקטית אז כל אידאל מקסימלי של $C(X)$ הוא מהצורה $M_x$ לאיזשהו $x \in X$.
+\end{proposition}
+\begin{proof}
+	יהי $M \triangleleft C(X)$ מקסימלי, ונניח ש־$M \ne M_x$ לכל $x \in X$.
+	לכל $x \in X$ קיימת $f_x \in M$ כך ש־$f_x(x) \ne 0$, אז קיימת $\delta_x > 0$ כך שגם $f_x(y) \ne 0$ לכל $y \in B(x, \delta_x)$.
+	הכדורים $B(x, \delta_x)$ מכסים את $X$ אבל היא קומפקטית ולכן יש תת־כיסוי סופי $X \subset \bigcup_{i = 1}^N B(x_i, \delta_i)$.
+	$f = f_{x_1}^2 + \cdots + f_{x_N}^2$ חיובית על כל $B(x_i, \delta_i)$ ולכן על $X$, לכן $f$ הפיכה ב־$C(X)$ ($\frac{1}{f}$ מוגדרת ורציפה) אבל $f \in M$ וזו סתירה.
+\end{proof}
+\begin{exercise}
+	הראו שאם $X$ לא קומפקטית אז יש אידאלים מקסימליים ב־$C(X)$ שאינם מהצורה $M_x$.
+\end{exercise}
+נעבור לגרסה אלגברית של הדוגמה האחרונה.
+\begin{example}
+	יהי $K$ שדה סגור־אלגברית ותהי $V \subset K^n$ אלגברית.
+	\[
+		O_{V, a}
+		= {K[V]}_{I(\{ a \}) / I(V)}
+		= \{ \frac{f}{g} \mid f, g \in K[V], g(a) \ne 0 \}
+	\]
+	זאת שכן $I(\{ a \}) / I(V)$ הן בדיוק הפונקציות שלא מתאפסות ב־$a$.
+	נבט מוגדר כמו קודם אבל ביחס לטופולוגיית זריצקי, כלומר $f \sim g$ בנקודה $a$ אם קיימת $U \subset V$ פתוחה זריצקי שבה $f \equiv g$.
+	באופן דומה אם $W \subset V$ תת־קבוצה אלגברית אי־פריקה ($I(W) / I(V)$ ראשוני) אז,
+	\[
+		O_{V, W}
+		: = K[V] / (I(W) / I(V))
+	\]
+	כלומר הפונקציות הרציונליות שמוגדרות באיזשהו מקום ב־$W$, אך לא בהכרח בכל $W$.
+	אז $O_{V, W}$ מקומי.
+\end{example}
+\begin{notation}
+	יהי $(A, M)$ חוג מקומי, אז $K = A / M$ נקרא \textbf{שדה השאריות} (residue field) של $A$.
+\end{notation}
+\begin{remark}
+	אם $A$ חוג ו־$P \triangleleft A$ ראשוני אז שדה השאריות של $A_P$ איזומורפי ל־$\Frac(A / P)$, והוא מתקבל על־ידי,
+	\[
+		A_P / P A_P \to \Frac(A / P),
+		\qquad
+		\frac{a}{s} \mod P A_P
+		\mapsto \frac{a \mod P}{s \mod P}
+	\]
+	נסביר:
+	אם $S = A \setminus P$ אז כל $s \in S$ הוא הפיך ב־$\Frac(A / P)$ ולכן קיים הומומורפיזם,
+	\[
+		\varphi : A_P = S^{-1} A \to \Frac(A / P),
+		\qquad
+		\varphi(\frac{a}{s})
+		= \frac{a \mod P}{s \mod P}
+	\]
+	ברור כי הוא על, וכן $\ker \varphi = P A_P$, ולכן ממשפט האיזומורפיזם הראשון,
+	\[
+		A_P / P A_P
+		\cong \varphi(A_P)
+		= \Frac(A / P)
+	\]
+\end{remark}
+\begin{example}
+	שדה השאריות של $O_{V, W} = {K[V]}_{I(W) / I(V)}$ הוא,
+	\[
+		\Frac(K[V] / (I(W) / I(V)))
+		= \Frac((K[x] / I(V)) / (I(W) / I(V)))
+		\cong \Frac(K[x] / I(W))
+		= \Frac(K[W])
+	\]
+	ונסמן $K(W) = \Frac(K[W])$ ונקרא לאובייקט זה שדה הפונקציות הרציונליות על $W$.
+	בפרט אם $W$ מקומית אז $K(W) \cong K$.
+\end{example}
+
+\subsection{תכונות מקומיות}
+נחקור תכונות מקומיות של חוגים, מודלים, הומומורפיזמים וכן הלאה.
+\begin{definition}[תכונה מקומית]
+	תכונה $P$ של חוגים נקראת \textbf{מקומית} אם $P(A)$ אם ורק אם $P(A_P)$ לכל $P \triangleleft A$ ראשוני.
+\end{definition}
+תכונה $P$ של מודולים נקראת מקומית אם $P(M)$ מתקיימת אם ורק אם $P(M_P)$ לכל $P \triangleleft A$ ראשוני, וכאשר $M_P = S^{-1} M$ עבור $S = A \setminus P$.
+\begin{example}
+	$M = 0$ תכונה מקומית. \\
+	ברור כי אם $M = 0$ אז $M_P = 0$ לכל $P$ ראשוני. \\
+	בכיוון ההפוך נניח ש־$M \ne 0$ ויהי $0 \ne x \in M$, ונבחן את המאפס (annihilator) של $x$.
+	\[
+		I
+		= \Ann(x)
+		= \{ a \in A \mid a x = 0 \} \triangleleft A
+	\]
+	אז קיים $N$ אידאל מקסימלי $I \subset N$, $0 \ne \frac{x}{1} \in M_N$ כי אם $\frac{x}{1} = 0$ אז קיים $a \in A \setminus N$ כך ש־$a x = 0$ אבל $a \notin I \subset N$ וזו סתירה, לכן $M_N \ne 0$.
+\end{example}
+\begin{example}
+	דיוק של סדרה $M \xrightarrow{f} N \xrightarrow{g} Q$ היא תכונה מקומית (הסדרה מדויקת אם ורק אם המיקום שלה בכל $P$ ראשוני מדויק). \\
+	אם הסדרה מדויקת אז $M_P \xrightarrow{f_P} N_P \xrightarrow{g_P} Q_P$ מדויקת מדיוק של מקום.
+	מהצד השני נניח שהסדרה לא מדויקת ונראה שיש מיקום לא מדויק באידאל ראשוני.
+	אם $f \circ g \ne 0$, מכיוון שההתאפסות של מודול היא תכונה מקומית ו־$\langle f \circ g \rangle \subset \Hom(M, Q)$ תת־מודול,
+	גם התאפסות של איבר במודול היא מקומית, ולכן אם קיים $x \in M$ כך ש־$(g \circ f)(x) = 0$ אז $(g_P \circ f_P)(\frac{x}{1}) \ne 0$ עבור $P$ ראשוני כלשהו,
+	לכן גם $M_P \to N_P \to Q_P$ לא מדויקת.
+
+	נניח ש־$g \circ f = 0$ אבל $\im f \subsetneq \ker g$,
+	\[
+		\ker g / \im f \ne 0
+	\]
+	ולכן קיים $P$ כך שמתקיים,
+	\[
+		\ker g_P / \im f_P
+		\cong {(\ker g / \im f)}_p
+		\ne 0
+	\]
+	כאשר האיזומורפיזם הראשון הוא מדיוק של מיקום.
+	לכן $\im f_P \subsetneq \ker g_P$ ונסיק ש־$M_P \to N_P \to Q_P$ לא מדויקת.
+\end{example}
+\begin{example}
+	שטיחות של מודול היא תכנה מקומית. \\
+	תחילה נשים לב שמיקום שומר על $\otimes$,
+	\[
+		S^{-1} (M \otimes N)
+		\cong S^{-1} A \otimes M \otimes N
+		\cong S^{-1} A \otimes M \otimes S^{-1} A \otimes N
+		\cong S^{-1} M \otimes S^{-1} N
+	\]
+	שכן $S^{-1} A \cong S^{-1} S^{-1} A \cong S^{-1} A \otimes S^{-1} A$ וכן על־ידי
+	\[
+		\frac{x \otimes y}{s}
+		\mapsto \frac{x}{s} \otimes \frac{y}{1}
+		= \frac{x}{1} \otimes \frac{y}{s}
+	\]
+	נניח ש־$M_P$ שטוח לכל $P$ ראשוני.
+	לכל $f : N \to N'$ חד־חד ערכית גם $f_P$ חד־חד ערכית.
+	לכן,
+	\[
+		{(f \otimes \id_M)}_P
+		= f_P \otimes \id_{M_P} : N_P \otimes M_P \to N_P' \otimes M_P
+	\]
+	דיוק הוא תכונה מקומית ולכן חד־חד ערכית מתכונה מקומית ו־$f \otimes \id_M$ חד־חד ערכית ו־$M$ שטוח.
+\end{example}
+נעבור לדוגמה המראה שחופשיות היא לא תכונה מקומית.
+\begin{example}
+	נבחן את $S^2 = \{ x^2 + y^2 + z^2 = 1 \} \subset \RR^3$ ונגדיר את $A = C(S^2)$.
+	נסמן גם את $M$ להיות אוסף השדות הווקטוריים הרציפים על $S^2$.
+	נראה כי $M$ לא חופשי אבל ש־$M_N$ חופשי לכל $N \triangleleft A$ מקסימלי ולכן גם $M_P$ חופשי לכל $P$ ראשוני (אם $P \subset N$ אז $M_P \cong {(M_P)}_{P_N}$).
+	תחילה נגדיר את $(f \varphi)(x) = f(x) \varphi(x)$ לכל $f \in A, \varphi \in M$, כלומר הגדרנו כפל בסקלר.
+	כל אידאל מקסימלי של $A$ הוא מהצורה $M_x$ עבור $x \in S^2$ ולכן $M_{M_x}$ הוא בדיוק כל הנבטים של שדות וקטוריים על $S^2$ בנקודה $x$.
+	אבל זה בדיוק אוסף הנבטים ב־$x$ של שדות בעיגול סביב $x$, וזה איזומורפי ל־${(C(X) |_x)}^2$, וזה מודול חופשי.
+
+	מהצד השני קיים משפט (אשר לא נוכיח) הטוען כי אין שדה וקטורי רציף על $S^2$ שלא מתאפס באף נקודה (משפט הכדור השעיר).
+	אם $M$ היה חופשי, עם בסיס $e_1, e_2, \ldots$, אז בפרט $e_q$ הוא שדה וקטורי על $S^2$ שלא מתאפס באף נקודה.
+	אם $e_1(x) = 0$ אז $e_1 \in M_X M$ ואז $e_1 = \sum a_j e_j$ עבור $a_j \in M_X$ בסתירה, וזה צירוף לינארי לא טריוויאלי, בסתירה.
+	$M$ אינו חופשי וחופשיות אינה תכונה מקומית.
+\end{example}
+\begin{remark}
+	אם $P$ תכונה מקומית, אז $P(M)$ מתקיימת אם ורק אם $P(M_N)$ עבור $N \triangleleft A$ מקסימלי, כלומר מספיק לבדוק מקסימליים ולא ראשוניים כלליים.
+	הסיבה היא שאם $P \subset N$ ראשוני ומקסימלי, אז $M_P \cong {(M_N)}_{P A_N}$ ולכן התכונה נגררת מ־$M_N$ למרחב האיזומורפי ל־$M_P$.
 \end{remark}
 
 \listoftheorems[title=הגדרות ומשפטים,ignoreall,show={theorem,definition},swapnumber,onlynamed={proposition}]
