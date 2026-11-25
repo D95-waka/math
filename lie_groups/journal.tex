@@ -9,6 +9,8 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 
+\DeclareMathOperator{\SU}{SU}
+
 \begin{document}
 \maketitle
 \maketitleprint[teal]{}
@@ -81,5 +83,85 @@ We will bring a full and formal proof of the closed subgroup theorem, assuming t
 	Then $\varphi_p(x) = \varphi(p^{-1} x)$ is exactly composition of smooth maps therefore smooth, and is a chart around $p$.
 	Construct $A = \{ \varphi_p : U_p \to \Omega \mid p \in H \}$, a collection of smooth maps such that $\bigcup_{p \in H} \dom \varphi_p = H$, therefore $(H, A)$ is indeed a smooth map.
 \end{proof}
+
+\section{Journal 4}
+We will discuss examples of Lie groups.
+In class we saw that if $G$ is an Abelian Lie group, then it is isomorphic to $T^n \times \RR^k$ where $T^n$ is an $n$-torus.
+We also know that $\GL_n(\FF)$ is a Lie group for $\FF \in \{\RR, \CC, \HH\}$ and $n \in \NN$.
+Lastly, it can be shown that $O(n), U(n)$ are Lie groups as closed subgroups of $\GL_n$.
+\begin{proposition}
+	$\SU(n) = \{ M \in U(n) \mid \det M = 1 \}$, the group of unitary complex matrices of order $n \times n$ with determinant $1$, forms a Lie group structure.
+\end{proposition}
+\begin{proof}
+	$U(n)$ has a Lie group structure, therefore it suffices to show that $\SU(n) \le U(n)$ is a closed subgroup.
+	It is clear that it is a subgroup, as $I_n \in \SU(n)$, and the fact that determinant is multiplicative.
+	Let $f : U(n) \to \RR$ be the function defined by $f(M) = \det M$, then $f$ is continuous as a polynomial, therefore $f^{-1}(\{ 1 \})$ is closed as the preimage of the closed subset $\{ 1 \}$.
+	But this preimage is exactly $\SU(n)$, therefore by the closed subgroup theorem, it assumes the structure of a submanifold, hence has a Lie group structure.
+\end{proof}
+\begin{proposition}
+	As smooth manifolds, $\SU(3) \cong S^3$, namely there is a smooth bijective map between the manifolds defined for these structures.
+\end{proposition}
+\begin{proof}
+	We identify $S^3$ as,
+	\[
+		S^3
+		= \{ (z, w) \in \CC \times \CC \mid {|z|}^2 + {|w|}^2 = 1 \}
+	\]
+	and define,
+	\[
+		\varphi : S^3 \to \SU(3),
+		\qquad
+		\varphi(z, w)
+		= \begin{pmatrix}
+			z & -\bar{w} \\
+			w & \bar{z}
+		\end{pmatrix}
+	\]
+	As a function over $\RR^4$ it is linear, and therefore injective iff $\ker \varphi = \{ 0 \}$, by direct check it indeed is injective.
+	It is also surjective, therefore a bijection.
+	The proof that it also preserves smoothness of charts is clear and is not present to save space.
+\end{proof}
+Geometrically, the result we achieved is that $S^3$ is an embedded Lie group, thus providing us with another example of a concrete, somewhat visualization-able.
+
+As a bonus we want to describe Hopf-fibration.
+Define Hopf map, $h : S^3(1) \to S^2(\frac{1}{2})$ by
+\[
+	h(z, w)
+	= (z \overline{w}, \frac{1}{2} ({|z|}^2 - {|w|}^2))
+\]
+We show that its image is subset of $S^2(\frac{1}{2})$ and that any $q \in S^2(\frac{1}{2})$ is a regular value of $h$.
+\begin{proof}
+	Notice that $\frac{1}{2} ({|z|}^2 - {|w|}^2) \in \RR$ and $z \overline{w} \in \CC$, then $h$ is embedded in $\RR^3$.
+	Also,
+	\[
+		{|h(z, w)|}^2
+		= z \overline{w} w \overline{z} + \frac{1}{4} {|z|}^4 - \frac{1}{2} {|zw|}^2 + \frac{1}{4} {|w|}^4
+		= \frac{1}{4} {|z|}^4 + \frac{1}{2} {|zw|}^2 + \frac{1}{4} {|w|}^4
+		= {\left(\frac{1}{2} ({|z|}^2 + {|w|}^2)\right)}^2
+		= {\left(\frac{1}{2} \cdot 1\right)}^2
+	\]
+	It follows that $\im h \subseteq S^2(\frac{1}{2})$.
+
+	As for regularity (By Guillemin \& Pollacks definition) notice that,
+	\[
+		D h |_{(z, w)}
+		= D h |_{(z_r, z_i, w_r, w_i)}
+		= \begin{pmatrix}
+			w_r & - w_i & z_r & -z_i \\
+			w_i & w_r & z_i & z_r \\
+			\frac{1}{2} z_r & \frac{1}{2} z_i & \frac{1}{2} w_r & \frac{1}{2} w_i
+		\end{pmatrix} 
+		= \begin{pmatrix}
+			\overline{w} & \overline{z} \\
+			i \overline{w} & i \overline{z} \\
+			\frac{1}{2} z & \frac{1}{2} w
+		\end{pmatrix} 
+	\]
+	then the point $(z, w)$ is regular if the map is onto, $\RR^2 \simeq \CC \simeq T_{h(z, w)}(S^2(\frac{1}{2}))$.
+	By linear independence of the matrix columns each $(z, w) \ne 0$ is a regular value, but $0 \notin S^3(1)$, therefore any $q \in S^2(\frac{1}{2})$ is regular value.
+\end{proof}
+By looking into intersection theory of embedded smooth manifolds we can deduce that $S^1 \to S^2 \xrightarrow{h} S^3$ is a fibration, in particular it assumes Lie group structure.
+
+\section{Journal 5}
 
 \end{document}
