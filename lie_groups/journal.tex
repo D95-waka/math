@@ -163,5 +163,30 @@ We show that its image is subset of $S^2(\frac{1}{2})$ and that any $q \in S^2(\
 By looking into intersection theory of embedded smooth manifolds we can deduce that $S^1 \to S^2 \xrightarrow{h} S^3$ is a fibration, in particular it assumes Lie group structure.
 
 \section{Journal 5}
+We will complete the second part of Schur's lemma,
+\begin{lemma}[Schur]
+	Let $G$ be a topological group.
+	\begin{enumerate}
+		\item If $V$ and $W$ are irreducible representations of $G$ over $\FF$,
+			then any $\FF G$-map $f : V \to W$ is either an isomorphism or $0$.
+		\item If $V$ is an irreducible $G$-representation over $\CC$, then $\End_{\CC G}(V) \cong \CC$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	The first part was proved during the lecture, and us achieved through the fact that $\ker f \subseteq V$ and $\im f \subseteq W$ are both sub-representations.
+	Together with the fact that there are no proper non-trivial sub-representations to both $V$ and $W$, either $\ker f = \{ 0 \}$ or $\im f = \{ 0 \}$.
+
+	For the second part, let $T \in \End_{\CC G}(V)$ be some endomorphism.
+	As a linear operator over a finite dimensional vector space over $\CC$, there is some eigenvalue $\lambda \in \CC$, meaning that there is $v \in V^\times$ with $T v = \lambda v$,
+	or equivalently $(T - \lambda I) v = 0$, where $I$ is identity map in $\End(V)$. Then $T - \lambda I$ has a non-trivial kernel, therefore by the first part of the lemma $T - \lambda I \equiv 0$.
+	Therefore $T \equiv \lambda I$. Define,
+	\[
+		\varphi : \CC \to \End_{\CC G}(V),
+		\qquad
+		\varphi(\lambda)
+		= \lambda I
+	\]
+	we get a homomorphism such that it is surjective (by the previous statement) and injective, therefore $\End_{\CC G}(V) \cong \CC$.
+\end{proof}
 
 \end{document}
