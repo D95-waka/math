@@ -1,0 +1,330 @@
+\input{../article_base.tex}
+\title{פתרון מטלה 06 --- יסודות באלגברה קומוטטיבית}
+
+\DeclareMathOperator{\loc}{loc}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Ann}{Ann}
+
+\begin{document}
+\maketitle
+\maketitleprint[red]
+
+\question{}
+יהיו $S, T \subset R$ כפליות, ונסמן $\loc_S$ את העתקת המיקום עבור $S$, וכן $U = \loc_S(T)$.
+נראה שמתקיים,
+\[
+	U^{-1}(S^{-1} R)
+	\cong {(S T)}^{-1} R
+\]
+\begin{proof}
+	נגדיר את ההעתקה,
+	\[
+		\varphi : U^{-1}(S^{-1} R) \to {(S T)}^{-1} R,
+		\quad
+		\varphi(\frac{r}{s} / \frac{t}{1})
+		= \frac{r}{s t}
+	\]
+	עלינו להראות שההעתקה מוגדרת היטב, וכן שהיא הומומורפיזם חד־חד ערכי ועל.
+	יהיו $\frac{r}{s} / \frac{t}{1} = \frac{r'}{s'} / \frac{t'}{1}$, כלומר קיים $a \in T$ כך ש־$\frac{r}{s} t' a = \frac{r'}{s'} t a$.
+	לכן גם $\frac{r t' a}{s} = \frac{r' t a}{s'}$ וקיים $b \in S$ כך ש־$r t' a s' b = r' t a s b$, ולכן על־ידי בחירת $a b \in S T$ נקבל בדיוק ש־$\frac{r}{s t} = \frac{r'}{s' t'}$, כלומר ההעתקה מוגדרת היטב.
+	נרצה להראות שזהו הומומורפיזם חוגים,
+	\[
+		\varphi(\frac{r}{s} / \frac{t}{1} + \frac{r'}{s'} / \frac{t'}{1})
+		= \varphi(\frac{\frac{r}{s} t' + \frac{r'}{s'} t}{\frac{t t'}{1}})
+		= \varphi(\frac{\frac{r t'}{s} + \frac{r' t}{s'}}{\frac{t t'}{1}})
+		= \varphi(\frac{\frac{r t' s' + r' t s}{s s'}}{\frac{t t'}{1}})
+		= \frac{r t' s' + r' t s}{s s' t t'}
+		= \frac{r}{s t} + \frac{r'}{s' t'}
+		= \varphi(\frac{r}{s} / \frac{t}{1}) + \varphi(\frac{r'}{s'} / \frac{t'}{1})
+	\]
+	ושימור כפל מתקבל באופן דומה (אך יותר פשוט), ונסיק שזהו אכן הומומורפיזם.
+	חד־חד ערכיות נובעת באופן זהה מבדיקת הגדרה היטב, וגם על על־ידי בחירת נציגים, ולכן זהו איזומורפיזם.
+\end{proof}
+
+\question{}
+יהי $I \triangleleft R$ ונגדיר את הקבוצה הכפלית $S = 1 + I$.
+נראה כי $S^{-1} I \subset \Jj(S^{-1} R)$.
+\begin{proof}
+	נבחין כי כל איבר ב־$S^{-1} I$ הוא מהצורה $\frac{a}{1 + b}$ עבור $a, b \in I$, וכן שגם $\frac{a}{1 + b} \in S^{-1} R$.
+	יהי $\frac{r}{1 + c} \in S^{-1} R$, ונבחן את $1 - \frac{a}{1 + b} \cdot \frac{r}{1 + c}$,
+	\[
+		1 - \frac{a}{1 + b} \cdot \frac{r}{1 + c}
+		= \frac{1}{1} + \frac{- a r}{(1 + b)(1 + c)}
+		= \frac{(1 + b)(1 + c) - a r}{(1 + b)(1 + c)}
+	\]
+	בהגדרה השקולה של רדיקל ג'ייקובסון מתקבל שאם ביטוי זה הפיך (עבור איברים כלליים) אז הוא שייך לרדיקל, ולכן נותר לבדוק אם לביטוי זה יש הופכי ב־$S^{-1} R$.
+	ברור כי $(1 + b)(1 + c) \in R$, ולכן רק נרצה להראות ש־$(1 + b)(1 + c) - a r \in S$,
+	\[
+		(1 + b)(1 + c) - a r
+		= 1 + b + c + b c - a r
+		\in 1 + I
+		\iff b + c + b c - a r
+		\in I
+	\]
+	אבל הנחנו ש־$a, b, c \in I$, ולכן מסגירות לכפל גם $a r \in I$ ונסיק את הרצוי.
+\end{proof}
+
+\question{}
+\subquestion{}
+יהי $R$ תחום שלמות,
+נראה שלכל $0 \notin S \subset R$ כפלית, גם $S^{-1} R$ תחום שלמות.
+\begin{proof}
+	נניח בשלילה ש־$S^{-1} R$ לא תחום שלמות, כלומר קיימים $\frac{r}{s}, \frac{r'}{s'} \in S^{-1} R$ כך ששניהם שונים מאפס אבל $\frac{r r'}{s s'} = 0$.
+	יהי $a \in S$ כך שמתקיים $r r' s s' a = 0 a = 0$, אז נקבל ש־$r r' s s' \in R$ הוא מחלק אפס בסתירה.
+\end{proof}
+
+\subquestion{}
+נראה שלכל $P \triangleleft \ZZ / 6 \ZZ$ ראשוני, ${(\ZZ / 6 \ZZ)}_P$ תחום שלמות.
+\begin{proof}
+	לחוג זה יש מספר סופי של קבוצות כפליות (של אידאלים ראשוניים), ואלו הם,
+	\[
+		\{ 1, 2, 4 \},
+		\quad
+		\{ 1, 3 \},
+		\quad
+		\{ 1, 5 \},
+		\quad
+		\{ 1, 3, 5 \},
+		\quad
+		\{ 1, 2, 4, 5 \}
+	\]
+	אלו בהכרח כל הקבוצות הכפליות כי $1 \in S$ תמיד מהגדרה וכן $0 \notin S$ כי $R \setminus S$ ראשוני ובפרט כולל איבר נייטרלי חיבורי.
+	כדי לבדוק אם $S^{-1} R$ תחום שלמות, נוכל להראות ש־$r s \ne 0$ לכל $r \in R \setminus \{ 0 \}, s \in S$, ומבדיקה ישירה זה נכון.
+\end{proof}
+
+\question{}
+נראה שקבוצה כפלית $0 \notin S \subset R$ היא רוויה אם ורק אם $R \setminus S$ איחוד של אידאלים ראשוניים.
+\begin{proof}
+	נאמר ש־$S$ רוויה אם $\forall x, y \in R, x y \in S \implies x, y \in S$.
+
+	נניח כי $S$ רוויה, ויהי $a \in R \setminus S$.
+	נבחן את $(a)$ האידאל הראשי הנוצר על־ידי $a$.
+	אם $a^n \in S$ אז בהכרח גם $a \in S$ בסתירה, לכן $(a) \cap S = \varnothing$ בלבד.
+	נוכל אם כך להרחיב את $(a)$ לאידאל מקסימלי זר ל־$S$ על־ידי משפט האידאל המקסימלי, נסמן $(a) \subset P_a \triangleleft R$ כך ש־$P_a \cap S = \varnothing$.
+	בפרט $P_a$ הוא ראשוני, ולכן $R \setminus S = \bigcup_{a \in R \setminus S} P_a$ כפי שרצינו.
+
+	בכיוון ההפוך נניח ש־$R \setminus S$ איחוד של אידאלים ראשוניים, אז ברור כי $S$ כפלית, ועלינו להראות כי היא רוויה.
+	נניח בשלילה שהיא לא, ולכן קיימים $x, y \in R$ כך ש־$x y \in S$ אבל $x \notin S$, ובהתאם $x \in P$ עבור איזשהו אידאל ראשוני.
+	לכן גם $x y \in P$ בסתירה.
+\end{proof}
+
+\question{}
+תהי $S \subset R$ קבוצה כפלית, ונסמן $\bar{S}$ הריווי של $S$.
+נראה שמתקיים,
+\[
+	S^{-1} R
+	\cong \bar{S}^{-1} R
+\]
+\begin{proof}
+	ראינו כי הקבוצה,
+	\[
+		\{ x \in R \mid \frac{x}{1} \in {(S^{-1} R)}^\times \}
+		= \{ x \in R \mid \exists r \in R,\ r x \in S \}
+	\]
+	היא הריווי של $S$, כלומר הקבוצה המינימלית הכפלית הרוויה הכוללת את $S$.
+	נגדיר את ההעתקה,
+	\[
+		\varphi : S^{-1} R \to \bar{S}^{-1} R,
+		\qquad
+		\varphi(\frac{r}{s}) = \frac{r}{s}
+	\]
+	ברור כי העתקה זו מוגדרת היטב, והומומורפיזם חוגים, וכן ברור שהיא חד־חד ערכית, נראה להראות על.
+	יהי $s' \in \bar{S}$, כלומר $\frac{s'}{1} \in {(S^{-1} R)}^\times$, ולכן גם $\frac{1}{s'} \in S^{-1} R$.
+	לכן אם $\frac{r}{s'} \in \bar{S}^{-1} R$ אז $\varphi(\frac{r}{s'})$ מוגדר ושולח בדיוק לאיבר המבוקש.
+\end{proof}
+
+\question{}
+יהי $A$ תחום ראשי ויהי $P \triangleleft A$ ראשוני.
+נראה ש־$A_P$ תחום ראשי.
+\begin{proof}
+	יהי $I \triangleleft A_P$ אידאל, ונראה שהוא ראשי.
+	ראינו כי כל אידאל במיקום הוא מהצורה $S^{-1} J$ כאשר $S = A \setminus P$ ו־$J \triangleleft A$.
+	אבל $A$ ראשי ולכן $J = (a)$ לאיזשהו $a \in A$, ובהתאם גם $I = S^{-1} (a) = \{ \frac{x}{s} \mid x \in (a), s \in S \}$.
+	אבל לכל $\frac{x}{s}$ כזה נבחין כי $\frac{x}{s} = \frac{x}{1} \cdot \frac{1}{s}$ כאשר $\frac{1}{s} \in A_P$ וכן $\frac{x}{1} = \loc(x)$ עבור $x \in (a)$, ולכן נסיק שב־$A_P$ מתקיים $(a) = I$ בדיוק.
+\end{proof}
+
+\question{}
+יהי $A$ חוג ויהי $f \in A$, עליו נגדיר את הקבוצה הכפלית $S = \{ f^n \mid n \in \NN \}$, ונסמן את $A_f = S^{-1} A$.
+נוכיח כי,
+\[
+	A_f
+	\cong A[x] / (1 - x f)
+\]
+\begin{proof}
+	נגדיר את,
+	\[
+		\varphi(\frac{a}{f^n})
+		= a x^n + (1 - x f)
+	\]
+	ונבדוק שהעתקה זו מוגדרת היטב, נניח ש־$\frac{a}{f^n} = \frac{b}{f^m}$ אז קיים $k \in \NN$ כך ש־$a f^m f^k = b f^n f^k$ וכן,
+	\[
+		\varphi(\frac{a}{f^n})
+		= a x^n + (1 - x f)
+		= a x^n - a x^n (1 - x f) + (1 - x f)
+		= a x^n \cdot x f + (1 - x f)
+	\]
+	כלומר $t \equiv t \cdot x f \mod (1 - x f)$ ולכן,
+	\begin{multline*}
+		\varphi(\frac{a}{f^n})
+		= a x^n + (1 - x f)
+		= a x^n \cdot x^{m + k} f^{m + k} + (1 - x f)
+		= b x^n \cdot x^{m + k} f^{n + k} + (1 - x f) \\
+		= b x^m \cdot x^{n + k} f^{n + k} + (1 - x f)
+		= b x^m + (1 - x f)
+		= \varphi(\frac{b}{f^m})
+	\end{multline*}
+	ומצאנו שההעתקה אכן מוגדרת היטב.
+	ברור כי היא חד־חד ערכית ועל, וכן כי זהו הומומורפיזם מבדיקה ישירה.
+\end{proof}
+
+\question{}
+יהי $f : A \to B$ הומומורפיזם חוגים, ותהי $S \subset A$ כפלית.
+נסמן את $T = f(S)$, זוהי קבוצה כפלית, ובהתאם $T^{-1} B$ הוא מודול מעל $S^{-1} A$.
+$B$ הוא גם מודול מעל $A$ ולכן נוכל להגדיר גם את המיקום של $B$ ב־$S$, כלומר $S^{-1} B$ הוא מודול מעל $S^{-1} A$.
+נראה כי,
+\[
+	S^{-1} B
+	\cong T^{-1} B
+\]
+כמודולים מעל $S^{-1} A$.
+\begin{proof}
+	נרצה לבנות את המיפוי $\frac{b}{s} \mapsto \frac{b}{f(s)}$ ולהראות שהוא איזומורפיזם $S^{-1} B \to T^{-1} B$, אך זה ברור.
+\end{proof}
+
+\question{}
+יהי $A$ תחום שלמות ויהי $F = \Frac(A)$ שדה השברים ל $A$, כלומר $F = {(A \setminus \{ 0 \})}^{-1} A$, ונזהה את $a \in A$ עם $\frac{a}{1} \in \Frac(A)$ לכל $a$. \\
+לכל אידאל מקסימלי $M \triangleleft A$, $A_M$ הוא תת־חוג של $F$.
+נראה כי,
+\[
+	A
+	= \bigcap_{\substack{M \triangleleft A \\ M \text{ maximal}}} A_M
+\]
+\begin{proof}
+	לכל $M$ נבחין כי $\frac{a}{1} \in A_M$ לכל $a \in A$, ולכן $A \subset A_M$, בפרט,
+	\[
+		A
+		\subset \bigcap_M A_M
+	\]
+	ונותר להראות את הכיוון ההפוך.
+
+	יהי $x \in \bigcap_M A_M$, אז נגדיר את $I = \{ a \in A \mid a x \in A \}$, אז $I \triangleleft A$.
+	אם $x \in A$ אז סיימנו, ולכן נניח ש־$x \notin A$ ולכן גם $1 \notin I$, כלומר $I$ הוא אידאל ממש, ובהתאם קיים אידאל מקסימלי $I \subset M \triangleleft A$.
+	מתקיים $x \in A_M$ ולכן $x = \frac{a}{s}$ עבור $a \in A$ ו־$s \in A \setminus M$, וכן $s \cdot x = s \cdot \frac{a}{s} = \frac{a}{1} = a$ ולכן $s \in I$, ובפרט $s \in M$ בסתירה ל־$s \notin M$, לכן $x \in A$ בלבד.
+\end{proof}
+
+\question{}
+\subquestion{}
+יהי $R$ חוג, $M$ מודול נוצר סופית מעל $R$, ותהי $S \subset R$ כפלית.
+נראה ש־$S^{-1} M = 0$ אם ורק אם קיים $s \in S$ כך ש־$s M = 0$.
+\begin{proof}
+	נניח ש־$S^{-1} M = 0$, כלומר לכל $\frac{m}{s} \in S^{-1} M$ קיים $s_m \in S$ כך ש־$m s_m = 0$.
+	נסמן $e_1, \ldots, e_n \in M$ קבוצה פורשת של $M$, ונסמן גם $s_1, \ldots, s_n$ כך ש־$s_i = s_{m_i}$.
+	לכל $m \in M$ מתקיים $m = \sum_i r_i e_i$ ולכן,
+	\[
+		(e_1 \cdots e_n) \cdot m
+		= \sum_{i = 1}^n (s_1 \cdots s_n) \alpha_i e_i
+		= \sum_{i = 1}^n (s_1 \cdots s_{i - 1} \cdot s_{i + 1} \cdots s_n) \alpha_i s_i e_i
+		= \sum_{i = 1}^n (s_1 \cdots s_{i - 1} \cdot s_{i + 1} \cdots s_n) \alpha_i \cdot 0
+		= 0
+	\]
+	ולכן $s = e_1 \cdots e_n$ מקיים $s M = 0$.
+
+	בכיוון ההפוך נניח ש־$s M = 0$ עבור $s \in S$.
+	לכן לכל $\frac{m}{t} \in S^{-1} M$ מתקיים $m \cdot 1 \cdot s = 0 \cdot t \cdot s$, כלומר $\frac{m}{t} = \frac{0}{1}$, ונסיק ש־$S^{-1} M = 0$.
+\end{proof}
+
+\subquestion{}
+נמצא חוג $R$ ומודול $M$ מעליו שאינו נוצר סופית, וקבוצה כפלית $S \subset R$ כך ש־$S^{-1} M = 0$ אבל לא קיים $s \in S$ כך ש־$s M = 0$.
+\begin{solution}
+	נגדיר את $R = \ZZ$ ואת $M = \bigoplus_{n \in \NN} \ZZ / n \ZZ$, וכן $S = \ZZ \setminus \{ 0 \}$, זוהי קבוצה כפלית.
+	יהי $\frac{(a_1, a_2, \ldots)}{b} \in S^{-1} M$, אז $a_i = 0$ למעט מספר סופי של אינדקסים, לכן,
+	\[
+		s
+		= \prod_{\substack{i \in \NN \\ a_i \ne 0}} i
+	\]
+	ולכן $s \cdot (a_1, \ldots) = (s a_1, s a_2, \ldots) = (0, 0, \ldots)$ בלבד, כלומר $\frac{(a_i)}{b} = 0$ ולכן $S^{-1} M = 0$.
+
+	נניח בשלילה שקיים $s \in S$ כך שגם $s M = 0$, ונבחר $e_i \in M$ מהבסיס הסטנדרטי, אז $s e_i = 0 \implies s \equiv 0 \mod i$, כלומר $i \mid m$, אבל זה נכון לכל $i \in \NN$ בסתירה ל־$s \in \ZZ \setminus \{ 0 \}$.
+\end{solution}
+
+\question{}
+יהי $A$ חוג, $M$ מודול מעליו, ו־$I \triangleleft A$.
+נניח שלכל $I \subset N \triangleleft A$ מקסימלי מתקיים $M_N = 0$.
+נראה ש־$M = I M$.
+\begin{proof}
+	הכיוון של $I M \subset M$ ברור. \\
+	נגדיר את $C = M / I M$, ואנו רוצים להראות ש־$C \cong \{ I M \}$, ולכן נניח בשלילה ש־$c = m + I M \in C$ איבר לא טריוויאלי.
+	מהנתון ומשימור מיקום מתקיים $C_N = M_N / {(I M)}^N = M_N / I_N M_N = 0$ לכל $I \subset N$ אידאל מקסימלי.
+
+	יהי $N$ אידאל מקסימלי כלשהו. אם $I \subset N$ אז $C_N = 0$, נרצה להראות שגם כאשר $I \not\subset N$ זהו המצב.
+	במצב זה $N + I = A$ בלבד, וקיים $s \in I \setminus N$, לכן $s \in R \setminus N$ ונובע ש־$\frac{s}{1}$ הפיך ב־$C_N$.
+	נסיק שגם $\frac{s}{1} \in I_N$, אבל גם $\frac{1}{s} \in I_N$ ולכן $I_N = A_N$ ונסיק שגם $I_N M_N = A_N M_N = M_N$ ולכן $C = M_N / M_N = \{ I M \}$, וקיבלנו שתמיד $C$ טריוויאלי.
+\end{proof}
+
+\question{}
+יהי $A$ תחום שלמות.
+$A$־מודול מעל $M$ נקרא חסר פיתול אם $T(M) = \{ 0 \}$.
+נראה שלכל $S \subset A$ כפלית ו־$M$ מודול מתקיים,
+\[
+	T(S^{-1} M)
+	= S^{-1} T(M)
+\]
+ונסיק ש־$M$ חסר פיתול אם ורק אם לכל $P \triangleleft A$ ראשוני, $M_P$ חסר פיתול.
+\begin{proof}
+	ניזכר ש־$T(M) = \{ m \in M \mid \Ann(m) \ne \{ 0 \} \}$.
+	יהי $\frac{m}{s} \in T(S^{-1} M)$, ונרצה להראות ש־$m \in T(M)$.
+	מהגדרת המאפס נסיק שקיים איבר לא טריוויאלי $a \in A$ כך ש־$a \frac{m}{s} = 0$, כלומר $a t \cdot m = 0$ לאיזשהו $t \in S$, אבל נובע אם כך ש־$a t \in \Ann(m)$, כלומר $m \in T(M)$ כפי שרצינו.
+
+	מהצד השני יהי $\frac{m}{s} \in S^{-1} T(M)$, ונרצה להראות שגם $\frac{m}{s} \in T(S^{-1} M)$.
+	מהנתון קיים $a \in A$ כך ש־$a m = 0$, אז בפרט גם $\frac{a m}{s} = \frac{0}{1}$ וקיבלנו בדיוק את המבוקש.
+
+	ניזכר כי $M = 0$ היא תכונה מקומית, לכן הטענה נכונה גם ל־$T(M)$, כלומר $T(M) = 0$ (חסרת פיתול) אם ורק אם לכל $P \triangleleft A$ ראשוני, ${(T(M))}_P = T(M_P) = 0$.
+\end{proof}
+
+\question{}
+יהי חוג $R$, ונגדיר,
+\[
+	\dim R
+	= \sup\{ n \in \NN \mid \exists P_0 \subsetneq P_1 \subsetneq \cdots \subsetneq P_n \text{ prime ideals of } R \}
+\]
+ונגדיר את מימד Krull של $R$ להיות $\dim R$.
+
+\subquestion{}
+נניח ש־$R$ תחום שלמות, ונראה ש־$R$ שדה אם ורק אם $\dim R = 0$.
+\begin{proof}
+	אם $R$ שדה אז כל אידאל של $R$ הוא טריוויאלי, ולכן השרשרת הארוכה ביותר של אידאלים ראשוניים היא $\{ 0 \} \triangleleft R$, כלומר $\dim R = 0$.
+
+	מהצד השני נניח ש־$\dim R = 0$, ונסמן את השרשרת המעידה על־כך $P_0 \triangleleft R$.
+	אם $P_0$ לא טריוויאלי אז נוכל לבחור $\{ 0 \} \subsetneq P_0 \triangleleft R$, לכן $\dim R \ge 1$ בסתירה, ונסיק ש־$P_0 = \{ 0 \}$ בלבד.
+	נובע של־$R$ אין אידאלים ראשוניים לא טריוויאליים, ולכן בפרט הטענה נכונה גם עבור אידאלים מקסימליים, כלומר $\{ 0 \}$ אידאל מקסימלי יחיד, ונובע ש־$R = R / \{ 0 \}$ שדה.
+\end{proof}
+
+\subquestion{}
+יהי $P \triangleleft R$ ראשוני, נראה כי,
+\[
+	\dim R_P
+	= \sup\{ n \in \NN \mid \exists P_0 \subsetneq P_1 \subsetneq \cdots \subsetneq P_n = P \text{ prime ideals of } R \}
+\]
+\begin{proof}
+	נניח כי $\dim R_P = n$ ותהי $Q_0 \subsetneq \cdots Q_n$ שרשרת המעידה על כך, כלומר $Q_i \triangleleft R_P$ ראשוני לכל $i \le n$.
+	נסמן $S = R \setminus P$ ויהיו $Q_i = S^{-1} P_i$ לכל $i \le n$ כאשר $P_i \triangleleft R$ אידאל ראשוני. \\
+	נבחין כי לכל $0 < i \le n$,
+	\[
+		x \in P_i \setminus P
+		\implies x \in S
+		\implies \frac{1}{x} \in R_P
+		\implies \frac{x}{x} \in P_i
+	\]
+	וזו כמובן סתירה ולכן $P_i \subset P$ לכל $i$ (גם ל־$0$), וממקסימליות השרשרת נסיק ש־$P_n = P$ בלבד, אחרת נוכל לסמן $P_{n + 1} = P$ ולקבל $\dim R_P = n + 1$.
+\end{proof}
+
+\subquestion{}
+נחשב את $\dim \ZZ$, וכן לכל $p \in \ZZ$ ראשוני, נחשב את $\dim \ZZ_{(p)}$.
+\begin{solution}
+	ניזכר ש־$P \triangleleft \ZZ$ הוא ראשוני אם ורק אם $P = (p)$ לאיזשהו ראשוני $p$ או $P = (0)$, ונסמן $P_p = (p)$ לכלל האידאלים של $\ZZ$.
+	בהתאם נובע ש־$P_p \not\subset P_q$ לכל $p, q$ ראשוניים, ובפרט $(0) \subsetneq P_2 \triangleleft \ZZ$ היא שרשרת מקסימלית, לכן $\dim \ZZ = 1$.
+
+	מהסעיף הקודם נובע ש־$(0) \subsetneq P_p$ שרשרת המעידה על $\dim \ZZ_{(p)} = 1$.
+\end{solution}
+
+\end{document}
